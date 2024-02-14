@@ -57,7 +57,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Untitled.md",
+                "file": "Системы и механики.md",
                 "mode": "source",
                 "source": false
               }
@@ -130,7 +130,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Untitled.md",
+                "file": "Системы и механики.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -147,7 +147,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Untitled.md",
+                "file": "Системы и механики.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -170,7 +170,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Untitled.md"
+                "file": "Системы и механики.md"
               }
             }
           },
@@ -204,10 +204,11 @@
   },
   "active": "00c32e52da8b5d58",
   "lastOpenFiles": [
-    "Системы и механики.md",
-    "Untitled.md",
-    "Город/Народы.md",
     "Город/Фракции.md",
+    "Untitled.md",
+    "Особые черты.loom",
+    "Системы и механики.md",
+    "Город/Народы.md",
     "Фотографии/NA.png",
     "Город/Кварталы/Площадь Собора Падших Богов.md",
     "Город/Кварталы/Квартал Паровых Машин.md",
@@ -226,7 +227,6 @@
     "Город/Кварталы/Старый городской квартал.md",
     "Город/Кварталы/Торговый квартал.md",
     "Город/Кварталы/Теневые трущобы.md",
-    "Особые черты.loom",
     "2024-02-11.md",
     "Untitled Kanban.md",
     "Полезные ссылки.md",
@@ -248,7 +248,6 @@
     "Город/Фракции/Путешественники.md",
     "Город/Фракции/Подпольные организации.md",
     "Город/Фракции/Народы/Андеркийцы.md",
-    "Город/Фракции/Народы/Аурентары.md",
     "Город/Народы",
     "Фотографии/ad4fe10f32778b0f619aecc75199cd93.jpg",
     "Фотографии/107f45e2c6964b7584529f502c9cf540.jpg",
