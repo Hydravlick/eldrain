@@ -1,0 +1,142 @@
+{
+  "model": {
+    "columns": [
+      {
+        "id": "d15304b3-e446-40a0-9481-c05ff7f30b50",
+        "sortDir": "default",
+        "isVisible": true,
+        "width": "140px",
+        "type": "text",
+        "numberPrefix": "",
+        "numberSuffix": "",
+        "numberSeparator": "",
+        "content": "Профессии",
+        "numberFormat": "number",
+        "currencyType": "USD",
+        "dateFormat": "mmddyyyy",
+        "dateFormatSeparator": "-",
+        "hour12": true,
+        "includeTime": false,
+        "shouldWrapOverflow": true,
+        "tags": [],
+        "calculationType": "none",
+        "aspectRatio": "unset",
+        "horizontalPadding": "unset",
+        "verticalPadding": "unset",
+        "frontmatterKey": null
+      },
+      {
+        "id": "fec3de61-3859-4d73-af2d-ed4f315a0419",
+        "sortDir": "default",
+        "isVisible": true,
+        "width": "140px",
+        "type": "multi-tag",
+        "numberPrefix": "",
+        "numberSuffix": "",
+        "numberSeparator": "",
+        "content": "Ежи",
+        "numberFormat": "number",
+        "currencyType": "USD",
+        "dateFormat": "mmddyyyy",
+        "dateFormatSeparator": "-",
+        "hour12": true,
+        "includeTime": false,
+        "shouldWrapOverflow": true,
+        "tags": [],
+        "calculationType": "none",
+        "aspectRatio": "unset",
+        "horizontalPadding": "unset",
+        "verticalPadding": "unset",
+        "frontmatterKey": null
+      },
+      {
+        "id": "2195fba3-a8bc-4c1e-adc3-488c07a49098",
+        "sortDir": "default",
+        "isVisible": true,
+        "width": "140px",
+        "type": "multi-tag",
+        "numberPrefix": "",
+        "numberSuffix": "",
+        "numberSeparator": "",
+        "content": "Кроли",
+        "numberFormat": "number",
+        "currencyType": "USD",
+        "dateFormat": "mmddyyyy",
+        "dateFormatSeparator": "-",
+        "hour12": true,
+        "includeTime": false,
+        "shouldWrapOverflow": true,
+        "tags": [],
+        "calculationType": "none",
+        "aspectRatio": "unset",
+        "horizontalPadding": "unset",
+        "verticalPadding": "unset",
+        "frontmatterKey": null
+      }
+    ],
+    "rows": [
+      {
+        "id": "263be68c-a444-4453-8da9-f219bc20a909",
+        "index": 0,
+        "sourceId": null,
+        "creationDateTime": "2024-02-12T20:54:35.097Z",
+        "lastEditedDateTime": "2024-02-12T20:55:58.720Z",
+        "cells": [
+          {
+            "id": "710c0a59-03df-4b97-a98b-ecd5e44795ea",
+            "columnId": "d15304b3-e446-40a0-9481-c05ff7f30b50",
+            "content": "Повар",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "500dbd1f-e35a-4465-8036-f31fb3899310",
+            "columnId": "fec3de61-3859-4d73-af2d-ed4f315a0419",
+            "tagIds": [],
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "05e0a494-0169-4168-adec-fe0a350aeaeb",
+            "columnId": "2195fba3-a8bc-4c1e-adc3-488c07a49098",
+            "tagIds": [],
+            "hasValidFrontmatter": null
+          }
+        ]
+      },
+      {
+        "id": "fc4fc9bf-faeb-4166-895f-e2a27ab2d29e",
+        "index": 1,
+        "sourceId": null,
+        "creationDateTime": "2024-02-12T20:56:01.332Z",
+        "lastEditedDateTime": "2024-02-12T20:56:06.188Z",
+        "cells": [
+          {
+            "id": "3a6850e7-24cb-474c-be88-8077d21674ab",
+            "columnId": "d15304b3-e446-40a0-9481-c05ff7f30b50",
+            "content": "Алхимик",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "bbbb8da0-cf74-4a69-92b2-24faa41cf30a",
+            "columnId": "fec3de61-3859-4d73-af2d-ed4f315a0419",
+            "tagIds": [],
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "59a93a66-15c2-4595-8d07-d4a761269949",
+            "columnId": "2195fba3-a8bc-4c1e-adc3-488c07a49098",
+            "tagIds": [],
+            "hasValidFrontmatter": null
+          }
+        ]
+      }
+    ],
+    "filters": [],
+    "sources": [],
+    "settings": {
+      "numFrozenColumns": 1,
+      "showCalculationRow": true
+    },
+    "externalRowOrder": []
+  },
+  "pluginVersion": "8.15.11"
+}

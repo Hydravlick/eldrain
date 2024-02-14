@@ -21,7 +21,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Профессии.md",
+                "file": "Город/Профессии.md",
                 "mode": "source",
                 "source": false
               }
@@ -33,14 +33,38 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Системы и механики.md",
+                "file": "Город/Профессии.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "1ddcfad33ac9e0d8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Город/Народы.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "00c32e52da8b5d58",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Untitled.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -106,7 +130,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Системы и механики.md",
+                "file": "Untitled.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +147,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Системы и механики.md",
+                "file": "Untitled.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -146,7 +170,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Системы и механики.md"
+                "file": "Untitled.md"
               }
             }
           },
@@ -178,17 +202,25 @@
       "obsidian-gallery:Gallery": false
     }
   },
-  "active": "a3f23106e7ed4906",
+  "active": "00c32e52da8b5d58",
   "lastOpenFiles": [
-    "ДизДок.md",
-    "Untitled",
-    "Город/Кварталы/Площадь Собора Падших Богов.md",
     "Системы и механики.md",
+    "Untitled.md",
     "Город/Народы.md",
-    "Город/Кварталы/Богатый квартал.md",
+    "Город/Фракции.md",
+    "Фотографии/NA.png",
+    "Город/Кварталы/Площадь Собора Падших Богов.md",
+    "Город/Кварталы/Квартал Паровых Машин.md",
     "Город/Кварталы/Ботанический квартал.md",
     "Город/Кварталы/Городок Магического Университета.md",
-    "Город/Кварталы/Квартал Паровых Машин.md",
+    "Фотографии/NB.png",
+    "Фотографии/SoborB.png",
+    "Фотографии/SoborA.png",
+    "Город/Профессии.md",
+    "Город/Профессии/Untitled.loom",
+    "Город/Профессии",
+    "ДизДок.md",
+    "Город/Кварталы/Богатый квартал.md",
     "Город/Кварталы/Портовый квартал.md",
     "Город/Кварталы/Светящаяся площадь.md",
     "Город/Кварталы/Старый городской квартал.md",
@@ -197,9 +229,7 @@
     "Особые черты.loom",
     "2024-02-11.md",
     "Untitled Kanban.md",
-    "Город/Фракции.md",
     "Полезные ссылки.md",
-    "Профессии.md",
     "Город/Кварталы/Концепты/Богатый.canvas",
     "Город/Кварталы.md",
     "Фотографии/083327a022db8f67f7565d342fc86855.jpg",
@@ -224,13 +254,9 @@
     "Фотографии/107f45e2c6964b7584529f502c9cf540.jpg",
     "Фотографии/6119779e0d24a678851bd9178503032c.jpg",
     "Фотографии/2558ae0c333ccae8547866f6063de8e5.jpg",
-    "Фотографии/c0027f3aaca6d97d736ec77dc8bb1386.jpg",
-    "Фотографии/a1e2279664bbee46114b9bbfc9527b37.jpg",
-    "Фотографии/b0ef8e324f55050174ade58864a9e4b6.jpg",
     "Город/Кварталы/Концепты",
     "Город/Кварталы",
     "Город/Фракции",
-    "Фотографии/f61d51f943fa3a20cbc4fdfe429da5b8.jpg",
     "Фотографии",
     "Город",
     "Город/Фракции/Народы"
