@@ -10,5 +10,6 @@
   "alwaysUpdateLinks": true,
   "newLinkFormat": "absolute",
   "showUnsupportedFiles": true,
-  "attachmentFolderPath": "./"
+  "attachmentFolderPath": "./",
+  "promptDelete": false
 }
