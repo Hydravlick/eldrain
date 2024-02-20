@@ -1,0 +1,1018 @@
+{
+  "model": {
+    "columns": [
+      {
+        "id": "d5aae4d9-ee6f-4864-ac3a-56b8119aff92",
+        "sortDir": "default",
+        "isVisible": true,
+        "width": "140px",
+        "type": "text",
+        "numberPrefix": "",
+        "numberSuffix": "",
+        "numberSeparator": "",
+        "content": "Профессия",
+        "numberFormat": "number",
+        "currencyType": "USD",
+        "dateFormat": "mmddyyyy",
+        "dateFormatSeparator": "-",
+        "hour12": true,
+        "includeTime": false,
+        "shouldWrapOverflow": true,
+        "tags": [],
+        "calculationType": "count-all",
+        "aspectRatio": "unset",
+        "horizontalPadding": "unset",
+        "verticalPadding": "unset",
+        "frontmatterKey": null
+      },
+      {
+        "id": "d54c2cb7-b818-4818-aeaf-d006d41d416d",
+        "sortDir": "default",
+        "isVisible": true,
+        "width": "471px",
+        "type": "multi-tag",
+        "numberPrefix": "",
+        "numberSuffix": "",
+        "numberSeparator": "",
+        "content": "Одежда",
+        "numberFormat": "number",
+        "currencyType": "USD",
+        "dateFormat": "mmddyyyy",
+        "dateFormatSeparator": "-",
+        "hour12": true,
+        "includeTime": false,
+        "shouldWrapOverflow": true,
+        "tags": [
+          {
+            "id": "e9b1e954-fd1e-4d27-b2a3-37ad09c4e054",
+            "content": "Обычная рубашка",
+            "color": "green"
+          },
+          {
+            "id": "46deccfc-3e67-4e7c-8ebf-09b2945dbc9f",
+            "content": "Брюки",
+            "color": "blue"
+          },
+          {
+            "id": "478c7bde-5aab-4af1-a7ed-fdb9461e8fa6",
+            "content": "Мешковатые штаны",
+            "color": "light gray"
+          },
+          {
+            "id": "6abf7960-51a4-47bd-a062-b9879aa3990d",
+            "content": "Плащ с пугавицами",
+            "color": "gray"
+          },
+          {
+            "id": "dca80228-86b3-406c-b1e2-9f0ab6731622",
+            "content": "Накидка",
+            "color": "yellow"
+          },
+          {
+            "id": "bb842d56-e5ee-4f17-bbe9-e72aff27a255",
+            "content": "Водолазка",
+            "color": "gray"
+          },
+          {
+            "id": "9db681d8-410d-49f9-8458-5aa443c73b71",
+            "content": "Майка",
+            "color": "brown"
+          },
+          {
+            "id": "d48ead35-d3be-46cf-8998-0fdef8fd24ab",
+            "content": "Затёртые ботинки с грязной подошвой",
+            "color": "blue"
+          },
+          {
+            "id": "4b4cf460-d5bc-43c7-8f70-a6afd6bd107d",
+            "content": "Ободранный пояс из кожи",
+            "color": "light gray"
+          },
+          {
+            "id": "d01111b8-49c3-4141-8f4f-2f7d0dae49ac",
+            "content": "Потёртые перчатки с сучками и иголками",
+            "color": "yellow"
+          },
+          {
+            "id": "913581a6-0cce-4dc1-b008-a822a902dfdf",
+            "content": "Тяжелый фартух",
+            "color": "gray"
+          },
+          {
+            "id": "4ffd1775-70ee-4f25-86b7-9dba59086811",
+            "content": "Тяжелые штаны",
+            "color": "brown"
+          },
+          {
+            "id": "f3da790e-3c04-4cd1-bb15-4106348578bd",
+            "content": "Перчатки",
+            "color": "red"
+          },
+          {
+            "id": "b07eceb0-5783-475e-9b15-f4bed7c89a15",
+            "content": "Бесформенная рубаха",
+            "color": "pink"
+          },
+          {
+            "id": "ee65373c-e420-4738-9692-af8a370a7f97",
+            "content": "Широкие штаны",
+            "color": "red"
+          },
+          {
+            "id": "f3acb2e4-6bcf-401a-a506-6d898a9d8eec",
+            "content": "Потёртая и немного выцветшая рубашка с застёжками",
+            "color": "red"
+          },
+          {
+            "id": "4c00920a-228a-4895-accc-5de529e11807",
+            "content": "Кожанные ботинки с немного сносившимися подошвами",
+            "color": "purple"
+          },
+          {
+            "id": "abdb9e3d-9a90-4b28-80cb-bba7301031bb",
+            "content": "Потёртая шляпа в стиле федора",
+            "color": "blue"
+          },
+          {
+            "id": "e18e1592-f3f2-450c-a93e-178984e0cc02",
+            "content": "Разодранная по бокам шляпа с потёртым краем",
+            "color": "pink"
+          },
+          {
+            "id": "d2ae5515-5a9d-4afb-9110-1ff59ad109a4",
+            "content": "Травяная накидка",
+            "color": "blue"
+          },
+          {
+            "id": "5c980710-0e75-4d9f-8244-545c85629ccc",
+            "content": "Изношенный плащ с ветками и листьями",
+            "color": "pink"
+          },
+          {
+            "id": "f838478c-efb4-4e6b-9b7e-e8b34f209125",
+            "content": "Сандалии",
+            "color": "red"
+          },
+          {
+            "id": "405949e4-9988-421a-9308-65e5623fae3f",
+            "content": "Испачканная священная одежда с потёртыми углами",
+            "color": "brown"
+          },
+          {
+            "id": "5b570d23-132b-4aa8-80ac-c7d7068e1174",
+            "content": "Помятый фартух с пятнами",
+            "color": "pink"
+          },
+          {
+            "id": "3dba41d9-45e6-4fa1-b0f5-15c4c44c8299",
+            "content": "Шапочка-поварёшка",
+            "color": "red"
+          }
+        ],
+        "calculationType": "none",
+        "aspectRatio": "unset",
+        "horizontalPadding": "unset",
+        "verticalPadding": "unset",
+        "frontmatterKey": null
+      },
+      {
+        "id": "efdff67f-fb48-4500-a856-12e189f452b1",
+        "sortDir": "default",
+        "isVisible": true,
+        "width": "569px",
+        "type": "multi-tag",
+        "numberPrefix": "",
+        "numberSuffix": "",
+        "numberSeparator": "",
+        "content": "Особые черты",
+        "numberFormat": "number",
+        "currencyType": "USD",
+        "dateFormat": "mmddyyyy",
+        "dateFormatSeparator": "-",
+        "hour12": true,
+        "includeTime": false,
+        "shouldWrapOverflow": true,
+        "tags": [
+          {
+            "id": "ee8e7f60-7aeb-4dc6-92cf-c3065a14155c",
+            "content": "Помятая фотокамера",
+            "color": "yellow"
+          },
+          {
+            "id": "d75eac28-4dda-4a8c-baca-faae8e9eb4d1",
+            "content": "Изодраный блокнот",
+            "color": "brown"
+          },
+          {
+            "id": "8849f6ec-0d1c-4401-a262-77509e0d7725",
+            "content": "Пыльный фонарь",
+            "color": "green"
+          },
+          {
+            "id": "2046c910-e8a0-4694-a962-5a6cc6436d57",
+            "content": "Старые фотографии с утраченным смыслом",
+            "color": "green"
+          },
+          {
+            "id": "3515b569-c3f9-4b7e-a04d-ac1ac548816a",
+            "content": "Заколдованная записная книжка",
+            "color": "pink"
+          },
+          {
+            "id": "ba84fc93-f58d-4dd0-8acf-94c040fb5135",
+            "content": "Изогнутая и потрёпанная лупа",
+            "color": "orange"
+          },
+          {
+            "id": "0be8fc85-3b97-47bd-bbf6-955c301634a4",
+            "content": "Дневник с записями об аномалиях",
+            "color": "green"
+          },
+          {
+            "id": "a6e81e25-ba26-413e-9d6c-5d503b489dc2",
+            "content": "Заляпаный чернилами пергамент",
+            "color": "blue"
+          },
+          {
+            "id": "9f20c122-a3f2-4e28-9966-7cd0b5d16bc8",
+            "content": "Старый деревянный магнитофон",
+            "color": "red"
+          },
+          {
+            "id": "3b009619-125d-44c6-a711-24fc98e435cd",
+            "content": "Бронированный жилет",
+            "color": "brown"
+          },
+          {
+            "id": "40313881-149f-45b8-9b86-2c55c2830de1",
+            "content": "Очки с разбитым стеклом",
+            "color": "yellow"
+          },
+          {
+            "id": "7d319acc-1b1d-487f-aaba-5f3dfa55a153",
+            "content": "Подцепленный за ремень чехол от радио",
+            "color": "light gray"
+          },
+          {
+            "id": "07d37ce2-e755-4c38-9ac3-e3c7c2e799b6",
+            "content": "Порванный платок",
+            "color": "purple"
+          },
+          {
+            "id": "f622a67d-b4bf-46e1-b684-aebddd85c014",
+            "content": "Поцарапаный свиток заклинаний",
+            "color": "orange"
+          },
+          {
+            "id": "93315591-95e6-4ab9-a8b1-d68a26b42e6e",
+            "content": "Пустая бутылка от зелья с остатками жидкости",
+            "color": "gray"
+          },
+          {
+            "id": "177a079e-95a4-448b-8284-c39608af057f",
+            "content": "Потёртая книга",
+            "color": "orange"
+          },
+          {
+            "id": "567bad19-efb8-4320-adfb-db138a791bbe",
+            "content": "Потрёпанный плащ",
+            "color": "pink"
+          },
+          {
+            "id": "c85cfd63-2147-4959-8c29-b042611531e7",
+            "content": "Пыльный фиал с магическими составами",
+            "color": "purple"
+          },
+          {
+            "id": "110717b6-36a1-4a34-9585-9693bdd58280",
+            "content": "Старый амулет",
+            "color": "gray"
+          },
+          {
+            "id": "e3bb5ecc-6bee-49d8-af28-056af1aaeae6",
+            "content": "Оборванный ремень с магическими символами",
+            "color": "green"
+          },
+          {
+            "id": "2f18be3f-f4df-44ef-9072-d92116a08b23",
+            "content": "Бутылка с ароматом лесных трав",
+            "color": "pink"
+          },
+          {
+            "id": "2986015f-aa69-4e68-bf34-eda7067b38df",
+            "content": "Рваный кусок ткани с ветошью",
+            "color": "red"
+          },
+          {
+            "id": "7387f043-3ddc-48ec-8a5f-bf3b75cf222a",
+            "content": "Ржавый молот",
+            "color": "blue"
+          },
+          {
+            "id": "3645448a-b7d4-4e66-ba67-0b6a11879752",
+            "content": "Обгорелая обугленная кочерга",
+            "color": "red"
+          },
+          {
+            "id": "fbceb6cb-f19f-4817-b1e5-23c7ffed88fd",
+            "content": "Стальные опилки в сумке",
+            "color": "orange"
+          },
+          {
+            "id": "438079ed-642c-4367-9d7b-7c922b12f984",
+            "content": "Ящичек с самоцветами",
+            "color": "purple"
+          },
+          {
+            "id": "1f78f997-b36f-4444-95b1-483b69df3e28",
+            "content": "Грязный пинцет",
+            "color": "gray"
+          },
+          {
+            "id": "d756cf1e-360f-4289-a647-f820a113d057",
+            "content": "Журнал с чертежами ювелирных изделий",
+            "color": "blue"
+          },
+          {
+            "id": "3897daca-3a4e-4411-9c9d-4a0144f68e88",
+            "content": "Старая карта сокровищ с затёртыми областями",
+            "color": "green"
+          },
+          {
+            "id": "f1bfe8b0-3dea-436f-b8d0-882a99656532",
+            "content": "Затёртый кулон с загадочными символами",
+            "color": "blue"
+          },
+          {
+            "id": "5ccab6b7-4530-478f-b8b5-cee0076113e3",
+            "content": "Чертежи",
+            "color": "yellow"
+          },
+          {
+            "id": "9ecb7fc5-01db-4259-90e7-1f3bd8be873c",
+            "content": "Сломанные магические батарейки",
+            "color": "yellow"
+          },
+          {
+            "id": "5e782477-d94a-4bac-b31d-e6ee8a0586e2",
+            "content": "Загрязнённая карточка для контактов",
+            "color": "pink"
+          },
+          {
+            "id": "7c066e43-d723-491b-872e-20a8ec59e0b0",
+            "content": "Скомканый прайс-лист с потёртыми ценами",
+            "color": "light gray"
+          },
+          {
+            "id": "dc32fc31-da92-4afc-a017-3d60d56f888a",
+            "content": "Утоптанный чековый блок с исписанными сделками",
+            "color": "pink"
+          },
+          {
+            "id": "b77d95a5-84a9-4053-a261-a8b604cd53ff",
+            "content": "Старые ноты",
+            "color": "pink"
+          },
+          {
+            "id": "6b8860ab-6495-4dd1-921e-8ccb9e8373a9",
+            "content": "Пустая пивная кружка на бедре",
+            "color": "gray"
+          },
+          {
+            "id": "0f39aaba-c156-4ab9-aa6d-851aac920f45",
+            "content": "Молитвенная книга с торчащими страницами",
+            "color": "yellow"
+          },
+          {
+            "id": "86d6121f-bbee-4843-8f56-c298e28617cd",
+            "content": "Священный талисман",
+            "color": "yellow"
+          },
+          {
+            "id": "9a92c1a3-20dd-47a1-bbe6-bb76aba546ac",
+            "content": "Чёрствый хлеб",
+            "color": "blue"
+          },
+          {
+            "id": "00089398-ebd1-45a2-9c65-b04b306abe16",
+            "content": "Мешочек с травами",
+            "color": "light gray"
+          },
+          {
+            "id": "a9e549c1-830b-4e6d-9670-7300a8b66174",
+            "content": "Полузакопченная отваром фляжка",
+            "color": "blue"
+          },
+          {
+            "id": "d25f644b-8d3d-43f7-9ccc-280a24b142c3",
+            "content": "Корень",
+            "color": "pink"
+          },
+          {
+            "id": "8a18dd51-42bd-46de-9260-a37483503954",
+            "content": "Поблеклый буклет с растениями",
+            "color": "purple"
+          },
+          {
+            "id": "334b874a-6b7b-4b1b-ba8d-08553f18a6f5",
+            "content": "Пустой набор мёда с липкими каплями",
+            "color": "green"
+          },
+          {
+            "id": "6ba728e2-6d42-44ec-8219-2daada3e3025",
+            "content": "Затёртый каменный талисман",
+            "color": "purple"
+          },
+          {
+            "id": "48e79633-888f-4cbc-a579-d61d0151470f",
+            "content": "Потёртая доска для нарезки с надрезами",
+            "color": "purple"
+          },
+          {
+            "id": "224bd59a-9d7f-404b-bf56-a2c0ce64239b",
+            "content": "Разломанная посуда с потёртыми узорами",
+            "color": "blue"
+          }
+        ],
+        "calculationType": "none",
+        "aspectRatio": "unset",
+        "horizontalPadding": "unset",
+        "verticalPadding": "unset",
+        "frontmatterKey": null
+      }
+    ],
+    "rows": [
+      {
+        "id": "6efd9185-1ce7-4723-8d14-06e2ff7d5e4e",
+        "index": 0,
+        "sourceId": null,
+        "creationDateTime": "2024-02-11T17:26:53.279Z",
+        "lastEditedDateTime": "2024-02-11T17:51:13.044Z",
+        "cells": [
+          {
+            "id": "5e6730a0-16d2-49d1-bcd4-3b5074b9996c",
+            "columnId": "d5aae4d9-ee6f-4864-ac3a-56b8119aff92",
+            "content": "[[Журналист]]",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "a2c075f7-f86c-466e-b824-881d74b3a672",
+            "columnId": "d54c2cb7-b818-4818-aeaf-d006d41d416d",
+            "tagIds": [
+              "e9b1e954-fd1e-4d27-b2a3-37ad09c4e054",
+              "46deccfc-3e67-4e7c-8ebf-09b2945dbc9f",
+              "478c7bde-5aab-4af1-a7ed-fdb9461e8fa6"
+            ],
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "41989ada-609b-40d1-bd17-47de8a72ad95",
+            "columnId": "efdff67f-fb48-4500-a856-12e189f452b1",
+            "tagIds": [
+              "ee8e7f60-7aeb-4dc6-92cf-c3065a14155c",
+              "d75eac28-4dda-4a8c-baca-faae8e9eb4d1",
+              "8849f6ec-0d1c-4401-a262-77509e0d7725",
+              "2046c910-e8a0-4694-a962-5a6cc6436d57",
+              "3515b569-c3f9-4b7e-a04d-ac1ac548816a"
+            ],
+            "hasValidFrontmatter": null
+          }
+        ]
+      },
+      {
+        "id": "a9448bae-378b-444a-b3ac-7e2c203be93f",
+        "index": 1,
+        "sourceId": null,
+        "creationDateTime": "2024-02-11T17:29:37.886Z",
+        "lastEditedDateTime": "2024-02-11T17:53:17.292Z",
+        "cells": [
+          {
+            "id": "b1e38376-b8e0-4c49-922e-999067d47235",
+            "columnId": "d5aae4d9-ee6f-4864-ac3a-56b8119aff92",
+            "content": "[[Детектив]]",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "772be343-67ff-4306-9ee9-c8140203983b",
+            "columnId": "d54c2cb7-b818-4818-aeaf-d006d41d416d",
+            "tagIds": [
+              "6abf7960-51a4-47bd-a062-b9879aa3990d",
+              "46deccfc-3e67-4e7c-8ebf-09b2945dbc9f",
+              "e9b1e954-fd1e-4d27-b2a3-37ad09c4e054"
+            ],
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "09b3630f-2523-426a-ae5a-279835c7ef5c",
+            "columnId": "efdff67f-fb48-4500-a856-12e189f452b1",
+            "tagIds": [
+              "ba84fc93-f58d-4dd0-8acf-94c040fb5135",
+              "0be8fc85-3b97-47bd-bbf6-955c301634a4",
+              "a6e81e25-ba26-413e-9d6c-5d503b489dc2",
+              "8849f6ec-0d1c-4401-a262-77509e0d7725",
+              "9f20c122-a3f2-4e28-9966-7cd0b5d16bc8"
+            ],
+            "hasValidFrontmatter": null
+          }
+        ]
+      },
+      {
+        "id": "d6f3a54a-0fec-427d-8cd2-babd80aab7aa",
+        "index": 2,
+        "sourceId": null,
+        "creationDateTime": "2024-02-11T17:29:38.497Z",
+        "lastEditedDateTime": "2024-02-11T17:54:01.218Z",
+        "cells": [
+          {
+            "id": "93fe9baf-f3e5-4c7a-8036-e6ea8c861386",
+            "columnId": "d5aae4d9-ee6f-4864-ac3a-56b8119aff92",
+            "content": "[[Коп]]",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "69df0067-0d73-4abb-b77b-d6a9615a3d0e",
+            "columnId": "d54c2cb7-b818-4818-aeaf-d006d41d416d",
+            "tagIds": [],
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "d0d97094-b5a5-42a0-9375-59c7da28f211",
+            "columnId": "efdff67f-fb48-4500-a856-12e189f452b1",
+            "tagIds": [
+              "3b009619-125d-44c6-a711-24fc98e435cd",
+              "40313881-149f-45b8-9b86-2c55c2830de1",
+              "7d319acc-1b1d-487f-aaba-5f3dfa55a153",
+              "07d37ce2-e755-4c38-9ac3-e3c7c2e799b6"
+            ],
+            "hasValidFrontmatter": null
+          }
+        ]
+      },
+      {
+        "id": "5376824c-0986-4e98-9f54-aac677a4da0c",
+        "index": 3,
+        "sourceId": null,
+        "creationDateTime": "2024-02-11T17:29:38.954Z",
+        "lastEditedDateTime": "2024-02-11T18:00:34.846Z",
+        "cells": [
+          {
+            "id": "7deb7377-4a28-407a-9b1a-1dbc38979db9",
+            "columnId": "d5aae4d9-ee6f-4864-ac3a-56b8119aff92",
+            "content": "[[Маг]]",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "c358072c-0f69-40da-b2bb-bfc702606e1c",
+            "columnId": "d54c2cb7-b818-4818-aeaf-d006d41d416d",
+            "tagIds": [
+              "dca80228-86b3-406c-b1e2-9f0ab6731622",
+              "bb842d56-e5ee-4f17-bbe9-e72aff27a255",
+              "478c7bde-5aab-4af1-a7ed-fdb9461e8fa6"
+            ],
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "386785a7-5bed-473e-b3cd-82b838e192ac",
+            "columnId": "efdff67f-fb48-4500-a856-12e189f452b1",
+            "tagIds": [
+              "f622a67d-b4bf-46e1-b684-aebddd85c014",
+              "93315591-95e6-4ab9-a8b1-d68a26b42e6e",
+              "177a079e-95a4-448b-8284-c39608af057f",
+              "567bad19-efb8-4320-adfb-db138a791bbe",
+              "c85cfd63-2147-4959-8c29-b042611531e7",
+              "110717b6-36a1-4a34-9585-9693bdd58280",
+              "e3bb5ecc-6bee-49d8-af28-056af1aaeae6"
+            ],
+            "hasValidFrontmatter": null
+          }
+        ]
+      },
+      {
+        "id": "2d5d8137-9f8b-4741-8ba2-d262d5fe3704",
+        "index": 4,
+        "sourceId": null,
+        "creationDateTime": "2024-02-11T17:29:39.414Z",
+        "lastEditedDateTime": "2024-02-11T18:02:37.461Z",
+        "cells": [
+          {
+            "id": "5514f6d8-53ff-45d6-8680-c9fe26b89f2b",
+            "columnId": "d5aae4d9-ee6f-4864-ac3a-56b8119aff92",
+            "content": "[[Лесоруб]]",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "34f827dd-baad-4f22-9454-293b2bb0fad9",
+            "columnId": "d54c2cb7-b818-4818-aeaf-d006d41d416d",
+            "tagIds": [
+              "9db681d8-410d-49f9-8458-5aa443c73b71",
+              "478c7bde-5aab-4af1-a7ed-fdb9461e8fa6",
+              "d48ead35-d3be-46cf-8998-0fdef8fd24ab",
+              "4b4cf460-d5bc-43c7-8f70-a6afd6bd107d",
+              "d01111b8-49c3-4141-8f4f-2f7d0dae49ac"
+            ],
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "671f51ea-f645-44e7-bcb4-b037f954ff1b",
+            "columnId": "efdff67f-fb48-4500-a856-12e189f452b1",
+            "tagIds": [
+              "2f18be3f-f4df-44ef-9072-d92116a08b23",
+              "2986015f-aa69-4e68-bf34-eda7067b38df"
+            ],
+            "hasValidFrontmatter": null
+          }
+        ]
+      },
+      {
+        "id": "da870d72-7698-41e7-bf58-82dc49487177",
+        "index": 5,
+        "sourceId": null,
+        "creationDateTime": "2024-02-11T17:30:57.000Z",
+        "lastEditedDateTime": "2024-02-11T18:04:29.204Z",
+        "cells": [
+          {
+            "id": "e8500965-e0dd-45fa-af22-f129ddefa6e2",
+            "columnId": "d5aae4d9-ee6f-4864-ac3a-56b8119aff92",
+            "content": "[[Кузнец]]",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "2d9f32f6-edee-42df-bb2a-dc002f209dbf",
+            "columnId": "d54c2cb7-b818-4818-aeaf-d006d41d416d",
+            "tagIds": [
+              "9db681d8-410d-49f9-8458-5aa443c73b71",
+              "913581a6-0cce-4dc1-b008-a822a902dfdf",
+              "4ffd1775-70ee-4f25-86b7-9dba59086811",
+              "f3da790e-3c04-4cd1-bb15-4106348578bd"
+            ],
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "5871aeca-e68c-4951-ae39-65a9dac9f5e8",
+            "columnId": "efdff67f-fb48-4500-a856-12e189f452b1",
+            "tagIds": [
+              "7387f043-3ddc-48ec-8a5f-bf3b75cf222a",
+              "3645448a-b7d4-4e66-ba67-0b6a11879752",
+              "fbceb6cb-f19f-4817-b1e5-23c7ffed88fd"
+            ],
+            "hasValidFrontmatter": null
+          }
+        ]
+      },
+      {
+        "id": "ff803ece-d4d3-4343-b18a-c84e1786b728",
+        "index": 6,
+        "sourceId": null,
+        "creationDateTime": "2024-02-11T17:30:57.590Z",
+        "lastEditedDateTime": "2024-02-11T18:13:21.760Z",
+        "cells": [
+          {
+            "id": "f4439019-5fb7-453b-ae1a-148813aa9bc3",
+            "columnId": "d5aae4d9-ee6f-4864-ac3a-56b8119aff92",
+            "content": "[[Ювелир]]",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "51b0d7c0-9b27-4109-8054-3dcdd6151625",
+            "columnId": "d54c2cb7-b818-4818-aeaf-d006d41d416d",
+            "tagIds": [],
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "da36319c-4c9d-4b9f-96d7-db7366f952a0",
+            "columnId": "efdff67f-fb48-4500-a856-12e189f452b1",
+            "tagIds": [
+              "438079ed-642c-4367-9d7b-7c922b12f984",
+              "ba84fc93-f58d-4dd0-8acf-94c040fb5135",
+              "1f78f997-b36f-4444-95b1-483b69df3e28",
+              "d756cf1e-360f-4289-a647-f820a113d057",
+              "3897daca-3a4e-4411-9c9d-4a0144f68e88",
+              "f1bfe8b0-3dea-436f-b8d0-882a99656532"
+            ],
+            "hasValidFrontmatter": null
+          }
+        ]
+      },
+      {
+        "id": "d67962de-18fc-4c9c-969f-0375826cfb8d",
+        "index": 7,
+        "sourceId": null,
+        "creationDateTime": "2024-02-11T17:30:58.161Z",
+        "lastEditedDateTime": "2024-02-11T18:14:27.943Z",
+        "cells": [
+          {
+            "id": "ac380847-fd71-497c-b24d-616ceb46e057",
+            "columnId": "d5aae4d9-ee6f-4864-ac3a-56b8119aff92",
+            "content": "[[Магоинженер]]",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "054602af-ddf2-4dad-b459-51614a97be72",
+            "columnId": "d54c2cb7-b818-4818-aeaf-d006d41d416d",
+            "tagIds": [
+              "dca80228-86b3-406c-b1e2-9f0ab6731622",
+              "b07eceb0-5783-475e-9b15-f4bed7c89a15",
+              "478c7bde-5aab-4af1-a7ed-fdb9461e8fa6"
+            ],
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "e4598b3c-1b9e-4307-8fb7-f5ff6fbecb14",
+            "columnId": "efdff67f-fb48-4500-a856-12e189f452b1",
+            "tagIds": [
+              "5ccab6b7-4530-478f-b8b5-cee0076113e3",
+              "9ecb7fc5-01db-4259-90e7-1f3bd8be873c"
+            ],
+            "hasValidFrontmatter": null
+          }
+        ]
+      },
+      {
+        "id": "72a8aaa5-cb79-4ace-b92c-f5f78574f05d",
+        "index": 8,
+        "sourceId": null,
+        "creationDateTime": "2024-02-11T17:30:58.944Z",
+        "lastEditedDateTime": "2024-02-11T18:18:08.426Z",
+        "cells": [
+          {
+            "id": "ed096cc4-5cac-48b2-958d-a4510d069fb4",
+            "columnId": "d5aae4d9-ee6f-4864-ac3a-56b8119aff92",
+            "content": "[[Торговец]]",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "51f0c4ce-d445-4dda-b97a-87ab4d8f3e87",
+            "columnId": "d54c2cb7-b818-4818-aeaf-d006d41d416d",
+            "tagIds": [
+              "ee65373c-e420-4738-9692-af8a370a7f97",
+              "f3acb2e4-6bcf-401a-a506-6d898a9d8eec",
+              "4c00920a-228a-4895-accc-5de529e11807",
+              "abdb9e3d-9a90-4b28-80cb-bba7301031bb",
+              "f3da790e-3c04-4cd1-bb15-4106348578bd"
+            ],
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "a2e3000a-0e2c-4cf5-83cb-9d6f99aa95be",
+            "columnId": "efdff67f-fb48-4500-a856-12e189f452b1",
+            "tagIds": [
+              "5e782477-d94a-4bac-b31d-e6ee8a0586e2",
+              "7c066e43-d723-491b-872e-20a8ec59e0b0",
+              "dc32fc31-da92-4afc-a017-3d60d56f888a"
+            ],
+            "hasValidFrontmatter": null
+          }
+        ]
+      },
+      {
+        "id": "7ea26172-bde6-4a7a-beda-07cacaa91803",
+        "index": 9,
+        "sourceId": null,
+        "creationDateTime": "2024-02-11T17:31:48.188Z",
+        "lastEditedDateTime": "2024-02-11T18:20:46.416Z",
+        "cells": [
+          {
+            "id": "63721284-73c0-4700-a651-2f883a5fe95b",
+            "columnId": "d5aae4d9-ee6f-4864-ac3a-56b8119aff92",
+            "content": "[[Бард]]",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "66040374-ec68-45d0-ad65-3ecfbc4a5ac0",
+            "columnId": "d54c2cb7-b818-4818-aeaf-d006d41d416d",
+            "tagIds": [
+              "ee65373c-e420-4738-9692-af8a370a7f97",
+              "e9b1e954-fd1e-4d27-b2a3-37ad09c4e054",
+              "e18e1592-f3f2-450c-a93e-178984e0cc02"
+            ],
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "1c356072-f416-4bde-b100-476cdc3f71d1",
+            "columnId": "efdff67f-fb48-4500-a856-12e189f452b1",
+            "tagIds": [
+              "b77d95a5-84a9-4053-a261-a8b604cd53ff",
+              "6b8860ab-6495-4dd1-921e-8ccb9e8373a9"
+            ],
+            "hasValidFrontmatter": null
+          }
+        ]
+      },
+      {
+        "id": "b66e3938-7a95-4e06-97f2-8c0134770b49",
+        "index": 10,
+        "sourceId": null,
+        "creationDateTime": "2024-02-11T17:31:49.243Z",
+        "lastEditedDateTime": "2024-02-11T18:22:20.598Z",
+        "cells": [
+          {
+            "id": "d6476c30-01c8-4add-9a2b-8c42c44157c7",
+            "columnId": "d5aae4d9-ee6f-4864-ac3a-56b8119aff92",
+            "content": "[[Алхимик]]",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "f88d654b-b603-4ff1-a1f4-b55dffe4fab9",
+            "columnId": "d54c2cb7-b818-4818-aeaf-d006d41d416d",
+            "tagIds": [
+              "dca80228-86b3-406c-b1e2-9f0ab6731622",
+              "d48ead35-d3be-46cf-8998-0fdef8fd24ab"
+            ],
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "54f09474-829b-4706-9480-c7928f915732",
+            "columnId": "efdff67f-fb48-4500-a856-12e189f452b1",
+            "tagIds": [],
+            "hasValidFrontmatter": null
+          }
+        ]
+      },
+      {
+        "id": "b2641a84-5642-434a-b2cd-407c64d6dcd9",
+        "index": 11,
+        "sourceId": null,
+        "creationDateTime": "2024-02-11T17:31:49.405Z",
+        "lastEditedDateTime": "2024-02-11T18:23:35.049Z",
+        "cells": [
+          {
+            "id": "96424519-b8d9-4d8a-bf17-8bcf74db3528",
+            "columnId": "d5aae4d9-ee6f-4864-ac3a-56b8119aff92",
+            "content": "[[Служитель церкви]]",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "0f55f7e6-6a44-4d5b-881d-2c97ba876ddc",
+            "columnId": "d54c2cb7-b818-4818-aeaf-d006d41d416d",
+            "tagIds": [
+              "dca80228-86b3-406c-b1e2-9f0ab6731622",
+              "9db681d8-410d-49f9-8458-5aa443c73b71",
+              "405949e4-9988-421a-9308-65e5623fae3f"
+            ],
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "fbfaf8be-a735-44d0-bf20-8f11b28522c3",
+            "columnId": "efdff67f-fb48-4500-a856-12e189f452b1",
+            "tagIds": [
+              "0f39aaba-c156-4ab9-aa6d-851aac920f45",
+              "86d6121f-bbee-4843-8f56-c298e28617cd",
+              "9a92c1a3-20dd-47a1-bbe6-bb76aba546ac"
+            ],
+            "hasValidFrontmatter": null
+          }
+        ]
+      },
+      {
+        "id": "b30156a4-42e1-4308-aadf-f1f650094bd1",
+        "index": 12,
+        "sourceId": null,
+        "creationDateTime": "2024-02-11T17:32:20.299Z",
+        "lastEditedDateTime": "2024-02-11T18:24:50.479Z",
+        "cells": [
+          {
+            "id": "034a0005-bc84-4604-869b-ae54527749d5",
+            "columnId": "d5aae4d9-ee6f-4864-ac3a-56b8119aff92",
+            "content": "[[Травник]]",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "8b876cc3-70ee-4ead-8207-22ff63da3907",
+            "columnId": "d54c2cb7-b818-4818-aeaf-d006d41d416d",
+            "tagIds": [
+              "dca80228-86b3-406c-b1e2-9f0ab6731622",
+              "b07eceb0-5783-475e-9b15-f4bed7c89a15",
+              "f838478c-efb4-4e6b-9b7e-e8b34f209125"
+            ],
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "842f7ec2-48f5-4df5-9e44-6466761007d9",
+            "columnId": "efdff67f-fb48-4500-a856-12e189f452b1",
+            "tagIds": [
+              "00089398-ebd1-45a2-9c65-b04b306abe16",
+              "a9e549c1-830b-4e6d-9670-7300a8b66174",
+              "d25f644b-8d3d-43f7-9ccc-280a24b142c3",
+              "8a18dd51-42bd-46de-9260-a37483503954",
+              "334b874a-6b7b-4b1b-ba8d-08553f18a6f5"
+            ],
+            "hasValidFrontmatter": null
+          }
+        ]
+      },
+      {
+        "id": "d13f0f13-4433-4f57-abf2-32167553fec0",
+        "index": 13,
+        "sourceId": null,
+        "creationDateTime": "2024-02-11T17:32:36.517Z",
+        "lastEditedDateTime": "2024-02-11T18:25:53.743Z",
+        "cells": [
+          {
+            "id": "b5635705-b12e-4902-b0ea-ec46bf6403bc",
+            "columnId": "d5aae4d9-ee6f-4864-ac3a-56b8119aff92",
+            "content": "[[Друид]]",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "9cd959cc-c8a0-474d-bbf1-37f495abf50d",
+            "columnId": "d54c2cb7-b818-4818-aeaf-d006d41d416d",
+            "tagIds": [
+              "d2ae5515-5a9d-4afb-9110-1ff59ad109a4",
+              "5c980710-0e75-4d9f-8244-545c85629ccc",
+              "f838478c-efb4-4e6b-9b7e-e8b34f209125"
+            ],
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "240d4e86-8cbb-44dc-b053-07e46b6db779",
+            "columnId": "efdff67f-fb48-4500-a856-12e189f452b1",
+            "tagIds": [
+              "6ba728e2-6d42-44ec-8219-2daada3e3025"
+            ],
+            "hasValidFrontmatter": null
+          }
+        ]
+      },
+      {
+        "id": "e71d5e13-83d6-47a2-9685-b358ad9bfa40",
+        "index": 14,
+        "sourceId": null,
+        "creationDateTime": "2024-02-11T17:32:37.038Z",
+        "lastEditedDateTime": "2024-02-11T18:28:05.045Z",
+        "cells": [
+          {
+            "id": "1c913d78-13e7-41f4-bbef-7c9343a40cf5",
+            "columnId": "d5aae4d9-ee6f-4864-ac3a-56b8119aff92",
+            "content": "[[Повар]]",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "4fbcbfe9-65f0-4972-8385-c1704c5e8355",
+            "columnId": "d54c2cb7-b818-4818-aeaf-d006d41d416d",
+            "tagIds": [
+              "e9b1e954-fd1e-4d27-b2a3-37ad09c4e054",
+              "46deccfc-3e67-4e7c-8ebf-09b2945dbc9f",
+              "5b570d23-132b-4aa8-80ac-c7d7068e1174",
+              "3dba41d9-45e6-4fa1-b0f5-15c4c44c8299"
+            ],
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "261e18e4-a779-4f13-9be1-699717c86af3",
+            "columnId": "efdff67f-fb48-4500-a856-12e189f452b1",
+            "tagIds": [
+              "48e79633-888f-4cbc-a579-d61d0151470f",
+              "224bd59a-9d7f-404b-bf56-a2c0ce64239b"
+            ],
+            "hasValidFrontmatter": null
+          }
+        ]
+      },
+      {
+        "id": "825ba00c-1634-436d-bba0-2347e8eb0df0",
+        "index": 15,
+        "sourceId": null,
+        "creationDateTime": "2024-02-11T17:36:41.732Z",
+        "lastEditedDateTime": "2024-02-11T17:36:59.404Z",
+        "cells": [
+          {
+            "id": "4787779c-0b0e-495f-8a15-86f52581c608",
+            "columnId": "d5aae4d9-ee6f-4864-ac3a-56b8119aff92",
+            "content": "[[Культист]]",
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "33dc4351-8365-4b45-a8d0-83a1f51addec",
+            "columnId": "d54c2cb7-b818-4818-aeaf-d006d41d416d",
+            "tagIds": [],
+            "hasValidFrontmatter": null
+          },
+          {
+            "id": "32b267fe-5edb-45d3-b7fb-101b4b3a87be",
+            "columnId": "efdff67f-fb48-4500-a856-12e189f452b1",
+            "tagIds": [],
+            "hasValidFrontmatter": null
+          }
+        ]
+      }
+    ],
+    "filters": [
+      {
+        "id": "fbd93e86-b11e-4302-8935-78f8fc58429f",
+        "columnId": "d5aae4d9-ee6f-4864-ac3a-56b8119aff92",
+        "operator": "or",
+        "isEnabled": true,
+        "type": "text",
+        "condition": "is",
+        "text": ""
+      }
+    ],
+    "sources": [],
+    "settings": {
+      "numFrozenColumns": 1,
+      "showCalculationRow": true
+    },
+    "externalRowOrder": []
+  },
+  "pluginVersion": "8.15.11"
+}
