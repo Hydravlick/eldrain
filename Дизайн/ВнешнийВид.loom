@@ -1001,7 +1001,7 @@
         "id": "fbd93e86-b11e-4302-8935-78f8fc58429f",
         "columnId": "d5aae4d9-ee6f-4864-ac3a-56b8119aff92",
         "operator": "or",
-        "isEnabled": true,
+        "isEnabled": false,
         "type": "text",
         "condition": "is",
         "text": ""
@@ -1009,10 +1009,10 @@
     ],
     "sources": [],
     "settings": {
-      "numFrozenColumns": 1,
-      "showCalculationRow": true
+      "numFrozenColumns": 2,
+      "showCalculationRow": false
     },
     "externalRowOrder": []
   },
-  "pluginVersion": "8.15.11"
+  "pluginVersion": "8.15.12"
 }

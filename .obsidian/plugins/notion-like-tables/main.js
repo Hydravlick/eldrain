@@ -49030,7 +49030,22 @@ function systemToComponent(systemSpec, map2, Root6) {
   const usePublisher2 = (key) => {
     return import_react5.default.useCallback(curry2to1(publish, import_react5.default.useContext(Context)[key]), [key]);
   };
-  const useEmitterValue2 = (key) => {
+  const useEmitterValue18 = (key) => {
+    const system2 = import_react5.default.useContext(Context);
+    const source = system2[key];
+    const cb = import_react5.default.useCallback(
+      (c2) => {
+        return subscribe(source, c2);
+      },
+      [source]
+    );
+    return import_react5.default.useSyncExternalStore(
+      cb,
+      () => getValue(source),
+      () => getValue(source)
+    );
+  };
+  const useEmitterValueLegacy = (key) => {
     const system2 = import_react5.default.useContext(Context);
     const source = system2[key];
     const [value, setValue] = import_react5.default.useState(curry1to0(getValue, source));
@@ -49044,6 +49059,7 @@ function systemToComponent(systemSpec, map2, Root6) {
     );
     return value;
   };
+  const useEmitterValue2 = import_react5.default.version.startsWith("18") ? useEmitterValue18 : useEmitterValueLegacy;
   const useEmitter2 = (key, callback) => {
     const context = import_react5.default.useContext(Context);
     const source = context[key];
@@ -51940,11 +51956,11 @@ var WindowViewport$2 = ({ children }) => {
   return /* @__PURE__ */ import_react5.default.createElement("div", { ref: viewportRef, style: viewportStyle, "data-viewport-type": "window" }, children);
 };
 var TopItemListContainer = ({ children }) => {
-  const TopItemList = useEmitterValue$2("TopItemListComponent");
+  const TopItemList = useEmitterValue$2("TopItemListComponent") || "div";
   const headerHeight = useEmitterValue$2("headerHeight");
   const style = { ...topItemListStyle, marginTop: `${headerHeight}px` };
   const context = useEmitterValue$2("context");
-  return import_react5.default.createElement(TopItemList || "div", { style, context }, children);
+  return import_react5.default.createElement(TopItemList, { style, ...contextPropIfNotDomElement(TopItemList, context) }, children);
 };
 var ListRoot = /* @__PURE__ */ import_react5.default.memo(function VirtuosoRoot(props) {
   const useWindowScroll = useEmitterValue$2("useWindowScroll");
@@ -60987,9 +61003,10 @@ var State;
   State2[State2["InSpecialComment"] = 20] = "InSpecialComment";
   State2[State2["InCommentLike"] = 21] = "InCommentLike";
   State2[State2["BeforeSpecialS"] = 22] = "BeforeSpecialS";
-  State2[State2["SpecialStartSequence"] = 23] = "SpecialStartSequence";
-  State2[State2["InSpecialTag"] = 24] = "InSpecialTag";
-  State2[State2["InEntity"] = 25] = "InEntity";
+  State2[State2["BeforeSpecialT"] = 23] = "BeforeSpecialT";
+  State2[State2["SpecialStartSequence"] = 24] = "SpecialStartSequence";
+  State2[State2["InSpecialTag"] = 25] = "InSpecialTag";
+  State2[State2["InEntity"] = 26] = "InEntity";
 })(State || (State = {}));
 function isWhitespace(c2) {
   return c2 === CharCodes2.Space || c2 === CharCodes2.NewLine || c2 === CharCodes2.Tab || c2 === CharCodes2.FormFeed || c2 === CharCodes2.CarriageReturn;
@@ -61009,12 +61026,30 @@ var QuoteType;
 })(QuoteType || (QuoteType = {}));
 var Sequences = {
   Cdata: new Uint8Array([67, 68, 65, 84, 65, 91]),
+  // CDATA[
   CdataEnd: new Uint8Array([93, 93, 62]),
+  // ]]>
   CommentEnd: new Uint8Array([45, 45, 62]),
+  // `-->`
   ScriptEnd: new Uint8Array([60, 47, 115, 99, 114, 105, 112, 116]),
+  // `<\/script`
   StyleEnd: new Uint8Array([60, 47, 115, 116, 121, 108, 101]),
-  TitleEnd: new Uint8Array([60, 47, 116, 105, 116, 108, 101])
+  // `</style`
+  TitleEnd: new Uint8Array([60, 47, 116, 105, 116, 108, 101]),
   // `</title`
+  TextareaEnd: new Uint8Array([
+    60,
+    47,
+    116,
+    101,
+    120,
+    116,
+    97,
+    114,
+    101,
+    97
+  ])
+  // `</textarea`
 };
 var Tokenizer = class {
   constructor({ xmlMode = false, decodeEntities = true }, cbs) {
@@ -61206,10 +61241,14 @@ var Tokenizer = class {
     } else if (this.isTagStartChar(c2)) {
       const lower = c2 | 32;
       this.sectionStart = this.index;
-      if (!this.xmlMode && lower === Sequences.TitleEnd[2]) {
-        this.startSpecial(Sequences.TitleEnd, 3);
+      if (this.xmlMode) {
+        this.state = State.InTagName;
+      } else if (lower === Sequences.ScriptEnd[2]) {
+        this.state = State.BeforeSpecialS;
+      } else if (lower === Sequences.TitleEnd[2]) {
+        this.state = State.BeforeSpecialT;
       } else {
-        this.state = !this.xmlMode && lower === Sequences.ScriptEnd[2] ? State.BeforeSpecialS : State.InTagName;
+        this.state = State.InTagName;
       }
     } else if (c2 === CharCodes2.Slash) {
       this.state = State.BeforeClosingTagName;
@@ -61280,7 +61319,7 @@ var Tokenizer = class {
   stateInAttributeName(c2) {
     if (c2 === CharCodes2.Eq || isEndOfTagSection(c2)) {
       this.cbs.onattribname(this.sectionStart, this.index);
-      this.sectionStart = -1;
+      this.sectionStart = this.index;
       this.state = State.AfterAttributeName;
       this.stateAfterAttributeName(c2);
     }
@@ -61289,11 +61328,12 @@ var Tokenizer = class {
     if (c2 === CharCodes2.Eq) {
       this.state = State.BeforeAttributeValue;
     } else if (c2 === CharCodes2.Slash || c2 === CharCodes2.Gt) {
-      this.cbs.onattribend(QuoteType.NoValue, this.index);
+      this.cbs.onattribend(QuoteType.NoValue, this.sectionStart);
+      this.sectionStart = -1;
       this.state = State.BeforeAttributeName;
       this.stateBeforeAttributeName(c2);
     } else if (!isWhitespace(c2)) {
-      this.cbs.onattribend(QuoteType.NoValue, this.index);
+      this.cbs.onattribend(QuoteType.NoValue, this.sectionStart);
       this.state = State.InAttributeName;
       this.sectionStart = this.index;
     }
@@ -61315,7 +61355,7 @@ var Tokenizer = class {
     if (c2 === quote || !this.decodeEntities && this.fastForwardTo(quote)) {
       this.cbs.onattribdata(this.sectionStart, this.index);
       this.sectionStart = -1;
-      this.cbs.onattribend(quote === CharCodes2.DoubleQuote ? QuoteType.Double : QuoteType.Single, this.index);
+      this.cbs.onattribend(quote === CharCodes2.DoubleQuote ? QuoteType.Double : QuoteType.Single, this.index + 1);
       this.state = State.BeforeAttributeName;
     } else if (this.decodeEntities && c2 === CharCodes2.Amp) {
       this.startEntity();
@@ -61383,6 +61423,17 @@ var Tokenizer = class {
       this.startSpecial(Sequences.ScriptEnd, 4);
     } else if (lower === Sequences.StyleEnd[3]) {
       this.startSpecial(Sequences.StyleEnd, 4);
+    } else {
+      this.state = State.InTagName;
+      this.stateInTagName(c2);
+    }
+  }
+  stateBeforeSpecialT(c2) {
+    const lower = c2 | 32;
+    if (lower === Sequences.TitleEnd[3]) {
+      this.startSpecial(Sequences.TitleEnd, 4);
+    } else if (lower === Sequences.TextareaEnd[3]) {
+      this.startSpecial(Sequences.TextareaEnd, 4);
     } else {
       this.state = State.InTagName;
       this.stateInTagName(c2);
@@ -61501,6 +61552,10 @@ var Tokenizer = class {
         }
         case State.BeforeSpecialS: {
           this.stateBeforeSpecialS(c2);
+          break;
+        }
+        case State.BeforeSpecialT: {
+          this.stateBeforeSpecialT(c2);
           break;
         }
         case State.InAttributeValueNq: {
@@ -61679,7 +61734,7 @@ var htmlIntegrationElements = /* @__PURE__ */ new Set([
 var reNameEnd = /\s|\//;
 var Parser = class {
   constructor(cbs, options = {}) {
-    var _a2, _b, _c, _d, _e;
+    var _a2, _b, _c, _d, _e, _f;
     this.options = options;
     this.startIndex = 0;
     this.endIndex = 0;
@@ -61697,9 +61752,10 @@ var Parser = class {
     this.htmlMode = !this.options.xmlMode;
     this.lowerCaseTagNames = (_a2 = options.lowerCaseTags) !== null && _a2 !== void 0 ? _a2 : this.htmlMode;
     this.lowerCaseAttributeNames = (_b = options.lowerCaseAttributeNames) !== null && _b !== void 0 ? _b : this.htmlMode;
-    this.tokenizer = new ((_c = options.Tokenizer) !== null && _c !== void 0 ? _c : Tokenizer)(this.options, this);
+    this.recognizeSelfClosing = (_c = options.recognizeSelfClosing) !== null && _c !== void 0 ? _c : !this.htmlMode;
+    this.tokenizer = new ((_d = options.Tokenizer) !== null && _d !== void 0 ? _d : Tokenizer)(this.options, this);
     this.foreignContext = [!this.htmlMode];
-    (_e = (_d = this.cbs).onparserinit) === null || _e === void 0 ? void 0 : _e.call(_d, this);
+    (_f = (_e = this.cbs).onparserinit) === null || _f === void 0 ? void 0 : _f.call(_e, this);
   }
   // Tokenizer event handlers
   /** @internal */
@@ -61808,7 +61864,7 @@ var Parser = class {
   /** @internal */
   onselfclosingtag(endIndex) {
     this.endIndex = endIndex;
-    if (this.options.recognizeSelfClosing || this.foreignContext[0]) {
+    if (this.recognizeSelfClosing || this.foreignContext[0]) {
       this.closeCurrentTag(false);
       this.startIndex = endIndex + 1;
     } else {
@@ -63148,14 +63204,14 @@ var loomStateToArray = (app, loomState, shouldRemoveMarkdown) => {
 
 // src/shared/export/export-utils.ts
 var escapePipeCharacters = (value) => value.replace(/\|/g, "\\|");
+var replaceNewLinesWithBreaks = (value) => value.replace(/\n/g, "<br>");
 
 // src/shared/export/export-to-markdown.tsx
 var exportToMarkdown = (app, loomState, shouldRemoveMarkdown) => {
-  const arr = loomStateToArray(app, loomState, shouldRemoveMarkdown);
-  const escapedArr = arr.map(
-    (row) => row.map((cell) => escapePipeCharacters(cell))
-  );
-  return markdownTable(escapedArr);
+  let arr = loomStateToArray(app, loomState, shouldRemoveMarkdown);
+  arr = arr.map((row) => row.map((cell) => replaceNewLinesWithBreaks(cell)));
+  arr = arr.map((row) => row.map((cell) => escapePipeCharacters(cell)));
+  return markdownTable(arr);
 };
 
 // src/react/export-app/index.tsx
