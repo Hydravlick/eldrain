@@ -4,16 +4,66 @@
     "type": "split",
     "children": [
       {
-        "id": "3b899b8860fd7835",
+        "id": "4be1a299490626a7",
         "type": "tabs",
         "children": [
           {
-            "id": "c816d872010967a1",
+            "id": "150647e2e1745453",
             "type": "leaf",
             "state": {
-              "type": "dataloom",
+              "type": "markdown",
               "state": {
-                "file": "Дизайн/ВнешнийВид.loom"
+                "file": "Город/Организации.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "450e8e2e1ed3b193",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Собор.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "812174a40ecc8ca9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Собор.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "db81fc4047b5e4f5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Стражи Традиций.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "0eac1799eeb63393",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Научная ассамблея.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -83,14 +133,14 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Дизайн/ВнешнийВид.loom",
+                "file": "Город/Организации.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
+                "backlinkCollapsed": true,
+                "unlinkedCollapsed": false
               }
             }
           },
@@ -100,7 +150,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Дизайн/ВнешнийВид.loom",
+                "file": "Город/Организации.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -135,16 +185,16 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Дизайн/ВнешнийВид.loom"
+                "file": "Город/Организации.md"
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -157,25 +207,37 @@
       "notion-like-tables:Create loom": false
     }
   },
-  "active": "c816d872010967a1",
+  "active": "150647e2e1745453",
   "lastOpenFiles": [
-    "Связи.canvas",
+    "Хранители.md",
+    "Город/Организации.md",
     "Город/Народы.md",
+    "Лига Менестрелей.md",
+    "Собор.md",
     "Город/Кварталы/Портовый квартал.md",
+    "Стражи Традиций.md",
+    "Научная ассамблея.md",
     "Город/Кварталы/Концепты/Порт.canvas",
-    "Город/Описание мира.md",
-    "Город/Город Элдрейн.md",
-    "Город/Кварталы.md",
+    "Город/Кварталы/Квартал Паровых Машин.md",
     "Город/Кварталы/Городской центр.md",
-    "Оружие.md",
-    "Инвентарь.md",
-    "Ресурсы.md",
-    "Полезные ссылки.md",
-    "Systems and Mechanics.md",
-    "Системы/Персонажи.md",
+    "Город/Кварталы/Городок Магического Университета.md",
+    "Город/Кварталы/Ботанический квартал.md",
+    "template.md",
     "Город/Фракции/Преступная организация.md",
     "Город/Фракции/Чёрный рынок.md",
-    "Город/Фракции/Путешественники.md",
+    "Инвентарь.md",
+    "Systems and Mechanics.md",
+    "Андеркийцы.md",
+    "Аурентары.md",
+    "Шавироны.md",
+    "Лазуры.md",
+    "Эскериды.md",
+    "Торговцы.md",
+    "Маги.md",
+    "Оккультисты.md",
+    "Связи.canvas",
+    "Дизайн/ВнешнийВид.loom",
+    "Фотографии/Pasted image 20240227130702.png",
     "Фотографии/Inventory_2.webp",
     "Фотографии/Pasted image 20240225144656.png",
     "Фотографии/Pasted image 20240225144942.png",
@@ -185,19 +247,7 @@
     "Фотографии/Pasted image 20240225145530.png",
     "Фотографии/Pasted image 20240225145503.png",
     "Фотографии/Pasted image 20240225145336.png",
-    "Фотографии/a1e2279664bbee46114b9bbfc9527b37.jpg",
-    "Город/Кварталы/Ботанический квартал.md",
-    "Город/Кварталы/Городок Магического Университета.md",
-    "Город/Кварталы/Квартал Паровых Машин.md",
-    "Город/Кварталы/Культурный квартал.md",
-    "Город/Кварталы/Площадь Собора.md",
-    "Город/Кварталы/Светящаяся площадь.md",
-    "Город/Кварталы/Старый городской квартал.md",
-    "Город/Кварталы/Торговый квартал.md",
-    "Город/Профессии.md",
-    "Город/Организации.md",
     "Системы",
-    "Дизайн/ВнешнийВид.loom",
     "Сюжет",
     "Дизайн",
     "Город/Профессии/Untitled.loom",
