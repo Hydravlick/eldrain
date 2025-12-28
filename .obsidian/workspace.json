@@ -4,33 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "4be1a299490626a7",
+        "id": "0a8fc7a4c831ebce",
         "type": "tabs",
         "children": [
           {
-            "id": "150647e2e1745453",
+            "id": "e6d5cff9038971c3",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Системы/Статусные эффекты.md",
+                "file": "Lang_RU/10_Mechanics/City/Factions_Overview.md",
                 "mode": "source",
                 "source": false
-              }
-            }
-          },
-          {
-            "id": "e87cb42ff608988f",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "Фотографии/Pasted image 20240310233800.png"
-              }
+              },
+              "icon": "lucide-file",
+              "title": "Factions_Overview"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -49,8 +40,11 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
-              }
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           },
           {
@@ -65,7 +59,9 @@
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "Search"
             }
           },
           {
@@ -73,7 +69,9 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
             }
           }
         ]
@@ -96,15 +94,16 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Фотографии/Pasted image 20240310233800.png",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
-                "backlinkCollapsed": true,
-                "unlinkedCollapsed": true
-              }
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": false
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
             }
           },
           {
@@ -113,10 +112,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Фотографии/Pasted image 20240310233800.png",
+                "file": "Системы/Статусные эффекты.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Статусные эффекты"
             }
           },
           {
@@ -127,7 +128,9 @@
               "state": {
                 "sortOrder": "frequency",
                 "useHierarchy": true
-              }
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
             }
           },
           {
@@ -139,7 +142,9 @@
                 "sortOrder": "frequency",
                 "showSearch": false,
                 "searchQuery": ""
-              }
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
             }
           },
           {
@@ -148,18 +153,22 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Фотографии/Pasted image 20240310233800.png"
-              }
+                "file": "Системы/Статусные эффекты.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Статусные эффекты"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -169,63 +178,63 @@
       "notion-like-tables:Create loom": false
     }
   },
-  "active": "977ad2cccc7a3a5a",
+  "active": "e6d5cff9038971c3",
   "lastOpenFiles": [
-    "Системы/Оружие/Топор.md",
-    "Системы/Оружие/Кастеты.md",
-    "Системы/Оружие/Арбалет.md",
-    "Системы/Статусные эффекты.md",
-    "Системы/Ресурсы.md",
-    "Системы/Расходники.md",
-    "Системы/Персонажи.md",
-    "Системы/Особенные черты.md",
-    "Системы/Оружие.md",
-    "Системы/Магия.md",
-    "Системы/Инвентарь.md",
-    "Системы/Артефакты.md",
-    "Системы/Аномальные зоны.md",
-    "Системы/Оружие/Крест священника.md",
-    "Фотографии/Pasted image 20240310233800.png",
-    "Системы/Оружие/Кинжал.md",
-    "Системы/Оружие/Щит.md",
-    "Системы/Оружие/Перчатка алхимика.md",
-    "Системы/Оружие/Перчатка-пушка.md",
-    "Одноручное оружие.md",
-    "Системы/Оружие/Бумеранг.md",
-    "Двуручное оружие.md",
-    "Основное оружие.md",
-    "Системы/Оружие/Копье.md",
-    "Системы/Оружие/Парные магострелы.md",
-    "Системы/Оружие/Большой топор.md",
-    "Системы/Оружие/Лук.md",
-    "Системы/Расходники",
-    "Системы/Оружие",
-    "Фотографии/Inventory_6.png",
-    "Фотографии/Inventory_9.png",
-    "Фотографии/Inventory_8.png",
-    "Фотографии/Inventory_7.png",
-    "Фотографии/Pasted image 20240309044944.png",
-    "Фотографии/Pasted image 20240309044824.png",
-    "Фотографии/f61d51f943fa3a20cbc4fdfe429da5b8.jpg",
-    "Фотографии/Inventory_2.webp",
-    "Фотографии/Inventory_5.png",
-    "Народы",
-    "Системы/Подсказки",
-    "Город/Спец. Постройки",
-    "Город/Кварталы/Концепты/Порт.canvas",
-    "Город/Связи.canvas",
+    "Lang_RU/10_Mechanics/City/Faction_Reputation.md",
+    "Lang_RU/10_Mechanics/City/Facilities_Services.md",
+    "Lang_RU/10_Mechanics/City/Economy_Monetization.md",
+    "Lang_RU/10_Mechanics/City/Economy_City.md",
+    "Lang_RU/10_Mechanics/City/City_Structure_Generation.md",
+    "Lang_RU/10_Mechanics/City/City_Structure.md",
+    "Lang_RU/10_Mechanics/City/City_Interface_Visuals.md",
+    "Lang_RU/00_Core/Glossary.md",
+    "Lang_RU/00_Core/GDD_Main.md",
+    "Lang_RU/20_Lore/Factions/Guardians.md",
+    "Lang_RU/10_Mechanics/World/Quest_Engine.md",
+    "Lang_RU/10_Mechanics/World/Extraction_Rules.md",
+    "Lang_RU/10_Mechanics/World/Anomaly_System.md",
+    "Lang_RU/10_Mechanics/Meta/Tags_System.md",
+    "Lang_RU/10_Mechanics/Meta/Reputation_System.md",
+    "Lang_RU/10_Mechanics/Meta/Character_Specification.md",
+    "Lang_RU/10_Mechanics/Meta/Character_Deck.md",
+    "Lang_RU/10_Mechanics/Magic/Magic_System.md",
+    "Lang_RU/10_Mechanics/Magic/Energy_System.md",
+    "Lang_RU/10_Mechanics/Inventory/Inventory_Core.md",
+    "Lang_RU/10_Mechanics/Inventory/Consumables_Rules.md",
+    "Lang_RU/10_Mechanics/Exploration/Stealth_Value.md",
+    "Lang_RU/10_Mechanics/Economy/Currency_Entropy.md",
+    "Lang_RU/10_Mechanics/Combat/Damage_System.md",
+    "20_Lore/Bestiary/Anomaly_Sensors.md",
+    "20_Lore/Bestiary",
+    "20_Lore",
+    "Город/Организации.md",
     "Дизайн/ВнешнийВид.loom",
-    "Системы",
-    "Сюжет",
-    "Дизайн",
-    "Город/Профессии/Untitled.loom",
-    "Город/Народы/Волки.canvas",
-    "Город/Народы/Аксолотли.canvas",
-    "Город/Народы/Белки.canvas",
-    "Город/Народы/Бараны.canvas",
+    "Одежда/ffae29b812b78fcbda1065995dcf6d5c.jpg",
+    "Одежда/af5fdbb51f0ad99a82a9641c29ee1e5d.jpg",
+    "Одежда/a05e2c452b8ac9d5e73112120edb6875.jpg",
+    "Одежда/213074fbed5657f253af3c5e1606dc3c.jpg",
+    "Одежда/541fdb871aa71098ec851e5bb12cba4f.jpg",
+    "Одежда/2f98c26c009399ac53728e12e35cfb40.jpg",
+    "Lang_RU/10_Mechanics/City",
+    "Lang_RU/10_Mechanics/World",
+    "Lang_RU/10_Mechanics/Inventory",
+    "Lang_RU/10_Mechanics/Magic",
+    "Lang_RU/10_Mechanics/Combat",
+    "Lang_RU/30_Content/Bestiary",
+    "Lang_RU/30_Content/Characters",
+    "Untitled.canvas",
     "Город/Кварталы/Концепты/Центр.canvas",
-    "Город/Кварталы/Концепты/Богатый.canvas",
-    "Город/Народы/Драконы.canvas",
-    "Город/Народы/Ящеры.canvas"
+    "Город/Кварталы/Концепты/Университет.canvas",
+    "Город/Кварталы/Концепты/Торговый.canvas",
+    "Город/Кварталы/Концепты/Старый.canvas",
+    "Город/Кварталы/Концепты/Собор.canvas",
+    "Город/Кварталы/Концепты/Светящийся.canvas",
+    "Город/Кварталы/Концепты/Порт.canvas",
+    "Город/Кварталы/Концепты/Паровой.canvas",
+    "Город/Кварталы/Концепты/Ботанический.canvas",
+    "Фотографии/0f62e0d4f8277d093a8c4b64e29cb973.jpg",
+    "Фотографии/SoborB.png",
+    "Фотографии/SoborA.png",
+    "Фотографии/Pasted image 20240310233800.png"
   ]
 }

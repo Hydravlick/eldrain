@@ -1,22 +1,44 @@
 {
   "collapse-filter": false,
   "search": "",
-  "showTags": false,
+  "showTags": true,
   "showAttachments": false,
-  "hideUnresolved": false,
+  "hideUnresolved": true,
   "showOrphans": true,
   "collapse-color-groups": false,
-  "colorGroups": [],
+  "colorGroups": [
+    {
+      "query": "tag:#doc ",
+      "color": {
+        "a": 1,
+        "rgb": 14095380
+      }
+    },
+    {
+      "query": "tag:#lore ",
+      "color": {
+        "a": 1,
+        "rgb": 8671968
+      }
+    },
+    {
+      "query": "tag:#weapon ",
+      "color": {
+        "a": 1,
+        "rgb": 5431504
+      }
+    }
+  ],
   "collapse-display": false,
-  "showArrow": true,
-  "textFadeMultiplier": -1.2,
-  "nodeSizeMultiplier": 1.64971413721414,
-  "lineSizeMultiplier": 1.48672037422037,
+  "showArrow": false,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 1.99989604989605,
+  "lineSizeMultiplier": 1,
   "collapse-forces": false,
-  "centerStrength": 0.566528066528067,
+  "centerStrength": 0.518713248970312,
   "repelStrength": 20,
   "linkStrength": 1,
-  "linkDistance": 30,
-  "scale": 0.4296780914342756,
+  "linkDistance": 250,
+  "scale": 0.17173020453355467,
   "close": true
 }

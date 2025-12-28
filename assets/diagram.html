@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>amCharts Chord Diagram</title>
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/flow.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      margin: 0;
+      padding: 0;
+    }
+
+    #chartdiv {
+      width: 100%;
+      height: 600px;
+    }
+  </style>
+</head>
+<body>
+  <div id="chartdiv"></div>
+
+  <script>
+            // Create root and chart
+        var root = am5.Root.new("chartdiv"); 
+
+        // Set themes
+        root.setThemes([
+        am5themes_Animated.new(root)
+        ]);
+
+        // Create series
+        var series = root.container.children.push(
+        am5flow.ChordNonRibbon.new(root, {
+            sourceIdField: "from",
+            targetIdField: "to",
+            linkType: "curve"
+        })
+        );
+
+        series.nodes.get("colors").set("step", 2);
+
+         // 🖱️ Реакция при наведении
+        series.links.template.states.create("hover", {
+            strokeWidth: 9,
+            strokeOpacity: 1
+        });
+
+        // По умолчанию — тонкие линии
+        series.links.template.setAll({
+            strokeWidth: 5,
+            strokeOpacity: 0.6,
+            tooltipText: "{from} → {to}",
+            interactive: true
+        });
+
+        // Set data
+        series.data.setAll( [
+          { "from": "A", "to": "B" },
+          { "from": "B", "to": "C" },
+          { "from": "C", "to": "D" },
+          { "from": "C", "to": "E" },
+          { "from": "D", "to": "G" },
+          { "from": "D", "to": "I" },
+          { "from": "D", "to": "H" },
+          { "from": "E", "to": "H" },
+          { "from": "G", "to": "J" },
+          { "from": "I", "to": "J" },
+          { "from": "H", "to": "J" }
+        ]);
+      
+        series.nodes.labels.template.setAll({
+        text: "[bold]{name}",
+        fill: root.interfaceColors.get("background"),
+        textType: "radial",
+        radius: 15
+        });
+  </script>
+</body>
+</html>
