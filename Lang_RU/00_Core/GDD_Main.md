@@ -36,7 +36,7 @@ tags: [root, navigation]
 
 ### 📜 Лор и Мир (`20_Lore`)
 * **История:** [[20_Lore/History/Cataclysm|Великое Перемещение]], [[20_Lore/Cosmic_Entity|Космическая Сущность]].
-* **Фракции:** [[20_Lore/Factions/Guardians|Хранители]], [[20_Lore/Factions/Cartographers|Картографы]].
+* **Фракции:** [[Lang_RU/20_Lore/02_Societies_Factions/The_Keepers|Хранители]], [[Lang_RU/20_Lore/02_Societies_Factions/Factions_Active/The_Cartographers|Картографы]].
 * **Места:** [[20_Lore/Places/City_Center|Центр]], [[20_Lore/Places/Port_Quarter|Порт]].
 
 ### 📦 Контент (`30_Content`)

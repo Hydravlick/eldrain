@@ -6,7 +6,7 @@ tags:
   - diplomacy
 related_lore:
   - "[[20_Lore/Factions/Science_Assembly|Научная Ассамблея]]"
-  - "[[20_Lore/Factions/Guardians|Хранители]]"
+  - "[[Lang_RU/20_Lore/02_Societies_Factions/The_Keepers|Хранители]]"
 ---
 
 # Система: Фракции и Репутация

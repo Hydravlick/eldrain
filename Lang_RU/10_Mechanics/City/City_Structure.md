@@ -7,7 +7,7 @@ tags:
   - level_design
 related_files:
   - "[[10_Mechanics/Meta/Reputation_System|Репутация Фракций]]"
-  - "[[10_Mechanics/City/Economy_City|Экономика Города]]"
+  - "[[Lang_RU/10_Mechanics/Economy/Economy_City|Экономика Города]]"
 related_lore:
   - "[[20_Lore/Places/City_Center|Центр Элдрейна]]"
   - "[[20_Lore/History/The_Shift|Великое Перемещение]]"
