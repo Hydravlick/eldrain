@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Лор/Город Элдрейн.md",
+                "file": "Лор/Экономика.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Город Элдрейн"
+              "title": "Экономика"
             }
           }
         ]
@@ -180,13 +180,18 @@
   },
   "active": "45d7ccf2b3a22981",
   "lastOpenFiles": [
-    "Лор/Экономика.md",
+    "Лор/Стилистика мира Элдрейн.md",
+    "Лор/Религиозная система Элдрейна.md",
     "Лор/Описание мира.md",
-    "Лор/Магия.md",
     "Лор/Город Элдрейн.md",
-    "ДизДок/Статусные эффекты.md",
-    "ДизДок/Персонажи.md",
     "ДизДок/Навыки.md",
+    "ДизДок/Персонажи.md",
+    "ДизДок/Статусные эффекты.md",
+    "Лор/Экономика.md",
+    "Лор/Магия.md",
+    "Lang_RU/10_Mechanics/City/City_Structure.md",
+    "Lang_RU/20_Lore/01_World_Foundation/Magipunk_Physics.md",
+    "Lang_RU/10_Mechanics/City/Facilities_Services.md",
     "ДизДок/Город.md",
     "Lang_RU/20_Lore/03_Districts_Geography/Safe_Zone/City_Center.md",
     "Город/Кварталы/Городской центр.md",
@@ -204,11 +209,6 @@
     "Lang_RU/20_Lore/03_Districts_Geography/City_Architecture",
     "Lang_RU/20_Lore/03_Districts_Geography/Anomalies",
     "Lang_RU/10_Mechanics/Combat/Damage_System.md",
-    "Lang_RU/10_Mechanics/Economy/Currency_Entropy.md",
-    "Lang_RU/10_Mechanics/Economy/Economy_Monetization.md",
-    "Lang_RU/10_Mechanics/Economy/Economy_City.md",
-    "Lang_RU/20_Lore/05_Daily_Life/Currency_Rezs.md",
-    "Lang_RU/20_Lore/05_Daily_Life/Fashion_Gear.md",
     "Собор.canvas",
     "Фотографии/b0ef8e324f55050174ade58864a9e4b6.jpg",
     "Фотографии/SoborB.png",
