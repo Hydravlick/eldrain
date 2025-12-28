@@ -39,3 +39,4 @@ related_lore:
 $$FinalDamage = (BaseDmg * HitZoneMod) - ArmorAbsorb$$
 
 *Если `ArmorAbsorb > BaseDmg`, персонаж получает 1 ед. урона (Ударная травма).*
+

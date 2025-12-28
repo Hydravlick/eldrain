@@ -6,7 +6,7 @@ tags:
   - no_xp
   - build
 related_files:
-  - "[[Lang_RU/20_Lore/04_Species_Cultures/Beast_Races|Расы]]"
+  - "[[Lang_RU/20_Lore/04_Species_Cultures/New_Races|Расы]]"
 ---
 
 # Прогрессия: Матрица Синергий
