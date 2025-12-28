@@ -8,7 +8,6 @@ tags:
 related_files:
   - "[[City_Structure]]"
 ---
-
 # Система: Интерфейс и Визуал Города
 
 ## 1. Концепция Карты (The Map)
