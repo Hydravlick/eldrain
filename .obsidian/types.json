@@ -1,0 +1,11 @@
+{
+  "types": {
+    "aliases": "aliases",
+    "cssclasses": "multitext",
+    "tags": "tags",
+    "related_files": "multitext",
+    "related_lore": "multitext",
+    "related_mechanics": "multitext",
+    "do": "checkbox"
+  }
+}
