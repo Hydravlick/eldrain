@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Лор/Экономика.md",
+                "file": "Lang_RU/20_Lore/05_Daily_Life/Currency_Rezs.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Экономика"
+              "title": "Currency_Rezs"
             }
           }
         ]
@@ -180,14 +180,22 @@
   },
   "active": "45d7ccf2b3a22981",
   "lastOpenFiles": [
-    "Лор/Стилистика мира Элдрейн.md",
     "Лор/Религиозная система Элдрейна.md",
+    "Lang_RU/20_Lore/05_Daily_Life/Currency_Rezs.md",
+    "Город/Спец. Постройки/Банк Вещей.md",
+    "Лор/Экономика.md",
+    "Lang_RU/20_Lore/04_Species_Cultures/Culture_Language.md",
+    "Лор/Стилистика мира Элдрейн.md",
+    "Lang_RU/00_Core/Vision.md",
+    "Lang_RU/00_Core/Loop.md",
+    "Lang_RU/20_Lore/02_Societies_Factions/The_Keepers.md",
     "Лор/Описание мира.md",
+    "Lang_RU/20_Lore/01_World_Foundation/The_Entity.md",
     "Лор/Город Элдрейн.md",
+    "Lang_RU/20_Lore/02_Societies_Factions/Social_Political_Order.md",
     "ДизДок/Навыки.md",
     "ДизДок/Персонажи.md",
     "ДизДок/Статусные эффекты.md",
-    "Лор/Экономика.md",
     "Лор/Магия.md",
     "Lang_RU/10_Mechanics/City/City_Structure.md",
     "Lang_RU/20_Lore/01_World_Foundation/Magipunk_Physics.md",
@@ -195,20 +203,12 @@
     "ДизДок/Город.md",
     "Lang_RU/20_Lore/03_Districts_Geography/Safe_Zone/City_Center.md",
     "Город/Кварталы/Городской центр.md",
-    "Город/Спец. Постройки/Банк Вещей.md",
     "Lang_RU/00_Core/GDD_Main.md",
     "Lang_RU/10_Mechanics/Inventory/Inventory_Core.md",
     "Lang_RU/10_Mechanics/Inventory/Equipment_Entropy.md",
-    "Lang_RU/10_Mechanics/Inventory/Consumables_Rules.md",
-    "TO-DO List.md",
-    "Lang_RU/20_Lore/04_Species_Cultures/New_Races.md",
-    "Lang_RU/20_Lore/04_Species_Cultures/Protocol_Resonance.md",
-    "Lang_RU/20_Lore/03_Districts_Geography/City_Architecture.md",
     "Lang_RU/20_Lore/03_Districts_Geography/Safe_Zone",
-    "Архитектура игры MVP.md",
     "Lang_RU/20_Lore/03_Districts_Geography/City_Architecture",
     "Lang_RU/20_Lore/03_Districts_Geography/Anomalies",
-    "Lang_RU/10_Mechanics/Combat/Damage_System.md",
     "Собор.canvas",
     "Фотографии/b0ef8e324f55050174ade58864a9e4b6.jpg",
     "Фотографии/SoborB.png",
