@@ -6,8 +6,8 @@ tags:
   - environment
   - extraction
 related_lore:
-  - "[[20_Lore/Cosmic_Entity|Природа Искажений]]"
-  - "[[20_Lore/Places/Port_Quarter|Портовая Аномалия]]"
+  - "[[20_Lore/01_World_Foundation/The_Entity|The_Entity]]"
+  - "[[30_Content/World_Atlas/01_Prot_Sectors/Sector_01_Port/00_Sector_Description|Port]]"
 ---
 
 # Система: Аномалии (The Anomaly Engine)

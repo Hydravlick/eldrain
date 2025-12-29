@@ -6,9 +6,8 @@ tags:
   - trade
   - economy
 related_lore:
-  - "[[Lang_RU/20_Lore/02_Societies_Factions/Factions_Active/The_Cartographers|Гильдия Картографов]]"
+  - "[[Lang_RU/20_Lore/02_Societies_Factions/Factions_Active/The_Cartographers|The_Cartographers]]"
 ---
-
 # Система: Информационные Квесты (Intel)
 
 ## 1. Философия

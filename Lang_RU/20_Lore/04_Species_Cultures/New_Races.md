@@ -6,7 +6,7 @@ tags:
   - biology
   - noir
 related_mechanics:
-  - "[[10_Mechanics/Meta/Progression#Synergy_Matrix]]"
+  - "[[Lang_RU/10_Mechanics/Meta/Progression|Progression]]"
 ---
 
 # Народы Элдрейна (The Beast Noir)

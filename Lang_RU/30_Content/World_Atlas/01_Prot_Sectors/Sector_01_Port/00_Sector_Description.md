@@ -7,8 +7,8 @@ tags:
   - starter_zone
   - verticality
 related_mechanics:
-  - "[[Anomaly_System]]"
-  - "[[Extraction_Rules]]"
+  - "[[10_Mechanics/World/Anomaly_System]]"
+  - "[[10_Mechanics/World/Extraction_Rules]]"
 ---
 
 # Сектор 01: Ржавый Порт (The Rusty Port)

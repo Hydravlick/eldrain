@@ -1,12 +1,16 @@
 ---
 type: mechanic
-system: ui
+system: hub_ui
 tags:
-  - hub
+  - ui
+  - ux
   - menu
-  - immersion
-related_files:
-  - "[[City_Structure]]"
+  - interaction
+  - diegetic
+related_mechanics:
+  - "[[10_Mechanics/City/City_Structure]]"
+  - "[[10_Mechanics/Economy/Economy_City]]"
+  - "[[10_Mechanics/Meta/Character_Deck]]"
 ---
 
 # UI: Рабочий Стол Кукловода (The Desk)

@@ -3,9 +3,9 @@ type: mechanic
 system: magic
 status: active
 related_lore:
-  - "[[20_Lore/Magic_Origins|Природа Магии]]"
-  - "[[20_Lore/Factions/Mages|Маги]]"
-  - "[[10_Mechanics/World/Loot_System|Система Лута]]"
+  - "[[20_Lore/Magic_Origins]]"
+  - "[[20_Lore/Factions/Mages]]"
+  - "[[10_Mechanics/World/Loot_System]]"
 ---
   
 # Система: Магический Ресурс (Energy)

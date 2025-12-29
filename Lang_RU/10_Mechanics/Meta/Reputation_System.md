@@ -7,7 +7,7 @@ tags:
   - lore
   - intel
 related_mechanics:
-  - "[[Factions_Overview]]"
+  - "[[Lang_RU/10_Mechanics/City/Factions_System|Factions_System]]"
   - "[[Quest_Engine]]"
 ---
 

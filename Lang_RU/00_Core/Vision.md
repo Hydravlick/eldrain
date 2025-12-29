@@ -1,7 +1,10 @@
 ---
 type: core
-tags: [vision, atmosphere, style]
-related_files: [[Spheroid_Style]]
+tags:
+  - vision
+  - atmosphere
+  - style
+related_files:
 ---
 
 # Видение Проекта (Vision & Atmosphere)

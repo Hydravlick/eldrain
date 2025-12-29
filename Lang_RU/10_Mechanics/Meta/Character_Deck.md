@@ -5,7 +5,6 @@ tags:
   - deck_building
   - permadeath
 related_lore:
-  - "[[20_Lore/Guardians_Chronicles|Хроники Хранителей]]"
 ---
 # Система: Колода Персонажей
 

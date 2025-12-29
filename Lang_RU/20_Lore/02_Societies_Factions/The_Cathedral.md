@@ -8,8 +8,8 @@ tags:
   - temporal_constants
   - relics
 related_mechanics:
-  - "[[10_Mechanics/World/Loot_Lore]]"
-  - "[[10_Mechanics/Character/Sanity_System]]"
+  - "[[10_Mechanics/World/Extraction_Rules]]"
+  - "[[10_Mechanics/Combat/Status_Effects]]"
   - "[[10_Mechanics/City/Faction_Reputation]]"
 ---
 

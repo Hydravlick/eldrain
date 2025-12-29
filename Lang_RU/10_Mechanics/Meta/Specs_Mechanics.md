@@ -6,7 +6,7 @@ tags:
   - loadout
   - skills
 related_files:
-  - "[[Progression#Synergy_Matrix]]"
+  - "[[Lang_RU/10_Mechanics/Meta/Progression|Progression]]"
   - "[[Character_Specification]]"
 ---
 

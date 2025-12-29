@@ -3,8 +3,8 @@ type: mechanic
 system: combat
 status: active
 related_lore:
-  - "[[20_Lore/Blacksmiths_Guild|Гильдия Кузнецов]]"
-  - "[[20_Lore/Magic_Origins|Природа Магии]]"
+  - "[[20_Lore/Blacksmiths_Guild]]"
+  - "[[20_Lore/Magic_Origins]]"
   - "[[Consumables_Rules]]"
   - "[[Tags_System]]"
 tags:
