@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/10_Mechanics/World/Extraction_Rules.md",
+                "file": "Lang_RU/10_Mechanics/Meta/Progression.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Extraction_Rules"
+              "title": "Progression"
             }
           }
         ],
@@ -195,12 +195,15 @@
   },
   "active": "d5721f78b664ff6f",
   "lastOpenFiles": [
-    "Lang_RU/10_Mechanics/Meta/Character_Deck.md",
     "Lang_RU/10_Mechanics/Inventory/Inventory_Core.md",
-    "Lang_RU/10_Mechanics/Inventory/Equipment_Entropy.md",
+    "Lang_RU/10_Mechanics/Combat/Skills_Archetypes.md",
     "Lang_RU/10_Mechanics/Combat/Damage_System.md",
     "Lang_RU/00_Core/GDD_Main.md",
     "TO-DO List.md",
+    "Lang_RU/00_Core/Game_Architecture_MVP.md",
+    "Lang_RU/10_Mechanics/World/Extraction_Rules.md",
+    "Lang_RU/10_Mechanics/Meta/Character_Deck.md",
+    "Lang_RU/10_Mechanics/Inventory/Equipment_Entropy.md",
     "Одежда/213074fbed5657f253af3c5e1606dc3c.jpg",
     "Одежда/2f98c26c009399ac53728e12e35cfb40.jpg",
     "Одежда/541fdb871aa71098ec851e5bb12cba4f.jpg",
@@ -210,7 +213,6 @@
     "Lang_RU/10_Mechanics/City/Hub_UI.md",
     "Lang_RU/10_Mechanics/City/Factions_System.md",
     "Lang_RU/10_Mechanics/City/City_Structure.md",
-    "Lang_RU/00_Core/Game_Architecture_MVP.md",
     "Lang_RU/20_Lore/04_Species_Cultures/Protocol_Resonance.md",
     "Lang_RU/10_Mechanics/Economy/Economy_City.md",
     "Lang_RU/00_Core/Loop.md",
@@ -225,8 +227,6 @@
     "Lang_RU/Untitled.md",
     "Lang_RU/00_Variables/Status_Effects.md",
     "Lang_RU/00_Core/Variables/Factions.md",
-    "Lang_RU/20_Lore/05_Daily_Life/Food_and_Drugs.md",
-    "Lang_RU/20_Lore/05_Daily_Life/Fashion_Gear.md",
     "Lang_RU/00_Variables",
     "Untitled.loom",
     "Lang_RU/30_Content/World_Atlas/02_Core_Sectors/Sector_04_Foundry",
