@@ -13,15 +13,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/00_Core/Variables/Status_Effects.md",
+                "file": "TO-DO List.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Status_Effects"
+              "title": "TO-DO List"
+            }
+          },
+          {
+            "id": "d5721f78b664ff6f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Lang_RU/10_Mechanics/City/Hub_UI.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Hub_UI"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -178,35 +193,41 @@
       "notion-like-tables:Create loom": false
     }
   },
-  "active": "45d7ccf2b3a22981",
+  "active": "d5721f78b664ff6f",
   "lastOpenFiles": [
-    "Lang_RU/00_Core/Variables/Stats.md",
-    "Lang_RU/00_Core/Variables/Items.md",
-    "Lang_RU/00_Core/Variables/Skills.md",
-    "Lang_RU/00_Core/Variables/Economy.md",
+    "Lang_RU/10_Mechanics/City/Factions_System.md",
+    "Lang_RU/10_Mechanics/City/City_Structure.md",
+    "Lang_RU/00_Core/Game_Architecture_MVP.md",
+    "TO-DO List.md",
+    "Lang_RU/20_Lore/04_Species_Cultures/Protocol_Resonance.md",
+    "Lang_RU/10_Mechanics/Economy/Economy_City.md",
+    "Lang_RU/00_Core/Loop.md",
+    "Lang_RU/00_Core/Vision.md",
+    "Lang_RU/00_Core/Glossary.md",
+    "Lang_RU/00_Core/GDD_Main.md",
+    "Lang_RU/00_Variables/Economy.md",
+    "Lang_RU/00_Variables/Stats.md",
+    "Lang_RU/00_Variables/Skills.md",
+    "Lang_RU/00_Variables/Items.md",
+    "Lang_RU/10_Mechanics/Economy/Currency_Entropy.md",
+    "Одежда/ffae29b812b78fcbda1065995dcf6d5c.jpg",
+    "Одежда/af5fdbb51f0ad99a82a9641c29ee1e5d.jpg",
+    "Одежда/a05e2c452b8ac9d5e73112120edb6875.jpg",
+    "Одежда/213074fbed5657f253af3c5e1606dc3c.jpg",
+    "Одежда/541fdb871aa71098ec851e5bb12cba4f.jpg",
+    "Одежда/2f98c26c009399ac53728e12e35cfb40.jpg",
+    "Untitled.md",
+    "Lang_RU/Untitled.md",
+    "Lang_RU/00_Variables/Status_Effects.md",
     "Lang_RU/00_Core/Variables/Factions.md",
     "Lang_RU/20_Lore/05_Daily_Life/Food_and_Drugs.md",
     "Lang_RU/20_Lore/05_Daily_Life/Fashion_Gear.md",
     "Lang_RU/20_Lore/05_Daily_Life/Currency_Rezs.md",
-    "Lang_RU/20_Lore/04_Species_Cultures/Protocol_Resonance.md",
     "Lang_RU/20_Lore/04_Species_Cultures/New_Races.md",
     "Lang_RU/20_Lore/04_Species_Cultures/Culture_Language.md",
     "Lang_RU/20_Lore/03_Districts_Geography/City_Architecture.md",
     "Lang_RU/20_Lore/03_Districts_Geography/Safe_Zone/City_Center.md",
-    "Lang_RU/20_Lore/02_Societies_Factions/The_Keepers.md",
-    "Lang_RU/20_Lore/02_Societies_Factions/The_Cathedral.md",
-    "Lang_RU/20_Lore/02_Societies_Factions/Social_Political_Order.md",
-    "Lang_RU/20_Lore/02_Societies_Factions/Factions_Active/The_Minstrels.md",
-    "Lang_RU/20_Lore/02_Societies_Factions/Factions_Active/The_Cartographers.md",
-    "Lang_RU/20_Lore/02_Societies_Factions/Factions_Active/New_Factions.md",
-    "Lang_RU/20_Lore/01_World_Foundation/The_Entity.md",
-    "Lang_RU/20_Lore/01_World_Foundation/The_Collapse.md",
-    "Lang_RU/20_Lore/01_World_Foundation/The_Anchor.md",
-    "Lang_RU/20_Lore/01_World_Foundation/Magipunk_Physics.md",
-    "Lang_RU/20_Lore/01_World_Foundation/Anomaly_Weather_Systems.md",
-    "Lang_RU/10_Mechanics/World/Quest_Engine.md",
-    "Lang_RU/10_Mechanics/World/Extraction_Rules.md",
-    "Lang_RU/00_Core/Variables",
+    "Lang_RU/00_Variables",
     "Untitled.loom",
     "Lang_RU/30_Content/World_Atlas/02_Core_Sectors/Sector_04_Foundry",
     "Lang_RU/30_Content/World_Atlas/02_Core_Sectors/Sector_03_Gardens",
@@ -219,12 +240,6 @@
     "Собор.canvas",
     "Фотографии/b0ef8e324f55050174ade58864a9e4b6.jpg",
     "Фотографии/SoborB.png",
-    "Одежда/2f98c26c009399ac53728e12e35cfb40.jpg",
-    "Одежда/541fdb871aa71098ec851e5bb12cba4f.jpg",
-    "Одежда/213074fbed5657f253af3c5e1606dc3c.jpg",
-    "Одежда/a05e2c452b8ac9d5e73112120edb6875.jpg",
-    "Одежда/ffae29b812b78fcbda1065995dcf6d5c.jpg",
-    "Одежда/af5fdbb51f0ad99a82a9641c29ee1e5d.jpg",
     "Фотографии/0f62e0d4f8277d093a8c4b64e29cb973.jpg",
     "Фотографии/107f45e2c6964b7584529f502c9cf540.jpg",
     "Untitled.canvas",

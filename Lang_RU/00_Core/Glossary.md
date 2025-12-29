@@ -2,7 +2,6 @@
 type: core
 tags: [glossary, definitions]
 ---
-
 # Глоссарий Элдрейна
 
 ## Мир и Лор
