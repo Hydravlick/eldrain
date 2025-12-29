@@ -5,7 +5,7 @@ tags:
   - factions
   - lore
 related_lore:
-  - "[[Lang_RU/20_Lore/02_Societies_Factions/The_Keepers|Хранители]]"
+  - "[[Lang_RU/10_Mechanics/City/Hub_UI|Hub_UI]]"
 ---
 
 # Система: Организации Элдрейна

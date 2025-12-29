@@ -1,8 +1,12 @@
 ---
 type: mechanic
 system: ui
-tags: [hub, menu, immersion]
-related_files: [[City_Structure]]
+tags:
+  - hub
+  - menu
+  - immersion
+related_files:
+  - "[[City_Structure]]"
 ---
 
 # UI: Рабочий Стол Кукловода (The Desk)
