@@ -10,7 +10,6 @@ related_mechanics:
   - "[[10_Mechanics/Inventory/Consumables_Rules]]"
   - "[[10_Mechanics/Character/Sanity_System]]"
 ---
-
 # Еда и Препараты
 
 ## 1. Гастрономия Элдрейна
