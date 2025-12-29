@@ -5,7 +5,7 @@ tags:
   - consumables
   - magic
 related_files:
-  - "[[Energy_System]]"
+  - "[[Lang_RU/10_Mechanics/Magic/Magic_System]]"
 ---
 # Система: Расходники
 

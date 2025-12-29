@@ -3,7 +3,6 @@ type: variable_registry
 category: economy
 last_updated: 2024-12-29
 ---
-
 # Реестр: Экономика (Economy)
 
 ## `econ_rez_craft_cost`

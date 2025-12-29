@@ -7,7 +7,7 @@ tags:
   - paradox
   - time_horror
 related_mechanics:
-  - "[[10_Mechanics/Magic/Energy_System]]"
+  - "[[Lang_RU/10_Mechanics/Magic/Magic_System]]"
   - "[[10_Mechanics/World/Anomaly_System]]"
 ---
 

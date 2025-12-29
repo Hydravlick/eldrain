@@ -6,7 +6,6 @@ tags:
   - style
 related_files:
 ---
-
 # Видение Проекта (Vision & Atmosphere)
 
 ## 1. Атмосфера: "Уютная Безысходность"

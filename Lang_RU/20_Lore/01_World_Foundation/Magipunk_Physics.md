@@ -8,7 +8,7 @@ tags:
   - artifacts
 related_mechanics:
   - "[[10_Mechanics/Economy/Economy_City]]"
-  - "[[10_Mechanics/Magic/Energy_System]]"
+  - "[[Lang_RU/10_Mechanics/Magic/Magic_System]]"
 ---
 
 

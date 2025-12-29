@@ -10,7 +10,7 @@ tags:
 related_mechanics:
   - "[[10_Mechanics/Meta/Reputation_System]]"
   - "[[10_Mechanics/Meta/Races_Mechanics]]"
-  - "[[10_Mechanics/Magic/Energy_System]]"
+  - "[[Lang_RU/10_Mechanics/Magic/Magic_System]]"
 ---
 
 # Мода и Экипировка: Эстетика Выживания
