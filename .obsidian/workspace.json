@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "TO-DO List.md",
+                "file": "Lang_RU/10_Mechanics/Economy/Economy_City.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "TO-DO List"
+              "title": "Economy_City"
             }
           }
         ],
@@ -195,6 +195,14 @@
   },
   "active": "d5721f78b664ff6f",
   "lastOpenFiles": [
+    "Lang_RU/10_Mechanics/Economy/Currency_Entropy.md",
+    "Lang_RU/20_Lore/05_Daily_Life/Currency_Rezs.md",
+    "Lang_RU/20_Lore/01_World_Foundation/The_Collapse.md",
+    "Lang_RU/20_Lore/01_World_Foundation/Magipunk_Physics.md",
+    "Lang_RU/10_Mechanics/Magic/Magic_System.md",
+    "Lang_RU/10_Mechanics/Meta/Races_Mechanics.md",
+    "Lang_RU/20_Lore/04_Species_Cultures/New_Races.md",
+    "TO-DO List.md",
     "Lang_RU/20_Lore/01_World_Foundation/Anomaly_Weather_Systems.md",
     "Lang_RU/10_Mechanics/World/Quest_Engine.md",
     "Lang_RU/10_Mechanics/World/Extraction_Rules.md",
@@ -204,10 +212,8 @@
     "Lang_RU/10_Mechanics/Inventory/Inventory_Core.md",
     "Lang_RU/10_Mechanics/Inventory/Equipment_Entropy.md",
     "Lang_RU/10_Mechanics/Meta/Character_Deck.md",
-    "Lang_RU/10_Mechanics/Magic/Magic_System.md",
     "Lang_RU/10_Mechanics/Inventory/Consumables_Rules.md",
     "Lang_RU/10_Mechanics/Exploration/Stealth_Value.md",
-    "Lang_RU/10_Mechanics/Economy/Currency_Entropy.md",
     "Lang_RU/10_Mechanics/Combat/Status_Effects.md",
     "Lang_RU/10_Mechanics/Combat/Stance_System.md",
     "Lang_RU/10_Mechanics/Combat/Skills_Archetypes.md",
@@ -215,12 +221,6 @@
     "Lang_RU/10_Mechanics/City/Hub_UI.md",
     "Lang_RU/10_Mechanics/City/Factions_System.md",
     "Lang_RU/10_Mechanics/City/City_Structure.md",
-    "Lang_RU/00_Variables/Status_Effects.md",
-    "Lang_RU/00_Variables/Economy.md",
-    "Lang_RU/00_Core/Vision.md",
-    "Lang_RU/00_Core/Loop.md",
-    "Lang_RU/00_Core/GDD_Main.md",
-    "Lang_RU/00_Core/Game_Architecture_MVP.md",
     "Одежда/213074fbed5657f253af3c5e1606dc3c.jpg",
     "Одежда/a05e2c452b8ac9d5e73112120edb6875.jpg",
     "Одежда/af5fdbb51f0ad99a82a9641c29ee1e5d.jpg",
