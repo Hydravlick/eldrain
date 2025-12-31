@@ -67,7 +67,7 @@ Lang_RU/
 │   ├── 01_World_Foundation/  # Физика мира (Якорь, Сущность)
 │   ├── 02_Societies_Factions/# Фракции (Собор, Синдикат, Хранители)
 │   ├── 03_Districts_Geography/# Описание районов (Лор)
-│   ├── 04_Species_Cultures/  # Расы (Урсариды, Люди, Лазуры)
+│   ├── 04_Species_Cultures/  # Расы
 │   └── 05_Daily_Life/        # Быт (Валюта, Мода, Еда)
 │
 └── 30_Content/               # [КОНТЕНТ MVP]
