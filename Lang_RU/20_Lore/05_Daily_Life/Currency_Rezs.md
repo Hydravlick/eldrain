@@ -9,7 +9,7 @@ tags:
 related_mechanics:
   - "[[Economy_City]]"
   - "[[Currency_Entropy]]"
-  - "[[Economy_Monetization]]"
+  - "[[Lang_RU/10_Mechanics/Economy/Economy_Monetization]]"
 ---
 # Валюта: Резонансные Матрицы (Rez)
 
