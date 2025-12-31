@@ -6,7 +6,7 @@ tags:
   - aesthetics
   - lore
 related_mechanics:
-  - "[[New_Races]]"
+  - "[[Lang_RU/20_Lore/04_Species_Cultures/Races/New_Races]]"
   - "[[City_Center]]"
 ---
 

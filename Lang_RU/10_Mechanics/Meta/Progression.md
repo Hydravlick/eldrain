@@ -6,7 +6,7 @@ tags:
   - no_xp
   - build
 related_files:
-  - "[[20_Lore/04_Species_Cultures/New_Races]]"
+  - "[[Lang_RU/20_Lore/04_Species_Cultures/Races/New_Races]]"
 ---
 
 # Прогрессия: Матрица Синергий
