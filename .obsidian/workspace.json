@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/00_Core/Game_Architecture_MVP.md",
+                "file": "Lang_RU/10_Mechanics/City/Facilities_Services.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Game_Architecture_MVP"
+              "title": "Facilities_Services"
             }
           }
         ],
@@ -195,8 +195,11 @@
   },
   "active": "d5721f78b664ff6f",
   "lastOpenFiles": [
-    "Lang_RU/10_Mechanics/World/Anomaly_System.md",
+    "Lang_RU/10_Mechanics/City/Hub_UI.md",
+    "Lang_RU/10_Mechanics/City/Facilities_Services.md",
     "Lang_RU/00_Core/Game_Architecture_MVP.md",
+    "Lang_RU/10_Mechanics/City/City_Structure_Generation.md",
+    "Lang_RU/10_Mechanics/World/Anomaly_System.md",
     "Lang_RU/00_Core/GDD_Main.md",
     "Lang_RU/00_Core/Glossary.md",
     "Lang_RU/10_Mechanics/Meta/Reputation_System.md",
@@ -218,9 +221,6 @@
     "Lang_RU/10_Mechanics/Economy/System_Batteries.md",
     "Lang_RU/10_Mechanics/Economy/QA.md",
     "Lang_RU/10_Mechanics/Economy/Economy_Monetization.md",
-    "Lang_RU/10_Mechanics/Economy/Economy_City.md",
-    "Lang_RU/10_Mechanics/Economy/Currency_Entropy.md",
-    "Lang_RU/10_Mechanics/Combat/Status_Effects.md",
     "10_Mechanics/City",
     "10_Mechanics",
     "Lang_RU/20_Lore/06_Items_History",
