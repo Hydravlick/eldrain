@@ -1,10 +1,13 @@
 ---
 type: mechanic
 system: combat
-tags: [stance, movement, fps]
+tags:
+  - stance
+  - movement
+  - fps
 related_mechanics:
-  - [[Damage_System]]
-  - [[Inventory_Core]]
+  - "[[Damage_System]]"
+  - "[[Inventory_Core]]"
 ---
 
 # Система Стоек (Stance System)

@@ -1,7 +1,11 @@
 ---
 type: mechanic
 system: city_core
-tags: [geography, generation, verticality, tactics]
+tags:
+  - geography
+  - generation
+  - verticality
+  - tactics
 related_mechanics:
   - "[[10_Mechanics/World/Anomaly_System]]"
   - "[[10_Mechanics/Exploration/Stealth_Value]]"

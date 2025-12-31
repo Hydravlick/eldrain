@@ -1,5 +1,5 @@
 ---
-type: mechanics
+type: mechanic
 category: monetization
 tags:
   - premium
