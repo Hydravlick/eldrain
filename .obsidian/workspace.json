@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/20_Lore/05_Daily_Life/Currency_Rezs.md",
+                "file": "Lang_RU/20_Lore/03_Districts_Geography/Safe_Zone/City_Center.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Currency_Rezs"
+              "title": "City_Center"
             }
           }
         ],
@@ -195,9 +195,14 @@
   },
   "active": "d5721f78b664ff6f",
   "lastOpenFiles": [
+    "Lang_RU/20_Lore/03_Districts_Geography/City_Architecture.md",
+    "Lang_RU/20_Lore/04_Species_Cultures/Races/New_Races.md",
+    "Lang_RU/20_Lore/04_Species_Cultures/Culture_Language.md",
+    "Code-block_Example.md",
+    "TO-DO List.md",
+    "Lang_RU/20_Lore/05_Daily_Life/Currency_Rezs.md",
     "Lang_RU/20_Lore/05_Daily_Life/Food_and_Drugs.md",
     "Lang_RU/20_Lore/05_Daily_Life/Fashion_Gear.md",
-    "Lang_RU/20_Lore/05_Daily_Life/Currency_Rezs.md",
     "Lang_RU/10_Mechanics/Economy/Economy_Monetization.md",
     "Lang_RU/40_Monetization/Economy_Monetization.md",
     "Lang_RU/40_Monetization",
@@ -208,9 +213,7 @@
     "Lang_RU/10_Mechanics/Combat/Damage_System.md",
     "Lang_RU/10_Mechanics/City/Factions_System.md",
     "Lang_RU/10_Mechanics/City/City_Structure.md",
-    "Lang_RU/20_Lore/04_Species_Cultures/Races/New_Races.md",
     "Lang_RU/20_Lore/04_Species_Cultures/Races",
-    "Lang_RU/20_Lore/04_Species_Cultures/Culture_Language.md",
     "Lang_RU/20_Lore/03_Districts_Geography/Safe_Zone/City_Center.md",
     "Lang_RU/20_Lore/02_Societies_Factions/The_Keepers.md",
     "Lang_RU/20_Lore/02_Societies_Factions/The_Cathedral.md",
@@ -221,10 +224,7 @@
     "Lang_RU/20_Lore/01_World_Foundation/Magipunk_Physics.md",
     "Lang_RU/10_Mechanics/Magic/Magic_System.md",
     "Lang_RU/10_Mechanics/Meta/Races_Mechanics.md",
-    "TO-DO List.md",
     "Lang_RU/20_Lore/01_World_Foundation/Anomaly_Weather_Systems.md",
-    "Lang_RU/10_Mechanics/World/Quest_Engine.md",
-    "Lang_RU/10_Mechanics/World/Extraction_Rules.md",
     "Одежда/213074fbed5657f253af3c5e1606dc3c.jpg",
     "Одежда/a05e2c452b8ac9d5e73112120edb6875.jpg",
     "Одежда/af5fdbb51f0ad99a82a9641c29ee1e5d.jpg",
