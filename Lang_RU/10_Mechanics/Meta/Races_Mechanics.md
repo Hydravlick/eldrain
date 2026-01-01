@@ -6,8 +6,8 @@ tags:
   - generation
   - stats
 related_files:
-  - "[[Tags_System]]"
-  - "[[Character_Specification]]"
+  - "[[Lang_RU/10_Mechanics/Meta/Tags_System]]"
+  - "[[Lang_RU/10_Mechanics/Meta/Character_Specification]]"
 ---
 
 # Механика: Расовые Шаблоны (Species)

@@ -6,8 +6,8 @@ tags:
   - win_condition
 related_files:
   - "[[Loot_Weight]]"
-  - "[[Anomaly_System]]"
-  - "[[Inventory_Core]]"
+  - "[[Lang_RU/10_Mechanics/World/Anomaly_System]]"
+  - "[[Lang_RU/10_Mechanics/Inventory/Inventory_Core]]"
 ---
 
 # Система: Эвакуация (Extraction)

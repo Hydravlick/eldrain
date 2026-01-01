@@ -1,21 +1,18 @@
 ---
-
 type: mechanic
-system: combat 
-status: active 
+system: combat
+status: active
 related_lore:
-
-- "[[20_Lore/Blacksmiths_Guild]]"
-- "[[20_Lore/Magic_Origins]]"
-- "[[Consumables_Rules]]"
-- "[[Tags_System]]"
+  - "[[20_Lore/Blacksmiths_Guild]]"
+  - "[[20_Lore/Magic_Origins]]"
+  - "[[Lang_RU/10_Mechanics/Inventory/Consumables_Rules]]"
+  - "[[Lang_RU/10_Mechanics/Meta/Tags_System]]"
 tags:
-- archetypes
-- wounds
-- permadeath
-- death
-- armor
-
+  - archetypes
+  - wounds
+  - permadeath
+  - death
+  - armor
 ---
 # Система Урона (Damage System)
 
@@ -171,7 +168,7 @@ tags:
 #### В. Попадание в Голое Тело
 
 - **Урон:** 100% без снижения
-- **Кровотечение:** Высокий шанс на статус [[Status_Effects#Bleed|Bleeding]]
+- **Кровотечение:** Высокий шанс на статус [[Lang_RU/10_Mechanics/Combat/Status_Effects#Bleed|Bleeding]]
 - **Критический урон:** Попадание в голову без шлема = ×2(Коэфициент вывести в переменные) урон
 
 ---

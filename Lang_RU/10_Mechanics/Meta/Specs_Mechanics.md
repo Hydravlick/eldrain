@@ -7,7 +7,7 @@ tags:
   - skills
 related_files:
   - "[[Lang_RU/10_Mechanics/Meta/Progression|Progression]]"
-  - "[[Character_Specification]]"
+  - "[[Lang_RU/10_Mechanics/Meta/Character_Specification]]"
 ---
 TBD: отделить специализации от фракций. это разные механики.
 # Механика: Специализации (Vocations)

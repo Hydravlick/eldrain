@@ -8,7 +8,7 @@ tags:
   - hierarchy
 related_mechanics:
   - "[[Factions_Overview]]"
-  - "[[Reputation_System]]"
+  - "[[Lang_RU/10_Mechanics/Meta/Reputation_System]]"
 ---
 # Социально-Политический Уклад: Порядок Хаоса
 

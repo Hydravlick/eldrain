@@ -9,9 +9,9 @@ tags:
   - repair
   - diegetic
 related_mechanics:
-  - "[[Hub_UI]]"
-  - "[[Economy_City]]"
-  - "[[Inventory_Core]]"
+  - "[[Lang_RU/10_Mechanics/City/Hub_UI]]"
+  - "[[Lang_RU/10_Mechanics/Economy/Economy_City]]"
+  - "[[Lang_RU/10_Mechanics/Inventory/Inventory_Core]]"
 ---
 
 # Сервисы Хаба: Инструменты Кукловода

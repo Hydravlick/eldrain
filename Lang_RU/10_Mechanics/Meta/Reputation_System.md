@@ -8,7 +8,7 @@ tags:
   - intel
 related_mechanics:
   - "[[Lang_RU/10_Mechanics/City/Factions_System|Factions_System]]"
-  - "[[Quest_Engine]]"
+  - "[[Lang_RU/10_Mechanics/World/Quest_Engine]]"
 ---
 TBD: Вынести все переменные
 # Система Репутации: Доверие и Знание

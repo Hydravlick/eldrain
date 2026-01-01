@@ -9,7 +9,7 @@ tags:
 related_lore:
   - "[[The_Anchor]]"
   - "[[Currency_Rezs]]"
-  - "[[Economy_City]]"
+  - "[[Lang_RU/10_Mechanics/Economy/Economy_City]]"
 ---
 
 # Система: Энтропия и Консервация

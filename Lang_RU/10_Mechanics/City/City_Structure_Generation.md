@@ -8,9 +8,9 @@ tags:
   - algorithms
   - shortcuts
 related_mechanics:
-  - "[[Anomaly_System]]"
+  - "[[Lang_RU/10_Mechanics/World/Anomaly_System]]"
   - "[[Chunk_Generation]]"
-  - "[[Hub_UI]]"
+  - "[[Lang_RU/10_Mechanics/City/Hub_UI]]"
 ---
 
 # Генерация Сектора: Динамическая Топология

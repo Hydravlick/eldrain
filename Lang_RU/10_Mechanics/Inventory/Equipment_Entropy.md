@@ -7,7 +7,7 @@ tags:
   - entropy
   - sink
 related_mechanics:
-  - "[[Currency_Entropy]]"
+  - "[[Lang_RU/10_Mechanics/Economy/Currency_Entropy]]"
   - "[[Currency_Rezs]]"
 ---
 

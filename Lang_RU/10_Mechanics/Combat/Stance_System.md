@@ -6,8 +6,8 @@ tags:
   - movement
   - fps
 related_mechanics:
-  - "[[Damage_System]]"
-  - "[[Inventory_Core]]"
+  - "[[Lang_RU/10_Mechanics/Combat/Damage_System]]"
+  - "[[Lang_RU/10_Mechanics/Inventory/Inventory_Core]]"
 ---
 
 # Система Стоек (Stance System)

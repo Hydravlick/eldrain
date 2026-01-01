@@ -7,9 +7,9 @@ tags:
   - core
   - formulas
 related_files:
-  - "[[Tags_System]]"
-  - "[[Races_Mechanics]]"
-  - "[[Specs_Mechanics]]"
+  - "[[Lang_RU/10_Mechanics/Meta/Tags_System]]"
+  - "[[Lang_RU/10_Mechanics/Meta/Races_Mechanics]]"
+  - "[[Lang_RU/10_Mechanics/Meta/Specs_Mechanics]]"
 ---
 
 # Спецификация: Конструктор Персонажа
@@ -20,11 +20,11 @@ related_files:
 $$Character = Race\_Data + Spec\_Data + Random\_Traits$$
 
 ### Процесс (Step-by-Step)
-1.  **Выбор Расы:** Система берет статы из [[Races_Mechanics]].
+1.  **Выбор Расы:** Система берет статы из [[Lang_RU/10_Mechanics/Meta/Races_Mechanics]].
     * *Пример:* Лазур (+3 AGI).
-2.  **Выбор Спека:** Система выдает предметы и навык из [[Specs_Mechanics]].
+2.  **Выбор Спека:** Система выдает предметы и навык из [[Lang_RU/10_Mechanics/Meta/Specs_Mechanics]].
     * *Пример:* Дуэлянт (Рапира, Навык Парирования).
-3.  **Расчет Синергии:** Проверка таблицы [[Progression#Synergy_Matrix]].
+3.  **Расчет Синергии:** Проверка таблицы [[Lang_RU/10_Mechanics/Meta/Progression#Synergy_Matrix]].
     * *Лазур* + *Дуэлянт* = Открывается скрытая пассивка **"Танец Смерти"** (Уклонение повышает крит).
 
 ## 2. Расчет Характеристик (Final Stats)

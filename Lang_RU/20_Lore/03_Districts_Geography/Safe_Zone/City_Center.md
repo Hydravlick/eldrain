@@ -7,8 +7,8 @@ tags:
   - auction
   - lore
 related_mechanics:
-  - "[[Inventory_Core]]"
-  - "[[Economy_City]]"
+  - "[[Lang_RU/10_Mechanics/Inventory/Inventory_Core]]"
+  - "[[Lang_RU/10_Mechanics/Economy/Economy_City]]"
   - "[[The_Anchor]]"
 ---
 

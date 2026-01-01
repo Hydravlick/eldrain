@@ -7,7 +7,7 @@ tags:
   - progression
   - evolution
 related_mechanics:
-  - "[[Character_Specification]]"
+  - "[[Lang_RU/10_Mechanics/Meta/Character_Specification]]"
 ---
 
 # Система Тегов: ДНК Персонажа

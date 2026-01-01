@@ -3,9 +3,9 @@ type: mechanic
 system: inventory
 tags:
 related_files:
-  - "[[Stealth_Value]]"
+  - "[[Lang_RU/10_Mechanics/Exploration/Stealth_Value]]"
   - "[[Loot_Weight]]"
-  - "[[Damage_System]]"
+  - "[[Lang_RU/10_Mechanics/Combat/Damage_System]]"
 ---
 
 # Система: Инвентарь и Экипировка

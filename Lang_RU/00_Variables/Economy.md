@@ -19,7 +19,7 @@ last_updated: 2024-12-29
 **Тип:** currency (Rez)
 **Описание:** Базовая рыночная стоимость предмета редкости Common.
 **Связи:**
-- Используется в: [[Economy_City]], [[Loot_Table]]
+- Используется в: [[Lang_RU/10_Mechanics/Economy/Economy_City]], [[Loot_Table]]
 
 ## `econ_price_tier_2`
 **Значение:** `1500`
@@ -33,7 +33,7 @@ last_updated: 2024-12-29
 **Тип:** percentage
 **Описание:** Базовый шанс выпадения обычного лута в контейнере.
 **Связи:**
-- Используется в: [[City_Structure_Generation]]
+- Используется в: [[Lang_RU/10_Mechanics/City/City_Structure_Generation]]
 
 ## `econ_drop_rate_rare`
 **Значение:** `23%`

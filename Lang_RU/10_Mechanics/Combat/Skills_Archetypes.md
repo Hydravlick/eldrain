@@ -7,9 +7,9 @@ tags:
   - magic
   - roles
 related_mechanics:
-  - "[[Magic_System]]"
   - "[[Lang_RU/10_Mechanics/Magic/Magic_System]]"
-  - "[[Consumables_Rules]]"
+  - "[[Lang_RU/10_Mechanics/Magic/Magic_System]]"
+  - "[[Lang_RU/10_Mechanics/Inventory/Consumables_Rules]]"
 ---
 
 # Система Навыков и Архетипов

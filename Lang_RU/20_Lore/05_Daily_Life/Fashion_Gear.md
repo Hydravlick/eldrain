@@ -7,8 +7,8 @@ tags:
   - armor
   - identification
 related_mechanics:
-  - "[[Equipment_Tiers]]"
-  - "[[Reputation_System]]"
+  - "[[Lang_RU/10_Mechanics/Meta/Equipment_Tiers]]"
+  - "[[Lang_RU/10_Mechanics/Meta/Reputation_System]]"
   - "[[Economy_Batteries]]"
 ---
 

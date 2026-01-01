@@ -8,9 +8,9 @@ tags:
   - control
   - sanity
 related_mechanics:
-  - "[[Damage_System]]"
-  - "[[Equipment_Entropy]]"
-  - "[[Skills_Archetypes]]"
+  - "[[Lang_RU/10_Mechanics/Combat/Damage_System]]"
+  - "[[Lang_RU/10_Mechanics/Inventory/Equipment_Entropy]]"
+  - "[[Lang_RU/10_Mechanics/Combat/Skills_Archetypes]]"
 ---
 
 # Статусные Эффекты: Состояния Тела и Разума
