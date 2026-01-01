@@ -6,7 +6,7 @@ tags:
   - buffs
   - debuffs
 related_files:
-  - "[[Lang_RU/10_Mechanics/02_Action_Combat/Damage_System]]"
+  - "[[Lang_RU/10_Mechanics/02_Action_Combat/Stance_System|Stance_System]]"
 ---
 
 # Реестр: Эффекты Состояния

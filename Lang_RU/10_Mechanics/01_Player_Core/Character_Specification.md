@@ -6,10 +6,10 @@ tags:
   - progression
   - formulas
 related_files:
-  - "[[Lang_RU/10_Mechanics/01_Player_Core/Races_Mechanics]]"
-  - "[[Lang_RU/10_Mechanics/01_Player_Core/Specs_Mechanics]]"
-  - "[[Lang_RU/10_Mechanics/01_Player_Core/Tags_System]]"
-  - "[[Lang_RU/10_Mechanics/01_Player_Core/Progression]]"
+  - "[[10_Mechanics/01_Player_Core/Races_Mechanics|Races_Mechanics]]"
+  - "[[10_Mechanics/01_Player_Core/Specs_Mechanics|Specs_Mechanics]]"
+  - "[[Lang_RU/10_Mechanics/01_Player_Core/Character_Specification|Character_Specification]]"
+  - "[[Lang_RU/10_Mechanics/01_Player_Core/Character_Specification|Character_Specification]]"
 ---
 
 # Спецификация: Конструктор Персонажа

@@ -6,8 +6,8 @@ tags:
   - progression
   - merchants
 related_files:
-  - "[[Lang_RU/10_Mechanics/05_World_Systems/Systems/Factions_System]]"
-  - "[[../30_Economy_Resources/System_Entropy_Tax|System_Entropy_Tax]]"
+  - "[[Lang_RU/10_Mechanics/05_World_Systems/Systems/Factions_System|Factions_System]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/System_Entropy_Tax|System_Entropy_Tax]]"
 ---
 
 # Система: Репутация (Standing)

@@ -6,7 +6,7 @@ tags:
   - ux
   - menus
 related_files:
-  - "[[../40_Inventory_Gear/Inventory_Core|Inventory_Core]]"
+  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/Inventory_Core|Inventory_Core]]"
 ---
 
 # UI: Рабочий Стол Кукловода (The Desk)

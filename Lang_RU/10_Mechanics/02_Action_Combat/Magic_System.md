@@ -6,8 +6,8 @@ tags:
   - resources
   - spellcasting
 related_files:
-  - "[[30_Economy_Resources/System_Batteries|System_Batteries]]"
-  - "[[10_Player_Core/Specs_Mechanics|Specs_Mechanics]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/System_Batteries|System_Batteries]]"
+  - "[[Lang_RU/10_Mechanics/01_Player_Core/Specs_Mechanics|Specs_Mechanics]]"
 ---
   
 # Система: Магический Ресурс (Energy)

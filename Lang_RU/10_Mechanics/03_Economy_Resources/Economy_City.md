@@ -7,9 +7,9 @@ tags:
   - inflation
   - market
 related_files:
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/System_Currency_Rez]]"
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/System_Entropy_Tax]]"
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/System_Batteries]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/Currency_Entropy|Currency_Entropy]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/Economy_City|Economy_City]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/Economy_City|Economy_City]]"
 ---
 
 # Экономика Города: Баланс и Потоки

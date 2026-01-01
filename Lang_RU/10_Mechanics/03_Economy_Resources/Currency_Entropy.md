@@ -6,8 +6,8 @@ tags:
   - physics
   - crafting
 related_files:
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/System_Currency_Rez]]"
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/System_Entropy_Tax]]"
+  - "[[Lang_RU/10_Mechanics/02_Action_Combat/Status_Effects|Status_Effects]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/Currency_Entropy|Currency_Entropy]]"
 ---
 
 # Система: Энтропия и Консервация

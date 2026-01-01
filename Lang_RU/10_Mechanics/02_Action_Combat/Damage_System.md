@@ -6,9 +6,9 @@ tags:
   - formulas
   - health
 related_files:
-  - "[[10_Player_Core/Character_Specification|Character_Specification]]"
-  - "[[40_Inventory_Gear/Equipment_Entropy|Equipment_Entropy]]"
-  - "[[Lang_RU/10_Mechanics/02_Action_Combat/Status_Effects]]"
+  - "[[Lang_RU/10_Mechanics/01_Player_Core/Character_Specification|Character_Specification]]"
+  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/Equipment_Entropy|Equipment_Entropy]]"
+  - "[[Lang_RU/10_Mechanics/02_Action_Combat/Damage_System|Damage_System]]"
 ---
 # Система Урона (Damage System)
 

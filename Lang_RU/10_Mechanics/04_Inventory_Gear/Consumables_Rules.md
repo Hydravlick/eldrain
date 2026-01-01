@@ -7,7 +7,7 @@ tags:
   - utility
   - animation
 related_files:
-  - "[[20_Action_Combat/Status_Effects|Status_Effects]]"
+  - "[[Lang_RU/10_Mechanics/02_Action_Combat/Status_Effects|Status_Effects]]"
 ---
 
 # Механика: Расходники

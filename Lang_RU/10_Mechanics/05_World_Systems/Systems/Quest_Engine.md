@@ -6,7 +6,7 @@ tags:
   - contracts
   - objectives
 related_files:
-  - "[[Lang_RU/10_Mechanics/05_World_Systems/Systems/Extraction_Rules]]"
+  - "[[Lang_RU/10_Mechanics/05_World_Systems/Systems/Extraction_Rules|Extraction_Rules]]"
 ---
 # Система: Информационные Квесты (Intel)
 

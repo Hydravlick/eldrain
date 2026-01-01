@@ -7,8 +7,8 @@ tags:
   - progression
   - manufacturers
 related_files:
-  - "[[20_Action_Combat/Damage_System|Damage_System]]"
-  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/Equipment_Entropy]]"
+  - "[[Lang_RU/10_Mechanics/02_Action_Combat/Damage_System|Damage_System]]"
+  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/Equipment_Entropy|Equipment_Entropy]]"
 ---
 
 # Механика: Тиры и Редкость

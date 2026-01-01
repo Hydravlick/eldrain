@@ -6,8 +6,8 @@ tags:
   - generation
   - stats
 related_files:
-  - "[[Lang_RU/10_Mechanics/01_Player_Core/Character_Specification]]"
-  - "[[Lang_RU/10_Mechanics/01_Player_Core/Tags_System]]"
+  - "[[Lang_RU/10_Mechanics/01_Player_Core/Character_Specification|Character_Specification]]"
+  - "[[Lang_RU/10_Mechanics/01_Player_Core/Progression|Progression]]"
 ---
 
 # Механика: Расовые Шаблоны (Species)

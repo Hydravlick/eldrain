@@ -6,7 +6,7 @@ tags:
   - level_design
   - map
 related_files:
-  - "[[Lang_RU/10_Mechanics/World/Anomaly_System]]"
+  - "[[Lang_RU/10_Mechanics/05_World_Systems/Systems/Anomaly_System|Anomaly_System]]"
 ---
 
 # Генерация Сектора: Динамическая Топология

@@ -6,8 +6,8 @@ tags:
   - lore
   - diplomacy
 related_files:
-  - "[[Lang_RU/10_Mechanics/05_World_Systems/Systems/Reputation_System]]"
-  - "[[../10_Player_Core/Specs_Mechanics|Specs_Mechanics]]"
+  - "[[Lang_RU/10_Mechanics/05_World_Systems/Systems/Reputation_System|Reputation_System]]"
+  - "[[Lang_RU/10_Mechanics/01_Player_Core/Specs_Mechanics|Specs_Mechanics]]"
 ---
 
 # Система Фракций и Репутации

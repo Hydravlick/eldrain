@@ -6,8 +6,8 @@ tags:
   - movement
   - states
 related_files:
-  - "[[Lang_RU/10_Mechanics/02_Action_Combat/Damage_System]]"
-  - "[[10_Player_Core/Character_Specification|Character_Specification]]"
+  - "[[Lang_RU/10_Mechanics/02_Action_Combat/Magic_System|Magic_System]]"
+  - "[[01_Player_Core/Character_Specification|Character_Specification]]"
 ---
 
 # Система: Физика и Стойки (Combat Physics)

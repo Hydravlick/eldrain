@@ -7,8 +7,8 @@ tags:
   - weight
   - ui
 related_files:
-  - "[[10_Player_Core/Character_Specification|Character_Specification]]"
-  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/Equipment_Tiers]]"
+  - "[[Lang_RU/10_Mechanics/01_Player_Core/Character_Specification|Character_Specification]]"
+  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/Equipment_Tiers|Equipment_Tiers]]"
 ---
 
 # Система: Инвентарь (Grid & Weight)

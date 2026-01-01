@@ -6,9 +6,9 @@ tags:
   - loadout
   - skills
 related_files:
-  - "[[Lang_RU/10_Mechanics/01_Player_Core/Progression]]"
-  - "[[Lang_RU/10_Mechanics/01_Player_Core/Character_Specification]]"
-  - "[[Lang_RU/10_Mechanics/01_Player_Core/Skills_Archetypes]]"
+  - "[[Lang_RU/10_Mechanics/01_Player_Core/Skills_Archetypes|Skills_Archetypes]]"
+  - "[[Lang_RU/10_Mechanics/01_Player_Core/Specs_Mechanics|Specs_Mechanics]]"
+  - "[[Lang_RU/10_Mechanics/01_Player_Core/Specs_Mechanics|Specs_Mechanics]]"
 ---
 TBD: отделить специализации от фракций. это разные механики.
 # Механика: Специализации (Vocations)

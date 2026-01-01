@@ -6,8 +6,8 @@ tags:
   - permadeath
   - roster
 related_files:
-  - "[[Lang_RU/10_Mechanics/01_Player_Core/Progression]]"
-  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/Equipment_Entropy]]"
+  - "[[10_Mechanics/01_Player_Core/Progression|Progression]]"
+  - "[[10_Mechanics/04_Inventory_Gear/Equipment_Entropy|Equipment_Entropy]]"
 ---
 
 # Система: Колода Персонажей (Roster)

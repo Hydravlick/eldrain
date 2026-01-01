@@ -6,7 +6,7 @@ tags:
   - cosmetics
   - fair_play
 related_files:
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/Economy_City]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/Economy_City|Economy_City]]"
 ---
 
 # Экономика: Фрагменты Воспоминаний (Premium)

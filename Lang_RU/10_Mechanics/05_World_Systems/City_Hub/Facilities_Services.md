@@ -6,8 +6,8 @@ tags:
   - crafting
   - healing
 related_files:
-  - "[[../30_Economy_Resources/System_Currency_Rez|System_Currency_Rez]]"
-  - "[[../10_Player_Core/Character_Deck|Character_Deck]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/System_Currency_Rez|System_Currency_Rez]]"
+  - "[[Lang_RU/10_Mechanics/01_Player_Core/Character_Deck|Character_Deck]]"
 ---
 
 # Сервисы Хаба: Инструменты Кукловода

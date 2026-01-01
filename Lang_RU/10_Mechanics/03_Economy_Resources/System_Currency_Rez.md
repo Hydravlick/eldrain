@@ -6,8 +6,8 @@ tags:
   - rez
   - trade
 related_files:
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/Economy_City]]"
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/Currency_Entropy]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/Economy_FAQ|Economy_FAQ]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/Currency_Entropy|Currency_Entropy]]"
 ---
 
 # Механика: Валюта (Rezs)

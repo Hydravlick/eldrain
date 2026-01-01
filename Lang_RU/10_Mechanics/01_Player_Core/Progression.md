@@ -6,9 +6,9 @@ tags:
   - no_xp
   - build
 related_files:
-  - "[[Lang_RU/10_Mechanics/01_Player_Core/Races_Mechanics]]"
-  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/Equipment_Entropy]]"
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/System_Entropy_Tax]]"
+  - "[[Lang_RU/10_Mechanics/01_Player_Core/Races_Mechanics|Races_Mechanics]]"
+  - "[[Lang_RU/10_Mechanics/01_Player_Core/Progression|Progression]]"
+  - "[[Lang_RU/10_Mechanics/01_Player_Core/Progression|Progression]]"
 ---
 
 # Прогрессия: Матрица Синергий и Доступа

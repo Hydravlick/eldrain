@@ -7,9 +7,9 @@ tags:
   - magic
   - roles
 related_files:
-  - "[[Lang_RU/10_Mechanics/01_Player_Core/Specs_Mechanics]]"
-  - "[[Lang_RU/10_Mechanics/02_Action_Combat/Magic_System]]"
-  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/Consumables_Rules]]"
+  - "[[Lang_RU/10_Mechanics/01_Player_Core/Races_Mechanics|Races_Mechanics]]"
+  - "[[Lang_RU/10_Mechanics/01_Player_Core/Races_Mechanics|Races_Mechanics]]"
+  - "[[Lang_RU/10_Mechanics/01_Player_Core/Skills_Archetypes|Skills_Archetypes]]"
 ---
 # Система Навыков и Архетипов
 

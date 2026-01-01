@@ -6,7 +6,7 @@ tags:
   - loop
   - tension
 related_files:
-  - "[[../30_Economy_Resources/Economy_City|Economy_City]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/Economy_City|Economy_City]]"
 ---
 
 # Система: Эвакуация (Extraction)

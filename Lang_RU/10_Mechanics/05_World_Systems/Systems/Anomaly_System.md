@@ -6,7 +6,7 @@ tags:
   - anomalies
   - traps
 related_files:
-  - "[[../20_Action_Combat/Damage_System|Damage_System]]"
+  - "[[Lang_RU/10_Mechanics/02_Action_Combat/Damage_System|Damage_System]]"
 ---
 
 # Система: Аномалии (The Anomaly Engine)

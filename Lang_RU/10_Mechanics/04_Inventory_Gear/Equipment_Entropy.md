@@ -6,8 +6,8 @@ tags:
   - jamming
   - repair
 related_files:
-  - "[[30_Economy_Resources/Currency_Entropy|Currency_Entropy]]"
-  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/Equipment_Tiers]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/Currency_Entropy|Currency_Entropy]]"
+  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/Equipment_Tiers|Equipment_Tiers]]"
 ---
 
 # Энтропия Снаряжения: Целостность Реальности

@@ -6,8 +6,8 @@ tags:
   - magic
   - resources
 related_files:
-  - "[[20_Action_Combat/Magic_System|Magic_System]]"
-  - "[[40_Inventory_Gear/Inventory_Core|Inventory_Core]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/System_Batteries|System_Batteries]]"
+  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/Inventory_Core|Inventory_Core]]"
 ---
 
 # Механика: Батареи (Batteries)
