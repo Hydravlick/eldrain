@@ -10,7 +10,7 @@ related_mechanics:
   - "[[Lang_RU/10_Mechanics/City/Factions_System|Factions_System]]"
   - "[[Quest_Engine]]"
 ---
-
+TBD: Вынести все переменные
 # Система Репутации: Доверие и Знание
 
 ## 1. Уровни Доверия (Trust Levels)
