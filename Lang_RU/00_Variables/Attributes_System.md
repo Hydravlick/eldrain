@@ -60,16 +60,16 @@ tags: [stats, formulas, core]
 ### 1. Здоровье (Hit Points)
 $$MaxHP = stat\_hp\_start + (VIG \times 3) + (Race\_Bonus)$$
 
-* **База (из конфига):** `$= dv.page("00_Variables/Stats.md").stat_hp_start` HP.
+* **База (из конфига):** `$= dv.page("00_Variables/Registry_Stats.md").stat_hp_base` HP.
 * *Пример расчета (для VIG=15):*
-    `$= dv.page("00_Variables/Stats.md").stat_hp_start` + (15 * 3) = **`$= dv.page("Lang_RU/00_Variables/Registry_Stats.md").stat_hp_base + 45` HP**.
+    `$= dv.page("00_Variables/Registry_Stats.md").stat_hp_base` + (15 * 3) = **`$= dv.page("Lang_RU/00_Variables/Registry_Stats.md").stat_hp_base + 45` HP**.
 
 ### 2. Переносимый Вес (Loadout)
 $$MaxWeight = stat\_carry\_weight\_base + (PHY \times 2)$$
 
-* **База (из конфига):** `$= dv.page("00_Variables/Stats.md").stat_carry_weight_base` кг.
+* **База (из конфига):** `$= dv.page("00_Variables/Registry_Stats.md").stat_carry_weight_base` кг.
 * *Пример расчета (для PHY=20):*
-    `$= dv.page("00_Variables/Stats.md").stat_carry_weight_base` + (20 * 2) = **`$= dv.page("00_Variables/Registry_Stats.md").stat_carry_weight_base + 40` кг**.
+    `$= dv.page("00_Variables/Registry_Stats.md").stat_carry_weight_base` + (20 * 2) = **`$= dv.page("00_Variables/Registry_Stats.md").stat_carry_weight_base + 40` кг**.
 
 ### 3. Скорость Действий (Action Speed)
 $$ActSpd = stat\_action\_speed\_base + ((AGI - 10) \times 0.02)$$

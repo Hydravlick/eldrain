@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/00_Variables/Registry_Items.md",
-                "mode": "source",
+                "file": "Lang_RU/00_Variables/Character_Matrix.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Registry_Items"
+              "title": "Character_Matrix"
             }
           }
         ]
@@ -180,18 +180,18 @@
   },
   "active": "d5721f78b664ff6f",
   "lastOpenFiles": [
-    "Lang_RU/00_Variables/Registry_Combos.md",
     "Lang_RU/00_Variables/Attributes_System.md",
+    "Lang_RU/00_Variables/Character_Matrix.md",
+    "Lang_RU/00_Variables/Registry_Items.md",
+    "Lang_RU/00_Variables/Registry_Combos.md",
     "Lang_RU/00_Variables/Skills.md",
     "Lang_RU/00_Variables/Status_Effects.md",
     "Lang_RU/00_Variables/Registry_Stats.md",
     "Lang_RU/00_Variables/Registry_Specs.md",
     "Lang_RU/00_Variables/Registry_Races.md",
-    "Lang_RU/00_Variables/Registry_Items.md",
     "Lang_RU/00_Variables/Registry_Economy.md",
     "Lang_RU/00_Variables/Economy.md",
     "Lang_RU/00_Variables/Stats.md",
-    "Lang_RU/00_Variables/Character_Matrix.md",
     "2026-01-02.md",
     "Lang_RU/10_Mechanics/01_Player_Core/Classes_Physiology.md",
     "Lang_RU/10_Mechanics/01_Player_Core/Skills_Archetypes.md",
