@@ -1,19 +1,12 @@
 {
   "collapse-filter": false,
   "search": "",
-  "showTags": true,
+  "showTags": false,
   "showAttachments": false,
   "hideUnresolved": true,
   "showOrphans": true,
   "collapse-color-groups": false,
   "colorGroups": [
-    {
-      "query": "tag:#lore ",
-      "color": {
-        "a": 1,
-        "rgb": 8671968
-      }
-    },
     {
       "query": "path:10_Mechanics  ",
       "color": {
@@ -27,6 +20,13 @@
         "a": 1,
         "rgb": 3522736
       }
+    },
+    {
+      "query": "path:Lang_RU/30_Content  ",
+      "color": {
+        "a": 1,
+        "rgb": 10604611
+      }
     }
   ],
   "collapse-display": false,
@@ -39,6 +39,6 @@
   "repelStrength": 20,
   "linkStrength": 0.687110187110187,
   "linkDistance": 30,
-  "scale": 0.11256886631705236,
-  "close": true
+  "scale": 0.11256886631705244,
+  "close": false
 }

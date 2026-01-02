@@ -18,7 +18,6 @@ tags: [stats, formulas, core]
 * **Влияет на:**
 	* `Physical Power`: +1% Физ. урона за единицу > 10.
 	* `Carry Weight`: +2 кг лимита веса за очко.
-	* `Breach Potential`: Способность выбивать двери/щиты (скрытый параметр физики).
 
 ## 2. ЛОВКОСТЬ (AGI - Agility)
 *Отвечает за координацию, скорость рук и ног.*
@@ -27,7 +26,7 @@ tags: [stats, formulas, core]
 * **Влияет на:**
 	* `Move Speed`: +0.5% к Скорости передвижения.
 	* `Action Speed`: Скорость открытия сундуков, установки мин, перезарядки (+1% за очко).
-	* `Stealth Rating`: Снижает шум шагов.
+	* `Stealth Rating`: Снижает общий шум.
 
 ## 3. СТОЙКОСТЬ (VIG - Vigor)
 *Отвечает за здоровье, иммунитет и сопротивление травмам.*
@@ -43,8 +42,7 @@ tags: [stats, formulas, core]
 > **Философия:** "Магия — это просто сложная инженерия. Не перегревайся."
 
 * **Влияет на:**
-	* `Item Knowledge`: Скорость определения неизвестных артефактов в рейде.
-	* `Gadget CD`: Снижает кулдаун способностей (-1% за очко).
+	* `Не знаю`
 
 ## 5. РЕЗОНАНС (RES - Resonance/Will)
 *Замена Мудрости/Воле. Сопротивление Энтропии и ментальная связь.*
@@ -59,16 +57,27 @@ tags: [stats, formulas, core]
 
 # Формулы Расчета (Formulas)
 
-Эти формулы используются скриптами (Dataview) для расчета итоговых значений.
+### 1. Здоровье (Hit Points)
+$$MaxHP = stat\_hp\_start + (VIG \times 3) + (Race\_Bonus)$$
 
-### Здоровье (Hit Points)
-$$MaxHP = Base\_HP + (VIG \times 3) + (Race\_Bonus)$$
-*Пример: База 80 + (15 VIG * 3) = 125 HP.*
+* **База (из конфига):** `$= dv.page("00_Variables/Stats.md").stat_hp_start` HP.
+* *Пример расчета (для VIG=15):*
+    `$= dv.page("00_Variables/Stats.md").stat_hp_start` + (15 * 3) = **`$= dv.page("Lang_RU/00_Variables/Registry_Stats.md").stat_hp_base + 45` HP**.
 
-### Переносимый Вес (Loadout)
-$$MaxWeight = 20kg + (PHY \times 2)$$
-*Пример: 20 + (20 PHY * 2) = 60 кг (Тяжелый танк).*
+### 2. Переносимый Вес (Loadout)
+$$MaxWeight = stat\_carry\_weight\_base + (PHY \times 2)$$
 
-### Скорость Действий (Action Speed)
-$$ActSpd = 1.0 + ((AGI - 10) \times 0.02)$$
-*Влияет на анимации: Лечение, Открытие дверей, Лутание.*
+* **База (из конфига):** `$= dv.page("00_Variables/Stats.md").stat_carry_weight_base` кг.
+* *Пример расчета (для PHY=20):*
+    `$= dv.page("00_Variables/Stats.md").stat_carry_weight_base` + (20 * 2) = **`$= dv.page("00_Variables/Registry_Stats.md").stat_carry_weight_base + 40` кг**.
+
+### 3. Скорость Действий (Action Speed)
+$$ActSpd = stat\_action\_speed\_base + ((AGI - 10) \times 0.02)$$
+
+* **База (из конфига):** `$= dv.page("00_Variables/Registry_Stats.md").stat_action_speed_base` (100%).
+* Влияет на анимации: *Лечение, Лутание, Перезарядка*.
+
+### 4. Скорость Передвижения (Move Speed)
+$$MoveSpd = stat\_speed\_base \times (1 + (AGI \times 0.005))$$
+
+* **База (из конфига):** `$= dv.page("00_Variables/Registry_Stats.md").stat_speed_base` м/с.

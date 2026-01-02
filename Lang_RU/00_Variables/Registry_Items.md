@@ -38,5 +38,5 @@ tags: [arsenal, database]
 
 ## Стандартная Винтовка (Issue Rifle)
 *Оружие, которое выдают всем новичкам.*
-- **Требования:** [req_race:: any] | [req_spec:: any]
+- **Требования:** [req_race:: any] | [req_spec:: assault]
 - **Характеристики:** [dmg:: 40] | [rpm:: 600] | [weight:: 4kg]
