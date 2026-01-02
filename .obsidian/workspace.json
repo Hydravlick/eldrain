@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/10_Mechanics/05_World_Systems/Systems/Reputation_System.md",
+                "file": "Lang_RU/20_Lore/01_World_Foundation/Magipunk_Physics.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Reputation_System"
+              "title": "Magipunk_Physics"
             }
           }
         ]
@@ -180,6 +180,11 @@
   },
   "active": "d5721f78b664ff6f",
   "lastOpenFiles": [
+    "Lang_RU/20_Lore/01_World_Foundation/Energy_Concept.md",
+    "Lang_RU/20_Lore/01_World_Foundation/Magipunk_Physics.md",
+    "Lang_RU/20_Lore/01_World_Foundation/The_Entropy.md",
+    "Untitled.md",
+    "Lang_RU/10_Mechanics/05_World_Systems/Systems/Reputation_System.md",
     "Lang_RU/10_Mechanics/05_World_Systems/Systems/Quest_Engine.md",
     "Lang_RU/10_Mechanics/05_World_Systems/Systems/Factions_System.md",
     "Lang_RU/10_Mechanics/05_World_Systems/Systems/Extraction_Rules.md",
@@ -201,11 +206,6 @@
     "Lang_RU/10_Mechanics/03_Economy_Resources/Currency_Entropy.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/Stealth_Value.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/Status_Effects.md",
-    "Lang_RU/10_Mechanics/02_Action_Combat/Stance_System.md",
-    "Lang_RU/10_Mechanics/02_Action_Combat/Magic_System.md",
-    "Lang_RU/10_Mechanics/02_Action_Combat/Damage_System.md",
-    "Lang_RU/10_Mechanics/01_Player_Core/Tags_System.md",
-    "Lang_RU/10_Mechanics/01_Player_Core/Specs_Mechanics.md",
     "Lang_RU/10_Mechanics/05_World_Systems/Systems",
     "Lang_RU/10_Mechanics/05_World_Systems/City_Hub",
     "Lang_RU/10_Mechanics/05_World_Systems",
