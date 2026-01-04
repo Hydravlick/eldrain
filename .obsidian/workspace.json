@@ -13,15 +13,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/00_Variables/00_Archetype_Matrix.md",
+                "file": "Untitled.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "00_Archetype_Matrix"
+              "title": "Untitled"
+            }
+          },
+          {
+            "id": "be4be784a1308932",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Lang_RU/00_Variables/00_Character_Matrix.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "00_Character_Matrix"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -178,17 +193,19 @@
       "notion-like-tables:Create loom": false
     }
   },
-  "active": "4ab90eee4b45e2b7",
+  "active": "be4be784a1308932",
   "lastOpenFiles": [
+    "Lang_RU/00_Variables/00_Archetype_Matrix.md",
+    "Lang_RU/00_Variables/00_Character_Matrix.md",
+    "Lang_RU/00_Variables/Registry_Items.md",
+    "Lang_RU/00_Variables/Registry_Races.md",
     "Lang_RU/00_Variables/Registry_Specs.md",
+    "Untitled 1.md",
+    "Untitled.md",
+    "Lang_RU/10_Mechanics/01_Player_Core/Races_Physiology.md",
     "Lang_RU/10_Mechanics/01_Player_Core/Classes_Physiology.md",
     "Lang_RU/00_Variables/Registry_Combos.md",
     "Lang_RU/00_Variables/Attributes_System.md",
-    "Lang_RU/00_Variables/00_Character_Matrix.md",
-    "Lang_RU/00_Variables/00_Archetype_Matrix.md",
-    "Lang_RU/00_Variables/Registry_Races.md",
-    "Lang_RU/00_Variables/Registry_Items.md",
-    "Untitled.md",
     "Lang_RU/00_Variables/Registry_Economy.md",
     "TO-DO List.md",
     "Lang_RU/00_Variables/Registry_Stats.md",
@@ -201,11 +218,9 @@
     "Lang_RU/20_Lore/01_World_Foundation/Magipunk_Physics.md",
     "Lang_RU/30_Content/World_Atlas/01_Prot_Sectors/Sector_01_Port/00_Sector_Description.md",
     "Lang_RU/20_Lore/04_Species_Cultures/Culture_Language.md",
-    "Untitled 1.md",
     "Lang_RU/10_Mechanics/03_Economy_Resources/Currency_Entropy.md",
     "Code-block_Example.md",
     "Лиса.md",
-    "Страж.md",
     "Lang_RU/10_Mechanics/05_World_Systems/Systems",
     "Lang_RU/10_Mechanics/05_World_Systems/City_Hub",
     "Lang_RU/10_Mechanics/05_World_Systems",
