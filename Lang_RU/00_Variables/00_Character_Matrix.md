@@ -1,11 +1,11 @@
 ```dataviewjs
 // --- НАСТРОЙКИ ПУТЕЙ ---
 const files = {
-    races: "00_Variables/Registry_Races.md",
-    specs: "00_Variables/Registry_Specs.md",
-    combos: "00_Variables/Registry_Combos.md",
-    items: "00_Variables/Registry_Items.md",
-    attributes: "Attributes_System.md"
+    races: "Lang_RU/00_Variables/Registry_Races.md",
+    specs: "Lang_RU/00_Variables/Registry_Specs.md",
+    combos: "Lang_RU/00_Variables/Registry_Combos.md",
+    items: "Lang_RU/00_Variables/Registry_Items.md",
+    attributes: "Lang_RU/00_Variables/Attributes_System.md"
 };
 
 // --- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ---

@@ -1,9 +1,9 @@
 ```dataviewjs
 // --- НАСТРОЙКИ ПУТЕЙ ---
 const files = {
-    races: "00_Variables/Registry_Races.md",
-    specs: "00_Variables/Registry_Specs.md",
-    combos: "00_Variables/Registry_Combos.md"
+    races: "Lang_RU/00_Variables/Registry_Races.md",
+    specs: "Lang_RU/00_Variables/Registry_Specs.md",
+    combos: "Lang_RU/00_Variables/Registry_Combos.md"
 };
 
 // --- ФУНКЦИИ ПАРСИНГА ---
