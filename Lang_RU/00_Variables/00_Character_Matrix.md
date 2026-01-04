@@ -10,43 +10,41 @@ const files = {
 
 // --- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ---
 
-// 1. Обновлено: Получаем и ключ, и заголовок для ссылок
 async function getAttributesInfo(path) {
     const page = dv.page(path);
-    // Если файла нет, возвращаем дефолтный список без заголовков (ссылки не будут работать, но код не упадет)
     if (!page) return ["PHY", "AGI", "VIG", "TEC", "RES"].map(k => ({ key: k, header: null }));
     
     const content = await dv.io.load(page.file.path);
-    
-    // Ищем строки заголовков: ## 1. СИЛА (PHY - Physique)
-    // Группа 1: Полный текст заголовка (для ссылки)
-    // Группа 2: Ключ из скобок (PHY)
     const regex = /^##\s+(.*?\(([A-Z]{3,4})[\s-).].*?)$/gm;
     
     const items = [];
     let match;
     while ((match = regex.exec(content)) !== null) {
         items.push({
-            header: match[1].trim(), // "1. СИЛА (PHY - Physique)"
-            key: match[2]            // "PHY"
+            header: match[1].trim(),
+            key: match[2]
         });
     }
     return items.length > 0 ? items : ["PHY", "AGI", "VIG", "TEC", "RES"].map(k => ({ key: k, header: null }));
 }
 
-// Парсинг атрибутов (принимает массив ключей)
 function parseStats(text, validKeys) {
     const stats = {};
     validKeys.forEach(key => stats[key] = 0);
-    
     const keysPattern = validKeys.join("|");
     const regex = new RegExp(`\\[(${keysPattern})::\\s*([+-]?\\d+)\\]`, "g");
-    
     let match;
     while ((match = regex.exec(text)) !== null) {
         stats[match[1]] = parseInt(match[2]);
     }
     return stats;
+}
+
+function parseMultiId(text, key) {
+    const regex = new RegExp(`\\[${key}::\\s*(\\w+)\\]`, "g");
+    const matches = [...text.matchAll(regex)];
+    if (matches.length === 0) return [];
+    return matches.map(m => m[1].toLowerCase());
 }
 
 function parseId(text, key = "id") {
@@ -56,16 +54,18 @@ function parseId(text, key = "id") {
 }
 
 function parseAbilities(text, filePath, headerName) {
-    const regex = /-\s*\*\*(?:.*?)\s*\(([PQE])\):\*\*\s*\*\*(.*?)\*\*/g;
+    const regex = /^####\s+(.*?\(([PQE])\):\s*(.*?))$/gm;
     const matches = [...text.matchAll(regex)];
     
     if (matches.length === 0) return null;
 
     return matches.map(m => {
-        const key = m[1];      
-        let name = m[2].trim();
-        if (name.endsWith(".")) name = name.slice(0, -1);
-        return `[[${filePath}#${headerName}|(${key}) ${name}]]`;
+        const fullHeader = m[1].trim(); 
+        const key = m[2];
+        let name = m[3].trim();
+        name = name.replace(/`/g, "");
+        
+        return `[[${filePath}#${fullHeader}|(${key}) ${name}]]`;
     }).join("<br>");
 }
 
@@ -85,6 +85,7 @@ async function parseFile(path, type, attrKeys = []) {
         const data = {
             name: header,
             displayName: displayName,
+            // Ссылка формируется здесь
             link: `[[${path}#${header}|${displayName}]]`,
             id: parseId(body, "id"),
             body: body
@@ -94,9 +95,14 @@ async function parseFile(path, type, attrKeys = []) {
             data.stats = parseStats(body, attrKeys);
         }
         
-        if (type === 'combos' || type === 'items') {
+        if (type === 'combos') {
             data.req_race = parseId(body, "req_race");
             data.req_spec = parseId(body, "req_spec");
+        }
+
+        if (type === 'items') {
+            data.req_races = parseMultiId(body, "req_race");
+            data.req_specs = parseMultiId(body, "req_spec");
         }
 
         return data;
@@ -105,9 +111,7 @@ async function parseFile(path, type, attrKeys = []) {
 
 // --- ОСНОВНАЯ ЛОГИКА ---
 
-// 1. Получаем объекты атрибутов { key, header }
 const attrsInfo = await getAttributesInfo(files.attributes);
-// Вытаскиваем просто список ключей ['PHY', 'AGI'...] для парсера
 const attrKeys = attrsInfo.map(a => a.key);
 
 const races = await parseFile(files.races, 'races', attrKeys);
@@ -115,32 +119,25 @@ const specs = await parseFile(files.specs, 'specs', attrKeys);
 const combos = await parseFile(files.combos, 'combos');
 const items = await parseFile(files.items, 'items');
 
-let tableRows = [];
-
-for (let i = 0; i < races.length; i++) {
-    const race = races[i];
+// Главный цикл по РАСАМ
+for (const race of races) {
     
-    if (i > 0) {
-        tableRows.push(["---", "---", "---", "---", "---"]);
-    }
+    // ИЗМЕНЕНИЕ 1: Ссылка на заголовок расы
+    dv.header(2, race.link);
+    
+    let tableRows = [];
 
     for (const spec of specs) {
         // 1. СТАТЫ
         let statsStr = "";
-
-        // Проходимся по списку объектов (чтобы был доступ к header)
-	    for (const attr of attrsInfo) {
+        for (const attr of attrsInfo) {
             const key = attr.key;
-	        const val = 10 + (race.stats[key] || 0) + (spec.stats[key] || 0);
-            
-            // Формируем ссылку: [[Attributes_System.md#Полный Заголовок|КЛЮЧ]]
-            // Если заголовок не найден (файл удален), просто пишем жирный текст
+            const val = 10 + (race.stats[key] || 0) + (spec.stats[key] || 0);
             const label = attr.header 
                 ? `[[${files.attributes}#${attr.header}|${key}]]`
                 : `**${key}**`;
-            
             statsStr += `${label}: **${val}** <br>`;
-	    }
+        }
         statsStr = statsStr.slice(0, -4);
 
         // 2. БИЛД / МУТАЦИЯ
@@ -151,23 +148,22 @@ for (let i = 0; i < races.length; i++) {
 
         if (combo) {
             archetypeLink = `**[[${files.combos}#${combo.name}|${combo.displayName}]]**<br>*(Мутация)*`;
-            abilitiesStr = parseAbilities(combo.body, files.combos, combo.name) || "*(Нет данных)*";
+            abilitiesStr = parseAbilities(combo.body, files.combos, combo.name) || "*(Нет навыков)*";
         } else {
             archetypeLink = `${spec.link}<br>*(Стандарт)*`;
             const specAbilities = parseAbilities(spec.body, files.specs, spec.name);
-            const racePassiveMatch = race.body.match(/\*\*Пассивный навык:\*\*\s*\*\*(.*?)\*\*/);
-            const racePassive = racePassiveMatch 
-                ? `[[${files.races}#${race.name}|(P) ${racePassiveMatch[1]}]]` 
-                : "";
+            const raceAbilities = parseAbilities(race.body, files.races, race.name);
             
-            abilitiesStr = racePassive;
-            if (specAbilities) abilitiesStr += "<br>" + specAbilities;
+            abilitiesStr = "";
+            if (raceAbilities) abilitiesStr += raceAbilities + "<br>";
+            if (specAbilities) abilitiesStr += specAbilities;
+            if (!abilitiesStr) abilitiesStr = "*(Нет данных)*";
         }
 
         // 3. АРСЕНАЛ
         const validItems = items.filter(item => {
-            const raceMatch = item.req_race === 'any' || item.req_race === race.id;
-            const specMatch = item.req_spec === 'any' || item.req_spec === spec.id;
+            const raceMatch = item.req_races.length === 0 || item.req_races.includes('any') || item.req_races.includes(race.id);
+            const specMatch = item.req_specs.length === 0 || item.req_specs.includes('any') || item.req_specs.includes(spec.id);
             return raceMatch && specMatch;
         });
         
@@ -176,17 +172,20 @@ for (let i = 0; i < races.length; i++) {
             : "*Нет подходящего*";
 
         tableRows.push([
-            `**${race.link}**<br>+<br>**${spec.link}**`,
+            // ИЗМЕНЕНИЕ 2: Ссылка на специализацию в первой колонке
+            spec.link,
             archetypeLink,
             statsStr,
             abilitiesStr,
             itemsList
         ]);
     }
-}
 
-dv.header(2, "Матрица Классов и Рас (Linked Attributes)");
-dv.table(
-    ["Связка", "Архетип", "Атрибуты", "Способности", "Арсенал"],
-    tableRows
-);
+    dv.table(
+        ["Специализация", "Архетип", "Атрибуты", "Способности", "Арсенал"],
+        tableRows
+    );
+    
+    dv.paragraph("---");
+}
+```
