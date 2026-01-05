@@ -27,16 +27,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/00_Variables/Registry_Races.md",
+                "file": "Untitled.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Registry_Races"
+              "title": "Untitled"
+            }
+          },
+          {
+            "id": "896ab47e7f193000",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Lang_RU/00_Variables/00_Character_Matrix.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "00_Character_Matrix"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -193,24 +207,26 @@
       "notion-like-tables:Create loom": false
     }
   },
-  "active": "be4be784a1308932",
+  "active": "896ab47e7f193000",
   "lastOpenFiles": [
+    "Lang_RU/00_Variables/Registry_Items.md",
+    "Lang_RU/00_Variables/00_Character_Matrix.md",
+    "Lang_RU/00_Variables/Registry_Specs.md",
+    "Lang_RU/00_Variables/Registry_Races.md",
+    "Lang_RU/00_Variables/Attributes_System.md",
+    "Lang_RU/00_Variables/Registry_Combos.md",
+    "Lang_RU/00_Variables/00_Archetype_Matrix.md",
+    "The Signet System.md",
+    "Untitled.md",
+    "Lang_RU/10_Mechanics/05_World_Systems/City_Hub/Hub_UI.md",
+    "Eldrain Guilds of the Living City (Concept Refactoring).md",
     "Lang_RU/10_Mechanics/01_Player_Core/Classes_Physiology.md",
     "Lang_RU/10_Mechanics/01_Player_Core/Races_Physiology.md",
-    "Lang_RU/00_Variables/Registry_Races.md",
     "Lang_RU/00_Core/GDD_Main.md",
-    "Lang_RU/00_Variables/Registry_Specs.md",
     "TO-DO List.md",
-    "Untitled.md",
-    "Eldrain Guilds of the Living City (Concept Refactoring).md",
-    "Lang_RU/00_Variables/00_Character_Matrix.md",
-    "Lang_RU/00_Variables/00_Archetype_Matrix.md",
-    "Lang_RU/00_Variables/Registry_Combos.md",
-    "Lang_RU/00_Variables/Attributes_System.md",
     "Lang_RU/00_Variables/Status_Effects.md",
     "Lang_RU/00_Variables/Skills.md",
     "Lang_RU/00_Variables/Registry_Stats.md",
-    "Lang_RU/00_Variables/Registry_Items.md",
     "Lang_RU/00_Variables/Registry_Economy.md",
     "Lang_RU/00_Variables/Economy.md",
     "Lang_RU/00_Variables/Stats.md",
@@ -219,8 +235,6 @@
     "Lang_RU/20_Lore/01_World_Foundation/Magipunk_Physics.md",
     "Lang_RU/30_Content/World_Atlas/01_Prot_Sectors/Sector_01_Port/00_Sector_Description.md",
     "Lang_RU/20_Lore/04_Species_Cultures/Culture_Language.md",
-    "Lang_RU/10_Mechanics/03_Economy_Resources/Currency_Entropy.md",
-    "Code-block_Example.md",
     "Lang_RU/10_Mechanics/05_World_Systems/Systems",
     "Lang_RU/10_Mechanics/05_World_Systems/City_Hub",
     "Lang_RU/10_Mechanics/05_World_Systems",
