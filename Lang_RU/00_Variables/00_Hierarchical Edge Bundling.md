@@ -34,23 +34,19 @@ try {
         "counter": "Контр-пик (Kill)"
     };
 
-    // === 3. НАДЕЖНЫЙ ПАРСИНГ ДАННЫХ ===
+    // === 3. ПАРСИНГ ДАННЫХ ===
     const page = dv.page(sourceFilePath);
     if (!page) throw new Error("Файл не найден: " + sourceFilePath);
 
-    // Добавляем искусственный конец, чтобы Regex/Split не терял последний блок
     const rawContent = (await dv.io.load(page.file.path)) + "\n\n## END_MARKER";
-    
-    // Разбиваем текст по заголовкам ## (более надежно)
     const rawBlocks = rawContent.split(/^##\s+/m).slice(1); 
 
     const cleanID = (str) => str ? str.toLowerCase().trim() : null;
     
     const getRelDetails = (text, type) => {
-        const re = new RegExp(`\\[rel_${type}::\\s*([^\\]]+)\\](?:\\s*\\(([^)]+)\\))?`, 'g');
+        const re = new RegExp(`\\[rel_${type}::\\s*([^\\]]+)\\](?:[^\\n\\r]*?\\(([^)]+)\\))?`, 'g');
         return [...text.matchAll(re)].map(m => {
             let idRaw = m[1].trim();
-            // Если описание попало внутрь скобок ID
             if (idRaw.includes('(')) idRaw = idRaw.split('(')[0].trim();
             return {
                 id: cleanID(idRaw),
@@ -67,8 +63,6 @@ try {
         if (header === "END_MARKER") return; 
 
         const body = lines.slice(1).join('\n');
-        
-        // Ищем ID
         const idMatch = body.match(/\[id::\s*([^\]]+)\]/);
         if (!idMatch) return;
 
@@ -86,7 +80,7 @@ try {
         });
     });
 
-    // === 4. ПОДГОТОВКА ГРАФА ===
+    // === 4. ПОДГОТОВКА ГРАФА И ДЕДУПЛИКАЦИЯ ===
     const groups = d3.group(nodes, d => d.group);
     const root = d3.hierarchy({
         name: "root",
@@ -98,39 +92,58 @@ try {
     cluster(root);
 
     const nodeMap = new Map(root.leaves().map(d => [d.data.id, d]));
-    const graphLinks = [];
-    const errors = [];
+    
+    // Используем Map для хранения уникальных связей
+    const uniqueLinks = new Map();
 
     nodes.forEach(srcData => {
         const sourceNode = nodeMap.get(srcData.id);
         if (!sourceNode) return;
 
-        const addLinks = (targets, type) => {
+        const processLinks = (targets, type) => {
             targets.forEach(t => {
                 const targetNode = nodeMap.get(t.id);
                 if (targetNode) {
-                    graphLinks.push({
-                        source: sourceNode,
-                        target: targetNode,
-                        type: type,
-                        reason: t.reason,
-                        path: sourceNode.path(targetNode)
-                    });
-                } else {
-                    errors.push(`⚠️ <b>${srcData.name}</b> ссылается на <code>${t.id}</code>, но ID не найден.`);
+                    // Создаем уникальный ключ для пары (сортируем ID, чтобы A->B и B->A были одним ключом)
+                    const ids = [srcData.id, t.id].sort();
+                    const linkKey = `${ids[0]}-${ids[1]}-${type}`;
+                    
+                    const existing = uniqueLinks.get(linkKey);
+                    const newReason = t.reason;
+
+                    if (existing) {
+                        // Если связь уже есть, объединяем описания, если они разные
+                        if (newReason && existing.reason && !existing.reason.includes(newReason)) {
+                            existing.reason += ` / ${newReason}`;
+                        } else if (newReason && !existing.reason) {
+                            existing.reason = newReason;
+                        }
+                    } else {
+                        // Новая связь
+                        uniqueLinks.set(linkKey, {
+                            source: sourceNode,
+                            target: targetNode,
+                            type: type,
+                            reason: newReason,
+                            path: sourceNode.path(targetNode)
+                        });
+                    }
                 }
             });
         };
 
-        addLinks(srcData.synergies, "synergy");
-        addLinks(srcData.counters, "counter");
+        processLinks(srcData.synergies, "synergy");
+        processLinks(srcData.counters, "counter");
     });
 
-    // === 5. HTML ОТРИСОВКА (С БЛОЧНЫМ ФОРМАТИРОВАНИЕМ) ===
+    // Превращаем Map обратно в массив для D3
+    const graphLinks = Array.from(uniqueLinks.values());
+
+    // === 5. HTML ОТРИСОВКА ===
     dv.container.innerHTML = "";
     const mainContainer = dv.container.createDiv({ cls: "bundle-container" });
     
-    // 5.1 ВЕРХНИЙ БЛОК (ЛЕГЕНДА)
+    // ЛЕГЕНДА
     const legendDiv = mainContainer.createDiv({ cls: "bundle-legend" });
     legendDiv.style.display = "flex";
     legendDiv.style.justifyContent = "center";
@@ -144,7 +157,7 @@ try {
         item.innerHTML = `<span style="display:inline-block; width:10px; height:10px; background:${colorMap[type]}; margin-right:5px; border-radius:2px;"></span>${labelMap[type]}`;
     });
 
-    // 5.2 ГРАФИК
+    // SVG
     const svgContainer = mainContainer.createDiv();
     const svg = d3.select(svgContainer).append("svg")
         .attr("viewBox", [-width/2, -width/2, width, width])
@@ -153,28 +166,35 @@ try {
         .style("max-width", "100%")
         .style("height", "auto");
 
-    // 5.3 НИЖНИЙ БЛОК (ИНФО-ПАНЕЛЬ)
+    // ИНФО-ПАНЕЛЬ
     const infoDiv = mainContainer.createDiv({ cls: "bundle-info" });
-    infoDiv.style.minHeight = "40px";
+    infoDiv.style.minHeight = "50px";
     infoDiv.style.marginTop = "10px";
     infoDiv.style.padding = "10px";
     infoDiv.style.background = "var(--background-secondary)";
     infoDiv.style.border = "1px solid var(--background-modifier-border)";
-    infoDiv.style.borderRadius = "5px";
+    infoDiv.style.borderRadius = "8px";
     infoDiv.style.textAlign = "center";
-    infoDiv.innerHTML = "<span style='color:var(--text-muted)'>Наведите на название или линию для деталей</span>";
+    infoDiv.style.display = "flex";
+    infoDiv.style.flexDirection = "column";
+    infoDiv.style.justifyContent = "center";
+    infoDiv.style.alignItems = "center";
 
-    // 5.4 БЛОК ОШИБОК (Если есть битые ссылки)
-    if(errors.length > 0) {
-        const errDiv = mainContainer.createDiv();
-        errDiv.style.marginTop = "15px";
-        errDiv.style.padding = "10px";
-        errDiv.style.border = "1px solid #ff4757";
-        errDiv.style.borderRadius = "5px";
-        errDiv.style.backgroundColor = "rgba(255, 71, 87, 0.05)";
-        errDiv.style.fontSize = "0.9em";
-        errDiv.innerHTML = `<strong style="color:#ff4757">Обнаружены проблемы со связями:</strong><br>${errors.join("<br>")}`;
-    }
+    // СТАТИСТИКА
+    const countSynergy = graphLinks.filter(l => l.type === 'synergy').length;
+    const countCounter = graphLinks.filter(l => l.type === 'counter').length;
+
+    const setDefaultInfo = () => {
+        infoDiv.innerHTML = `
+            <div style="display: flex; gap: 15px; font-size: 0.9em;">
+                <span style="font-weight:bold; color:var(--text-normal)">Всего пар: ${graphLinks.length}</span>
+                <span style="color:${colorMap.synergy}">● Buffs: ${countSynergy}</span>
+                <span style="color:${colorMap.counter}">● Kills: ${countCounter}</span>
+            </div>
+            <div style="font-size: 0.8em; color:var(--text-muted); margin-top:4px;">Наведите на название или линию для деталей</div>
+        `;
+    };
+    setDefaultInfo();
 
     // === 6. ЛОГИКА D3 ===
     const line = d3.lineRadial()
@@ -182,7 +202,6 @@ try {
         .radius(d => d.y)
         .angle(d => d.x / 180 * Math.PI);
 
-    // Рисуем линии
     const linkPaths = svg.append("g")
         .selectAll("path")
         .data(graphLinks)
@@ -195,7 +214,6 @@ try {
         .style("mix-blend-mode", "screen")
         .style("cursor", "pointer");
 
-    // Рисуем текст
     const labels = svg.append("g")
         .selectAll("g")
         .data(root.leaves())
@@ -211,8 +229,6 @@ try {
         .style("fill", "var(--text-normal)")
         .style("font-size", "12px")
         .style("cursor", "pointer")
-        
-        // ХОВЕР НА ТЕКСТ
         .on("mouseover", function(event, d) {
             linkPaths.style("stroke-opacity", 0.05);
             const activeLinks = linkPaths.filter(l => l.source === d || l.target === d)
@@ -221,32 +237,40 @@ try {
                 .raise();
 
             d3.select(this).style("fill", "#ffda79").style("font-weight", "bold");
-            infoDiv.innerHTML = `<strong>${d.data.name}</strong>: ${activeLinks.size()} активных связей`;
+            infoDiv.innerHTML = `
+                <div style="font-size:1.1em; margin-bottom: 2px;"><strong>${d.data.name}</strong></div>
+                <div style="font-size:0.9em; color:var(--text-muted)">Активных связей: ${activeLinks.size()}</div>
+            `;
         })
         .on("mouseout", function() {
             linkPaths.style("stroke-opacity", 0.4).style("stroke-width", 2);
             d3.select(this).style("fill", "var(--text-normal)").style("font-weight", "normal");
-            infoDiv.innerHTML = "<span style='color:var(--text-muted)'>Наведите на название или линию для деталей</span>";
+            setDefaultInfo();
         })
         .on("click", (event, d) => {
             const link = `${sourceFilePath}#${d.data.fullName}`;
             dv.app.workspace.openLinkText(link, sourceFilePath, false);
         });
 
-    // ХОВЕР НА ЛИНИИ
     linkPaths
         .on("mouseover", function(event, d) {
             d3.select(this).style("stroke-opacity", 1).style("stroke-width", 4);
-            const reason = d.reason ? `<br><em>"${d.reason}"</em>` : "";
+            const reasonHtml = d.reason 
+                ? `<div style="margin-top:4px; font-style:italic; color: var(--text-accent); opacity:0.9">"${d.reason}"</div>` 
+                : ``;
+
             infoDiv.innerHTML = `
-                <span style="color:${colorMap[d.type]}">● ${labelMap[d.type]}</span><br>
-                <strong>${d.source.data.name}</strong> ➝ <strong>${d.target.data.name}</strong>
-                ${reason}
+                <div style="margin-bottom:2px;">
+                    <span style="color:${colorMap[d.type]}">● ${labelMap[d.type]}</span>
+                    <span style="margin: 0 8px; color:var(--text-muted)">|</span>
+                    <strong>${d.source.data.name}</strong> ↔ <strong>${d.target.data.name}</strong>
+                </div>
+                ${reasonHtml}
             `;
         })
         .on("mouseout", function() {
             d3.select(this).style("stroke-opacity", 0.4).style("stroke-width", 2);
-            infoDiv.innerHTML = "<span style='color:var(--text-muted)'>Наведите на название или линию для деталей</span>";
+            setDefaultInfo();
         });
 
 } catch (e) {

@@ -1,32 +1,22 @@
 ---
 type: registry
 registry_type: combos
-tags: [database, builds, proficiency]
+tags: [database, builds]
 ---
 
 # Реестр: Синергии и Мутации (Combo Blocks)
 
 > **Логика:** Здесь описывается, как Раса (Биология) искажает стандартные навыки Класса.
-> **Mastery:** Уровень владения (`0` - нет, `1` - штраф, `2` - норма).
-> **Tags:** `[type:: weapon_type]` - ключи должны соответствовать Registry_Weapon.
-
----
-
+> `req_race` / `req_spec` — условия активации.
+> `skill_P`/`skill_Q` / `skill_E` — заменяют стандартные навыки класса.
+> `rel_synergy`/`rel_counter` — 
 ## Джаггернаут (Juggernaut)
 [id:: juggernaut]
 *Еж слишком тяжел для тактических маневров, поэтому он становится стационарной турелью.*
 - **Требования:** [req_race:: hedgehog] | [req_spec:: assault]
-- **Арсенал (Weaponry):**
-	- `[type:: arcanegun]` | `[prof:: 2]` (Тяжелые пулеметы, Гарпуны, Дробовики)
-	- `[type:: shield]` | `[prof:: 1]` (Ростовые щиты - только со штрафом)
-- **Экипировка (Armor):**
-	- `[type:: heavy_plate]` | `[prof:: 2]` (Тяжелая броня)
-- **Связи (Relations):**
-	- `[rel_synergy:: spine_doctor]` (Ежи прикрывают друг друга)
-	- `[rel_synergy:: bio_chemist]` (Лечит танка, пока тот стоит)
-	- `[rel_counter:: voltmancer]` (Плотный огонь не дает уклоняться)
-	- `[rel_counter:: tunnel_rat]` (Заходит в тыл к неподвижной цели)
-
+- **Связи:**
+	- [rel_synergy:: spine_doctor] (Ежи прикрывают друг друга)
+	- [rel_counter:: voltmancer] (Плотный огонь не дает уклоняться)
 #### (P): `Живой Дот`
   [desc:: При стрельбе без движения более 2 сек. отдача исчезает, а входящий урон снижается на 20%.]
 #### (Q): `Ощетиниться`
@@ -40,18 +30,10 @@ tags: [database, builds, proficiency]
 [id:: voltmancer]
 *Белка использует свой гипер-метаболизм, чтобы генерировать ману для заклинаний.*
 - **Требования:** [req_race:: squirrel] | [req_spec:: specialist]
-- **Арсенал (Weaponry):**
-	- `[type:: catalyst]` | `[prof:: 2]` (Проводники магии)
-	- `[type:: arcanegun]` | `[prof:: 1]` (Легкие магострелы)
-	- `[type:: blade]` | `[prof:: 1]` (Кинжалы)
-- **Экипировка (Armor):**
-	- `[type:: ether_weave]` | `[prof:: 2]` (Эфирная ткань)
-- **Связи (Relations):**
-	- `[rel_synergy:: bio_chemist]` (Жидкость проводит ток)
-	- `[rel_synergy:: storm_trooper]` (Перегрузка систем врага)
-	- `[rel_counter:: scrap_knight]` (Замыкает экзоскелет)
-	- `[rel_counter:: ghost_walker]` (Снайперский выстрел сбивает каст)
-
+- **Связи:**
+	- [rel_synergy:: bio_chemist] (Жидкость проводит ток)
+	- [rel_synergy:: storm_trooper] (Перегрузка систем врага)
+	- [rel_counter:: scrap_knight] (Замыкает экзоскелет)
 #### (P): `Статический Заряд`
   [desc:: Каждые 10 метров бега генерируют 1 стак "Искры". Заклинания тратят Искры вместо маны.]
 #### (Q): `Цепная Молния`
@@ -65,18 +47,9 @@ tags: [database, builds, proficiency]
 [id:: bio_chemist]
 *Зачем носить аптечки, если твое тело — фабрика ферментов?*
 - **Требования:** [req_race:: toad] | [req_spec:: support]
-- **Арсенал (Weaponry):**
-	- `[type:: catalyst]` | `[prof:: 2]` (Распылители/Кадило)
-	- `[type:: arcanegun]` | `[prof:: 1]` (Пистолеты)
-- **Экипировка (Armor):**
-	- `[type:: hazard_suit]` | `[prof:: 2]` (Химзащита)
-	- `[type:: composite_rig]` | `[prof:: 1]` (Разгрузка медика)
-- **Связи (Relations):**
-	- `[rel_synergy:: juggernaut]` (Лечит танка, пока тот стоит)
-	- `[rel_synergy:: voltmancer]` (Создает проводимость для тока)
-	- `[rel_counter:: ghost_walker]` (Газ заполняет невидимые зоны)
-	- `[rel_counter:: storm_trooper]` (Огонь выжигает газ)
-
+- **Связи:**
+	- [rel_synergy:: juggernaut] (Лечит танка, пока тот стоит)
+	- [rel_counter:: ghost_walker] (Газ заполняет невидимые зоны)
 #### (P): `Слизистая Оболочка`
   [desc:: Союзники рядом получают иммунитет к ядам и медленную регенерацию HP.]
 #### (Q): `Выброс Токсина`
@@ -90,18 +63,8 @@ tags: [database, builds, proficiency]
 [id:: ghost_walker]
 *Ящерица-разведчик, которая становится единым целым со стенами.*
 - **Требования:** [req_race:: lizard] | [req_spec:: scout]
-- **Арсенал (Weaponry):**
-	- `[type:: arcanegun]` | `[prof:: 2]` (Снайперские/Тихие)
-	- `[type:: blade]` | `[prof:: 2]` (Мечи/Ножи)
-- **Экипировка (Armor):**
-	- `[type:: composite_rig]` | `[prof:: 1]` (Легкая разгрузка)
-	- `[type:: ether_weave]` | `[prof:: 2]` (Плащ-хамелеон)
-- **Связи (Relations):**
-	- `[rel_synergy:: scale_warden]` (Координация по тепловизору)
-	- `[rel_synergy:: tunnel_rat]` (Контроль карты)
-	- `[rel_counter:: voltmancer]` (АОЕ урон по области)
-	- `[rel_counter:: bio_chemist]` (Газ выдает позицию)
-
+- **Связи:**
+	- [rel_counter:: voltmancer] (Снайперский выстрел сбивает каст)
 #### (P): `Хладнокровие`
   [desc:: В неподвижности персонаж полностью невидим для глаз и тепловизоров. Первый выстрел из инвиза: +100% урон.]
 #### (Q): `Тепловая Метка`
@@ -115,17 +78,8 @@ tags: [database, builds, proficiency]
 [id:: scrap_knight]
 *Крыса слаба телом, поэтому строит себе броню из того, что найдет.*
 - **Требования:** [req_race:: rat] | [req_spec:: guard]
-- **Арсенал (Weaponry):**
-	- `[type:: blunt]` | `[prof:: 2]` (Молоты/Ключи)
-	- `[type:: shield]` | `[prof:: 2]` (Импровизированные щиты)
-	- `[type:: polearm]` | `[prof:: 1]` (Трубы/Копья)
-- **Экипировка (Armor):**
-	- `[type:: heavy_plate]` | `[prof:: 2]` (Самодельная броня)
-- **Связи (Relations):**
-	- `[rel_synergy:: tunnel_rat]` (Крысиная стая - поднос патронов)
-	- `[rel_synergy:: spine_doctor]` (Ремонт плоти и металла)
-	- `[rel_counter:: voltmancer]` (Замыкает экзоскелет)
-
+- **Связи:**
+	- [rel_synergy:: tunnel_rat] (Крысиная стая)
 #### (P): `Барахольщик`
   [desc:: Каждая единица "Хлама" (Junk) в инвентаре дает +1 к Броне (макс +20).]
 #### (Q): `Хвостовой Захват`
@@ -139,17 +93,8 @@ tags: [database, builds, proficiency]
 [id:: storm_trooper]
 *Белка с автоматом. Скорость реакции быстрее, чем механизм подачи патронов.*
 - **Требования:** [req_race:: squirrel] | [req_spec:: assault]
-- **Арсенал (Weaponry):**
-	- `[type:: arcanegun]` | `[prof:: 2]` (Автоматы/ПП)
-	- `[type:: blade]` | `[prof:: 1]` (Боевые ножи)
-- **Экипировка (Armor):**
-	- `[type:: composite_rig]` | `[prof:: 2]` (Тактическая броня)
-- **Связи (Relations):**
-	- `[rel_synergy:: voltmancer]` (Энергетическая перегрузка)
-	- `[rel_synergy:: juggernaut]` (Огневой вал)
-	- `[rel_counter:: bio_chemist]` (Выжигает газ огнем)
-	- `[rel_counter:: scale_warden]` (Рикошет от чешуи)
-
+- **Связи:**
+	- [rel_counter:: bio_chemist] (Выжигает газ огнем)
 #### (P): `Twitch Reflex`
   [desc:: Шанс 30% мгновенно перезарядить оружие после убийства.]
 #### (Q): `Перегрузка`
@@ -163,18 +108,9 @@ tags: [database, builds, proficiency]
 [id:: tunnel_rat]
 *Ни одна дверь не заперта, если есть вентиляция.*
 - **Требования:** [req_race:: rat] | [req_spec:: scout]
-- **Арсенал (Weaponry):**
-	- `[type:: blade]` | `[prof:: 2]` (Кинжалы/Заточки)
-	- `[type:: arcanegun]` | `[prof:: 1]` (Пистолеты)
-- **Экипировка (Armor):**
-	- `[type:: composite_rig]` | `[prof:: 2]` (Легкая кожа)
-	- `[type:: hazard_suit]` | `[prof:: 1]` (Фильтры)
-- **Связи (Relations):**
-	- `[rel_synergy:: scrap_knight]` (Находит детали для рыцаря)
-	- `[rel_synergy:: ghost_walker]` (Двойной стелс)
-	- `[rel_counter:: juggernaut]` (Заходит в тыл к неподвижной цели)
-	- `[rel_counter:: spine_doctor]` (Шипы контрят уворот)
-
+- **Связи:**
+	- [rel_synergy:: scrap_knight] (Находит детали для рыцаря)
+	- [rel_counter:: juggernaut] (Заходит в тыл к неподвижной цели)
 #### (P): `Клаустрофилия`
   [desc:: В узких коридорах и в темноте скорость передвижения и регенерация стамины удвоены.]
 #### (Q): `Грязный Трюк`
@@ -188,17 +124,9 @@ tags: [database, builds, proficiency]
 [id:: scale_warden]
 *Ящерица, чья кожа тверже стали. Танк, который не блокирует, а отражает.*
 - **Требования:** [req_race:: lizard] | [req_spec:: guard]
-- **Арсенал (Weaponry):**
-	- `[type:: polearm]` | `[prof:: 2]` (Алебарды/Трезубцы)
-	- `[type:: shield]` | `[prof:: 2]` (Щиты)
-- **Экипировка (Armor):**
-	- `[type:: heavy_plate]` | `[prof:: 2]` (Усиление чешуи пластинами)
-- **Связи (Relations):**
-	- `[rel_synergy:: ghost_walker]` (Координация по тепловизору)
-	- `[rel_synergy:: spine_doctor]` (Бронированная связка)
-	- `[rel_counter:: storm_trooper]` (Отражает скоростные пули)
-	- `[rel_counter:: juggernaut]` (Пробивает броню массой)
-
+- **Связи:**
+	- [rel_synergy:: ghost_walker] (Координация по тепловизору)
+	- [rel_counter:: storm_trooper] (Отражает скоростные пули)
 #### (P): `Адаптивная Чешуя`
   [desc:: Получив урон от стихии (огонь/ток/кислота), получает 50% резист к этому типу урона на 10 сек.]
 #### (Q): `Зеркальная Стойка`
@@ -212,20 +140,14 @@ tags: [database, builds, proficiency]
 [id:: spine_doctor]
 *Медик-садист. Его лечение больное, но эффективное.*
 - **Требования:** [req_race:: hedgehog] | [req_spec:: support]
-- **Арсенал (Weaponry):**
-	- `[type:: catalyst]` | `[prof:: 2]` (Шприц-пистолеты)
-	- `[type:: blade]` | `[prof:: 1]` (Скальпели)
-- **Экипировка (Armor):**
-	- `[type:: hazard_suit]` | `[prof:: 2]` (Костюм химзащиты)
-	- `[type:: composite_rig]` | `[prof:: 1]` (Полевая медицина)
-- **Связи (Relations):**
-	- `[rel_synergy:: scale_warden]` (Временное бессмертие для танка)
-	- `[rel_synergy:: juggernaut]` (Ежи прикрывают друг друга)
-	- `[rel_counter:: tunnel_rat]` (АоЕ шипы контрят уворот)
-
+- **Связи:**
+	- [rel_synergy:: scale_warden] (Бронированная связка)
+	- [rel_counter:: tunnel_rat] (АоЕ шипы контрят уворот)
 #### (P): `Акупунктура`
   [desc:: Лечение союзников восстанавливает им +10 маны, но наносит 5 ед. урона.]
 #### (Q): `Колючий Щит`
   [desc:: Вешает на союзника бафф: атакующий его в ближнем бою получает возврат урона.]
 #### (E): `Шок-Терапия`
   [desc:: Втыкает шприц с адреналином. Цель не может умереть 5 секунд (HP не падает ниже 1), но потом получает истощение.]
+
+---
