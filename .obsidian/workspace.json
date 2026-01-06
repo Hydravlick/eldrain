@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/00_Variables/Registry_Specs.md",
-                "mode": "preview",
+                "file": "Untitled.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Registry_Specs"
+              "title": "Untitled"
             }
           }
         ]
@@ -180,21 +180,24 @@
   },
   "active": "c3f922def0907fbc",
   "lastOpenFiles": [
-    "Lang_RU/00_Variables/00_Character_Matrix.md",
-    "Lang_RU/00_Variables/00_Archetype_Matrix.md",
-    "Lang_RU/00_Variables/00_Hierarchical Edge Bundling.md",
+    "Proficiency.md",
     "Lang_RU/00_Variables/Registry_Combos.md",
     "Lang_RU/00_Variables/Registry_Races.md",
+    "Lang_RU/00_Variables/Registry_Tags.md",
+    "Untitled.md",
+    "Lang_RU/00_Variables/00_Archetype_Matrix.md",
+    "Lang_RU/00_Core/Game_Architecture_MVP.md",
+    "Lang_RU/00_Core/GDD_Main.md",
+    "Lang_RU/00_Variables/00_Character_Matrix.md",
+    "Lang_RU/00_Variables/Registry_Specs.md",
+    "Lang_RU/00_Variables/00_Hierarchical Edge Bundling.md",
     "Lang_RU/00_Variables/Registry_Items.md",
     "Lang_RU/00_Variables/Attributes_System.md",
-    "Lang_RU/00_Variables/Registry_Specs.md",
-    "Untitled.md",
     "The Signet System.md",
     "Lang_RU/10_Mechanics/05_World_Systems/City_Hub/Hub_UI.md",
     "Eldrain Guilds of the Living City (Concept Refactoring).md",
     "Lang_RU/10_Mechanics/01_Player_Core/Classes_Physiology.md",
     "Lang_RU/10_Mechanics/01_Player_Core/Races_Physiology.md",
-    "Lang_RU/00_Core/GDD_Main.md",
     "TO-DO List.md",
     "Lang_RU/00_Variables/Status_Effects.md",
     "Lang_RU/00_Variables/Skills.md",
@@ -203,8 +206,6 @@
     "Lang_RU/00_Variables/Economy.md",
     "Lang_RU/00_Variables/Stats.md",
     "2026-01-02.md",
-    "Lang_RU/10_Mechanics/01_Player_Core/Skills_Archetypes.md",
-    "Lang_RU/20_Lore/01_World_Foundation/Magipunk_Physics.md",
     "Lang_RU/10_Mechanics/05_World_Systems/Systems",
     "Lang_RU/10_Mechanics/05_World_Systems/City_Hub",
     "Lang_RU/10_Mechanics/05_World_Systems",
