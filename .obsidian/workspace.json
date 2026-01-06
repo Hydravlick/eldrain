@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/00_Variables/00_Hierarchical Edge Bundling.md",
+                "file": "Lang_RU/00_Variables/Registry_Specs.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "00_Hierarchical Edge Bundling"
+              "title": "Registry_Specs"
             }
           }
         ]
@@ -180,16 +180,15 @@
   },
   "active": "c3f922def0907fbc",
   "lastOpenFiles": [
-    "Lang_RU/00_Variables/00_Hierarchical Edge Bundling.md",
+    "Lang_RU/00_Variables/00_Character_Matrix.md",
+    "Lang_RU/00_Variables/00_Archetype_Matrix.md",
     "Lang_RU/00_Variables/00_Hierarchical Edge Bundling.md",
     "Lang_RU/00_Variables/Registry_Combos.md",
-    "Lang_RU/00_Variables/00_Archetype_Matrix.md",
     "Lang_RU/00_Variables/Registry_Races.md",
-    "Lang_RU/00_Variables/00_Character_Matrix.md",
-    "Untitled.md",
-    "Lang_RU/00_Variables/Attributes_System.md",
     "Lang_RU/00_Variables/Registry_Items.md",
+    "Lang_RU/00_Variables/Attributes_System.md",
     "Lang_RU/00_Variables/Registry_Specs.md",
+    "Untitled.md",
     "The Signet System.md",
     "Lang_RU/10_Mechanics/05_World_Systems/City_Hub/Hub_UI.md",
     "Eldrain Guilds of the Living City (Concept Refactoring).md",
