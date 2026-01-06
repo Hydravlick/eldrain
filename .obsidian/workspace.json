@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/00_Variables/00_Archetype_Matrix.md",
+                "file": "Lang_RU/00_Variables/00_Character_Matrix.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "00_Archetype_Matrix"
+              "title": "00_Character_Matrix"
             }
           }
         ]
@@ -180,18 +180,20 @@
   },
   "active": "c3f922def0907fbc",
   "lastOpenFiles": [
+    "Lang_RU/00_Variables/00_Archetype_Matrix.md",
     "Lang_RU/00_Variables/00_Character_Matrix.md",
     "Lang_RU/00_Variables/00_Hierarchical Edge Bundling.md",
+    "Lang_RU/00_Variables/Registry_Races.md",
+    "Lang_RU/00_Variables/Status_Effects.md",
+    "Lang_RU/00_Variables/Skills.md",
     "Lang_RU/00_Variables/Registry_Combos_.md",
-    "Lang_RU/00_Variables/00_Archetype_Matrix.md",
-    "Lang_RU/00_Variables/Registry_Combos.md",
     "Lang_RU/00_Variables/Registry_Weapon.md",
     "Lang_RU/00_Variables/Registry_Armor.md",
     "Lang_RU/00_Variables/Registry_Items.md",
-    "Untitled.md",
-    "Proficiency.md",
-    "Lang_RU/00_Variables/Registry_Races.md",
     "Lang_RU/00_Variables/Registry_Tags.md",
+    "Untitled.md",
+    "Lang_RU/00_Variables/Registry_Combos.md",
+    "Proficiency.md",
     "Lang_RU/00_Core/Game_Architecture_MVP.md",
     "Lang_RU/00_Core/GDD_Main.md",
     "Lang_RU/00_Variables/Registry_Specs.md",
@@ -202,8 +204,6 @@
     "Lang_RU/10_Mechanics/01_Player_Core/Classes_Physiology.md",
     "Lang_RU/10_Mechanics/01_Player_Core/Races_Physiology.md",
     "TO-DO List.md",
-    "Lang_RU/00_Variables/Status_Effects.md",
-    "Lang_RU/00_Variables/Skills.md",
     "Lang_RU/00_Variables/Registry_Stats.md",
     "Lang_RU/00_Variables/Registry_Economy.md",
     "Lang_RU/10_Mechanics/05_World_Systems/Systems",
