@@ -4,8 +4,8 @@ const files = {
     races: "Lang_RU/00_Variables/Registry_Races.md",
     specs: "Lang_RU/00_Variables/Registry_Specs.md",
     combos: "Lang_RU/00_Variables/Registry_Combos.md",
-    weapons: "Lang_RU/00_Variables/Registry_Weapon.md",
-    armor: "Lang_RU/00_Variables/Registry_Armor.md",
+    weapons: "Lang_RU/00_Variables/Registry_Weapons.md",
+    armor: "Lang_RU/00_Variables/Registry_Armors.md",
     attributes: "Lang_RU/00_Variables/Attributes_System.md"
 };
 

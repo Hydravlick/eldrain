@@ -9,7 +9,7 @@ tags:
   - pvp
   - pve
 related_files:
-  - "[[Lang_RU/00_Variables/Registry_Armor|Registry_Armor]]"
+  - "[[Lang_RU/00_Variables/Registry_Armors|Registry_Armors]]"
   - "[[Lang_RU/10_Mechanics/05_World_Systems/Systems/Anomaly_System|Anomaly_System]]"
 ---
 

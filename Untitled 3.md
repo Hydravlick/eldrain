@@ -103,6 +103,6 @@ tags: [roadmap, core_systems, redesign]
 
 ## 5. Связанные файлы для редактирования
 - [[Lang_RU/10_Mechanics/02_Action_Combat/Damage_System]] — *Приоритет 1*
-- [[Lang_RU/00_Variables/Registry_Weapon]] — *Приоритет 1* (Внедрить архетипы из Untitled 2)
+- [[Lang_RU/00_Variables/Registry_Weapons]] — *Приоритет 1* (Внедрить архетипы из Untitled 2)
 - [[Lang_RU/10_Mechanics/05_World_Systems/Systems/Anomaly_System]] — *Приоритет 2* (Внедрить Shift)
 - [[Untitled 1]] — *Источник механик (Архив)*
