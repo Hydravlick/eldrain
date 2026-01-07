@@ -4,7 +4,7 @@ category: attributes
 system: magipunk_lofi
 tags: [stats, formulas, core]
 ---
-# Система Атрибутов: S.A.V.I.T
+# Система Атрибутов: T.O.U.C.H.
 *Lo-fi адаптация под Magipunk. Характеристики описывают персонажа как сложный, изношенный механизм выживания.*
 
 Все показатели являются **Производными (Derived Stats)**.

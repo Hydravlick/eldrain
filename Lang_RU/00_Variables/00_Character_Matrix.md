@@ -45,9 +45,13 @@ function parseId(text, key = "id") {
 }
 
 function parseRequiredTypes(text) {
-    const regex = /\[type::\s*(\w+)\]/g;
+    const regex = /\[type::\s*([\w\s,]+)\]/g; 
     const matches = [...text.matchAll(regex)];
-    return [...new Set(matches.map(m => m[1]))];
+    let types = [];
+    matches.forEach(m => {
+        types = types.concat(m[1].split(',').map(t => t.trim()));
+    });
+    return [...new Set(types)];
 }
 
 function parseType(text) {
@@ -56,10 +60,14 @@ function parseType(text) {
     return match ? match[1] : null;
 }
 
-// Новая функция: парсинг тира из заголовка вида "(T2) Название"
-function parseTier(header) {
-    const match = header.match(/\(T(\d+)\)/);
-    return match ? parseInt(match[1]) : 0; // Если тир не указан, считаем T0
+function parseTier(header, body) {
+    const headMatch = header.match(/\(T(\d+)\)/);
+    if (headMatch) return parseInt(headMatch[1]);
+
+    const bodyMatch = body.match(/\[tier::\s*(\d+)\]/);
+    if (bodyMatch) return parseInt(bodyMatch[1]);
+
+    return 0;
 }
 
 function parseAbilities(text, filePath, headerName) {
@@ -77,26 +85,32 @@ function parseAbilities(text, filePath, headerName) {
     }).join("<br>");
 }
 
-async function parseFile(path, type, attrKeys = []) {
+async function parseFile(path, type, attrKeys = [], splitRegex = /^## /m) {
     const file = dv.page(path);
     if (!file) return [];
     
     const content = await dv.io.load(file.file.path);
-    const blocks = content.split(/^## /m).slice(1); 
+    const blocks = content.split(splitRegex).slice(1); 
     
     return blocks.map(block => {
         const lines = block.split("\n");
-        const header = lines[0].trim();
+        const header = lines[0].trim(); // Например: "Боевой Нож (Combat Shiv) [1H]"
         const body = lines.slice(1).join("\n");
-        const displayName = header.split(" (")[0];
+        
+        // --- ИЗМЕНЕНИЯ ЗДЕСЬ ---
+        // 1. Отсекаем [теги] в конце (например [1H])
+        let tempName = header.split(" [")[0];
+        // 2. Заменяем всё в круглых скобках (Combat Shiv) на пустоту
+        const displayName = tempName.replace(/\s*\(.*?\)/g, "").trim();
+        // -----------------------
 
         const data = {
             name: header,
             displayName: displayName,
-            link: `[[${path}#${header}|${displayName}]]`, // Ссылка без иконки
+            link: `[[${path}#${header}|${displayName}]]`,
             id: parseId(body, "id"),
             body: body,
-            tier: parseTier(header) // Сохраняем тир
+            tier: parseTier(header, body)
         };
 
         if (type === 'races' || type === 'specs') {
@@ -122,11 +136,12 @@ async function parseFile(path, type, attrKeys = []) {
 const attrsInfo = await getAttributesInfo(files.attributes);
 const attrKeys = attrsInfo.map(a => a.key);
 
-const races = await parseFile(files.races, 'races', attrKeys);
-const specs = await parseFile(files.specs, 'specs', attrKeys);
-const combos = await parseFile(files.combos, 'combos');
-const weapons = await parseFile(files.weapons, 'weapons');
-const armor = await parseFile(files.armor, 'armor');
+const races = await parseFile(files.races, 'races', attrKeys, /^## /m);
+const specs = await parseFile(files.specs, 'specs', attrKeys, /^## /m);
+const combos = await parseFile(files.combos, 'combos', [], /^## /m);
+
+const weapons = await parseFile(files.weapons, 'weapons', [], /^### /m);
+const armor = await parseFile(files.armor, 'armor', [], /^### /m);
 
 for (const race of races) {
     
@@ -135,7 +150,6 @@ for (const race of races) {
     let tableRows = [];
 
     for (const spec of specs) {
-        // СТАТЫ
         let statsStr = "";
         for (const attr of attrsInfo) {
             const key = attr.key;
@@ -145,7 +159,6 @@ for (const race of races) {
         }
         statsStr = statsStr.slice(0, -4);
 
-        // МУТАЦИЯ / АРХЕТИП
         const combo = combos.find(c => c.req_race === race.id && c.req_spec === spec.id);
         
         let archetypeLink = "";
@@ -157,16 +170,14 @@ for (const race of races) {
             archetypeLink = `**[[${files.combos}#${combo.name}|${combo.displayName}]]**<br>*(Мутация)*`;
             abilitiesStr = parseAbilities(combo.body, files.combos, combo.name) || "*(Нет навыков)*";
             
-            // Фильтрация и Сортировка (T0 -> T3)
             const validWeapons = weapons
                 .filter(w => combo.allowedTypes.includes(w.itemType))
-                .sort((a, b) => a.tier - b.tier); // Сортировка по тиру
+                .sort((a, b) => a.tier - b.tier);
             
             const validArmor = armor
                 .filter(a => combo.allowedTypes.includes(a.itemType))
-                .sort((a, b) => a.tier - b.tier); // Сортировка по тиру
+                .sort((a, b) => a.tier - b.tier);
             
-            // Формирование строк (без иконок)
             weaponStr = validWeapons.length > 0 
                 ? validWeapons.map(w => w.link).join("<br>") 
                 : "*(Нет)*";
@@ -192,8 +203,8 @@ for (const race of races) {
             archetypeLink,
             statsStr,
             abilitiesStr,
-            weaponStr, // Отдельная колонка Оружие
-            armorStr   // Отдельная колонка Броня
+            weaponStr,
+            armorStr
         ]);
     }
 
