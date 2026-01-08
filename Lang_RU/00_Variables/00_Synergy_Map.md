@@ -16,10 +16,10 @@ try {
     const d3 = await loadD3();
     
     // === 2. КОНФИГУРАЦИЯ ===
-    const width = 600; 
+    const width = 500; 
     const radius = width / 2;
-    const innerRadius = radius - 140; 
-    const bundleTension = 0.85; 
+    const innerRadius = radius - 120; 
+    const bundleTension = 0.60; 
     
     const sourceFilePath = "Registry_Combos.md"; 
 
@@ -93,7 +93,6 @@ try {
 
     const nodeMap = new Map(root.leaves().map(d => [d.data.id, d]));
     
-    // Используем Map для хранения уникальных связей
     const uniqueLinks = new Map();
 
     nodes.forEach(srcData => {
@@ -104,7 +103,6 @@ try {
             targets.forEach(t => {
                 const targetNode = nodeMap.get(t.id);
                 if (targetNode) {
-                    // Создаем уникальный ключ для пары (сортируем ID, чтобы A->B и B->A были одним ключом)
                     const ids = [srcData.id, t.id].sort();
                     const linkKey = `${ids[0]}-${ids[1]}-${type}`;
                     
@@ -112,14 +110,12 @@ try {
                     const newReason = t.reason;
 
                     if (existing) {
-                        // Если связь уже есть, объединяем описания, если они разные
                         if (newReason && existing.reason && !existing.reason.includes(newReason)) {
                             existing.reason += ` / ${newReason}`;
                         } else if (newReason && !existing.reason) {
                             existing.reason = newReason;
                         }
                     } else {
-                        // Новая связь
                         uniqueLinks.set(linkKey, {
                             source: sourceNode,
                             target: targetNode,
@@ -136,25 +132,57 @@ try {
         processLinks(srcData.counters, "counter");
     });
 
-    // Превращаем Map обратно в массив для D3
     const graphLinks = Array.from(uniqueLinks.values());
 
     // === 5. HTML ОТРИСОВКА ===
     dv.container.innerHTML = "";
     const mainContainer = dv.container.createDiv({ cls: "bundle-container" });
+    mainContainer.style.maxWidth = "500px";
+    mainContainer.style.margin = "0 auto";
     
-    // ЛЕГЕНДА
+    // --- ОБНОВЛЕННАЯ ЛЕГЕНДА ---
     const legendDiv = mainContainer.createDiv({ cls: "bundle-legend" });
     legendDiv.style.display = "flex";
     legendDiv.style.justifyContent = "center";
     legendDiv.style.gap = "20px";
-    legendDiv.style.marginBottom = "10px";
+    legendDiv.style.marginBottom = "5px";
     legendDiv.style.fontSize = "12px";
     legendDiv.style.padding = "5px";
 
+    // Создаем интерактивные элементы легенды
     ["synergy", "counter"].forEach(type => {
         const item = legendDiv.createSpan();
-        item.innerHTML = `<span style="display:inline-block; width:10px; height:10px; background:${colorMap[type]}; margin-right:5px; border-radius:2px;"></span>${labelMap[type]}`;
+        // Стили для курсора и текста
+        Object.assign(item.style, {
+            cursor: "pointer",
+            display: "inline-flex",
+            alignItems: "center",
+            color: "var(--text-muted)", // По умолчанию тусклый
+            transition: "all 0.2s ease",
+            padding: "2px 6px",
+            borderRadius: "4px"
+        });
+        
+        item.innerHTML = `<span style="display:inline-block; width:10px; height:10px; background:${colorMap[type]}; margin-right:6px; border-radius:2px;"></span>${labelMap[type]}`;
+
+        // Добавляем события мыши
+        item.onmouseover = function() {
+            // Подсветка текста легенды
+            this.style.color = "var(--text-normal)";
+            this.style.fontWeight = "bold";
+            this.style.background = "var(--background-modifier-hover)";
+            // Вызов функции подсветки связей
+            highlightGroup(type);
+        };
+
+        item.onmouseout = function() {
+            // Сброс текста легенды
+            this.style.color = "var(--text-muted)";
+            this.style.fontWeight = "normal";
+            this.style.background = "transparent";
+            // Сброс связей
+            resetHighlight();
+        };
     });
 
     // SVG
@@ -163,13 +191,15 @@ try {
         .attr("viewBox", [-width/2, -width/2, width, width])
         .style("font-family", "var(--font-interface)")
         .style("background", "transparent")
-        .style("max-width", "100%")
-        .style("height", "auto");
+        .style("width", "500px")
+        .style("height", "500px")
+        .style("display", "block")
+        .style("margin", "0 auto");
 
     // ИНФО-ПАНЕЛЬ
     const infoDiv = mainContainer.createDiv({ cls: "bundle-info" });
-    infoDiv.style.minHeight = "50px";
-    infoDiv.style.marginTop = "10px";
+    infoDiv.style.minHeight = "60px";
+    infoDiv.style.marginTop = "5px";
     infoDiv.style.padding = "10px";
     infoDiv.style.background = "var(--background-secondary)";
     infoDiv.style.border = "1px solid var(--background-modifier-border)";
@@ -212,7 +242,8 @@ try {
         .style("stroke-width", 2)
         .style("stroke-opacity", 0.4)
         .style("mix-blend-mode", "screen")
-        .style("cursor", "pointer");
+        .style("cursor", "pointer")
+        .style("transition", "stroke-opacity 0.2s ease"); // Плавность анимации
 
     const labels = svg.append("g")
         .selectAll("g")
@@ -227,25 +258,37 @@ try {
         .attr("transform", d => d.x >= 180 ? "rotate(180)" : null)
         .text(d => d.data.name)
         .style("fill", "var(--text-normal)")
-        .style("font-size", "12px")
+        .style("font-size", "11px") 
         .style("cursor", "pointer")
+        .style("transition", "opacity 0.2s ease")
         .on("mouseover", function(event, d) {
+            // Гасим все связи
             linkPaths.style("stroke-opacity", 0.05);
+            
+            // Подсвечиваем только связанные с узлом
             const activeLinks = linkPaths.filter(l => l.source === d || l.target === d)
                 .style("stroke-opacity", 1)
                 .style("stroke-width", 3)
                 .raise();
 
-            d3.select(this).style("fill", "#ffda79").style("font-weight", "bold");
+            // Гасим остальные лейблы
+            labels.style("opacity", 0.3);
+            
+            // Подсвечиваем соседей
+            const neighbors = new Set([d]);
+            activeLinks.each(l => { neighbors.add(l.source); neighbors.add(l.target); });
+            labels.filter(n => neighbors.has(n)).style("opacity", 1).style("font-weight", "bold");
+
+            d3.select(this).style("fill", "#ffda79").style("font-weight", "bold").style("opacity", 1);
+            
             infoDiv.innerHTML = `
                 <div style="font-size:1.1em; margin-bottom: 2px;"><strong>${d.data.name}</strong></div>
                 <div style="font-size:0.9em; color:var(--text-muted)">Активных связей: ${activeLinks.size()}</div>
             `;
         })
         .on("mouseout", function() {
-            linkPaths.style("stroke-opacity", 0.4).style("stroke-width", 2);
+            resetHighlight();
             d3.select(this).style("fill", "var(--text-normal)").style("font-weight", "normal");
-            setDefaultInfo();
         })
         .on("click", (event, d) => {
             const link = `${sourceFilePath}#${d.data.fullName}`;
@@ -269,9 +312,33 @@ try {
             `;
         })
         .on("mouseout", function() {
-            d3.select(this).style("stroke-opacity", 0.4).style("stroke-width", 2);
-            setDefaultInfo();
+            resetHighlight();
         });
+
+    // === НОВЫЕ ФУНКЦИИ УПРАВЛЕНИЯ ПОДСВЕТКОЙ ===
+
+    function highlightGroup(type) {
+        // Гасим все линии, которые не относятся к типу
+        linkPaths.style("stroke-opacity", d => d.type === type ? 1 : 0.05)
+                 .style("stroke-width", d => d.type === type ? 3 : 2);
+        
+        // Немного приглушаем текст узлов, чтобы акцент был на линиях
+        labels.style("opacity", 0.5);
+
+        const count = graphLinks.filter(d => d.type === type).length;
+        
+        infoDiv.innerHTML = `
+            <div style="font-weight:bold; color:${colorMap[type]}; font-size: 1.1em">${labelMap[type]}</div>
+            <hr style="margin:5px 0; border-color:var(--background-modifier-border); width: 50%">
+            <div>Связей этого типа: <strong>${count}</strong></div>
+        `;
+    }
+
+    function resetHighlight() {
+        linkPaths.style("stroke-opacity", 0.4).style("stroke-width", 2);
+        labels.style("opacity", 1);
+        setDefaultInfo();
+    }
 
 } catch (e) {
     dv.paragraph("❌ **Ошибка скрипта:** " + e.message);

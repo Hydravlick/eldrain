@@ -29,7 +29,7 @@ tags: [database, diplomacy, world_building]
 | **+4** | **Hero** | `[behavior:: worship]` Уникальные услуги. | **Слот Ротации IV:** Рецепт макс. тира (Legendary/Unique). |
 
 ## Хранители (The Keepers)
-[faction:: keepers]
+[faction:: keepers]|[role:: center]
 *Древняя администрация, скрывающая лица за керамическими масками. Их интересует только стабильность Якоря.*
 - **Специализация:** [spec:: administration] | [spec:: security]
 - **Сервисы (Services):**
