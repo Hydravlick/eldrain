@@ -17,7 +17,6 @@ try {
     
     // === 2. КОНФИГУРАЦИЯ ===
     const width = 500; 
-    // Настраиваем радиус так, чтобы текст помещался в 500px, но граф не был слишком мелким
     const outerRadius = width / 2 - 80; 
     const innerRadius = 50;             
     const bundleTension = 0.60;         
@@ -166,7 +165,14 @@ try {
     const outerNodes = leaves.filter(d => !d.data.isCenter);
 
     outerNodes.forEach((d, i) => { d.y = outerRadius; d.x = i * (360 / outerNodes.length); });
-    centerNodes.forEach((d, i) => { d.y = innerRadius; d.x = i * (360 / centerNodes.length); });
+    
+    // === ИЗМЕНЕНИЕ ЗДЕСЬ: ПОВОРОТ ЦЕНТРАЛЬНОГО КРУГА ===
+    // Добавили offset: + (360 / 6)
+    const centerOffset = 360 / 12; 
+    centerNodes.forEach((d, i) => { 
+        d.y = innerRadius; 
+        d.x = i * (360 / centerNodes.length) + centerOffset; 
+    });
 
     const d3NodeMap = new Map(leaves.map(d => [d.data.id, d]));
     
@@ -184,7 +190,6 @@ try {
 
     // === 6. ОТРИСОВКА ===
     dv.container.innerHTML = "";
-    // Центрируем и ограничиваем ширину
     const mainContainer = dv.container.createDiv({ cls: "faction-container" });
     mainContainer.style.maxWidth = "500px";
     mainContainer.style.margin = "0 auto";
@@ -229,7 +234,6 @@ try {
     const svgContainer = mainContainer.createDiv();
     const svg = d3.select(svgContainer).append("svg")
         .attr("viewBox", [-width/2, -width/2, width, width])
-        // ЖЕСТКАЯ ФИКСАЦИЯ РАЗМЕРА
         .style("width", "500px")
         .style("height", "500px")
         .style("display", "block")
@@ -285,10 +289,13 @@ try {
         .style("fill", d => d.data.id === "player" ? "#fff" : nodeColors.center)
         .style("stroke", "var(--background-primary)")
         .style("stroke-width", 4)
-        .style("cursor", "pointer")
+        .style("cursor", d => d.data.id === "player" ? "default" : "pointer") 
         .style("transition", "opacity 0.2s ease")
         .on("mouseover", (e, d) => highlightNode(d))
-        .on("mouseout", resetHighlight);
+        .on("mouseout", resetHighlight)
+        .on("click", (e, d) => {
+             if (d.data.id !== "player") openLink(d); 
+        });
 
     centers.append("text")
         .attr("dy", "0.35em")
@@ -303,7 +310,7 @@ try {
     // 6.3 ИНФО-ПАНЕЛЬ
     const infoPanel = mainContainer.createDiv({ cls: "faction-info-panel" });
     Object.assign(infoPanel.style, {
-        minHeight: "60px", // Фиксируем высоту
+        minHeight: "60px",
         marginTop: "5px", padding: "10px",
         background: "var(--background-secondary)", borderRadius: "8px",
         textAlign: "center", fontSize: "0.9em", border: "1px solid var(--background-modifier-border)",
