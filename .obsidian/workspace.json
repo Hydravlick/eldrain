@@ -33,12 +33,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/00_Variables/00_Faction_Reputation.md",
-                "mode": "preview",
+                "file": "Lang_RU/00_Variables/Registry_Armors.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "00_Faction_Reputation"
+              "title": "Registry_Armors"
             }
           }
         ]
@@ -200,12 +200,14 @@
   },
   "active": "ed08b6d88b5725d3",
   "lastOpenFiles": [
-    "Lang_RU/00_Variables/00_Synergy_Map.md",
+    "Lang_RU/30_Content/World_Atlas/01_Prot_Sectors/Sector_01_Port/00_Sector_Description.md",
+    "Lang_RU/00_Variables/Registry_Biomes.md",
+    "Lang_RU/00_Variables/00_Biome_Matrix.md",
     "Lang_RU/00_Variables/00_Faction_Reputation.md",
+    "Lang_RU/00_Variables/00_Synergy_Map.md",
     "Lang_RU/00_Variables/Registry_Combos.md",
     "Lang_RU/00_Variables/Registry_Factions.md",
     "Lang_RU/00_Variables/Registry_Economy.md",
-    "Lang_RU/00_Variables/00_Biome_Matrix.md",
     "Lang_RU/00_Variables/00_Character_Matrix.md",
     "Lang_RU/00_Variables/Untitled.md",
     "Lang_RU/00_Variables/00_Archetype_Matrix.md",
@@ -224,8 +226,6 @@
     "Lang_RU/00_Variables/Registry_CraftingRecipes.md",
     "Lang_RU/00_Variables/Registry_DungeonTemplates.md",
     "Lang_RU/00_Variables/Registry_Consumables.md",
-    "Lang_RU/00_Variables/Registry_Blueprints.md",
-    "Lang_RU/00_Variables/Registry_Biomes.md",
     "Фотографии/Pasted image 20240225144942.png",
     "Фотографии/Pasted image 20240225145336.png",
     "Фотографии/f61d51f943fa3a20cbc4fdfe429da5b8.jpg",
