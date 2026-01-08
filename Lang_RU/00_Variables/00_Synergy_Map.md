@@ -30,8 +30,8 @@ try {
     };
     
     const labelMap = {
-        "synergy": "Синергия (Buff)",
-        "counter": "Контр-пик (Kill)"
+        "synergy": "Синергия",
+        "counter": "Контр-пик"
     };
 
     // === 3. ПАРСИНГ ДАННЫХ ===
@@ -218,8 +218,8 @@ try {
         infoDiv.innerHTML = `
             <div style="display: flex; gap: 15px; font-size: 0.9em;">
                 <span style="font-weight:bold; color:var(--text-normal)">Всего пар: ${graphLinks.length}</span>
-                <span style="color:${colorMap.synergy}">● Buffs: ${countSynergy}</span>
-                <span style="color:${colorMap.counter}">● Kills: ${countCounter}</span>
+                <span style="color:${colorMap.synergy}">● Синергия: ${countSynergy}</span>
+                <span style="color:${colorMap.counter}">● Контр-пик: ${countCounter}</span>
             </div>
             <div style="font-size: 0.8em; color:var(--text-muted); margin-top:4px;">Наведите на название или линию для деталей</div>
         `;
@@ -330,7 +330,7 @@ try {
         infoDiv.innerHTML = `
             <div style="font-weight:bold; color:${colorMap[type]}; font-size: 1.1em">${labelMap[type]}</div>
             <hr style="margin:5px 0; border-color:var(--background-modifier-border); width: 50%">
-            <div>Связей этого типа: <strong>${count}</strong></div>
+            <div>Всего связей: <strong>${count}</strong></div>
         `;
     }
 

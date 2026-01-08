@@ -17,7 +17,7 @@ try {
     
     // === 2. КОНФИГУРАЦИЯ ===
     const width = 500; 
-    const outerRadius = width / 2 - 80; 
+    const outerRadius = width / 2 - 120; 
     const innerRadius = 50;             
     const bundleTension = 0.60;         
     
@@ -166,8 +166,7 @@ try {
 
     outerNodes.forEach((d, i) => { d.y = outerRadius; d.x = i * (360 / outerNodes.length); });
     
-    // === ИЗМЕНЕНИЕ ЗДЕСЬ: ПОВОРОТ ЦЕНТРАЛЬНОГО КРУГА ===
-    // Добавили offset: + (360 / 6)
+    // Поворот центрального круга
     const centerOffset = 360 / 12; 
     centerNodes.forEach((d, i) => { 
         d.y = innerRadius; 
@@ -207,15 +206,24 @@ try {
         .join("div")
         .style("display", "flex")
         .style("align-items", "center")
-        .style("font-size", "11px")
+        .style("font-size", "12px")
         .style("color", "var(--text-muted)")
-        .style("cursor", "pointer") 
+        .style("cursor", "pointer")
+        .style("padding", "2px 6px")
+        .style("border-radius", "4px")
+        .style("transition", "all 0.2s ease")
         .on("mouseover", function(e, d) {
-            d3.select(this).style("color", "var(--text-normal)").style("font-weight", "bold");
+            d3.select(this)
+                .style("color", "var(--text-normal)")
+                .style("font-weight", "bold")
+                .style("background", "var(--background-modifier-hover)");
             highlightGroup(d.groupingKey, d.label, d.color);
         })
         .on("mouseout", function() {
-            d3.select(this).style("color", "var(--text-muted)").style("font-weight", "normal");
+            d3.select(this)
+                .style("color", "var(--text-muted)")
+                .style("font-weight", "normal")
+                .style("background", "transparent");
             resetHighlight();
         });
 
@@ -263,11 +271,11 @@ try {
             setDefaultInfo();
         });
 
-    const labels = svg.append("g").selectAll("g")
+    const labelGroups = svg.append("g").selectAll("g")
         .data(outerNodes).join("g")
-        .attr("transform", d => `rotate(${d.x - 90}) translate(${d.y + 10},0)`);
+        .attr("transform", d => `rotate(${d.x - 90}) translate(${d.y + 8},0)`);
 
-    labels.append("text")
+    const labels = labelGroups.append("text")
         .attr("dy", "0.31em")
         .attr("text-anchor", d => d.x < 180 ? "start" : "end")
         .attr("transform", d => d.x >= 180 ? "rotate(180)" : null)
@@ -275,7 +283,7 @@ try {
         .style("fill", "var(--text-normal)")
         .style("font-size", "11px")
         .style("cursor", "pointer")
-        .style("transition", "opacity 0.2s ease")
+        .style("transition", "all 0.2s ease")
         .on("mouseover", (e, d) => highlightNode(d))
         .on("mouseout", resetHighlight)
         .on("click", (e, d) => openLink(d));
@@ -313,7 +321,8 @@ try {
         minHeight: "60px",
         marginTop: "5px", padding: "10px",
         background: "var(--background-secondary)", borderRadius: "8px",
-        textAlign: "center", fontSize: "0.9em", border: "1px solid var(--background-modifier-border)",
+        textAlign: "center", 
+        border: "1px solid var(--background-modifier-border)",
         display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"
     });
 
@@ -337,9 +346,11 @@ try {
             .join("");
 
         infoPanel.innerHTML = `
-            <div style="font-weight:bold; margin-bottom: 5px;">Активных взаимодействий: ${totalRelations}</div>
-            <div style="font-size: 0.85em; display:flex; flex-wrap:wrap; justify-content:center; line-height: 1.4;">${statsHtml}</div>
-            <div style="font-size: 0.8em; color:var(--text-muted); margin-top:5px">Наведите на узел или легенду для деталей</div>
+            <div style="font-size: 0.9em; display:flex; flex-wrap:wrap; justify-content:center; gap: 10px; line-height: 1.4;">
+                <span style="font-weight:bold; color:var(--text-normal)">Всего: ${totalRelations}</span>
+                ${statsHtml}
+            </div>
+            <div style="font-size: 0.8em; color:var(--text-muted); margin-top:4px">Наведите на узел или легенду для деталей</div>
         `;
     }
     
@@ -357,7 +368,7 @@ try {
         const count = finalLinks.filter(d => typeToGroupMap[d.dominantType] === groupKey).length;
 
         infoPanel.innerHTML = `
-            <strong style="font-size:1.1em; color:${color}">${label}</strong>
+            <div style="font-weight:bold; color:${color}; font-size: 1.1em">${label}</div>
             <hr style="margin:5px 0; border-color:var(--background-modifier-border); width: 50%">
             <div>Всего связей: <strong>${count}</strong></div>
         `;
@@ -365,7 +376,6 @@ try {
 
     function updateInfoPair(d) {
         const grouped = {};
-        
         d.relations.forEach(r => {
             const groupKey = typeToGroupMap[r.type] || "Neutral";
             if (!grouped[groupKey]) {
@@ -378,6 +388,7 @@ try {
             grouped[groupKey].directions.add(r.fromName);
         });
 
+        // === ВАЖНО: Тег <strong> вместо span font-weight ===
         let htmlContent = `<div style="margin-bottom: 6px; font-weight: bold; color: var(--text-normal)">Взаимодействия</div>`;
         const srcName = d.source.data.name;
         const tgtName = d.target.data.name;
@@ -388,36 +399,32 @@ try {
             let rightName = tgtName;
             const isBidirectional = g.directions.has(srcName) && g.directions.has(tgtName);
             
-            if (isBidirectional) {
-                arrowHtml = `<span style="color:${g.color}; font-size:1.2em">↔</span>`;
-            } else {
+            if (isBidirectional) arrowHtml = `<span style="color:${g.color}; font-size:1.2em">↔</span>`;
+            else {
                 arrowHtml = `<span style="color:${g.color}; font-size:1.2em">→</span>`;
-                if (g.directions.has(tgtName) && !g.directions.has(srcName)) {
-                    leftName = tgtName; rightName = srcName;
-                }
+                if (g.directions.has(tgtName) && !g.directions.has(srcName)) { leftName = tgtName; rightName = srcName; }
             }
             const reasonsText = g.reasons.length > 0 ? `"${g.reasons.join(" / ")}"` : "";
 
             htmlContent += `
                 <div style="margin-bottom: 6px; border-bottom: 1px solid var(--background-modifier-border); padding-bottom: 4px;">
                     <div style="display:flex; justify-content:center; align-items:center; gap: 8px;">
-                        <span style="font-weight:bold">${leftName}</span> 
+                        <strong>${leftName}</strong> 
                         ${arrowHtml}
-                        <span style="font-weight:bold">${rightName}</span>
+                        <strong>${rightName}</strong>
                     </div>
                     <div style="margin-top:2px;">
                         <span style="color:${g.color}; font-size: 0.85em; font-weight:bold;">[${g.label}]</span>
                         <span style="font-style:italic; color:var(--text-accent); font-size: 0.9em; margin-left: 5px">${reasonsText}</span>
                     </div>
-                </div>
-            `;
+                </div>`;
         });
         infoPanel.innerHTML = htmlContent;
     }
 
     function highlightNode(d) {
         linkPaths.style("stroke-opacity", 0.05);
-        labels.style("opacity", 0.3);
+        labels.style("opacity", 0.3).style("font-weight", "normal").style("fill", "var(--text-normal)");
         centers.style("opacity", 0.3);
 
         const related = linkPaths.filter(l => l.source === d || l.target === d)
@@ -426,11 +433,19 @@ try {
         const neighbors = new Set([d]);
         related.each(l => { neighbors.add(l.source); neighbors.add(l.target); });
 
-        labels.filter(n => neighbors.has(n)).style("opacity", 1).style("font-weight", "bold");
+        labels.filter(n => neighbors.has(n))
+            .style("opacity", 1).style("font-weight", "bold").style("fill", "var(--text-normal)");
+
         centers.filter(n => neighbors.has(n)).style("opacity", 1);
 
+        labels.filter(n => n === d)
+            .style("fill", "#ffda79") // На графике оставляем желтый
+            .style("opacity", 1)
+            .style("font-weight", "bold");
+
+        // В Инфо-панели используем <strong>, чтобы подхватил тему Obsidian
         infoPanel.innerHTML = `
-            <strong style="font-size:1.1em; color:var(--text-normal)">${d.data.name}</strong>
+            <strong style="font-size:1.1em; display:block; margin-bottom: 2px;">${d.data.name}</strong>
             <hr style="margin:5px 0; border-color:var(--background-modifier-border); width: 50%">
             <div style="font-style:italic; color:var(--text-muted)">${d.data.desc}</div>
         `;
@@ -438,7 +453,7 @@ try {
 
     function resetHighlight() {
         linkPaths.style("stroke-opacity", 0.4).style("stroke-width", 2);
-        labels.style("opacity", 1).style("font-weight", "normal");
+        labels.style("opacity", 1).style("font-weight", "normal").style("fill", "var(--text-normal)");
         centers.style("opacity", 1);
         setDefaultInfo();
     }
