@@ -6,6 +6,15 @@ last_updated: 2026-01-02
 
 # Реестр: Статистики (Stats)
 
+## `stat_attribute_base`
+**Значение:** [stat_attribute_base:: 20]
+**Тип:** integer
+**Описание:** Базовое значение всех атрибутов (T.O.U.C.H.) до применения бонусов расы и класса.
+**Связи:**
+- Используется в: [[Attributes_System]], [[00_Character_Matrix]]
+
+---
+
 ## `stat_hp_base`
 **Значение:** [stat_hp_base:: 80]
 **Тип:** number

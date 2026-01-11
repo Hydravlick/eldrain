@@ -43,7 +43,7 @@ tags: [database, loot, trade, schematics]
 [blueprint:: phantom_cloak]
 *Голографический проектор чертежа. Мерцает.*
 - **Статы:** `[weight:: 0.2kg]` | `[stack:: 1]` | `[value:: 1200]`
-- **Тип:** `[consumable:: false]` (Многоразовый - Технология сложная, схема не сгорает).
+- **Тип:** `[consumable:: true]`
 - **Требование:** `[rep:: minstrels : +4]` для покупки.
 
 ### Схема: Вольт-Винтовка
@@ -57,7 +57,7 @@ tags: [database, loot, trade, schematics]
 [blueprint:: tesla_trap]
 *Тяжелый технический мануал в переплете.*
 - **Статы:** `[weight:: 1.0kg]` | `[stack:: 1]` | `[value:: 1500]`
-- **Тип:** `[consumable:: false]` (Многоразовый).
+- **Тип:** `[consumable:: true]`
 - **Требование:** `[rep:: academy : +4]` для покупки.
 
 ### Схема: Булава Инквизитора
@@ -98,10 +98,3 @@ tags: [database, loot, trade, schematics]
 - **Статы:** `[weight:: 1.5kg]` | `[stack:: 1]` | `[value:: 5000]`
 - **Тип:** `[consumable:: false]` (Уникальная реликвия-схема).
 - **Источник:** Сейф Капитана (Шанс 100%).
-
-### Схема: Грибная Граната
-[blueprint:: spore_grenade]
-*Записная книжка безумного ботаника.*
-- **Статы:** `[weight:: 0.1kg]` | `[stack:: 10]` | `[value:: 150]`
-- **Тип:** `[consumable:: true]`.
-- **Источник:** Биом `[garden]`, трупы ученых.

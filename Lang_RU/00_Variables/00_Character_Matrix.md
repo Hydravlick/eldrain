@@ -6,7 +6,8 @@ const files = {
     combos: "Lang_RU/00_Variables/Registry_Combos.md",
     weapons: "Lang_RU/00_Variables/Registry_Weapons.md",
     armor: "Lang_RU/00_Variables/Registry_Armors.md",
-    attributes: "Lang_RU/00_Variables/Attributes_System.md"
+    attributes: "Lang_RU/00_Variables/Attributes_System.md",
+    registry: "Lang_RU/00_Variables/Registry_Stats.md"
 };
 
 // --- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ---
@@ -94,15 +95,11 @@ async function parseFile(path, type, attrKeys = [], splitRegex = /^## /m) {
     
     return blocks.map(block => {
         const lines = block.split("\n");
-        const header = lines[0].trim(); // Например: "Боевой Нож (Combat Shiv) [1H]"
+        const header = lines[0].trim();
         const body = lines.slice(1).join("\n");
         
-        // --- ИЗМЕНЕНИЯ ЗДЕСЬ ---
-        // 1. Отсекаем [теги] в конце (например [1H])
         let tempName = header.split(" [")[0];
-        // 2. Заменяем всё в круглых скобках (Combat Shiv) на пустоту
         const displayName = tempName.replace(/\s*\(.*?\)/g, "").trim();
-        // -----------------------
 
         const data = {
             name: header,
@@ -133,9 +130,18 @@ async function parseFile(path, type, attrKeys = [], splitRegex = /^## /m) {
 
 // --- ОСНОВНАЯ ЛОГИКА ---
 
+// 1. Получаем ключи атрибутов
 const attrsInfo = await getAttributesInfo(files.attributes);
 const attrKeys = attrsInfo.map(a => a.key);
 
+// 2. Получаем базовое значение стата из реестра (НОВОЕ)
+let globalBaseStat = 10; // Значение по умолчанию
+const registryPage = dv.page(files.registry);
+if (registryPage && registryPage.stat_attribute_base) {
+    globalBaseStat = registryPage.stat_attribute_base;
+}
+
+// 3. Парсим файлы контента
 const races = await parseFile(files.races, 'races', attrKeys, /^## /m);
 const specs = await parseFile(files.specs, 'specs', attrKeys, /^## /m);
 const combos = await parseFile(files.combos, 'combos', [], /^## /m);
@@ -143,6 +149,7 @@ const combos = await parseFile(files.combos, 'combos', [], /^## /m);
 const weapons = await parseFile(files.weapons, 'weapons', [], /^### /m);
 const armor = await parseFile(files.armor, 'armor', [], /^### /m);
 
+// 4. Генерация таблицы
 for (const race of races) {
     
     dv.header(2, race.link);
@@ -153,7 +160,8 @@ for (const race of races) {
         let statsStr = "";
         for (const attr of attrsInfo) {
             const key = attr.key;
-            const val = 10 + (race.stats[key] || 0) + (spec.stats[key] || 0);
+            // ИСПОЛЬЗУЕМ globalBaseStat вместо хардкода 10
+            const val = globalBaseStat + (race.stats[key] || 0) + (spec.stats[key] || 0);
             const label = attr.header ? `[[${files.attributes}#${attr.header}|${key}]]` : `**${key}**`;
             statsStr += `${label}: **${val}** <br>`;
         }

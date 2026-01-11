@@ -142,14 +142,6 @@ tags: [database, economy, upgrade, blueprints]
     - 3x `[item:: sea_tear]`
 - **Output:** `[weapon:: spectral_cutlass]`
 
-### Грибная Граната (Spore Grenade)
-*Ядовитое облако.*
-- **Input:**
-    - 1x `[blueprint:: spore_grenade]` (Чертеж)
-    - 1x `[item:: empty_vial]`
-    - 1x `[mob_drop:: spore_sac]`
-- **Output:** `[consumable:: spore_grenade]`
-
 ---
 
 ## 🔮 Трансмутация (Upgrades)
@@ -157,11 +149,11 @@ tags: [database, economy, upgrade, blueprints]
 
 ### Enchant Weapon (Magic)
 - **Input:** 1x `[weapon:: any_white]` + 1x `[item:: orb_flux]`
-- **Output:** `[weapon:: random_blue]`
+- **Output:** `[weapon:: random_green]`
 
 ### Enchant Weapon (Rare)
-- **Input:** 1x `[weapon:: any_blue]` + 1x `[item:: orb_power]`
-- **Output:** `[weapon:: random_yellow]`
+- **Input:** 1x `[weapon:: any_green]` + 1x `[item:: orb_power]`
+- **Output:** `[weapon:: random_blue]`
 
 ### Corrupt Item
 - **Input:** 1x `[item:: any]` + 1x `[item:: orb_entropy]`
