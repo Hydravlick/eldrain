@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/00_Core/GDD_Main.md",
-                "mode": "source",
+                "file": "Lang_RU/00_Variables/00_Synergy_Map.md",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -97,7 +97,7 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "Lang_RU/00_Core/GDD_Main.md",
+            "file": "Lang_RU/00_Variables/00_Synergy_Map.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -114,7 +114,7 @@
         "state": {
           "type": "outgoing-link",
           "state": {
-            "file": "Lang_RU/00_Core/GDD_Main.md",
+            "file": "Lang_RU/00_Variables/00_Synergy_Map.md",
             "linksCollapsed": false,
             "unlinkedCollapsed": true
           }
@@ -126,7 +126,7 @@
         "state": {
           "type": "outline",
           "state": {
-            "file": "Lang_RU/00_Core/GDD_Main.md"
+            "file": "Lang_RU/00_Variables/00_Synergy_Map.md"
           }
         }
       }
@@ -146,6 +146,12 @@
   },
   "active": "a45e5bf46f730b83",
   "lastOpenFiles": [
+    "Lang_RU/00_Variables/Registry_Combos.md",
+    "Lang_RU/00_Variables/00_Synergy_Map.md",
+    "Lang_RU/00_Variables/00_Character_Matrix.md",
+    "Lang_RU/00_Variables/00_Archetype_Matrix.md",
+    "01_System_Weapon_Mechanics.md",
+    "Lang_RU/00_Core/GDD_Main.md",
     "Lang_RU/00_Core/Game_Architecture_MVP.md"
   ]
 }
