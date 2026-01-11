@@ -6,8 +6,8 @@ const files = {
     combos: "Lang_RU/00_Variables/Registry_Combos.md",
     weapons: "Lang_RU/00_Variables/Registry_Weapons.md",
     armor: "Lang_RU/00_Variables/Registry_Armors.md",
-    attributes: "Lang_RU/00_Variables/Attributes_System.md",
-    registry: "Lang_RU/00_Variables/Registry_Stats.md"
+    attributes: "Lang_RU/00_Variables/Attributes_System.md"
+    // registry: удален, так как больше не нужен
 };
 
 // --- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ---
@@ -25,6 +25,21 @@ async function getAttributesInfo(path) {
         items.push({ header: match[1].trim(), key: match[2] });
     }
     return items.length > 0 ? items : ["PHY", "AGI", "VIG", "TEC", "RES"].map(k => ({ key: k, header: null }));
+}
+
+// НОВАЯ ФУНКЦИЯ: Парсит таблицу в Attributes_System для поиска базового значения
+async function getBaseStatFromTable(path) {
+    const page = dv.page(path);
+    if (!page) return 20; // Значение по умолчанию (fallback)
+
+    const content = await dv.io.load(page.file.path);
+    
+    // Ищет строку вида: | **Base Attribute** | 20 |
+    // Регулярка учитывает пробелы и структуру таблицы MD
+    const regex = /\|\s*\*\*Base Attribute\*\*\s*\|\s*(\d+)/;
+    const match = content.match(regex);
+
+    return match ? parseInt(match[1]) : 20;
 }
 
 function parseStats(text, validKeys) {
@@ -134,12 +149,9 @@ async function parseFile(path, type, attrKeys = [], splitRegex = /^## /m) {
 const attrsInfo = await getAttributesInfo(files.attributes);
 const attrKeys = attrsInfo.map(a => a.key);
 
-// 2. Получаем базовое значение стата из реестра (НОВОЕ)
-let globalBaseStat = 10; // Значение по умолчанию
-const registryPage = dv.page(files.registry);
-if (registryPage && registryPage.stat_attribute_base) {
-    globalBaseStat = registryPage.stat_attribute_base;
-}
+// 2. Получаем базовое значение из таблицы в Attributes_System (ОБНОВЛЕНО)
+// Читает файл атрибутов и ищет строку "| **Base Attribute** | 20 |"
+const globalBaseStat = await getBaseStatFromTable(files.attributes);
 
 // 3. Парсим файлы контента
 const races = await parseFile(files.races, 'races', attrKeys, /^## /m);
@@ -160,7 +172,7 @@ for (const race of races) {
         let statsStr = "";
         for (const attr of attrsInfo) {
             const key = attr.key;
-            // ИСПОЛЬЗУЕМ globalBaseStat вместо хардкода 10
+            // Используем полученное из таблицы значение
             const val = globalBaseStat + (race.stats[key] || 0) + (spec.stats[key] || 0);
             const label = attr.header ? `[[${files.attributes}#${attr.header}|${key}]]` : `**${key}**`;
             statsStr += `${label}: **${val}** <br>`;
