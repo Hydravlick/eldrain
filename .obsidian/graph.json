@@ -1,44 +1,44 @@
 {
   "collapse-filter": false,
   "search": "",
-  "showTags": true,
+  "showTags": false,
   "showAttachments": false,
   "hideUnresolved": true,
   "showOrphans": true,
   "collapse-color-groups": false,
   "colorGroups": [
     {
-      "query": "tag:#doc ",
+      "query": "path:10_Mechanics  ",
       "color": {
         "a": 1,
-        "rgb": 14095380
+        "rgb": 13770426
       }
     },
     {
-      "query": "tag:#lore ",
+      "query": "path:20_Lore ",
       "color": {
         "a": 1,
-        "rgb": 8671968
+        "rgb": 3522736
       }
     },
     {
-      "query": "tag:#weapon ",
+      "query": "path:Lang_RU/30_Content  ",
       "color": {
         "a": 1,
-        "rgb": 5431504
+        "rgb": 10604611
       }
     }
   ],
   "collapse-display": false,
   "showArrow": false,
   "textFadeMultiplier": 0,
-  "nodeSizeMultiplier": 1.99989604989605,
-  "lineSizeMultiplier": 1,
+  "nodeSizeMultiplier": 3.16122661122661,
+  "lineSizeMultiplier": 0.797817047817048,
   "collapse-forces": false,
-  "centerStrength": 0.518713248970312,
+  "centerStrength": 0.470893970893971,
   "repelStrength": 20,
-  "linkStrength": 1,
-  "linkDistance": 250,
-  "scale": 0.2619841890036806,
-  "close": true
+  "linkStrength": 0.687110187110187,
+  "linkDistance": 30,
+  "scale": 0.11256886631705244,
+  "close": false
 }

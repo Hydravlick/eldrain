@@ -1,2 +1,5 @@
 .tmp.driverdownload/
 .tmp.driveupload/
+.stfolder/
+.stignore
+.stversions/

@@ -8,7 +8,6 @@ related_files:
   - "[[GDD_Main]]"
   - "[[10_Mechanics/Meta/Character_Deck|Колода персонажей]]"
 ---
-
 # Игровой Цикл (The Core Loop)
 
 ## 1. Макро-Цикл: Спираль Кукловода

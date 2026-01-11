@@ -1,0 +1,5 @@
+# This directory is a Syncthing folder marker.
+# Do not delete.
+
+folderID: umnns-n6zwu
+created: 2026-01-08T22:12:32+02:00
