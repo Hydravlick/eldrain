@@ -4,6 +4,14 @@ version: 1.2
 status: active
 tags: [root, navigation]
 ---
+> [!TODO] 💻 Задачи: Логика Расчета (Code)
+> Реализация формулы на уровне движка.
+> 
+> - [ ] **Структура ItemData:**
+>     - Добавить динамический геттер: `GetEfficientTier() { return (Tier * K_T) + (Quality * K_Q); }`.
+> - [ ] **Резолвинг Урона (Hit Calculator):**
+>     - При попадании брать `Weapon.GetEfficientTier()` и сравнивать с `Target.GetArmorTier()`.
+>     - Если `Weapon.ET < Target.Armor_Threshold` -> проигрывать звук рикошета (Soft Lock).
 # GDD: Eldrain (Project Name)
 
 ## 1. Паспорт Проекта
