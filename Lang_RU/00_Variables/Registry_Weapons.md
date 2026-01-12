@@ -6,7 +6,9 @@ tags:
   - equipment
   - templates
 ---
-
+> [!TODO] Добавить свойства архетипов
+> - [ ] Прописать поле `[implicit:: ...]` для всех пушек (напр. `ambush`, `armor_break`).
+> - [ ] Прописать поле `[sweet_spot_range:: float]` для алебард.
 # Реестр: Типы Оружия (Magipunk Arsenal)
 
 > **Философия Дизайна:**
