@@ -14,12 +14,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/10_Mechanics/04_Inventory_Gear/Inventory_Core.md",
+                "file": "TO-DO List.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Inventory_Core"
+              "title": "TO-DO List"
             }
           }
         ]
@@ -244,19 +244,19 @@
   },
   "active": "e5829f84c0eae60b",
   "lastOpenFiles": [
+    "Weapon.md",
+    "TO-DO List.md",
+    "Lang_RU/10_Mechanics/04_Inventory_Gear/Inventory_Core.md",
     "Lang_RU/10_Mechanics/04_Inventory_Gear/Equipment_Entropy.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/Damage_System.md",
     "Lang_RU/00_Core/GDD_Main.md",
-    "Lang_RU/10_Mechanics/04_Inventory_Gear/Inventory_Core.md",
     "Lang_RU/00_Variables/Registry_Weapons.md",
-    "Weapon.md",
     "Lang_RU/10_Mechanics/03_Economy_Resources/The Signet System.md",
     "Untitled 3.md",
     "Untitled 1.md",
     "Lang_RU/10_Mechanics/03_Economy_Resources/Economy_City.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/Defense_System_2.md",
     "Lang_RU/10_Mechanics/05_World_Systems/Systems/Anomaly_System.md",
-    "TO-DO List.md",
     "Lang_RU/10_Mechanics/01_Player_Core/System_Proficiency.md",
     "Lang_RU/20_Lore/02_Societies_Factions/Guild_Roles_Concept.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/Weapon_Archetypes.md",
