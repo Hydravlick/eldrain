@@ -10,6 +10,17 @@ related_files:
   - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/Equipment_Entropy|Equipment_Entropy]]"
   - "[[Lang_RU/10_Mechanics/02_Action_Combat/Damage_System|Damage_System]]"
 ---
+> [!TODO] ⚔️ Задачи: Стихийный Баланс (Elemental RPS)
+> Матрица урона и штрафы биомов.
+> 
+> - [ ] **Матрица Урона:**
+>     - `Fire` > `Nature` (x1.5 урона).
+>     - `Nature` > `Water` (x1.5 урона).
+>     - `Water` > `Fire` (x1.5 урона).
+> - [ ] **Штраф Биома (Biome Penalty):**
+>     - Если игрок использует оружие стихии `Nature` в биоме `Fire` -> урон снижается на 50%.
+>     - Если оружие стихии `Water` в биоме `Fire` -> бонус к урону +30%.
+> - [ ] **Визуал:** Добавить цветные цифры урона для эффективности (Красный - резист, Желтый - крит/уязвимость).
 # Система Урона (Damage System)
 
 ## 1. Двухслойная Защита (Two-Layer Defense)
