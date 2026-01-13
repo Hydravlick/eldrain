@@ -6,6 +6,7 @@
       {
         "id": "685ead32e678ad9c",
         "type": "tabs",
+        "dimension": 50,
         "children": [
           {
             "id": "e5829f84c0eae60b",
@@ -41,12 +42,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/30_Content/World_Atlas/Sectors/Port/Tables/03_Difficulty.md",
+                "file": "Lang_RU/30_Content/World_Atlas/Sectors/Port/02_Dungeons_Port.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "03_Difficulty"
+              "title": "02_Dungeons_Port"
             }
           }
         ],
@@ -55,6 +56,7 @@
       {
         "id": "2213cbadfcd05e87",
         "type": "tabs",
+        "dimension": 50,
         "children": [
           {
             "id": "15d78afc4f94331f",
@@ -62,12 +64,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/00_Variables/Registry_Mobs.md",
+                "file": "Lang_RU/00_Variables/Registry_POIs.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Registry_Mobs"
+              "title": "Registry_POIs"
             }
           },
           {
@@ -84,8 +86,7 @@
               "title": "Registry_Biomes"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -258,17 +259,18 @@
   },
   "active": "073c7da8b936be4e",
   "lastOpenFiles": [
-    "Lang_RU/00_Variables/Registry_Biomes.md",
-    "Lang_RU/30_Content/World_Atlas/Sectors/Port/Tables/03_Difficulty.md",
-    "Lang_RU/00_Variables/Registry_Mobs.md",
-    "Lang_RU/30_Content/World_Atlas/Sectors/Port/Tables/01_Difficulty.md",
-    "Lang_RU/30_Content/World_Atlas/Sectors/Port/Tables/02_Difficulty.md",
-    "Lang_RU/00_Variables/Registry_POIs.md",
-    "Lang_RU/00_Variables/Registry_Items.md",
     "Lang_RU/30_Content/World_Atlas/Sectors/Port/00_Port_Manifest.md",
     "Lang_RU/30_Content/World_Atlas/Sectors/Port/01_Bestiary_Port.md",
+    "Lang_RU/00_Variables/Registry_POIs.md",
     "Lang_RU/30_Content/World_Atlas/Sectors/Port/02_Dungeons_Port.md",
+    "Lang_RU/00_Variables/Registry_Items.md",
     "Lang_RU/30_Content/World_Atlas/Sectors/Port/03_Loot_Table.md",
+    "Lang_RU/00_Variables/Registry_Mobs.md",
+    "Lang_RU/00_Variables/Registry_Biomes.md",
+    "Lang_RU/30_Content/World_Atlas/Sectors/Port/Tables/01_Difficulty.md",
+    "Lang_RU/30_Content/World_Atlas/Sectors/Port/Tables/02_Difficulty.md",
+    "Lang_RU/30_Content/World_Atlas/Sectors/Port/Tables/03_Difficulty.md",
+    "Lang_RU/30_Content/World_Atlas/Sectors/Port/Tables/Untitled",
     "Assets/Buildings/SoborA.webp",
     "Assets/Buildings/NB.webp",
     "Assets/Buildings/NA.webp",
@@ -297,13 +299,11 @@
     "Lang_RU/00_Variables/Registry_Weapons.md",
     "Lang_RU/10_Mechanics/03_Economy_Resources/The Signet System.md",
     "Untitled 3.md",
-    "Untitled 1.md",
     "Lang_RU/20_Lore/02_Societies_Factions/~syncthing~The_Keepers.md.tmp",
     "Lang_RU/10_Mechanics/05_World_Systems/Systems",
     "Lang_RU/10_Mechanics/05_World_Systems/City_Hub",
     "Lang_RU/10_Mechanics/05_World_Systems",
     "Lang_RU/10_Mechanics/04_Inventory_Gear",
-    "Lang_RU/10_Mechanics/03_Economy_Resources",
     "Собор.canvas",
     "Untitled.canvas",
     "Город/Кварталы/Концепты/Центр.canvas",

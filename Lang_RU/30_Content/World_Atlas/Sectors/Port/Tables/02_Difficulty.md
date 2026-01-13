@@ -1,15 +1,30 @@
 ```dataviewjs
 // --- НАСТРОЙКИ ПУТЕЙ ---
-const files = {
-    biomes: "Lang_RU/00_Variables/Registry_Biomes.md",
-    mobs: "Lang_RU/00_Variables/Registry_Mobs.md",
-    items: "Lang_RU/00_Variables/Registry_Items.md"
+// Список всех файлов, где могут быть определения предметов/лута
+const registryFiles = {
+    items: "Lang_RU/00_Variables/Registry_Items.md",
+    weapons: "Lang_RU/00_Variables/Registry_Weapons.md",
+    armors: "Lang_RU/00_Variables/Registry_Armors.md",
+    headwear: "Lang_RU/00_Variables/Registry_Headwear.md",
+    consumables: "Lang_RU/00_Variables/Registry_Consumables.md",
+    blueprints: "Lang_RU/00_Variables/Registry_Blueprints.md"
 };
 
+// Пути к основным системным файлам
+const coreFiles = {
+    biomes: "Lang_RU/00_Variables/Registry_Biomes.md",
+    mobs: "Lang_RU/00_Variables/Registry_Mobs.md"
+};
+
+// Список тегов, которые считаются идентификаторами предметов (для поиска определений и лута)
+const validLootTags = [
+    "item", "weapon", "armor", "headwear", 
+    "consumable", "blueprint", "key", 
+    "merit", "artifact"
+];
+
 // --- ОПРЕДЕЛЕНИЕ КОНТЕКСТА (АДАПТИВНОСТЬ) ---
-// 1. Определяем биом по папке (ищем папку после "Sectors" или используем текущую)
 const currentPath = dv.current().file.path;
-// Логика: берем сегмент пути после 'Sectors', если есть, иначе родительскую папку
 const pathParts = currentPath.split("/");
 const sectorIndex = pathParts.findIndex(p => p === "Sectors");
 let targetBiomeId = null;
@@ -17,31 +32,41 @@ let targetBiomeId = null;
 if (sectorIndex !== -1 && pathParts[sectorIndex + 1]) {
     targetBiomeId = pathParts[sectorIndex + 1].toLowerCase();
 } else {
-    // Резерв: берем название родительской папки (если файл лежит прямо в папке биома)
     targetBiomeId = dv.current().file.folder.split("/").pop().toLowerCase();
 }
 
-// 2. Определяем сложность по названию файла (01_Difficulty -> 1)
 const fileName = dv.current().file.name;
 const levelMatch = fileName.match(/^(\d+)/);
-const targetLevel = levelMatch ? levelMatch[1] : "1"; // По умолчанию 1, если цифры нет
+const targetLevel = levelMatch ? levelMatch[1] : "1";
 
 dv.paragraph(`> **Контекст:** Биом: \`${targetBiomeId}\` | Сложность: \`${targetLevel}\``);
 
 // --- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ---
 
+// Поиск конкретного ID по тегу (возвращает первый найденный)
 function parseTagId(text, tag) {
-    const regex = new RegExp(`\\[${tag}::\\s*(\\w+)\\]`);
+    const regex = new RegExp(`\\[${tag}::\\s*([\\w\\d_]+)\\]`, "i");
     const match = text.match(regex);
     return match ? match[1].toLowerCase() : null;
 }
 
+// Поиск ВСЕХ ID по тегу (для списка мобов на уровне)
 function parseAllTags(text, tag) {
-    const regex = new RegExp(`\\[${tag}::\\s*(\\w+)\\]`, "g");
+    const regex = new RegExp(`\\[${tag}::\\s*([\\w\\d_]+)\\]`, "gi");
     const matches = [...text.matchAll(regex)];
     return matches.map(m => m[1].toLowerCase());
 }
 
+// Поиск ID предмета среди всех возможных тегов
+function findAnyItemId(text) {
+    for (const tag of validLootTags) {
+        const id = parseTagId(text, tag);
+        if (id) return id;
+    }
+    return null;
+}
+
+// Загрузка и разбивка файла на блоки заголовков
 async function parseFileBlocks(path, splitRegex) {
     const page = dv.page(path);
     if (!page) return [];
@@ -88,45 +113,60 @@ function getEffectInfo(lines) {
 
 // --- СБОР ДАННЫХ ---
 
-// Загрузка предметов (Items)
+// 1. Загрузка всех предметов из всех реестров
 let itemMap = {};
-const itemBlocks = await parseFileBlocks(files.items, /^### /m);
-if (itemBlocks.length > 0) {
-    itemBlocks.forEach(block => {
-        const lines = block.split("\n");
-        const header = lines[0].trim();
-        const displayName = header.split(" [")[0].replace(/\(.*\)/, "").trim();
-        const id = parseTagId(block, "item") || parseTagId(block, "merit") || parseTagId(block, "key") || parseTagId(block, "weapon") || parseTagId(block, "artifact");
-        if (id) itemMap[id] = `[[${files.items}#${header}|${displayName}]]`;
-    });
+
+// Проходим по каждому файлу реестра (items, weapons, armors и т.д.)
+for (const [key, path] of Object.entries(registryFiles)) {
+    const blocks = await parseFileBlocks(path, /^### /m);
+    if (blocks.length > 0) {
+        blocks.forEach(block => {
+            const lines = block.split("\n");
+            const header = lines[0].trim();
+            // Убираем лишнее из заголовка для чистого названия
+            const displayName = header.split(" [")[0].replace(/\(.*\)/, "").trim();
+            
+            // Ищем ID, проверяя все возможные теги (item, weapon, armor...)
+            const id = findAnyItemId(block);
+            
+            if (id) {
+                itemMap[id] = `[[${path}#${header}|${displayName}]]`;
+            }
+        });
+    }
 }
 
-// Загрузка мобов (Mobs)
-const mobBlocks = await parseFileBlocks(files.mobs, /^### /m);
+// 2. Загрузка мобов и их лута
+const mobBlocks = await parseFileBlocks(coreFiles.mobs, /^### /m);
 const mobMap = {};
+// Создаем регулярку, включающую все валидные теги: (item|weapon|armor|...)
+const lootRegex = new RegExp(`\\[(${validLootTags.join("|")})::\\s*(\\w+)\\]`, "gi");
+
 mobBlocks.forEach(block => {
     const lines = block.split("\n");
     const header = lines[0].trim();
     const displayName = header.replace(/\(.*\)/, "").trim();
+    
     const id = parseTagId(block, "mob") || parseTagId(block, "boss");
+    
     const lootIds = [];
-    const itemMatches = [...block.matchAll(/\[(item|weapon|artifact|key|merit)::\s*(\w+)\]/g)];
-    itemMatches.forEach(m => lootIds.push(m[2].toLowerCase()));
+    const itemMatches = [...block.matchAll(lootRegex)];
+    itemMatches.forEach(m => lootIds.push(m[2].toLowerCase())); // m[2] это ID
+
     if (id) {
         mobMap[id] = {
-            link: `[[${files.mobs}#${header}|${displayName}]]`,
+            link: `[[${coreFiles.mobs}#${header}|${displayName}]]`,
             loot: lootIds
         };
     }
 });
 
-// --- ПОИСК И ГЕНЕРАЦИЯ ---
+// --- ПОИСК И ГЕНЕРАЦИЯ ТАБЛИЦЫ ---
 
-const biomeBlocks = await parseFileBlocks(files.biomes, /^## /m);
+const biomeBlocks = await parseFileBlocks(coreFiles.biomes, /^## /m);
 let foundData = false;
 
 for (const biomeBlock of biomeBlocks) {
-    // 1. Проверяем, соответствует ли этот блок целевому биому
     const biomeId = parseTagId(biomeBlock, "biome");
     if (biomeId !== targetBiomeId) continue;
 
@@ -134,31 +174,24 @@ for (const biomeBlock of biomeBlocks) {
     const biomeHeader = lines[0].trim();
     const biomeName = biomeHeader.split(" [")[0].trim();
     
-    // Разбиваем на уровни
     const levels = biomeBlock.split(/^### /m).slice(1);
     const tableRows = [];
 
-    // Ищем нужный уровень
     for (const lvlBlock of levels) {
         const lvlLines = lvlBlock.split("\n");
         const lvlHeader = lvlLines[0].trim();
-        
-        // Проверяем тег difficulty
         const diffId = parseTagId(lvlBlock, "difficulty");
         
-        // Если тег совпадает с цифрой из названия файла
         if (diffId === targetLevel) {
             foundData = true;
 
-            // --- Формирование данных для строки ---
-            
             // Название уровня
             const parts = lvlHeader.split("::");
             const name = parts.length > 1 
                 ? parts[1].trim() 
                 : lvlHeader.replace(/(?:level|lvl)\s*\d+/i, "").trim();
             const label = `${name}`;
-            const levelLink = `[[${files.biomes}#${lvlHeader}|${label}]]`;
+            const levelLink = `[[${coreFiles.biomes}#${lvlHeader}|${label}]]`;
 
             // Эффект
             const effectInfo = getEffectInfo(lvlLines);
@@ -199,17 +232,15 @@ for (const biomeBlock of biomeBlocks) {
 
             tableRows.push([levelLink, effectCol, mobsColStr, lootColStr]);
             
-            // Вывод таблицы только для этого уровня
-            dv.header(3, `Сводка по уровню: ${biomeName} - ${name}`);
             dv.table(
                 ["Локация / Уровень", "Эффект Среды", "Враги", "Лут"],
                 tableRows
             );
-            break; // Нашли - выходим из цикла уровней
+            break; 
         }
     }
     
-    if (foundData) break; // Нашли биом и уровень - выходим из цикла биомов
+    if (foundData) break; 
 }
 
 if (!foundData) {
