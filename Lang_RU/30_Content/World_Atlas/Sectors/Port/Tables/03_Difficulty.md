@@ -108,7 +108,7 @@ mobBlocks.forEach(block => {
     const lines = block.split("\n");
     const header = lines[0].trim();
     const displayName = header.replace(/\(.*\)/, "").trim();
-    const id = parseTagId(block, "mob") || parseTagId(block, "boss");
+    const id = parseTagId(block, "mob");
     const lootIds = [];
     const itemMatches = [...block.matchAll(/\[(item|weapon|artifact|key|merit)::\s*(\w+)\]/g)];
     itemMatches.forEach(m => lootIds.push(m[2].toLowerCase()));
@@ -173,8 +173,7 @@ for (const biomeBlock of biomeBlocks) {
 
             // Враги
             const mobsOnLevel = [
-                ...parseAllTags(lvlBlock, "mob"),
-                ...parseAllTags(lvlBlock, "boss")
+                ...parseAllTags(lvlBlock, "mob")
             ];
 
             let mobsColStr = mobsOnLevel.length > 0 ? "" : "*(Тихо)*";
