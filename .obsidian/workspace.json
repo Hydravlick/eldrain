@@ -6,73 +6,20 @@
       {
         "id": "685ead32e678ad9c",
         "type": "tabs",
-        "dimension": 49.559859154929576,
         "children": [
           {
             "id": "e5829f84c0eae60b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "TO-DO List.md",
-                "mode": "source",
-                "source": false
+                "file": "Cloth/541fdb871aa71098ec851e5bb12cba4f.webp"
               },
-              "icon": "lucide-file",
-              "title": "TO-DO List"
+              "icon": "lucide-image",
+              "title": "541fdb871aa71098ec851e5bb12cba4f"
             }
           }
         ]
-      },
-      {
-        "id": "33c712ee9a561eeb",
-        "type": "tabs",
-        "dimension": 50.440140845070424,
-        "children": [
-          {
-            "id": "a4626b88a1eb0717",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Lang_RU/00_Variables/Registry_Headwear.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Registry_Headwear"
-            }
-          },
-          {
-            "id": "71bd4f4f9be28551",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Lang_RU/00_Variables/Registry_Blueprints.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Registry_Blueprints"
-            }
-          },
-          {
-            "id": "1d6db2d088c18352",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Lang_RU/00_Variables/Registry_Weapons.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Registry_Weapons"
-            }
-          }
-        ],
-        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -244,8 +191,20 @@
   },
   "active": "e5829f84c0eae60b",
   "lastOpenFiles": [
-    "Weapon.md",
+    "Cloth/2f98c26c009399ac53728e12e35cfb40.webp",
+    "Cloth/ffae29b812b78fcbda1065995dcf6d5c.webp",
+    "Cloth/a05e2c452b8ac9d5e73112120edb6875.webp",
+    "Cloth/af5fdbb51f0ad99a82a9641c29ee1e5d.webp",
+    "Assets/SoborB.webp",
+    "Assets/SoborA.webp",
+    "Assets/Pasted image 20240310233800.webp",
+    "Assets/Pasted image 20240309044944.webp",
+    "Assets/Pasted image 20240309044824.webp",
+    "Assets/Pasted image 20240225145336.webp",
+    "Assets/Pasted image 20240225145558.webp",
     "TO-DO List.md",
+    "Untitled.md",
+    "Weapon.md",
     "Lang_RU/10_Mechanics/04_Inventory_Gear/Inventory_Core.md",
     "Lang_RU/10_Mechanics/04_Inventory_Gear/Equipment_Entropy.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/Damage_System.md",
@@ -268,16 +227,7 @@
     "Lang_RU/00_Variables/Registry_Biomes.md",
     "Lang_RU/00_Variables/Registry_Mobs.md",
     "Lang_RU/00_Variables/Registry_Blueprints.md",
-    "Lang_RU/00_Variables/Registry_Items.md",
-    "Lang_RU/00_Variables/Registry_Quests.md",
     "Lang_RU/20_Lore/02_Societies_Factions/~syncthing~The_Keepers.md.tmp",
-    "Фотографии/Pasted image 20240225144942.png",
-    "Фотографии/Pasted image 20240225145336.png",
-    "Фотографии/f61d51f943fa3a20cbc4fdfe429da5b8.jpg",
-    "Фотографии/a1e2279664bbee46114b9bbfc9527b37.jpg",
-    "Фотографии/ad4fe10f32778b0f619aecc75199cd93.jpg",
-    "Одежда/541fdb871aa71098ec851e5bb12cba4f.jpg",
-    "Одежда/2f98c26c009399ac53728e12e35cfb40.jpg",
     "Lang_RU/10_Mechanics/05_World_Systems/Systems",
     "Lang_RU/10_Mechanics/05_World_Systems/City_Hub",
     "Lang_RU/10_Mechanics/05_World_Systems",
@@ -287,9 +237,6 @@
     "Lang_RU/10_Mechanics/01_Player_Core",
     "Lang_RU/10_Mechanics",
     "Lang_RU/10_Mechanics/Untitled",
-    "Одежда/213074fbed5657f253af3c5e1606dc3c.jpg",
-    "Одежда/a05e2c452b8ac9d5e73112120edb6875.jpg",
-    "Одежда/af5fdbb51f0ad99a82a9641c29ee1e5d.jpg",
     "Собор.canvas",
     "Untitled.canvas",
     "Город/Кварталы/Концепты/Центр.canvas",
