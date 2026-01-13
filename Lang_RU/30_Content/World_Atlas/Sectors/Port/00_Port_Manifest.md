@@ -1,6 +1,5 @@
 ---
 type: location
-tier: 1
 status: core
 tags:
   - sector
@@ -10,7 +9,7 @@ related_mechanics:
   - "[[10_Mechanics/World/Anomaly_System]]"
   - "[[10_Mechanics/World/Extraction_Rules]]"
 ---
-
+>[!TODO] Переписать, добавив embedded links таблиц сложности, подземелья и точки интереса 
 # Сектор 01: Ржавый Порт (The Rusty Port)
 
 > *«Если Элдрейн — это корабль в бутылке, то Порт — это пробка. Здесь всё начинается, и для многих здесь всё и заканчивается.»*
