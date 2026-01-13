@@ -30,6 +30,13 @@ tags: [database, resources, loot, artifacts]
 - **Источник:** `[biome:: garden]`, `[biome:: port]`.
 - **Применение:** Бинты, компоненты легкой брони, тетива.
 
+### Морская Чешуя (Sea Scale)
+[item:: sea_scale]
+*Скользкая, но прочная чешуя мутантов.*
+- **Статы:** `[weight:: 0.1kg]` | `[stack:: 50]` | `[value:: 25]`
+- **Источник:** `[mob:: deep_minion]`, `[mob:: deep_brute]`.
+- **Применение:** Крафт водонепроницаемой брони и сумок.
+
 ### Коралловый Осколок (Coral Shard)
 [item:: coral_shard]
 *Кристаллизованная органика. Светится в темноте.*
@@ -44,6 +51,17 @@ tags: [database, resources, loot, artifacts]
 - **Источник:** `[mob:: armored_crab]`.
 - **Применение:** Крафт тяжелой брони (Plates).
 
+### Рыболовные Снасти (Fishing Gear)
+[item:: fishing_gear]
+*Крючки, леска и поплавки старого мира.*
+- **Статы:** `[weight:: 0.2kg]` | `[stack:: 5]` | `[value:: 15]`
+- **Тип:** `Junk` / `Tool Component`.
+
+### Сломанный Компас (Broken Compass)
+[item:: broken_compass]
+*Стрелка бешено вращается.*
+- **Статы:** `[weight:: 0.1kg]` | `[stack:: 10]` | `[value:: 30]`
+- **Тип:** `Junk`. Ценится механиками за латунь и магниты.
 ---
 
 ## 2. Ценности (Valuables / Junk)
@@ -67,6 +85,12 @@ tags: [database, resources, loot, artifacts]
 - **Статы:** `[weight:: 0.05kg]` | `[stack:: 20]` | `[value:: 1]`
 - **Тип:** `Junk`. Можно разбить на стекло или выкинуть.
 
+### Черное Сердце (Black Heart)
+[item:: black_heart]
+*Пульсирующий орган, пропитанный магией глубин.*
+- **Статы:** `[weight:: 2.0kg]` | `[stack:: 1]` | `[value:: 1500]`
+- **Источник:** `[mob:: mired_lord]` (Boss Drop).
+- **Применение:** Создание эпических артефактов, квест Собора.
 ---
 
 ## 3. Реликвии и Квестовые (Relics & Key Items)
@@ -88,3 +112,4 @@ tags: [database, resources, loot, artifacts]
 - **Статы:** `[weight:: 0.1kg]` | `[stack:: 1]` | `[value:: 0]`
 - **Тип:** `Key Item`. Не продается.
 - **Применение:** Открывает Сейф в каюте босса `[boss:: phantom_captain]`.
+
