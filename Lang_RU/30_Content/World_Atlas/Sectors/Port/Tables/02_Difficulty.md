@@ -39,8 +39,6 @@ const fileName = dv.current().file.name;
 const levelMatch = fileName.match(/^(\d+)/);
 const targetLevel = levelMatch ? levelMatch[1] : "1";
 
-dv.paragraph(`> **Контекст:** Биом: \`${targetBiomeId}\` | Сложность: \`${targetLevel}\``);
-
 // --- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ---
 
 // Поиск конкретного ID по тегу (возвращает первый найденный)
