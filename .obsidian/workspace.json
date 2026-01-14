@@ -11,10 +11,14 @@
             "id": "bdf8a49a2e3deff6",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "Untitled.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Untitled"
             }
           }
         ]
@@ -199,7 +203,7 @@
       "notion-like-tables:Create loom": false
     }
   },
-  "active": "bdf8a49a2e3deff6",
+  "active": "977ad2cccc7a3a5a",
   "lastOpenFiles": [
     "Lang_RU/30_Content/World_Atlas/Sectors/Port/00_Port_Manifest.md",
     "Untitled.canvas",
