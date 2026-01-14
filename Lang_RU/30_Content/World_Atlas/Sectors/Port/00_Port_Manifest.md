@@ -1,5 +1,5 @@
 ---
-cover: "[[Assets/Buildings/a1e2279664bbee46114b9bbfc9527b37.webp]]"
+cover: "[[Images/Buildings/a1e2279664bbee46114b9bbfc9527b37.webp]]"
 cssclasses:
   - cover-circle
 type: location
