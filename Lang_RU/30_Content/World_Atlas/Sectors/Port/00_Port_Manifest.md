@@ -6,12 +6,12 @@ tags:
   - starter_zone
   - verticality
   - magipunk
-cssclass: dashboard
+cover: "[[Assets/Buildings/a1e2279664bbee46114b9bbfc9527b37.webp]]"
+cssclasses:
+  - cover-circle
 ---
 
 # ⚓ Сектор 01: Ржавый Порт (The Rusty Port)
-
-![[Assets/Buildings/0f62e0d4f8277d093a8c4b64e29cb973.webp|336x412]]
 *«Если Элдрейн — это корабль в бутылке, то Порт — это пробка. Здесь всё начинается, и для многих здесь всё и заканчивается.»* — **Из записей Первого Картографа**
 
 ---
@@ -61,8 +61,6 @@ cssclass: dashboard
 ![[Lang_RU/30_Content/World_Atlas/Sectors/Port/Tables/03_Difficulty.md]]
 
 ---
-
-![[Assets/Buildings/f61d51f943fa3a20cbc4fdfe429da5b8.webp]]
 ## 🏙️ Инфраструктура и Точки Интереса
 
 ### Ключевые объекты
@@ -89,15 +87,3 @@ cssclass: dashboard
 ---
 *Связанные механики:*
 [[Lang_RU/10_Mechanics/05_World_Systems/Systems/Anomaly_System|Система Аномалий]] • [[Lang_RU/10_Mechanics/05_World_Systems/Systems/Extraction_Rules|Правила Экстракции]] • [[Lang_RU/10_Mechanics/05_World_Systems/Systems/City_Structure_Generation|Генерация Города]]
-
-```html
-<iframe
-    width="560"
-    height="315"
-    src="https://www.youtube.com/embed/L9fJM2jCPlU"
-    title="YouTube video player"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen
->sd</iframe>
-```
