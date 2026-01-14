@@ -7,7 +7,7 @@ tags:
   - resources
 related_files:
   - "[[Lang_RU/10_Mechanics/03_Economy_Resources/System_Batteries|System_Batteries]]"
-  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/Inventory_Core|Inventory_Core]]"
+  - "[[Lang_RU/10_Mechanics/02_Action_Combat/Inventory_Core|Inventory_Core]]"
 ---
 
 # Механика: Батареи (Batteries)

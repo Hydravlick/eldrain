@@ -7,7 +7,7 @@ tags:
   - roster
 related_files:
   - "[[10_Mechanics/01_Player_Core/Progression|Progression]]"
-  - "[[10_Mechanics/04_Inventory_Gear/Equipment_Entropy|Equipment_Entropy]]"
+  - "[[Lang_RU/10_Mechanics/02_Action_Combat/Equipment_Entropy|Equipment_Entropy]]"
 ---
 
 # Система: Колода Персонажей (Roster)
