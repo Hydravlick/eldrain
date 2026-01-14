@@ -8,7 +8,7 @@ tags:
   - magipunk
 cssclass: dashboard
 ---
-![[Drawing 2026-01-14 01.34.59.excalidraw]]
+
 # ⚓ Сектор 01: Ржавый Порт (The Rusty Port)
 
 ![[Assets/Buildings/0f62e0d4f8277d093a8c4b64e29cb973.webp|336x412]]

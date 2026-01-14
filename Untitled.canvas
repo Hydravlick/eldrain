@@ -1,0 +1,23 @@
+{
+	"nodes":[
+		{"id":"31aa51a675521572","type":"group","x":-20,"y":-880,"width":801,"height":440,"label":"Smthg"},
+		{"id":"61630fa340bb2d15","type":"file","file":"Assets/Buildings/a1e2279664bbee46114b9bbfc9527b37.webp","x":327,"y":-860,"width":200,"height":400},
+		{"id":"56e2746831efdd49","type":"file","file":"Assets/Buildings/f61d51f943fa3a20cbc4fdfe429da5b8.webp","x":527,"y":-860,"width":234,"height":400},
+		{
+			"id":"b288a8f968f5ef32",
+			"type":"file",
+			"file":"Assets/Buildings/0f62e0d4f8277d093a8c4b64e29cb973.webp",
+			"styleAttributes":{"border":"invisible"},
+			"x":0,
+			"y":-860,
+			"width":327,
+			"height":400
+		}
+	],
+	"edges":[],
+	"metadata":{
+		"version":"1.0-1.0",
+		"frontmatter":{},
+		"startNode":"acf8bed54f33550e"
+	}
+}
