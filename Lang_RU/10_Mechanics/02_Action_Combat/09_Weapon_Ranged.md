@@ -7,8 +7,8 @@ tags:
   - crossbow
   - harpoon
 related_files:
-  - "[[Lang_RU/10_Mechanics/02_Action_Combat/02_Ballistics_PvP|Ballistics_PvP]]"
-  - "[[Lang_RU/10_Mechanics/02_Action_Combat/03_Magic_Batteries|Magic_Batteries]]"
+  - "[[Lang_RU/10_Mechanics/02_Action_Combat/06_Ballistics_PvP|Ballistics_PvP]]"
+  - "[[Lang_RU/10_Mechanics/02_Action_Combat/10_Magic_Batteries|Magic_Batteries]]"
   - "[[Lang_RU/00_Variables/Registry_Weapons|Registry_Weapons]]"
 ---
 
