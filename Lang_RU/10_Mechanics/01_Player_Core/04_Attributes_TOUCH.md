@@ -1,8 +1,10 @@
 ---
-type: variable_registry
+type: mechanic
+system: player_core
 category: attributes
-system: magipunk_lofi
 tags: [stats, formulas, core]
+related_files:
+  - "[[Lang_RU/00_Variables/Attributes_System|Attributes_System]]"
 ---
 # Система Атрибутов: T.O.U.C.H.
 *Lo-fi адаптация под Magipunk. Характеристики описывают персонажа как сложный, изношенный механизм выживания.*
@@ -58,7 +60,7 @@ tags: [stats, formulas, core]
 ## Базовые Параметры (Base Stats)
 | Параметр               | Значение | Описание                               |
 | :--------------------- | :------- | :------------------------------------- |
-| **Base Attribute**     | 20       | Стартовое значение всех атрибутов      |
+| **Base Attribute**     | 10       | Стартовое значение всех атрибутов      |
 | **Base HP**            | 80       | Здоровье без учета брони               |
 | **Base Stamina**       | 100      | Запас выносливости                     |
 | **Base Speed**         | 5.0 m/s  | Скорость бега                          |

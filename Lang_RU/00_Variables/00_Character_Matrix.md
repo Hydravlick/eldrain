@@ -6,7 +6,7 @@ const files = {
     combos: "Lang_RU/00_Variables/Registry_Combos.md",
     weapons: "Lang_RU/00_Variables/Registry_Weapons.md",
     armor: "Lang_RU/00_Variables/Registry_Armors.md",
-    attributes: "Lang_RU/00_Variables/Attributes_System.md"
+    attributes: "Lang_RU/10_Mechanics/01_Player_Core/04_Attributes_TOUCH.md"
     // registry: удален, так как больше не нужен
 };
 
