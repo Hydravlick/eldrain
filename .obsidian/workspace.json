@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/10_Mechanics/01_Player_Core/Skills_Archetypes.md",
-                "mode": "preview",
+                "file": "Lang_RU/00_Variables/Registry_Skill_Types.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Skills_Archetypes"
+              "title": "Registry_Skill_Types"
             }
           }
         ]
@@ -255,6 +255,8 @@
   },
   "active": "1984c2ea8ec3f3cb",
   "lastOpenFiles": [
+    "Lang_RU/10_Mechanics/01_Player_Core/Skills_Archetypes.md",
+    "Lang_RU/00_Variables/Registry_Skill_Types.md",
     "Lang_RU/00_Variables/00_Character_Matrix.md",
     "Lang_RU/10_Mechanics/01_Player_Core/04_Attributes_TOUCH.md",
     "Lang_RU/10_Mechanics/01_Player_Core/06_Proficiency_Arsenal.md",
@@ -267,7 +269,6 @@
     "Lang_RU/10_Mechanics/01_Player_Core/01_Entity_Grimoire.md",
     "Lang_RU/10_Mechanics/01_Player_Core/08_Lifecycle_Roster.md",
     "Lang_RU/10_Mechanics/01_Player_Core/06_Synergy_Abilities.md",
-    "Lang_RU/10_Mechanics/01_Player_Core/Skills_Archetypes.md",
     "Lang_RU/10_Mechanics/01_Player_Core/Progression.md",
     "Lang_RU/10_Mechanics/01_Player_Core/System_Proficiency.md",
     "Lang_RU/10_Mechanics/01_Player_Core/Tags_System.md",
@@ -280,7 +281,6 @@
     "Lang_RU/20_Lore/02_Societies_Factions/The_Cathedral.md",
     "Lang_RU/20_Lore/02_Societies_Factions/Social_Political_Order.md",
     "Lang_RU/20_Lore/02_Societies_Factions/Guild_Roles_Concept.md",
-    "Lang_RU/10_Mechanics/02_Action_Combat/08_Weapon_Melee.md",
     "10_Player_Core",
     "Images/Buildings/SoborA.webp",
     "Images/Buildings/SoborB.webp",
