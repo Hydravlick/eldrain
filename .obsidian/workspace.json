@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/10_Mechanics/01_Player_Core/Progression.md",
+                "file": "Lang_RU/10_Mechanics/01_Player_Core/04_Tags_Mutation.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Progression"
+              "title": "04_Tags_Mutation"
             }
           }
         ]
@@ -241,13 +241,18 @@
   },
   "active": "1984c2ea8ec3f3cb",
   "lastOpenFiles": [
-    "Lang_RU/00_Variables/00_Archetype_Matrix.md",
-    "Lang_RU/10_Mechanics/01_Player_Core/Progression.md",
+    "Lang_RU/10_Mechanics/01_Player_Core/06_Synergy_Abilities.md",
+    "Lang_RU/10_Mechanics/01_Player_Core/07_Adaptive_Arsenal.md",
+    "Lang_RU/10_Mechanics/01_Player_Core/05_Assembly_Matrix.md",
+    "Lang_RU/20_Lore/02_Societies_Factions/The_Cathedral.md",
+    "Lang_RU/20_Lore/02_Societies_Factions/Social_Political_Order.md",
     "Lang_RU/10_Mechanics/01_Player_Core/04_Tags_Mutation.md",
+    "Lang_RU/10_Mechanics/01_Player_Core/02_Shell_Specification.md",
+    "Lang_RU/10_Mechanics/01_Player_Core/Progression.md",
+    "Lang_RU/00_Variables/00_Archetype_Matrix.md",
     "Lang_RU/10_Mechanics/01_Player_Core/Character_Deck.md",
     "Lang_RU/10_Mechanics/01_Player_Core/03_Memories_Progression.md",
     "Lang_RU/10_Mechanics/01_Player_Core/01_Entity_Grimoire.md",
-    "Lang_RU/10_Mechanics/01_Player_Core/02_Shell_Specification.md",
     "Lang_RU/10_Mechanics/01_Player_Core/Character_Specification.md",
     "Lang_RU/10_Mechanics/01_Player_Core/Skills_Archetypes.md",
     "Lang_RU/10_Mechanics/01_Player_Core/Tags_System.md",
@@ -262,11 +267,6 @@
     "Lang_RU/10_Mechanics/02_Action_Combat/03_Resonance_System.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/13_Status_Effects.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/11_Combat_Consumables.md",
-    "Lang_RU/10_Mechanics/02_Action_Combat/12_Masks_Filters.md",
-    "Lang_RU/10_Mechanics/02_Action_Combat/07_Weapon_Core.md",
-    "Lang_RU/10_Mechanics/02_Action_Combat/09_Weapon_Ranged.md",
-    "Lang_RU/10_Mechanics/02_Action_Combat/06_Ballistics_PvP.md",
-    "Lang_RU/10_Mechanics/02_Action_Combat/05_Ballistics_PvE.md",
     "10_Player_Core",
     "Images/Buildings/SoborA.webp",
     "Images/Buildings/SoborB.webp",
