@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/10_Mechanics/02_Action_Combat/08_Weapon_Melee.md",
+                "file": "Lang_RU/10_Mechanics/01_Player_Core/Tags_System.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "08_Weapon_Melee"
+              "title": "Tags_System"
             }
           }
         ]
@@ -226,6 +226,7 @@
   },
   "active": "1984c2ea8ec3f3cb",
   "lastOpenFiles": [
+    "Lang_RU/10_Mechanics/02_Action_Combat/08_Weapon_Melee.md",
     "Lang_RU/30_Content/World_Atlas/Sectors/Port/00_Port_Manifest.md",
     "TO-DO List.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/10_Magic_Batteries.md",
@@ -241,7 +242,6 @@
     "Lang_RU/10_Mechanics/02_Action_Combat/12_Masks_Filters.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/07_Weapon_Core.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/09_Weapon_Ranged.md",
-    "Lang_RU/10_Mechanics/02_Action_Combat/08_Weapon_Melee.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/06_Ballistics_PvP.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/05_Ballistics_PvE.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/08_Entropy_System.md",
