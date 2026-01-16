@@ -9,7 +9,7 @@ tags:
 related_files:
   - "[[Lang_RU/00_Variables/Registry_Consumables|Registry_Consumables]]"
   - "[[Lang_RU/10_Mechanics/02_Action_Combat/Status_Effects|Status_Effects]]"
-  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/07_Inventory_QoL|Inventory_QoL]]"
+  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/05_Inventory_QoL|Inventory_QoL]]"
 ---
 
 # Механика: Боевые Расходники

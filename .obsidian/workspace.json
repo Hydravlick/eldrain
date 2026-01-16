@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/10_Mechanics/04_Inventory_Gear/12_Stash_Architecture.md",
+                "file": "Lang_RU/10_Mechanics/04_Inventory_Gear/09_Stash_Architecture.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "12_Stash_Architecture"
+              "title": "09_Stash_Architecture"
             }
           }
         ],
@@ -69,8 +69,23 @@
               "icon": "lucide-file",
               "title": "12_Magic_Batteries"
             }
+          },
+          {
+            "id": "069b6f9a7c6462cd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Lang_RU/10_Mechanics/04_Inventory_Gear/09_Stash_Architecture.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "09_Stash_Architecture"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -253,15 +268,18 @@
       "notion-like-tables:Create loom": false
     }
   },
-  "active": "15631ca2149f4e0f",
+  "active": "069b6f9a7c6462cd",
   "lastOpenFiles": [
-    "Lang_RU/10_Mechanics/04_Inventory_Gear/09_Item_Attributes_UI.md",
-    "Lang_RU/10_Mechanics/04_Inventory_Gear/12_Stash_Architecture.md",
-    "Lang_RU/10_Mechanics/04_Inventory_Gear/11_Looting_Process.md",
+    "Lang_RU/10_Mechanics/04_Inventory_Gear/08_Looting_Process.md",
+    "Lang_RU/10_Mechanics/04_Inventory_Gear/07_Item_Attributes_UI.md",
+    "Lang_RU/10_Mechanics/04_Inventory_Gear/06_Equipment_PaperDoll.md",
+    "Lang_RU/10_Mechanics/04_Inventory_Gear/05_Inventory_QoL.md",
+    "Lang_RU/10_Mechanics/01_Player_Core/05_Ability_Synergy.md",
+    "Lang_RU/10_Mechanics/04_Inventory_Gear/09_Stash_Architecture.md",
+    "Lang_RU/10_Mechanics/01_Player_Core/06_Synergy_Abilities.md",
     "Lang_RU/10_Mechanics/03_Economy/12_Auction_House.md",
     "Lang_RU/10_Mechanics/03_Economy/16_Global_Market_Logic.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/12_Magic_Batteries.md",
-    "Lang_RU/10_Mechanics/04_Inventory_Gear/08_Equipment_PaperDoll.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/16_Threat_Thresholds.md",
     "Lang_RU/10_Mechanics/03_Economy/18_Loot_Sync_Cycle.md",
     "Lang_RU/10_Mechanics/04_Inventory_Gear/03_Physical_Weight.md",
@@ -278,9 +296,6 @@
     "Lang_RU/10_Mechanics/03_Economy/05_Sinks_Insurance.md",
     "Lang_RU/10_Mechanics/03_Economy/04_Spawn_Logic.md",
     "Lang_RU/10_Mechanics/03_Economy/03_Loot_Stabilization.md",
-    "Lang_RU/10_Mechanics/03_Economy/02_Premium_Shards.md",
-    "Lang_RU/10_Mechanics/03_Economy/01_Currency_Rez.md",
-    "Lang_RU/10_Mechanics/03_Economy/00_Economy_Core.md",
     "Lang_RU/10_Mechanics/03_Economy_Resources/01_Currency_System",
     "Lang_RU/10_Mechanics/03_Economy_Resources",
     "Lang_RU/10_Mechanics/03_Economy/Untitled",

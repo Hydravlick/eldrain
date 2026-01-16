@@ -1,10 +1,16 @@
 ---
 type: mechanic
 system: economy_storage
-tags: [stash, bank, upgrades, ui, sorting, filters]
+tags:
+  - stash
+  - bank
+  - upgrades
+  - ui
+  - sorting
+  - filters
 related_files:
   - "[[Lang_RU/10_Mechanics/03_Economy/00_Economy_Core|Economy_Core]]"
-  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/07_Inventory_QoL|Inventory_QoL]]"
+  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/05_Inventory_QoL|Inventory_QoL]]"
   - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/01_Grid_Architecture|Grid_Architecture]]"
 ---
 

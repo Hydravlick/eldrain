@@ -7,7 +7,7 @@ tags:
   - economy
   - cantrips
 related_files:
-  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/07_Inventory_QoL|Inventory_QoL]]"
+  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/05_Inventory_QoL|Inventory_QoL]]"
 ---
 
 # Система: Магия и Батареи
