@@ -8,37 +8,58 @@
   "collapse-color-groups": false,
   "colorGroups": [
     {
-      "query": "path:10_Mechanics  ",
+      "query": "path:Lang_RU/10_Mechanics/01_Player_Core  ",
       "color": {
         "a": 1,
-        "rgb": 13770426
+        "rgb": 14701138
       }
     },
     {
-      "query": "path:20_Lore ",
+      "query": "path:Lang_RU/10_Mechanics/02_Action_Combat  ",
       "color": {
         "a": 1,
-        "rgb": 3522736
+        "rgb": 14725458
       }
     },
     {
-      "query": "path:Lang_RU/30_Content  ",
+      "query": "path:Lang_RU/10_Mechanics/03_Economy  ",
       "color": {
         "a": 1,
-        "rgb": 10604611
+        "rgb": 11657298
+      }
+    },
+    {
+      "query": "path:Lang_RU/10_Mechanics/04_Inventory_Gear  ",
+      "color": {
+        "a": 1,
+        "rgb": 5431378
+      }
+    },
+    {
+      "query": "path:Lang_RU/10_Mechanics/05_World_Systems  ",
+      "color": {
+        "a": 1,
+        "rgb": 5431473
+      }
+    },
+    {
+      "query": "path:Lang_RU/00_Variables  ",
+      "color": {
+        "a": 1,
+        "rgb": 5419488
       }
     }
   ],
   "collapse-display": false,
-  "showArrow": false,
-  "textFadeMultiplier": 0,
-  "nodeSizeMultiplier": 3.16122661122661,
+  "showArrow": true,
+  "textFadeMultiplier": -2.1,
+  "nodeSizeMultiplier": 4.14954063100919,
   "lineSizeMultiplier": 0.797817047817048,
   "collapse-forces": false,
-  "centerStrength": 0.470893970893971,
+  "centerStrength": 0.429883911402322,
   "repelStrength": 20,
-  "linkStrength": 0.687110187110187,
+  "linkStrength": 0.789972224200556,
   "linkDistance": 30,
-  "scale": 0.11256886631705244,
+  "scale": 0.11256886631705237,
   "close": false
 }
