@@ -13,12 +13,47 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/10_Mechanics/03_Economy_Resources/The Signet System.md",
+                "file": "Lang_RU/10_Mechanics/02_Action_Combat/03_Resonance_System.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "The Signet System"
+              "title": "03_Resonance_System"
+            }
+          },
+          {
+            "id": "3e5982964df65cf4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Lang_RU/10_Mechanics/01_Player_Core/02_Shell_Specification.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "02_Shell_Specification"
+            }
+          }
+        ],
+        "currentTab": 1
+      },
+      {
+        "id": "294e64a3d93b49db",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5271a75d94c34aef",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Lang_RU/10_Mechanics/03_Economy/08_Blueprints.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "08_Blueprints"
             }
           }
         ]
@@ -204,34 +239,35 @@
       "notion-like-tables:Create loom": false
     }
   },
-  "active": "1984c2ea8ec3f3cb",
+  "active": "5271a75d94c34aef",
   "lastOpenFiles": [
-    "Lang_RU/10_Mechanics/03_Economy_Resources/04_Signet_Conversion.md",
+    "Lang_RU/10_Mechanics/03_Economy/Untitled.md",
+    "Lang_RU/10_Mechanics/03_Economy/08_Blueprints.md",
+    "Lang_RU/10_Mechanics/03_Economy_Resources/TRD_04_Merchant_Stock_Gen.md",
+    "Lang_RU/10_Mechanics/03_Economy_Resources/CONF_Item_Price_Database.md",
+    "Lang_RU/10_Mechanics/03_Economy/11_Signet_System.md",
+    "Lang_RU/10_Mechanics/03_Economy/10_Reputation_Rules.md",
+    "Lang_RU/10_Mechanics/03_Economy/09_Craft_Modifiers.md",
+    "Lang_RU/10_Mechanics/03_Economy/07_Vendor_Logic.md",
+    "Lang_RU/10_Mechanics/03_Economy/06_Barter_System.md",
+    "Lang_RU/10_Mechanics/03_Economy/04_Spawn_Logic.md",
+    "Lang_RU/10_Mechanics/03_Economy/05_Sinks_Insurance.md",
+    "Lang_RU/10_Mechanics/01_Player_Core/02_Shell_Specification.md",
+    "Lang_RU/10_Mechanics/03_Economy/03_Loot_Stabilization.md",
+    "Lang_RU/10_Mechanics/02_Action_Combat/03_Resonance_System.md",
+    "Lang_RU/10_Mechanics/03_Economy/01_Currency_Rez.md",
+    "Lang_RU/10_Mechanics/03_Economy/02_Premium_Shards.md",
+    "Lang_RU/10_Mechanics/03_Economy_Resources/CURR_01_Currency_Sync_Manager.md",
+    "Lang_RU/10_Mechanics/03_Economy_Resources/01_Currency_Rez.md",
+    "Lang_RU/10_Mechanics/03_Economy/00_Economy_Core.md",
     "Lang_RU/10_Mechanics/03_Economy_Resources/The Signet System.md",
+    "Lang_RU/10_Mechanics/03_Economy",
+    "Lang_RU/10_Mechanics/03_Economy_Resources/04_Signet_Conversion.md",
     "Lang_RU/10_Mechanics/03_Economy_Resources/FACT_02_Vendor_Tiers_Access.md",
     "Lang_RU/10_Mechanics/03_Economy_Resources/FACT_01_Reputation_Gain.md",
     "Lang_RU/10_Mechanics/03_Economy_Resources/BANK_02_Welfare_Progression.md",
     "Lang_RU/10_Mechanics/03_Economy_Resources/BANK_01_Shell_Loadout_Manager.md",
-    "Lang_RU/10_Mechanics/03_Economy_Resources/TRD_04_Merchant_Stock_Gen.md",
     "Lang_RU/10_Mechanics/03_Economy_Resources/TRD_03_Decorator_Affix_System.md",
-    "Lang_RU/10_Mechanics/03_Economy_Resources/TRD_02_Blueprint_Handler.md",
-    "Lang_RU/10_Mechanics/03_Economy_Resources/TRD_01_Barter_Core_Logic.md",
-    "Lang_RU/10_Mechanics/03_Economy_Resources/CURR_02_Exchange_Rates.md",
-    "Lang_RU/10_Mechanics/03_Economy_Resources/CURR_01_Currency_Sync_Manager.md",
-    "Lang_RU/10_Mechanics/03_Economy_Resources/CONF_Loot_Calculator.md",
-    "Lang_RU/10_Mechanics/03_Economy_Resources/CONF_Item_Price_Database.md",
-    "Lang_RU/00_Variables/Registry_Factions.md",
-    "Lang_RU/00_Variables/00_Faction_Reputation.md",
-    "Lang_RU/10_Mechanics/01_Player_Core/01_Entity_Grimoire.md",
-    "Lang_RU/10_Mechanics/05_World_Systems/City_Hub/Hub_UI.md",
-    "Lang_RU/10_Mechanics/05_World_Systems/Systems/Untitled.md",
-    "Lang_RU/10_Mechanics/05_World_Systems/City_Hub/Facilities_Services.md",
-    "Lang_RU/10_Mechanics/05_World_Systems/City_Hub/City_Structure.md",
-    "Lang_RU/30_Content/World_Atlas/Sectors/Port/00_Port_Manifest.md",
-    "Lang_RU/00_Variables/Registry_Weapons.md",
-    "Боевой Нож (Combat Shiv) [1H].md",
-    "Lang_RU/10_Mechanics/03_Economy_Resources/06_Sinks_Maintenance.md",
-    "Lang_RU/10_Mechanics/03_Economy_Resources/03_Market_Barter.md",
     "10_Player_Core",
     "Images/Buildings/SoborA.webp",
     "Images/Buildings/SoborB.webp",
@@ -252,7 +288,6 @@
     "Lang_RU/30_Content/World_Atlas/Sectors/Port/Tables/Untitled",
     "Images/Weapons",
     "Images/Buildings",
-    "Lang_RU/30_Content/World_Atlas/Sectors/Port/Tables",
     "Собор.canvas",
     "Город/Кварталы/Концепты/Центр.canvas",
     "Город/Кварталы/Концепты/Университет.canvas",
