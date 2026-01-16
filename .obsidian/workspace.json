@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/10_Mechanics/03_Economy/17_Loot_Distribution.md",
+                "file": "Lang_RU/10_Mechanics/03_Economy/00_Economy_Core.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "17_Loot_Distribution"
+              "title": "00_Economy_Core"
             }
           }
         ],
@@ -241,8 +241,8 @@
   },
   "active": "3e5982964df65cf4",
   "lastOpenFiles": [
-    "Lang_RU/10_Mechanics/03_Economy/Untitled.md",
     "Lang_RU/10_Mechanics/03_Economy/17_Loot_Distribution.md",
+    "Lang_RU/10_Mechanics/03_Economy/Untitled.md",
     "Lang_RU/10_Mechanics/03_Economy/16_Global_Market_Logic.md",
     "Lang_RU/10_Mechanics/03_Economy/15_P2P_Interaction.md",
     "Lang_RU/10_Mechanics/03_Economy/14_Resource_Cycle.md",
