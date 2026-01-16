@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/10_Mechanics/04_Inventory_Gear/09_Item_Attributes_UI.md",
+                "file": "Lang_RU/10_Mechanics/04_Inventory_Gear/12_Stash_Architecture.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "09_Item_Attributes_UI"
+              "title": "12_Stash_Architecture"
             }
           }
         ],
@@ -255,10 +255,11 @@
   },
   "active": "15631ca2149f4e0f",
   "lastOpenFiles": [
+    "Lang_RU/10_Mechanics/04_Inventory_Gear/09_Item_Attributes_UI.md",
+    "Lang_RU/10_Mechanics/04_Inventory_Gear/12_Stash_Architecture.md",
     "Lang_RU/10_Mechanics/04_Inventory_Gear/11_Looting_Process.md",
     "Lang_RU/10_Mechanics/03_Economy/12_Auction_House.md",
     "Lang_RU/10_Mechanics/03_Economy/16_Global_Market_Logic.md",
-    "Lang_RU/10_Mechanics/04_Inventory_Gear/09_Item_Attributes_UI.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/12_Magic_Batteries.md",
     "Lang_RU/10_Mechanics/04_Inventory_Gear/08_Equipment_PaperDoll.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/16_Threat_Thresholds.md",
@@ -280,7 +281,6 @@
     "Lang_RU/10_Mechanics/03_Economy/02_Premium_Shards.md",
     "Lang_RU/10_Mechanics/03_Economy/01_Currency_Rez.md",
     "Lang_RU/10_Mechanics/03_Economy/00_Economy_Core.md",
-    "Lang_RU/10_Mechanics/03_Economy/Untitled.md",
     "Lang_RU/10_Mechanics/03_Economy_Resources/01_Currency_System",
     "Lang_RU/10_Mechanics/03_Economy_Resources",
     "Lang_RU/10_Mechanics/03_Economy/Untitled",
