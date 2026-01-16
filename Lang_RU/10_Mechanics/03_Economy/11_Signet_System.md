@@ -1,9 +1,14 @@
 ---
 type: mechanic
 system: economy_progression
-tags: [signets, risk_reward, factions, loot, conversion]
+tags:
+  - signets
+  - risk_reward
+  - factions
+  - loot
+  - conversion
 related_files:
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/01_Currency_System/01_Currency_Rez|Currency_Rez]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy/01_Currency_Rez|Currency_Rez]]"
   - "[[Lang_RU/00_Variables/Registry_Exchange_Rates|Registry_Exchange_Rates]]"
 ---
 

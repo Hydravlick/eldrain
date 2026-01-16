@@ -1,10 +1,15 @@
 ---
 type: mechanic
 system: faction
-tags: [vendors, stock, tiers, reputation, scrips]
+tags:
+  - vendors
+  - stock
+  - tiers
+  - reputation
+  - scrips
 related_files:
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/03_Trade_Crafting/01_Barter_System|Barter_System]]"
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/04_Factions_Social/02_Signet_System|Signet_System]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy/06_Barter_System|Barter_System]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy/11_Signet_System|Signet_System]]"
 ---
 
 # Логика Торговцев (Vendor Logic)

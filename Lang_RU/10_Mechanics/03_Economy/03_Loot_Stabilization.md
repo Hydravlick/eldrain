@@ -1,10 +1,15 @@
 ---
 type: mechanic
 system: loot
-tags: [loot, extraction, entropy, stabilization, cost]
+tags:
+  - loot
+  - extraction
+  - entropy
+  - stabilization
+  - cost
 related_files:
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/00_Overview/00_Economy_Core|Economy_Core]]"
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/01_Currency_System/01_Currency_Rez|Currency_Rez]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy/00_Economy_Core|Economy_Core]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy/01_Currency_Rez|Currency_Rez]]"
 ---
 
 # Стабилизация Лута (Loot Anchoring)

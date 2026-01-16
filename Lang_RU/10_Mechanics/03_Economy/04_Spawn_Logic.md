@@ -1,11 +1,17 @@
 ---
 type: mechanic
 system: bank
-tags: [shell, spawn, loadout, foundling, projection, tags]
+tags:
+  - shell
+  - spawn
+  - loadout
+  - foundling
+  - projection
+  - tags
 related_files:
   - "[[Lang_RU/10_Mechanics/01_Player_Core/02_Shell_Specification|Shell_Specification]]"
   - "[[Lang_RU/10_Mechanics/01_Player_Core/07_Tags_System|Tags_System]]"
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/00_Overview/00_Economy_Core|Economy_Core]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy/00_Economy_Core|Economy_Core]]"
 ---
 
 # Логика Спавна и Снаряжения Оболочек

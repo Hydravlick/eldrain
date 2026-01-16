@@ -1,9 +1,13 @@
 ---
 type: mechanic
 system: economy
-tags: [durability, repair, entropy, jamming]
+tags:
+  - durability
+  - repair
+  - entropy
+  - jamming
 related_files:
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/02_Loot_Lifecycle/03_Sinks_Insurance|Sinks_Maintenance]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy/05_Sinks_Insurance|Sinks_Maintenance]]"
   - "[[Lang_RU/10_Mechanics/02_Action_Combat/08_Weapon_Core|Weapon_Core]]"
 ---
 >[!TODO] Полностью изменить

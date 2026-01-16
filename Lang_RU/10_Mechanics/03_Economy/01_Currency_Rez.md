@@ -1,10 +1,15 @@
 ---
 type: mechanic
 system: currency
-tags: [rez, wallet, inventory, sync, core]
+tags:
+  - rez
+  - wallet
+  - inventory
+  - sync
+  - core
 related_files:
   - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/02_Containers_Slots|Containers_Slots]]"
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/00_Overview/00_Economy_Core|Economy_Core]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy/00_Economy_Core|Economy_Core]]"
 ---
 
 # Валюта: Рез (Rez)

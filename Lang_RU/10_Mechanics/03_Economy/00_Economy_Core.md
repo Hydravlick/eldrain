@@ -1,12 +1,16 @@
 ---
 type: mechanic
 system: economy
-tags: [core, loop, summary, risk_reward]
+tags:
+  - core
+  - loop
+  - summary
+  - risk_reward
 related_files:
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/01_Currency_System/01_Currency_Rez|Currency_Rez]]"
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/02_Loot_Lifecycle/01_Loot_Stabilization|Loot_Stabilization]]"
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/03_Trade_Crafting/01_Barter_System|Barter_System]]"
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/02_Loot_Lifecycle/03_Sinks_Insurance|Sinks_Maintenance]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy/01_Currency_Rez|Currency_Rez]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy/03_Loot_Stabilization|Loot_Stabilization]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy/06_Barter_System|Barter_System]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy/05_Sinks_Insurance|Sinks_Maintenance]]"
 ---
 
 # Экономика: Цикл Материализации и Баланс

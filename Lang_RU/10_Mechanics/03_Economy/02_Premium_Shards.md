@@ -1,9 +1,13 @@
 ---
 type: mechanic
 system: economy
-tags: [premium, monetization, cosmetics, fair_play]
+tags:
+  - premium
+  - monetization
+  - cosmetics
+  - fair_play
 related_files:
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/00_Overview/00_Economy_Core|Economy_Core]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy/00_Economy_Core|Economy_Core]]"
 ---
 
 # Премиум: Фрагменты Воспоминаний (Memory Shards)

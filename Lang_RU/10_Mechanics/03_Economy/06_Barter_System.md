@@ -1,11 +1,15 @@
 ---
 type: mechanic
 system: trade_craft
-tags: [barter, crafting, core, tax]
+tags:
+  - barter
+  - crafting
+  - core
+  - tax
 related_files:
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/00_Overview/00_Economy_Core|Economy_Core]]"
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/01_Currency_System/01_Currency_Rez|Currency_Rez]]"
-  - "[[Lang_RU/10_Mechanics/03_Economy_Resources/03_Trade_Crafting/04_Craft_Modifiers|Craft_Modifiers]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy/00_Economy_Core|Economy_Core]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy/01_Currency_Rez|Currency_Rez]]"
+  - "[[Lang_RU/10_Mechanics/03_Economy/09_Craft_Modifiers|Craft_Modifiers]]"
 ---
 
 # Система Бартера и Заказа (Unified Trade)
