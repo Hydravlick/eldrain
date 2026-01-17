@@ -6,6 +6,7 @@ tags:
   - raid_entry
   - 3d_visuals
 related_files:
+  - "[[Lang_RU/10_Mechanics/05_World_Systems/01_Hub/00_Hub_Environment|Hub_Environment]]"
 ---
 
 # Навигация: Живая Миниатюра

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/10_Mechanics/05_World_Systems/01_Hub/01_Hub_Map_Table.md",
+                "file": "Lang_RU/10_Mechanics/05_World_Systems/02_Generation/City_Structure_Generation.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "01_Hub_Map_Table"
+              "title": "City_Structure_Generation"
             }
           }
         ]
@@ -206,10 +206,10 @@
   },
   "active": "4eda1101aee1e6ca",
   "lastOpenFiles": [
-    "Lang_RU/10_Mechanics/05_World_Systems/01_Hub/00_Hub_Environment.md",
-    "Lang_RU/10_Mechanics/05_World_Systems/01_Hub/01_Hub_Map_Table.md",
-    "Lang_RU/10_Mechanics/05_World_Systems/01_Hub/02_Hub_Services_Interaction.md",
     "Lang_RU/10_Mechanics/05_World_Systems/01_Hub/03_Time_Atmosphere.md",
+    "Lang_RU/10_Mechanics/05_World_Systems/01_Hub/02_Hub_Services_Interaction.md",
+    "Lang_RU/10_Mechanics/05_World_Systems/01_Hub/01_Hub_Map_Table.md",
+    "Lang_RU/10_Mechanics/05_World_Systems/01_Hub/00_Hub_Environment.md",
     "Lang_RU/10_Mechanics/05_World_Systems/01_Hub/01_Navigation_Map.md",
     "Lang_RU/10_Mechanics/05_World_Systems/01_Hub/00_Hub_Core_Concept.md",
     "Lang_RU/10_Mechanics/05_World_Systems/02_Generation/City_Structure_Generation.md",
