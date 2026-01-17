@@ -9,7 +9,7 @@ tags:
 related_files:
   - "[[Lang_RU/20_Lore/01_World_Foundation/The_Entity|The_Entity]]"
   - "[[Lang_RU/20_Lore/01_World_Foundation/The_Keepers|The_Keepers]]"
-  - "[[Lang_RU/10_Mechanics/05_World_Systems/Systems/Quest_Engine|Quest_Engine]]"
+  - "[[Lang_RU/10_Mechanics/05_World_Systems/04_Global_Rules/01_Quest_Engine|Quest_Engine]]"
 ---
 
 ## 4. Новая Механика ЛОРа: Реальность как Оружие
