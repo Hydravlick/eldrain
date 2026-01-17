@@ -1,9 +1,12 @@
 ---
 type: mechanic
 system: hub_ui
-tags: [map_table, vendors, economy]
-related_systems: 
-  - System_Dual_State_POIs
+tags:
+  - map_table
+  - vendors
+  - economy
+related_systems:
+  - 17_Dual_State_POIs
 ---
 
 # Интерактивный Стол Карты: Мирный Режим
