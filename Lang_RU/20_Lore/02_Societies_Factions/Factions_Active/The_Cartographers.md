@@ -7,8 +7,7 @@ tags:
   - intel
   - neutral
 related_mechanics:
-  - "[[10_Mechanics/World/Quest_Engine]]"
-  - "[[10_Mechanics/Exploration/Map_System]]"
+  - "[[Lang_RU/10_Mechanics/05_World_Systems/04_Global_Rules/01_Quest_Engine|Quest_Engine]]"
 ---
 
 # Гильдия Картографов (The Cartographers)

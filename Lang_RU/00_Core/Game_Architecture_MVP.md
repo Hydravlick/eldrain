@@ -93,7 +93,6 @@ Lang_RU/
 │   │   ├── 00_Economy_Core.md
 │   │   ├── 01_Currency_Rez.md
 │   │   ├── 02_Premium_Shards.md
-│   │   ├── 03_Loot_Stabilization.md
 │   │   ├── 04_Spawn_Logic.md
 │   │   ├── 05_Sinks_Insurance.md
 │   │   ├── 06_Barter_System.md

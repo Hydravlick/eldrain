@@ -1,7 +1,12 @@
 ---
 type: mechanic
 system: quest_engine
-tags: [contracts, ui, reputation, time_limit, map_markers]
+tags:
+  - contracts
+  - ui
+  - reputation
+  - time_limit
+  - map_markers
 related_files:
   - "[[Lang_RU/10_Mechanics/03_Economy/10_Reputation_Rules|Reputation_Rules]]"
   - "[[Lang_RU/10_Mechanics/05_World_Systems/01_Hub/01_Hub_Map_Table|Hub_Map_Table]]"
