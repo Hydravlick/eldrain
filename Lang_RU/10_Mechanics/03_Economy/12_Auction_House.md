@@ -8,7 +8,7 @@ tags:
   - listing
   - shells
 related_files:
-  - "[[Lang_RU/10_Mechanics/05_World_Systems/City_Hub/Hub_UI|Hub_UI]]"
+  - "[[Lang_RU/10_Mechanics/05_World_Systems/01_Hub/03_Diegetic_UI_Concept|Hub_UI]]"
   - "[[Lang_RU/10_Mechanics/03_Economy/01_Currency_Rez|Currency_Rez]]"
   - "[[Lang_RU/10_Mechanics/01_Player_Core/02_Shell_Specification|Shell_Specification]]"
 ---

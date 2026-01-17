@@ -87,4 +87,4 @@ tags:
 
 ---
 *Связанные механики:*
-[[Lang_RU/10_Mechanics/05_World_Systems/Systems/Anomaly_System|Система Аномалий]] • [[Lang_RU/10_Mechanics/05_World_Systems/Systems/Extraction_Rules|Правила Экстракции]] • [[Lang_RU/10_Mechanics/05_World_Systems/Systems/City_Structure_Generation|Генерация Города]]
+[[Lang_RU/10_Mechanics/05_World_Systems/03_Anomaly/Anomaly_System|Система Аномалий]] • [[Lang_RU/10_Mechanics/05_World_Systems/Systems/Extraction_Rules|Правила Экстракции]] • [[Lang_RU/10_Mechanics/05_World_Systems/02_Generation/City_Structure_Generation|Генерация Города]]

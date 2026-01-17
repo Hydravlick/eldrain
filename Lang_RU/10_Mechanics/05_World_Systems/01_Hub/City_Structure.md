@@ -6,9 +6,9 @@ tags:
   - meta
   - atmosphere
 related_files:
-  - "[[Lang_RU/10_Mechanics/05_World_Systems/City_Hub/Facilities_Services|Facilities_Services]]"
-  - "[[10_Mechanics/05_World_Systems/City_Hub/Hub_UI|Hub_UI]]"
-  - "[[Lang_RU/10_Mechanics/05_World_Systems/City_Hub/City_Structure|City_Structure]]"
+  - "[[Lang_RU/10_Mechanics/05_World_Systems/01_Hub/04_Facilities_Services|Facilities_Services]]"
+  - "[[Lang_RU/10_Mechanics/05_World_Systems/01_Hub/03_Diegetic_UI_Concept|Hub_UI]]"
+  - "[[Lang_RU/10_Mechanics/05_World_Systems/01_Hub/City_Structure|City_Structure]]"
 ---
 # Структура Города: Среда и Генерация
 
