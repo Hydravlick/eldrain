@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/00_Core/GDD_Main.md",
+                "file": "Lang_RU/00_Core/Game_Architecture_MVP.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "GDD_Main"
+              "title": "Game_Architecture_MVP"
             }
           }
         ]
@@ -204,14 +204,14 @@
       "notion-like-tables:Create loom": false
     }
   },
-  "active": "4eda1101aee1e6ca",
+  "active": "977ad2cccc7a3a5a",
   "lastOpenFiles": [
     "Lang_RU/00_Core/00_Index.md",
     "Lang_RU/00_Core/Game_Architecture_MVP.md",
+    "Lang_RU/00_Core/GDD_Main.md",
     "Lang_RU/00_Core/Vision.md",
     "Lang_RU/10_Mechanics/04_Inventory_Gear/01_Grid_Architecture.md",
     "Lang_RU/00_Core/Glossary.md",
-    "Lang_RU/00_Core/GDD_Main.md",
     "Lang_RU/10_Mechanics/04_Inventory_Gear/09_Stash_Architecture.md",
     "Lang_RU/10_Mechanics/05_World_Systems/03_Anomaly/14_Extraction_System.md",
     "Lang_RU/10_Mechanics/05_World_Systems/03_Anomaly/05_Hazards_Traps.md",
