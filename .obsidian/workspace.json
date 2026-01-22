@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lang_RU/10_Mechanics/01_Player_Core/04_Shell_Foundlings.md",
-                "mode": "source",
+                "file": "Lang_RU/10_Mechanics/03_Economy/05_Sinks_Insurance.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "04_Shell_Foundlings"
+              "title": "05_Sinks_Insurance"
             }
           }
         ],
@@ -241,6 +241,11 @@
   },
   "active": "cc3221cf1bf4d373",
   "lastOpenFiles": [
+    "Lang_RU/00_Variables/Registry_Combos.md",
+    "Lang_RU/00_Variables/00_Synergy_Map.md",
+    "Lang_RU/00_Variables/00_Archetype_Matrix.md",
+    "Lang_RU/00_Core/00_Index.md",
+    "Lang_RU/10_Mechanics/01_Player_Core/04_Shell_Foundlings.md",
     "Lang_RU/10_Mechanics/01_Player_Core/03_Shell_Projections.md",
     "Lang_RU/10_Mechanics/04_Inventory_Gear/05_Inventory_QoL.md",
     "Lang_RU/10_Mechanics/04_Inventory_Gear/03_Physical_Weight_2.md",
@@ -252,7 +257,6 @@
     "Lang_RU/10_Mechanics/01_Player_Core/09_Lifecycle_Roster.md",
     "Lang_RU/10_Mechanics/01_Player_Core/06_Attributes_TOUCH.md",
     "Lang_RU/10_Mechanics/01_Player_Core/05_Shell_Construction.md",
-    "Lang_RU/10_Mechanics/01_Player_Core/04_Shell_Foundlings.md",
     "Lang_RU/10_Mechanics/01_Player_Core/02_Shell_Specification.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/03_Resonance_System.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/16_Threat_Thresholds.md",
@@ -263,10 +267,6 @@
     "Lang_RU/10_Mechanics/02_Action_Combat/12_Magic_Batteries.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/11_Combat_Consumables.md",
     "Lang_RU/10_Mechanics/02_Action_Combat/10_Weapon_Ranged.md",
-    "Lang_RU/10_Mechanics/02_Action_Combat/09_Weapon_Melee.md",
-    "Lang_RU/10_Mechanics/02_Action_Combat/08_Weapon_Core.md",
-    "Lang_RU/10_Mechanics/02_Action_Combat/07_Entropy_System.md",
-    "Lang_RU/10_Mechanics/02_Action_Combat/06_Ballistics_PvE.md",
     "Lang_RU/10_Mechanics/05_World_Systems/02_Generation/prod",
     "Lang_RU/10_Mechanics/05_World_Systems/01_Generation",
     "Lang_RU/10_Mechanics/05_World_Systems/00_Hub",
