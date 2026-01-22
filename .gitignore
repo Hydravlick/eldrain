@@ -3,3 +3,5 @@
 .stfolder/
 .stignore
 .stversions/
+.stfolder/
+.stfolder.removed-*/

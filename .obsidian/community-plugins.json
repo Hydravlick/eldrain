@@ -1,6 +1,7 @@
 [
   "notion-like-tables",
   "obsidian-git",
-  "obsidian-kanban",
-  "dataview"
+  "dataview",
+  "image-converter",
+  "pretty-properties"
 ]
