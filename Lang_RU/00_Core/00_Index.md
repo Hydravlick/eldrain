@@ -58,7 +58,7 @@ tags: [root, index, map]
 * [[10_Mechanics/03_Economy/13_Item_Degradation|Износ Предметов]] | [[10_Mechanics/03_Economy/14_Resource_Cycle|Цикл Ресурсов]]
 
 ### 04. Inventory (Инвентарь)
-* [[10_Mechanics/04_Inventory_Gear/01_Grid_Architecture|Сетка Инвентаря]]
+* [[Lang_RU/10_Mechanics/04_Inventory_Gear/01_Inventory_Architecture|Сетка Инвентаря]]
 * [[10_Mechanics/04_Inventory_Gear/02_Containers_Slots|Контейнеры и Слоты]]
 * [[10_Mechanics/04_Inventory_Gear/03_Physical_Weight|Вес и Нагрузка]]
 * [[10_Mechanics/04_Inventory_Gear/06_Equipment_PaperDoll|Кукла Персонажа (PaperDoll)]]

@@ -1,9 +1,15 @@
 ---
 type: mechanic
 system: inventory_ui
-tags: [slots, equipment, masks, restrictions, paper_doll, fashion]
+tags:
+  - slots
+  - equipment
+  - masks
+  - restrictions
+  - paper_doll
+  - fashion
 related_files:
-  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/01_Grid_Architecture|Grid_Architecture]]"
+  - "[[Lang_RU/10_Mechanics/04_Inventory_Gear/01_Inventory_Architecture|Grid_Architecture]]"
   - "[[Lang_RU/20_Lore/05_Daily_Life/Fashion_Gear|Fashion_Gear]]"
   - "[[Lang_RU/00_Variables/Registry_Weapons|Registry_Weapons]]"
 ---
