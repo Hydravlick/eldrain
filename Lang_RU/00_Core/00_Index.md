@@ -39,11 +39,11 @@ tags: [root, index, map]
 ### 01. Player Core (Персонаж)
 * [[10_Mechanics/01_Player_Core/01_Entity_Grimoire|Сущность и Гримуар]] — Мета-прогрессия.
 * [[10_Mechanics/01_Player_Core/02_Shell_Specification|Спецификация Оболочки]] — Характеристики тела.
-* [[10_Mechanics/01_Player_Core/03_Shell_Construction|Конструктор Оболочки]] — Сборка персонажа.
-* [[10_Mechanics/01_Player_Core/04_Attributes_TOUCH|Система Атрибутов (TOUCH)]]
+* [[Lang_RU/10_Mechanics/01_Player_Core/05_Shell_Construction|Конструктор Оболочки]] — Сборка персонажа.
+* [[Lang_RU/10_Mechanics/01_Player_Core/06_Attributes_TOUCH|Система Атрибутов (TOUCH)]]
 * [[10_Mechanics/01_Player_Core/05_Ability_Synergy|Синергия Способностей]]
-* [[10_Mechanics/01_Player_Core/06_Proficiency_Arsenal|Владение Оружием]]
-* [[10_Mechanics/01_Player_Core/07_Tags_System|Система Тегов]]
+* [[Lang_RU/10_Mechanics/01_Player_Core/08_Proficiency_Arsenal|Владение Оружием]]
+* [[Lang_RU/10_Mechanics/01_Player_Core/07_Tags_System|Система Тегов]]
 
 ### 02. Action & Combat (Бой)
 * **Физика:** [[10_Mechanics/02_Action_Combat/01_Movement_Physics|Передвижение]] | [[10_Mechanics/02_Action_Combat/04_Ballistics_Armor|Баллистика и Броня]]
