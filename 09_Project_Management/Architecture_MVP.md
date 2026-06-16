@@ -12,7 +12,7 @@ tags:
 # Архитектура Проекта: Элдрейн (MVP)
 
 > **Статус:** актуальная структура после рефакторинга.
-> **Цель:** держать вертикальный срез в 9 смысловых блоках и не возвращаться к старым путям вида `10_Mechanics/...`.
+> **Цель:** держать вертикальный срез в 9 смысловых блоках и не возвращаться к старым пространствам имен.
 
 ---
 
@@ -22,15 +22,15 @@ tags:
 
 | Блок | Роль | Якорные файлы |
 |:---|:---|:---|
-| `01_Core_Vision` | Концепция, тон, основной цикл | [[01_Core_Vision/GDD_Main|GDD_Main]], [[01_Core_Vision/02_Core_Loop|Core_Loop]], [[01_Core_Vision/Glossary|Glossary]] |
-| `02_World_Lore` | Мир, Коллапс, Якорь, Сущность, магипанк | [[02_World_Lore/The_Collapse|The_Collapse]], [[02_World_Lore/The_Anchor|The_Anchor]], [[02_World_Lore/Protocol_Resonance|Protocol_Resonance]] |
-| `03_Factions_Societies` | Фракции, репутация, печати, контракты | [[03_Factions_Societies/Registry_Factions|Registry_Factions]], [[03_Factions_Societies/Reputation_Rules|Reputation_Rules]], [[03_Factions_Societies/Quest_Engine|Quest_Engine]] |
-| `04_Player_Entities` | Оболочки, расы, классы, TOUCH, синергии | [[04_Player_Entities/Shell_Specification|Shell_Specification]], [[04_Player_Entities/_Registries/Registry_Races|Registry_Races]], [[04_Player_Entities/_Registries/Registry_Specs|Registry_Specs]], [[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile_Pipeline]] |
-| `05_Combat_Survival` | Бой, магострелы, батареи, статусы, выживание | [[05_Combat_Survival/Weapon_Core|Weapon_Core]], [[05_Combat_Survival/Magic_Batteries|Magic_Batteries]], [[05_Combat_Survival/Status_Effects|Status_Effects]] |
-| `06_Economy_Loot` | Рез, рынок, бартер, аукцион, стабилизация лута | [[06_Economy_Loot/Economy_Core|Economy_Core]], [[06_Economy_Loot/Currency_Rez|Currency_Rez]], [[06_Economy_Loot/Loot_Distribution|Loot_Distribution]] |
-| `07_Gear_Inventory` | Инвентарь, экипировка, предметы, крафт-реестры | [[07_Gear_Inventory/Inventory_Architecture|Inventory_Architecture]], [[07_Gear_Inventory/Equipment_PaperDoll|Equipment_PaperDoll]], [[07_Gear_Inventory/_Registries/Registry_Items|Registry_Items]] |
-| `08_World_Generation` | Сервер, таймеры, аномалии, вход, выход, атлас | [[08_World_Generation/Generation/07_Server_Lifecycle|Server_Lifecycle]], [[08_World_Generation/Generation/08_Gate_Check|Gate_Check]], [[08_World_Generation/Anomaly/Anomaly_System|Anomaly_System]] |
-| `09_Project_Management` | Канбан, риски, планы, техническая кухня | [[09_Project_Management/TODO|TODO]], [[09_Project_Management/Risk_Register|Risk_Register]], [[09_Project_Management/Architecture_MVP|Architecture_MVP]] |
+| `01_Core_Vision` | Концепция, тон, основной цикл | [[01_Core_Vision/GDD_Main]], [[01_Core_Vision/02_Core_Loop]], [[01_Core_Vision/Glossary]] |
+| `02_World_Lore` | Мир, Коллапс, Якорь, Сущность, магипанк | [[02_World_Lore/The_Collapse]], [[02_World_Lore/The_Anchor]], [[02_World_Lore/Protocol_Resonance]] |
+| `03_Factions_Societies` | Фракции, репутация, печати, контракты | [[03_Factions_Societies/Registry_Factions]], [[03_Factions_Societies/Reputation_Rules]], [[03_Factions_Societies/Quest_Engine]] |
+| `04_Player_Entities` | Оболочки, расы, классы, TOUCH, синергии | [[04_Player_Entities/Shell_Specification]], [[04_Player_Entities/_Registries/Registry_Races]], [[04_Player_Entities/_Registries/Registry_Specs]], [[04_Player_Entities/Combat_Profile_Pipeline]] |
+| `05_Combat_Survival` | Бой, магострелы, батареи, статусы, выживание | [[05_Combat_Survival/Weapon_Core]], [[05_Combat_Survival/Magic_Batteries]], [[05_Combat_Survival/Status_Effects]] |
+| `06_Economy_Loot` | Рез, рынок, бартер, аукцион, стабилизация лута | [[06_Economy_Loot/Economy_Core]], [[06_Economy_Loot/Currency_Rez]], [[06_Economy_Loot/Loot_Distribution]] |
+| `07_Gear_Inventory` | Инвентарь, экипировка, предметы, крафт-реестры | [[07_Gear_Inventory/Inventory_Architecture]], [[07_Gear_Inventory/Equipment_PaperDoll]], [[07_Gear_Inventory/_Registries/Registry_Items]] |
+| `08_World_Generation` | Сервер, таймеры, аномалии, вход, выход, атлас | [[08_World_Generation/Generation/07_Server_Lifecycle]], [[08_World_Generation/Generation/08_Gate_Check]], [[08_World_Generation/Anomaly/Anomaly_System]] |
+| `09_Project_Management` | Канбан, риски, планы, техническая кухня | [[09_Project_Management/TODO]], [[09_Project_Management/Risk_Register]], [[09_Project_Management/Architecture_MVP]] |
 
 ---
 
