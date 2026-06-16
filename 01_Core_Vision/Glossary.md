@@ -1,5 +1,7 @@
 ---
 type: core
+status: active
+system: core_vision
 tags: [glossary, definitions]
 ---
 # Глоссарий Элдрейна

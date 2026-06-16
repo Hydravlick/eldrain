@@ -1,6 +1,7 @@
 ---
 type: project_management
 status: active
+system: project_management
 tags: [risk_register, weak_sides, decisions, mvp]
 related_files:
   - "[[Weak Sides]]"
@@ -8,7 +9,6 @@ related_files:
   - "[[06_Economy_Loot/Currency_Rez]]"
   - "[[04_Player_Entities/_Registries/Registry_Combos]]"
 ---
-
 # Risk Register: Weak Sides Decisions
 
 ## Решения MVP

@@ -1,3 +1,10 @@
+---
+type: matrix
+status: active
+system: player_entities_matrix
+tags: [dataview, matrix]
+---
+
 ```dataviewjs
 (async () => {
     const files = {
@@ -43,7 +50,7 @@
     }
 
     function parseArsenalEntries(text) {
-        const regex = /\[type::\s*([^\]]+)\][^\n]*?\[prof::\s*([^\]]+)\]/g;
+        const regex = /\[arsenal_type::\s*([^\]]+)\][^\n]*?\[prof::\s*([^\]]+)\]/g;
         return [...text.matchAll(regex)].map(m => ({
             type: cleanId(m[1]),
             prof: parseInt(m[2].trim()) || 0

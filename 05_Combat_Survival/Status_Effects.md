@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: action_combat
 tags:
   - rules
@@ -10,7 +11,6 @@ related_files:
   - "[[05_Combat_Survival/Registry_StatusEffects|Registry_StatusEffects]]"
   - "[[05_Combat_Survival/Damage_System|Damage_System]]"
 ---
-
 # Механика: Статусные Эффекты
 
 ## 1. Архитектура Наложения (Application Logic)

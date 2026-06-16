@@ -1,6 +1,7 @@
 ---
 type: alias
 status: active
+system: core_vision
 tags: [loop, alias, navigation]
 canonical: "[[01_Core_Vision/02_Core_Loop]]"
 ---

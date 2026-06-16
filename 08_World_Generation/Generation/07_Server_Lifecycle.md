@@ -1,5 +1,6 @@
 ---
 type: mechanic
+status: active
 system: server_clock
 tags: [timer, wipe, difficulty_tiers, gear_gate, pacing]
 related_files:
@@ -7,7 +8,6 @@ related_files:
   - "[[08_World_Generation/Anomaly/00_Anomaly_Core_Loop]]"
   - "[[01_Core_Vision/02_Core_Loop]]"
 ---
-
 # Жизненный Цикл Сервера (Server Lifecycle)
 
 ## 1. Жесткая Константа: 6 Часов

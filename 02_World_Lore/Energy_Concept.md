@@ -1,6 +1,8 @@
-﻿---
+---
 type: lore
 category: foundation
+status: active
+system: world_lore
 tags:
   - magic
   - technology
@@ -11,7 +13,6 @@ related_files:
   - "[[05_Combat_Survival/Magic_Batteries|System_Batteries]]"
   - "[[06_Economy_Loot/Economy_Core|Economy_City]]"
 ---
-
 # Концепция: Энергия и Батареи (The Meaning Trap)
 
 > *«Ты думаешь, это электричество? Нет, салага. В этой колбе заперт чей-то летний день. Чья-то надежда. Чья-то жизнь. Мы сжигаем само существование, чтобы твоя пушка выстрелила огнем. Не промахнись.»*

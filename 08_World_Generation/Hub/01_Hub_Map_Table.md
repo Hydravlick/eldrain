@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: hub_navigation
 tags:
   - map
@@ -8,7 +9,6 @@ tags:
 related_files:
   - "[[08_World_Generation/Hub/00_Hub_Environment|Hub_Environment]]"
 ---
-
 # Навигация: Живая Миниатюра
 
 ## 1. 3D-Карта Города

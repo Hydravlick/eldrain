@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: player_core
 tags:
   - tags
@@ -9,7 +10,6 @@ tags:
 related_files:
   - "[[04_Player_Entities/_Registries/Registry_Tags|Registry_Tags]]"
 ---
-
 # Система Тегов: Мутации и Черты
 
 ## 1. Что такое Тег?

@@ -11,7 +11,6 @@ related_files:
   - "[[04_Player_Entities/Two_Paradox_Vector_Matrix]]"
   - "[[04_Player_Entities/_Registries/Registry_Combos]]"
 ---
-
 # Combat Profile Pipeline
 
 > Канон расчета Оболочки: `Race + Spec -> Combo P/Q/E -> Allowed Arsenal -> Tags -> Proficiency Gates -> Combat Profile`.
@@ -41,8 +40,8 @@ MVP использует 9 curated-комбо как сбалансирован�
 ```markdown
 [req_race:: rat]
 [req_spec:: scout]
-[type:: blade] | [prof:: 2]
-[type:: arcanegun] | [prof:: 1]
+[arsenal_type:: blade] | [prof:: 2]
+[arsenal_type:: arcanegun] | [prof:: 1]
 ```
 
 - **P** - пассивка: расовый талант, искаженный специализацией.
@@ -56,8 +55,8 @@ MVP использует 9 curated-комбо как сбалансирован�
 Для MVP итоговый арсенал берется из combo-блока:
 
 ```markdown
-[type:: blade] | [prof:: 2]
-[type:: arcanegun] | [prof:: 1]
+[arsenal_type:: blade] | [prof:: 2]
+[arsenal_type:: arcanegun] | [prof:: 1]
 ```
 
 Это уже отражает `Allowed = (RaceList union SpecList) - RaceBanned`, но без необходимости прямо сейчас дробить RaceList и SpecList по отдельным файлам.

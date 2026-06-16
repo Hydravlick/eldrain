@@ -1,12 +1,12 @@
-﻿---
+---
 type: mechanic
+status: active
 system: social
 tags: [trading, dropping, griefing, loot_share]
 related_files:
   - "[[06_Economy_Loot/Auction_House|Auction_House]]"
   - "[[04_Player_Entities/Spawn_Logic|Spawn_Logic]]"
 ---
-
 # Прямое Взаимодействие (P2P Mechanics)
 
 ## 1. Отсутствие "Окна Обмена"

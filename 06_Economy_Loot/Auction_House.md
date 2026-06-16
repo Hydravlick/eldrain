@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: trade
 tags:
   - auction
@@ -12,7 +13,6 @@ related_files:
   - "[[06_Economy_Loot/Currency_Rez|Currency_Rez]]"
   - "[[04_Player_Entities/Shell_Specification|Shell_Specification]]"
 ---
-
 # Аукционный Дом (The Broker)
 
 ## 1. Принцип Работы

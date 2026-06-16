@@ -1,6 +1,7 @@
 ---
 type: registry
 status: active
+system: player_entities_registry
 registry_type: tags
 tags: [customization, modifiers, dna, loot]
 ---

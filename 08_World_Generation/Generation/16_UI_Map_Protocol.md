@@ -1,9 +1,9 @@
 ---
 type: tech_spec
+status: active
 system: ui_hud
 tags: [minimap, json, data_stream]
 ---
-
 # Протокол Данных Мини-карты
 
 ## 1. Проблема Динамики

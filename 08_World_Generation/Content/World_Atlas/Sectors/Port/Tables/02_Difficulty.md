@@ -1,4 +1,11 @@
-﻿```dataviewjs
+---
+type: content_table
+status: active
+system: world_atlas
+tags: [world_atlas, difficulty]
+---
+
+```dataviewjs
 // --- НАСТРОЙКИ ПУТЕЙ ---
 // Список всех файлов, где могут быть определения предметов/лута
 const registryFiles = {

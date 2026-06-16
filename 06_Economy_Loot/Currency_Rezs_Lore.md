@@ -1,6 +1,8 @@
 ---
 type: lore
 category: daily_life
+status: active
+system: economy
 tags:
   - economy
   - currency

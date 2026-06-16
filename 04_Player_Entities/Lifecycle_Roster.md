@@ -1,11 +1,11 @@
-﻿---
+---
 type: mechanic
+status: active
 system: player_core
 tags: [roster, permadeath, extraction, foundlings]
 related_files:
   - "[[04_Player_Entities/Entity_Grimoire|Entity_Grimoire]]"
 ---
-
 # Жизненный Цикл Оболочки
 
 ## 1. Колода Оболочек (Shell Deck)

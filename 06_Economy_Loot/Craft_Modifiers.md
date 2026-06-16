@@ -1,11 +1,11 @@
-﻿---
+---
 type: mechanic
+status: active
 system: trade_craft
 tags: [crafting, rng, upgrades, orbs, affixes]
 related_files:
   - "[[07_Gear_Inventory/Resonance_Value|Resonance_Value]]"
 ---
-
 # Модификаторы Крафта (Decorator System)
 
 ## 1. Слоты Декораторов

@@ -1,11 +1,11 @@
-﻿---
+---
 type: mechanic
+status: active
 system: trade_craft
 tags: [blueprints, knowledge, recipe]
 related_files:
   - "[[07_Gear_Inventory/_Registries/Registry_Blueprints|Registry_Blueprints]]"
 ---
-
 # Система Чертежей (Blueprints)
 
 ## 1. Типы Чертежей

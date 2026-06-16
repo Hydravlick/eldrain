@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: economy_storage
 tags:
   - stash
@@ -13,7 +14,6 @@ related_files:
   - "[[07_Gear_Inventory/Inventory_QoL|Inventory_QoL]]"
   - "[[07_Gear_Inventory/Inventory_Architecture|Grid_Architecture]]"
 ---
-
 # Архитектура Схрона и Менеджмент (Stash & Organization)
 
 ## 1. Концепция: Общий Склад (Account-Wide)

@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: action_combat
 tags:
   - melee
@@ -10,7 +11,6 @@ related_files:
   - "[[05_Combat_Survival/01_Movement_Acoustics|Movement_Acoustics]]"
   - "[[05_Combat_Survival/Registry_Weapons|Registry_Weapons]]"
 ---
-
 # Оружие: Ближний Бой (Melee)
 
 ## 1. Физика и Ограничения

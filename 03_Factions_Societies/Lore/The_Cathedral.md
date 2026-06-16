@@ -1,6 +1,8 @@
 ---
 type: lore
 category: faction
+status: active
+system: factions_lore
 tags:
   - religion
   - philosophy
@@ -12,7 +14,6 @@ related_mechanics:
   - "[[10_Mechanics/Combat/Status_Effects]]"
   - "[[10_Mechanics/City/Faction_Reputation]]"
 ---
-
 # Собор Всех Вер (The Cathedral of All Faiths)
 
 > *«Я молюсь Защитнику. Мой сосед — Искателю. Торговец на углу чтит Созидателя. Мы все правы. Мы все ошибаемся. Но пока мы молимся — мы не сходим с ума от понимания, где находимся.»*

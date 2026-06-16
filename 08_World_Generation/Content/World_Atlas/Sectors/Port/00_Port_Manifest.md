@@ -1,16 +1,16 @@
-﻿---
+---
 cover: "[[Images/Buildings/a1e2279664bbee46114b9bbfc9527b37.webp]]"
 cssclasses:
   - cover-circle
 type: location
 status: presentation
+system: world_atlas
 tags:
   - sector
   - starter_zone
   - verticality
   - magipunk
 ---
-
 # ⚓ Сектор 01: Ржавый Порт (The Rusty Port)
 >*«Если Элдрейн — это корабль в бутылке, то Порт — это пробка. Здесь всё начинается, и для многих здесь всё и заканчивается.»* — **Из записей Первого Картографа**
 

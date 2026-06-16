@@ -1,6 +1,8 @@
 ---
 type: lore
 category: faction
+status: active
+system: factions_lore
 tags:
   - secret_service
   - high_tech

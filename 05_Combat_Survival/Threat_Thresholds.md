@@ -1,12 +1,12 @@
 ---
 type: mechanic
+status: active
 system: world_systems
 tags:
   - aggression
   - ai
   - spawning
 ---
-
 # Механика: Пороги Угрозы (Threat Thresholds)
 
 ## 1. Расчет Угрозы

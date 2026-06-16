@@ -1,4 +1,11 @@
-﻿```dataviewjs
+---
+type: matrix
+status: active
+system: world_generation_matrix
+tags: [dataview, matrix]
+---
+
+```dataviewjs
 // --- НАСТРОЙКИ ПУТЕЙ ---
 const files = {
     biomes: "08_World_Generation/_Registries/Registry_Biomes.md",

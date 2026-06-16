@@ -1,10 +1,10 @@
 ---
 type: registry
 status: active
+system: combat_survival_registry
 registry_type: status_effects
 tags: [database, combat, mechanics, debuffs]
 ---
-
 # Реестр: Статусные Эффекты (Status Effects)
 
 > **Логика:** Эффекты делятся на **Buffs** (Положительные) и **Debuffs** (Отрицательные).

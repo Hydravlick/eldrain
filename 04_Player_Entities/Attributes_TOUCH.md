@@ -1,5 +1,6 @@
 ---
 type: mechanic
+status: active
 system: player_core
 category: attributes
 tags: [stats, touch, hidden_substats, arcanegun_combat, formulas, core]
@@ -12,7 +13,6 @@ related_files:
   - "[[04_Player_Entities/_Registries/Registry_Combos|Registry_Combos]]"
   - "[[04_Player_Entities/_Registries/Registry_Tags|Registry_Tags]]"
 ---
-
 # Система Атрибутов: T.O.U.C.H.
 
 T.O.U.C.H. - это видимый фасад тела Пешки. Игрок видит пять характеристик, но боевые, лутовые и магострельные правила работают через скрытые производные параметры.

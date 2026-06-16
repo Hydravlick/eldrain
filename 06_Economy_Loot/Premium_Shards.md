@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: economy
 tags:
   - premium
@@ -9,7 +10,6 @@ tags:
 related_files:
   - "[[06_Economy_Loot/Economy_Core|Economy_Core]]"
 ---
-
 # Премиум: Фрагменты Воспоминаний (Memory Shards)
 
 ## 1. Концепция

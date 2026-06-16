@@ -1,5 +1,6 @@
 ---
 type: mechanic
+status: active
 system: action_combat
 tags:
   - movement
@@ -7,7 +8,6 @@ tags:
   - inertia
   - stamina
 ---
-
 # Механика: Физика Движения
 
 ## 1. Базовая Локомоция (Controls)

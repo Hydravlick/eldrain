@@ -1,9 +1,9 @@
 ---
 type: mechanic
+status: active
 system: anticheat
 tags: [security, validation, bans, lore_friendly]
 ---
-
 # Целостность Реальности (Security & Validation)
 
 ## 1. Серверный Авторитаризм

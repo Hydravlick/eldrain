@@ -1,5 +1,6 @@
 ---
 type: mechanic
+status: active
 system: action_combat
 tags:
   - armor
@@ -8,7 +9,6 @@ tags:
   - pvp
   - pve
 ---
-
 > [!TODO] 📉 Задачи: Кривая Урона (Damage Curve)
 > Реализация плавной математики вместо ступенчатой логики.
 > 

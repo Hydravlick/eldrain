@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: action_combat
 tags:
   - pve
@@ -8,7 +9,6 @@ tags:
 related_files:
   - "[[08_World_Generation/_Registries/Registry_Mobs|Registry_Mobs]]"
 ---
-
 # Баллистика PvE: Эффективная Мощь
 
 ## 1. Концепция "Склона" (The Slope)

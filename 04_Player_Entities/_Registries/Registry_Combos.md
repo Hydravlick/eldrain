@@ -1,17 +1,17 @@
 ---
 type: registry
 status: active
+system: player_entities_registry
 registry_type: combos
 tags: [database, builds, proficiency]
 ---
-
 # Реестр: Синергии и Мутации (Combo Blocks)
 
 > **Логика:** Здесь описывается, как Раса (Биология) искажает стандартные навыки Класса.
 > **Ability Model:** `Race x Spec`: класс дает шаблон действия, раса меняет биологическое исполнение.
 > **Combat Profile:** активные векторы и общая слабость вычисляются из `Registry_Races` + `Registry_Specs`.
 > **Mastery:** Уровень владения (`0` - нет, `1` - штраф, `2` - норма, `3+` - открыт вектор оружия).
-> **Tags:** `[type:: weapon_type]` - ключи должны соответствовать Registry_Weapon.
+> **Tags:** `[arsenal_type:: weapon_type]` - ключи должны соответствовать Registry_Weapon.
 > **MVP Scope:** реестр хранит 9 curated-комбо для первой сбалансированной версии. Пустые пары 5x5 не являются багом Dataview, пока не утверждено расширение матрицы до 25.
 
 ---
@@ -21,8 +21,8 @@ tags: [database, builds, proficiency]
 [id:: template_combo]
 [req_race:: template_race]
 [req_spec:: template_spec]
-[type:: blade] | [prof:: 2]
-[type:: light_armor] | [prof:: 1]
+[arsenal_type:: blade] | [prof:: 2]
+[arsenal_type:: light_armor] | [prof:: 1]
 [condition_bonus:: trigger: substat +0]
 [tradeoff:: none]
 *Короткое описание фантазии архетипа.*
@@ -37,10 +37,10 @@ tags: [database, builds, proficiency]
 [condition_bonus:: while_stationary: brace +25, recoil_damp +20, heavy_ready +10]
 [tradeoff:: relocation_speed -15, heat +5]
 - **Арсенал (Weaponry):**
-	- `[type:: arcanegun]` | `[prof:: 2]` (тяжелые конденсаторы, гарпунные драйверы, веерные эмиттеры)
-	- `[type:: shield]` | `[prof:: 1]` (Ростовые щиты - только со штрафом)
+	- `[arsenal_type:: arcanegun]` | `[prof:: 2]` (тяжелые конденсаторы, гарпунные драйверы, веерные эмиттеры)
+	- `[arsenal_type:: shield]` | `[prof:: 1]` (Ростовые щиты - только со штрафом)
 - **Экипировка (Armor):**
-	- `[type:: heavy_plate]` | `[prof:: 2]` (Тяжелая броня)
+	- `[arsenal_type:: heavy_plate]` | `[prof:: 2]` (Тяжелая броня)
 
 #### (P): `Живой Дот`
   [desc:: При стрельбе без движения более 2 сек. отдача исчезает, а входящий урон снижается на 20%.]
@@ -58,11 +58,11 @@ tags: [database, builds, proficiency]
 [condition_bonus:: after_movement: spark_gain +20, battery_efficiency +10]
 [tradeoff:: resonance +5, backlash_risk +6]
 - **Арсенал (Weaponry):**
-	- `[type:: catalyst]` | `[prof:: 2]` (Проводники магии)
-	- `[type:: arcanegun]` | `[prof:: 1]` (Легкие магострелы)
-	- `[type:: blade]` | `[prof:: 1]` (Кинжалы)
+	- `[arsenal_type:: catalyst]` | `[prof:: 2]` (Проводники магии)
+	- `[arsenal_type:: arcanegun]` | `[prof:: 1]` (Легкие магострелы)
+	- `[arsenal_type:: blade]` | `[prof:: 1]` (Кинжалы)
 - **Экипировка (Armor):**
-	- `[type:: ether_weave]` | `[prof:: 2]` (Эфирная ткань)
+	- `[arsenal_type:: ether_weave]` | `[prof:: 2]` (Эфирная ткань)
 
 #### (P): `Статический Заряд`
   [desc:: Каждые 10 метров бега генерируют 1 стак "Искры". Заклинания тратят Искры вместо маны.]
@@ -80,11 +80,11 @@ tags: [database, builds, proficiency]
 [condition_bonus:: inside_cloud: toxin_filter +20, healing_output +10, field_craft_speed +8]
 [tradeoff:: dry_zone_output -8]
 - **Арсенал (Weaponry):**
-	- `[type:: catalyst]` | `[prof:: 2]` (Распылители/Кадило)
-	- `[type:: arcanegun]` | `[prof:: 1]` (ручные разрядники)
+	- `[arsenal_type:: catalyst]` | `[prof:: 2]` (Распылители/Кадило)
+	- `[arsenal_type:: arcanegun]` | `[prof:: 1]` (ручные разрядники)
 - **Экипировка (Armor):**
-	- `[type:: hazard_suit]` | `[prof:: 2]` (Химзащита)
-	- `[type:: composite_rig]` | `[prof:: 1]` (Разгрузка медика)
+	- `[arsenal_type:: hazard_suit]` | `[prof:: 2]` (Химзащита)
+	- `[arsenal_type:: composite_rig]` | `[prof:: 1]` (Разгрузка медика)
 
 #### (P): `Слизистая Оболочка`
   [desc:: Союзники рядом получают иммунитет к ядам и медленную регенерацию HP.]
@@ -102,11 +102,11 @@ tags: [database, builds, proficiency]
 [condition_bonus:: while_stationary: weakspot_read +20, stillness_camo +25]
 [tradeoff:: revealed_stagger +10]
 - **Арсенал (Weaponry):**
-	- `[type:: arcanegun]` | `[prof:: 2]` (игольные арбалеты, тихие конденсаторы)
-	- `[type:: blade]` | `[prof:: 2]` (Мечи/Ножи)
+	- `[arsenal_type:: arcanegun]` | `[prof:: 2]` (игольные арбалеты, тихие конденсаторы)
+	- `[arsenal_type:: blade]` | `[prof:: 2]` (Мечи/Ножи)
 - **Экипировка (Armor):**
-	- `[type:: composite_rig]` | `[prof:: 1]` (Легкая разгрузка)
-	- `[type:: ether_weave]` | `[prof:: 2]` (Плащ-хамелеон)
+	- `[arsenal_type:: composite_rig]` | `[prof:: 1]` (Легкая разгрузка)
+	- `[arsenal_type:: ether_weave]` | `[prof:: 2]` (Плащ-хамелеон)
 
 #### (P): `Хладнокровие`
   [desc:: В неподвижности персонаж полностью невидим для глаз и тепловизоров. Первый выстрел из инвиза: +100% урон.]
@@ -124,11 +124,11 @@ tags: [database, builds, proficiency]
 [condition_bonus:: carrying_scrap: armor_sync +15, improvised_cover +15]
 [tradeoff:: resonance +3, movement_noise +10]
 - **Арсенал (Weaponry):**
-	- `[type:: blunt]` | `[prof:: 2]` (Молоты/Ключи)
-	- `[type:: shield]` | `[prof:: 2]` (Импровизированные щиты)
-	- `[type:: polearm]` | `[prof:: 1]` (Трубы/Копья)
+	- `[arsenal_type:: blunt]` | `[prof:: 2]` (Молоты/Ключи)
+	- `[arsenal_type:: shield]` | `[prof:: 2]` (Импровизированные щиты)
+	- `[arsenal_type:: polearm]` | `[prof:: 1]` (Трубы/Копья)
 - **Экипировка (Armor):**
-	- `[type:: heavy_plate]` | `[prof:: 2]` (Самодельная броня)
+	- `[arsenal_type:: heavy_plate]` | `[prof:: 2]` (Самодельная броня)
 
 #### (P): `Барахольщик`
   [desc:: Каждая единица "Хлама" (Junk) в инвентаре дает +1 к Броне (макс +20).]
@@ -146,10 +146,10 @@ tags: [database, builds, proficiency]
 [condition_bonus:: after_stagger: heat_sink +10, cell_swap_speed +12]
 [tradeoff:: overheat_spike +10, bloom +8]
 - **Арсенал (Weaponry):**
-	- `[type:: arcanegun]` | `[prof:: 2]` (ручные разрядники, конденсаторы, короткие эмиттеры)
-	- `[type:: blade]` | `[prof:: 1]` (Боевые ножи)
+	- `[arsenal_type:: arcanegun]` | `[prof:: 2]` (ручные разрядники, конденсаторы, короткие эмиттеры)
+	- `[arsenal_type:: blade]` | `[prof:: 1]` (Боевые ножи)
 - **Экипировка (Armor):**
-	- `[type:: composite_rig]` | `[prof:: 2]` (легкий боевой риг)
+	- `[arsenal_type:: composite_rig]` | `[prof:: 2]` (легкий боевой риг)
 
 #### (P): `Twitch Reflex`
   [desc:: После убийства или Stagger цель сбрасывает часть Heat и ускоряет замену батареи на 2 сек.]
@@ -167,11 +167,11 @@ tags: [database, builds, proficiency]
 [condition_bonus:: in_tight_space: vent_fit +25, loot_speed +15, lockwork +10]
 [tradeoff:: open_field_brace -10]
 - **Арсенал (Weaponry):**
-	- `[type:: blade]` | `[prof:: 2]` (Кинжалы/Заточки)
-	- `[type:: arcanegun]` | `[prof:: 1]` (ручные разрядники)
+	- `[arsenal_type:: blade]` | `[prof:: 2]` (Кинжалы/Заточки)
+	- `[arsenal_type:: arcanegun]` | `[prof:: 1]` (ручные разрядники)
 - **Экипировка (Armor):**
-	- `[type:: composite_rig]` | `[prof:: 2]` (Легкая кожа)
-	- `[type:: hazard_suit]` | `[prof:: 1]` (Фильтры)
+	- `[arsenal_type:: composite_rig]` | `[prof:: 2]` (Легкая кожа)
+	- `[arsenal_type:: hazard_suit]` | `[prof:: 1]` (Фильтры)
 
 #### (P): `Клаустрофилия`
   [desc:: В узких коридорах и в темноте скорость передвижения и регенерация стамины удвоены.]
@@ -189,10 +189,10 @@ tags: [database, builds, proficiency]
 [condition_bonus:: after_element_hit: armor_sync +15, heat_warning +12]
 [tradeoff:: cold_start_speed -8]
 - **Арсенал (Weaponry):**
-	- `[type:: polearm]` | `[prof:: 2]` (Алебарды/Трезубцы)
-	- `[type:: shield]` | `[prof:: 2]` (Щиты)
+	- `[arsenal_type:: polearm]` | `[prof:: 2]` (Алебарды/Трезубцы)
+	- `[arsenal_type:: shield]` | `[prof:: 2]` (Щиты)
 - **Экипировка (Armor):**
-	- `[type:: heavy_plate]` | `[prof:: 2]` (Усиление чешуи пластинами)
+	- `[arsenal_type:: heavy_plate]` | `[prof:: 2]` (Усиление чешуи пластинами)
 
 #### (P): `Адаптивная Чешуя`
   [desc:: Получив канальный или средовой урон (огонь/ток/кислота), получает 50% резист к этому типу урона на 10 сек.]
@@ -210,11 +210,11 @@ tags: [database, builds, proficiency]
 [condition_bonus:: treating_ally: healing_output +12, backlash_resist +8]
 [tradeoff:: ally_pain +5]
 - **Арсенал (Weaponry):**
-	- `[type:: catalyst]` | `[prof:: 2]` (шприц-катализаторы)
-	- `[type:: blade]` | `[prof:: 1]` (Скальпели)
+	- `[arsenal_type:: catalyst]` | `[prof:: 2]` (шприц-катализаторы)
+	- `[arsenal_type:: blade]` | `[prof:: 1]` (Скальпели)
 - **Экипировка (Armor):**
-	- `[type:: hazard_suit]` | `[prof:: 2]` (Костюм химзащиты)
-	- `[type:: composite_rig]` | `[prof:: 1]` (Полевая медицина)
+	- `[arsenal_type:: hazard_suit]` | `[prof:: 2]` (Костюм химзащиты)
+	- `[arsenal_type:: composite_rig]` | `[prof:: 1]` (Полевая медицина)
 
 #### (P): `Акупунктура`
   [desc:: Лечение союзников восстанавливает им +10 маны, но наносит 5 ед. урона.]

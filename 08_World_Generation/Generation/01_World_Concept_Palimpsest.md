@@ -1,9 +1,9 @@
 ---
 type: concept
+status: active
 system: world_lore_phys
 tags: [environment, visual_style, verticality]
 ---
-
 # Концепция: Архитектурный Палимпсест
 
 ## 1. Суть Явления

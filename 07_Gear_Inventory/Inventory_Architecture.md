@@ -1,5 +1,6 @@
 ---
 type: mechanic
+status: active
 system: inventory
 tags:
   - weight
@@ -8,7 +9,6 @@ tags:
   - items
   - physics
 ---
-
 # Механика: Архитектура Инвентаря (Mass & Access)
 
 ## 1. Базовый Принцип

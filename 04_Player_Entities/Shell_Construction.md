@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: player_core
 tags: [shell, entity, structure, slots]
 related_files:
@@ -8,7 +9,6 @@ related_files:
   - "[[04_Player_Entities/_Registries/Registry_Specs|Registry_Specs]]"
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile_Pipeline]]"
 ---
-
 # Спецификация: Конструкция Оболочки
 
 ## 1. Философия Сборки

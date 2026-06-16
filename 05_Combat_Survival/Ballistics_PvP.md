@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: action_combat
 tags:
   - pvp
@@ -9,7 +10,6 @@ tags:
 related_files:
   - "[[07_Gear_Inventory/_Registries/Registry_Armors|Registry_Armors]]"
 ---
-
 # Баллистика PvP: Ткань и Пластины
 
 ## 1. Физическая Модель (Hitbox System)

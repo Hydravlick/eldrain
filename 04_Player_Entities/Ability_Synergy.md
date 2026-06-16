@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: player_core
 tags: [skills, abilities, synergy, archetypes]
 related_files:
@@ -7,7 +8,6 @@ related_files:
   - "[[04_Player_Entities/_Registries/Registry_Combos|Registry_Combos]]"
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile_Pipeline]]"
 ---
-
 # Система Синергий (Ability Fusion)
 
 ## 1. Принцип Слияния

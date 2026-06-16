@@ -1,9 +1,9 @@
 ---
 type: tech_spec
+status: active
 system: generation_algo
 tags: [math, vectors, snapping]
 ---
-
 # Система Сокетов (Socket System)
 
 ## 1. Структура Данных

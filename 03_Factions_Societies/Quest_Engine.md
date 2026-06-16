@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: quest_engine
 tags:
   - contracts
@@ -12,7 +13,6 @@ related_files:
   - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
   - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server_Lifecycle]]"
 ---
-
 # Движок Квестов: Система Контрактов
 
 ## 1. Философия: Работа, а не Героизм

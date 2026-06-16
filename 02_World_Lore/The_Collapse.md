@@ -1,6 +1,8 @@
-﻿---
+---
 type: lore
 category: foundation
+status: active
+system: world_lore
 tags:
   - history
   - cosmogony

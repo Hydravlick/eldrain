@@ -1,6 +1,8 @@
-﻿---
+---
 type: lore
 category: faction
+status: active
+system: factions_lore
 tags:
   - exploration
   - science
@@ -9,7 +11,6 @@ tags:
 related_mechanics:
   - "[[03_Factions_Societies/Quest_Engine|Quest_Engine]]"
 ---
-
 # Гильдия Картографов (The Cartographers)
 
 > *«Карта, которую ты купил утром, к вечеру уже врет. Улица повернула на юг, а тот дом "провалился" в прошлый век. Мы не рисуем карты, чтобы они висели на стене. Мы рисуем маршруты эвакуации.»*

@@ -1,3 +1,10 @@
+---
+type: project_management
+status: legacy
+system: project_management
+tags: [legacy, project_management]
+---
+
 # Lore_Update: Трагедия Ошибки (Cosmogony Overhaul)
 
 > **Core Theme:** Элдрейн — это не поле битвы Добра и Зла. Это сломанная песочница, где напуганные дети (Хранители) пытаются удержать мир, который сами же сломали, от другого ребенка (Сущности), пытающегося его «починить» фатальным способом.

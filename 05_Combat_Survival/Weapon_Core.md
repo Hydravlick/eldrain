@@ -1,5 +1,6 @@
 ---
 type: mechanic
+status: active
 system: action_combat
 tags:
   - weapons
@@ -11,7 +12,6 @@ related_files:
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
   - "[[05_Combat_Survival/Registry_Weapons|Registry_Weapons]]"
 ---
-
 # Оружие: Магострельный Канон и Тиры
 
 ## 1. Главный принцип

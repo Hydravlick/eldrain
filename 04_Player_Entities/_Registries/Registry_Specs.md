@@ -3,6 +3,7 @@ type: registry
 status: active
 registry_type: specs
 system: dnd_hybrid
+tags: [database]
 ---
 # Реестр: Классы (Blocks)
 

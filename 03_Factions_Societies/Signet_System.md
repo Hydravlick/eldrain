@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: economy_progression
 tags:
   - signets
@@ -11,7 +12,6 @@ related_files:
   - "[[06_Economy_Loot/Currency_Rez|Currency_Rez]]"
   - "[[06_Economy_Loot/Global_Market_Logic|Registry_Exchange_Rates]]"
 ---
-
 # Система Печатей (The Signet System)
 
 ## 1. Суть Механики

@@ -1,6 +1,8 @@
-﻿---
+---
 type: lore
 category: culture
+status: active
+system: world_lore
 tags:
   - language
   - aesthetics

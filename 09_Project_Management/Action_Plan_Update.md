@@ -1,3 +1,10 @@
+---
+type: project_management
+status: legacy
+system: project_management
+tags: [legacy, project_management]
+---
+
 # План Обновления Геймдизайна (Action Plan)
 > **Статус:** Актуализация механик
 > **Приоритет:** Внедрение систем "Среда-Фильтр" и "Стабилизация Лута"

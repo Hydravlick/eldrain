@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: ui_ux
 tags: [tooltip, stats, identification, rarity, origin, math, auction_vis]
 related_files:
@@ -7,7 +8,6 @@ related_files:
   - "[[06_Economy_Loot/Auction_House|Auction_House]]"
   - "[[05_Combat_Survival/Registry_Weapons|Registry_Weapons]]"
 ---
-
 # Атрибуты Предмета и UI (Item Passport)
 
 ## 1. Всплывающая Подсказка (Tooltip)

@@ -1,13 +1,13 @@
 ---
 type: kanban
 status: active
+system: project_management
 tags: [todo, roadmap, mvp, project_management]
 sources:
   - "[[09_Project_Management/TO-DO_List_Legacy]]"
   - "[[09_Project_Management/Action_Plan_Update]]"
   - "[[09_Project_Management/Lore_Update]]"
 ---
-
 # Единая доска задач
 
 > Цель: держать развитие Элдрейна в одном рабочем месте, а старые списки использовать как источник деталей.

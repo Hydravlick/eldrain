@@ -1,5 +1,6 @@
 ---
 type: mechanic
+status: active
 system: hub_ui
 tags:
   - map_table
@@ -8,7 +9,6 @@ tags:
 related_systems:
   - 17_Dual_State_POIs
 ---
-
 # Интерактивный Стол Карты: Мирный Режим
 
 ## 1. Визуализация "Покоя"

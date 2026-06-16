@@ -2,6 +2,7 @@
 type: lore
 category: physics
 status: active
+system: world_lore
 tags: [magic, batteries, technology, magipunk]
 related_files:
   - "[[06_Economy_Core]]"

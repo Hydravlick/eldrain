@@ -1,6 +1,7 @@
 ---
 type: architecture
 status: active
+system: project_management
 version: 2.1
 tags:
   - structure
@@ -8,7 +9,6 @@ tags:
   - vertical_slice
   - roadmap
 ---
-
 # Архитектура Проекта: Элдрейн (MVP)
 
 > **Статус:** Версия 2.1 (Full Structure Update)

@@ -1,9 +1,9 @@
 ---
 type: process
 status: active
+system: project_management
 tags: [refactor, obsidian, workflow]
 ---
-
 # Навыки рефакторинга vault
 
 ## 1. Смысловая сортировка

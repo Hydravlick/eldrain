@@ -1,6 +1,7 @@
-﻿---
+---
 type: registry
 status: active
+system: factions_societies_registry
 registry_type: factions
 tags: [database, diplomacy, world_building]
 ---
@@ -11,7 +12,7 @@ tags: [database, diplomacy, world_building]
 
 > **Логика:** Здесь описываются игровые фракции, их специализация и бонусы за уровень репутации.
 > **Reputation:** Уровень лояльности (`-1000` Враг ... `+1000` Герой).
-> **Tags:** `[type:: service]` - ключи должны соответствовать механике Economy_City.
+> **Tags:** `[service_type:: service]` - ключи должны соответствовать механике Economy_City.
 
 > **Система Репутации (The 9 Steps):**
 > Отношения измеряются ступенями от `-4` до `+4`.
@@ -36,9 +37,9 @@ tags: [database, diplomacy, world_building]
 *Древняя аварийная администрация, скрывающая лица за керамическими масками. Их интересует только стабильность Якоря и экзистенциальные угрозы, а не контроль всех бытовых сервисов.*
 - **Специализация:** [spec:: administration] | [spec:: security]
 - **Сервисы (Services):**
-	- `[type:: quests]` | `[access:: any]` (Контракты на устранение угроз)
-	- `[type:: access]` | `[access:: trusted]` (Доступ в закрытые сектора и аварийные маршруты)
-	- `[type:: stabilization]` | `[access:: trusted]` (Лучшие стабилизаторы, но базовая стабилизация доступна через нейтральный рынок)
+	- `[service_type:: quests]` | `[access:: any]` (Контракты на устранение угроз)
+	- `[service_type:: access]` | `[access:: trusted]` (Доступ в закрытые сектора и аварийные маршруты)
+	- `[service_type:: stabilization]` | `[access:: trusted]` (Лучшие стабилизаторы, но базовая стабилизация доступна через нейтральный рынок)
 - **Связи (Relations):**
 	- `[rel_command:: cartographers]` (Используют как разведчиков)
 	- `[rel_neutral:: all]` (Игнорируют конфликты, пока цел Якорь)
@@ -65,8 +66,8 @@ tags: [database, diplomacy, world_building]
 *Гончие Горизонта. Фанатики, верящие, что если зарисовать Хаос, он станет Порядком.*
 - **Специализация:** [spec:: exploration] | [spec:: science]
 - **Сервисы (Services):**
-	- `[type:: trade]` | `[access:: any]` (Продажа карт и навигации)
-	- `[type:: buy]` | `[access:: any]` (Скупка данных об аномалиях)
+	- `[service_type:: trade]` | `[access:: any]` (Продажа карт и навигации)
+	- `[service_type:: buy]` | `[access:: any]` (Скупка данных об аномалиях)
 - **Связи (Relations):**
 	- `[rel_client:: keepers]` (Продают отчеты Хранителям)
 	- `[rel_rival:: cathedral]` (Наука против Веры)
@@ -91,8 +92,8 @@ tags: [database, diplomacy, world_building]
 *Шпионская сеть под видом уличных артистов. Торгуют не песнями, а чужими секретами.*
 - **Специализация:** [spec:: intel] | [spec:: black_market]
 - **Сервисы (Services):**
-	- `[type:: rumors]` | `[access:: paid]` (Покупка баффов локаций)
-	- `[type:: smuggle]` | `[access:: trusted]` (Скупка краденого)
+	- `[service_type:: rumors]` | `[access:: paid]` (Покупка баффов локаций)
+	- `[service_type:: smuggle]` | `[access:: trusted]` (Скупка краденого)
 - **Связи (Relations):**
 	- `[rel_enemy:: cathedral]` (Идеологические враги)
 	- `[rel_partner:: brokerage]` (Теневой бизнес)
@@ -118,8 +119,8 @@ tags: [database, diplomacy, world_building]
 *Религиозный орден, удерживающий рассудок граждан коллективной ложью о "добрых богах".*
 - **Специализация:** [spec:: religion] | [spec:: sanity]
 - **Сервисы (Services):**
-	- `[type:: buff]` | `[access:: any]` (Благословения на рейд)
-	- `[type:: shop]` | `[access:: trusted]` (Продажа Реликвий)
+	- `[service_type:: buff]` | `[access:: any]` (Благословения на рейд)
+	- `[service_type:: shop]` | `[access:: trusted]` (Продажа Реликвий)
 - **Связи (Relations):**
 	- `[rel_conflict:: cartographers]` (Считают науку опасной)
 	- `[rel_conflict:: minstrels]` (Ненавидят шпионов и анархистов)
@@ -145,8 +146,8 @@ tags: [database, diplomacy, world_building]
 *Братство механиков из промзоны. Поклоняются машинам и пару.*
 - **Специализация:** [spec:: crafting] | [spec:: engineering]
 - **Сервисы (Services):**
-	- `[type:: craft]` | `[access:: any]` (Сборка и подгонка снаряжения)
-	- `[type:: craft]` | `[access:: trusted]` (Продажа чертежей)
+	- `[service_type:: craft]` | `[access:: any]` (Сборка и подгонка снаряжения)
+	- `[service_type:: craft]` | `[access:: trusted]` (Продажа чертежей)
 - **Связи (Relations):**
 	- `[rel_synergy:: academy]` (Поставка деталей для приборов)
 
@@ -167,8 +168,8 @@ tags: [database, diplomacy, world_building]
 *Ученые-снобы, изучающие магию как физику. Батареи, сенсоры, аркана.*
 - **Специализация:** [spec:: magic] | [spec:: research]
 - **Сервисы (Services):**
-	- `[type:: identify]` | `[access:: paid]` (Распознавание свойств предметов)
-	- `[type:: charge]` | `[access:: any]` (Зарядка батарей)
+	- `[service_type:: identify]` | `[access:: paid]` (Распознавание свойств предметов)
+	- `[service_type:: charge]` | `[access:: any]` (Зарядка батарей)
 - **Связи (Relations):**
 	- `[rel_rival:: cathedral]` (Конфликт мировоззрений)
 	- `[rel_client:: foundry]` (Заказ оборудования)
@@ -190,8 +191,8 @@ tags: [database, diplomacy, world_building]
 *Циничные дельцы, работающие в серых зонах закона.*
 - **Специализация:** [spec:: economy] | [spec:: pvp]
 - **Сервисы (Services):**
-	- `[type:: launder]` | `[access:: expensive]` (Отмывание краденого)
-	- `[type:: insurance]` | `[access:: subscription]` (Страховка лута)
+	- `[service_type:: launder]` | `[access:: expensive]` (Отмывание краденого)
+	- `[service_type:: insurance]` | `[access:: subscription]` (Страховка лута)
 - **Связи (Relations):**
 	- `[rel_partner:: minstrels]` (Общий теневой рынок)
 

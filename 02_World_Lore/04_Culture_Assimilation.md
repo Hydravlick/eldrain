@@ -2,6 +2,7 @@
 type: lore
 category: society
 status: active
+system: world_lore
 tags: [assimilation, culture, language, races]
 ---
 # Культура и Ассимиляция

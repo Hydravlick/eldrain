@@ -1,5 +1,6 @@
 ---
 type: mechanic
+status: active
 system: survival
 tags: [damage_event, risk_reward, gear_check, phase_shift, environment_gate]
 related_systems:
@@ -11,7 +12,6 @@ related_files:
   - "[[05_Combat_Survival/Threat_Thresholds]]"
   - "[[05_Combat_Survival/Masks_Filters]]"
 ---
-
 # Гейт-Проверка (Gate Check)
 
 ## 1. Суть Явления

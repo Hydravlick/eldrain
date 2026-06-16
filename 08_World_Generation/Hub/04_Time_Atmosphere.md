@@ -1,9 +1,9 @@
 ---
 type: mechanic
+status: active
 system: atmosphere
 tags: [time, weather, mood, lofi, visual]
 ---
-
 # Время и Атмосфера
 
 ## 1. Хаб: "Уют вне Времени"

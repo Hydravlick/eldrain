@@ -1,12 +1,12 @@
-﻿---
+---
 type: mechanic
+status: active
 system: economy_loop
 tags: [salvage, scrap, crafting, materials]
 related_files:
   - "[[06_Economy_Loot/Barter_System|Barter_System]]"
   - "[[07_Gear_Inventory/_Registries/Registry_CraftingRecipes|Registry_CraftingRecipes]]"
 ---
-
 # Цикл Ресурсов: Разбор и Утилизация (Salvaging)
 
 ## 1. Философия Утилизации

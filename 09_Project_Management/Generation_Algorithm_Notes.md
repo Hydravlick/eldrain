@@ -1,3 +1,10 @@
+---
+type: tech_note
+status: active
+system: project_management
+tags: [generation, notes]
+---
+
 #### Этап 1: 2D Топология и Физика (Floor Layout)
 
 _Задача:_ Разместить комнаты (прямоугольники, круги, n-гоны), обработать коллизии и применить правила соседства (теги).

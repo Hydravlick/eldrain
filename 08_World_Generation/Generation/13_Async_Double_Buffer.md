@@ -1,9 +1,9 @@
 ---
 type: architecture
+status: active
 system: server_core
 tags: [optimization, threading, networking]
 ---
-
 # Асинхронная Архитектура Мира
 
 ## 1. Двойная Буферизация (World A / World B)

@@ -1,4 +1,4 @@
-﻿---
+---
 type: mechanic
 status: active
 system: action_combat
@@ -12,7 +12,6 @@ related_files:
   - "[[05_Combat_Survival/Status_Effects|Status_Effects]]"
   - "[[07_Gear_Inventory/Inventory_QoL|Inventory_QoL]]"
 ---
-
 # Механика: Боевые Расходники
 
 ## 1. Философия Уязвимости (Action Commitment)

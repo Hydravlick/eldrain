@@ -1,9 +1,9 @@
 ---
 type: mechanic
+status: active
 system: hub_services
 tags: [ui, diegetic, interaction, services]
 ---
-
 # Сервисы Хаба: Макро-Взаимодействие
 
 ## 1. Принцип "Взгляд Сверху"

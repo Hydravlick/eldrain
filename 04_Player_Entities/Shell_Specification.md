@@ -1,3 +1,9 @@
+---
+type: mechanic
+status: active
+system: player_core
+tags: [shell, specification]
+---
 
 # Спецификация Оболочек (Shell Types)
 

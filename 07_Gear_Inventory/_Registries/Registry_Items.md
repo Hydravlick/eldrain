@@ -1,10 +1,10 @@
-﻿---
+---
 type: registry
 status: active
+system: gear_inventory_registry
 registry_type: items
 tags: [database, resources, loot, artifacts]
 ---
-
 # Реестр: Предметы и Ресурсы (General Items)
 
 > **Логика:** Пассивные предметы. Используются для крафта, торговли или выполнения квестов.

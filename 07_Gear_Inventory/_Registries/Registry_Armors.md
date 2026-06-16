@@ -1,6 +1,7 @@
-﻿---
+---
 type: registry
 status: active
+system: gear_inventory_registry
 registry_type: armor
 tags:
   - magipunk
@@ -8,7 +9,6 @@ tags:
   - protection
   - active_tanking
 ---
-
 # Реестр: Броня и Одеяния (Magipunk Armor)
 
 > **Философия Стиля:**
@@ -28,12 +28,12 @@ tags:
 *Стиль: "Бронированный Монах". Широкие штаны, массивные поножи и наплечники, торс часто открыт или закрыт тканью.*
 
 ### Комплект "Базальт" (Basalt Shell)
-[tier:: 2] | [environment_resistance:: 55] | [armor_plates:: chest, arm guards, shoulder pads, shin_guards] | [slots:: 2] | [weight:: 22kg] | [type:: heavy_plate]
+[tier:: 2] | [environment_resistance:: 55] | [armor_plates:: chest, arm guards, shoulder pads, shin_guards] | [slots:: 2] | [weight:: 22kg] | [armor_type:: heavy_plate]
 *Грубые керамические плиты, словно вырезанные из скалы, надетые поверх плотной шерстяной робы.*
 * **Pattern (Покрытие):** **Bastion.** Массивные наплечники, позволяющие спрятать голову. Спина закрыта лишь тканью плаща.
 
 ### Доспех "Хранитель Очага" (Hearth-Keeper)
-[tier:: 3] | [environment_resistance:: 70] | [armor_plates:: l_shoulder, r_shoulder, thighs, chest_center] | [slots:: 3] | [weight:: 18kg] | [type:: heavy_plate]
+[tier:: 3] | [environment_resistance:: 70] | [armor_plates:: l_shoulder, r_shoulder, thighs, chest_center] | [slots:: 3] | [weight:: 18kg] | [armor_type:: heavy_plate]
 *Древние ритуальные плиты, пульсирующие теплом.*
 * **Pattern (Покрытие):** **Frontal.** Мощная грудная пластина с руной. Руки ниже локтя открыты для сотворения заклинаний.
 
@@ -44,12 +44,12 @@ tags:
 *Стиль: "Бродяга". Много ремней, подсумков, плащи с капюшонами.*
 
 ### Сбруя "Наемник" (Mercenary Rig)
-[tier:: 2] | [environment_resistance:: 35] | [armor_plates:: upper_chest, stomach, forearms] | [slots:: 6] | [weight:: 12kg] | [type:: composite_rig]
+[tier:: 2] | [environment_resistance:: 35] | [armor_plates:: upper_chest, stomach, forearms] | [slots:: 6] | [weight:: 12kg] | [armor_type:: composite_rig]
 *Кожаный жилет с нашитыми керамическими чешуйками.*
 * **Pattern (Покрытие):** **Duelist.** Усиленные наручи с рунами твердости (можно отбивать мечи руками).
 
 ### Жилет "Собиратель" (Scavenger Wrap)
-[tier:: 1] | [environment_resistance:: 15] | [armor_plates:: chest_heart] | [slots:: 12] | [weight:: 6kg] | [type:: composite_rig]
+[tier:: 1] | [environment_resistance:: 15] | [armor_plates:: chest_heart] | [slots:: 12] | [weight:: 6kg] | [armor_type:: composite_rig]
 *Мешковатая куртка со множеством скрытых карманов. Единственная пластина защищает сердце.*
 * **Pattern (Покрытие):** **Minimal.** Защита символическая, расчет на то, что в свободную одежду сложнее попасть.
 
@@ -60,12 +60,12 @@ tags:
 *Стиль: "Тень". Облегающие костюмы, скрытые под развивающимися лохмотьями.*
 
 ### Мантия "Проводник" (Conduit Robe)
-[tier:: 2] | [environment_resistance:: 40] | [armor_plates:: r_shoulder, back_spine] | [slots:: 4] | [weight:: 3kg] | [type:: ether_weave]
+[tier:: 2] | [environment_resistance:: 40] | [armor_plates:: r_shoulder, back_spine] | [slots:: 4] | [weight:: 3kg] | [armor_type:: ether_weave]
 *Ткань, которая слегка искрит при касании. В воротник вплетены кристаллы.*
 * **Pattern (Покрытие):** **Asymmetric.** Правое плечо закрыто кристаллическим наплечником (гасит отдачу посохов/катализаторов).
 
 ### Костюм "Призрак" (Wraith Veils)
-[tier:: 1] | [environment_resistance:: 20] | [armor_plates:: none] | [slots:: 4] | [weight:: 2kg] | [type:: ether_weave]
+[tier:: 1] | [environment_resistance:: 20] | [armor_plates:: none] | [slots:: 4] | [weight:: 2kg] | [armor_type:: ether_weave]
 *Многослойный балахон из полупрозрачной дымчатой ткани.*
 * **Pattern (Покрытие):** **Evasive.** Нет жестких элементов. Ткань колышется, размывая силуэт врагу.
 ---
@@ -74,7 +74,7 @@ tags:
 
 ### Шаблон Брони (Template Armor)
 [armor_id:: template_armor]
-[type:: light_armor]
+[armor_type:: light_armor]
 [tier:: 1]
 [protection_vector:: ballistics]
 [environment_resistance:: 0]

@@ -2,6 +2,7 @@
 type: lore
 category: foundation
 status: active
+system: world_lore
 tags: [history, cosmogony, the_entity, horror]
 ---
 # Космогония: Ошибка и Сущность

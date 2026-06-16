@@ -1,6 +1,7 @@
 ---
 type: core_concept
 status: active
+system: core_vision
 tags: [vision, atmosphere, magipunk, aesthetics]
 ---
 # Видение Проекта (Vision & Atmosphere)

@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: trade_craft
 tags:
   - barter
@@ -11,7 +12,6 @@ related_files:
   - "[[06_Economy_Loot/Currency_Rez|Currency_Rez]]"
   - "[[06_Economy_Loot/Craft_Modifiers|Craft_Modifiers]]"
 ---
-
 # Система Бартера и Заказа (Unified Trade)
 
 ## 1. Отказ от "Купи-Продай"

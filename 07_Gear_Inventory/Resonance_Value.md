@@ -1,5 +1,6 @@
 ---
 type: mechanic
+status: active
 system: inventory
 tags:
   - resonance
@@ -7,7 +8,6 @@ tags:
   - stealth
   - sync
 ---
-
 # Механика: Резонанс и Стоимость (Resonance Value)
 
 ## 1. Концепция "Opulence"

@@ -1,9 +1,9 @@
 ---
 type: tech_spec
+status: active
 system: proc_gen
 tags: [wfc, algorithms, strategy_pattern]
 ---
-
 # Стратегии Генерации Города
 
 ## 1. Гибридный Подход (Skeleton & Meat)

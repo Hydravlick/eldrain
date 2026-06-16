@@ -1,9 +1,9 @@
 ---
 type: design_rule
+status: active
 system: level_design
 tags: [pois, shelters, balance]
 ---
-
 # Правила Наполнения Сектора
 
 ## 1. Инъекция Биома (Biome Injection)

@@ -1,11 +1,11 @@
-﻿---
+---
 type: registry
 status: active
+system: world_generation_registry
 registry_type: map_objects
 tags: [ui_map, prefabs, pois, dungeons]
 related_systems: [Anomaly_System, City_Structure_Generation, Hub_UI]
 ---
-
 # Реестр: Объекты Карты (Map Table Objects)
 
 > **Концепция Карты:** Диегетическая 3D-проекция города на столе.

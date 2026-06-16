@@ -1,11 +1,11 @@
-﻿---
+---
 type: registry
 status: active
+system: gear_inventory_registry
 registry_type: items
 category: blueprints
 tags: [database, loot, trade, schematics]
 ---
-
 # Реестр: Предметы-Чертежи (Blueprints Items)
 
 > **Логика:** Это физические носители информации (флешки, бумажные схемы, планшеты). Занимают место в сетке инвентаря.

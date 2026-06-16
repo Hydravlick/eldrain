@@ -1,5 +1,6 @@
 ---
 type: mechanic
+status: active
 system: player_core
 tags:
   - shell
@@ -7,7 +8,6 @@ tags:
   - constructor
   - respawn
 ---
-
 # Механика: Проекции и Конструктор (Shell Type A: Projections)
 
 ## 1. Концепция: Пустые Сосуды

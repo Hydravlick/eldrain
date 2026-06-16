@@ -1,9 +1,9 @@
 ---
 type: system
+status: active
 system: world_map
 tags: [topology, graph, hierarchy]
 ---
-
 # Топология Мира: Паттерн "Цветок"
 
 ## 1. Иерархия Генерации

@@ -1,5 +1,6 @@
 ---
 type: mechanic
+status: active
 system: action_combat
 tags:
   - ranged
@@ -12,7 +13,6 @@ related_files:
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
   - "[[05_Combat_Survival/Registry_Weapons|Registry_Weapons]]"
 ---
-
 # Оружие: Дальний Бой
 
 ## 1. Роль дальнего боя

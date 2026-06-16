@@ -1,12 +1,12 @@
-﻿---
+---
 type: mechanic
+status: active
 system: economy_backend
 tags: [inflation, sink, difficulty, dynamic_balance]
 related_files:
   - "[[06_Economy_Loot/Economy_Core|Economy_Core]]"
   - "[[06_Economy_Loot/Currency_Rez|Currency_Rez]]"
 ---
-
 # Глобальная Логика Рынка: Система "Температура"
 
 ## 1. Индекс Инфляции (The Thermometer)

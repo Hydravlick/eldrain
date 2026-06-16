@@ -1,9 +1,9 @@
 ---
 type: mechanic
+status: active
 system: environment
 tags: [traps, mines, anomalies, parkour]
 ---
-
 # Опасности Среды
 
 ## 1. Аномальные Ловушки

@@ -3,6 +3,7 @@ type: registry
 status: active
 registry_type: races
 system: dnd_hybrid
+tags: [database]
 ---
 # Реестр: Расы (Blocks)
 

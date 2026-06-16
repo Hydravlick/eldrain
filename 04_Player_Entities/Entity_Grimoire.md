@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: player_core
 tags:
   - meta
@@ -10,7 +11,6 @@ related_files:
   - "[[02_World_Lore/The_Entity|The_Entity]]"
   - "[[08_World_Generation/Hub/City_Structure|City_Structure]]"
 ---
-
 # Ядро Игрока: Гримуар Сущности
 
 ## 1. Метафора "Стола" (The Table)

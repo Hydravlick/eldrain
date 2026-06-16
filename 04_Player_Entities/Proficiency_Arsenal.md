@@ -1,12 +1,12 @@
-﻿---
+---
 type: mechanic
+status: active
 system: player_core
 tags: [weapons, proficiency, restrictions, arsenal]
 related_files:
   - "[[05_Combat_Survival/Registry_Weapons|Registry_Weapons]]"
   - "[[04_Player_Entities/Tags_System|Tags_Modification]]"
 ---
-
 # Адаптивный Арсенал и Мастерство
 
 ## 1. Адаптивный Арсенал (Weapon Gating)

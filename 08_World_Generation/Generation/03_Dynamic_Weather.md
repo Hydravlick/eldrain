@@ -1,9 +1,9 @@
 ---
 type: system
+status: active
 system: environment
 tags: [weather, modifiers, combat_physics]
 ---
-
 # Динамическая Погода
 
 ## 1. Источник Погоды

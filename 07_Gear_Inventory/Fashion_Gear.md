@@ -1,6 +1,8 @@
-﻿---
+---
 type: lore
 category: daily_life
+status: active
+system: gear_inventory
 tags:
   - fashion
   - visuals
@@ -11,7 +13,6 @@ related_mechanics:
   - "[[03_Factions_Societies/Reputation_Rules]]"
   - "[[Economy_Batteries]]"
 ---
-
 # Мода и Снаряжение: Эстетика Выживания
 
 > *«В Элдрейне нет понятия "просто одежда". Если твой шарф не защищает от кислотного тумана, а куртка не держит осколок — ты идешь по улице голым.»*

@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: action_combat
 tags:
   - stealth
@@ -9,7 +10,6 @@ tags:
 related_files:
   - "[[07_Gear_Inventory/Physical_Weight|Physical_Weight]]"
 ---
-
 # Механика: Акустический Шум
 
 ## 1. Природа Звука

@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: loot_generation
 tags: [rng, spawn, containers, probability, biomes]
 related_files:
@@ -7,7 +8,6 @@ related_files:
   - "[[08_World_Generation/_Registries/Registry_Biomes|Registry_Biomes]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Items|Registry_Items]]"
 ---
-
 # Распределение Лута (Loot Distribution Logic)
 
 ## 1. Матрица Генерации

@@ -1,9 +1,9 @@
 ---
 type: tech_spec
+status: active
 system: generation
 tags: [metadata, json, prefabs]
 ---
-
 # Реестр Метаданных POI
 
 ## 1. Структура Данных Префаба

@@ -1,12 +1,12 @@
-﻿---
+---
 type: mechanic
+status: active
 system: extraction
 tags: [exits, logic, requirements, loot_securing]
 related_files:
   - "[[03_Factions_Societies/Signet_System|Signet_System]]"
   - "[[08_World_Generation/Hub/05_Party_Syndicate|Party_Syndicate]]"
 ---
-
 # Протоколы Выхода (Extraction Logic)
 
 ## 1. Типология Выходов

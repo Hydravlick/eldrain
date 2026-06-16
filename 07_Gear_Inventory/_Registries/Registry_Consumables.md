@@ -1,10 +1,10 @@
 ---
 type: registry
 status: active
+system: gear_inventory_registry
 registry_type: consumables
 tags: [database, healing, utility, batteries]
 ---
-
 # Реестр: Расходные Материалы (Consumables)
 
 > **Логика:** Предметы, которые уничтожаются или истощаются при использовании.

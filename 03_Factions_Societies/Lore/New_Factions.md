@@ -1,9 +1,10 @@
 ---
 type: lore
 category: faction
+status: active
+system: factions_lore
 tags: [economy, services]
 ---
-
 # Новые Фракции (Экономический Блок)
 
 ## 1. Литейный Синдикат (The Foundry)

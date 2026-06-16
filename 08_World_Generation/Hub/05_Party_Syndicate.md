@@ -1,12 +1,12 @@
-﻿---
+---
 type: mechanic
+status: active
 system: party_backend
 tags: [social, squad, lobby, ui]
 related_files:
   - "[[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion_Logic]]"
   - "[[04_Player_Entities/Entity_Grimoire|Entity_Grimoire]]"
 ---
-
 # Система Группы: Протокол "Синдикат"
 
 ## 1. Концепция: Совещание Бригадиров

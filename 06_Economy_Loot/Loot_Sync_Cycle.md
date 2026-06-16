@@ -1,12 +1,12 @@
 ---
 type: mechanic
+status: active
 system: inventory
 tags:
   - loop
   - crafting
   - extraction
 ---
-
 # Механика: Цикл Синхронизации (Loot Sync Cycle)
 
 ## 1. Эвакуация (The Cooling)

@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: inventory_ui
 tags:
   - slots
@@ -13,7 +14,6 @@ related_files:
   - "[[07_Gear_Inventory/Fashion_Gear|Fashion_Gear]]"
   - "[[05_Combat_Survival/Registry_Weapons|Registry_Weapons]]"
 ---
-
 # Кукла Персонажа (Equipment Slots)
 
 ## 1. Философия: Tactical Goblincore

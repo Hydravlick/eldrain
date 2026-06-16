@@ -1,4 +1,11 @@
-﻿```dataviewjs
+---
+type: matrix
+status: active
+system: player_entities_matrix
+tags: [dataview, matrix]
+---
+
+```dataviewjs
 // --- НАСТРОЙКИ ПУТЕЙ ---
 const files = {
     races: "04_Player_Entities/_Registries/Registry_Races.md",

@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: world_systems
 tags:
   - hazards

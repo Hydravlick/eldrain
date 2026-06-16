@@ -1,6 +1,7 @@
-﻿---
+---
 type: mechanic
-system: bank
+status: active
+system: player_core
 tags:
   - shell
   - spawn
@@ -13,7 +14,6 @@ related_files:
   - "[[04_Player_Entities/Tags_System|Tags_System]]"
   - "[[06_Economy_Loot/Economy_Core|Economy_Core]]"
 ---
-
 # Логика Спавна и Снаряжения Оболочек
 
 При входе в Хаб система проверяет статус текущей Оболочки и выбирает один из трех сценариев инициализации.

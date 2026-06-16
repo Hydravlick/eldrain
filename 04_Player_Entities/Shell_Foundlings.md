@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: player_core
 tags:
   - shell
@@ -9,7 +10,6 @@ tags:
 related_files:
   - "[[07_Gear_Inventory/Physical_Weight|Physical_Weight]]"
 ---
-
 # Механика: Найдёныши (Shell Type B: Foundlings)
 
 ## 1. Концепция: Живые Носители

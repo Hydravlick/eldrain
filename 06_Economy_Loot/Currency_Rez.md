@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: currency
 tags:
   - rez
@@ -12,7 +13,6 @@ related_files:
   - "[[06_Economy_Loot/Economy_Core|Economy_Core]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
 ---
-
 # Валюта: Рез (Rez)
 
 ## 1. Природа Валюты

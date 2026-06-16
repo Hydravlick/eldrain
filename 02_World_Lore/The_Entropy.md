@@ -1,6 +1,8 @@
 ---
 type: lore
 category: world_foundation
+status: active
+system: world_lore
 tags:
   - mechanics
   - philosophy
@@ -11,7 +13,6 @@ related_mechanics:
   - "[[10_Mechanics/World/Anomaly_System]]"
   - "[[The_Collapse]]"
 ---
-
 # Энтропия: Дыхание Пустоты
 
 > *«Ты смотришь на свою руку и видишь кожу, шрамы, грязь под ногтями. А Бездна смотрит на тебя и видит лишь ошибку, которую нужно исправить. Мы не умираем. Мы просто выцветаем, как чернила на мокрой бумаге.»*

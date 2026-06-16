@@ -1,12 +1,12 @@
-﻿---
+---
 type: mechanic
+status: active
 system: backend_save
 tags: [database, transaction, wipe, safety]
 related_files:
   - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server_Lifecycle]]"
   - "[[07_Gear_Inventory/Stash_Architecture|Stash_Architecture]]"
 ---
-
 # Гроссбух: Архитектура Сохранений
 
 ## 1. Модель "Check-in / Check-out"

@@ -1,5 +1,6 @@
 ---
 type: mechanic
+status: active
 system: action_combat
 tags:
   - magic
@@ -11,7 +12,6 @@ related_files:
   - "[[05_Combat_Survival/Weapon_Ranged|Weapon_Ranged]]"
   - "[[07_Gear_Inventory/Inventory_QoL|Inventory_QoL]]"
 ---
-
 # Система: Магия и Батареи
 
 ## 1. Канон батарей

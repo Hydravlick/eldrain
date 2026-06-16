@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: economy
 tags:
   - sinks
@@ -10,7 +11,6 @@ tags:
 related_files:
   - "[[07_Gear_Inventory/Inventory_QoL|Inventory_QoL]]"
 ---
-
 # Расходы и Вывод Валюты (Money Sinks)
 
 ## 1. Стабилизация Добычи (Loot Stabilization)

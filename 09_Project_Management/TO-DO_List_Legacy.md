@@ -1,3 +1,10 @@
+---
+type: project_management
+status: legacy
+system: project_management
+tags: [legacy, project_management]
+---
+
 # Список Задач (TO-DO)
 
 ## 1. ⚔️ Core Combat: "Weight & Vision"

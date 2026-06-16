@@ -1,9 +1,9 @@
 ---
 type: mechanic
+status: active
 system: world_time
 tags: [fomo, ui_feedback, session_pace]
 ---
-
 # Асинхронные Таймеры (Async Timers)
 
 ## 1. Принцип Независимости

@@ -1,5 +1,6 @@
 ---
 type: mechanic
+status: active
 system: inventory
 tags:
   - qol
@@ -7,7 +8,6 @@ tags:
   - sorting
   - controls
 ---
-
 # Система: Удобство и Сортировка (QoL)
 
 ## 1. Строгая Иерархия Сортировки (Tier-Rarity-Weight)

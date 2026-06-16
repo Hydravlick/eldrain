@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: world_systems
 tags:
   - resonance
@@ -10,7 +11,6 @@ related_files:
   - "[[07_Gear_Inventory/Resonance_Value|Resonance_Value]]"
   - "[[04_Player_Entities/_Registries/Registry_Tags|Registry_Tags]]"
 ---
-
 # Механика: Резонанс (Эфирный Шум)
 
 ## 1. Концепция

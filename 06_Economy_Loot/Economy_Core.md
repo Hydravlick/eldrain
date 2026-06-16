@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: economy
 tags:
   - core
@@ -12,7 +13,6 @@ related_files:
   - "[[06_Economy_Loot/Barter_System|Barter_System]]"
   - "[[06_Economy_Loot/Sinks_Insurance|Sinks_Maintenance]]"
 ---
-
 # Экономика: Цикл Материализации и Баланс
 
 ## 1. Философия: От Хаоса к Порядку

@@ -1,6 +1,7 @@
-﻿---
+---
 type: registry
 status: active
+system: world_generation_registry
 registry_type: mobs
 tags: [database, bestiary, ai_behavior]
 region: sector_01_port

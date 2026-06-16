@@ -1,6 +1,8 @@
-﻿---
+---
 type: lore
 category: society
+status: active
+system: factions_lore
 tags:
   - politics
   - social_structure

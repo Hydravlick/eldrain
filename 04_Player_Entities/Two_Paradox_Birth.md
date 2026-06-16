@@ -1,6 +1,7 @@
 ---
 type: core_concept
 status: active
+system: player_core
 tags: [paradigm_shift, design_history, two_paradox, emergent_gameplay]
 related_files:
   - "[[04_Player_Entities/Two_Paradox_Vector_Matrix]]"
@@ -9,7 +10,6 @@ related_files:
   - "[[04_Player_Entities/_Registries/Registry_Specs]]"
   - "[[04_Player_Entities/_Registries/Registry_Tags]]"
 ---
-
 # Артефакт Эволюции: Рождение «Двойного Парадокса»
 
 Данный документ фиксирует смену геймдизайнерской парадигмы проекта «Элдрейн». Переход от статичных классов и жестких контр-пиков к алгоритмической, эмерджентной системе баланса на основе теории графов.

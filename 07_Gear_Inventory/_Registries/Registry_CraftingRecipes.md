@@ -1,10 +1,10 @@
-﻿---
+---
 type: registry
 status: active
+system: gear_inventory_registry
 registry_type: crafting
 tags: [database, economy, upgrade, blueprints]
 ---
-
 # Реестр: Крафт и Модификации (Workshop)
 
 > **Логика:** Крафт требует **Верстак** (в Хабе или найденный в рейде) и **Чертеж** (Blueprint).

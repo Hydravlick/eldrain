@@ -1,9 +1,9 @@
 ---
 type: mechanic
+status: active
 system: traversal
 tags: [verticality, parkour, pathfinding]
 ---
-
 # Слой Связности (Connectivity Layer)
 
 ## 1. Цель Системы

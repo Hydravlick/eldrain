@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: combat_craft
 tags: [crafting, workbench, field_craft, risk, alchemy]
 related_files:
@@ -7,7 +8,6 @@ related_files:
   - "[[05_Combat_Survival/11_Combat_Consumables|Combat_Consumables]]"
   - "[[08_World_Generation/_Registries/Registry_POIs|Registry_POIs]]"
 ---
-
 # Полевой Крафт (Field Crafting)
 
 ## 1. Концепция

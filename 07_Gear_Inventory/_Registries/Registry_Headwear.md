@@ -1,6 +1,7 @@
-﻿---
+---
 type: registry
 status: active
+system: gear_inventory_registry
 registry_type: headwear
 tags:
   - magipunk
@@ -43,7 +44,7 @@ tags:
 
 ### Шаблон Шлема/Маски (Template Headwear)
 [headwear_id:: template_headwear]
-[type:: mask]
+[headwear_type:: mask]
 [tier:: 1]
 [filter_rating:: 0]
 [sensor_bonus:: none]

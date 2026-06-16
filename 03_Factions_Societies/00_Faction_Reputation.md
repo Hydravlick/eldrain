@@ -1,3 +1,10 @@
+---
+type: mechanic
+status: active
+system: factions
+tags: [factions]
+---
+
 ```dataviewjs
 // === 1. ЗАГРУЗКА БИБЛИОТЕКИ ===
 async function loadD3() {

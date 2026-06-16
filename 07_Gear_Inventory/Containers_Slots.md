@@ -1,5 +1,6 @@
 ---
 type: mechanic
+status: active
 system: inventory
 tags:
   - containers
@@ -8,7 +9,6 @@ tags:
   - foundling
   - backpack
 ---
-
 # Механика: Контейнеры и Слоты (Containers Hierarchy)
 
 ## 1. Иерархия Хранилищ

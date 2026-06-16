@@ -1,12 +1,12 @@
 ---
 type: mechanic
+status: active
 system: inventory
 tags:
   - physics
   - movement
   - stamina
 ---
-
 # Механика: Физический Вес (Physical Weight)
 
 ## 1. Разделение понятий

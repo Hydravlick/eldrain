@@ -1,12 +1,12 @@
-﻿---
+---
 type: mechanic
+status: active
 system: interaction
 tags: [looting, timer, lockpicking, bodies, ux]
 related_files:
   - "[[07_Gear_Inventory/Containers_Slots|Containers_Slots]]"
   - "[[06_Economy_Loot/Loot_Distribution|Loot_Distribution]]"
 ---
-
 # Процесс Обыска (Interaction Loop)
 
 ## 1. Тайминги и Риск

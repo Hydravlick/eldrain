@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: game_loop
 tags: [session_logic, storm, entropy, difficulty_curve, director_ai]
 related_files:
@@ -8,7 +9,6 @@ related_files:
   - "[[08_World_Generation/Generation/08_Gate_Check|Gate_Check]]"
   - "[[05_Combat_Survival/Threat_Thresholds|Threat_Thresholds]]"
 ---
-
 # Ядро Аномалии: Правила Арены
 
 ## 1. Мета-Правила Сессии

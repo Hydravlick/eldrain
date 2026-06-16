@@ -1,6 +1,7 @@
 ---
 type: registry
 status: active
+system: combat_survival_registry
 registry_type: weapons
 tags:
   - database
@@ -55,21 +56,21 @@ tags:
 *Режущий/колющий урон. Вызывает кровотечения и хорошо закрывает окна, созданные дальним боем.*
 
 ### Боевой Нож (Combat Shiv) [1H]
-[type:: blade]
+[weapon_type:: blade]
 [weight:: 0.5kg]|[dmg:: 15]
 *Короткий клинок для "грязной" работы в клинче.*
 * **Мувсет:** Очень быстрые колющие удары. Минимальный расход стамины.
 * **Implicit (Встроенное):** **(Ambush)** Урон в спину x1.5. Удары не сбивают скорость бега.
 
 ### Мачете / Тесак (Cleaver) [1H]
-[type:: blade]
+[weapon_type:: blade]
 [weight:: 1.5kg]|[dmg:: 35]
 *Тяжелое лезвие с смещенным центром тяжести.*
 * **Мувсет:** Широкие рубящие удары. Задевает несколько целей.
 * **Implicit (Встроенное):** **(Maim)** Шанс 20% наложить "Глубокую рану" (снижает макс. HP до конца рейда). Урон по "мягким" целям +30%.
 
 ### Рапира / Эсток (Estoc) [1H]
-[type:: blade]
+[weapon_type:: blade]
 [weight:: 1.2kg]|[dmg:: 25]
 *Тонкий клинок для уколов в сочленения брони.*
 * **Мувсет:** Линейные выпады. Длинная дистанция удара.
@@ -81,14 +82,14 @@ tags:
 *Урон ударом. Ломает кости и стамину. Эффективно против Латы.*
 
 ### Кувалда (Sledgehammer) [2H]
-[type:: blunt]
+[weapon_type:: blunt]
 [weight:: 8kg]|[dmg:: 55]
 *Инструмент, превращенный в оружие. Медленный и неотвратимый.*
 * **Мувсет:** Вертикальный удар (пробивает блок) и Горизонтальный (сбивает с ног).
 * **Implicit (Встроенное):** **(Breach)** Снимает у цели 30 ед. Выносливости (Stamina) за удар. Если Выносливость 0 — сбивает с ног. Разрушает двери/укрытия.
 
 ### Булава / Дубинка (Mace) [1H]
-[type:: blunt]
+[weapon_type:: blunt]
 [weight:: 3.5kg]|[dmg:: 30]
 *Компактный вес.*
 * **Implicit (Встроенное):** **(Concussion)** Удары в голову накладывают эффект "Дезориентация" (размытие экрана, сбой звука) на 3 сек.
@@ -99,14 +100,14 @@ tags:
 *Контроль дистанции. "Зонинг" противников.*
 
 ### Алебарда (Halberd) [2H]
-[type:: polearm]
+[weapon_type:: polearm]
 [weight:: 5.5kg]|[dmg:: 45]
 *Топор на длинной палке с шипом.*
 * **Мувсет:** Укол (Poke) на дистанции, Рубящий (Swing) вблизи.
 * **Implicit (Встроенное):** **(Sweet Spot)** Наносит 100% урона только лезвием (на конце). Если ударить древком (вплотную) — урон 30%.
 
 ### Боевая Коса (War Scythe) [2H]
-[type:: polearm]
+[weapon_type:: polearm]
 [weight:: 4.0kg]|[dmg:: 42]
 *Лезвие под углом.*
 * **Implicit (Встроенное):** **(Reap)** Игнорирует щиты (Shield Bypass), так как лезвие заходит за блок.
@@ -118,7 +119,7 @@ tags:
 
 ### Ручной Разрядник (Spark Handcannon) [1H]
 [weapon_id:: spark_handcannon]
-[type:: arcanegun]
+[weapon_type:: arcanegun]
 [frame:: handcannon]
 [tier:: 1]
 [weapon_vector:: ballistics]
@@ -135,7 +136,7 @@ tags:
 
 ### Конденсаторный Длинник (Condenser Longframe) [2H]
 [weapon_id:: condenser_longframe]
-[type:: arcanegun]
+[weapon_type:: arcanegun]
 [frame:: condenser_longframe]
 [tier:: 2]
 [weapon_vector:: ballistics]
@@ -153,7 +154,7 @@ tags:
 
 ### Веерный Эмиттер (Scatter Emitter) [2H]
 [weapon_id:: scatter_emitter]
-[type:: arcanegun]
+[weapon_type:: arcanegun]
 [frame:: scatter_emitter]
 [tier:: 1]
 [weapon_vector:: ballistics]
@@ -171,7 +172,7 @@ tags:
 
 ### Гарпунный Драйвер (Harpoon Driver) [2H]
 [weapon_id:: harpoon_driver]
-[type:: arcanegun]
+[weapon_type:: arcanegun]
 [frame:: harpoon_driver]
 [tier:: 2]
 [weapon_vector:: ballistics]
@@ -189,7 +190,7 @@ tags:
 
 ### Игольный Арбалет (Needle Crossbow) [2H]
 [weapon_id:: needle_crossbow]
-[type:: arcanegun]
+[weapon_type:: arcanegun]
 [frame:: needle_crossbow]
 [tier:: 1]
 [power_source:: mechanical]
@@ -210,7 +211,7 @@ tags:
 
 ### Фокус Реальности (Reality Focus) [2H]
 [weapon_id:: reality_focus]
-[type:: catalyst]
+[weapon_type:: catalyst]
 [frame:: catalyst_focus]
 [tier:: 2]
 [weapon_vector:: aether]
@@ -233,13 +234,13 @@ tags:
 ## 6. Щиты (Shields)
 
 ### Баклер (Buckler) [1H]
-[type:: shield]
+[weapon_type:: shield]
 [weight:: 1.0kg]
 *Маленький кулачный щит.*
 * **Implicit:** Окно блока очень маленькое (0.5 сек), но при идеальном блоке (Parry) ошеломляет атакующего.
 
 ### Ростовой Щит (Tower Shield) [1H]
-[type:: shield]
+[weapon_type:: shield]
 [weight:: 15kg]
 *Дверь от сейфа/машины.*
 * **Implicit:** Создает "Полное укрытие". Можно стрелять из пистолета, не опуская щит (вслепую). Сильно режет скорость (-40 MS).
@@ -249,7 +250,7 @@ tags:
 
 ### Шаблон Оружия (Template Weapon) [1H]
 [weapon_id:: template_weapon]
-[type:: blade]
+[weapon_type:: blade]
 [frame:: template_frame]
 [tier:: 1]
 [weapon_vector:: kinetics]

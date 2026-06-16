@@ -1,6 +1,7 @@
-﻿---
+---
 type: registry
 status: active
+system: world_generation_registry
 registry_type: biomes
 tags: [database, world_generation, environment]
 ---

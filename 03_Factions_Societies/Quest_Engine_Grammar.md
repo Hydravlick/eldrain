@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: quest_engine
 tags:
   - contracts
@@ -13,7 +14,6 @@ related_files:
   - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
   - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server_Lifecycle]]"
 ---
-
 # Движок Квестов: Рекурсивная Грамматика и UX
 
 ## 1. Философия: Работа и Тайны

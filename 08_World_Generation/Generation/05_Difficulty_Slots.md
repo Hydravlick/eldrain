@@ -1,9 +1,9 @@
 ---
 type: mechanic
+status: active
 system: difficulty
 tags: [balance, matchmaking, progression]
 ---
-
 # Слоты Сложности (Tier Spread)
 
 ## 1. Правило "Трех Аномалий"

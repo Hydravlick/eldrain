@@ -1,6 +1,8 @@
 ---
 type: lore
 category: faction
+status: active
+system: factions_lore
 tags:
   - intel
   - spy_network

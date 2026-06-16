@@ -1,4 +1,11 @@
-﻿```dataviewjs
+---
+type: matrix
+status: active
+system: player_entities_matrix
+tags: [dataview, matrix]
+---
+
+```dataviewjs
 // --- НАСТРОЙКИ ПУТЕЙ ---
 const files = {
     races: "04_Player_Entities/_Registries/Registry_Races.md",
@@ -61,7 +68,7 @@ function parseId(text, key = "id") {
 }
 
 function parseRequiredTypes(text) {
-    const regex = /\[type::\s*([\w\s,]+)\]/g; 
+    const regex = /\[arsenal_type::\s*([\w\s,]+)\]/g; 
     const matches = [...text.matchAll(regex)];
     let types = [];
     matches.forEach(m => {
@@ -71,7 +78,7 @@ function parseRequiredTypes(text) {
 }
 
 function parseArsenalEntries(text) {
-    const regex = /\[type::\s*([^\]]+)\][^\n]*?\[prof::\s*([^\]]+)\]/g;
+    const regex = /\[arsenal_type::\s*([^\]]+)\][^\n]*?\[prof::\s*([^\]]+)\]/g;
     return [...text.matchAll(regex)].map(m => ({
         type: m[1].trim(),
         prof: parseInt(m[2].trim()) || 0
@@ -79,7 +86,7 @@ function parseArsenalEntries(text) {
 }
 
 function parseType(text) {
-    const regex = /\[type::\s*(\w+)\]/;
+    const regex = /\[(?:weapon_type|armor_type)::\s*(\w+)\]/;
     const match = text.match(regex);
     return match ? match[1] : null;
 }

@@ -1,11 +1,11 @@
 ---
 type: root
 status: active
+system: core_vision
 version: 2.1
 tags: [gdd, master, index, navigation]
 last_update: 2026-01
 ---
-
 # ⚔️ ELDRAIN: General Design Document (Master)
 
 > **ВНИМАНИЕ:** Проект переведен на архитектуру **Cluster System v2.0**.

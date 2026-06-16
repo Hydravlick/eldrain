@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: faction
 tags:
   - vendors
@@ -11,7 +12,6 @@ related_files:
   - "[[06_Economy_Loot/Barter_System|Barter_System]]"
   - "[[03_Factions_Societies/Signet_System|Signet_System]]"
 ---
-
 # Логика Торговцев (Vendor Logic)
 
 ## 1. Структура Ассортимента

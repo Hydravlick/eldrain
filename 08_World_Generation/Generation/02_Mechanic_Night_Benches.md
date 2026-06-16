@@ -1,11 +1,11 @@
 ---
 type: mechanic
+status: active
 system: crafting
 tags: [risk_reward, anomaly_interaction, stations]
 related_systems: 
   - Anomaly_System
 ---
-
 # Ночные Станки (Night Benches)
 
 ## 1. Описание

@@ -1,9 +1,9 @@
 ---
 type: system
+status: active
 system: world_map
 tags: [rotation, server_state, exploration]
 ---
-
 # Система: Ротация Районов (District Rotation)
 
 ## 1. Концепция "Колоды"

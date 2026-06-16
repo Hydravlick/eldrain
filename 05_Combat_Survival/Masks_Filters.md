@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: action_combat
 tags:
   - masks
@@ -9,7 +10,6 @@ related_files:
   - "[[07_Gear_Inventory/_Registries/Registry_Headwear|Registry_Headwear]]"
   - "[[02_World_Lore/Anomaly_Weather_Systems|Anomaly_Weather_Systems]]"
 ---
-
 # Маски: Ключ от Мира
 
 ## 1. Концепция (Mask Gating)

@@ -1,6 +1,8 @@
-﻿---
+---
 type: location
 region: safe_zone
+status: active
+system: districts
 tags:
   - hub
   - banking
@@ -11,7 +13,6 @@ related_mechanics:
   - "[[06_Economy_Loot/Economy_Core]]"
   - "[[The_Anchor]]"
 ---
-
 # Городской Центр: Глаз Бури
 
 > *«Здесь время течет правильно. Стены стоят ровно. Это единственное место в Элдрейне, где, проснувшись утром, ты уверен, что дверь в твою комнату находится там же, где была вечером.»*

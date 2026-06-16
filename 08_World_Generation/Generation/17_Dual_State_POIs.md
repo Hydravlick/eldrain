@@ -1,12 +1,12 @@
 ---
 type: system
+status: active
 system: world_simulation
 tags: [poi, dual_state, persistence]
 related_systems: 
   - System_Global_Map_Rotation
   - Tech_Map_Metadata_Structure
 ---
-
 # Система: Двойное Состояние POI (Dual State)
 
 ## 1. Концепция "Мир-Война"

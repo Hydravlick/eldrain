@@ -1,6 +1,8 @@
 ---
 type: lore
 category: protocol
+status: active
+system: world_lore
 tags:
   - immigration
   - biology

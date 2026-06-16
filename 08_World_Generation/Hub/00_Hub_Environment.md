@@ -1,9 +1,9 @@
 ---
 type: mechanic
+status: active
 system: hub
 tags: [core, immersion, camera]
 ---
-
 # Хаб: Бункер "Кукловода"
 
 ## 1. Концепция Роли

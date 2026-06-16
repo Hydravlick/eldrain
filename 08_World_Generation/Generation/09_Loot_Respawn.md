@@ -1,9 +1,9 @@
 ---
 type: mechanic
+status: active
 system: economy
 tags: [loot, spawn_logic, anti_camp]
 ---
-
 # Логика Респавна Лута
 
 ## 1. Глобальный Реролл (Global Shift)

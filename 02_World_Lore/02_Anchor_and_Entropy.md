@@ -2,6 +2,7 @@
 type: lore
 category: foundation
 status: active
+system: world_lore
 tags: [the_anchor, entropy, fading, time]
 ---
 # Баланс Сил: Якорь и Энтропия

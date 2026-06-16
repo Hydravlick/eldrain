@@ -1,11 +1,11 @@
-﻿---
+---
 type: mechanic
+status: active
 system: matchmaking_ui
 tags: [region_lock, ping, ui]
 related_files:
   - "[[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion_Logic]]"
 ---
-
 # Настройка Частоты (Server Selection)
 
 ## 1. Отказ от Списка Серверов

@@ -1,10 +1,10 @@
 ---
 type: index
+system: navigation
 version: 4.0
 status: active
 tags: [master_index, gdd, navigation, refactor]
 ---
-
 # ЭЛДРЕЙН: Навигатор v4.0
 
 > **Жанр:** Hardcore PvPvE Extraction FPS  

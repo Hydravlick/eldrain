@@ -1,10 +1,10 @@
-﻿---
+---
 type: registry
 status: active
+system: player_entities_registry
 registry_type: skill_types
 tags: [database, mechanics, enum, glossary]
 ---
-
 # Реестр: Архетипы Навыков (Skill Types)
 
 > **Назначение:** Этот реестр определяет функциональные теги для способностей. Используется для балансировки классов, чтобы у персонажа не было, например, 3 навыков типа `Mobility` подряд.
@@ -16,21 +16,21 @@ tags: [database, mechanics, enum, glossary]
 
 ### Прямой Урон (Direct Damage)
 [id:: direct_damage]
-[type:: direct_damage]
+[skill_type:: direct_damage]
 * **Описание:** Прямой, мгновенный урон по одной цели.
 * **Требование:** Обычно требует прицеливания (Skillshot).
 * **Примеры:** Эфирная Стрела, Удар Кинжалом, Выстрел из Рельсотрона.
 
 ### Урон по Площади (Area Damage)
 [id:: area_damage]
-[type:: area_damage]
+[skill_type:: area_damage]
 * **Описание:** Урон по площади или сектору. Эффективен против групп слабых врагов (Swarm).
 * **Требование:** Высокое потребление Маны/Ресурсов.
 * **Примеры:** Граната Бездны, Огненное Дыхание, Цепная Молния.
 
 ### Ловушка (Trap)
 [id:: trap]
-[type:: trap]
+[skill_type:: trap]
 * **Описание:** Контроль территории через отложенный урон.
 * **Механика:** Срабатывает при контакте или по таймеру. Позволяет "минировать" фланги.
 * **Примеры:** Рунная Мина, Капкан, Ядовитая Лужа.
@@ -42,21 +42,21 @@ tags: [database, mechanics, enum, glossary]
 
 ### Контроль Толпы (Crowd Control)
 [id:: crowd_control]
-[type:: crowd_control]
+[skill_type:: crowd_control]
 * **Описание:** Наложение негативных эффектов, ограничивающих действия врага.
 * **Эффекты:** Стан (Stun), Замедление (Slow), Ослепление (Blind), Отбрасывание (Knockback).
 * **Примеры:** Флеш-граната, Грави-ловушка, Удар щитом.
 
 ### Баффы и Дебаффы (Buff Debuff)
 [id:: buff_debuff]
-[type:: buff_debuff]
+[skill_type:: buff_debuff]
 * **Описание:** Изменение характеристик союзников или врагов.
 * **Эффекты:** Снижение брони, Повышение скорости, Увеличение урона.
 * **Примеры:** Боевой Клич (Buff), Кислотный Плевок (Debuff Armor).
 
 ### Лечение (Healing)
 [id:: healing]
-[type:: healing]
+[skill_type:: healing]
 * **Описание:** Восстановление Здоровья (HP) или Структуры брони.
 * **Особенность:** В Magipunk-сеттинге лечение — редкий и дорогой ресурс (обычно требует расходников или долгого каста).
 * **Примеры:** Инъекция Нанитов, Полевая Хирургия, Жертвенный Ритуал.
@@ -68,14 +68,14 @@ tags: [database, mechanics, enum, glossary]
 
 ### Мобильность (Mobility)
 [id:: mobility]
-[type:: mobility]
+[skill_type:: mobility]
 * **Описание:** Мгновенное изменение позиции персонажа.
 * **Механика:** Часто дает неуязвимость (i-frames) во время анимации.
 * **Примеры:** Рывок (Dash), Телепорт (Blink), Крюк-кошка (Grapple).
 
 ### Защита (Defense)
 [id:: defense]
-[type:: defense]
+[skill_type:: defense]
 * **Описание:** Предотвращение урона без перемещения.
 * **Эффекты:** Персональные щиты, создание стен, блокирование снарядов.
 * **Примеры:** Энерго-барьер, Каменная Кожа, Отражение пуль.
@@ -85,7 +85,7 @@ tags: [database, mechanics, enum, glossary]
 
 ### Шаблон Типа Навыка (Template Skill Type)
 [id:: template_skill]
-[type:: template_skill]
+[skill_type:: template_skill]
 [delivery_vector:: tech]
 [resource_cost:: stamina]
 [counter_window:: interrupt]

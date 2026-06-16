@@ -1,5 +1,6 @@
-﻿---
+---
 type: mechanic
+status: active
 system: faction
 tags:
   - reputation
@@ -10,7 +11,6 @@ related_files:
   - "[[06_Economy_Loot/Vendor_Logic|Vendor_Logic]]"
   - "[[03_Factions_Societies/Signet_System|Signet_System]]"
 ---
-
 # Правила Репутации (Reputation Rules)
 
 ## 1. Концепция: Игра с Нулевой Суммой
