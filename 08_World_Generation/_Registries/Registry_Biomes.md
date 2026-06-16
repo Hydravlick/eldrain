@@ -52,7 +52,7 @@ tags: [database, world_generation, environment]
     - [mob:: deep_minion] (Глубинные Приспешники)
     - [mob:: deep_brute] (Глубинные Живоглоты)
     - [mob:: harpooner] (Гарпунщики)
-    - [mob:: swamp_sniper] (Снайперы)
+    - [mob:: swamp_sniper] (Дальнобойщики)
     - [mob:: armored_crab] (Крабы)
     - [mob:: deep_shaman] (Шаманы)
 

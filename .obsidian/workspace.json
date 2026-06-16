@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Archive/_MERGED_SOURCES.md",
+                "file": "05_Combat_Survival/Movement_Physics.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "_MERGED_SOURCES"
+              "title": "Movement_Physics"
             }
           }
         ]
@@ -204,20 +204,22 @@
       "notion-like-tables:Create loom": false
     }
   },
-  "active": "977ad2cccc7a3a5a",
+  "active": "2d3831e4928dbb12",
   "lastOpenFiles": [
+    "05_Combat_Survival/Masks_Filters.md",
+    "05_Combat_Survival/Registry_Weapons.md",
+    "Reference Note Анализ геймплея по системе Micro Meso Macro.md",
+    "Reference Note Анализ Mewgenics как эталона Single-Player Extraction Roguelike.md",
+    "_Archive/_MERGED_SOURCES.md",
     "_Archive/Untitled/Root_Untitled.md",
     "_Archive/Legacy/00_Index_legacy.md",
     "_Archive/Duplicates/00_Master_Index_v3.md",
     "_Archive/Duplicates/Physical_Weight_v2.md",
-    "_Archive/_MERGED_SOURCES.md",
     "_Archive/Untitled/Quest_Engine_Layered_Generation.md",
     "_Archive/Untitled/Root_Untitled_1.md",
     "00_Index.md",
-    "Reference Note Анализ Mewgenics как эталона Single-Player Extraction Roguelike.md",
     "01_Core_Vision/Loop.md",
     "01_Core_Vision/02_Core_Loop.md",
-    "Reference Note Анализ геймплея по системе Micro Meso Macro.md",
     "07_Gear_Inventory/Inventory_Architecture.md",
     "07_Gear_Inventory/Fashion_Gear.md",
     "07_Gear_Inventory/Equipment_PaperDoll.md",
@@ -230,8 +232,6 @@
     "07_Gear_Inventory/_Registries/Registry_Armors.md",
     "04_Player_Entities/_Matrices/00_Balance.md",
     "04_Player_Entities/_Matrices/00_Archetype_Matrix.md",
-    "09_Project_Management/Refactor_Skills.md",
-    "09_Project_Management/TO-DO_List_Legacy.md",
     "02_World_Lore",
     "01_Core_Vision",
     "05_Combat_Survival",

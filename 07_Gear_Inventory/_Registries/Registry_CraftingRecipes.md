@@ -53,7 +53,7 @@ tags: [database, economy, upgrade, blueprints]
 
 ---
 
-## 🛠️ Фракционное Снаряжение (Faction Gear)
+## Фракционное Снаряжение (Faction Gear)
 
 ### Маска "Чистый Воздух" (Keeper Mask)
 *Защита от токсинов T1.*
@@ -89,13 +89,13 @@ tags: [database, economy, upgrade, blueprints]
     - 1x `[item:: deep_scale]` (Эссенция)
 - **Output:** `[gear:: phantom_cloak]`
 
-### Вольт-Винтовка (Volt Rifle)
+### Вольт-Конденсатор (Volt Condenser)
 *Электрическая дуга по 2 целям.*
 - **Input:**
-    - 1x `[blueprint:: volt_rifle]` (Чертеж)
-    - 1x `[weapon:: arcanegun]` (Любая винтовка-основа)
-    - 3x `[item:: battery_cell]` (Накопитель)
-- **Output:** `[weapon:: volt_rifle]`
+    - 1x `[blueprint:: volt_condenser]` (Чертеж)
+    - 1x `[weapon:: arcanegun]` (Любой конденсаторный фрейм)
+    - 3x `[item:: capacitor_cell]` (Накопитель)
+- **Output:** `[weapon:: volt_condenser]`
 
 ### Ловушка Теслы (Tesla Trap)
 *Стационарная турель.*
@@ -115,11 +115,11 @@ tags: [database, economy, upgrade, blueprints]
 - **Output:** `[weapon:: inquisitor_mace]`
 
 ### Гвоздомет "Заклепочник" (Heavy Riveter)
-*Тяжелый пулемет.*
+*Тяжелый гарпунно-заклепочный разрядник.*
 - **Input:**
     - 1x `[blueprint:: heavy_riveter]` (Чертеж)
     - 20x `[item:: scrap_metal]`
-    - 1x `[item:: battery_cell]`
+    - 1x `[item:: capacitor_cell]`
 - **Output:** `[weapon:: heavy_riveter]`
 
 ### Сумка Контрабандиста (Smuggler Bag)
@@ -132,7 +132,7 @@ tags: [database, economy, upgrade, blueprints]
 
 ---
 
-## ☠️ Редкое Снаряжение (Rare Assembly)
+## Редкое Снаряжение (Rare Assembly)
 
 ### Сабля Призрачного Капитана (Spectral Cutlass)
 *Игнорирует броню.*
@@ -145,7 +145,7 @@ tags: [database, economy, upgrade, blueprints]
 
 ---
 
-## 🔮 Трансмутация (Upgrades)
+## Трансмутация (Upgrades)
 *Не требует чертежей, требует Сферы.*
 
 ### Enchant Weapon (Magic)

@@ -1,4 +1,4 @@
-﻿---
+---
 type: registry
 status: active
 registry_type: weapons
@@ -11,7 +11,7 @@ tags:
 > - [ ] Прописать поле `[implicit:: ...]` для всех пушек (напр. `ambush`, `armor_break`).
 > - [ ] Прописать поле `[sweet_spot_range:: float]` для алебард.
 
-> [!TODO] ⚖️ Задачи: Efficient Tier (Math)
+> [!TODO] Задачи: Efficient Tier (Math)
 > Переход от табличного Power Score к формульному.
 > 
 > - [ ] **Утвердить Коэффициенты (Global Constants):**
@@ -26,14 +26,15 @@ tags:
 > **Философия Дизайна:**
 > Оружие определяется не "именем", а **Конструкцией (Frame)** и **Паттерном (Pattern)**.
 > * **Frame:** Определяет хитбокс, анимации и встроенное свойство (Implicit).
-> * **Pattern:** Определяет тип урона и надежность (Origin).
-> * **Tier:** Определяет базовую цифру урона и пробитие.
+> * **Pattern:** Определяет происхождение, тип импульса и стабильность.
+> * **Tier:** Определяет базовую цифру урона, пробитие и качество стабилизации.
+> * **Battery Cycle:** Для магострелов темп задается батареей, охлаждением, heat, bloom и resonance.
 
 > **Легенда Типов:**
 > `blade` — Клинковое (Мечи, Ножи)
 > `blunt` — Дробящее (Молоты, Булавы)
 > `polearm` — Древковое (Копья, Алебарды)
-> `arcanegun` — Магострел (Арбалеты, Мушкеты)
+> `arcanegun` — Магострел и дальнобойный фрейм (разрядники, конденсаторы, эмиттеры, игольники)
 > `catalyst` — Катализатор (Фонари, Книги, Амулеты)
 > `shield` — Щит (Баклеры, Ростовые)
 
@@ -41,11 +42,17 @@ tags:
 > `[range:: N]` — Дальность (м).
 > `[weapon_vector:: ...]` — скрытый тактический вектор оружия.
 > `[vector_gate:: 3]` — минимальный итоговый proficiency tier, при котором оружие добавляет свой вектор в Combat Profile.
+> `[frame:: ...]` — конкретный дальнобойный фрейм.
+> `[charge_cost:: N]` — сколько зарядов батареи тратит действие.
+> `[heat:: N]` — сколько тепла создает импульс.
+> `[bloom:: low/medium/high]` — насколько быстро растет эфирный разброс.
+> `[resonance:: N]` — шум для Аномалии.
+> `[window_role:: ...]` — какое окно оружие создает для добивания.
 > До открытия гейта оружие остается инструментом урона/анимаций, но не становится отдельным узлом Двойного Парадокса.
 
 ---
 ## 1. Клинковое Оружие (Blades)
-*Режущий/Колющий урон. Вызывает кровотечения. Требует заточки.*
+*Режущий/колющий урон. Вызывает кровотечения и хорошо закрывает окна, созданные дальним боем.*
 
 ### Боевой Нож (Combat Shiv) [1H]
 [type:: blade]
@@ -106,39 +113,118 @@ tags:
 
 ---
 
-## 4. Огнестрел: Кинетика (Ballistics)
-*Использует патроны. Громкое. Надежное.*
+## 4. Дальний Бой: Магострельные Фреймы
+*Медленное дальнее давление. Оружие может убивать, но чаще открывает окно для ближнего боя, Q/E или команды.*
 
-### Револьвер (Handcannon) [1H]
+### Ручной Разрядник (Spark Handcannon) [1H]
+[weapon_id:: spark_handcannon]
 [type:: arcanegun]
+[frame:: handcannon]
+[tier:: 1]
+[weapon_vector:: ballistics]
+[vector_gate:: 3]
 [weight:: 1.8kg]|[dmg:: 45]
-*Большой калибр, барабанная подача.*
-* **Implicit (Встроенное):** **(Stopping Power)** Попадание сбивает спринт бегущему на вас врагу.
-* **Минус:** Долгая перезарядка (по одному патрону).
+[charge_cost:: 1]
+[heat:: 35]
+[bloom:: high]
+[resonance:: 4]
+[window_role:: stagger_entry]
+*Грубый одноручный магострел: короткая дистанция, сильный удар, плохая дисциплина разряда.*
+* **Implicit:** **(Stopping Pulse)** попадание сбивает спринт и дает `Aim Punch`.
+* **Слабость:** при стрельбе на бегу bloom резко растет.
 
-### Болтовая Винтовка (Bolt-Action) [2H]
+### Конденсаторный Длинник (Condenser Longframe) [2H]
+[weapon_id:: condenser_longframe]
 [type:: arcanegun]
-[weight:: 4.2kg]|[dmg:: 80]
-*Снайперская классика.*
-* **Implicit (Встроенное):** **(High Velocity)** Пуля не теряет урон с дистанцией. Пробивает тела насквозь (Collateral Damage).
+[frame:: condenser_longframe]
+[tier:: 2]
+[weapon_vector:: ballistics]
+[vector_gate:: 3]
+[weight:: 4.5kg]|[dmg:: 75]
+[charge_cost:: 1]
+[charge_time:: 0.8s]
+[heat:: 45]
+[bloom:: medium]
+[resonance:: 6]
+[window_role:: weakspot_open]
+*Дальний фрейм с удержанием заряда. Силен, если игрок успел стабилизировать импульс.*
+* **Implicit:** **(Shield Breaker)** повышенное давление по щитам, барьерам и кастерам.
+* **Слабость:** плох под давлением; сбитый заряд уходит в heat и resonance.
 
-### Дробовик Помповый (Pump Shotgun) [2H]
+### Веерный Эмиттер (Scatter Emitter) [2H]
+[weapon_id:: scatter_emitter]
 [type:: arcanegun]
-[weight:: 3.8kg]|[dmg:: 8x12]
-*Король ближнего боя.*
-* **Implicit (Встроенное):** **(Pellet Spread)** Выпускает 8 дробинок. Если все 8 попадают в одну цель — шанс "Ошеломления" (Stagger). Урон по броне минимален (Tier -1), но урон по плоти колоссален.
+[frame:: scatter_emitter]
+[tier:: 1]
+[weapon_vector:: ballistics]
+[vector_gate:: 3]
+[weight:: 3.8kg]|[dmg:: 10x6]
+[charge_cost:: 1]
+[charge_time:: 0.4s]
+[heat:: 50]
+[bloom:: high]
+[resonance:: 5]
+[window_role:: melee_setup]
+*Выплескивает веер нестабильной энергии. Не про точность, а про остановку входа.*
+* **Implicit:** **(Stagger Cone)** мелкие цели отбрасываются, крупные получают сильный aim punch.
+* **Слабость:** на средней дистанции урон распадается, heat копится быстро.
 
----
+### Гарпунный Драйвер (Harpoon Driver) [2H]
+[weapon_id:: harpoon_driver]
+[type:: arcanegun]
+[frame:: harpoon_driver]
+[tier:: 2]
+[weapon_vector:: ballistics]
+[vector_gate:: 3]
+[weight:: 6.0kg]|[dmg:: 40]
+[charge_cost:: 1]
+[charge_time:: 0.7s]
+[heat:: 30]
+[bloom:: low]
+[resonance:: 5]
+[window_role:: tether_control]
+*Катушка разгоняет гарпун с тросом. Главная ценность - не урон, а фиксация.*
+* **Implicit:** **(Tether)** цель замедлена, привязана или вытянута из укрытия.
+* **Слабость:** промах оставляет игрока с тяжелым фреймом и потерянным темпом.
 
-## 5. Огнестрел: Магострел (Arcanetech)
-*Использует Батареи или Жидкий Эфир. Тихий, но греется.*
+### Игольный Арбалет (Needle Crossbow) [2H]
+[weapon_id:: needle_crossbow]
+[type:: arcanegun]
+[frame:: needle_crossbow]
+[tier:: 1]
+[power_source:: mechanical]
+[weapon_vector:: ballistics]
+[vector_gate:: 3]
+[weight:: 2.4kg]|[dmg:: 35]
+[charge_cost:: 0]
+[heat:: 0]
+[bloom:: low]
+[resonance:: 0]
+[window_role:: quiet_pick]
+*Механический дальнобойный фрейм без батареи. Тихий, но медленный.*
+* **Implicit:** **(Puncture)** хорошо работает по мягким зонам и тканям.
+* **Слабость:** долгий взвод, слабый stagger, плохая работа против тяжелых пластин.
 
-### Рейлган / Гвоздомет (Rail Driver) [2H]
+## 5. Катализаторы (Catalyst Focus)
+*Фокусы чистого эфира, Reality Burn и ритуальной магии. Это не оружие темпа, а дорогой инструмент окна.*
+
+### Фокус Реальности (Reality Focus) [2H]
+[weapon_id:: reality_focus]
 [type:: catalyst]
-[weight:: 6.0kg]|[dmg:: 70]
-*Электромагнитный разгон снаряда.*
-* **Mechanic:** Требует 0.5 сек "разогрева" перед выстрелом (Hold trigger).
-* **Implicit (Встроенное):** **(Shield Breaker)** Наносит x2 урон по энергетическим щитам и магическим барьерам.
+[frame:: catalyst_focus]
+[tier:: 2]
+[weapon_vector:: aether]
+[vector_gate:: 3]
+[weight:: 3.0kg]|[dmg:: 55]
+[charge_cost:: 1]
+[charge_time:: 1.0s]
+[heat:: 40]
+[bloom:: medium]
+[resonance:: 8]
+[window_role:: reality_burn]
+*Проводник, который заставляет аномальное тело принять нормальные законы.*
+* **Implicit:** **(Reality Burn)** временно делает аномальную цель уязвимой к обычному урону.
+* **Слабость:** высокий resonance, backlash без батареи, слабый темп против живых гуманоидов.
 
 ---
 
@@ -162,10 +248,16 @@ tags:
 ### Шаблон Оружия (Template Weapon) [1H]
 [weapon_id:: template_weapon]
 [type:: blade]
+[frame:: template_frame]
 [tier:: 1]
 [weapon_vector:: kinetics]
 [vector_gate:: 3]
 [weight:: 1.0kg]
+[charge_cost:: 0]
+[heat:: 0]
+[bloom:: none]
+[resonance:: 0]
+[window_role:: template_window]
 [value:: 0]
 *Короткое описание боевой фантазии.*
 - **Сильная дистанция:** где оружие раскрывается.

@@ -47,8 +47,8 @@ tags: [database, loot, trade, schematics]
 - **Тип:** `[consumable:: true]`
 - **Требование:** `[rep:: minstrels : +4]` для покупки.
 
-### Схема: Вольт-Винтовка
-[blueprint:: volt_rifle]
+### Схема: Вольт-Конденсатор
+[blueprint:: volt_condenser]
 *Синька (Blueprint) из Академии с печатью "Одобрено".*
 - **Статы:** `[weight:: 0.3kg]` | `[stack:: 1]` | `[value:: 800]`
 - **Тип:** `[consumable:: true]`.
@@ -84,7 +84,7 @@ tags: [database, loot, trade, schematics]
 
 ---
 
-## 🏴‍☠️ Дроповые Схемы (Raid Found)
+## Дроповые Схемы (Raid Found)
 *Грязные, поврежденные носители информации, найденные в рейдах.*
 
 ### [Unidentified] Поврежденный Планшет

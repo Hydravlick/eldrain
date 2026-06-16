@@ -2,7 +2,7 @@
 type: registry
 status: active
 registry_type: consumables
-tags: [database, healing, utility, ammo]
+tags: [database, healing, utility, batteries]
 ---
 
 # Реестр: Расходные Материалы (Consumables)
@@ -95,13 +95,51 @@ tags: [database, healing, utility, ammo]
 ## 3. Источники Энергии (Energy Sources)
 *Топливо для магии и технологий.*
 
-### Магическая Батарея (Mana Battery)
-[consumable_id:: battery_cell]
-*Стеклянный цилиндр с конденсированным Эфиром.*
-- **Статы:** `[weight:: 0.3kg]` | `[stack:: 3]` | `[value:: 500]`
-- **Использование:**
-    1. **Аммуниция:** Питает магострельное оружие и заклинания.
-    2. **Валюта:** Принимается Технократами как альтернатива Резам.
-- **Состояния:**
-    - `[state:: charged]` (Заряженная).
-    - `[state:: empty]` (Пустая).
+### Слабая Батарея (Cracked Cell)
+[consumable_id:: cracked_cell]
+[cell_size:: standard]
+[charge_count:: 1]
+[stability:: low]
+*Треснувший цилиндр с грязным эфиром. Один импульс, много шума.*
+- **Статы:** `[weight:: 0.3kg]` | `[stack:: 3]` | `[value:: 250]`
+- **Использование:** 1 выстрел, заклинание или активация Q/E.
+- **Отход:** после расхода становится `[item:: drained_cell]`.
+
+### Хорошая Батарея (Capacitor Cell)
+[consumable_id:: capacitor_cell]
+[cell_size:: standard]
+[charge_count:: 3]
+[stability:: normal]
+*Стандартная гильдейская батарея того же размера, но с тремя стабильными зарядами.*
+- **Статы:** `[weight:: 0.3kg]` | `[stack:: 3]` | `[value:: 700]`
+- **Использование:** 3 импульса с cooldown между ними.
+- **Отход:** после третьего заряда становится `[item:: drained_cell]`.
+
+### Якорная Батарея (Anchor Cell)
+[consumable_id:: anchor_cell]
+[cell_size:: standard]
+[charge_count:: 3]
+[stability:: high]
+*Дорогая батарея с чистым светом Якоря.*
+- **Статы:** `[weight:: 0.3kg]` | `[stack:: 3]` | `[value:: 1400]`
+- **Использование:** 3 стабильных импульса с меньшим bloom, heat и resonance.
+- **Отход:** после расхода становится `[item:: drained_cell]`, но зарядка может требовать сервис.
+
+### Перегрузочная Батарея (Overcharge Cell)
+[consumable_id:: overcharge_cell]
+[cell_size:: standard]
+[charge_count:: 1]
+[stability:: volatile]
+*Одноразовый импульс Reality Burn. Слишком яркая, чтобы быть безопасной.*
+- **Статы:** `[weight:: 0.3kg]` | `[stack:: 1]` | `[value:: 1200]`
+- **Использование:** 1 мощный импульс для щитов, аномальных тел и аварийного добивания.
+- **Отход:** после расхода становится `[item:: drained_cell]` или ломается сюжетным событием.
+
+### Истощенная Батарея (Drained Cell)
+[consumable_id:: drained_cell]
+[cell_size:: standard]
+[charge_count:: 0]
+[stability:: inert]
+*Пустой носитель. Не выбрасывайте: после успешной экстракции он снова заряжается в Хабе.*
+- **Статы:** `[weight:: 0.3kg]` | `[stack:: 3]` | `[value:: 80]`
+- **Использование:** возвращается в зарядный цикл после эвакуации.

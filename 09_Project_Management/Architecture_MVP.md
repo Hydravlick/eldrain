@@ -77,7 +77,7 @@ LegacyLangRU/
 │   │   ├── 04_Ballistics_Armor.md
 │   │   ├── 05_Ballistics_PvP.md
 │   │   ├── 06_Ballistics_PvE.md
-│   │   ├── 07_Entropy_System.md
+│   │   ├── 07_Threat_Thresholds.md
 │   │   ├── 08_Weapon_Core.md
 │   │   ├── 09_Weapon_Melee.md
 │   │   ├── 10_Weapon_Ranged.md
@@ -102,7 +102,6 @@ LegacyLangRU/
 │   │   ├── 10_Reputation_Rules.md
 │   │   ├── 11_Signet_System.md
 │   │   ├── 12_Auction_House.md
-│   │   ├── 13_Item_Degradation.md
 │   │   ├── 14_Resource_Cycle.md
 │   │   ├── 15_P2P_Interaction.md
 │   │   ├── 16_Global_Market_Logic.md

@@ -22,6 +22,8 @@ tags: [database, builds, proficiency]
 [req_spec:: template_spec]
 [type:: blade] | [prof:: 2]
 [type:: light_armor] | [prof:: 1]
+[condition_bonus:: trigger: substat +0]
+[tradeoff:: none]
 *Короткое описание фантазии архетипа.*
 - **Сильная сторона:** где комбинация доминирует.
 - **Окно уязвимости:** считается из пересечения `weak_to` у расы и класса.
@@ -31,8 +33,10 @@ tags: [database, builds, proficiency]
 [id:: juggernaut]
 *Еж слишком тяжел для тактических маневров, поэтому он становится стационарной турелью.*
 - **Требования:** [req_race:: hedgehog] | [req_spec:: assault]
+[condition_bonus:: while_stationary: brace +25, recoil_damp +20, heavy_ready +10]
+[tradeoff:: relocation_speed -15, heat +5]
 - **Арсенал (Weaponry):**
-	- `[type:: arcanegun]` | `[prof:: 2]` (Тяжелые пулеметы, Гарпуны, Дробовики)
+	- `[type:: arcanegun]` | `[prof:: 2]` (тяжелые конденсаторы, гарпунные драйверы, веерные эмиттеры)
 	- `[type:: shield]` | `[prof:: 1]` (Ростовые щиты - только со штрафом)
 - **Экипировка (Armor):**
 	- `[type:: heavy_plate]` | `[prof:: 2]` (Тяжелая броня)
@@ -42,7 +46,7 @@ tags: [database, builds, proficiency]
 #### (Q): `Ощетиниться`
   [desc:: Выстреливает иглами во все стороны. Враги в радиусе 3м получают кровотечение и отбрасываются.]
 #### (E): `Подавление`
-  [desc:: Перегревает оружие, удваивая скорострельность, но лишая возможности двигаться на 5 сек.]
+  [desc:: Фиксирует оружие в осадной стойке. Следующий импульс получает сильный Stagger и Armor Pressure, но персонаж не может двигаться и резко повышает Heat/Resonance.]
 
 ---
 
@@ -50,6 +54,8 @@ tags: [database, builds, proficiency]
 [id:: voltmancer]
 *Белка использует свой гипер-метаболизм, чтобы генерировать ману для заклинаний.*
 - **Требования:** [req_race:: squirrel] | [req_spec:: specialist]
+[condition_bonus:: after_movement: spark_gain +20, battery_efficiency +10]
+[tradeoff:: resonance +5, backlash_risk +6]
 - **Арсенал (Weaponry):**
 	- `[type:: catalyst]` | `[prof:: 2]` (Проводники магии)
 	- `[type:: arcanegun]` | `[prof:: 1]` (Легкие магострелы)
@@ -70,9 +76,11 @@ tags: [database, builds, proficiency]
 [id:: bio_chemist]
 *Зачем носить аптечки, если твое тело — фабрика ферментов?*
 - **Требования:** [req_race:: toad] | [req_spec:: support]
+[condition_bonus:: inside_cloud: toxin_filter +20, healing_output +10, field_craft_speed +8]
+[tradeoff:: dry_zone_output -8]
 - **Арсенал (Weaponry):**
 	- `[type:: catalyst]` | `[prof:: 2]` (Распылители/Кадило)
-	- `[type:: arcanegun]` | `[prof:: 1]` (Пистолеты)
+	- `[type:: arcanegun]` | `[prof:: 1]` (ручные разрядники)
 - **Экипировка (Armor):**
 	- `[type:: hazard_suit]` | `[prof:: 2]` (Химзащита)
 	- `[type:: composite_rig]` | `[prof:: 1]` (Разгрузка медика)
@@ -90,8 +98,10 @@ tags: [database, builds, proficiency]
 [id:: ghost_walker]
 *Ящерица-разведчик, которая становится единым целым со стенами.*
 - **Требования:** [req_race:: lizard] | [req_spec:: scout]
+[condition_bonus:: while_stationary: weakspot_read +20, stillness_camo +25]
+[tradeoff:: revealed_stagger +10]
 - **Арсенал (Weaponry):**
-	- `[type:: arcanegun]` | `[prof:: 2]` (Снайперские/Тихие)
+	- `[type:: arcanegun]` | `[prof:: 2]` (игольные арбалеты, тихие конденсаторы)
 	- `[type:: blade]` | `[prof:: 2]` (Мечи/Ножи)
 - **Экипировка (Armor):**
 	- `[type:: composite_rig]` | `[prof:: 1]` (Легкая разгрузка)
@@ -110,6 +120,8 @@ tags: [database, builds, proficiency]
 [id:: scrap_knight]
 *Крыса слаба телом, поэтому строит себе броню из того, что найдет.*
 - **Требования:** [req_race:: rat] | [req_spec:: guard]
+[condition_bonus:: carrying_scrap: armor_sync +15, improvised_cover +15]
+[tradeoff:: resonance +3, movement_noise +10]
 - **Арсенал (Weaponry):**
 	- `[type:: blunt]` | `[prof:: 2]` (Молоты/Ключи)
 	- `[type:: shield]` | `[prof:: 2]` (Импровизированные щиты)
@@ -128,18 +140,20 @@ tags: [database, builds, proficiency]
 
 ## Штормтрупер (Storm Trooper)
 [id:: storm_trooper]
-*Белка с автоматом. Скорость реакции быстрее, чем механизм подачи патронов.*
+*Белка-авангард, которая превращает конденсатор в серию рискованных импульсов.*
 - **Требования:** [req_race:: squirrel] | [req_spec:: assault]
+[condition_bonus:: after_stagger: heat_sink +10, cell_swap_speed +12]
+[tradeoff:: overheat_spike +10, bloom +8]
 - **Арсенал (Weaponry):**
-	- `[type:: arcanegun]` | `[prof:: 2]` (Автоматы/ПП)
+	- `[type:: arcanegun]` | `[prof:: 2]` (ручные разрядники, конденсаторы, короткие эмиттеры)
 	- `[type:: blade]` | `[prof:: 1]` (Боевые ножи)
 - **Экипировка (Armor):**
-	- `[type:: composite_rig]` | `[prof:: 2]` (Тактическая броня)
+	- `[type:: composite_rig]` | `[prof:: 2]` (легкий боевой риг)
 
 #### (P): `Twitch Reflex`
-  [desc:: Шанс 30% мгновенно перезарядить оружие после убийства.]
+  [desc:: После убийства или Stagger цель сбрасывает часть Heat и ускоряет замену батареи на 2 сек.]
 #### (Q): `Перегрузка`
-  [desc:: Увеличивает скорострельность на 200% на 3 секунды, но оружие нагревается до критического состояния.]
+  [desc:: Сжигает все оставшиеся заряды активной батареи в одном нестабильном залпе. Чем больше зарядов, тем сильнее Stagger и Bloom; оружие уходит в критический Heat.]
 #### (E): `Фазовый Рывок`
   [desc:: Телепортируется на 5 метров вперед, оставляя за собой электрический след.]
 
@@ -149,9 +163,11 @@ tags: [database, builds, proficiency]
 [id:: tunnel_rat]
 *Ни одна дверь не заперта, если есть вентиляция.*
 - **Требования:** [req_race:: rat] | [req_spec:: scout]
+[condition_bonus:: in_tight_space: vent_fit +25, loot_speed +15, lockwork +10]
+[tradeoff:: open_field_brace -10]
 - **Арсенал (Weaponry):**
 	- `[type:: blade]` | `[prof:: 2]` (Кинжалы/Заточки)
-	- `[type:: arcanegun]` | `[prof:: 1]` (Пистолеты)
+	- `[type:: arcanegun]` | `[prof:: 1]` (ручные разрядники)
 - **Экипировка (Armor):**
 	- `[type:: composite_rig]` | `[prof:: 2]` (Легкая кожа)
 	- `[type:: hazard_suit]` | `[prof:: 1]` (Фильтры)
@@ -169,6 +185,8 @@ tags: [database, builds, proficiency]
 [id:: scale_warden]
 *Ящерица, чья кожа тверже стали. Танк, который не блокирует, а отражает.*
 - **Требования:** [req_race:: lizard] | [req_spec:: guard]
+[condition_bonus:: after_element_hit: armor_sync +15, heat_warning +12]
+[tradeoff:: cold_start_speed -8]
 - **Арсенал (Weaponry):**
 	- `[type:: polearm]` | `[prof:: 2]` (Алебарды/Трезубцы)
 	- `[type:: shield]` | `[prof:: 2]` (Щиты)
@@ -188,8 +206,10 @@ tags: [database, builds, proficiency]
 [id:: spine_doctor]
 *Медик-садист. Его лечение больное, но эффективное.*
 - **Требования:** [req_race:: hedgehog] | [req_spec:: support]
+[condition_bonus:: treating_ally: healing_output +12, backlash_resist +8]
+[tradeoff:: ally_pain +5]
 - **Арсенал (Weaponry):**
-	- `[type:: catalyst]` | `[prof:: 2]` (Шприц-пистолеты)
+	- `[type:: catalyst]` | `[prof:: 2]` (шприц-катализаторы)
 	- `[type:: blade]` | `[prof:: 1]` (Скальпели)
 - **Экипировка (Armor):**
 	- `[type:: hazard_suit]` | `[prof:: 2]` (Костюм химзащиты)

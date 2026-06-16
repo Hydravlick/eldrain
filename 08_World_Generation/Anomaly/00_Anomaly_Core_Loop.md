@@ -5,7 +5,8 @@ tags: [session_logic, storm, entropy, difficulty_curve, director_ai]
 related_files:
   - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server_Lifecycle]]"
   - "[[08_World_Generation/Anomaly/14_Extraction_System|Extraction_System]]"
-  - "[[05_Combat_Survival/07_Entropy_System|Entropy_System]]"
+  - "[[08_World_Generation/Generation/08_Gate_Check|Gate_Check]]"
+  - "[[05_Combat_Survival/Threat_Thresholds|Threat_Thresholds]]"
 ---
 
 # Ядро Аномалии: Правила Арены

@@ -23,7 +23,7 @@
         shadow: "Тень",
         kinetics: "Кинетика",
         tech: "Техника",
-        ballistics: "Баллистика",
+        ballistics: "Дальнее давление",
         aether: "Эфир",
         detection: "Сенсорика"
     };

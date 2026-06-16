@@ -23,8 +23,8 @@ related_files:
 | Биом (Пример) | Тег Биома | Приоритетные категории лута | Штрафные категории |
 | :--- | :--- | :--- | :--- |
 | **Ржавый Порт** | `[biome:: port]` | `Industrial`, `Tools`, `Scrap_Metal`, `Water_Gear` | `High_Tech`, `Magic_Scrolls` |
-| **Собор / Храм** | `[biome:: temple]` | `Artifacts`, `Books`, `Ritual_Items`, `Gold` | `Military_Ammo`, `Modern_Tech` |
-| **Военная База** | `[biome:: military]` | `Weapons`, `Ammo`, `Armor`, `Explosives` | `Civilian_Trash`, `Food` |
+| **Собор / Храм** | `[biome:: temple]` | `Artifacts`, `Books`, `Ritual_Items`, `Gold` | `Battery_Cells`, `Workshop_Tech` |
+| **Старый Арсенал** | `[biome:: arsenal]` | `Weapons`, `Cells`, `Bolts`, `Armor`, `Explosives` | `Civilian_Trash`, `Food` |
 
 > *Логика:* В порту вы с 80% вероятностью найдете ржавый гаечный ключ или гарпун, и только с 1% — магический гримуар.
 
@@ -37,13 +37,13 @@ related_files:
 `[difficulty:: 01]` — Зона высадки.
 * **Empty Chance (Шанс пустого слота):** 40%
 * **Rarity Cap:** Максимум **Uncommon (Зеленое)**. Rare (Синее) падает только с боссов.
-* **Durability:** Предметы спавнятся с прочностью 20-50%.
+* **Quality:** Предметы чаще простые, кустарные или Volatile с низкой стоимостью стабилизации.
 
 ### Tier 2: Deep Zone (Глубина)
 `[difficulty:: 02]` — Основная зона активности.
 * **Empty Chance:** 25%
 * **Rarity Bonus:** +10% к шансу повысить редкость.
-* **Durability:** Предметы спавнятся с прочностью 40-70%.
+* **Quality:** чаще встречаются T2-материалы, готовые расходники и предметы с хорошим `value/kg`.
 * **Exclusive:** Начинают падать специфические ресурсы биома (например, *Deep Coral* в Порту).
 
 ### Tier 3: Epicenter (Эпицентр)
@@ -82,5 +82,5 @@ related_files:
 
 ## 6. Связь с Мобами
 Лут с мобов (описанный в `Registry_Mobs`) обрабатывается отдельно.
-* Моб `[mob:: scavenger]` в Т1 имеет ржавый пистолет.
-* Тот же моб в Т3 может иметь тот же пистолет, но с лучшими патронами или модами.
+* Моб `[mob:: scavenger]` в Т1 имеет кривой ручной разрядник или игольник.
+* Тот же моб в Т3 может иметь тот же фрейм, но с лучшей батареей, катушкой или модом стабилизации.

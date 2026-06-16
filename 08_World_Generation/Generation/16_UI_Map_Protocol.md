@@ -22,7 +22,7 @@ tags: [minimap, json, data_stream]
       "position": {"x": 120, "y": -45}, // Вектор вместо гекса
       "type": "BUILDING",
       "tags": ["HEIGHT_HIGH", "BRIDGE_NORTH"], // UI рисует иконку мостика
-      "poi_icon": "ICON_TRADER_AMMO"
+      "poi_icon": "ICON_TRADER_CELLS"
     },
     {
       "id": 1046,
