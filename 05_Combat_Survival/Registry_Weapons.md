@@ -217,6 +217,7 @@ tags:
 [vector_gate:: 3]
 [weight:: 3.0kg]|[dmg:: 55]
 [charge_cost:: 1]
+[charge_item:: reality_charge]
 [charge_time:: 1.0s]
 [heat:: 40]
 [bloom:: medium]
@@ -224,6 +225,7 @@ tags:
 [window_role:: reality_burn]
 *Проводник, который заставляет аномальное тело принять нормальные законы.*
 * **Implicit:** **(Reality Burn)** временно делает аномальную цель уязвимой к обычному урону.
+* **Расход:** тратит подготовленный `Reality Charge`, `Overcharge Cell` или стабилизатор. Не списывает сырой Рез из кошелька во время рейда.
 * **Слабость:** высокий resonance, backlash без батареи, слабый темп против живых гуманоидов.
 
 ---

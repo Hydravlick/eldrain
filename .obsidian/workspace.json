@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "05_Combat_Survival/Movement_Physics.md",
+                "file": "Weak Sides.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Movement_Physics"
+              "title": "Weak Sides"
             }
           }
         ]
@@ -206,6 +206,9 @@
   },
   "active": "2d3831e4928dbb12",
   "lastOpenFiles": [
+    "09_Project_Management/Risk_Register.md",
+    "05_Combat_Survival/Movement_Physics.md",
+    "Weak Sides.md",
     "05_Combat_Survival/Masks_Filters.md",
     "05_Combat_Survival/Registry_Weapons.md",
     "Reference Note Анализ геймплея по системе Micro Meso Macro.md",
@@ -229,9 +232,6 @@
     "04_Player_Entities/Ability_Synergy.md",
     "04_Player_Entities/_Registries/Registry_Combos.md",
     "04_Player_Entities/_Matrices/00_Character_Matrix.md",
-    "07_Gear_Inventory/_Registries/Registry_Armors.md",
-    "04_Player_Entities/_Matrices/00_Balance.md",
-    "04_Player_Entities/_Matrices/00_Archetype_Matrix.md",
     "02_World_Lore",
     "01_Core_Vision",
     "05_Combat_Survival",
