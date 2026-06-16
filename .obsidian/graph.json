@@ -1,65 +1,93 @@
 {
-  "collapse-filter": false,
+  "collapse-filter": true,
   "search": "",
   "showTags": false,
   "showAttachments": true,
   "hideUnresolved": true,
   "showOrphans": true,
-  "collapse-color-groups": false,
+  "collapse-color-groups": true,
   "colorGroups": [
     {
-      "query": "path:Lang_RU/10_Mechanics/01_Player_Core  ",
-      "color": {
-        "a": 1,
-        "rgb": 14701138
-      }
-    },
-    {
-      "query": "path:Lang_RU/10_Mechanics/02_Action_Combat  ",
+      "query": "path:01_Core_Vision  ",
       "color": {
         "a": 1,
         "rgb": 14725458
       }
     },
     {
-      "query": "path:Lang_RU/10_Mechanics/03_Economy  ",
+      "query": "path:02_World_Lore  ",
+      "color": {
+        "a": 1,
+        "rgb": 14725458
+      }
+    },
+    {
+      "query": "path:03_Factions_Societies  ",
       "color": {
         "a": 1,
         "rgb": 11657298
       }
     },
     {
-      "query": "path:Lang_RU/10_Mechanics/04_Inventory_Gear  ",
+      "query": "path:04_Player_Entities  ",
       "color": {
         "a": 1,
         "rgb": 5431378
       }
     },
     {
-      "query": "path:Lang_RU/10_Mechanics/05_World_Systems  ",
+      "query": "path:05_Combat_Survival  ",
       "color": {
         "a": 1,
         "rgb": 5431473
       }
     },
     {
-      "query": "path:Lang_RU/00_Variables  ",
+      "query": "path:06_Economy_Loot  ",
       "color": {
         "a": 1,
         "rgb": 5419488
       }
+    },
+    {
+      "query": "path:07_Gear_Inventory  ",
+      "color": {
+        "a": 1,
+        "rgb": 5395168
+      }
+    },
+    {
+      "query": "path:08_World_Generation  ",
+      "color": {
+        "a": 1,
+        "rgb": 11621088
+      }
+    },
+    {
+      "query": "path:09_Project_Management  ",
+      "color": {
+        "a": 1,
+        "rgb": 14701233
+      }
+    },
+    {
+      "query": "path:Images  ",
+      "color": {
+        "a": 1,
+        "rgb": 14701138
+      }
     }
   ],
   "collapse-display": false,
-  "showArrow": true,
-  "textFadeMultiplier": -0.4,
-  "nodeSizeMultiplier": 1.53639341927213,
-  "lineSizeMultiplier": 0.797817047817048,
+  "showArrow": false,
+  "textFadeMultiplier": -2.9,
+  "nodeSizeMultiplier": 3.32316074353678,
+  "lineSizeMultiplier": 0.1,
   "collapse-forces": false,
   "centerStrength": 0,
-  "repelStrength": 0,
-  "linkStrength": 0,
+  "repelStrength": 9.32697101346058,
+  "linkStrength": 0.370628872587423,
   "linkDistance": 500,
-  "scale": 0.2360018770791719,
-  "close": false
+  "scale": 0.10423896905704577,
+  "close": true
 }

@@ -61,7 +61,7 @@ sources:
 - [x] Сравнить архивный `Physical_Weight_v2` и [[07_Gear_Inventory/Physical_Weight]]; перенести формулы v2 в канонический файл.
 - [x] Проверить [[03_Factions_Societies/Quest_Engine]] и [[03_Factions_Societies/Quest_Engine_Grammar]]; оставить грамматику как актуальную, старую слоистую версию зафиксировать в [[_Archive/_MERGED_SOURCES]].
 - [x] Очистить `_Archive` после мержа и оставить единый merge-log.
-- [ ] Решить судьбу [[04_Player_Entities/New_Races]]: заполнить или перенести в архив после подтверждения.
+- [ ] Решить судьбу [[04_Player_Entities/_Registries/Registry_Races]]: заполнить или перенести в архив после подтверждения.
 - [ ] Проверить пустые старые папки `Lang_RU` и `New`; удалить вручную после проверки Obsidian.
 
 ## Legacy sources

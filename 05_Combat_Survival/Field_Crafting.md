@@ -5,7 +5,7 @@ system: combat_craft
 tags: [crafting, workbench, field_craft, risk, alchemy]
 related_files:
   - "[[06_Economy_Loot/Barter_System|Barter_System]]"
-  - "[[05_Combat_Survival/11_Combat_Consumables|Combat_Consumables]]"
+  - "[[05_Combat_Survival/Combat_Consumables|Combat_Consumables]]"
   - "[[08_World_Generation/_Registries/Registry_POIs|Registry_POIs]]"
 ---
 # Полевой Крафт (Field Crafting)

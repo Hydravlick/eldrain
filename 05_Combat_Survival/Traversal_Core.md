@@ -4,8 +4,8 @@ status: active
 system: traversal
 tags: [movement, parkour, verticality, cover, tactics]
 related_files:
-  - "[[05_Combat_Survival/01_Movement_Physics|Movement_Physics]]"
-  - "[[08_World_Generation/Generation/00_World_Structure|World_Structure]]"
+  - "[[05_Combat_Survival/Movement_Physics|Movement_Physics]]"
+  - "[[08_World_Generation/Generation/10_World_Topology|World_Structure]]"
 ---
 # Система Перемещения: Вертикальность и Укрытия
 

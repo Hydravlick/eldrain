@@ -9,8 +9,8 @@ tags:
   - horror
   - economy
 related_mechanics:
-  - "[[10_Mechanics/Economy/System_Entropy_Tax]]"
-  - "[[10_Mechanics/World/Anomaly_System]]"
+  - "[[06_Economy_Loot/Barter_System#4. ????? ???????? (The Tax)]]"
+  - "[[08_World_Generation/Anomaly/Anomaly_System]]"
   - "[[The_Collapse]]"
 ---
 # Энтропия: Дыхание Пустоты

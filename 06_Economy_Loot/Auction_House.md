@@ -9,7 +9,7 @@ tags:
   - listing
   - shells
 related_files:
-  - "[[08_World_Generation/Hub/03_Diegetic_UI_Concept|Hub_UI]]"
+  - "[[08_World_Generation/Hub/02_Hub_Services_Interaction|Hub_Services_Interaction]]"
   - "[[06_Economy_Loot/Currency_Rez|Currency_Rez]]"
   - "[[04_Player_Entities/Shell_Specification|Shell_Specification]]"
 ---

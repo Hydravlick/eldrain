@@ -9,7 +9,7 @@ tags:
   - education
   - hierarchy
 related_mechanics:
-  - "[[Factions_Overview]]"
+  - "[[03_Factions_Societies/Registry_Factions]]"
   - "[[03_Factions_Societies/Reputation_Rules]]"
 ---
 # Социально-Политический Уклад: Порядок Хаоса

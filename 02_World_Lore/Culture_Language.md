@@ -8,7 +8,7 @@ tags:
   - aesthetics
   - lore
 related_mechanics:
-  - "[[04_Player_Entities/New_Races]]"
+  - "[[04_Player_Entities/_Registries/Registry_Races]]"
   - "[[City_Center]]"
 ---
 # Культура Элдрейна: Мозаика Миров

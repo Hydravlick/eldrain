@@ -8,7 +8,7 @@ tags:
   - magic
   - artifacts
 related_mechanics:
-  - "[[10_Mechanics/Economy/Economy_City]]"
+  - "[[06_Economy_Loot/Economy_Core]]"
   - "[[05_Combat_Survival/Magic_Batteries]]"
 ---
 # Технологии: Наследие Света

@@ -9,9 +9,9 @@ tags:
   - crime
   - resonance
 related_mechanics:
-  - "[[10_Mechanics/Economy/Economy_City]]"
-  - "[[10_Mechanics/Economy/Currency_Entropy]]"
-  - "[[20_Lore/01_World_Foundation/The_Anchor]]"
+  - "[[06_Economy_Loot/Economy_Core]]"
+  - "[[06_Economy_Loot/Currency_Rez]]"
+  - "[[02_World_Lore/The_Anchor]]"
 ---
 # Валюта: Резонанс (Rez)
 

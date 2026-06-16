@@ -9,8 +9,8 @@ tags:
   - neutral
   - administration
 related_mechanics:
-  - "[[10_Mechanics/World/Quest_Engine]]"
-  - "[[10_Mechanics/City/Faction_Reputation#Keepers]]"
+  - "[[03_Factions_Societies/Quest_Engine]]"
+  - "[[03_Factions_Societies/Registry_Factions#????????? (The Keepers)]]"
 ---
 # Хранители (The Keepers)
 

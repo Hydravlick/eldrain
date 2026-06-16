@@ -9,8 +9,8 @@ tags:
   - keeper_tech
   - adaptation
 related_mechanics:
-  - "[[10_Mechanics/World/Anomaly_System]]"
-  - "[[10_Mechanics/Meta/New_Character_Creation]]"
+  - "[[08_World_Generation/Anomaly/Anomaly_System]]"
+  - "[[04_Player_Entities/_Registries/Registry_Races]]"
 ---
 # Протокол «Резонанс»: Интеграция Видов
 

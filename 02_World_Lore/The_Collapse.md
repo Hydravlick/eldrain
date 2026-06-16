@@ -10,7 +10,7 @@ tags:
   - time_horror
 related_mechanics:
   - "[[05_Combat_Survival/Magic_Batteries]]"
-  - "[[10_Mechanics/World/Anomaly_System]]"
+  - "[[08_World_Generation/Anomaly/Anomaly_System]]"
 ---
 # Гибель Реальности: Синтез Времени
 

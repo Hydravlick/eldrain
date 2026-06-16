@@ -4,7 +4,10 @@ status: active
 system: world_generation_registry
 registry_type: map_objects
 tags: [ui_map, prefabs, pois, dungeons]
-related_systems: [Anomaly_System, City_Structure_Generation, Hub_UI]
+related_systems:
+  - "[[08_World_Generation/Anomaly/Anomaly_System|Anomaly_System]]"
+  - "[[08_World_Generation/Generation/12_Generation_Strategies|Generation_Strategies]]"
+  - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
 ---
 # Реестр: Объекты Карты (Map Table Objects)
 

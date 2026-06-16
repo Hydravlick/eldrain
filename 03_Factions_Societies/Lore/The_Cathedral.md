@@ -10,9 +10,9 @@ tags:
   - temporal_constants
   - relics
 related_mechanics:
-  - "[[10_Mechanics/World/Extraction_Rules]]"
-  - "[[10_Mechanics/Combat/Status_Effects]]"
-  - "[[10_Mechanics/City/Faction_Reputation]]"
+  - "[[08_World_Generation/Anomaly/14_Extraction_System]]"
+  - "[[05_Combat_Survival/Status_Effects]]"
+  - "[[03_Factions_Societies/Reputation_Rules]]"
 ---
 # Собор Всех Вер (The Cathedral of All Faiths)
 

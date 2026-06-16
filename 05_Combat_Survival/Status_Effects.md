@@ -9,7 +9,7 @@ tags:
   - resistance
 related_files:
   - "[[05_Combat_Survival/Registry_StatusEffects|Registry_StatusEffects]]"
-  - "[[05_Combat_Survival/Damage_System|Damage_System]]"
+  - "[[05_Combat_Survival/Ballistics_Armor|Ballistics_Armor]]"
 ---
 # Механика: Статусные Эффекты
 

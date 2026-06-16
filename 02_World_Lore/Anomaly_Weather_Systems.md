@@ -11,9 +11,9 @@ tags:
   - anomaly
   - realism
 related_mechanics:
-  - "[[10_Mechanics/World/Extraction_Rules]]"
-  - "[[10_Mechanics/Exploration/Stealth_Value]]"
-  - "[[10_Mechanics/World/Anomaly_System]]"
+  - "[[08_World_Generation/Anomaly/14_Extraction_System]]"
+  - "[[05_Combat_Survival/Acoustic_Stealth]]"
+  - "[[08_World_Generation/Anomaly/Anomaly_System]]"
 ---
 # Небесная Твердь: Погода и Светила
 

@@ -4,8 +4,8 @@ status: active
 system: communication
 tags: [voip, radio, acoustic, immersion]
 related_files:
-  - "[[05_Combat_Survival/02_Acoustic_Stealth|Acoustic_Stealth]]"
-  - "[[05_Combat_Survival/13_Masks_Filters|Masks_Filters]]"
+  - "[[05_Combat_Survival/Acoustic_Stealth|Acoustic_Stealth]]"
+  - "[[05_Combat_Survival/Masks_Filters|Masks_Filters]]"
 ---
 # Акустический Протокол и VOIP
 

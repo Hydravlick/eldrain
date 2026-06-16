@@ -4,7 +4,7 @@ status: active
 system: insertion
 tags: [lore_integrated, matchmaking, spawn_logic, sarcophagus, squad_mechanics]
 related_files:
-  - "[[08_World_Generation/Generation/12_World_Regeneration|World_Regeneration]]"
+  - "[[08_World_Generation/Generation/13_Async_Double_Buffer|Async_Double_Buffer]]"
   - "[[04_Player_Entities/Shell_Specification|Shell_Specification]]"
 ---
 # Логика Входа: Протокол "Саркофаг"

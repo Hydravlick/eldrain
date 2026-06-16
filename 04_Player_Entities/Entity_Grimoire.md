@@ -9,7 +9,7 @@ tags:
   - entity
 related_files:
   - "[[02_World_Lore/The_Entity|The_Entity]]"
-  - "[[08_World_Generation/Hub/City_Structure|City_Structure]]"
+  - "[[08_World_Generation/Hub/00_Hub_Environment|City_Structure]]"
 ---
 # Ядро Игрока: Гримуар Сущности
 

@@ -7,7 +7,7 @@ tags:
   - anomalies
   - traps
 related_files:
-  - "[[05_Combat_Survival/Damage_System|Damage_System]]"
+  - "[[05_Combat_Survival/Status_Effects|Status_Effects]]"
 ---
 > [!TODO] 🌍 Задачи: Цикл Аномалий (Shift System)
 > Реализация динамической смены сложности секторов.

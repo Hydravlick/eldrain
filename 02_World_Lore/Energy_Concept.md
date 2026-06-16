@@ -11,7 +11,7 @@ tags:
 related_files:
   - "[[02_World_Lore/Magipunk_Physics|Magipunk_Physics]]"
   - "[[05_Combat_Survival/Magic_Batteries|System_Batteries]]"
-  - "[[06_Economy_Loot/Economy_Core|Economy_City]]"
+  - "[[06_Economy_Loot/Economy_Core|Economy_Core]]"
 ---
 # Концепция: Энергия и Батареи (The Meaning Trap)
 

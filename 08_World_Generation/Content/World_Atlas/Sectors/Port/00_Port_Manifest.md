@@ -87,4 +87,4 @@ tags:
 
 ---
 *Связанные механики:*
-[[08_World_Generation/Anomaly/Anomaly_System|Система Аномалий]] • [[08_World_Generation/Anomaly/14_Extraction_System|Правила Экстракции]] • [[08_World_Generation/Generation/City_Structure_Generation|Генерация Города]]
+[[08_World_Generation/Anomaly/Anomaly_System|Система Аномалий]] • [[08_World_Generation/Anomaly/14_Extraction_System|Правила Экстракции]] • [[08_World_Generation/Generation/12_Generation_Strategies|Генерация Города]]

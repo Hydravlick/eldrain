@@ -11,7 +11,7 @@ tags:
 related_mechanics:
   - "[[07_Gear_Inventory/Equipment_PaperDoll]]"
   - "[[03_Factions_Societies/Reputation_Rules]]"
-  - "[[Economy_Batteries]]"
+  - "[[05_Combat_Survival/Magic_Batteries]]"
 ---
 # Мода и Снаряжение: Эстетика Выживания
 
