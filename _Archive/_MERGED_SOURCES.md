@@ -19,8 +19,8 @@ date: 2026-06-16
 | `_Archive/Untitled/Quest_Engine_Layered_Generation.md` | знание как валюта, breadcrumbs -> jackpot, counter-contracts, доска расследований | [[03_Factions_Societies/Quest_Engine_Grammar]] |
 | `_Archive/Duplicates/00_Master_Index_v3.md` | структура старого индекса | Не переносилось: заменено [[00_Index]] |
 | `_Archive/Legacy/00_Index_legacy.md` | старое резюме проекта | Не переносилось: актуальные идеи уже живут в [[01_Core_Vision/GDD_Main]] и [[00_Index]] |
-| `09_Project_Management/TO-DO_List_Legacy.md` | старый рабочий backlog, полезные narrative seeds, уже интегрированные refactor-задачи | Рабочие задачи очищены в [[09_Project_Management/TODO]], полезные seeds вынесены в [[Reference Notes New]], интегрированные блоки отмечены ниже |
-| `Weak Sides.md` | список конфликтов MVP, слабые места лупа, экономика, бой, хаб, сезоны | Риски перенесены в [[09_Project_Management/Risk_Register]], задачи - в [[09_Project_Management/TODO]], полезные seeds - в [[Reference Notes New]] |
+| `09_Project_Management/TO-DO_List_Legacy.md` | старый рабочий backlog, полезные narrative seeds, уже интегрированные refactor-задачи | Рабочие задачи очищены в [[09_Project_Management/TODO]], полезные seeds вынесены в [[10_Reference/Reference Notes New]], интегрированные блоки отмечены ниже |
+| `Weak Sides.md` | список конфликтов MVP, слабые места лупа, экономика, бой, хаб, сезоны | Риски перенесены в [[09_Project_Management/Risk_Register]], задачи - в [[09_Project_Management/TODO]], полезные seeds - в [[10_Reference/Reference Notes New]] |
 | `01_Core_Vision/Loop.md` | старое описание базового лупа | Слито в [[01_Core_Vision/02_Core_Loop]] |
 | `01_Core_Vision/Vision.md` | бытовая магия, единство в хаосе, референсы тона | Слито в [[01_Core_Vision/01_Vision]] |
 | `01_Core_Vision/03_Glossary.md` | расширенные определения Сущности, Энтропии, Якоря, Реза, Оболочек | Слито в [[01_Core_Vision/Glossary]] |
@@ -29,7 +29,7 @@ date: 2026-06-16
 | `02_World_Lore/03_Magipunk_Physics.md` | магия как промышленная технология и батарейная логика | Слито в [[02_World_Lore/Magipunk_Physics]] и [[02_World_Lore/Energy_Concept]] |
 | `02_World_Lore/04_Culture_Assimilation.md` | культурная ассимиляция, чужие физики, Протокол Резонанса | Слито в [[02_World_Lore/Culture_Language]] и [[02_World_Lore/Protocol_Resonance]] |
 | `09_Project_Management/Action_Plan_Update.md` | рабочие refactor-задачи и стабилизация систем | Свернуто в [[09_Project_Management/TODO]] и актуальные системные файлы |
-| `09_Project_Management/Lore_Update.md` | seeds по Ancients, Keepers, True Matrices, Living Circuits | Свернуто в [[Reference Notes New#Cosmogony Overhaul]] |
+| `09_Project_Management/Lore_Update.md` | seeds по Ancients, Keepers, True Matrices, Living Circuits | Свернуто в [[10_Reference/Reference Notes New#Cosmogony Overhaul]] |
 
 ## Legacy TODO Digest
 
@@ -45,15 +45,15 @@ date: 2026-06-16
 | Стабилизация `Volatile`-лута | [[06_Economy_Loot/Economy_Core]], [[06_Economy_Loot/Sinks_Insurance]], [[07_Gear_Inventory/Item_Attributes_UI]] |
 | Найденыши и капсулы | [[04_Player_Entities/Shell_Foundlings]], [[04_Player_Entities/Lifecycle_Roster]], [[06_Economy_Loot/Auction_House]] |
 | Two-Paradox и боевой профиль | [[04_Player_Entities/Two_Paradox_Birth]], [[04_Player_Entities/Combat_Profile_Pipeline]], [[04_Player_Entities/_Matrices/00_Character_Matrix]] |
-| Blood Debt tutorial seed | [[03_Factions_Societies/Quest_Engine]], [[03_Factions_Societies/Lore/New_Factions]], [[Reference Notes New#Blood Debt Tutorial]] |
+| Blood Debt tutorial seed | [[03_Factions_Societies/Quest_Engine]], [[03_Factions_Societies/Lore/New_Factions]], [[10_Reference/Reference Notes New#Blood Debt Tutorial]] |
 
 ### Перенесено в Reference Notes
 
-- [[Reference Notes New#The Keeper's Breach]]
-- [[Reference Notes New#Selection Protocol]]
-- [[Reference Notes New#Blood Debt Tutorial]]
-- [[Reference Notes New#Stabilized Living Cargo]]
-- [[Reference Notes New#Redemption Runs]]
+- [[10_Reference/Reference Notes New#The Keeper's Breach]]
+- [[10_Reference/Reference Notes New#Selection Protocol]]
+- [[10_Reference/Reference Notes New#Blood Debt Tutorial]]
+- [[10_Reference/Reference Notes New#Stabilized Living Cargo]]
+- [[10_Reference/Reference Notes New#Redemption Runs]]
 
 ### Закрыто Без Переноса
 

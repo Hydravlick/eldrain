@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_Archive/_MERGED_SOURCES.md",
+                "file": "10_Reference/Reference Note Анализ Mewgenics как эталона Single-Player Extraction Roguelike.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "_MERGED_SOURCES"
+              "title": "Reference Note Анализ Mewgenics как эталона Single-Player Extraction Roguelike"
             }
           }
         ]
@@ -203,11 +203,13 @@
       "notion-like-tables:Create loom": false
     }
   },
-  "active": "2d3831e4928dbb12",
+  "active": "977ad2cccc7a3a5a",
   "lastOpenFiles": [
-    "Reference Note Анализ Mewgenics как эталона Single-Player Extraction Roguelike.md",
-    "Reference Note Анализ геймплея по системе Micro Meso Macro.md",
-    "Reference Notes New.md",
+    "10_Reference",
+    "10_Reference/Reference Note Анализ геймплея по системе Micro Meso Macro.md",
+    "10_Reference/Reference Notes New.md",
+    "10_Reference/Reference Note Анализ Mewgenics как эталона Single-Player Extraction Roguelike.md",
+    "_Archive/_MERGED_SOURCES.md",
     "09_Project_Management/Risk_Register.md",
     "09_Project_Management/Refactor_Skills.md",
     "09_Project_Management/Generation_Algorithm_Notes.md",
@@ -228,10 +230,8 @@
     "09_Project_Management/TO-DO_List_Legacy.md",
     "09_Project_Management/TODO.md",
     "Weak Sides.md",
-    "_Archive/_MERGED_SOURCES.md",
     "00_Index.md",
     "01_Core_Vision/03_Glossary.md",
-    "02_World_Lore/Protocol_Resonance.md",
     "02_World_Lore",
     "01_Core_Vision",
     "05_Combat_Survival",

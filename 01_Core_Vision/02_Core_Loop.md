@@ -2,10 +2,16 @@
 type: mechanic
 system: core_loop
 status: active
-tags: [loop, flow, progression, extraction, pacing, gear_gate]
+tags:
+  - loop
+  - flow
+  - progression
+  - extraction
+  - pacing
+  - gear_gate
 related_files:
-  - "[[Reference Note Анализ Mewgenics как эталона Single-Player Extraction Roguelike]]"
-  - "[[Reference Note Анализ геймплея по системе Micro Meso Macro]]"
+  - "[[10_Reference/Reference Note Анализ Mewgenics как эталона Single-Player Extraction Roguelike]]"
+  - "[[10_Reference/Reference Note Анализ геймплея по системе Micro Meso Macro]]"
   - "[[08_World_Generation/Generation/07_Server_Lifecycle]]"
   - "[[08_World_Generation/Generation/08_Gate_Check]]"
   - "[[06_Economy_Loot/Economy_Core]]"
