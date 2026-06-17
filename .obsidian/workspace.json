@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "10_Reference/Reference Note Анализ Mewgenics как эталона Single-Player Extraction Roguelike.md",
+                "file": "_Archive/_MERGED_SOURCES.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Reference Note Анализ Mewgenics как эталона Single-Player Extraction Roguelike"
+              "title": "_MERGED_SOURCES"
             }
           }
         ]
@@ -205,15 +205,22 @@
   },
   "active": "977ad2cccc7a3a5a",
   "lastOpenFiles": [
+    "02_World_Lore/Anomaly_Weather_Systems.md",
+    "01_Core_Vision/Glossary.md",
+    "01_Core_Vision/02_Core_Loop.md",
+    "01_Core_Vision/01_Vision.md",
+    "08_World_Generation/Reality_Integrity.md",
+    "08_World_Generation/Persistence_Ledger.md",
+    "09_Project_Management/Architecture_MVP.md",
+    "00_Index.md",
+    "10_Reference/Reference Note Анализ Mewgenics как эталона Single-Player Extraction Roguelike.md",
     "10_Reference",
     "10_Reference/Reference Note Анализ геймплея по системе Micro Meso Macro.md",
     "10_Reference/Reference Notes New.md",
-    "10_Reference/Reference Note Анализ Mewgenics как эталона Single-Player Extraction Roguelike.md",
     "_Archive/_MERGED_SOURCES.md",
     "09_Project_Management/Risk_Register.md",
     "09_Project_Management/Refactor_Skills.md",
     "09_Project_Management/Generation_Algorithm_Notes.md",
-    "09_Project_Management/Architecture_MVP.md",
     "09_Project_Management/Action_Plan_Update.md",
     "_Archive/Merged/PM_Lore_Update.md",
     "_Archive/Merged/PM_Action_Plan_Update.md",
@@ -226,12 +233,6 @@
     "_Archive/Merged/Core_Loop.md",
     "_Archive/Merged/Weak Sides.md",
     "_Archive/Merged",
-    "09_Project_Management/Lore_Update.md",
-    "09_Project_Management/TO-DO_List_Legacy.md",
-    "09_Project_Management/TODO.md",
-    "Weak Sides.md",
-    "00_Index.md",
-    "01_Core_Vision/03_Glossary.md",
     "02_World_Lore",
     "01_Core_Vision",
     "05_Combat_Survival",
@@ -240,7 +241,6 @@
     "08_World_Generation/Content/World_Atlas/Sectors/Port",
     "08_World_Generation/Content/World_Atlas/Sectors",
     "08_World_Generation/Content/World_Atlas",
-    "08_World_Generation/Content/Characters",
     "Images/Buildings/a1e2279664bbee46114b9bbfc9527b37.webp",
     "Images/Buildings/0f62e0d4f8277d093a8c4b64e29cb973.webp",
     "Images/Buildings/SoborA.webp",

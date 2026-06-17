@@ -20,7 +20,7 @@ sources:
 
 - [ ] **First-Person Controller:** body awareness, procedural sway, free look.
 - [ ] **Combat feel:** вес оружия, projectile combat, melee commitment, понятный feedback от брони.
-- [ ] **Raid inventory:** лутание без паузы, drag & drop,  блокировка обзора во время копания в сумке.
+- [ ] **Raid inventory:** лутание без паузы, список предметов, вес, быстрый доступ, блокировка обзора во время копания в сумке.
 - [ ] **Loot stabilization:** UI, стоимость и понятный переход `Volatile` -> `Stabilized`.
 - [ ] **Foundlings loop:** капсулы как лут, переноска, риск смерти носильщика, отличие найденышей от проекций.
 - [ ] **Roster UI:** карточки пешек, состояние, травмы, пригодность под контракт.
