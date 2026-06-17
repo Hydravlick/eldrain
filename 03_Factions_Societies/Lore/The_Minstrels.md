@@ -9,8 +9,8 @@ tags:
   - black_market
   - communication
 related_mechanics:
-  - "[[06_Economy_Loot/Vendor_Logic#3. ??????????? ???????? (Faction Economy)]]"
-  - "[[03_Factions_Societies/Registry_Factions#???? ??????????? (The Minstrels)]]"
+  - "[[06_Economy_Loot/Vendor_Logic#3. Фракционные Магазины (Faction Economy)]]"
+  - "[[03_Factions_Societies/Registry_Factions#Лига Менестрелей (The Minstrels)]]"
 ---
 # Лига Менестрелей (The Minstrels)
 

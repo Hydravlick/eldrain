@@ -9,7 +9,7 @@ tags:
   - cosmogony
   - meta
 related_mechanics:
-  - "[[04_Player_Entities/Lifecycle_Roster#1. ?????? ???????? (Shell Deck)]]"
+  - "[[04_Player_Entities/Lifecycle_Roster#1. Колода Оболочек (Shell Deck)]]"
   - "[[08_World_Generation/Anomaly/Anomaly_System]]"
 ---
 # Архитектор Хаоса: Сущность (The Entity)

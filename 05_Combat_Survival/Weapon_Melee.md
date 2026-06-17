@@ -59,7 +59,7 @@ related_files:
     * *Implicit:* **[Maim]** Шанс нанести глубокую рану (снижает макс. HP цели).
 
 > **Пример из Реестра:**
-> ![[05_Combat_Survival/Registry_Weapons#Боевой Нож (Combat Shiv) [1H]]
+> [[05_Combat_Survival/Registry_Weapons#1. Клинковое Оружие (Blades)|Боевой нож в реестре]]
 
 ### B. Дробящее (Blunt)
 *Ударный урон. Акцент на контроль и уничтожение пластин.*
@@ -70,7 +70,7 @@ related_files:
     * *Implicit:* **[Concussion]** Удары в голову вызывают дезориентацию.
 
 > **Пример из Реестра:**
-> ![[05_Combat_Survival/Registry_Weapons#Кувалда (Sledgehammer) [2H]]
+> [[05_Combat_Survival/Registry_Weapons#2. Дробящее (Blunt / Impact)|Кувалда в реестре]]
 
 ### C. Древковое (Polearms)
 *Зонинг. Контроль дистанции.*
@@ -79,6 +79,6 @@ related_files:
     * *Implicit:* **[Sweet Spot]** 100% урона только лезвием. Удар древком — 30% урона.
 
 > **Пример из Реестра:**
-> ![[05_Combat_Survival/Registry_Weapons#Алебарда (Halberd) [2H]]
+> [[05_Combat_Survival/Registry_Weapons#3. Древковое (Polearms)|Алебарда в реестре]]
 
 ---

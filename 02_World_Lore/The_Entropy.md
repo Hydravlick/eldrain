@@ -9,7 +9,7 @@ tags:
   - horror
   - economy
 related_mechanics:
-  - "[[06_Economy_Loot/Barter_System#4. ????? ???????? (The Tax)]]"
+  - "[[06_Economy_Loot/Barter_System#4. Налог Энтропии (The Tax)]]"
   - "[[08_World_Generation/Anomaly/Anomaly_System]]"
   - "[[The_Collapse]]"
 ---

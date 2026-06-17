@@ -10,7 +10,7 @@ tags:
   - warframe_style
   - underground
 related_mechanics:
-  - "[[03_Factions_Societies/Registry_Factions#????????? (The Keepers)]]"
+  - "[[03_Factions_Societies/Registry_Factions#Хранители (The Keepers)]]"
   - "[[08_World_Generation/Anomaly/14_Extraction_System]]"
 ---
 # Якорный Архив (The Anchor Archive)

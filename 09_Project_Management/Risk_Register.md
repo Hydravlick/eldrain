@@ -2,14 +2,14 @@
 type: project_management
 status: active
 system: project_management
-tags: [risk_register, weak_sides, decisions, mvp]
+tags: [risk_register, decisions, mvp]
 related_files:
-  - "[[Weak Sides]]"
+  - "[[_Archive/_MERGED_SOURCES#Weak Sides Digest|Weak Sides Digest]]"
   - "[[08_World_Generation/Generation/08_Gate_Check]]"
   - "[[06_Economy_Loot/Currency_Rez]]"
   - "[[04_Player_Entities/_Registries/Registry_Combos]]"
 ---
-# Risk Register: Weak Sides Decisions
+# Risk Register: MVP Decisions
 
 ## Решения MVP
 
@@ -30,6 +30,7 @@ related_files:
 | R13 | HUD перегружен 13+ параметрами | Ввести слои `VISIBLE`, `DIEGETIC`, `LATENT` | fixed | `UI_Map_Protocol`, `Item_Attributes_UI` |
 | R15 | P2P-дроп обходит аукцион и налог | `Field Transfer` дает `Unstabilized Transfer`; нужен отмыв/стабилизация перед легальным рынком | fixed | `P2P_Interaction`, `Auction_House` |
 | R16 | 6-часовой цикл может быть несправедливым по таймзонам | Rolling pool из T1/T2/T3 локаций со сдвигом, опциональный 4-й слот | fixed | `Server_Lifecycle`, `Async_Timers`, `Difficulty_Slots` |
+| R21 | Два глоссария расходятся в терминах | Канон терминов держать в `Glossary`; numbered-версию слить или архивировать | fixed | `Glossary`, `Architecture_MVP` |
 
 ## Оставить На Потом
 
@@ -40,3 +41,4 @@ related_files:
 | R18 | Guild/Clan система | Не нужна для первого боевого/экономического MVP |
 | R19 | Сезонные вайпы / престиж | Макро-прогрессия после стабилизации core loop |
 | R20 | Внешний elevator pitch | Отдельный документ для найма/питча после фиксации лупа |
+| R22 | Хаб как remote-presence может быть спутан с физическим PvP-пространством | Нужно уточнить модель безопасного Хаба и взаимодействия аватаров до полноценной social layer |

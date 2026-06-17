@@ -10,7 +10,7 @@ tags:
   - administration
 related_mechanics:
   - "[[03_Factions_Societies/Quest_Engine]]"
-  - "[[03_Factions_Societies/Registry_Factions#????????? (The Keepers)]]"
+  - "[[03_Factions_Societies/Registry_Factions#Хранители (The Keepers)]]"
 ---
 # Хранители (The Keepers)
 
