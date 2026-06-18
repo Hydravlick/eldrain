@@ -9,6 +9,19 @@ tags: [database, mechanics, enum, glossary]
 
 > **Назначение:** Этот реестр определяет функциональные теги для способностей. Используется для балансировки классов, чтобы у персонажа не было, например, 3 навыков типа `Mobility` подряд.
 
+Каждая активная способность дополнительно получает энергетические поля:
+
+```text
+[energy_contract:: body/hybrid/device]
+[battery_version:: effect_id/none]
+[cantrip_version:: effect_id/none]
+[overcharge_version:: effect_id/none]
+```
+
+- `body` работает без батареи;
+- `hybrid` использует батарею по умолчанию и допускает сознательный кантрип;
+- `device` требует физический источник и не имеет автоматической замены телом.
+
 ---
 
 ## 1. Атака (Offense)
@@ -88,6 +101,10 @@ tags: [database, mechanics, enum, glossary]
 [skill_type:: template_skill]
 [delivery_vector:: tech]
 [resource_cost:: stamina]
+[energy_contract:: body]
+[battery_version:: none]
+[cantrip_version:: none]
+[overcharge_version:: none]
 [counter_window:: interrupt]
 *Короткое описание способа применения.*
 - **Использует:** ресурс, предмет или состояние.

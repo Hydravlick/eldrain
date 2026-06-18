@@ -10,7 +10,7 @@ tags: [master_index, gdd, navigation, refactor]
 > **Жанр:** Hardcore PvPvE Extraction FPS  
 > **Сеттинг:** Magipunk / Scavenger-Fantasy  
 > **Цикл:** Хаб -> Рейд -> Эвакуация -> Экономика  
-> **Игрок:** Кукловод / Оператор
+> **Игрок:** Осколок, проживающий вылазки вместе со смертными Пешками
 
 ## Быстрый доступ
 
@@ -19,10 +19,10 @@ tags: [master_index, gdd, navigation, refactor]
 | 01. Ядро | Видение, тон, базовый цикл | [[01_Core_Vision/01_Vision]] |
 | 02. Лор | Законы мира, Якорь, Энтропия, магипанк | [[02_World_Lore/The_Collapse]] |
 | 03. Фракции | Общества, репутация, печати, контракты | [[03_Factions_Societies/Registry_Factions]] |
-| 04. Пешки | Сосуды, найденыши, расы, классы, T.O.U.C.H. | [[04_Player_Entities/Shell_Specification]] |
+| 04. Пешки | Ростер жителей, найденыши, расы, классы, T.O.U.C.H. | [[04_Player_Entities/Entity_Grimoire]] |
 | 05. Бой | Оружие, акустика, статусы, выживание | [[05_Combat_Survival/Weapon_Core]] |
 | 06. Экономика | Рез, бартер, аукцион, инфляция, лут | [[06_Economy_Loot/Economy_Core]] |
-| 07. Снаряжение | Инвентарь, предметы, крафт, схрон | [[07_Gear_Inventory/Inventory_Architecture]] |
+| 07. Снаряжение | Инвентарь, прогрессия предметов, крафт, схрон | [[07_Gear_Inventory/Gear_Progression]] |
 | 08. Мир | Генерация, аномалии, сервер, хаб, POI | [[08_World_Generation/Generation/07_Server_Lifecycle]] |
 | 09. Разработка | MVP, задачи, техдолг, планы | [[09_Project_Management/TODO]] |
 

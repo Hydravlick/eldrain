@@ -236,7 +236,7 @@ Race, Spec, Combo, Tags и Gear могут добавлять скрытые б�
 [substat_mult:: recoil_damp x1.10]
 [condition_bonus:: while_stationary: brace +20, recoil_damp +15]
 [cap_mod:: max_carry +5kg]
-[tradeoff:: relocation_speed -10, resonance +4]
+[tradeoff:: relocation_speed -10, resonance_load +4]
 ```
 
 - `substat_bonus` - плоский бонус к скрытой подхарактеристике.
@@ -253,7 +253,7 @@ Combo не должно дублировать профиль Race/Spec. Оно 
 
 ```markdown
 [condition_bonus:: while_stationary: brace +20, recoil_damp +15]
-[tradeoff:: relocation_speed -10, resonance +3]
+[tradeoff:: relocation_speed -10, resonance_load +3]
 ```
 
 Плохой combo-бонус:

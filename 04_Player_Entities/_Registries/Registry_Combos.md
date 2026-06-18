@@ -12,7 +12,9 @@ tags: [database, builds, proficiency]
 > **Combat Profile:** активные векторы и общая слабость вычисляются из `Registry_Races` + `Registry_Specs`.
 > **Mastery:** Уровень владения (`0` - нет, `1` - штраф, `2` - норма, `3+` - открыт вектор оружия).
 > **Tags:** `[arsenal_type:: weapon_type]` - ключи должны соответствовать Registry_Weapon.
-> **MVP Scope:** реестр хранит 9 curated-комбо для первой сбалансированной версии. Пустые пары 5x5 не являются багом Dataview, пока не утверждено расширение матрицы до 25.
+> **MVP Scope:** Игровой MVP ограничивается 3 расами x 3 классами и обязан закрыть все 9 сочетаний выбранной матрицы. Полная 5x5 сохраняется как внутренняя карта расширения, чтобы будущие архетипы были видны заранее.
+>
+> **Текущий статус:** существующие 9 curated-комбо не образуют завершенную 3x3. До фиксации MVP-пула нельзя считать набор готовым: нужно выбрать три расы и три класса, затем добавить или заменить блоки так, чтобы каждая видимая игроку пара имела способности, арсенал и экипировку.
 
 ---
 ## Шаблон комбинации
@@ -56,7 +58,7 @@ tags: [database, builds, proficiency]
 *Белка использует свой гипер-метаболизм, чтобы генерировать ману для заклинаний.*
 - **Требования:** [req_race:: squirrel] | [req_spec:: specialist]
 [condition_bonus:: after_movement: spark_gain +20, battery_efficiency +10]
-[tradeoff:: resonance +5, backlash_risk +6]
+[tradeoff:: resonance_load +5, backlash_risk +6]
 - **Арсенал (Weaponry):**
 	- `[arsenal_type:: catalyst]` | `[prof:: 2]` (Проводники магии)
 	- `[arsenal_type:: arcanegun]` | `[prof:: 1]` (Легкие магострелы)
@@ -122,7 +124,7 @@ tags: [database, builds, proficiency]
 *Крыса слаба телом, поэтому строит себе броню из того, что найдет.*
 - **Требования:** [req_race:: rat] | [req_spec:: guard]
 [condition_bonus:: carrying_scrap: armor_sync +15, improvised_cover +15]
-[tradeoff:: resonance +3, movement_noise +10]
+[tradeoff:: resonance_load +3, movement_noise +10]
 - **Арсенал (Weaponry):**
 	- `[arsenal_type:: blunt]` | `[prof:: 2]` (Молоты/Ключи)
 	- `[arsenal_type:: shield]` | `[prof:: 2]` (Импровизированные щиты)
