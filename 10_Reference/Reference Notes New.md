@@ -11,6 +11,12 @@ source:
 
 > Полезные narrative seeds из старого legacy TODO. Это не рабочая доска: actionable-пункты живут в [[09_Project_Management/TODO]].
 
+## System References
+
+- [[10_Reference/Reference Note Darkest Dungeon — командостроение, соло и повторяющиеся составы|Darkest Dungeon: командостроение, соло и повторяющиеся составы]] — reference для матрицы `Race × Spec`, свободных повторяющихся составов, соло-валидности и синергии через боевые окна.
+- [[10_Reference/Reference Note Dark and Darker — вес способностей и темп боя|Dark and Darker: вес способностей и темп боя]] — reference для медленных ситуативных `P/Q/E`, обязательства, телеграфа, уязвимости и Recovery без превращения Элдрейна в ability-shooter.
+- [[10_Reference/Reference Note Техническая архитектура способностей и vertical slice|Техническая архитектура способностей и vertical slice]] — отделяет проверку игровых правил от выбора GAS, машины состояний, data-driven слоя и объёма производственного среза.
+
 ## The Keeper's Breach
 
 Событие после первой успешной эвакуации персонажа высокого уровня.

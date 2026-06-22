@@ -12,6 +12,7 @@ tags:
 related_files:
   - "[[10_Reference/Reference Note Анализ Mewgenics как эталона Single-Player Extraction Roguelike]]"
   - "[[10_Reference/Reference Note Анализ геймплея по системе Micro Meso Macro]]"
+  - "[[10_Reference/Reference Note Darkest Dungeon — командостроение, соло и повторяющиеся составы]]"
   - "[[08_World_Generation/Generation/07_Server_Lifecycle]]"
   - "[[08_World_Generation/Generation/08_Gate_Check]]"
   - "[[06_Economy_Loot/Economy_Core]]"

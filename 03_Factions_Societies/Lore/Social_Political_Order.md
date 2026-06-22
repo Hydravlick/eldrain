@@ -11,8 +11,12 @@ tags:
 related_mechanics:
   - "[[03_Factions_Societies/Registry_Factions]]"
   - "[[03_Factions_Societies/Reputation_Rules]]"
+related_files:
+  - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
 ---
 # Социально-Политический Уклад: Порядок Хаоса
+
+Историческое происхождение городских институтов от основных и малых диаспор описано в [[03_Factions_Societies/Lore/City_Anatomy|Анатомии Элдрейна]].
 
 > *«У нас нет законов, у нас есть последствия. Если ты украдешь — тебя не посадят в тюрьму. Тебя просто перестанут пускать в Убежища. А ночь снаружи — это смертный приговор.»*
 > — *Ветеран Искателей.*
