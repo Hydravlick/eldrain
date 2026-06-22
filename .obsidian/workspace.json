@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "00_Index.md",
+                "file": "04_Player_Entities/_Registries/Registry_Specs.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "00_Index"
+              "title": "Registry_Specs"
             }
           }
         ]
@@ -203,14 +203,22 @@
       "notion-like-tables:Create loom": false
     }
   },
-  "active": "382ab973fab2e11d",
+  "active": "56ce8f6a3da7b45a",
   "lastOpenFiles": [
+    "04_Player_Entities/Shell_Construction.md",
+    "04_Player_Entities/Shell_Foundlings.md",
+    "04_Player_Entities/Shell_Projections.md",
+    "04_Player_Entities/Shell_Specification.md",
+    "02_World_Lore/Toad_Culture.md",
+    "02_World_Lore/Hedgehog_Culture.md",
+    "02_World_Lore/Lizard_Culture.md",
+    "02_World_Lore/Rat_Culture.md",
+    "02_World_Lore/Squirrel_Culture.md",
+    "00_Index.md",
     "Claude comment.md",
     "Проектирование масштабируемой тактической боевой системы.md",
     "Истории/Место за столом.md",
     "03_Factions_Societies/Lore/City_Anatomy.md",
-    "02_World_Lore/Toad_Culture.md",
-    "02_World_Lore/Rat_Culture.md",
     "Истории/Те, кого помнит дождь.md",
     "Истории/Город, который оставался.md",
     "Истории/Третий звонок.md",
@@ -224,15 +232,7 @@
     "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20/05_Registry_Specs.md",
     "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20/04_Registry_Races.md",
     "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20/03_Registry_Combos.md",
-    "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20/02_MVP_3x3_Audit.md",
-    "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20/01_MVP_3x3_Design_Contract.md",
     "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20",
-    "09_Project_Management/MVP_3x3_Audit.md",
-    "_Archive/Merged/Проектирование масштабируемой тактической боевой системы — исходный отчёт.md",
-    "10_Reference/Reference Note Техническая архитектура способностей и vertical slice.md",
-    "04_Player_Entities/_Registries/Registry_Combos.md",
-    "04_Player_Entities/MVP_3x3_Design_Contract.md",
-    "10_Reference/Reference Note Dark and Darker — вес способностей и темп боя.md",
     "Истории/Вертикальный срез",
     "docs/superpowers/staging",
     "docs/superpowers/plans",
