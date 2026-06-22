@@ -1,0 +1,79 @@
+---
+type: kanban
+status: active
+system: project_management
+tags:
+  - todo
+  - roadmap
+  - mvp
+  - project_management
+sources:
+  - "[[_Archive/_MERGED_SOURCES#Legacy TODO Digest]]"
+  - "[[_Archive/_MERGED_SOURCES#Weak Sides Digest]]"
+  - "[[10_Reference/Reference Notes New]]"
+---
+# Единая доска задач
+
+> Здесь остаются только открытые задачи. Завершенные пункты и старые заметки свернуты в [[_Archive/_MERGED_SOURCES|merge log]].
+
+## Now: playable MVP
+
+- [ ] **MVP 3×3 cells:** по очереди спроектировать и дважды проверить Ёж/Крыса/Белка × Авангард/Технократ/Странник: смешанные `P/Q/E`, 2–4 доктрины, оружейные и броневые специализации, соло, повторы, условия Аномалии и профили мобов. Следовать [[04_Player_Entities/MVP_3x3_Design_Contract|контракту матрицы 3×3]] и обновлять [[09_Project_Management/MVP_3x3_Audit|аудит]].
+- [ ] **First-Person Controller:** body awareness, procedural sway, free look.
+- [ ] **Combat feel:** мобильное тело + весомые действия; вертикальность и читаемость маршрутов ближе к Apex, значимость выстрела, звук, commitment и hit feedback ближе к Hunt.
+- [ ] **Item calibration matrix:** нормализовать для предметов вес, стоимость, Tier, Resonance, SurvivalScore-вклад и доступность; после этого пересчитать стартовые комплекты и пороги `140/260`.
+- [ ] **Gear progression loadouts:** откалибровать `Welfare`, `Balanced`, `Armor Rat`, `Glass Cannon`, `T1 Specialist`, `Squad Carrier` и `Overgeared`; проверить стоимость замены, покрытие контента, сильный цикл батареи и чистую доходность.
+- [ ] **Weapon load classes:** для каждого магострельного Frame определить базовый, усиленный и Overcharge-режимы, число сильных действий до Recovery, Heat, Bloom, Backlash и риск повреждения.
+- [ ] **Ability energy contracts:** разметить все MVP Q/E как `body`, `hybrid` или `device`; для гибридных прописать батарейную, кантрипную и Overcharge-версии, включая HP/Stress/Pulse.
+- [ ] **Cantrip UX prototype:** проверить `Q/E = батарея`, `Modifier + Q/E = кантрип`, безопасный отказ при пустой батарее, предпросмотр цены на HP и читаемость без текста в бою.
+- [ ] **Battery transaction prototype:** проверить `R -> Drained Cell + Weapon.ImpulseReserve`, прямой расход целой батареи на Q/E, невозможность вернуть заряд из оружия и выбор между подготовкой оружия и способностями.
+- [ ] **Raid inventory:** лутание без паузы, список предметов, вес, быстрый доступ, блокировка обзора во время копания в сумке.
+- [ ] **Loot stabilization:** UI, стоимость и понятный переход `Volatile` -> `Stabilized`.
+- [ ] **Foundlings loop:** капсулы и раненые как живая ставка, переноска, риск смерти носильщика, отличие найденышей от доступных Бомжей.
+- [ ] **Roster UI:** карточки пешек, состояние, травмы, пригодность под контракт.
+- [ ] **Blood Debt tutorial:** оформить стартовую цепочку долга по seed [[10_Reference/Reference Notes New#Blood Debt Tutorial]].
+
+## Next: system glue
+
+- [ ] **Trait catalogs:** наполнить стандартный каталог примерно 30 трейтов и расширенный каталог специалистов примерно 70 трейтов; числа откалибровать по реальному разнообразию билдов.
+- [ ] **Trait development trigger:** после эвакуации выбирать тематических кандидатов из каталога через событие, биографические веса, класс, историю поведения и `exclusive_with`; не создавать скрытый личный пул.
+- [ ] **Trait biography UI:** показывать склонности через короткие биографические фрагменты и обновлять биографию после проявления трейта без раскрытия скрытых весов.
+- [ ] **Curated Trait Fusion:** определить ограниченный набор Fusion, связующие события и обновления биографии; не генерировать Fusion для каждой пары.
+- [ ] **Trait aggregation rules:** определить пределы Proficiency и substats, убывающую отдачу, пороги изменения поведения и генерацию трех ярлыков Combat Profile: возможность, цена, уязвимость.
+- [ ] **Affix family tables:** наполнить семейства `cycle`, `handling`, `signature`, `reliability`, `environment`, `body_interface`; задать допустимые предметы, диапазоны, число Affix по Rarity и взаимоисключение внутри семейства.
+- [ ] **Defect / Legendary / Corruption tables:** отдельно наполнить дефекты, узкие Legendary-правила и Corruption с тяжелой ценой; не смешивать их с обычным пулом Affix.
+- [ ] **Armor axes pass:** заменить остаточные механические `pockets/slots` на `coverage`, `environment`, `mobility`, `energy`, `cantrip`, `stealth`, `support`, `cargo`; откалибровать комбинации осей для MVP-брони.
+- [ ] **Ready Access prototype:** определить число готовых позиций, весовой предел, время перекладки из рюкзака и поведение батарей, болтов и расходников; не связывать вместимость с броней или визуальными карманами.
+- [ ] **Build exemplars:** собрать 5-7 полных билдов `Race + Spec + traits + gear + batteries`, проверить читаемый стиль, экономическую цену и отсутствие универсального оптимума.
+- [ ] **Resonance calibration:** привести предметы, body tags и оружейные Pulse к одной шкале; проверить `ResonanceLoad + RecentPulse` на стартовых и экстремальных сборках.
+- [ ] **Deep-content anti-carry:** проверить, что один продвинутый Frame не позволяет бюджетной группе стабильно производить T2/T3-награду без параллельных задач, расхода и защиты носителя.
+- [ ] **Auction of shells:** продажа найденышей 3+ уровня, просмотр модели, перков и травм.
+- [ ] **Dataview shell state:** расширить матрицы до учета активных тегов конкретной Оболочки.
+- [ ] **Race/Spec structure:** вынести ограничения рас/классов в структурные поля, если combo-арсенала станет мало.
+- [ ] **Anchor Hall:** тир, демонстрация зон брони, безопасный онбординг.
+- [ ] **Late Keeper Recognition:** определить условия поздней метапрогрессии, при которых Хранители впервые обращаются к Осколку за текущей Пешкой.
+- [ ] **Dead/spectator loop:** определить, что делает игрок после смерти Оболочки: наблюдение, возврат в Хаб, связь с группой.
+- [ ] **AFK/disconnect policy:** прописать судьбу Оболочки, лута и группы при обрыве связи в рейде.
+- [ ] **Hub remote presence:** уточнить, что Хаб не является физическим PvP-пространством, и где возможны аватары/прямое взаимодействие.
+
+## Later: content and polish
+
+- [ ] **The Keeper's Breach:** событие после первой эвакуации персонажа высокого уровня по seed [[10_Reference/Reference Notes New#The Keeper's Breach]].
+- [ ] **Volatile visuals:** мерцание/глитч для нестабильных предметов.
+- [ ] **Audio pass:** звук стабилизации, подбора глюка, батарей и интерфейса.
+- [ ] **Squad identification:** руны/метки свой-чужой для тумана и плохой видимости.
+- [ ] **Monsters as entropy:** закрепить лор мобов и volatile-лут в реестре мобов.
+- [x] **Канонизация «Имена для чудовищ»:** происхождение новых секторов оставлено нераскрытым, роль Сущности не спойлерится; перенос чужой резонансной памяти оформлен как незаконная технология Академии `Resonant Imprint`, исключение из обычного развития трейтов; событие 31-летней давности закреплено как `Второе угасание Якоря`, в Порту — `Портовый Срыв`. Вводная часть дополнена географией, фракциями и антропоморфными расами.
+- [ ] **Канон образования:** согласовать фразу «в мире нет школ и университетов» в `Social_Political_Order` с действующей фракцией Академии Эфира и её выпускниками; рекомендуемое чтение — нет общедоступной школьной системы, но существуют закрытые фракционные институты.
+- [ ] **Stabilized living cargo:** описать клетки/товарных существ по seed [[10_Reference/Reference Notes New#Stabilized Living Cargo]].
+- [ ] **Redemption runs:** оставить как post-MVP мета-режим по seed [[10_Reference/Reference Notes New#Redemption Runs]].
+- [ ] **Guild/Clan system:** отложенный социальный слой после стабилизации party и economy loop.
+- [ ] **Prestige/season loop:** определить долгую account-прогрессию после core loop.
+- [ ] **Pitch one-pager:** внешний elevator pitch для найма/питча, отдельно от внутреннего GDD.
+
+## Reference sources
+
+- [[_Archive/_MERGED_SOURCES#Legacy TODO Digest]] - разобранный старый backlog.
+- [[_Archive/_MERGED_SOURCES#Weak Sides Digest]] - разобранные системные конфликты.
+- [[10_Reference/Reference Notes New]] - перенесенные narrative seeds из legacy TODO.
+- [[09_Project_Management/Architecture_MVP]] - текущий контракт структуры и ссылок.

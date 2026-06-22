@@ -1,7 +1,15 @@
 .tmp.driverdownload/
 .tmp.driveupload/
+.tmp.edge_pdf
 .stfolder/
 .stignore
 .stversions/
 .stfolder/
 .stfolder.removed-*/
+
+# Local Codex design skills and their working specifications
+.agents/skills/
+docs/superpowers/
+
+# Private fiction drafts
+/Истории/
