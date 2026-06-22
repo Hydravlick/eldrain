@@ -1,5 +1,6 @@
 .tmp.driverdownload/
 .tmp.driveupload/
+.tmp.edge_pdf
 .stfolder/
 .stignore
 .stversions/
