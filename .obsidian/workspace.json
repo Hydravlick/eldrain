@@ -8,17 +8,31 @@
         "type": "tabs",
         "children": [
           {
-            "id": "56ce8f6a3da7b45a",
+            "id": "a12bd900ecb83834",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "04_Player_Entities/_Registries/Registry_Specs.md",
+                "file": "02_World_Lore/Toad_Culture.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Registry_Specs"
+              "title": "Toad_Culture"
+            }
+          },
+          {
+            "id": "51a2477ee354b621",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "02_World_Lore/Protocol_Resonance.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Protocol_Resonance"
             }
           }
         ]
@@ -203,35 +217,35 @@
       "notion-like-tables:Create loom": false
     }
   },
-  "active": "56ce8f6a3da7b45a",
+  "active": "a12bd900ecb83834",
   "lastOpenFiles": [
+    "02_World_Lore/Protocol_Resonance.md",
+    "02_World_Lore/Toad_Culture.md",
+    "02_World_Lore/Squirrel_Culture.md",
+    "06_Economy_Loot/Currency_Rezs_Lore.md",
+    "03_Factions_Societies/Lore/New_Factions.md",
+    "03_Factions_Societies/Lore/Guild_Roles_Concept.md",
+    "_Archive/_MERGED_SOURCES.md",
+    "02_World_Lore/Rat_Culture.md",
+    "02_World_Lore/Lizard_Culture.md",
+    "Проектирование масштабируемой тактической боевой системы.md",
+    "Claude comment.md",
+    "Gemini comment.md",
+    "09_Project_Management/Culture_Revision_Audit.md",
+    "docs/superpowers/plans/2026-06-23-culture-and-resonance-revision.md",
+    "02_World_Lore/The_Collapse.md",
+    "02_World_Lore/The_Anchor.md",
+    "04_Player_Entities/_Registries/Registry_Specs.md",
     "04_Player_Entities/Shell_Construction.md",
     "04_Player_Entities/Shell_Foundlings.md",
     "04_Player_Entities/Shell_Projections.md",
     "04_Player_Entities/Shell_Specification.md",
-    "02_World_Lore/Toad_Culture.md",
     "02_World_Lore/Hedgehog_Culture.md",
-    "02_World_Lore/Lizard_Culture.md",
-    "02_World_Lore/Rat_Culture.md",
-    "02_World_Lore/Squirrel_Culture.md",
     "00_Index.md",
-    "Claude comment.md",
-    "Проектирование масштабируемой тактической боевой системы.md",
     "Истории/Место за столом.md",
     "03_Factions_Societies/Lore/City_Anatomy.md",
     "Истории/Те, кого помнит дождь.md",
-    "Истории/Город, который оставался.md",
-    "Истории/Третий звонок.md",
-    "04_Player_Entities/_Registries/Registry_Races.md",
     "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20.zip",
-    "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20/10_Reference_Darkest_Dungeon.md",
-    "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20/09_Reference_Dark_and_Darker.md",
-    "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20/08_Proficiency_Arsenal.md",
-    "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20/07_Two_Paradox_Vector_Matrix.md",
-    "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20/06_Combat_Profile_Pipeline.md",
-    "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20/05_Registry_Specs.md",
-    "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20/04_Registry_Races.md",
-    "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20/03_Registry_Combos.md",
     "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20",
     "Истории/Вертикальный срез",
     "docs/superpowers/staging",
