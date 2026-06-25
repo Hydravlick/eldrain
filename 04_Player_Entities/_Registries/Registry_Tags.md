@@ -5,18 +5,19 @@ system: player_entities_registry
 registry_type: tags
 tags: [customization, modifiers, dna, loot]
 ---
-# Реестр: Трейты, Мутации и Модификации
+# Реестр: Теги/Трейты, Мутации и Модификации
 
 > **Логика системы:** реестр хранит исполняемые эффекты. Биография и события развития определены в [[04_Player_Entities/Trait_Development|Trait Development]].
 > **Роль в пайплайне:** `Race + Spec -> Combo P/Q/E -> Allowed Arsenal -> Tags -> Proficiency Gates -> Combat Profile`.
 > **Dataview-контракт:** каждый объект начинается с `[id:: ...]`, а затем хранит тип, полярность, модификаторы, исключения и возможное слияние.
+> **Терминология:** `tag` и `trait` обозначают один объект. `[tag:: ...]` — канонический ключ данных; `трейт` — допустимое игроко-нарративное название этого же эффекта.
 
 ## Правила тегов
 
 - `[tag_kind:: proficiency]` меняет владение оружием или инструментами.
 - `[tag_kind:: mutation]` меняет физику тела и активные/заблокированные векторы.
 - `[tag_kind:: attribute]` меняет атрибуты T.O.U.C.H. и вторичные параметры.
-- `[tag_kind:: flaw]` дает штраф или сужает стиль игры без автоматической компенсации Резонансом.
+- `[tag_kind:: flaw]` дает штраф или сужает стиль игры без автоматической компенсации Диссонансом.
 - `[tag_kind:: fusion]` описывает curated Trait Fusion, возникающий из двух проявленных тегов и связующего события.
 - `[exclusive_with:: ...]` запрещает одновременную установку несовместимых тегов.
 - `[fusion_with:: other_tag -> result_tag]` показывает простой путь слияния прямо у исходного тега.
@@ -24,7 +25,7 @@ tags: [customization, modifiers, dna, loot]
 - `[trait_pool:: standard, specialist]` задает доступность. Если поле отсутствует, тег считается доступным обоим каталогам.
 - `[event_family:: ...]` перечисляет события, повышающие вес результата.
 - `[power_weight:: ...]` является внутренним балансным весом и не существует как ресурс внутри мира.
-- `[resonance_load:: ...]` используется только при физическом или эфирном источнике постоянного фона.
+- `[dissonance_load:: ...]` используется только при физическом или эфирном источнике постоянного фона.
 
 ---
 ## 0. Нулевой пациент: шаблон тега
@@ -47,7 +48,7 @@ tags: [customization, modifiers, dna, loot]
 [trait_pool:: standard, specialist]
 [event_family:: survival]
 [power_weight:: 0]
-[resonance_load:: 0]
+[dissonance_load:: 0]
 * **Название:** Шаблонный Тег
 * **Тип:** Mutation / Proficiency / Attribute / Flaw / Fusion
 * **Эффект:** что меняется в арсенале, теле, векторах или экономике риска.
@@ -106,7 +107,7 @@ tags: [customization, modifiers, dna, loot]
 [trait_pool:: specialist]
 [event_family:: ritual, aether_exposure, faction_cathedral]
 [power_weight:: 8]
-[resonance_load:: 8]
+[dissonance_load:: 8]
 * **Эффект:** `[catalyst +2]`
 * **Штраф:** `[shield -1]` - вера становится единственной защитой.
 * **Матрица Парадокса:** добавляет `aether`, если слот тегов не заблокирован.
@@ -148,7 +149,7 @@ tags: [customization, modifiers, dna, loot]
 [trait_pool:: specialist]
 [event_family:: shock_survival, aether_exposure]
 [power_weight:: 10]
-[resonance_load:: 10]
+[dissonance_load:: 10]
 * **Эффект:** физический урон может конвертироваться в электрический, если оружие или способность допускают проводимость.
 * **Штраф:** `[block_vector:: hazard]` - токсичные и влажные среды становятся опаснее.
 * **Побочный эффект:** при попадании в воду персонаж получает перегрев/короткое замыкание.
@@ -167,7 +168,7 @@ tags: [customization, modifiers, dna, loot]
 [trait_pool:: specialist]
 [event_family:: reality_burn, aether_exposure]
 [power_weight:: 12]
-[resonance_load:: 12]
+[dissonance_load:: 12]
 * **Эффект:** убийство врага восстанавливает часть маны и дает заряд перегрузки.
 * **Штраф:** естественное восстановление маны отключено.
 * **Матрица Парадокса:** усиливает `aether`, но блокирует стабильную технику.
@@ -186,7 +187,7 @@ tags: [customization, modifiers, dna, loot]
 [trait_pool:: standard, specialist]
 [event_family:: anomaly_exposure, trauma_survival]
 [power_weight:: 7]
-[resonance_load:: 7]
+[dissonance_load:: 7]
 * **Эффект:** кожа становится каменной и дает естественную броню.
 * **Штраф:** `[GRP -2]` - пальцы теряют гибкость.
 * **Матрица Парадокса:** добавляет `kinetics`, но закрывает полноценный `shadow`.
@@ -212,7 +213,7 @@ tags: [customization, modifiers, dna, loot]
 [trait_pool:: specialist]
 [event_family:: surgery, heavy_weapon_mastery]
 [power_weight:: 6]
-[resonance_load:: 6]
+[dissonance_load:: 6]
 * **Эффект:** `[TRQ +2]` и доступ к физиологически спорному тяжелому оружию.
 * **Штраф:** `[SNS -1]` - грохот механизмов заглушает шаги и дыхание врагов.
 * **Матрица Парадокса:** добавляет `kinetics`.
@@ -231,7 +232,7 @@ tags: [customization, modifiers, dna, loot]
 [trait_pool:: specialist]
 [event_family:: surgery, investigation]
 [power_weight:: 5]
-[resonance_load:: 5]
+[dissonance_load:: 5]
 * **Эффект:** `[SNS +2]` - лут, точность, распознавание следов.
 * **Эффект:** видит живых существ сквозь дым и темноту.
 * **Матрица Парадокса:** добавляет `detection`.
@@ -275,7 +276,7 @@ tags: [customization, modifiers, dna, loot]
 
 ---
 
-## Категория D: Негативные Трейты (Flaw Tags)
+## Категория D: Негативные Теги/Трейты (Flaw Tags)
 *Штрафные теги нужны для баланса сильных плюсов. Они не являются "плохим билдом"; они создают дешевую, но опасную специализацию.*
 
 ### Дрожащие Руки
@@ -333,7 +334,7 @@ tags: [customization, modifiers, dna, loot]
 [attr_delta:: SNS -1, GLW +1]
 [block_vector:: shadow]
 [substat_bonus:: ambush_resist -8]
-[resonance_load:: 6]
+[dissonance_load:: 6]
 [exclusive_with:: street_rat]
 [trait_pool:: standard, specialist]
 [event_family:: anomaly_exposure, detection_failure]
@@ -345,7 +346,7 @@ tags: [customization, modifiers, dna, loot]
 ---
 
 ## Категория E: Trait Fusion
-*Trait Fusion уничтожает два малых тега и заменяет их одним мощным. Это не третий бесплатный бонус, а curated-развитие конкретной Пешки. Повышенный ResonanceLoad применяется только там, где результат физически или эфирно фонит.*
+*Trait Fusion уничтожает два малых тега и заменяет их одним мощным. Это не третий бесплатный бонус, а curated-развитие конкретной Пешки. Повышенный DissonanceLoad применяется только там, где результат физически или эфирно фонит.*
 
 ### Уличный Проломщик (Street Breacher)
 [id:: street_breacher]
@@ -378,7 +379,7 @@ tags: [customization, modifiers, dna, loot]
 [trait_pool:: specialist]
 [event_family:: siege_combat, heavy_weapon_mastery]
 [power_weight:: 10]
-[resonance_load:: 10]
+[dissonance_load:: 10]
 * **Эффект:** тело становится лафетом для тяжелого оружия.
 * **Штраф:** акустический профиль резко растет; скрытность почти невозможна.
 
@@ -396,9 +397,9 @@ tags: [customization, modifiers, dna, loot]
 [trait_pool:: specialist]
 [event_family:: investigation, ritual, trace_discovery]
 [power_weight:: 11]
-[resonance_load:: 11]
+[dissonance_load:: 11]
 * **Эффект:** персонаж видит остаточные следы событий и может читать слабости через дым, стены и эфирные шумы.
-* **Риск:** высокий Резонанс делает дорогой лут и активные заклинания заметнее.
+* **Риск:** высокий Диссонанс делает дорогой лут и активные заклинания заметнее.
 
 ### Вентиляционный Бегун (Vent Runner)
 [id:: vent_runner]

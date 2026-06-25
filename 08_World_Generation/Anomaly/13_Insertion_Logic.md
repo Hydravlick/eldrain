@@ -6,6 +6,8 @@ tags: [lore_integrated, matchmaking, spawn_logic, sarcophagus, squad_mechanics]
 related_files:
   - "[[08_World_Generation/Generation/13_Async_Double_Buffer|Async_Double_Buffer]]"
   - "[[04_Player_Entities/Shell_Specification|Shell_Specification]]"
+  - "[[08_World_Generation/Generation/19_Access_Contracts|Access_Contracts]]"
+  - "[[08_World_Generation/Generation/08_Gate_Check|Gate_Check]]"
 ---
 # Логика Входа: Протокол "Саркофаг"
 
@@ -19,10 +21,26 @@ related_files:
 > *«Диспетчер ищет стабильную частоту в Шторме...»*
 
 **System Logic:**
-При нажатии "Deploy" система фильтрует список активных серверов:
-1.  **Ping Limit:** < 100ms (Стабильность нейро-линка).
-2.  **Storm Safety:** Время жизни сервера < 05:45 (Не отправлять Саркофаг за 15 мин до коллапса магистралей).
-3.  **Throughput:** Кол-во игроков < `Max_Capacity`.
+При нажатии "Deploy" система фильтрует список активных серверов по выбранному [[08_World_Generation/Generation/19_Access_Contracts|Access Contract]]:
+
+1.  **Ping Limit:** < 100ms (стабильность нейро-линка).
+2.  **Contract Tier:** контракт совпадает с фазой сектора: T1 Walk-In, Prepared T2, Deep T3, Recovery Drop или Mixed High-Risk.
+3.  **Storm Safety:** стандартный вход запрещен, если до Collapse меньше 15 минут. Исключения возможны только для явно отмеченных Recovery-событий.
+4.  **Environment Forecast:** Mission Readiness показывает `OK/Risk/Fail`. `Fail` блокирует стандартный вход, если Пешка погибнет до агентности.
+5.  **Dissonance Budget:** `DissonanceLoad` не превышает hard-limit выбранного сектора.
+6.  **Population Seat:** кол-во игроков ниже целевого лимита для текущей фазы и размера группы.
+
+Система не считает среднюю стоимость экипировки группы и не сортирует игроков по скрытому gear score.
+
+### Direct T2/T3 Entry
+
+Прямой вход в T2/T3 разрешен, если контракт оплачен или получен через фракцию, ключ, долг, след расследования или событие.
+
+- `Prepared T2` - основной mid-core вход.
+- `Deep T3` - дорогой маршрут в штормовую фазу.
+- `Recovery Drop` - бедный поздний вход для возврата темпа и заполнения живого сервера.
+
+Цена открывает маршрут. Она не отменяет среду, Диссонанс, деградацию выходов или риск потери Пешки.
 
 ---
 
@@ -40,6 +58,7 @@ $$S = (Dist_{Enemy} * W_{Safe}) + (Dist_{Loot} * W_{Greed}) + (LineOfSight_{Chec
 1.  **Proximity Breach:** В радиусе **80м** есть враг (Саркофаг слишком громкий, его услышат).
 2.  **Combat Zone:** Точка находится в зоне активного боя AI (NavMesh Alert).
 3.  **Hot Pipe:** Точка использовалась < 3 минут назад (Труба еще горячая/Перезарядка).
+4.  **Objective Skip:** точка дает прямой доступ к боссу, хранилищу, найденышу или главной награде без процедуры сектора.
 
 ---
 
@@ -51,6 +70,7 @@ $$S = (Dist_{Enemy} * W_{Safe}) + (Dist_{Loot} * W_{Greed}) + (LineOfSight_{Chec
     * *Пример:* Три соседних канализационных люка на одном перекрестке.
 2.  **Simultaneous Launch:** Все клиенты группы получают команду на вход одновременно.
 3.  **Link Protection:** Если для одного члена группы точка небезопасна — она отменяется для всей группы.
+4.  **Pressure Declaration:** группа входит как единый шумный объект; реакция Аномалии использует `GroupPressure`, а не среднюю цену снаряжения.
 
 ---
 

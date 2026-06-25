@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eldraine Player Experience"
+  short_description: "Проверяет поминутный опыт и боевую тактильность"
+  default_prompt: "Use $eldraine-player-experience to describe and audit this Eldraine feature from the player perspective."

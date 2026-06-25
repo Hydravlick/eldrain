@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eldraine Player Lens"
+  short_description: "Смотрит на систему глазами разных игроков"
+  default_prompt: "Use $eldraine-player-lens to evaluate this Eldraine idea through relevant player behavior profiles."

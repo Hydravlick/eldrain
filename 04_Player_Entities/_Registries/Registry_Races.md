@@ -84,7 +84,7 @@ tags: [database]
 [weak_to:: shadow, tech, ballistics]
 [substat_bonus:: spark_gain +20, heat_sink +10, battery_efficiency +8, cell_swap_speed +6]
 [cap_mod:: overload_limit +5]
-[tradeoff:: resonance_load +3, backlash_resist -5]
+[tradeoff:: dissonance_load +3, backlash_resist -5]
 #### Биологическая основа: `Импульсная проводимость`
     Нервная система преобразует значимые импульсы движения в краткий биоэлектрический потенциал. Важны разгон, смена траектории, приземление, высота, выход из давления и перенос отдачи, а не пройденные метры. Повтор одного безопасного движения имеет убывающую отдачу; способ расхода заряда задаётся специализацией.
 #### Описание:

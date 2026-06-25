@@ -15,6 +15,12 @@ source:
 
 - [[10_Reference/Reference Note Darkest Dungeon — командостроение, соло и повторяющиеся составы|Darkest Dungeon: командостроение, соло и повторяющиеся составы]] — reference для матрицы `Race × Spec`, свободных повторяющихся составов, соло-валидности и синергии через боевые окна.
 - [[10_Reference/Reference Note Dark and Darker — вес способностей и темп боя|Dark and Darker: вес способностей и темп боя]] — reference для медленных ситуативных `P/Q/E`, обязательства, телеграфа, уязвимости и Recovery без превращения Элдрейна в ability-shooter.
+- [[10_Reference/Reference Note Dark and Darker + Path of Exile — мусор, рецепты и торговый крафт|Dark and Darker + Path of Exile: мусор, рецепты и торговый крафт]] — reference для DaD-приятной петли торговцев, looted-мусора, affinity/рецептов и PoE-подобного аффиксного крафта через материалы-действия.
+- [[10_Reference/Reference Note Анализ Mewgenics как эталона Single-Player Extraction Roguelike|Mewgenics: теги/трейты, наследие ростера и системные поломки]] — reference для единой модели `tag = trait`, биографического проявления свойств, долгих травм, rescue-наследия и мета-прогрессии ростера без буквального breeding.
+- [[10_Reference/Reference Note Deadlock — способности как условия, экономика темпа и здоровый геройский бой|Deadlock: способности как условия]] — reference для геройских способностей, которые создают окна, двигают экономику темпа и не заменяют оружие/позицию.
+- [[10_Reference/Reference Note Marathon — power floor, фракции и карты-механизмы|Marathon: power floor, фракции и карты-механизмы]] — reference для фракционной baseline-прогрессии, recovery-run без прогресса контрактов и POI как процедур доступа.
+- [[10_Reference/Reference Note ARC Raiders — approachable extraction, map conditions и PvE как третья сила|ARC Raiders: map conditions и PvE]] — reference для видимых условий карты, approachable extraction, гаджетов, крафта и PvE как третьей силы.
+- [[10_Reference/Reference Note Competitor Mechanics Matrix — extraction, способности, соло и анти-кемпинг|Competitor Mechanics Matrix]] — сводная матрица выводов по DaD, Deadlock, Marathon, ARC Raiders и The Cycle для Gate Check, соло/сквадов, self-res и анти-кемпинга.
 - [[10_Reference/Reference Note Техническая архитектура способностей и vertical slice|Техническая архитектура способностей и vertical slice]] — отделяет проверку игровых правил от выбора GAS, машины состояний, data-driven слоя и объёма производственного среза.
 
 ## The Keeper's Breach
@@ -53,7 +59,7 @@ source:
 
 ## Redemption Runs
 
-Поздняя мета-идея для найденышей с тяжелыми травмами или плохими трейтами.
+Поздняя мета-идея для найденышей с тяжелыми травмами или плохими тегами/трейтами.
 
 Такой персонаж дешевле на рынке, но дает повышенную награду за выживание в сложном рейде. Это не MVP, но может стать режимом для хардкорных игроков и стримеров.
 

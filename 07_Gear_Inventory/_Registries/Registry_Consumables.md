@@ -122,7 +122,7 @@ tags: [database, healing, utility, batteries]
 [stability:: high]
 *Дорогая батарея с чистым светом Якоря.*
 - **Статы:** `[weight:: 0.3kg]` | `[stack:: 3]` | `[value:: 1400]`
-- **Использование:** 3 стабильных импульса с меньшим bloom, heat и resonance.
+- **Использование:** 3 стабильных импульса с меньшим bloom, heat и Dissonance.
 - **Отход:** после расхода становится `[item:: drained_cell]`, но зарядка может требовать сервис.
 
 ### Перегрузочная Батарея (Overcharge Cell)

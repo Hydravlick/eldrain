@@ -4,7 +4,7 @@ status: active
 system: trade_craft
 tags: [crafting, rng, upgrades, orbs, affixes]
 related_files:
-  - "[[07_Gear_Inventory/Resonance_Value|Resonance_Value]]"
+  - "[[07_Gear_Inventory/Dissonance_Value|Dissonance_Value]]"
   - "[[07_Gear_Inventory/Affix_Grammar|Affix_Grammar]]"
 ---
 # Модификаторы Крафта (Decorator System)

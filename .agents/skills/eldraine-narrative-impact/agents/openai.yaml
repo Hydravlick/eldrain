@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eldraine Narrative Impact"
+  short_description: "Отслеживает последствия сюжетных изменений"
+  default_prompt: "Use $eldraine-narrative-impact to trace the consequences of this story change across Eldraine."

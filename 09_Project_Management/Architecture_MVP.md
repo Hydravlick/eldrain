@@ -26,10 +26,10 @@ tags:
 | `02_World_Lore` | Ковчег, Коллапс, Якорь, Сущность, магипанк и культуры | [[02_World_Lore/The_Ark]], [[02_World_Lore/The_Collapse]], [[02_World_Lore/The_Anchor]], [[02_World_Lore/Protocol_Resonance]], [[02_World_Lore/Culture_Language]] |
 | `03_Factions_Societies` | Фракции, репутация, печати, контракты и становление города | [[03_Factions_Societies/Registry_Factions]], [[03_Factions_Societies/Reputation_Rules]], [[03_Factions_Societies/Quest_Engine]], [[03_Factions_Societies/Lore/City_Anatomy]] |
 | `04_Player_Entities` | Оболочки, расы, классы, TOUCH, синергии | [[04_Player_Entities/Shell_Specification]], [[04_Player_Entities/MVP_3x3_Design_Contract]], [[04_Player_Entities/_Registries/Registry_Races]], [[04_Player_Entities/_Registries/Registry_Specs]], [[04_Player_Entities/Combat_Profile_Pipeline]] |
-| `05_Combat_Survival` | Бой, магострелы, батареи, статусы, выживание | [[05_Combat_Survival/Weapon_Core]], [[05_Combat_Survival/Magic_Batteries]], [[05_Combat_Survival/Status_Effects]] |
+| `05_Combat_Survival` | Бой, магострелы, батареи, статусы, выживание | [[05_Combat_Survival/Weapon_Core]], [[05_Combat_Survival/Magic_Batteries]], [[05_Combat_Survival/Status_Effects]], [[05_Combat_Survival/Dissonance_System]] |
 | `06_Economy_Loot` | Рез, рынок, бартер, аукцион, стабилизация лута | [[06_Economy_Loot/Economy_Core]], [[06_Economy_Loot/Currency_Rez]], [[06_Economy_Loot/Loot_Distribution]] |
 | `07_Gear_Inventory` | Инвентарь, экипировка, предметы, крафт-реестры | [[07_Gear_Inventory/Inventory_Architecture]], [[07_Gear_Inventory/Gear_Progression]], [[07_Gear_Inventory/Equipment_PaperDoll]], [[07_Gear_Inventory/_Registries/Registry_Items]] |
-| `08_World_Generation` | Сервер, таймеры, аномалии, вход, выход, атлас | [[08_World_Generation/Generation/07_Server_Lifecycle]], [[08_World_Generation/Generation/08_Gate_Check]], [[08_World_Generation/Anomaly/Anomaly_System]] |
+| `08_World_Generation` | Сервер, таймеры, аномалии, вход, выход, атлас | [[08_World_Generation/Generation/07_Server_Lifecycle]], [[08_World_Generation/Generation/08_Gate_Check]], [[08_World_Generation/Generation/19_Access_Contracts]], [[08_World_Generation/Anomaly/Anomaly_System]] |
 | `09_Project_Management` | Канбан, риски, планы, техническая кухня | [[09_Project_Management/TODO]], [[09_Project_Management/Risk_Register]], [[09_Project_Management/Architecture_MVP]] |
 
 ---
@@ -60,8 +60,8 @@ related_mechanics:
 Минимальный вертикальный срез должен проходить через одну связную цепочку:
 
 1. Игрок выбирает Оболочку и сборку через [[04_Player_Entities/MVP_3x3_Design_Contract|контракт матрицы 3×3]] и [[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile_Pipeline]].
-2. Карта Хаба показывает доступные T1/T2/T3 локации через [[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]].
-3. Перед входом сборка проходит [[08_World_Generation/Generation/08_Gate_Check|Gate_Check]] и проверку резонанса через [[05_Combat_Survival/Threat_Thresholds|Threat_Thresholds]].
+2. Карта Хаба показывает доступные T1/T2/T3 локации, цену маршрута и живые слоты через [[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]].
+3. Перед входом игрок выбирает [[08_World_Generation/Generation/19_Access_Contracts|Access Contract]], а сборка проходит [[08_World_Generation/Generation/08_Gate_Check|Gate_Check]] и проверку Диссонанса через [[05_Combat_Survival/Dissonance_System|Dissonance_System]] / [[05_Combat_Survival/Threat_Thresholds|Threat_Thresholds]].
 4. В рейде темп задают [[08_World_Generation/Generation/07_Server_Lifecycle|Server_Lifecycle]], [[08_World_Generation/Anomaly/Anomaly_System|Anomaly_System]] и [[05_Combat_Survival/Magic_Batteries|Magic_Batteries]].
 5. После эвакуации лут проходит цикл экономики: [[07_Gear_Inventory/Looting_Process|Looting_Process]] -> [[06_Economy_Loot/Economy_Core|Economy_Core]] -> [[06_Economy_Loot/Barter_System|Barter_System]].
 

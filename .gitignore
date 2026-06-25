@@ -7,8 +7,10 @@
 .stfolder/
 .stfolder.removed-*/
 
-# Local Codex design skills and their working specifications
-.agents/skills/
+# Local generated graph/runtime artifacts
+.agents/graph/
+.agents/**/*.pyc
+.agents/**/__pycache__/
 docs/superpowers/
 
 # Private fiction drafts

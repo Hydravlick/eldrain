@@ -20,7 +20,7 @@ tags:
 > * **Pattern:** Определяет происхождение, тип импульса и стабильность.
 > * **Tier:** Определяет допустимую энергетическую нагрузку, Heat/Recovery-коридор и совместимость с усиленными батареями.
 > * **Rarity:** Определяет аффиксы и специализацию экземпляра, но не входит в общий Power Score.
-> * **Battery Cycle:** Для магострелов темп задается батареей, охлаждением, heat, bloom и resonance.
+> * **Battery Cycle:** Для магострелов темп задается батареей, охлаждением, heat, bloom и Dissonance.
 
 > **Легенда Типов:**
 > `blade` — Клинковое (Мечи, Ножи)
@@ -40,7 +40,7 @@ tags:
 > `[load_acceptance:: base/stable/overcharge]` — какие транзакции зарядки выдерживает Frame.
 > `[heat:: N]` — сколько тепла создает импульс.
 > `[bloom:: low/medium/high]` — насколько быстро растет эфирный разброс.
-> `[resonance_pulse:: N]` — временный эфирный всплеск при применении.
+> `[dissonance_pulse:: N]` — временный эфирный всплеск при применении.
 > `[window_role:: ...]` — какое окно оружие создает для добивания.
 > До открытия гейта оружие остается инструментом урона/анимаций, но не становится отдельным узлом Двойного Парадокса.
 
@@ -121,7 +121,7 @@ tags:
 [charge_cost:: 1]
 [heat:: 35]
 [bloom:: high]
-[resonance_pulse:: 4]
+[dissonance_pulse:: 4]
 [window_role:: stagger_entry]
 *Грубый одноручный магострел: короткая дистанция, сильный удар, плохая дисциплина разряда.*
 * **Implicit:** **(Stopping Pulse)** попадание сбивает спринт и дает `Aim Punch`.
@@ -139,11 +139,11 @@ tags:
 [charge_time:: 0.8s]
 [heat:: 45]
 [bloom:: medium]
-[resonance_pulse:: 6]
+[dissonance_pulse:: 6]
 [window_role:: weakspot_open]
 *Дальний фрейм с удержанием заряда. Силен, если игрок успел стабилизировать импульс.*
 * **Implicit:** **(Shield Breaker)** повышенное давление по щитам, барьерам и кастерам.
-* **Слабость:** плох под давлением; сбитый заряд уходит в heat и resonance.
+* **Слабость:** плох под давлением; сбитый заряд уходит в heat и Dissonance.
 
 ### Веерный Эмиттер (Scatter Emitter) [2H]
 [weapon_id:: scatter_emitter]
@@ -157,7 +157,7 @@ tags:
 [charge_time:: 0.4s]
 [heat:: 50]
 [bloom:: high]
-[resonance_pulse:: 5]
+[dissonance_pulse:: 5]
 [window_role:: melee_setup]
 *Выплескивает веер нестабильной энергии. Не про точность, а про остановку входа.*
 * **Implicit:** **(Stagger Cone)** мелкие цели отбрасываются, крупные получают сильный aim punch.
@@ -175,7 +175,7 @@ tags:
 [charge_time:: 0.7s]
 [heat:: 30]
 [bloom:: low]
-[resonance_pulse:: 5]
+[dissonance_pulse:: 5]
 [window_role:: tether_control]
 *Катушка разгоняет гарпун с тросом. Главная ценность - не урон, а фиксация.*
 * **Implicit:** **(Tether)** цель замедлена, привязана или вытянута из укрытия.
@@ -193,7 +193,7 @@ tags:
 [charge_cost:: 0]
 [heat:: 0]
 [bloom:: low]
-[resonance_pulse:: 0]
+[dissonance_pulse:: 0]
 [window_role:: quiet_pick]
 *Механический дальнобойный фрейм без батареи. Тихий, но медленный.*
 * **Implicit:** **(Puncture)** хорошо работает по мягким зонам и тканям.
@@ -215,12 +215,12 @@ tags:
 [charge_time:: 1.0s]
 [heat:: 40]
 [bloom:: medium]
-[resonance_pulse:: 8]
+[dissonance_pulse:: 8]
 [window_role:: reality_burn]
 *Проводник, который заставляет аномальное тело принять нормальные законы.*
 * **Implicit:** **(Reality Burn)** временно делает аномальную цель уязвимой к обычному урону.
 * **Расход:** тратит подготовленный `Reality Charge`, `Overcharge Cell` или стабилизатор. Не списывает сырой Рез из кошелька во время рейда.
-* **Слабость:** высокий resonance, backlash без батареи, слабый темп против живых гуманоидов.
+* **Слабость:** высокий Dissonance, backlash без батареи, слабый темп против живых гуманоидов.
 
 ---
 
@@ -252,7 +252,7 @@ tags:
 [charge_cost:: 0]
 [heat:: 0]
 [bloom:: none]
-[resonance_pulse:: 0]
+[dissonance_pulse:: 0]
 [window_role:: template_window]
 [value:: 0]
 *Короткое описание боевой фантазии.*

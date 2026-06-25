@@ -15,7 +15,7 @@ related_files:
 
 | ID | Риск | Решение | Статус | Владелец |
 |:---|:---|:---|:---|:---|
-| R01 | Gate Check и Resonance регулируются отдельно | Ввести `Readiness Corridor`: нижняя граница `SurvivalScore`, верхняя `ResonanceLoad` | fixed | `Gate_Check`, `Threat_Thresholds`, `Hub_Map_Table` |
+| R01 | Gate Check и Диссонанс регулируются отдельно | Ввести `Access Readiness`: Environment Seal, Dissonance Budget, Access Price и Population Seat | fixed | `Gate_Check`, `Dissonance_System`, `Access_Contracts`, `Hub_Map_Table` |
 | R02 | Смерть носильщика найденыша не определена | Найденыш становится `BackSlotObject` с `Rescue Timer`; чужой вынос дает `Unstabilized Captive` | fixed | `Shell_Foundlings`, `Physical_Weight`, `Lifecycle_Roster` |
 | R03 | Рез одновременно валюта, стабилизация и урон | Сырой Рез не тратится из кошелька в бою; Reality Burn идет через `Reality Charge`, `Overcharge Cell` или стабилизатор | fixed | `Currency_Rez`, `Magic_Batteries`, `Registry_Consumables` |
 | R04 | Игрок может зайти за 5 минут до Phase Shift и умереть без понимания | `Late Entry Protocol`: предупреждение до Deploy, прогноз `OK/Risk/Fail` | fixed | `Gate_Check`, `Hub_Map_Table`, `UI_Map_Protocol` |
@@ -29,10 +29,10 @@ related_files:
 | R12 | Хранители слишком похожи на силовую монополию | Хранители контролируют экзистенциальные угрозы и лучшие аварийные решения, но не базовый рынок | fixed | `The_Keepers`, `Registry_Factions` |
 | R13 | HUD перегружен 13+ параметрами | Ввести слои `VISIBLE`, `DIEGETIC`, `LATENT` | fixed | `UI_Map_Protocol`, `Item_Attributes_UI` |
 | R15 | P2P-дроп обходит аукцион и налог | `Field Transfer` дает `Unstabilized Transfer`; нужен отмыв/стабилизация перед легальным рынком | fixed | `P2P_Interaction`, `Auction_House` |
-| R16 | 6-часовой цикл может быть несправедливым по таймзонам | Rolling pool из T1/T2/T3 локаций со сдвигом, опциональный 4-й слот | fixed | `Server_Lifecycle`, `Async_Timers`, `Difficulty_Slots` |
+| R16 | 6-часовой цикл может быть несправедливым по таймзонам или оставлять T3 пустым | Rolling pool из T1/T2/T3 локаций со сдвигом, прямые T2/T3 Access Contracts, drop-in/drop-out и опциональный 4-й слот | fixed | `Server_Lifecycle`, `Async_Timers`, `Difficulty_Slots`, `Access_Contracts` |
 | R21 | Два глоссария расходятся в терминах | Канон терминов держать в `Glossary`; numbered-версию слить или архивировать | fixed | `Glossary`, `Architecture_MVP` |
 | R23 | Биография и теги могут превратиться в скрытый рецепт или полный рандом | Использовать общий каталог категории, событийную группу кандидатов, биографические веса и `exclusive_with`; игрок выбирает испытание, но не точный результат | fixed | `Trait_Development`, `Tags_System`, `Registry_Tags` |
-| R24 | Резонанс одновременно означает цену билда, шум оружия и бюджет трейта | Разделить постоянный `ResonanceLoad`, временный `ResonancePulse` и внутренний `power_weight`; удалить `resonance_credit` | fixed | `Resonance_System`, `Registry_Tags`, `Threat_Thresholds` |
+| R24 | Диссонанс может снова стать ценой билда, шумом оружия и бюджетом трейта одновременно | Разделить постоянный `DissonanceLoad`, временный `DissonancePulse`, экономическую цену `value_rez` и внутренний `power_weight`; не использовать Диссонанс как gear score | fixed | `Dissonance_System`, `Registry_Tags`, `Threat_Thresholds`, `Access_Contracts` |
 | R25 | Sanity существует фрагментарно без полноценного цикла | Убрать постоянную шкалу Sanity из MVP; оставить ситуационный статус Stress, конкретные источники, спад и лечение | fixed | `Registry_StatusEffects`, `The_Cathedral`, `Magic_Batteries` |
 | R26 | ET, Tier, Rarity и Quality создают дублирующие вертикальные шкалы | Удалить общий ET и отдельный Quality; Tier оружия задает допустимую нагрузку, Rarity - аффиксы, батарея - силу импульса, броня - среду и зоны защиты | fixed | `Gear_Progression`, `Weapon_Core`, `Magic_Batteries`, `Item_Attributes_UI` |
 | R27 | Сильная броня плюс дешевое летальное оружие становится вечным оптимумом | Разрешить Armor Rat как PvP-нишу, но глубокую награду привязать к повторяемому рабочему циклу, расходу и покрытию задач; проверять полные комплекты по стоимости замены | in_progress | `Gear_Progression`, `Item_Calibration_Matrix`, `TODO` |

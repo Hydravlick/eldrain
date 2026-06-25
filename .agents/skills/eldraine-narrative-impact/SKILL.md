@@ -1,0 +1,67 @@
+---
+name: eldraine-narrative-impact
+description: Use when changing an Eldraine plot event, reveal, character fate, faction state, player choice, quest outcome, secret, or chronology and downstream narrative or systemic dependencies may break.
+---
+
+# Eldraine Narrative Impact
+
+## Principle
+
+Treat story changes as dependency changes. Preserve intentional consequences while exposing accidental dead ends and contradictions.
+
+## Graph Triage
+
+Use `eldraine-graph-navigator` first when the changed fact names a character, faction, location, quest, reveal, service, or system that may have downstream backlinks. Expand one graph hop at a time and stop when links no longer affect the changed premise.
+
+## Trace the Change
+
+Read the changed premise and search for every directly named character, faction, location, quest, service, reveal, and term. Build a compact dependency chain:
+
+`changed fact -> affected knowledge/state -> affected content -> required replacement`
+
+Separate:
+
+- established dependency;
+- inferred dependency;
+- missing documentation.
+
+## Time Horizons
+
+Check:
+
+1. **Immediate:** current scene, tutorial, reward, access, dialogue, party state.
+2. **Current arc:** active quests, faction relationships, pacing, available services.
+3. **Long term:** later reveals, endings, recurring characters, world-state logic.
+
+Also check player knowledge versus character knowledge. Early truth can break suspense even when world causality remains valid.
+
+## Classify Damage
+
+Use:
+
+- `LOGIC HOLE` — content assumes a fact that is no longer true.
+- `ORPHANED CONTENT` — quest or asset loses its trigger or purpose.
+- `PACING DAMAGE` — reveal, escalation, or emotional beat arrives at the wrong time.
+- `SYSTEM DEPENDENCY` — access, economy, tutorial, or progression relied on the narrative state.
+- `INTENTIONAL IRREVERSIBILITY` — meaningful consequence that should remain.
+- `NEW OPPORTUNITY` — branch or theme unlocked by the change.
+
+## Answer Contract
+
+Lead with the overall blast radius: `LOCAL`, `ARC`, or `FOUNDATIONAL`.
+
+Then provide:
+
+| Horizon | Broken or changed dependency | Evidence | Required response |
+|---|---|---|---|
+
+Finish with:
+
+- minimum continuity patch;
+- stronger branch that embraces the consequence;
+- content that should remain lost because the choice needs weight;
+- files that require updates;
+- unresolved author decisions.
+
+Do not restore all lost content automatically. Do not confuse expensive consequences with narrative errors. Use `eldraine-lorekeeper` when the problem is canon authority rather than downstream structure. Do not edit files unless asked.
+

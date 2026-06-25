@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eldraine GDD Author"
+  short_description: "Оформляет идеи в канонические страницы GDD"
+  default_prompt: "Use $eldraine-gdd-author to turn these notes into an Eldraine GDD proposal or page."

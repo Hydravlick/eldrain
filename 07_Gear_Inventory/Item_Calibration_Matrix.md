@@ -2,13 +2,15 @@
 type: matrix
 status: active
 system: gear_balance
-tags: [items, weight, value, resonance, survival_score, calibration]
+tags: [items, weight, value, dissonance, survival_score, calibration]
 related_files:
   - "[[07_Gear_Inventory/_Registries/Registry_Items|Registry_Items]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Armors|Registry_Armors]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Consumables|Registry_Consumables]]"
   - "[[05_Combat_Survival/Registry_Weapons|Registry_Weapons]]"
   - "[[08_World_Generation/Generation/08_Gate_Check|Gate_Check]]"
+  - "[[08_World_Generation/Generation/19_Access_Contracts|Access_Contracts]]"
+  - "[[05_Combat_Survival/Dissonance_System|Dissonance_System]]"
   - "[[05_Combat_Survival/Threat_Thresholds|Threat_Thresholds]]"
   - "[[07_Gear_Inventory/Gear_Progression|Gear_Progression]]"
 ---
@@ -18,7 +20,7 @@ related_files:
 
 Эта матрица является обязательным промежуточным слоем между реестрами предметов и балансными порогами.
 
-До заполнения таблицы значения `T1 -> T2 = 140`, `T2 -> T3 = 260` и доходность `5-8% стоимости полного комплекта` считаются **тестовыми якорями**, а не доказанным балансом.
+До заполнения таблицы значения `T1 -> T2 = 140`, `T2 -> T3 = 260`, лимиты Диссонанса и доходность `5-8% стоимости полного комплекта` считаются **тестовыми якорями**, а не доказанным балансом.
 
 ## 2. Обязательные Поля
 
@@ -32,7 +34,7 @@ related_files:
 | `rarity` | число и сложность аффиксов, без прямого Power Score |
 | `weight_kg` | физический вес одной единицы |
 | `value_rez` | базовая стоимость |
-| `base_resonance` | резонанс до `SyncMultiplier` |
+| `base_dissonance` | диссонанс до `sync_multiplier` |
 | `environment_resistance` | вклад брони в `SurvivalScore` |
 | `filter_rating` | вклад маски |
 | `battery_buffer` | вклад батареи или стабилизатора |
@@ -55,7 +57,7 @@ related_files:
 | Базовая маска | 1 | `UNKNOWN` | `UNKNOWN` | 0 | `UNKNOWN` | 0 | стартовая модель не закреплена |
 | Базовая Пешка | — | — | — | `Current_HP UNKNOWN` | 0 | 0 | `Entropy_Buffer` не определен |
 
-## 4. Проверка Readiness Corridor
+## 4. Проверка Access Readiness
 
 Для каждого тестового комплекта считать:
 
@@ -70,14 +72,14 @@ SurvivalScore =
   - Open_Wounds_Penalty
   - Overload_Penalty
 
-ResonanceLoad =
-  sum(Item.BaseResonance * SyncMultiplier)
-  + sum(BodyTag.ResonanceLoad)
+DissonanceLoad =
+  sum(Item.base_dissonance * sync_multiplier)
+  + sum(BodyTag.dissonance_load)
   + persistent_effects
 
-CurrentThreat =
-  ResonanceLoad
-  + RecentPulse
+AnomalyPressure =
+  DissonanceLoad
+  + RecentDissonancePulse
 ```
 
 Обязательные комплекты для первой калибровки:
@@ -85,12 +87,13 @@ CurrentThreat =
 1. **Welfare:** бесплатный Бомж без найденного усиления.
 2. **Prepared T1:** разумно собранный комплект перед входом.
 3. **Field Upgraded:** стартовый комплект плюс найденная в рейде подготовка к T2.
-4. **Overgeared:** дорогой комплект, переживающий среду, но приближающийся к Yellow/Red Resonance.
+4. **Overgeared:** дорогой комплект, переживающий среду, но приближающийся к Yellow/Red Dissonance.
 5. **Foundling Standard:** типичный комплект ценной Пешки, потеря которого должна быть экономически болезненной.
 6. **Armor Rat:** сильная броня плюс самое дешевое летальное оружие.
 7. **Glass Cannon:** сильное оружие плюс минимальная допустимая защита.
 8. **T1 Specialist:** редкий низкотировый предмет в своей лучшей нише.
 9. **Squad Carrier:** один продвинутый Frame на группу с бюджетными союзниками.
+10. **Recovery Drop:** бедный поздний вход в T2/T3 без главного прогресса контрактов.
 
 ## 5. Экономический Срез
 
@@ -99,6 +102,7 @@ CurrentThreat =
 | Метрика | Формула |
 |---|---|
 | Стоимость входа | сумма replacement cost экипировки и расходников |
+| Цена Access Contract | Rez, Печать, ключ, долг или услуга за выбранное окно |
 | Вес входа | сумма веса всего снаряжения |
 | Свободная грузоподъемность | carry limit минус вес входа |
 | Средняя добыча | медиана успешного рейда по Tier |
@@ -111,7 +115,8 @@ CurrentThreat =
 1. Нормализовать поля в реестрах оружия, брони, масок, батарей и расходников.
 2. Закрепить конкретный Welfare Kit.
 3. Рассчитать пять обязательных комплектов.
-4. Проверить, существует ли практический коридор между Environment Gate и Resonance Threshold.
+4. Проверить, существует ли практический коридор между Environment Gate и Dissonance Threshold.
 5. Только после этого менять пороги `140/260` и процент доходности полного комплекта.
 6. Сравнить риск-скорректированную доходность `Balanced`, `Armor Rat`, `Glass Cannon` и `Squad Carrier`.
 7. Проверить, что глубокая награда требует повторяемого рабочего цикла, но не запрещает T1 совершить PvP-переворот.
+8. Проверить, что `Deep T3` и `Recovery Drop` поддерживают плотность поздней фазы, но не превращают T3 в бесплатный scav-фарм.
