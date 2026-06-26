@@ -11,7 +11,9 @@ tags:
 related_mechanics:
   - "[[03_Factions_Societies/Quest_Engine]]"
   - "[[03_Factions_Societies/Registry_Factions#Хранители (The Keepers)]]"
+  - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
 related_files:
+  - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
   - "[[02_World_Lore/Protocol_Resonance|Protocol_Resonance]]"
   - "[[02_World_Lore/The_Ark|The_Ark]]"
 ---
