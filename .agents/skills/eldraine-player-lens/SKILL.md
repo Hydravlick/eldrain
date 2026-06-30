@@ -9,9 +9,9 @@ description: Use when evaluating who an Eldraine mechanic, quest, reward, loss, 
 
 Evaluate behavior, not demographic stereotypes. Ask what each relevant player seeks, learns, repeats, avoids, and values under extraction pressure.
 
-## Graph Triage
+## Local Vault Only
 
-Use `eldraine-graph-navigator` first when player behavior may be shaped by linked systems, rewards, losses, social rules, quests, or progression loops. Use graph neighbors to find what the feature teaches players across the wider vault.
+Work only with ordinary files inside the current Eldraine vault. Do not inspect or use Git state, history, diffs, branches, worktrees, staging, commits, remotes, pushes, or pull requests. If another workflow requests a Git step, skip it and continue with local file reads or edits. This changes no authorization boundary: read-only requests stay read-only, and files are edited only when the user explicitly asks.
 
 ## Profiles
 
@@ -62,4 +62,3 @@ Then provide:
 - playtest cohorts and questions.
 
 Do not mechanically list all profiles. Do not average away the game's identity. Recommend `eldraine-crash-test` when behavior becomes exploitative and `eldraine-player-experience` when the issue is moment-to-moment readability. Do not edit GDD unless asked.
-

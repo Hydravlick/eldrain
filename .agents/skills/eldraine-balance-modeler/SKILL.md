@@ -9,9 +9,9 @@ description: Use when an Eldraine rule depends on numbers, formulas, thresholds,
 
 Turn design language into a falsifiable model. Prefer a rough honest model over precise-looking invented balance.
 
-## Graph Triage
+## Local Vault Only
 
-Use `eldraine-graph-navigator` first when a numeric rule depends on adjacent systems, economy files, item registries, combat rules, or progression gates. Use graph neighbors to find inputs, then label every value by provenance.
+Work only with ordinary files inside the current Eldraine vault. Do not inspect or use Git state, history, diffs, branches, worktrees, staging, commits, remotes, pushes, or pull requests. If another workflow requests a Git step, skip it and continue with local file reads or edits. This changes no authorization boundary: read-only requests stay read-only, and files are edited only when the user explicitly asks.
 
 ## Build the Model
 
@@ -60,4 +60,3 @@ For probability, include expected value and at least one bad-tail case. For econ
 Use verdicts: `SUPPORTED`, `FRAGILE`, `NO CORRIDOR`, or `INSUFFICIENT DATA`.
 
 Never present `TEST VALUE` as a recommendation. Explain which result would change if an unknown input changes. Recommend `eldraine-crash-test` for incentive abuse and `eldraine-player-experience` for feel. Do not edit GDD unless asked.
-

@@ -9,9 +9,9 @@ description: Use when evaluating Eldraine weapon, armor, battery, rarity, tier, 
 
 Evaluate complete loadouts over repeated raids, not isolated item stats. A healthy upgrade must change capability, reliability, or risk-adjusted opportunity without making cheaper gear either universally optimal or completely obsolete.
 
-## Graph Triage
+## Local Vault Only
 
-Use `eldraine-graph-navigator` first when gear value may depend on weapons, armor, batteries, Resonance, Gate Check, loot, enemies, crafting, or economy pages. Use graph neighbors to assemble the complete loadout context.
+Work only with ordinary files inside the current Eldraine vault. Do not inspect or use Git state, history, diffs, branches, worktrees, staging, commits, remotes, pushes, or pull requests. If another workflow requests a Git step, skip it and continue with local file reads or edits. This changes no authorization boundary: read-only requests stay read-only, and files are edited only when the user explicitly asks.
 
 ## Establish the Model
 
@@ -122,4 +122,3 @@ Lead with the highest-risk dominant strategy. Then provide:
 9. **Prototype measurements** — prices, loss rates, task completion, ammunition/battery use, and loadout frequency needed for proof.
 
 Do not fix a dominance problem by adding another universal score. Recommend `eldraine-balance-modeler` for numeric corridors, `eldraine-crash-test` for broader abuse chains, and `eldraine-player-experience` when the rule cannot be perceived or understood in play.
-

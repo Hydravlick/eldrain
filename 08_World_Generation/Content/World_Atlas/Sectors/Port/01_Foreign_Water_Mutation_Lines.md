@@ -1,0 +1,179 @@
+---
+type: anomaly_instance
+status: active
+system: world_atlas_content
+location: port
+anomaly_family: foreign_water
+tags:
+  - port
+  - foreign_water
+  - mutation_lines
+  - ecology
+related_files:
+  - "[[02_World_Lore/Toad_Culture|Toad_Culture]]"
+  - "[[08_World_Generation/Anomaly/16_Anomaly_Mutation_Lines|Anomaly_Mutation_Lines]]"
+  - "[[08_World_Generation/_Registries/Registry_Anomaly_Mutations|Registry_Anomaly_Mutations]]"
+  - "[[08_World_Generation/_Registries/Registry_Mobs|Registry_Mobs]]"
+  - "[[08_World_Generation/_Registries/Registry_Biomes|Registry_Biomes]]"
+---
+# Чужая вода: линии мутаций Порта
+
+## Рамка экземпляра
+
+Чужая вода является распределённой биологической средой: она переносит вещества, чувствует раздражение, выращивает формы и защищает огромное живое целое. Один инстанс Порта выбирает одну из трёх законченных линий. Племена, Утопленники, Крабы, Ложные сады и прочая базовая экосистема продолжают жить поверх выбранного состояния.
+
+Жители не знают внутренней классификации Чужой воды. Названия возникают из внешности, поведения и слухов: Мешкоголов, Двереглот, Беляк. Объяснение может быть неточным, если наблюдение остаётся полезным игроку.
+
+## Три линии
+
+### Посев
+
+| Tier | Проявление | Решение игрока |
+|:---|:---|:---|
+| T1 | мелкие носители оставляют зелёную плёнку и трёхдольные мешки | исследовать след, собрать образец либо пройти мимо |
+| T2 | влажные проходы занимают корни с теми же мешками | использовать фильтр, огонь с шумом или сухой обход |
+| T3 | знакомая пыль входит в водный цикл и выпадает Споровым дождём | переждать, фильтровать или двигаться между укрытиями |
+
+Наследуемые признаки: трёхдольный мешок, сладкая гниль, зелёная плёнка.
+
+### Голодные формы
+
+| Tier | Проявление | Решение игрока |
+|:---|:---|:---|
+| T1 | небольшие карикатурные подделки изображают полезные предметы | распознать, обойти либо разбудить ради содержимого |
+| T2 | крупные формы занимают подготовленные проёмы; отдельный базовый моб получает один видимый нарост | проверить форму и изменить приоритет цели |
+| T3 | Голодный дождь пробуждает размеченные формы и раскрывает функцию нароста | отступить до пробуждения, сменить темп или использовать хаос |
+
+Подделка преувеличивает функцию: сундук хочет глотать и хранить, дверь — открываться и захлопываться, защита — прирастать к носителю. Она карикатурна, а не безупречна.
+
+Наследуемые признаки: лишние ручки, влажный скрип, слишком буквальная функция.
+
+### Белый ответ
+
+| Tier | Проявление | Решение игрока |
+|:---|:---|:---|
+| T1 | звон воды и сигнальная ловушка оставляют белый след | уйти, очистить след или вызвать ответ рядом с другой целью |
+| T2 | обычные двери и люки префаба раскрываются, выпуская конечный местный резерв | принять бой, перенаправить погоню или использовать открытый маршрут |
+| T3 | Белая лихорадка связывает несколько подготовленных префабов густым туманом и видимыми жилами сигнала | исследовать вблизи, скрыться либо направить ответ на экосистему |
+
+Наследуемые признаки: белая волна, водяной звон, отступающий конденсат.
+
+## Погодные вершины
+
+| Линия | Погода | Предвестник | Путь отказа |
+|:---|:---|:---|:---|
+| Посев | Споровый дождь | знакомый запах, осадок и раскрытие мешков | проверенное укрытие или длинный крытый маршрут |
+| Голодные формы | Голодный дождь | размеченные формы дрожат, скрипят и набухают | выход из зоны подготовленного мимика до движения |
+| Белый ответ | Белая лихорадка | конденсат отступает, белые жилы сходятся к следу | разрыв контакта в тумане, очистка следа или сухой карман |
+
+Белая лихорадка ограничивает дальнюю видимость, но подчёркивает ближние метки, края ловушек, силуэты и направление сигнала. Обычная дальняя атака не начинается из-за границы читаемой зоны.
+
+## Базовая экосистема Порта
+
+```dataviewjs
+const registryPath = "08_World_Generation/_Registries/Registry_Mobs.md";
+const page = dv.page(registryPath);
+
+if (!page) {
+    dv.paragraph("⚠️ Registry_Mobs не найден.");
+} else {
+    const content = await dv.io.load(page.file.path);
+    const blocks = content.split(/^### /m).slice(1);
+
+    function field(block, key) {
+        const match = block.match(new RegExp(`\\[${key}::\\s*([^\\]]+)\\]`, "i"));
+        return match ? match[1].trim() : "";
+    }
+
+    function locations(block) {
+        return field(block, "location_tags").split("|").map(v => v.trim()).filter(Boolean);
+    }
+
+    const rows = blocks.map(block => {
+        const lines = block.split("\n");
+        const header = lines[0].trim();
+        const mobId = field(block, "mob");
+        if (!mobId || mobId === "template_mob" || !locations(block).includes("port")) return null;
+        return {
+            name: `[[${registryPath}#${header}|${header.replace(/\s*\(.*$/, "")}]]`,
+            layer: field(block, "ecology_layer"),
+            line: field(block, "mutation_line"),
+            tier: field(block, "threat_tier")
+        };
+    }).filter(Boolean)
+      .filter(row => row.layer === "baseline" || row.layer === "encounter")
+      .sort((a, b) => (a.tier || "0").localeCompare(b.tier || "0") || a.name.localeCompare(b.name));
+
+    dv.table(["Моб", "Слой", "Минимальный Tier"], rows.map(row => [row.name, row.layer, row.tier || "—"]));
+}
+```
+
+## Формы выбранной линии
+
+```dataviewjs
+const registryPath = "08_World_Generation/_Registries/Registry_Mobs.md";
+const page = dv.page(registryPath);
+
+if (!page) {
+    dv.paragraph("⚠️ Registry_Mobs не найден.");
+} else {
+    const content = await dv.io.load(page.file.path);
+    const blocks = content.split(/^### /m).slice(1);
+    const lineNames = {
+        foreign_water_sowing: "Посев",
+        foreign_water_hungry_forms: "Голодные формы",
+        foreign_water_white_response: "Белый ответ"
+    };
+
+    function field(block, key) {
+        const match = block.match(new RegExp(`\\[${key}::\\s*([^\\]]+)\\]`, "i"));
+        return match ? match[1].trim() : "";
+    }
+
+    function locations(block) {
+        return field(block, "location_tags").split("|").map(v => v.trim()).filter(Boolean);
+    }
+
+    function tierOf(value) {
+        const tiers = [...value.matchAll(/_t([123])(?=$|\\|)/gi)].map(match => `T${match[1]}`);
+        return [...new Set(tiers)].join("–") || "—";
+    }
+
+    const rows = blocks.map(block => {
+        const lines = block.split("\n");
+        const header = lines[0].trim();
+        const mobId = field(block, "mob");
+        const variantId = field(block, "variant_id");
+        const lineId = field(block, "mutation_line");
+        if ((!mobId && !variantId) || !locations(block).includes("port") || !lineNames[lineId]) return null;
+        const stage = field(block, "mutation_stage") || field(block, "mutation_stages");
+        const display = header.replace(/\s*\(.*$/, "");
+        return [
+            lineNames[lineId],
+            tierOf(stage),
+            `[[${registryPath}#${header}|${display}]]`,
+            variantId ? "вариант" : "моб",
+            field(block, "base_mob") || "—"
+        ];
+    }).filter(Boolean)
+      .sort((a, b) => a[0].localeCompare(b[0]) || a[1].localeCompare(b[1]) || a[2].localeCompare(b[2]));
+
+    dv.table(["Линия", "Tier", "Форма", "Тип", "Базовый моб"], rows);
+}
+```
+
+## Производственные ограничения экземпляра
+
+- Рост использует подготовленные варианты модулей, материалы, декали и hazard volume.
+- Мимиками становятся только размеченные ассеты.
+- Базовый моб получает не больше одного разрешённого нароста Голодных форм.
+- Белый ответ использует конечные спавнеры и обычные двери префаба; сюжетные замки и выходы сохраняют собственные правила.
+- Погодные состояния работают через подготовленные импульсы и локальные зоны.
+
+## Вопросы прототипа
+
+- распознаётся ли линия по раннему признаку;
+- читается ли связь между существом, погодой и изменением маршрута;
+- используется ли Белый ответ против других обитателей;
+- проверяется ли мимик наблюдением, а не выстрелом в каждый предмет;
+- остаётся ли Белая лихорадка исследуемой при малой видимости.

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Eldraine Graph Navigator"
-  short_description: "Строит карту связей GDD-vault"
-  default_prompt: "Use $eldraine-graph-navigator to map dependencies before changing Eldraine canon or systems."

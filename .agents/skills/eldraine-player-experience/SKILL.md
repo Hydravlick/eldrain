@@ -9,9 +9,9 @@ description: Use when evaluating Eldraine onboarding, first-hour flow, combat fe
 
 Describe the game from outside the system. Every important rule must become something the player can perceive, interpret, decide about, and remember.
 
-## Graph Triage
+## Local Vault Only
 
-Use `eldraine-graph-navigator` first when the lived experience depends on several documents, such as combat plus UI feedback, hub flow plus economy, or onboarding plus lore. Use the graph to find adjacent rules that shape what the player perceives.
+Work only with ordinary files inside the current Eldraine vault. Do not inspect or use Git state, history, diffs, branches, worktrees, staging, commits, remotes, pushes, or pull requests. If another workflow requests a Git step, skip it and continue with local file reads or edits. This changes no authorization boundary: read-only requests stay read-only, and files are edited only when the user explicitly asks.
 
 ## Choose a Mode
 
@@ -50,4 +50,3 @@ After the slice provide:
 - **Prototype questions:** observations to collect from playtests
 
 Do not solve weak feel by adding UI alone. Do not confuse mechanical complexity with meaningful tension. Recommend `eldraine-player-lens` for audience differences and `eldraine-balance-modeler` for numerical tuning. Do not edit GDD unless asked.
-

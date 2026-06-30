@@ -4,10 +4,18 @@ status: active
 system: loot_generation
 tags: [rng, spawn, containers, probability, biomes]
 related_files:
+  - "[[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction_Stabilization_Loop]]"
   - "[[07_Gear_Inventory/Containers_Slots|Containers_Slots]]"
   - "[[08_World_Generation/_Registries/Registry_Biomes|Registry_Biomes]]"
+  - "[[08_World_Generation/_Registries/Registry_Anomaly_Mutations|Registry_Anomaly_Mutations]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Items|Registry_Items]]"
 ---
+> [!TODO] Распределение лута по линии мутации
+> - [ ] Добавить `mutation_line` как условный фильтр поверх `biome` и `difficulty`, не заменяя Common-базу Порта.
+> - [ ] Развести ранние образцы, зрелые материалы и содержимое мимиков.
+> - [ ] Исключить бесконечный фарм Белого ответа: конечный резерв вызванных мобов не должен стабильно печатать ценность повторным сигналом.
+> - [ ] Проверить, что намеренный вызов опасности окупается выбором, а не становится обязательным лучшим маршрутом.
+> - **Значения:** шансы, количества и цены требуют отдельного balance pass и здесь не устанавливаются.
 # Распределение Лута (Loot Distribution Logic)
 
 ## 1. Матрица Генерации
@@ -33,25 +41,28 @@ related_files:
 ## 3. Влияние Тира (Difficulty Scaling)
 Уровень локации (Tier 1-3) напрямую модифицирует математику "ролла" (броска кубика).
 
-### Tier 1: Periphery (Периферия)
+### Tier 1: Manifestation (Проявление)
 `[difficulty:: 01]` — Зона высадки.
 * **Empty Chance (Шанс пустого слота):** 40%
 * **Rarity Cap:** Максимум **Uncommon (Зеленое)**. Rare (Синее) падает только с боссов.
-* **Loot Profile:** Предметы чаще простые, кустарные или Volatile с низкой стоимостью стабилизации.
+* **Loot Profile:** Предметы чаще простые, кустарные или Volatile с низкой стоимостью Напоминания. Серый утиль формирует основу ремонта и следующего выхода.
 
-### Tier 2: Deep Zone (Глубина)
+### Tier 2: Memory (Воспоминание)
 `[difficulty:: 02]` — Основная зона активности.
 * **Empty Chance:** 25%
 * **Rarity Bonus:** +10% к шансу повысить редкость.
 * **Loot Profile:** чаще встречаются T2-материалы, готовые расходники и предметы с хорошим `value/kg`.
 * **Exclusive:** Начинают падать специфические ресурсы биома (например, *Deep Coral* в Порту).
 
-### Tier 3: Epicenter (Эпицентр)
+### Tier 3: Reassembly (Пересборка)
 `[difficulty:: 03]` — Штормовая зона / Логово босса.
 * **Empty Chance:** 10% (Почти все контейнеры полные).
-* **Min Rarity:** **Uncommon**. (Обычный "серый" мусор отфильтровывается).
+* **Material Baseline:** Common/серый лут не отфильтровывается. Он остаётся в бытовых, промышленных и повреждённых контейнерах, потому что город постоянно расходует базовые материалы.
+* **High-Value Overlay:** дополнительные T3-комнаты, боссы, встроенные узлы и фазовые процедуры создают редкие роллы поверх материальной основы, а не вместо неё.
 * **High Roll:** Шанс найти **Artifact** или **Blueprint** увеличен в 3 раза.
 * **Danger:** При открытии контейнера есть 5% шанс активировать ловушку или спавн моба ("Mimic").
+
+Редкость не определяет стабильность. Серый предмет может быть `Stable` или `Volatile`, а артефакт может оказаться переносимым грузом либо `Embedded Legacy`. Эти оси описаны в [[06_Economy_Loot/Extraction_Stabilization_Loop#2. Четыре независимые оси предмета|общем контракте]].
 
 ---
 

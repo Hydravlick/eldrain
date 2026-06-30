@@ -9,9 +9,9 @@ description: Use when reviewing an Eldraine mechanic, build, economy loop, progr
 
 Attack the incentive structure, not the prose. Find what rational players will repeatedly do when rewards, risk, coordination, and time pressure interact.
 
-## Graph Triage
+## Local Vault Only
 
-Use `eldraine-graph-navigator` first when an exploit path may cross mechanics, economy, party rules, gear, world generation, or progression. Follow backlinks and outgoing links to find abuse chains before judging the isolated rule.
+Work only with ordinary files inside the current Eldraine vault. Do not inspect or use Git state, history, diffs, branches, worktrees, staging, commits, remotes, pushes, or pull requests. If another workflow requests a Git step, skip it and continue with local file reads or edits. This changes no authorization boundary: read-only requests stay read-only, and files are edited only when the user explicitly asks.
 
 ## Prepare
 
@@ -64,4 +64,3 @@ Then provide:
 - **Prototype tests:** concrete metrics or scenarios needed to verify the concern.
 
 Do not fabricate numeric certainty. Recommend `eldraine-balance-modeler` when the verdict depends on uncalibrated values. Do not edit GDD unless asked.
-

@@ -18,7 +18,7 @@ tags: [minimap, json, data_stream]
   "sector_phase": "ANOMALY",
   "current_tier": "T2",
   "time_to_phase_shift_sec": 312,
-  "time_to_collapse_sec": 7512,
+  "time_to_stabilization_sec": 7512,
   "access_contract": "prepared_t2",
   "environment_forecast": "RISK",
   "dissonance_state": "YELLOW",

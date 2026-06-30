@@ -5,6 +5,10 @@ system: gear_inventory_registry
 registry_type: items
 tags: [database, resources, loot, artifacts]
 ---
+> [!TODO] Ингредиенты линий Чужой воды
+> - [ ] После отдельного балансного прохода добавить материалы Мешкоголова, Корнехвата, Сыпуна, Прихватыша, Двереглота, Домоеда, Звоночника, Беляка и Вылизня.
+> - [ ] Разделить `образец для изучения`, обычный ингредиент и зрелый T3-материал; не превращать раннее распознавание линии в обязательный дорогой лут.
+> - **Основа:** [[08_World_Generation/_Registries/Registry_Anomaly_Mutations|Registry_Anomaly_Mutations]]. Ценности, вес, стаки и шансы дропа этой правкой не устанавливаются.
 # Реестр: Предметы и Ресурсы (General Items)
 
 > **Логика:** Пассивные предметы. Используются для крафта, торговли или выполнения квестов.
@@ -124,7 +128,16 @@ tags: [database, resources, loot, artifacts]
 [stabilization_cost:: 0]
 [weight:: 0.1kg]
 [value:: 0]
+[portability:: cargo]
+[reliability:: stable]
+[origin_rule:: session_relative]
 *Короткое описание материальной пользы.*
 - **Используется для:** крафт, квест, продажа, стабилизация.
-- **Состояние:** volatile/stabilized/native/foreign/soulbound.
+- **Редкость:** common/uncommon/rare/artifact; не определяет полезность или стабильность.
+- **Надёжность:** stable/volatile/trace/civic_legacy.
+- **Происхождение в рейде:** native/foreign/hot/retuned вычисляется относительно текущей сессии.
+- **Переносимость:** ready_access/cargo/back_slot/living/embedded.
+- **Право:** free/disputed/contract/soulbound.
 - **Источник:** биом, контейнер, моб или фракция.
+
+Полный контракт независимых осей: [[06_Economy_Loot/Extraction_Stabilization_Loop#2. Четыре независимые оси предмета|Extraction_Stabilization_Loop]].

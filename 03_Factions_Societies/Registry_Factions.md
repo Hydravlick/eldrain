@@ -26,7 +26,7 @@ related_mechanics:
 
 Старые черновые фракции **Литейный Синдикат**, **Академия Эфира** и **Теневой Картель** не используются как основные канонические фракции.
 
-- Крафт, исследования и распознавание свойств перешли в **Пробные Дома** и их Столы.
+- Крафт, исследования и распознавание свойств перешли в **Дома Пробы** и их Столы.
 - Тяжёлый ремонт и городская инженерия перешли в **Артели Подпорки**.
 - Оценка, страховка, спорная собственность и долги перешли в **Весовые Дома**.
 - Серые услуги стали явлением **Ночных Поручителей**, а не единой мафией.
@@ -50,11 +50,12 @@ related_mechanics:
 | **Спорный контракт** | сильный рост у заказчика | прямой удар по чужому праву, маршруту, тайне или долгу |
 | **Нарушение договора** | потеря доверия, отказ мастеров, санкции в Хабе | может открыть серые пути через Ночных Поручителей |
 
-## Круг Первого Приёма
+## Вход и забота: Круг Первого Приёма
 
 [faction:: first_reception]  
 [faction_role:: hearth]  
 [promise:: entry_and_care]  
+[player_label:: entry_and_care]  
 [detail:: [[03_Factions_Societies/Lore/The_First_Reception|The_First_Reception]]]  
 [access_model:: sanitary_passes_foundling_care_quarantine]
 [rel_union:: common_storehouses] (первичный уход требует еды, тепла и базовых наборов)  
@@ -70,11 +71,12 @@ related_mechanics:
 - **Временные POI:** сухая палата, ночная баня, врачебная кухня, санитарная лодка.
 - **Тень:** принятие может стать изоляцией, измерением и задержанным милосердием.
 
-## Общие Кладовые
+## Еда и запас: Общие Кладовые
 
 [faction:: common_storehouses]  
 [faction_role:: hearth]  
 [promise:: no_empty_hands]  
+[player_label:: food_and_stock]  
 [detail:: [[03_Factions_Societies/Lore/The_Common_Storehouses|The_Common_Storehouses]]]  
 [access_model:: recovery_kits_basic_stock_shared_cells]
 [rel_union:: first_reception] (забота невозможна без минимума)  
@@ -90,12 +92,13 @@ related_mechanics:
 - **Временные POI:** передвижная кухня, открытая зарядная стойка, ночная полка обмена.
 - **Тень:** минимум превращается в очередь, очередь - в унижение.
 
-## Палата Следа
+## Карты и улики: Палата Контуров
 
-[faction:: trace_chamber]  
+[faction:: contour_chamber]  
 [faction_role:: hearth]  
 [promise:: proof_and_route]  
-[detail:: [[03_Factions_Societies/Lore/The_Trace_Chamber|The_Trace_Chamber]]]  
+[player_label:: maps_and_evidence]  
+[detail:: [[03_Factions_Societies/Lore/The_Contour_Chamber|The_Contour_Chamber]]]  
 [access_model:: maps_witness_records_route_sheets]
 [rel_spy:: minstrels] (слухи помогают раньше доказательства, но портят чистоту следа)  
 [rel_conflict:: cathedral_all_faiths] (исповедь и ритуальная тайна не всегда могут стать публичным фактом)  
@@ -110,11 +113,12 @@ related_mechanics:
 - **Временные POI:** свежая меловая тропа, башня дальномеров, окно открытой карты.
 - **Тень:** что не записано, будто не существовало; что записано, можно продать.
 
-## Весовые Дома
+## Цена и право: Весовые Дома
 
 [faction:: weighing_houses]  
 [faction_role:: hearth]  
 [promise:: provenance_and_debt]  
+[player_label:: price_and_right]  
 [detail:: [[03_Factions_Societies/Lore/The_Weighing_Houses|The_Weighing_Houses]]]  
 [access_model:: provenance_auction_insurance_debt]
 [rel_trade:: common_storehouses] (минимум и долг постоянно спорят за одни ресурсы)  
@@ -130,11 +134,12 @@ related_mechanics:
 - **Временные POI:** выездной оценщик, краткий аукцион, поручитель тела, ремонтник права.
 - **Тень:** долг помнят лучше, чем человека.
 
-## Артели Подпорки
+## Ремонт и проходы: Артели Подпорки
 
 [faction:: support_artels]  
 [faction_role:: hearth]  
 [promise:: city_must_stand]  
+[player_label:: repair_and_passages]  
 [detail:: [[03_Factions_Societies/Lore/The_Support_Artels|The_Support_Artels]]]  
 [access_model:: lifts_bridges_reinforcement_heavy_repair]
 [rel_trade:: common_storehouses] (кладовые требуют пола, света и полок)  
@@ -150,11 +155,12 @@ related_mechanics:
 - **Временные POI:** работающий подъёмник, аварийный мост, кузница в безопасном окне.
 - **Тень:** не каждый район можно удержать.
 
-## Собор Всех Вер
+## Память и обеты: Собор Всех Вер
 
 [faction:: cathedral_all_faiths]  
 [faction_role:: hearth]  
 [promise:: meaning_and_memory]  
+[player_label:: memory_and_vows]  
 [detail:: [[03_Factions_Societies/Lore/The_Cathedral|The_Cathedral]]]  
 [access_model:: rites_relics_vows_memory_contracts]
 [rel_union:: funeral_circles] (имена и личные вещи погибших требуют ритуального языка)  
@@ -170,11 +176,12 @@ related_mechanics:
 - **Временные POI:** открытое бдение, передвижной алтарь, похоронный кружок у катастрофы.
 - **Тень:** утешение может стать мягкой цензурой боли.
 
-## Пробные Дома
+## Крафт и пробы: Дома Пробы
 
 [faction:: proving_houses]  
 [faction_role:: hearth]  
 [promise:: useful_trial]  
+[player_label:: crafting_and_trials]  
 [detail:: [[03_Factions_Societies/Lore/The_Proving_Houses|The_Proving_Houses]]]  
 [access_model:: tables_blueprints_prototypes_error_logs]
 [rel_trade:: support_artels] (прототипы должны выдерживать городскую нагрузку)  
@@ -190,14 +197,15 @@ related_mechanics:
 - **Временные POI:** безопасный верстак, полевая лаборатория, Полевой Стол перед Gate Check, Комиссия Пепла.
 - **Тень:** почти каждая технокатастрофа начиналась словами "мы проверили".
 
-## Лига Менестрелей
+## Слухи и доставка: Лига Менестрелей
 
 [faction:: minstrels]  
 [faction_role:: liminal_network]  
 [promise:: living_voice]  
+[player_label:: rumors_and_delivery]  
 [detail:: [[03_Factions_Societies/Lore/The_Minstrels|The_Minstrels]]]  
 [access_model:: rumors_messages_secret_paths_temporary_poi]
-[rel_spy:: trace_chamber] (живой слух против доказуемой записи)  
+[rel_spy:: contour_chamber] (живой слух против доказуемой записи)  
 [rel_trade:: night_guarantors] (серые просьбы часто нуждаются в голосе без подписи)  
 [rel_conflict:: cathedral_all_faiths] (исповедь и песня несовместимы без согласия)
 
@@ -249,7 +257,7 @@ related_mechanics:
 [faction_role:: civic_texture]  
 [promise:: light_under_feet]
 [rel_union:: support_artels] (без света ремонт и лифты становятся ловушкой)  
-[rel_trade:: trace_chamber] (метки видны только там, где есть свет)
+[rel_trade:: contour_chamber] (метки видны только там, где есть свет)
 
 Смотрители ламп, зарядных гирлянд, аварийных огней и безопасных теней.
 
@@ -269,7 +277,7 @@ related_mechanics:
 [faction_role:: civic_texture]  
 [promise:: warning_before_proof]
 [rel_union:: minstrels] (быстрая метка живёт как слух на стене)  
-[rel_conflict:: trace_chamber] (неофициальная разметка спасает сейчас и путает архив завтра)
+[rel_conflict:: contour_chamber] (неофициальная разметка спасает сейчас и путает архив завтра)
 
 Уличные разметчики и неофициальные свидетели маршрутов.
 
@@ -301,7 +309,7 @@ related_mechanics:
 [rel_monitor:: proving_houses] (авария должна стать записью, а не легендой)  
 [rel_monitor:: support_artels] (взрыв часто становится вопросом нагрузки)
 
-Временная комиссия после аварий Пробных Домов, провалов Столов, взрывов, отравлений и нестабильных чудес.
+Временная комиссия после аварий Домов Пробы, провалов Столов, взрывов, отравлений и нестабильных чудес.
 
 ## Хранители
 

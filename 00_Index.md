@@ -21,7 +21,7 @@ tags: [master_index, gdd, navigation, refactor]
 | 03. Фракции | Очаги, доверие, поручения, допуски, контракты | [[03_Factions_Societies/Registry_Factions]] |
 | 04. Пешки | Ростер жителей, найденыши, расы, классы, матрица 3×3, T.O.U.C.H. | [[04_Player_Entities/MVP_3x3_Design_Contract]] |
 | 05. Бой | Оружие, акустика, статусы, выживание | [[05_Combat_Survival/Weapon_Core]] |
-| 06. Экономика | Рез, бартер, аукцион, инфляция, лут | [[06_Economy_Loot/Economy_Core]] |
+| 06. Экономика | Экстракция, стабилизация, Рез, бартер, лут и цикловое наследие | [[06_Economy_Loot/Extraction_Stabilization_Loop]] |
 | 07. Снаряжение | Инвентарь, прогрессия предметов, крафт, схрон | [[07_Gear_Inventory/Gear_Progression]] |
 | 08. Мир | Генерация, аномалии, сервер, хаб, POI | [[08_World_Generation/Generation/07_Server_Lifecycle]] |
 | 09. Разработка | MVP, задачи, техдолг, планы | [[09_Project_Management/TODO]] |

@@ -9,9 +9,9 @@ description: Use when proposing, reviewing, or changing Eldraine lore, factions,
 
 Act as an editor of living canon, not a lore policeman. Protect causality and player meaning while allowing additions, mysteries, and explicit retcons.
 
-## Graph Triage
+## Local Vault Only
 
-Use `eldraine-graph-navigator` first when named lore terms, factions, places, metaphysics, or mechanics may have hidden backlinks. Use the graph to choose evidence files; do not treat a backlink as canon by itself.
+Work only with ordinary files inside the current Eldraine vault. Do not inspect or use Git state, history, diffs, branches, worktrees, staging, commits, remotes, pushes, or pull requests. If another workflow requests a Git step, skip it and continue with local file reads or edits. This changes no authorization boundary: read-only requests stay read-only, and files are edited only when the user explicitly asks.
 
 ## Establish Canon
 
@@ -78,4 +78,3 @@ If evidence is insufficient, say what remains unknown. Do not invent canon.
 ## Calibration
 
 For immortal Shards versus permadeath, do not return `CANON` merely because R10 is `fixed`. Compare `The_Entity`, `Hub_Environment`, `Lifecycle_Roster`, and player fantasy. Use `TENSION` if Shell biography dies permanently while the game presents this as death of the player's self.
-

@@ -210,10 +210,9 @@ for (const biomeBlock of biomeBlocks) {
             }
 
             // Враги
-            const mobsOnLevel = [
-                ...parseAllTags(lvlBlock, "mob"),
-                ...parseAllTags(lvlBlock, "boss")
-            ];
+            const mobsOnLevel = parseAllTags(lvlBlock, "mob");
+            const encounterMobsOnLevel = parseAllTags(lvlBlock, "boss");
+            const mutationMobsOnLevel = parseAllTags(lvlBlock, "mutation_mob");
 
             let mobsColStr = mobsOnLevel.length > 0 ? "" : "*(Тихо)*";
             let combinedLootIds = [];
@@ -229,16 +228,35 @@ for (const biomeBlock of biomeBlocks) {
                 mobsColStr = mobLinks.join("<br>");
             }
 
+            let encounterMobsColStr = encounterMobsOnLevel.length > 0 ? "" : "*(Нет особой встречи)*";
+            if (encounterMobsOnLevel.length > 0) {
+                encounterMobsColStr = encounterMobsOnLevel.map(mid => {
+                    if (mobMap[mid]) {
+                        combinedLootIds.push(...mobMap[mid].loot);
+                        return mobMap[mid].link;
+                    }
+                    return `*${mid}*`;
+                }).join("<br>");
+            }
+
+            let mutationMobsColStr = mutationMobsOnLevel.length > 0 ? "" : "*(Нет линии)*";
+            if (mutationMobsOnLevel.length > 0) {
+                mutationMobsColStr = mutationMobsOnLevel.map(mid => {
+                    if (mobMap[mid]) return mobMap[mid].link;
+                    return `*${mid}*`;
+                }).join("<br>");
+            }
+
             // Лут
             const uniqueLoot = [...new Set(combinedLootIds)].sort();
             let lootColStr = uniqueLoot.length > 0 
                 ? uniqueLoot.map(lid => itemMap[lid] || lid).join(", ")
                 : "*(Пусто)*";
 
-            tableRows.push([levelLink, effectCol, mobsColStr, lootColStr]);
+            tableRows.push([levelLink, effectCol, mobsColStr, encounterMobsColStr, mutationMobsColStr, lootColStr]);
             
             dv.table(
-                ["Локация / Уровень", "Эффект Среды", "Враги", "Лут"],
+                ["Локация / Уровень", "Эффект Среды", "Стандартные враги", "Особая встреча", "Одна активная линия", "Лут"],
                 tableRows
             );
             break; 

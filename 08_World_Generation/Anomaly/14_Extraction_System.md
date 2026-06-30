@@ -4,6 +4,8 @@ status: active
 system: extraction
 tags: [exits, logic, requirements, loot_securing]
 related_files:
+  - "[[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction_Stabilization_Loop]]"
+  - "[[06_Economy_Loot/Loot_Sync_Cycle|Loot_Sync_Cycle]]"
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
   - "[[08_World_Generation/Hub/05_Party_Syndicate|Party_Syndicate]]"
 ---
@@ -45,6 +47,12 @@ related_files:
 
 ## 3. Статус Груза (Loot Status)
 В момент успешного выхода:
-1.  **Secure:** Весь лут в инвентаре переносится в `Hub_Stash`.
-2.  **Quest Items:** Квестовые предметы переходят в состояние "Delivered" (Сдано).
-3.  **Shell XP:** Оболочка получает опыт за выживание (Survival Bonus).
+1.  **Secure Manifest:** В `Hub_Stash` или профильный приёмный сервис переносится только груз, физически находящийся у вышедшей Пешки, в её Back Slot или в подтверждённом контрактном контейнере.
+2.  **Origin Cooling:** `Native` теряет локальную связь с текущей сессией и станет `Foreign` для будущей Аномалии.
+3.  **Reliability Routing:** `Stable` доступен сразу; `Volatile` уходит в карантин Напоминания; `Trace/Disputed` ждёт адреса; Living Cargo проходит санитарную и правовую проверку.
+4.  **Quest Items:** предмет переходит в `Delivered` только если соответствующий контрактный адрес принимает этот маршрут и способ доставки.
+5.  **Shell Survival:** Пешка получает опыт и биографическую запись за выживание.
+
+`Secure` не означает автоматически `Stable`, `опознано`, `легально` или `принадлежит без спора`. Полный маршрут груза определён в [[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction_Stabilization_Loop]].
+
+Предметы, оставленные на земле, в тайнике, в чужом инвентаре или внутри сектора, не входят в манифест. Финальная Стабилизация не является удалённой экстракцией.

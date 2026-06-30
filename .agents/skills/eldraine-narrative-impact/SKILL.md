@@ -9,9 +9,9 @@ description: Use when changing an Eldraine plot event, reveal, character fate, f
 
 Treat story changes as dependency changes. Preserve intentional consequences while exposing accidental dead ends and contradictions.
 
-## Graph Triage
+## Local Vault Only
 
-Use `eldraine-graph-navigator` first when the changed fact names a character, faction, location, quest, reveal, service, or system that may have downstream backlinks. Expand one graph hop at a time and stop when links no longer affect the changed premise.
+Work only with ordinary files inside the current Eldraine vault. Do not inspect or use Git state, history, diffs, branches, worktrees, staging, commits, remotes, pushes, or pull requests. If another workflow requests a Git step, skip it and continue with local file reads or edits. This changes no authorization boundary: read-only requests stay read-only, and files are edited only when the user explicitly asks.
 
 ## Trace the Change
 
@@ -64,4 +64,3 @@ Finish with:
 - unresolved author decisions.
 
 Do not restore all lost content automatically. Do not confuse expensive consequences with narrative errors. Use `eldraine-lorekeeper` when the problem is canon authority rather than downstream structure. Do not edit files unless asked.
-

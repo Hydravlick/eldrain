@@ -4,6 +4,7 @@ status: active
 system: social
 tags: [trading, dropping, griefing, loot_share]
 related_files:
+  - "[[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction_Stabilization_Loop]]"
   - "[[06_Economy_Loot/Auction_House|Auction_House]]"
   - "[[04_Player_Entities/Spawn_Logic|Spawn_Logic]]"
 ---
@@ -23,6 +24,7 @@ related_files:
 * **Симуляция:** Включается физика (предмет падает на пол, может скатиться по склону).
 * **Доступ:** Поднять предмет может **любой** игрок (Free for All). Таймера блокировки "для владельца" нет.
 * **Ledger:** предмет получает событие `field_transfer`, если его поднял не последний владелец и не член отряда.
+* **Стабилизация:** выброс, тайник и повторный подбор не меняют `Native/Foreign/Hot`, не делают предмет `Secure` и не превращают его во встроенное наследие сектора.
 
 ### Нестабильная Передача
 Физический дроп остается свободным, но не должен полностью обходить рынок и налоги.
