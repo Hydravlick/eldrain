@@ -14,7 +14,7 @@ related_files:
 ---
 # Combat Profile Pipeline
 
-> Канон расчета Оболочки: `Race + Spec -> Combo P/Q/E -> Allowed Arsenal -> Tags -> Proficiency Gates -> Combat Profile`.
+> Канон расчета Оболочки: `Race + Spec -> Combo P/Q/E + Module Capacity -> Allowed Arsenal -> Tags -> Proficiency Gates -> Combat Profile и допустимая сборка Термоса`.
 
 ## 1. Race + Spec
 
@@ -96,19 +96,30 @@ Tier 1-2 - это использование оружия. Tier 3+ - это ра
 
 Открытие оружейного вектора не удаляет и не пересчитывает базовую общую слабость `Race × Spec`. Оно добавляет возможность в Combat Profile, сохраняя исходную цену архетипа.
 
+### Параллельный расчёт модулей
+
+Профильные ёмкости Термоса не добавляют вектор автоматически и не используют оружейный `vector_gate`.
+
+```text
+final_module_capacity = combo.module_capacity + stable_tags.module_capacity_delta
+installed_module_cost <= final_module_capacity
+```
+
+Итог определяет допустимость вшитой сборки у мастера. Физические слоты и положения читаются из выбранного Термоса, а не из Combat Profile.
+
 Для `arcanegun` открытый `weapon_vector:: ballistics` читается как **линейное дальнее давление**: stagger, aim punch, контроль линии, создание окна и безопасный добор, а не непрерывный DPS.
 
-Магострельные фреймы также читают скрытые подстаты:
+Магострельные фреймы читают скрытые substats и отдельные Frame Window. Frame Window описывает создаваемое оружием тактическое окно, а не числовой параметр тела.
 
-| Frame/System | Главные substats |
-|:---|:---|
-| `handcannon` | `recoil_damp`, `drift_control`, `cell_swap_speed` |
-| `condenser_longframe` | `brace`, `weakspot_read`, `heat_sink` |
-| `scatter_emitter` | `backlash_resist`, `heat_sink`, `melee_setup` |
-| `harpoon_driver` | `heavy_ready`, `brace`, `tether_control` |
-| `needle_crossbow` | `bolt_wind_speed`, `weakspot_read`, `ambush_resist` |
-| `catalyst_focus` | `output_power`, `reality_burn_power`, `backlash_resist` |
-| Batteries | `battery_efficiency`, `heat_sink`, `cell_swap_speed` |
+| Frame/System | Главные substats | Frame Window |
+|:---|:---|:---|
+| `handcannon` | `recoil_damp`, `drift_control`, `cell_swap_speed` | `pressure_open` |
+| `condenser_longframe` | `brace`, `weakspot_read`, `heat_sink` | `weakspot_open` |
+| `scatter_emitter` | `backlash_resist`, `heat_sink` | `melee_setup` |
+| `harpoon_driver` | `heavy_ready`, `brace` | `tether_control` |
+| `needle_crossbow` | `bolt_wind_speed`, `weakspot_read`, `ambush_resist` | `ambush_open` |
+| `catalyst_focus` | `output_power`, `reality_burn_power`, `backlash_resist` | `reality_burn` |
+| Batteries | `battery_efficiency`, `heat_sink`, `cell_swap_speed` | — |
 
 ## 6. Combat Profile
 

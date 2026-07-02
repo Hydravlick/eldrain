@@ -11,7 +11,7 @@ tags: [world_atlas, difficulty]
 const registryFiles = {
     items: "07_Gear_Inventory/_Registries/Registry_Items.md",
     weapons: "05_Combat_Survival/Registry_Weapons.md",
-    armors: "07_Gear_Inventory/_Registries/Registry_Armors.md",
+    modules: "07_Gear_Inventory/_Registries/Registry_Thermos_Modules.md",
     headwear: "07_Gear_Inventory/_Registries/Registry_Headwear.md",
     consumables: "07_Gear_Inventory/_Registries/Registry_Consumables.md",
     blueprints: "07_Gear_Inventory/_Registries/Registry_Blueprints.md"
@@ -25,7 +25,7 @@ const coreFiles = {
 
 // Список тегов, которые считаются идентификаторами предметов (для поиска определений и лута)
 const validLootTags = [
-    "item", "weapon", "armor", "headwear", 
+    "item", "weapon", "armor", "module", "headwear", 
     "consumable", "blueprint", "key", 
     "merit", "artifact"
 ];

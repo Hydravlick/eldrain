@@ -5,7 +5,7 @@ system: survival
 tags: [damage_event, risk_reward, gear_check, phase_shift, environment_gate]
 related_systems:
   - Mechanic_Server_Lifecycle
-  - Registry_Armors
+  - Registry_Thermos_Modules
 related_files:
   - "[[08_World_Generation/Generation/07_Server_Lifecycle]]"
   - "[[08_World_Generation/Generation/19_Access_Contracts|Access_Contracts]]"
@@ -13,6 +13,8 @@ related_files:
   - "[[05_Combat_Survival/Threat_Thresholds]]"
   - "[[05_Combat_Survival/Masks_Filters]]"
   - "[[07_Gear_Inventory/Item_Calibration_Matrix|Item_Calibration_Matrix]]"
+  - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
+  - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
   - "[[07_Gear_Inventory/Gear_Progression|Gear_Progression]]"
 ---
 # Гейт-Проверка (Gate Check)
@@ -67,12 +69,15 @@ Access Contract доступен для выбранной фазы
 Для калибровки можно продолжать считать суммарный `SurvivalScore`, но player-facing модель должна читать событие как поглощение удара защитой, а не как "HP заменяет скафандр".
 
 ```text
+ThermosModuleProtection =
+  sum(InstalledThermosModule.environment_resistance)
+
 ProtectionScore =
-  Armor.Environment_Resistance
+  ThermosModuleProtection
   + Headwear.Filter_Rating
   + Battery.Buffer
   + Stabilizer_Bonus
-  + Shell.Entropy_Buffer
+  + Shell.Entropy_Buffer(entropy_buffer)
   - Open_Wounds_Penalty
   - Overload_Penalty
 
@@ -80,6 +85,12 @@ PulseOverflow = EntropyPulseDamage - ProtectionScore
 
 SurvivalScore = Current_HP + ProtectionScore
 ```
+
+В сумму входят только установленные и работающие модули со статусом `install_state:: installable`; повреждённый или отключённый модуль даёт свой фактический остаточный вклад. Запись с `UNKNOWN` или `blocked_calibration` не может пройти монтаж и не участвует в расчёте.
+
+`Shell.Entropy_Buffer` является потребителем телесного substat `entropy_buffer`, который поглотил старое имя `gate_resist`. Он даёт только ограниченный вклад в поглощение overflow и не входит в `ThermosModuleProtection`.
+
+Тело не заменяет Environment Seal: ненулевой `entropy_buffer` помогает пережить остаток удара, но не удовлетворяет обязательные требования маски, фильтра, средового модуля или стабилизатора. В MVP значение остаётся `0`, пока Race, Spec, Tag или другой канонический источник не задаст явный `[substat_bonus:: entropy_buffer +N]`; автоматического бонуса только от высокого `TRQ` нет.
 
 ### Исходы
 

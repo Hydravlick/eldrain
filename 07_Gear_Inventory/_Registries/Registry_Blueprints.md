@@ -5,6 +5,9 @@ system: gear_inventory_registry
 registry_type: items
 category: blueprints
 tags: [database, loot, trade, schematics]
+related_files:
+  - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
+  - "[[07_Gear_Inventory/_Registries/Registry_CraftingRecipes|Registry_CraftingRecipes]]"
 ---
 > [!TODO] Чертежи исследования мутаций
 > - [ ] Определить, какие подтверждённые образцы открывают чертежи фильтрации, приманок и инструментов проверки мимиков.
@@ -30,9 +33,9 @@ tags: [database, loot, trade, schematics]
 - **Тип:** `[consumable:: true]` (Одноразовый протокол).
 - **Требование:** `[rep:: keepers : +3]` для покупки.
 
-### Схема: Ботинки Первопроходца
+### Схема: Ход Первопроходца
 [blueprint:: pathfinder_boots]
-*Старая бумажная карта с пометками обувщика Картографов Палаты Контуров.*
+*Старая бумажная карта с разметкой подошв и голенных тяг для нижних креплений Термоса.*
 - **Статы:** `[weight:: 0.05kg]` | `[stack:: 10]` | `[value:: 250]`
 - **Тип:** `[consumable:: true]`.
 - **Требование:** `[rep:: contour_chamber : +2]` для покупки.
@@ -44,9 +47,9 @@ tags: [database, loot, trade, schematics]
 - **Тип:** `[consumable:: true]`.
 - **Требование:** `[rep:: minstrels : +2]` для покупки.
 
-### Схема: Плащ Фантома
+### Схема: Фантомная вуаль
 [blueprint:: phantom_cloak]
-*Голографический проектор чертежа. Мерцает.*
+*Матрица внешнего модуля Термоса с пометками о безопасном отводе тепла.*
 - **Статы:** `[weight:: 0.2kg]` | `[stack:: 1]` | `[value:: 1200]`
 - **Тип:** `[consumable:: true]`
 - **Требование:** `[rep:: minstrels : +4]` для покупки.

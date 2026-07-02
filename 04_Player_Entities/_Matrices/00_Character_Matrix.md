@@ -12,8 +12,8 @@ const files = {
     specs: "04_Player_Entities/_Registries/Registry_Specs.md",
     combos: "04_Player_Entities/_Registries/Registry_Combos.md",
     weapons: "05_Combat_Survival/Registry_Weapons.md",
-    armor: "07_Gear_Inventory/_Registries/Registry_Armors.md",
-    attributes: "04_Player_Entities/Attributes_TOUCH.md"
+    modules: "07_Gear_Inventory/_Registries/Registry_Thermos_Modules.md",
+    attributes: "04_Player_Entities/Attributes_TOUCH.md",
     // registry: удален, так как больше не нужен
 };
 
@@ -21,32 +21,21 @@ const files = {
 
 async function getAttributesInfo(path) {
     const page = dv.page(path);
-    if (!page) return ["PHY", "AGI", "VIG", "TEC", "RES"].map(k => ({ key: k, header: null }));
-    
-    const content = await dv.io.load(page.file.path);
-    const regex = /^##\s+(.*?\(([A-Z]{3,4})[\s-).].*?)$/gm;
-    
-    const items = [];
-    let match;
-    while ((match = regex.exec(content)) !== null) {
-        items.push({ header: match[1].trim(), key: match[2] });
-    }
-    return items.length > 0 ? items : ["PHY", "AGI", "VIG", "TEC", "RES"].map(k => ({ key: k, header: null }));
+    if (!page) throw new Error(`Attributes source not found: ${path}`);
+
+    const schema = Array.from(page.touch_schema ?? []);
+    if (schema.length !== 5) throw new Error("touch_schema must contain exactly five attributes");
+
+    return schema.map((item, index) => ({
+        key: String(item.key),
+        header: `${index + 2}. ${item.key} - ${item.label}`
+    }));
 }
 
-// НОВАЯ ФУНКЦИЯ: Парсит таблицу в Attributes_System для поиска базового значения
-async function getBaseStatFromTable(path) {
-    const page = dv.page(path);
-    if (!page) return 20; // Значение по умолчанию (fallback)
-
-    const content = await dv.io.load(page.file.path);
-    
-    // Ищет строку вида: | **Base Attribute** | 20 |
-    // Регулярка учитывает пробелы и структуру таблицы MD
-    const regex = /\|\s*\*\*Base Attribute\*\*\s*\|\s*(\d+)/;
-    const match = content.match(regex);
-
-    return match ? parseInt(match[1]) : 20;
+function getBaseStat(page) {
+    const value = Number(page.base_attribute);
+    if (!Number.isFinite(value)) throw new Error("base_attribute is missing");
+    return value;
 }
 
 function parseStats(text, validKeys) {
@@ -83,6 +72,18 @@ function parseArsenalEntries(text) {
         type: m[1].trim(),
         prof: parseInt(m[2].trim()) || 0
     }));
+}
+
+function parseNamedNumbers(text, key) {
+    const value = parseInlineValue(text, key);
+    if (!value) return {};
+    const result = {};
+    const regex = /([a-z_]+)\s+([+-]?\d+)/gi;
+    let match;
+    while ((match = regex.exec(value)) !== null) {
+        result[match[1].toLowerCase()] = parseInt(match[2]);
+    }
+    return result;
 }
 
 function parseType(text) {
@@ -172,10 +173,15 @@ async function parseFile(path, type, attrKeys = [], splitRegex = /^## /m) {
             data.allowedTypes = data.arsenal.length > 0
                 ? [...new Set(data.arsenal.map(a => a.type))]
                 : parseRequiredTypes(body);
+            data.moduleCapacity = parseNamedNumbers(body, "module_capacity");
         }
 
-        if (type === 'weapons' || type === 'armor') {
+        if (type === 'weapons') {
             data.itemType = parseType(body);
+        }
+
+        if (type === 'modules') {
+            data.moduleCost = parseNamedNumbers(body, "module_cost");
         }
 
         return data;
@@ -184,13 +190,16 @@ async function parseFile(path, type, attrKeys = [], splitRegex = /^## /m) {
 
 // --- ОСНОВНАЯ ЛОГИКА ---
 
+try {
+const attributesPage = dv.page(files.attributes);
+if (!attributesPage) throw new Error(`Attributes source not found: ${files.attributes}`);
+
 // 1. Получаем ключи атрибутов
 const attrsInfo = await getAttributesInfo(files.attributes);
 const attrKeys = attrsInfo.map(a => a.key);
 
-// 2. Получаем базовое значение из таблицы в Attributes_System (ОБНОВЛЕНО)
-// Читает файл атрибутов и ищет строку "| **Base Attribute** | 20 |"
-const globalBaseStat = await getBaseStatFromTable(files.attributes);
+// 2. Получаем базовое значение из структурированного источника Attributes_TOUCH
+const globalBaseStat = getBaseStat(attributesPage);
 
 // 3. Парсим файлы контента
 const races = await parseFile(files.races, 'races', attrKeys, /^## /m);
@@ -198,7 +207,7 @@ const specs = await parseFile(files.specs, 'specs', attrKeys, /^## /m);
 const combos = await parseFile(files.combos, 'combos', [], /^## /m);
 
 const weapons = await parseFile(files.weapons, 'weapons', [], /^### /m);
-const armor = await parseFile(files.armor, 'armor', [], /^### /m);
+const modules = await parseFile(files.modules, 'modules', [], /^### /m);
 
 // 4. Генерация таблицы
 for (const race of races) {
@@ -234,6 +243,9 @@ for (const race of races) {
         const arsenalGateStr = combo?.arsenal?.length
             ? combo.arsenal.map(a => `${a.type}: T${a.prof}${a.prof >= 3 ? " (vector on)" : ""}`).join("<br>")
             : "*(нет данных)*";
+        const moduleCapacityStr = combo && Object.keys(combo.moduleCapacity || {}).length
+            ? Object.entries(combo.moduleCapacity).map(([k, v]) => `${k}: ${v}`).join("<br>")
+            : "*(нет данных)*";
         const vectorStr = [
             comboPrimary ? `Primary: **${comboPrimary}**` : "Primary: *(нет)*",
             comboSecondary ? `Secondary: **${comboSecondary}**` : "Secondary: *(нет)*",
@@ -243,7 +255,8 @@ for (const race of races) {
             ,
             `Model: ${abilityModel}`,
             "Source: Registry_Races + Registry_Specs",
-            `Arsenal gates:<br>${arsenalGateStr}`
+            `Arsenal gates:<br>${arsenalGateStr}`,
+            `Module capacity:<br>${moduleCapacityStr}`
         ].join("<br>");
 
         if (combo) {
@@ -254,16 +267,19 @@ for (const race of races) {
                 .filter(w => combo.allowedTypes.includes(w.itemType))
                 .sort((a, b) => a.tier - b.tier);
             
-            const validArmor = armor
-                .filter(a => combo.allowedTypes.includes(a.itemType))
+            const validModules = modules
+                .filter(m => {
+                    const costs = Object.entries(m.moduleCost || {});
+                    return costs.length > 0 && costs.every(([family, cost]) => (combo.moduleCapacity?.[family] || 0) >= cost);
+                })
                 .sort((a, b) => a.tier - b.tier);
             
             weaponStr = validWeapons.length > 0 
                 ? validWeapons.map(w => w.link).join("<br>") 
                 : "*(Нет)*";
 
-            armorStr = validArmor.length > 0 
-                ? validArmor.map(a => a.link).join("<br>") 
+            armorStr = validModules.length > 0 
+                ? validModules.map(a => a.link).join("<br>") 
                 : "*(Нет)*";
 
         } else {
@@ -290,10 +306,13 @@ for (const race of races) {
     }
 
     dv.table(
-        ["Архетип", "Специализация", "Двойной Парадокс", "Атрибуты", "Способности", "Оружие", "Броня"],
+        ["Архетип", "Специализация", "Двойной Парадокс", "Атрибуты", "Способности", "Оружие", "Потенциальные модули"],
         tableRows
     );
     
     dv.paragraph("---");
+}
+} catch (error) {
+    dv.paragraph(`⚠️ Character Matrix: ${error.message}`);
 }
 ```

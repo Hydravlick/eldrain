@@ -56,7 +56,7 @@ tags: [minimap, json, data_stream]
 
 | Layer | Что показывает | Пример |
 |:---|:---|:---|
-| **VISIBLE** | критичные числа, нужные каждую секунду | HP, stamina, заряды активной батареи, источник Q/E, прогноз цены кантрипа при модификаторе, таймер Gate Check |
+| **VISIBLE** | критичные числа, нужные каждую секунду | HP, stamina, Weapon/Casting ImpulseReserve, выбранный источник Q/E, прогноз цены кантрипа при модификаторе, таймер Gate Check |
 | **DIEGETIC** | читается через мир и приборы | треск фильтра, гул перегрева, цвет тумана, маркеры карты |
 | **LATENT** | скрыто до наведения, сканера или Mission Readiness | точный DissonanceLoad, SurvivalScore, Access Price, Population Seat, шанс охоты, Tier-вариант POI |
 

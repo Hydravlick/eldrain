@@ -36,7 +36,7 @@ tags: [database]
 [weak_to:: hazard, shadow, aether]
 [substat_bonus:: brace +15, recoil_damp +8, trauma_resist +10]
 [cap_mod:: max_carry +5kg]
-[tradeoff:: relocation_speed -8]
+[vulnerability_note:: slow_reposition]
 #### Биологическая основа: `Масса и иглы`
 	Плотное тело, иглы и подкожная мускулатура позволяют Ежу принимать нагрузку, упираться, переносить отдачу и кратко менять защищённость силуэта. Точное применение определяется специализацией: универсального сейсмодатчика, отражения урона и мгновенной «брони на все случаи» у расы нет.
 #### Описание:
@@ -50,7 +50,8 @@ tags: [database]
 **Атрибуты:** [TRQ:: -1] | [GRP:: +4] | [LYR:: +1] | [GLW:: -1]| [SNS:: +1]
 **Вектор:** [base_vector:: tech]
 [weak_to:: shadow, kinetics, detection]
-[substat_bonus:: cell_swap_speed +10, lockwork +12, weapon_swap_speed +8, vent_fit +15]
+[substat_bonus:: cell_swap_speed +10, lockwork +12, weapon_swap_speed +8]
+[capability:: vent_fit]
 [cap_mod:: max_carry -3kg]
 [tradeoff:: brace -5]
 #### Биологическая основа: `Третий хват`
@@ -63,12 +64,13 @@ tags: [database]
 ---
 ## Жаба (Bufo)
 [id:: toad] *Хранители внутренней среды.*
+[content_scope:: post_mvp]
 **Атрибуты:** [TRQ:: +1] | [GRP:: -2] | [LYR:: +4] | [GLW:: +2]| [SNS:: -1]
 **Вектор:** [base_vector:: hazard]
 [weak_to:: tech, aether, detection]
-[substat_bonus:: toxin_filter +15, backlash_resist +8, field_craft_speed +6]
+[substat_bonus:: backlash_resist +8, field_craft_speed +6]
 [cap_mod:: wet_environment_resist +10]
-[tradeoff:: dry_heat_penalty +5]
+[deferred_rule:: toxin_filter, dry_heat_penalty]
 #### Биологическая основа: `Осмотическая ферментация`
     Кожа частично фильтрует загрязнения, а железы могут временно удерживать и перерабатывать образец среды. Это не иммунитет и не готовая способность лечения: сухой жар, перегрузка примесями и резкая смена влажности остаются рисками, а конкретное применение задаст будущая специализация.
 #### Описание:
@@ -95,12 +97,12 @@ tags: [database]
 ---
 ## Ящерица (Lacerta)
 [id:: lizard] *Читает тепло и неподвижность.*
+[content_scope:: post_mvp]
 **Атрибуты:** [TRQ:: -1] | [GRP:: +1] | [LYR:: -1] | [GLW:: +1]| [SNS:: +4]
 **Вектор:** [base_vector:: detection]
 [weak_to:: kinetics, ballistics, aether]
 [substat_bonus:: weakspot_read +15, heat_warning +10, ambush_resist +12]
-[condition_bonus:: while_stationary: stillness_camo +20]
-[tradeoff:: cold_start_speed -5]
+[deferred_rule:: stillness_camo, cold_start_speed]
 #### Биологическая основа: `Хроматофоры и тепловой контраст`
     Кожа медленно подстраивает цвет и рисунок под окружение, а зрение различает тепловые контрасты. Это помогает читать нагретые механизмы, свежие следы и неподвижно маскироваться, но не распознаёт ложь, не видит сквозь любые стены и не делает Ящерицу полностью невидимой для тепловизоров.
 #### Описание:

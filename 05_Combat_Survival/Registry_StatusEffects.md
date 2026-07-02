@@ -3,180 +3,268 @@ type: registry
 status: active
 system: combat_survival_registry
 registry_type: status_effects
-tags: [database, combat, mechanics, debuffs]
+tags: [database, combat, effects, windows]
+related_files:
+  - "[[05_Combat_Survival/Status_Effects|Status_Effects]]"
+  - "[[05_Combat_Survival/Combat_Three_Debts|Combat_Three_Debts]]"
 ---
-# Реестр: Статусные Эффекты (Status Effects)
+# Реестр: Статусные Эффекты
 
-> **Логика:** Эффекты делятся на **Buffs** (Положительные) и **Debuffs** (Отрицательные).
-> **Важно для Dataview:** поле `status` зарезервировано под состояние документа (`active`, `draft`, `deprecated`). ID игрового эффекта всегда пишется как `effect_id`.
-> **Stacking:**
-> * `Intensity` — Складывается сила эффекта (напр., Яд 1 -> Яд 2).
-> * `Duration` — Обновляется длительность.
-> * `Unique` — Не складывается.
-> **Cure:** Чем снимается эффект.
+## Контракт Записи
 
----
-
-## 0. Нулевой пациент: шаблон эффекта
-
-Используйте этот блок как эталон для новых статусных эффектов.
-
-### Шаблон Эффекта (Template)
+```markdown
 [effect_id:: template_effect]
-[effect_kind:: debuff]
-[effect_family:: physical]
-[stacking_rule:: unique]
-[default_duration:: 0s]
-[cure_item:: none]
-*Короткое описание того, что игрок понимает с первого взгляда.*
-- **Тип:** Debuff / Buff / DoT / Crowd Control / Condition.
-- **Триггер:** Что накладывает эффект.
-- **Эффект:**
-    - Конкретное правило 1.
-    - Конкретное правило 2.
-- **Лечение:** `[removes_effect:: template_effect]` через предмет, навык или выход из рейда.
+[effect_category:: injury|condition|control|exposure|mental]
+[application_mode:: threshold|buildup|direct|reaction]
+[primary_window_function:: create|exploit|mitigate]
+[creates_window:: none]
+[exploits_window:: none]
+[mitigates_window:: none]
+[control_family:: none]
+[repeat_rule:: unique|refresh|intensity|independent|diminishing]
+[counter_action:: none]
+[persistence:: action|encounter|raid]
+[telegraph:: none]
+[failure_feedback:: none]
+[balance_state:: prototype]
+```
 
----
+`balance_state:: prototype` означает, что числовая длительность, buildup и сила эффекта проверяются в прототипе. Поведение окна, контригра и repeat rule уже являются каноном.
 
-## 1. Физические Травмы (Physical)
-*Прямое воздействие на плоть и кости.*
+## Физические Травмы
 
-### Кровотечение (Bleed)
+### Кровотечение
 [effect_id:: bleed]
-*Глубокая рана, не дающая крови свернуться.*
-- **Тип:** DoT (Damage over Time).
-- **Эффект:**
-    - Наносит 5 урона/сек.
-    - **Механика "Открытая Рана":** Любое движение (бег/рывок) утраивает урон (15/сек).
-    - Блокирует пассивную регенерацию HP.
-- **Лечение:** `[item:: bandage]` (Бинт).
+[effect_category:: injury]
+[application_mode:: threshold]
+[primary_window_function:: create]
+[creates_window:: treatment_pressure]
+[exploits_window:: movement_commitment]
+[mitigates_window:: passive_recovery]
+[control_family:: none]
+[repeat_rule:: independent]
+[counter_action:: stop_and_bandage]
+[persistence:: raid]
+[telegraph:: visible_wound, blood_trace, strained_breath]
+[failure_feedback:: renewed_bleeding_on_exertion]
+[balance_state:: prototype]
 
-### Перелом / Увечье (Cripple)
+Открытая рана создаёт выбор между движением и лечением. Рывок, тяжёлое действие и повторный контакт усиливают давление конкретной раны. Бинт занимает руки и время; отдельные раны имеют собственные источники.
+
+### Увечье
 [effect_id:: cripple]
-*Сломана нога или поврежден сервопривод.*
-- **Тип:** Debuff (Movement).
-- **Эффект:**
-    - Скорость передвижения снижена на 60%.
-    - Рывок (Dash) недоступен.
-- **Лечение:** `[item:: splint]` (Шина) или отдых в Хабе.
+[effect_category:: injury]
+[application_mode:: threshold]
+[primary_window_function:: create]
+[creates_window:: route_limited]
+[exploits_window:: none]
+[mitigates_window:: none]
+[control_family:: movement_impair]
+[repeat_rule:: unique]
+[counter_action:: brace_or_splint]
+[persistence:: raid]
+[telegraph:: failed_step, limb_pose, pain_response]
+[failure_feedback:: route_action_refused]
+[balance_state:: prototype]
 
-### Оглушение (Stun)
+Повреждённая нога или привод ухудшает спринт, прыжок и вертикальные маршруты. Шина либо поддерживающая способность возвращает ограниченную функцию ценой рук, времени или предмета.
+
+## Контроль
+
+### Оглушение
 [effect_id:: stun]
-*Удар тяжелым предметом по голове.*
-- **Тип:** Crowd Control (Hard).
-- **Эффект:**
-    - Полная потеря контроля. Персонаж останавливается, экран темнеет.
-    - Длительность обычно короткая (0.5 - 2 сек).
-    - Прерывает (Interrupt) любые действия и каст.
+[effect_category:: control]
+[application_mode:: direct]
+[primary_window_function:: create]
+[creates_window:: action_interrupted]
+[exploits_window:: exposed_commitment]
+[mitigates_window:: none]
+[control_family:: hard_interrupt]
+[repeat_rule:: diminishing]
+[counter_action:: resilience_and_spacing]
+[persistence:: action]
+[telegraph:: head_impact, posture_break, audio_drop]
+[failure_feedback:: interrupted_action_and_control_return]
+[balance_state:: prototype]
 
----
+Первое успешное оглушение создаёт короткое полное окно. Повтор той же control-family сокращается, затем оставляет только interrupt. Полная длительность не обновляется бесконечно.
 
-## 2. Канальные и Средовые (Channel / Environment)
-*Огонь, ток, кислота, холод и мокрое состояние как эффекты импульса или биома. Это не отдельная обязательная стихия-прогрессия MVP.*
-
-### Ожог (Burn)
-[effect_id:: burn]
-*Огонь охватывает одежду.*
-- **Тип:** DoT + Panic.
-- **Эффект:**
-    - Наносит высокий урон Огнем.
-    - **Паника:** Мобы под ожогом начинают хаотично бегать и не могут атаковать. Игроки получают дрожание камеры.
-    - Снижает эффективность лечения на 50% (Cauterize).
-- **Лечение:** Сделать 3 переката (Dodge) или зайти в воду.
-
-### Шок (Shock / Electrocuted)
-[effect_id:: shock]
-*Мышцы сводит судорогой от тока.*
-- **Тип:** Debuff + Interrupt.
-- **Эффект:**
-    - Периодически сбивает применение умений/перезарядку (micro-stuns).
-    - Снижает скорость восстановления Стамины и Маны на 50%.
-- **Взаимодействие:** Если цель **Мокрая**, урон x2 и распространяется на соседей (Chain Lightning).
-
-### Промокание (Wet / Soaked)
-[effect_id:: wet]
-*Облит водой или химикатами.*
-- **Тип:** Debuff (Condition).
-- **Эффект:**
-    - **Плюс:** Иммунитет к Ожогу (снимает горение).
-    - **Минус:** Уязвимость к Электричеству (+100% урона) и Холоду (замерзает).
-    - Тяжелая мокрая одежда: -10% к Скорости.
-
-### Коррозия (Corrosion)
-[effect_id:: corrosion]
-*Кислота разъедает броню.*
-- **Тип:** Raid Debuff.
-- **Эффект:**
-    - Временно снижает эффективную защиту брони на 10% за стак.
-    - Если эффективная защита падает до 0, эффект начинает наносить урон здоровью.
-    - **Особенность:** эффект держится до конца рейда, пока не будет снят нейтрализатором или очищающим сервисом в Хабе.
-
----
-
-## 3. Токсины и Биология (Biological)
-
-### Отравление (Poison)
-[effect_id:: poison]
-*Токсин в крови.*
-- **Тип:** True Damage DoT.
-- **Эффект:**
-    - Наносит урон, игнорирующий Броню и Энергощиты.
-    - Экран становится зеленым и мутным (размытие UI).
-- **Лечение:** `[item:: antidote]` или `[skill:: purify]`.
-
-### Заражение Спорами (Spore Infection)
-[effect_id:: spore_growth]
-*В легких прорастает грибница.*
-- **Тип:** Stacking Debuff.
-- **Эффект:**
-    - Снижает Максимальное Здоровье (Max HP) на 5% за стак.
-    - При смерти персонаж взрывается, заражая союзников.
-- **Лечение:** Только в Хабе (Медпункт) или редкими инъекторами.
-
----
-
-## 4. Ментальные и Эфирные (Mental & Void)
-*Конкретные стрессовые и эфирные состояния. В MVP нет постоянной глобальной шкалы Sanity.*
-
-### Стресс (High Stress)
-[effect_id:: stress]
-*Кратковременное состояние после конкретного травмирующего или аномального события.*
-- **Тип:** Situational Buildup / Gameplay Alteration.
-- **Источники:** прямой контакт с Сущностью, тяжелая травма, гибель союзника рядом, отдельные аномалии, backlash без батареи.
-- **Эффекты по интенсивности:**
-    1.  **Галлюцинации:** Игрок видит врагов там, где их нет (фантомы исчезают при ударе).
-    2.  **Паранойя:** Звуки шагов за спиной и ложные акустические сигналы.
-    3.  **Шепот:** Громкость звуков игры плавает, слышен посторонний шепот.
-- **Ограничение PvP:** Stress не меняет правила Friendly Fire и не создает неотличимые от настоящих системные маркеры.
-- **Спад:** Без новых источников постепенно уменьшается.
-- **Лечение:** `[item:: incense]`, отдых в безопасном свете, сервис Собора, выход из Аномалии.
-
-### Немота (Silence)
-[effect_id:: silence]
-*Разрыв связи с Эфиром.*
-- **Тип:** Disable.
-- **Эффект:**
-    - Нельзя использовать Активные Навыки (Q/E) и Магию.
-    - Можно использовать магострелы, механическое оружие и гранаты.
-
-### Ослепление (Blind)
+### Ослепление
 [effect_id:: blind]
-*Грязь в глазах или перегрузка визора.*
-- **Тип:** Debuff.
-- **Эффект:**
-    - Экран полностью белый (светошумовая) или черный (грязь).
-    - Метки врагов и интерфейс (HUD) пропадают.
-    - Мобы под слепотой стреляют в случайном направлении.
+[effect_category:: control]
+[application_mode:: direct]
+[primary_window_function:: create]
+[creates_window:: vision_disrupted]
+[exploits_window:: exposed_angle]
+[mitigates_window:: target_lock]
+[control_family:: sensory_disrupt]
+[repeat_rule:: diminishing]
+[counter_action:: cover_and_cleanse]
+[persistence:: encounter]
+[telegraph:: flash_or_material_splash]
+[failure_feedback:: partial_vision_return]
+[balance_state:: prototype]
 
----
+Эффект ухудшает контраст, дальнее чтение и необязательные метки, но не удаляет критический HUD и весь экран. Источник определяет световую, грязевую или эфирную форму.
 
-## 5. Таблица Взаимодействий (Combo Table)*(?)*
-*Как эффекты усиливают друг друга.*
+### Разрыв Канала
+[effect_id:: silence]
+[effect_category:: control]
+[application_mode:: direct]
+[primary_window_function:: create]
+[creates_window:: casting_blocked]
+[exploits_window:: prepared_cast]
+[mitigates_window:: aether_channel]
+[control_family:: channel_disrupt]
+[repeat_rule:: diminishing]
+[counter_action:: break_source_or_use_weapon]
+[persistence:: encounter]
+[telegraph:: circuit_dropout, muted_harmonics]
+[failure_feedback:: channel_reconnect]
+[balance_state:: prototype]
 
-| Эффект 1          | Эффект 2           | Результат (Combo)                                                              |
-| :---------------- | :----------------- | :----------------------------------------------------------------------------- |
-| **Wet** (Вода)    | **Shock** (Ток)    | **AOE Stun:** Электрический разряд бьет всех в радиусе 3м.                     |
-| **Wet** (Вода)    | **Freeze** (Холод) | **Frozen:** Полная заморозка (Оглушение) на 3 сек.                             |
-| **Oil** (Масло)   | **Fire** (Огонь)   | **Inferno:** Огонь горит в 2 раза дольше и не тушится перекатами.              |
-| **Gas** (Газ)     | **Fire** (Огонь)   | **Explosion:** Мгновенный взрыв облака газа (High Damage).                     |
-| **Bleed** (Кровь) | **Poison** (Яд)    | **Septic Shock:** Урон от Яда увеличивается на 50% (яд попадает прямо в рану). |
+Silence блокирует указанный эфирный или device-канал, а не все Q/E без разбора. Оружие, телесные действия и явно независимые механические устройства остаются доступными.
+
+## Conditions
+
+### Промокание
+[effect_id:: wet]
+[effect_category:: condition]
+[application_mode:: direct]
+[primary_window_function:: create]
+[creates_window:: conductive_state]
+[exploits_window:: burn_exposure]
+[mitigates_window:: burn_persistence]
+[control_family:: none]
+[repeat_rule:: refresh]
+[counter_action:: leave_water_and_dry]
+[persistence:: encounter]
+[telegraph:: soaked_material, dripping, heavy_cloth]
+[failure_feedback:: visible_drying]
+[balance_state:: prototype]
+
+Wet гасит или ослабляет часть тепловых состояний, но готовит проводящую реакцию и утяжеляет мягкие слои. Он не даёт автоматический процентный множитель урона.
+
+## Exposures
+
+### Ожог
+[effect_id:: burn]
+[effect_category:: exposure]
+[application_mode:: buildup]
+[primary_window_function:: create]
+[creates_window:: treatment_pressure, route_denied]
+[exploits_window:: dry_material]
+[mitigates_window:: healing_window]
+[control_family:: panic_pressure]
+[repeat_rule:: refresh]
+[counter_action:: smother_or_water]
+[persistence:: encounter]
+[telegraph:: heat_haze, smoke, glowing_material]
+[failure_feedback:: flame_reduction_and_steam]
+[balance_state:: prototype]
+
+Burn вынуждает тушить материал, уходить в воду или принимать продолжающееся давление. Он не требует универсального переката и не удаляет управление у игрока.
+
+### Шок
+[effect_id:: shock]
+[effect_category:: exposure]
+[application_mode:: buildup]
+[primary_window_function:: create]
+[creates_window:: action_interrupt]
+[exploits_window:: conductive_state]
+[mitigates_window:: none]
+[control_family:: micro_interrupt]
+[repeat_rule:: diminishing]
+[counter_action:: leave_conductor_or_insulate]
+[persistence:: encounter]
+[telegraph:: charge_buildup, muscle_tension, material_sparks]
+[failure_feedback:: interrupt_and_grounding]
+[balance_state:: prototype]
+
+Shock срывает подготовленное действие и временно ухудшает восстановление стамины или стабильности контура. На Wet-поверхности он может создать электрифицированный участок и цепную реакцию без автоматического удвоения урона.
+
+### Коррозия
+[effect_id:: corrosion]
+[effect_category:: exposure]
+[application_mode:: buildup]
+[primary_window_function:: create]
+[creates_window:: plate_edge_exposed, soft_zone_exposed]
+[exploits_window:: damaged_material]
+[mitigates_window:: none]
+[control_family:: none]
+[repeat_rule:: intensity]
+[counter_action:: neutralize_and_reposition]
+[persistence:: raid]
+[telegraph:: bubbling_surface, discoloration, failing_fastener]
+[failure_feedback:: material_failure_or_neutralization]
+[balance_state:: prototype]
+
+Corrosion действует на конкретный материал, крепление, край пластины или мягкий слой. Она не уменьшает единый Armor Score всего тела.
+
+### Отравление
+[effect_id:: poison]
+[effect_category:: exposure]
+[application_mode:: buildup]
+[primary_window_function:: create]
+[creates_window:: treatment_pressure]
+[exploits_window:: open_wound, inhalation_path]
+[mitigates_window:: none]
+[control_family:: none]
+[repeat_rule:: intensity]
+[counter_action:: antidote_or_decontaminate]
+[persistence:: raid]
+[telegraph:: altered_breath, skin_color, contaminated_material]
+[failure_feedback:: worsening_or_stabilization]
+[balance_state:: prototype]
+
+Яд должен попасть через рану, дыхание или другой физический путь. Он создаёт длительное давление лечения, но не получает универсальный true damage вне условий конкретного вещества.
+
+### Заражение Спорами
+[effect_id:: spore_growth]
+[effect_category:: exposure]
+[application_mode:: buildup]
+[primary_window_function:: create]
+[creates_window:: integrity_reduced, treatment_pressure]
+[exploits_window:: unsealed_breathing]
+[mitigates_window:: none]
+[control_family:: none]
+[repeat_rule:: intensity]
+[counter_action:: filter_purge_or_medical_service]
+[persistence:: raid]
+[telegraph:: coughing, visible_spores, filter_alarm]
+[failure_feedback:: breathing_failure_or_purge]
+[balance_state:: prototype]
+
+Споры снижают доступную целостность или функцию дыхания ступенями, читаемыми через тело и фильтр. Тяжёлое заражение требует редкого полевого средства или сервиса Хаба.
+
+## Mental
+
+### Стресс
+[effect_id:: stress]
+[effect_category:: mental]
+[application_mode:: buildup]
+[primary_window_function:: create]
+[creates_window:: perception_uncertain]
+[exploits_window:: traumatic_event]
+[mitigates_window:: none]
+[control_family:: sensory_disrupt]
+[repeat_rule:: intensity]
+[counter_action:: safe_light_rest_or_incense]
+[persistence:: raid]
+[telegraph:: breathing_shift, peripheral_noise, body_tremor]
+[failure_feedback:: false_signal_or_recovery]
+[balance_state:: prototype]
+
+Stress искажает интерпретацию звука и периферии, но не создаёт ложные системные маркеры, не меняет Friendly Fire и не делает настоящий сигнал неотличимым без возможности проверки.
+
+## Реакции
+
+| Condition | Trigger | Result Window |
+|:---|:---|:---|
+| `wet` | `shock` | `action_interrupt`, electrified area |
+| `wet` | thermal mitigation | steam concealment, reduced burn |
+| `oil` | thermal trigger | persistent route denial |
+| `gas` | thermal trigger | telegraphed blast window |
+| `bleed` | poison exposure | accelerated buildup through open wound |
+
+Числовая сила каждой реакции проверяется отдельно; совпадение тегов не выдаёт автоматический множитель.

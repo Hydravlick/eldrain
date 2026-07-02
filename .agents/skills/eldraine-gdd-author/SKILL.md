@@ -1,6 +1,6 @@
 ---
 name: eldraine-gdd-author
-description: Use when turning Eldraine notes, dictated ideas, rough concepts, decisions, or revisions into a canonical GDD proposal or editing an existing GDD page while preserving project structure and Obsidian conventions.
+description: Use when turning Eldraine notes, references, dictated ideas, decisions, or revisions into canonical GDD, especially when a mechanically correct page has become dry, generic, tonally flat, or detached from its intended atmosphere.
 ---
 
 # Eldraine GDD Author
@@ -75,6 +75,31 @@ When a note needs a list already represented in a registry, keep the registry as
 - Keep design rules in prose; Dataview is a presentation layer, not canonical authority.
 - Make a missing source or empty result visible in the rendered note.
 - Verify query syntax, source paths, expected rows, and empty-state behavior after editing.
+
+## Narrative Density Pass
+
+After the rules are correct, preserve the **emotional promise** of a content instance, lore page, encounter, or creature. Universal mechanics and pure Dataview views may remain dry.
+
+Before finalizing narrative content, identify:
+
+- what the player is meant to feel before understanding the rule;
+- what the body notices before the explanation arrives;
+- which trusted support becomes conditional;
+- how a local victory changes the next situation;
+- what ordinary life, relationship, or future makes loss matter.
+
+Place atmosphere according to file responsibility:
+
+- universal system — at most one sentence naming the experiential promise;
+- content instance — one short spine: almost normal → bodily wrongness → lost support → impossible combination → aftermath or return;
+- registry entry — one diegetic line, one sensory tell, and one aftermath or incomplete resident belief;
+- Dataview view — presentation only; do not make it a second source of prose.
+
+Use a strict **prose budget**: keep an atmospheric sentence only when it performs at least **two functions** from `reveal a rule / foreshadow a consequence / convey resident interpretation / preserve mystery / connect victory to the next state`. Cut decorative repetition.
+
+When adapting a reference, transfer the produced effect and design question. Rewrite its cause, imagery, terminology, scene structure, and gameplay realization for Eldraine; never carry distinctive phrases or signature creatures into canon.
+
+**REQUIRED SUB-SKILL:** Use `eldraine-player-experience` when the mechanic is complete but the lived sequence is absent.
 
 ## Answer Contract
 

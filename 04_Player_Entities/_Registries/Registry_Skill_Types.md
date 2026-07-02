@@ -16,11 +16,15 @@ tags: [database, mechanics, enum, glossary]
 [battery_version:: effect_id/none]
 [cantrip_version:: effect_id/none]
 [overcharge_version:: effect_id/none]
+[impulse_cost:: 0]
+[casting_reserve_required:: false]
 ```
 
 - `body` работает без батареи;
 - `hybrid` использует батарею по умолчанию и допускает кантрип, если он явно задан способности;
 - `device` требует физический источник и не имеет автоматической замены телом.
+- `impulse_cost` списывается из `Casting.ImpulseReserve` для батарейной версии;
+- `casting_reserve_required` показывает, должен ли контур быть подготовлен до применения.
 
 Для Догмата каждая активная способность обязана иметь `cantrip_version`. У других специализаций отдельная комбинация может иметь один ситуативный кантрип или оставить все способности с `[cantrip_version:: none]`. Любой кантрип содержит обязательную телесную цену.
 
@@ -107,6 +111,8 @@ tags: [database, mechanics, enum, glossary]
 [battery_version:: none]
 [cantrip_version:: none]
 [overcharge_version:: none]
+[impulse_cost:: 0]
+[casting_reserve_required:: false]
 [counter_window:: interrupt]
 *Короткое описание способа применения.*
 - **Использует:** ресурс, предмет или состояние.

@@ -31,6 +31,7 @@ tags: [database]
 
 ## Страж (Guardian)
 [id:: guard]
+[content_scope:: post_mvp]
 *Роль: Танк / Контроль.*
 **Атрибуты:** [TRQ:: +3] | [GRP:: -2] | [LYR:: +4]| [GLW:: +2]| [SNS:: -1]
 **Вектор:** [base_vector:: kinetics]
@@ -66,7 +67,6 @@ tags: [database]
 [weak_to:: shadow, kinetics, detection]
 [substat_bonus:: field_craft_speed +12, battery_efficiency +8, heat_warning +8]
 [condition_bonus:: near_workstation: cell_swap_speed +8]
-[tradeoff:: direct_pressure -5]
 #### Описание:
 	Прикладная наука, химия, инженерия. Те, кто стабилизирует людей, механизмы и маршруты. Методология полезна и в группе, и соло, но не является обязательным партийным слотом.
 #### Примеры:
@@ -89,12 +89,12 @@ tags: [database]
 ---
 ## Догмат (The Scholar)
 [id:: specialist] *Роль: магическая наука, работа с артефактами и сохранение ограниченной дееспособности без батареи.*
+[content_scope:: post_mvp]
 **Атрибуты:** [TRQ:: 0] | [GRP:: +1] | [LYR:: -1]| [GLW:: +5]| [SNS:: +1]
 **Вектор:** [base_vector:: aether]
 [weak_to:: shadow, tech, ballistics]
 [substat_bonus:: output_power +15, reality_burn_power +12, heat_sink +6]
 [condition_bonus:: while_channeling: weakspot_read +8]
-[tradeoff:: backlash_risk +5]
 #### Описание:
 	Догматы — учёные-маги, изучающие батарейный импульс как воспроизводимый телесный процесс. Каждая их активная способность имеет кантрип — малую версию без батареи, обязательно повреждающую тело. Другие специализации могут получить лишь отдельный ситуативный кантрип через конкретную комбинацию. Полная мощность, дальность и повторяемость по-прежнему требуют источник.
 #### Примеры:

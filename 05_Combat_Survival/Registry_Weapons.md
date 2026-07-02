@@ -7,6 +7,8 @@ tags:
   - database
   - equipment
   - templates
+related_files:
+  - "[[05_Combat_Survival/Combat_Three_Debts|Combat_Three_Debts]]"
 ---
 > [!TODO] Оружейные взаимодействия с линиями мутаций
 > - [ ] Определить теги для локального выжигания роста, безопасной проверки мимика и переноса сигнальной метки без универсального «правильного оружия».
@@ -15,6 +17,7 @@ tags:
 > [!TODO] Добавить свойства архетипов
 > - [ ] Прописать поле `[implicit:: ...]` для всех пушек (напр. `ambush`, `armor_break`).
 > - [ ] Прописать поле `[sweet_spot_range:: float]` для алебард.
+> - [ ] Проверить коридор летальности `spark_handcannon 45` против `condenser_longframe 75` на HP, пластинах, точности, полном цикле заряда, Heat, Pulse и стоимости потери; разница одиночного урона сама по себе не доказывает ни норму, ни нарушение прогрессии.
 
 # Реестр: Типы Оружия (Magipunk Arsenal)
 
@@ -31,7 +34,7 @@ tags:
 > `blunt` — Дробящее (Молоты, Булавы)
 > `polearm` — Древковое (Копья, Алебарды)
 > `arcanegun` — Магострел и дальнобойный фрейм (разрядники, конденсаторы, эмиттеры, игольники)
-> `catalyst` — Катализатор (Фонари, Книги, Амулеты)
+> `catalyst` — совместимое имя семейства специализированных эфирных устройств; оно не является обязательным оружием кастера
 > `shield` — Щит (Баклеры, Ростовые)
 
 > **Параметры:**
@@ -39,13 +42,14 @@ tags:
 > `[weapon_vector:: ...]` — скрытый тактический вектор оружия.
 > `[vector_gate:: 3]` — минимальный итоговый proficiency tier, при котором оружие добавляет свой вектор в Combat Profile.
 > `[frame:: ...]` — конкретный дальнобойный фрейм.
-> `[charge_cost:: N]` — сколько зарядов батареи тратит действие.
+> `[impulse_cost:: N]` — сколько импульсов выбранного резерва тратит действие.
 > `[impulse_reserve:: N]` — текущий внутренний запас уже переданной энергии.
 > `[load_acceptance:: base/stable/overcharge]` — какие транзакции зарядки выдерживает Frame.
 > `[heat:: N]` — сколько тепла создает импульс.
 > `[bloom:: low/medium/high]` — насколько быстро растет эфирный разброс.
 > `[dissonance_pulse:: N]` — временный эфирный всплеск при применении.
-> `[window_role:: ...]` — какое окно оружие создает для добивания.
+> `[primary_window_function:: create/exploit/mitigate]` — главная работа фрейма с окном.
+> `[creates_window:: ...]`, `[exploits_window:: ...]`, `[mitigates_window:: ...]` — нормализованные ID окон либо `none`.
 > До открытия гейта оружие остается инструментом урона/анимаций, но не становится отдельным узлом Двойного Парадокса.
 
 ---
@@ -54,6 +58,14 @@ tags:
 
 ### Боевой Нож (Combat Shiv) [1H]
 [weapon_type:: blade]
+[weapon_vector:: shadow]
+[vector_gate:: 3]
+[heat:: 0]
+[dissonance_pulse:: 0]
+[primary_window_function:: exploit]
+[creates_window:: none]
+[exploits_window:: back_exposed, stagger_entry]
+[mitigates_window:: none]
 [weight:: 0.5kg]|[dmg:: 15]
 *Короткий клинок для "грязной" работы в клинче.*
 * **Мувсет:** Очень быстрые колющие удары. Минимальный расход стамины.
@@ -61,6 +73,14 @@ tags:
 
 ### Мачете / Тесак (Cleaver) [1H]
 [weapon_type:: blade]
+[weapon_vector:: shadow]
+[vector_gate:: 3]
+[heat:: 0]
+[dissonance_pulse:: 0]
+[primary_window_function:: exploit]
+[creates_window:: none]
+[exploits_window:: soft_zone_exposed]
+[mitigates_window:: none]
 [weight:: 1.5kg]|[dmg:: 35]
 *Тяжелое лезвие с смещенным центром тяжести.*
 * **Мувсет:** Широкие рубящие удары. Задевает несколько целей.
@@ -68,6 +88,14 @@ tags:
 
 ### Рапира / Эсток (Estoc) [1H]
 [weapon_type:: blade]
+[weapon_vector:: shadow]
+[vector_gate:: 3]
+[heat:: 0]
+[dissonance_pulse:: 0]
+[primary_window_function:: exploit]
+[creates_window:: none]
+[exploits_window:: joint_exposed]
+[mitigates_window:: none]
 [weight:: 1.2kg]|[dmg:: 25]
 *Тонкий клинок для уколов в сочленения брони.*
 * **Мувсет:** Линейные выпады. Длинная дистанция удара.
@@ -80,6 +108,14 @@ tags:
 
 ### Кувалда (Sledgehammer) [2H]
 [weapon_type:: blunt]
+[weapon_vector:: kinetics]
+[vector_gate:: 3]
+[heat:: 0]
+[dissonance_pulse:: 0]
+[primary_window_function:: create]
+[creates_window:: guard_break]
+[exploits_window:: none]
+[mitigates_window:: none]
 [weight:: 8kg]|[dmg:: 55]
 *Инструмент, превращенный в оружие. Медленный и неотвратимый.*
 * **Мувсет:** Вертикальный удар (пробивает блок) и Горизонтальный (сбивает с ног).
@@ -87,6 +123,14 @@ tags:
 
 ### Булава / Дубинка (Mace) [1H]
 [weapon_type:: blunt]
+[weapon_vector:: kinetics]
+[vector_gate:: 3]
+[heat:: 0]
+[dissonance_pulse:: 0]
+[primary_window_function:: create]
+[creates_window:: disorientation]
+[exploits_window:: none]
+[mitigates_window:: none]
 [weight:: 3.5kg]|[dmg:: 30]
 *Компактный вес.*
 * **Implicit (Встроенное):** **(Concussion)** Удары в голову накладывают эффект "Дезориентация" (размытие экрана, сбой звука) на 3 сек.
@@ -98,6 +142,14 @@ tags:
 
 ### Алебарда (Halberd) [2H]
 [weapon_type:: polearm]
+[weapon_vector:: kinetics]
+[vector_gate:: 3]
+[heat:: 0]
+[dissonance_pulse:: 0]
+[primary_window_function:: create]
+[creates_window:: distance_control]
+[exploits_window:: none]
+[mitigates_window:: melee_entry]
 [weight:: 5.5kg]|[dmg:: 45]
 *Топор на длинной палке с шипом.*
 * **Мувсет:** Укол (Poke) на дистанции, Рубящий (Swing) вблизи.
@@ -105,6 +157,14 @@ tags:
 
 ### Боевая Коса (War Scythe) [2H]
 [weapon_type:: polearm]
+[weapon_vector:: kinetics]
+[vector_gate:: 3]
+[heat:: 0]
+[dissonance_pulse:: 0]
+[primary_window_function:: exploit]
+[creates_window:: none]
+[exploits_window:: shield_flank]
+[mitigates_window:: none]
 [weight:: 4.0kg]|[dmg:: 42]
 *Лезвие под углом.*
 * **Implicit (Встроенное):** **(Reap)** Игнорирует щиты (Shield Bypass), так как лезвие заходит за блок.
@@ -122,11 +182,14 @@ tags:
 [weapon_vector:: ballistics]
 [vector_gate:: 3]
 [weight:: 1.8kg]|[dmg:: 45]
-[charge_cost:: 1]
+[impulse_cost:: 1]
 [heat:: 35]
 [bloom:: high]
 [dissonance_pulse:: 4]
-[window_role:: stagger_entry]
+[primary_window_function:: create]
+[creates_window:: stagger_entry]
+[exploits_window:: none]
+[mitigates_window:: none]
 *Грубый одноручный магострел: короткая дистанция, сильный удар, плохая дисциплина разряда.*
 * **Implicit:** **(Stopping Pulse)** попадание сбивает спринт и дает `Aim Punch`.
 * **Слабость:** при стрельбе на бегу bloom резко растет.
@@ -139,12 +202,15 @@ tags:
 [weapon_vector:: ballistics]
 [vector_gate:: 3]
 [weight:: 4.5kg]|[dmg:: 75]
-[charge_cost:: 1]
+[impulse_cost:: 1]
 [charge_time:: 0.8s]
 [heat:: 45]
 [bloom:: medium]
 [dissonance_pulse:: 6]
-[window_role:: weakspot_open]
+[primary_window_function:: create]
+[creates_window:: weakspot_open]
+[exploits_window:: exposed_weakspot]
+[mitigates_window:: none]
 *Дальний фрейм с удержанием заряда. Силен, если игрок успел стабилизировать импульс.*
 * **Implicit:** **(Shield Breaker)** повышенное давление по щитам, барьерам и кастерам.
 * **Слабость:** плох под давлением; сбитый заряд уходит в heat и Dissonance.
@@ -157,12 +223,15 @@ tags:
 [weapon_vector:: ballistics]
 [vector_gate:: 3]
 [weight:: 3.8kg]|[dmg:: 10x6]
-[charge_cost:: 1]
+[impulse_cost:: 1]
 [charge_time:: 0.4s]
 [heat:: 50]
 [bloom:: high]
 [dissonance_pulse:: 5]
-[window_role:: melee_setup]
+[primary_window_function:: create]
+[creates_window:: melee_entry]
+[exploits_window:: none]
+[mitigates_window:: enemy_entry]
 *Выплескивает веер нестабильной энергии. Не про точность, а про остановку входа.*
 * **Implicit:** **(Stagger Cone)** мелкие цели отбрасываются, крупные получают сильный aim punch.
 * **Слабость:** на средней дистанции урон распадается, heat копится быстро.
@@ -175,12 +244,15 @@ tags:
 [weapon_vector:: ballistics]
 [vector_gate:: 3]
 [weight:: 6.0kg]|[dmg:: 40]
-[charge_cost:: 1]
+[impulse_cost:: 1]
 [charge_time:: 0.7s]
 [heat:: 30]
 [bloom:: low]
 [dissonance_pulse:: 5]
-[window_role:: tether_control]
+[primary_window_function:: create]
+[creates_window:: tether_control]
+[exploits_window:: none]
+[mitigates_window:: escape_route]
 *Катушка разгоняет гарпун с тросом. Главная ценность - не урон, а фиксация.*
 * **Implicit:** **(Tether)** цель замедлена, привязана или вытянута из укрытия.
 * **Слабость:** промах оставляет игрока с тяжелым фреймом и потерянным темпом.
@@ -194,17 +266,20 @@ tags:
 [weapon_vector:: ballistics]
 [vector_gate:: 3]
 [weight:: 2.4kg]|[dmg:: 35]
-[charge_cost:: 0]
+[impulse_cost:: 0]
 [heat:: 0]
 [bloom:: low]
 [dissonance_pulse:: 0]
-[window_role:: quiet_pick]
+[primary_window_function:: exploit]
+[creates_window:: none]
+[exploits_window:: soft_zone_exposed, concealment]
+[mitigates_window:: none]
 *Механический дальнобойный фрейм без батареи. Тихий, но медленный.*
 * **Implicit:** **(Puncture)** хорошо работает по мягким зонам и тканям.
 * **Слабость:** долгий взвод, слабый stagger, плохая работа против тяжелых пластин.
 
-## 5. Катализаторы (Catalyst Focus)
-*Фокусы чистого эфира, Reality Burn и ритуальной магии. Это не оружие темпа, а дорогой инструмент окна.*
+## 5. Специализированные Эфирные Устройства
+*Совместимое семейство `catalyst` хранит фокусы Reality Burn и ритуальные устройства. Оно не является обязательным оружием кастера и не обслуживает обычный цикл Q/E.*
 
 ### Фокус Реальности (Reality Focus) [2H]
 [weapon_id:: reality_focus]
@@ -214,13 +289,16 @@ tags:
 [weapon_vector:: aether]
 [vector_gate:: 3]
 [weight:: 3.0kg]|[dmg:: 55]
-[charge_cost:: 1]
+[impulse_cost:: 1]
 [charge_item:: reality_charge]
 [charge_time:: 1.0s]
 [heat:: 40]
 [bloom:: medium]
 [dissonance_pulse:: 8]
-[window_role:: reality_burn]
+[primary_window_function:: create]
+[creates_window:: reality_exposed]
+[exploits_window:: none]
+[mitigates_window:: anomalous_immunity]
 *Проводник, который заставляет аномальное тело принять нормальные законы.*
 * **Implicit:** **(Reality Burn)** временно делает аномальную цель уязвимой к обычному урону.
 * **Расход:** тратит подготовленный `Reality Charge`, `Overcharge Cell` или стабилизатор. Не списывает сырой Рез из кошелька во время рейда.
@@ -232,12 +310,20 @@ tags:
 
 ### Баклер (Buckler) [1H]
 [weapon_type:: shield]
+[primary_window_function:: mitigate]
+[creates_window:: parry_stagger]
+[exploits_window:: none]
+[mitigates_window:: melee_entry]
 [weight:: 1.0kg]
 *Маленький кулачный щит.*
 * **Implicit:** Окно блока очень маленькое (0.5 сек), но при идеальном блоке (Parry) ошеломляет атакующего.
 
 ### Ростовой Щит (Tower Shield) [1H]
 [weapon_type:: shield]
+[primary_window_function:: mitigate]
+[creates_window:: covered_advance]
+[exploits_window:: none]
+[mitigates_window:: ranged_line]
 [weight:: 15kg]
 *Дверь от сейфа/машины.*
 * **Implicit:** Создает "Полное укрытие". Можно стрелять из пистолета, не опуская щит (вслепую). Сильно режет скорость (-40 MS).
@@ -250,14 +336,17 @@ tags:
 [weapon_type:: blade]
 [frame:: template_frame]
 [tier:: 1]
-[weapon_vector:: kinetics]
+[weapon_vector:: shadow]
 [vector_gate:: 3]
 [weight:: 1.0kg]
-[charge_cost:: 0]
+[impulse_cost:: 0]
 [heat:: 0]
 [bloom:: none]
 [dissonance_pulse:: 0]
-[window_role:: template_window]
+[primary_window_function:: create]
+[creates_window:: template_window]
+[exploits_window:: none]
+[mitigates_window:: none]
 [value:: 0]
 *Короткое описание боевой фантазии.*
 - **Сильная дистанция:** где оружие раскрывается.

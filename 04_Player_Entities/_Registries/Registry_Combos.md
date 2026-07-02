@@ -9,6 +9,8 @@ related_files:
   - "[[04_Player_Entities/_Registries/Registry_Races|Registry Races]]"
   - "[[04_Player_Entities/_Registries/Registry_Specs|Registry Specs]]"
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat Profile Pipeline]]"
+  - "[[04_Player_Entities/Proficiency_Arsenal|Proficiency Arsenal]]"
+  - "[[07_Gear_Inventory/Thermos_System|Thermos System]]"
 ---
 # Реестр: ячейки Race × Spec
 
@@ -35,6 +37,7 @@ related_files:
 [req_race:: template_race]
 [req_spec:: template_spec]
 [design_status:: approved]
+[primary_window_function:: create]
 [creates_window:: route_open, concealment]
 [exploits_window:: blind, distraction]
 [mitigates_window:: trap_pressure]
@@ -51,12 +54,14 @@ related_files:
 [condition_bonus:: ...]
 [tradeoff:: ...]
 [arsenal_type:: blade] | [prof:: 2]
-[armor_axis:: stealth] | [prof:: 2]
+[module_capacity:: plate 1, optic 1, seal 1, conduit 1, rig 2, weave 2]
 ```
 
-После полей идут фантазия, повторяемый цикл, смешанные `P/Q/E`, 2–4 доктрины, результаты успеха/отхода/провала и заметки прототипа.
+После полей идут фантазия, повторяемый цикл, смешанные `P/Q/E`, 2–4 доктрины, результаты успеха/отхода/провала и заметки прототипа. Числа шаблона показывают формат; каждая ячейка получает собственные значения только после отдельного прохода.
 
 `design_status:: pending` означает, что слот существует, но способности, арсенал и доктрины не являются каноном.
+
+`primary_window_function` называет доминирующую работу повторяемого цикла. `creates_window`, `exploits_window` и `mitigates_window` используют тот же словарь, что оружие и способности; ячейка не должна одинаково хорошо выполнять все три функции без отдельной цены.
 
 ---
 
@@ -67,6 +72,7 @@ related_files:
 [req_spec:: assault]
 [design_status:: pending]
 [base_weakness:: hazard]
+[module_capacity:: UNKNOWN]
 
 Проектный слот. Не наследует автоматически старого «Джаггернаута», стационарную турель или «Сенсорную Броню».
 
@@ -79,6 +85,7 @@ related_files:
 [req_spec:: support]
 [design_status:: pending]
 [base_weakness:: shadow]
+[module_capacity:: UNKNOWN]
 
 Проектный слот. Сила должна рождаться из смешения телесной массы и инженерной методологии, а не из универсальной роли танка.
 
@@ -91,6 +98,7 @@ related_files:
 [req_spec:: scout]
 [design_status:: pending]
 [base_weakness:: hazard]
+[module_capacity:: UNKNOWN]
 
 Проектный слот. Мобильность Странника не обязана означать рывок; допустимы маршрутизация, контролируемый перенос массы и подготовленное изменение позиции.
 
@@ -103,6 +111,7 @@ related_files:
 [req_spec:: assault]
 [design_status:: pending]
 [base_weakness:: kinetics]
+[module_capacity:: UNKNOWN]
 
 Проектный слот. Третий хват и техническая биология должны менять способ ведения оружейного давления, а не давать бесплатную скорость действий.
 
@@ -116,6 +125,7 @@ related_files:
 [design_status:: pending]
 [base_weakness:: shadow, kinetics, detection]
 [ability_model:: mono_vector_fusion]
+[module_capacity:: UNKNOWN]
 
 Проектный слот. Совпадение `tech + tech` усиливает глубину технического исполнения, но не выдаёт бесплатный второй вектор.
 
@@ -128,6 +138,7 @@ related_files:
 [req_spec:: scout]
 [design_status:: pending]
 [base_weakness:: detection]
+[module_capacity:: UNKNOWN]
 
 Проектный слот. Должен работать через маршрут, инструмент и чтение пространства, не превращаясь в обязательный пик для закрытых локаций.
 
@@ -140,6 +151,9 @@ related_files:
 [req_spec:: assault]
 [design_status:: foundation_approved]
 [base_weakness:: tech]
+[module_capacity:: UNKNOWN]
+[substat_consumer:: spark_gain]
+[spark_rule:: meaningful_movement_impulse]
 
 ### Утверждённая пассивная основа: «Инерционный заряд»
 
@@ -147,6 +161,7 @@ related_files:
 - источники: разгон, смена траектории, контролируемое приземление, смена высоты, выход из давления, перенос оружейной отдачи телом;
 - повтор одного безопасного движения даёт убывающую отдачу;
 - накопленный импульс готовит тяжёлое действие Авангарда, а не даёт постоянный DPS или бесплатное ускорение;
+- `spark_gain` меняет скорость наполнения ограниченного заряда от значимых импульсов, но не увеличивает урон напрямую;
 - точные пороги, расход заряда, оружейные связи и `Q/E` не утверждены.
 
 Предложение «низкий заряд = высокая точность, нагрев = низкая точность, заряженный выстрел» остаётся примером возможного чтения, а не главным или каноническим решением.
@@ -160,6 +175,7 @@ related_files:
 [req_spec:: support]
 [design_status:: pending]
 [base_weakness:: shadow]
+[module_capacity:: UNKNOWN]
 
 Проектный слот. Перегрузка — сильное направление фантазии, но требует цены, телеграфа и восстановления; не должна производить бесплатные батареи или бесконечное питание устройств.
 
@@ -172,5 +188,6 @@ related_files:
 [req_spec:: scout]
 [design_status:: pending]
 [base_weakness:: ballistics]
+[module_capacity:: UNKNOWN]
 
 Проектный слот. Это наиболее мобильная методология матрицы, но мобильность должна жить в теле и маршруте; способности остаются медленными, ситуативными и уязвимыми.

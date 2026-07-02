@@ -58,4 +58,4 @@ related_files:
 - теги могут добавлять `[add_vector:: ...]` и временно блокировать `[block_vector:: ...]`;
 - теги могут запрещать друг друга через `[exclusive_with:: ...]` и сливаться через `[fusion_requires:: ...]`;
 - оружие добавляет `[weapon_vector:: ...]` только после proficiency gate;
-- итоговый Combat Profile собирается по цепочке `Race + Spec -> Combo P/Q/E -> Allowed Arsenal -> Tags -> Proficiency Gates -> Combat Profile`.
+- итоговый профиль собирается по цепочке `Race + Spec -> Combo P/Q/E + Module Capacity -> Allowed Arsenal -> Tags -> Proficiency Gates -> Combat Profile и допустимая сборка Термоса`.

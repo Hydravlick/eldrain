@@ -8,10 +8,13 @@ tags:
   - animation
   - collision
 related_files:
+  - "[[05_Combat_Survival/Combat_Three_Debts|Combat_Three_Debts]]"
   - "[[05_Combat_Survival/Acoustic_Stealth|Acoustic_Stealth]]"
   - "[[05_Combat_Survival/Registry_Weapons|Registry_Weapons]]"
 ---
 # Оружие: Ближний Бой (Melee)
+
+Мили выплачивает долг дистанции подходом, стаминой и риском получить действие до контакта. После сближения оно повторяемее магострела, но не бесшумно: взмах, дыхание, контакт, блок, удар о стену и разрушение создают серию `AcousticEvent` по правилам [[05_Combat_Survival/Acoustic_Stealth|акустики]].
 
 ## 1. Физика и Ограничения
 Ближний бой в Элдрейне — это менеджмент пространства и инерции.
