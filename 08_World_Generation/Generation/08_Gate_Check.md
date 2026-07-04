@@ -77,7 +77,7 @@ ProtectionScore =
   + Headwear.Filter_Rating
   + Battery.Buffer
   + Stabilizer_Bonus
-  + Shell.Entropy_Buffer(entropy_buffer)
+  + Shell.Reality_Buffer(reality_buffer)
   - Open_Wounds_Penalty
   - Overload_Penalty
 
@@ -88,9 +88,9 @@ SurvivalScore = Current_HP + ProtectionScore
 
 В сумму входят только установленные и работающие модули со статусом `install_state:: installable`; повреждённый или отключённый модуль даёт свой фактический остаточный вклад. Запись с `UNKNOWN` или `blocked_calibration` не может пройти монтаж и не участвует в расчёте.
 
-`Shell.Entropy_Buffer` является потребителем телесного substat `entropy_buffer`, который поглотил старое имя `gate_resist`. Он даёт только ограниченный вклад в поглощение overflow и не входит в `ThermosModuleProtection`.
+`Shell.Reality_Buffer` является потребителем телесного substat `reality_buffer`, который поглотил старое имя `gate_resist`. Он даёт только ограниченный вклад в поглощение overflow и не входит в `ThermosModuleProtection`.
 
-Тело не заменяет Environment Seal: ненулевой `entropy_buffer` помогает пережить остаток удара, но не удовлетворяет обязательные требования маски, фильтра, средового модуля или стабилизатора. В MVP значение остаётся `0`, пока Race, Spec, Tag или другой канонический источник не задаст явный `[substat_bonus:: entropy_buffer +N]`; автоматического бонуса только от высокого `TRQ` нет.
+Тело не заменяет Environment Seal: ненулевой `reality_buffer` помогает пережить остаток удара, но не удовлетворяет обязательные требования маски, фильтра, средового модуля или стабилизатора. В MVP значение остаётся `0`, пока Race, Spec, Tag или другой канонический источник не задаст явный `[substat_bonus:: reality_buffer +N]`; автоматического бонуса только от высокого `TRQ` нет.
 
 ### Исходы
 

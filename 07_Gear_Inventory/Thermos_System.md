@@ -11,7 +11,6 @@ tags:
 related_files:
   - "[[07_Gear_Inventory/Equipment_PaperDoll|Equipment_PaperDoll]]"
   - "[[07_Gear_Inventory/Fashion_Gear|Fashion_Gear]]"
-  - "[[07_Gear_Inventory/Civic_Attire|Civic_Attire]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Thermoses|Registry_Thermoses]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
   - "[[04_Player_Entities/Proficiency_Arsenal|Proficiency_Arsenal]]"
@@ -235,19 +234,9 @@ loose module
 
 Некоторые семьи, мастерские и кварталы сопровождают первый Термос собственными обычаями. «Утренний шов» может существовать как локальное ласковое название, но не является всеобщим обрядом взросления или системным правилом.
 
-## 13. Отношение к Civic Attire
+## 13. Граница отложенных систем
 
-Civic Attire остаётся одеждой погибшего мира. Она занимает Body Base вместо Термоса и не имеет его интерфейсов.
-
-```text
-Body Base
-  -> Термос
-     -> вшитые модули
-  -> Civic Attire
-     -> чужой оригинал без модульных слотов
-```
-
-Cut Module из распоротого Attire становится ингредиентом совместимого модуля Термоса. Его также устанавливает мастер в Хабе; происхождение материала не отменяет `slot_size`, положение или `module_cost` результата.
+В активном MVP Термос является единственным `Body Base`. Карточная внешность, мирская одежда и культурные ингредиенты не меняют его слоты, посадку и визуальную правду сборки. Возможный Civic Attire рассматривается позже и не является текущей зависимостью системы.
 
 ## 14. Защита прогрессии
 

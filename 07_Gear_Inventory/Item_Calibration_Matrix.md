@@ -65,7 +65,7 @@ related_files:
 | `Cracked Cell` | 1 | 0.3 кг | 250 | 0 | 0 | `UNKNOWN` | buffer не определен |
 | T1 оружие Бомжа | 1 | `UNKNOWN` | `UNKNOWN` | 0 | 0 | 0 | конкретный предмет не закреплен |
 | Базовая маска | 1 | `UNKNOWN` | `UNKNOWN` | 0 | `UNKNOWN` | 0 | стартовая модель не закреплена |
-| Базовая Пешка | — | — | — | `Current_HP UNKNOWN` | 0 | 0 | `Entropy_Buffer = 0` в текущем MVP |
+| Базовая Пешка | — | — | — | `Current_HP UNKNOWN` | 0 | 0 | `Reality_Buffer = 0` в текущем MVP |
 
 ## 4. Проверка Access Readiness
 
@@ -81,7 +81,7 @@ SurvivalScore =
   + Filter_Rating
   + Battery_Buffer
   + Stabilizer_Bonus
-  + Shell.Entropy_Buffer
+  + Shell.Reality_Buffer
   - Open_Wounds_Penalty
   - Overload_Penalty
 
@@ -95,7 +95,7 @@ AnomalyPressure =
   + RecentDissonancePulse
 ```
 
-В `InstalledModuleEnvironment` входят только установленные работающие модули с `install_state:: installable`. `Shell.Entropy_Buffer` читает явный телесный substat `entropy_buffer`; пока ни одна MVP-запись не выдаёт его, значение остаётся `0`. Он не входит в модульную защиту и не заменяет Environment Seal.
+В `InstalledModuleEnvironment` входят только установленные работающие модули с `install_state:: installable`. `Shell.Reality_Buffer` читает явный телесный substat `reality_buffer`; пока ни одна MVP-запись не выдаёт его, значение остаётся `0`. Он не входит в модульную защиту и не заменяет Environment Seal.
 
 Обязательные комплекты для первой калибровки:
 

@@ -23,7 +23,7 @@ related_files:
 [control_family:: none]
 [repeat_rule:: unique|refresh|intensity|independent|diminishing]
 [counter_action:: none]
-[persistence:: action|encounter|raid]
+[persistence:: action|encounter|raid|life]
 [telegraph:: none]
 [failure_feedback:: none]
 [balance_state:: prototype]
@@ -68,6 +68,25 @@ related_files:
 [balance_state:: prototype]
 
 Повреждённая нога или привод ухудшает спринт, прыжок и вертикальные маршруты. Шина либо поддерживающая способность возвращает ограниченную функцию ценой рук, времени или предмета.
+
+### Кантрипное Напряжение
+[effect_id:: cantrip_strain]
+[effect_category:: injury]
+[application_mode:: direct]
+[primary_window_function:: create]
+[creates_window:: body_debt]
+[exploits_window:: none]
+[mitigates_window:: none]
+[control_family:: cantrip_body_debt]
+[repeat_rule:: intensity]
+[counter_action:: hub_rest_or_treatment]
+[persistence:: raid]
+[stages:: clear, strained, scarred, broken]
+[telegraph:: conductor_specific_body_tell, ability_preview]
+[failure_feedback:: permanent_scar_or_function_failure]
+[balance_state:: prototype]
+
+Первое применение переводит Пешку из `Clear` в `Strained`. Повтор до лечения создаёт постоянный Scar tag из допустимого семейства проводника и переводит острое состояние в `Scarred`. Дальнейшая перегрузка создаёт `Broken`: связанная функция отказывает, Пешка теряет сознание либо погибает по контракту способности. Все кантрипы одной Пешки используют эту запись совместно.
 
 ## Контроль
 

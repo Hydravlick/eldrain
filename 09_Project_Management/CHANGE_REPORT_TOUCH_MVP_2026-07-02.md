@@ -18,7 +18,7 @@ related_files:
 - В реестр добавлены десять `blocked_calibration` prototype-контуров — по два обмена на каждый атрибут.
 - Substats отделены от capabilities, output modifiers, vulnerabilities и Frame Window; процентные значения нормализованы через `/100`.
 - `spark_gain` связан с пассивной основой `squirrel_assault` «Инерционный заряд».
-- `gate_resist` поглощён телесным `entropy_buffer`, отдельным от `ThermosModuleProtection`.
+- `gate_resist` поглощён телесным `reality_buffer`, отдельным от `ThermosModuleProtection`; прежнее энтропийное имя выведено из канона словаря.
 - `vent_fit` стал бинарной capability; `movement_noise` и `move_speed` перенесены в output modifiers.
 - Обычным Affix запрещены первичные T.O.U.C.H. и изменение `touch_shift`.
 - Character Matrix читает `TRQ/GRP/LYR/GLW/SNS` и базу `10` из структурированных данных; старые fallback удалены.

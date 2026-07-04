@@ -2,121 +2,68 @@
 type: registry
 status: active
 system: gear_inventory_registry
-registry_type: items
+registry_type: blueprints
 category: blueprints
-tags: [database, loot, trade, schematics]
+tags: [database, loot, trade, schematics, recipe_transaction]
 related_files:
-  - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
+  - "[[06_Economy_Loot/Blueprints|Blueprints]]"
   - "[[07_Gear_Inventory/_Registries/Registry_CraftingRecipes|Registry_CraftingRecipes]]"
 ---
-> [!TODO] Чертежи исследования мутаций
-> - [ ] Определить, какие подтверждённые образцы открывают чертежи фильтрации, приманок и инструментов проверки мимиков.
-> - [ ] Развести знание линии и владение рецептом: распознавание угрозы не должно зависеть от редкого чертежа.
-> - **Основа:** [[08_World_Generation/_Registries/Registry_Anomaly_Mutations|Registry_Anomaly_Mutations]]. Редкость и цена не установлены.
-# Реестр: Предметы-Чертежи (Blueprints Items)
+# Реестр: Чертежи
 
-> **Логика:** Это физические носители информации (флешки, бумажные схемы, планшеты). Занимают место в сетке инвентаря.
-> **Mechanic:** Для крафта предмета этот Чертеж должен лежать произвольно в слотах "Input" у кузнеца.
-> **Consumption:**
-> * `[consumable:: true]` — Чертеж исчезает после крафта (одноразовый).
-> * `[consumable:: false]` — Чертеж возвращается игроку (многоразовая матрица).
+Реестр хранит физические носители и зарегистрированные права исполнения. Старые списки готового фракционного снаряжения выведены из активного наполнения: Очаг может открыть Мастера, доверие или регистрацию, но не заменяет рейд источником ценной вещи и всех её входов.
 
----
+## Контракт записи
 
-## Фракционные Схемы (Faction Schematics)
-*Покупаются у интендантов. Обычно выглядят как защищенные карты памяти.*
+```text
+blueprint_id
+recipe_ids
+custody: physical | registered
+use_model: consumable | limited | permanent
+address
+transfer_rule
+local_conditions
+source
+balance_state
+```
 
-### Схема: Маска "Чистый Воздух"
-[blueprint:: keeper_mask]
-*Зашифрованный чип Хранителей с инструкцией по сборке фильтров.*
-- **Статы:** `[weight:: 0.1kg]` | `[stack:: 5]` | `[value:: 300]`
-- **Тип:** `[consumable:: true]` (Одноразовый протокол).
-- **Требование:** `[rep:: keepers : +3]` для покупки.
+- `physical` занимает место, может быть потерян и используется полевой станцией;
+- `registered` существует только у указанного адреса и не передаётся дропом;
+- `consumable` сгорает после зафиксированного исхода;
+- `limited` теряет одно применение;
+- `permanent` возвращает носитель либо сохраняет регистрацию;
+- `source` обязан назвать рейд, контракт, Мастера или исследование, а не абстрактный уровень аккаунта.
 
-### Схема: Ход Первопроходца
-[blueprint:: pathfinder_boots]
-*Старая бумажная карта с разметкой подошв и голенных тяг для нижних креплений Термоса.*
-- **Статы:** `[weight:: 0.05kg]` | `[stack:: 10]` | `[value:: 250]`
-- **Тип:** `[consumable:: true]`.
-- **Требование:** `[rep:: contour_chamber : +2]` для покупки.
+## Неопознанный носитель
 
-### Схема: Мод "Тихая Поступь"
-[blueprint:: silent_soles]
-*Акустическая матрица Менестрелей.*
-- **Статы:** `[weight:: 0.1kg]` | `[stack:: 5]` | `[value:: 400]`
-- **Тип:** `[consumable:: true]`.
-- **Требование:** `[rep:: minstrels : +2]` для покупки.
+### Повреждённый планшет
 
-### Схема: Фантомная вуаль
-[blueprint:: phantom_cloak]
-*Матрица внешнего модуля Термоса с пометками о безопасном отводе тепла.*
-- **Статы:** `[weight:: 0.2kg]` | `[stack:: 1]` | `[value:: 1200]`
-- **Тип:** `[consumable:: true]`
-- **Требование:** `[rep:: minstrels : +4]` для покупки.
+[blueprint_id:: damaged_unknown_carrier]
+[recipe_ids:: unknown]
+[custody:: physical]
+[use_model:: limited]
+[address:: proving_houses|field_station]
+[transfer_rule:: physical_item]
+[local_conditions:: identification_required]
+[source:: raid_archive_or_workshop]
+[balance_state:: unknown]
 
-### Схема: Вольт-Конденсатор
-[blueprint:: volt_condenser]
-*Синька (Blueprint) Домов Пробы с допуском Стола.*
-- **Статы:** `[weight:: 0.3kg]` | `[stack:: 1]` | `[value:: 800]`
-- **Тип:** `[consumable:: true]`.
-- **Требование:** `[rep:: proving_houses : +2]` для покупки.
+До идентификации игрок видит цивилизацию, материальный язык и возможное семейство операции, но не точный результат. Дома Пробы могут зарегистрировать знание, восстановить часть страниц либо вернуть физический носитель; конкретный исход задаётся отдельной RecipeTransaction.
 
-### Схема: Ловушка Теслы
-[blueprint:: tesla_trap]
-*Тяжелый технический мануал в переплете.*
-- **Статы:** `[weight:: 1.0kg]` | `[stack:: 1]` | `[value:: 1500]`
-- **Тип:** `[consumable:: true]`
-- **Требование:** `[rep:: proving_houses : +4]` для покупки.
+## Шаблон
 
-### Схема: Булава Инквизитора
-[blueprint:: inquisitor_mace]
-*Свиток с молитвами и схемой балансировки.*
-- **Статы:** `[weight:: 0.2kg]` | `[stack:: 5]` | `[value:: 600]`
-- **Тип:** `[consumable:: true]`.
-- **Требование:** `[rep:: cathedral_all_faiths : +2]` для покупки.
+### Шаблон Чертежа
 
-### Схема: Гвоздомет "Заклепочник"
-[blueprint:: heavy_riveter]
-*Перфокарта Горячего Стола Домов Пробы.*
-- **Статы:** `[weight:: 0.1kg]` | `[stack:: 10]` | `[value:: 500]`
-- **Тип:** `[consumable:: true]`.
-- **Требование:** `[rep:: proving_houses : +3]` для покупки.
-
-### Схема: Сумка Контрабандиста
-[blueprint:: smuggler_bag]
-*Набор выкроек на цифровой бумаге.*
-- **Статы:** `[weight:: 0.1kg]` | `[stack:: 5]` | `[value:: 1000]`
-- **Тип:** `[consumable:: true]`.
-- **Требование:** `[rep:: minstrels : +3]` для покупки.
-
----
-
-## Дроповые Схемы (Raid Found)
-*Грязные, поврежденные носители информации, найденные в рейдах.*
-
-### [Unidentified] Поврежденный Планшет
-[blueprint:: unidentified]
-*Устройство заблокировано. Нужно отнести в Дома Пробы.*
-- **Статы:** `[weight:: 0.5kg]` | `[stack:: 5]` | `[value:: 100]`
-- **Действие:** При идентификации превращается в случайный рецепт T2/T3.
-
-### Схема: Сабля Призрачного Капитана
-[blueprint:: spectral_cutlass]
-*Кусок обшивки корабля с выгравированной схемой.*
-- **Статы:** `[weight:: 1.5kg]` | `[stack:: 1]` | `[value:: 5000]`
-- **Тип:** `[consumable:: false]` (Уникальная реликвия-схема).
-- **Источник:** Сейф Капитана (Шанс 100%).
----
-
-## 0. Нулевой пациент: шаблон чертежа
-
-### Шаблон Чертежа (Template Blueprint)
 [blueprint_id:: template_blueprint]
-[output_item:: template_item]
-[craft_station:: workbench]
-[required_skill:: none]
-[rarity:: common]
-*Короткое описание того, зачем игроку этот рецепт.*
-- **Ингредиенты:** предметы и количество.
-- **Модификаторы:** что меняет качество результата.
-- **Экономическая роль:** крафт дешевле, стабильнее или рискованнее покупки.
+[recipe_ids:: template_recipe]
+[custody:: physical]
+[use_model:: consumable|limited|permanent]
+[address:: public|hearth_id|table_id|master_id|field_station]
+[transfer_rule:: physical_item|registered_nontransferable]
+[local_conditions:: none]
+[source:: source_id]
+[balance_state:: unknown]
+
+- **Player-facing promise:** какую новую операцию позволяет выполнить носитель.
+- **Custody feedback:** где он хранится и чем рискует игрок.
+- **Execution gate:** какой адрес, станция или состояние мира всё ещё требуется.

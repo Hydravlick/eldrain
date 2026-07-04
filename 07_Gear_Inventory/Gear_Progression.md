@@ -13,7 +13,6 @@ related_files:
   - "[[08_World_Generation/Generation/19_Access_Contracts|Access_Contracts]]"
   - "[[05_Combat_Survival/Dissonance_System|Dissonance_System]]"
   - "[[07_Gear_Inventory/Affix_Grammar|Affix_Grammar]]"
-  - "[[07_Gear_Inventory/Civic_Attire|Civic_Attire]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Thermoses|Registry_Thermoses]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
@@ -121,8 +120,6 @@ Gate Check проверяет подготовку тела к фазовому 
 `fit_system:: eldrain_modular` позволяет мастеру перенастраивать сменный Термос под другое тело. Перенастройка не меняет `slot_count` и не переносит профильные ёмкости прежнего владельца.
 
 `module_cost` не равен Tier. Он резервирует профильную ёмкость только внутри своего семейства; гибрид платит каждую цену отдельно. Поэтому дорогой Термос не делает Пешку мастером, высокий Tier не разрешает модуль автоматически, а высокая ёмкость не создаёт физический слот.
-
-Cut Module из мирской одежды переносит в один модуль узкий конструктивный принцип. Он не добавляет свободную ось, слот или ёмкость и требует обычной установки у мастера.
 
 Access Contract определяет, куда эта подготовка может привести:
 

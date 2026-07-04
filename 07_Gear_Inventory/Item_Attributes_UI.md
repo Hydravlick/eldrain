@@ -6,9 +6,7 @@ tags: [tooltip, stats, identification, rarity, origin, math, auction_vis]
 related_files:
   - "[[07_Gear_Inventory/Dissonance_Value|Dissonance_Value]]"
   - "[[07_Gear_Inventory/Gear_Progression|Gear_Progression]]"
-  - "[[06_Economy_Loot/Auction_House|Auction_House]]"
   - "[[05_Combat_Survival/Registry_Weapons|Registry_Weapons]]"
-  - "[[07_Gear_Inventory/Civic_Attire|Civic_Attire]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Thermoses|Registry_Thermoses]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
@@ -69,19 +67,6 @@ TRQ 10 = тело 8 + теги 1 + Опорный контур 1
 До подтверждения экран показывает дельты веса, защиты, Диссонанса и Mission Readiness. Кнопка мастера содержит явное предупреждение `Сборка будет заблокирована до возвращения в Хаб`.
 
 В рейде карточка переходит в режим чтения. Вместо недоступного перетаскивания игрок видит статус `Вшито`, повреждения и конкретную причину отключения.
-
-#### Паспорт мирской одежды
-
-Для Attire вместо боевых параметров выводятся:
-
-- native_fit и совместимость с выбранной Пешкой;
-- культурное происхождение и известный адрес;
-- фактические signature_tags;
-- явные armor_profile:: none и environment_profile:: none;
-- Cut Module и допустимая module_axis;
-- предупреждение «оригинал будет уничтожен» только внутри операции перешива.
-
-Mission Readiness показывает отсутствие защиты обычными требованиями комплекта. Несовместимая посадка и необратимый перешив не прячутся за значком редкости.
 
 ### Блок C: Stats & Physics
 1.  **Damage / Armor:** Базовое значение.
