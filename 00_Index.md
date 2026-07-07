@@ -18,7 +18,7 @@ tags: [master_index, gdd, navigation, refactor]
 |:---|:---|:---|
 | 01. Ядро | Видение, тон, базовый цикл | [[01_Core_Vision/01_Vision]] |
 | 02. Лор | Законы мира, Якорь, Энтропия, магипанк | [[02_World_Lore/The_Collapse]] |
-| 03. Фракции | Очаги, доверие, поручения, допуски, контракты | [[03_Factions_Societies/Registry_Factions]] |
+| 03. Фракции | Очаги, доверие, поручения, допуски, контракты | [[03_Factions_Societies/_Registries/Registry_Factions]] |
 | 04. Пешки | Ростер жителей, найденыши, расы, практики, архетипы, матрица 3×3, T.O.U.C.H. | [[04_Player_Entities/MVP_3x3_Design_Contract]] |
 | 05. Бой | Оружие, акустика, статусы, выживание | [[05_Combat_Survival/Weapon_Core]] |
 | 06. Экономика | Экстракция, стабилизация, Рез, бартер, лут и цикловое наследие | [[06_Economy_Loot/Extraction_Stabilization_Loop]] |

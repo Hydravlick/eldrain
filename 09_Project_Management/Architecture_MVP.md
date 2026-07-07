@@ -24,7 +24,7 @@ tags:
 |:---|:---|:---|
 | `01_Core_Vision` | Концепция, тон, основной цикл | [[01_Core_Vision/GDD_Main]], [[01_Core_Vision/02_Core_Loop]], [[01_Core_Vision/Glossary]] |
 | `02_World_Lore` | Ковчег, Коллапс, Якорь, Сущность, магипанк и культуры | [[02_World_Lore/The_Ark]], [[02_World_Lore/The_Collapse]], [[02_World_Lore/The_Anchor]], [[02_World_Lore/Protocol_Resonance]], [[02_World_Lore/Culture_Language]] |
-| `03_Factions_Societies` | Фракции, репутация, поручения, допуски, контракты и становление города | [[03_Factions_Societies/Registry_Factions]], [[03_Factions_Societies/Reputation_Rules]], [[03_Factions_Societies/Pledge_Contracts]], [[03_Factions_Societies/Quest_Engine]], [[03_Factions_Societies/Lore/City_Anatomy]] |
+| `03_Factions_Societies` | Фракции, репутация, поручения, допуски, контракты и становление города | [[03_Factions_Societies/_Registries/Registry_Factions]], [[03_Factions_Societies/Reputation_Rules]], [[03_Factions_Societies/Pledge_Contracts]], [[03_Factions_Societies/Quest_Engine]], [[03_Factions_Societies/Lore/City_Anatomy]] |
 | `04_Player_Entities` | Оболочки, расы, практики, архетипы, TOUCH, синергии | [[04_Player_Entities/Shell_Specification]], [[04_Player_Entities/MVP_3x3_Design_Contract]], [[04_Player_Entities/_Registries/Registry_Races]], [[04_Player_Entities/_Registries/Registry_Specs]], [[04_Player_Entities/Combat_Profile_Pipeline]] |
 | `05_Combat_Survival` | Бой, магострелы, батареи, статусы, выживание | [[05_Combat_Survival/Combat_Three_Debts]], [[05_Combat_Survival/Weapon_Core]], [[05_Combat_Survival/Magic_Batteries]], [[05_Combat_Survival/Status_Effects]], [[05_Combat_Survival/Dissonance_System]] |
 | `06_Economy_Loot` | Рез, бартер, чертежи, экстракция и стабилизация лута | [[06_Economy_Loot/Extraction_Stabilization_Loop]], [[06_Economy_Loot/Economy_Core]], [[06_Economy_Loot/Currency_Rez]], [[06_Economy_Loot/Loot_Distribution]], [[06_Economy_Loot/Barter_System]], [[06_Economy_Loot/Blueprints]], [[06_Economy_Loot/Craft_Modifiers]] |
@@ -51,7 +51,7 @@ related_mechanics:
 - Не использовать старые пространства имен `10_Mechanics`, `20_Lore`, `30_Content`, `00_Variables`.
 - Если нужен короткий видимый текст, писать алиас: `[[08_World_Generation/Anomaly/14_Extraction_System|Extraction_System]]`.
 - Если документ переехал или был смержен, ссылка должна вести в текущий канонический файл, а не в старое имя.
-- Для registry-файлов ссылаться на сам реестр или на конкретный заголовок объекта, например [[03_Factions_Societies/Registry_Factions#Хранители (The Keepers)|Keepers]].
+- Для registry-файлов ссылаться на сам реестр или на конкретный заголовок объекта, например [[03_Factions_Societies/_Registries/Registry_Factions#Хранители (The Keepers)|Keepers]].
 
 Статус определяет право документа влиять на MVP:
 

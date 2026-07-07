@@ -11,7 +11,7 @@ related_files:
   - "[[06_Economy_Loot/Barter_System|Barter_System]]"
   - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
   - "[[08_World_Generation/Generation/17_Dual_State_POIs|Dual_State_POIs]]"
-  - "[[03_Factions_Societies/Registry_Factions|Registry_Factions]]"
+  - "[[03_Factions_Societies/_Registries/Registry_Factions|Registry_Factions]]"
 ---
 # Адреса, Поставщики и Мастера
 

@@ -10,7 +10,7 @@ tags:
   - contracts
   - city_life
 related_files:
-  - "[[03_Factions_Societies/Registry_Factions|Registry_Factions]]"
+  - "[[03_Factions_Societies/_Registries/Registry_Factions|Registry_Factions]]"
   - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
   - "[[03_Factions_Societies/Lore/Social_Political_Order|Social_Political_Order]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"

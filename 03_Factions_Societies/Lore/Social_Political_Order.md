@@ -9,7 +9,7 @@ tags:
   - education
   - hierarchy
 related_mechanics:
-  - "[[03_Factions_Societies/Registry_Factions]]"
+  - "[[03_Factions_Societies/_Registries/Registry_Factions]]"
   - "[[03_Factions_Societies/Reputation_Rules]]"
 related_files:
   - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"

@@ -8,7 +8,7 @@ tags:
   - progression
   - contracts
 related_files:
-  - "[[03_Factions_Societies/Registry_Factions|Registry_Factions]]"
+  - "[[03_Factions_Societies/_Registries/Registry_Factions|Registry_Factions]]"
   - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
 related_mechanics:

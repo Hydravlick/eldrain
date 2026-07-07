@@ -10,7 +10,7 @@ tags:
   - administration
 related_mechanics:
   - "[[03_Factions_Societies/Quest_Engine]]"
-  - "[[03_Factions_Societies/Registry_Factions#Хранители (The Keepers)]]"
+  - "[[03_Factions_Societies/_Registries/Registry_Factions#Хранители (The Keepers)]]"
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
 related_files:
   - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
