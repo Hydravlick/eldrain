@@ -13,11 +13,64 @@ related_systems:
 
 > **Концепция Карты:** Диегетическая 3D-проекция города на столе.
 > **Цикл Фаз (Sector Phases):**
-> 1.  **Stable (Стабильность):** Хаб. Торговля, квесты, социализация.
+> 1.  **Stable (Стабильность):** мирная проекция. Центральные службы остаются в ядре, а уцелевшие внешние POI становятся адресами-лепестками.
 > 2.  **Evacuation (Эвакуация):** Блокировка всех активностей. Подготовка к смене.
 > 3.  **Anomaly (Аномалия):** Рейд-зона. Покрыта "Туманом".
 >     * **Вход:** Клик по Туману -> Открывает меню **"Mission Readiness"** (Выбор снаряжения, кнопка "Deploy").
 >     * **Tier Layer:** внутри Аномалии POI получает вариант T1/T2/T3: состав мобов, опасность среды, лут и доступные комнаты меняются после Phase Shift.
+
+---
+
+## Контракт адресного POI
+
+Реестр хранит стабильные ID и структурированные поля. Универсальные правила принадлежат [[06_Economy_Loot/Barter_System|адресному бартеру]], а технический префабный контракт — [[08_World_Generation/Generation/18_POI_Metadata_Registry|метаданным POI]].
+
+```text
+poi_id
+address_id: stable key for address pins | none
+address_class: central | stable_external | none
+availability: permanent | stable_cycle | raid_only
+accepted_families
+service_roles
+central_fallback
+```
+
+`stable_external` не означает «лучше центра». Он обозначает услугу, существующую благодаря текущей Stable-конфигурации сектора.
+
+# 0. Центральные Пины
+
+### Общие Кладовые
+[poi_id:: central_common_stores]
+[address_id:: central_common_stores]
+[address_class:: central]
+[availability:: permanent]
+[accepted_families:: fastener|cloth|filter_medium|battery_shell|rez]
+[service_roles:: minimum|basic_filter|basic_battery|ration]
+[central_fallback:: none]
+
+Постоянный источник recovery-минимума. Не принимает весь `junk` в универсальную топку и не производит редкие результаты.
+
+### Центральный Ремонт
+[poi_id:: central_repair_service]
+[address_id:: central_repair_service]
+[address_class:: central]
+[availability:: permanent]
+[accepted_families:: fastener|cloth|sealant|conductor]
+[service_roles:: repair|exact_dismantle]
+[central_fallback:: none]
+
+Показывает точный результат ремонта или разбора до подтверждения. Случайного редкого выхода нет.
+
+### Центральная Медицинская Служба
+[poi_id:: central_medical_service]
+[address_id:: central_medical_service]
+[address_class:: central]
+[availability:: permanent]
+[accepted_families:: organic|filter_medium|rez]
+[service_roles:: treatment|sanitation]
+[central_fallback:: none]
+
+Сохраняет базовое лечение и санитарную обработку независимо от внешней ротации.
 
 ---
 
@@ -26,30 +79,51 @@ related_systems:
 
 ### [PREFAB:: CHEM_LAB_01] — "Аптекарь"
 *Угловое здание с зеленой неоновой вывеской.*
+[poi_id:: chem_lab_01]
+[address_id:: stable_herbalist_service]
+[address_class:: stable_external]
+[availability:: stable_cycle]
+[accepted_families:: organic|filter_medium]
+[service_roles:: sanitation|sidegrade]
+[central_fallback:: central_medical_service]
 * **Map Token:** `icon_medical` (Зеленый крест).
 * **Высота:** `Tier 1` (Скрыто туманом в фазе Аномалии).
 
 #### Состояния Объекта:
 | Фаза | Визуал на Карте | Взаимодействие (UI) | Геймплейная Роль |
 | :--- | :--- | :--- | :--- |
-| **Stable** | Маркер активен. | Открывает магазин расходников. | **Торговец:** Продажа стимуляторов, лечение. |
+| **Stable** | Внешний лепесток активен, если лаборатория и маршрут сохранились. | Открывает адресную карточку органики и фильтрующих сред. | **Сервис:** санитарная обработка и профильный sidegrade. |
 | **Evac** | Маркер серый (Disabled). | "Закрыто. Эвакуация". | Недоступно. |
 | **Anomaly** | Скрыто (или контур в тумане). | Показывает инфо: *"Loot: Chemistry / Meds"* | **Loot Spot:** Высокий шанс найти редкие медикаменты внутри рейда. |
 
 ### [PREFAB:: MECHANIC_HUB] — "Мастерская"
 *Промышленный ангар.*
+[poi_id:: mechanic_hub]
+[address_id:: stable_mechanic_service]
+[address_class:: stable_external]
+[availability:: stable_cycle]
+[accepted_families:: fastener|conductor|housing]
+[service_roles:: repair_sidegrade|assembly]
+[central_fallback:: central_repair_service]
 * **Map Token:** `icon_craft` (Оранжевый ключ).
 * **Высота:** `Tier 1` (Скрыто туманом).
 
 #### Состояния Объекта:
 | Фаза | Визуал на Карте | Взаимодействие (UI) | Геймплейная Роль |
 | :--- | :--- | :--- | :--- |
-| **Stable** | Маркер активен. | Открывает меню крафта. | **Сервис:** сборка, модификации, верстак. |
+| **Stable** | Внешний лепесток активен при уцелевшем оборудовании. | Открывает несколько конкретных RecipeTransaction. | **Сервис:** профильная сборка или ремонтный sidegrade, не общий крафт. |
 | **Evac** | Маркер серый. | "Мастер ушел". | Недоступно. |
 | **Anomaly** | Скрыто. | Показывает инфо: *"Loot: Scrap / Tech"* | **Loot Spot:** Источник металлолома и чертежей. |
 
 ### [PREFAB:: GUILD_HALL] — "Гильдейский Холл"
 *Богато украшенное каменное здание.*
+[poi_id:: guild_hall]
+[address_id:: stable_guild_hall_service]
+[address_class:: stable_external]
+[availability:: stable_cycle]
+[accepted_families:: proof|contract_cargo]
+[service_roles:: obligation|route|recognition]
+[central_fallback:: none]
 * **Map Token:** `icon_flag` (Флаг фракции).
 * **Высота:** `Tier 1`.
 
@@ -63,6 +137,10 @@ related_systems:
 
 ### [PREFAB:: PORT_DOOR] — "Дверь" (The Door)
 *Сохранившийся приёмный узел Ковчега и древний причал. Отдельная ручная безопасная локация вне рейдовой геометрии.*
+[poi_id:: port_door]
+[address_id:: none]
+[address_class:: none]
+[availability:: permanent]
 * **Map Token:** `icon_portal_blue` (Синяя Арка).
 * **Высота:** `Tier 2` (Арка всегда светится сквозь любой туман).
 * **Свойство:** `Handcrafted Safe Frame` (Статичный объект. Никогда не перемещается, не исчезает и не входит в процедурный пул Порта).
@@ -102,6 +180,10 @@ related_systems:
 
 ### [PREFAB:: PORT_ARENA] — "Перекресток Судеб"
 *Круглая площадка на сваях посреди воды, окруженная лодками-трибунами.*
+[poi_id:: port_arena]
+[address_id:: none]
+[address_class:: none]
+[availability:: stable_cycle]
 * **Map Token:** `icon_swords` (Скрещенные мечи).
 * **Высота:** `Tier 1` (Плоская, скрыта туманом).
 
@@ -114,13 +196,20 @@ related_systems:
 
 ### [PREFAB:: BLACK_MARKET] — "Сердце"
 *Скрытые торговые ряды в полузатопленных подвалах.*
+[poi_id:: port_heart_grey_service]
+[address_id:: stable_grey_service]
+[address_class:: stable_external]
+[availability:: stable_cycle]
+[accepted_families:: disputed_proof|contraband_trace]
+[service_roles:: grey_guarantee|rumor]
+[central_fallback:: none]
 * **Map Token:** `icon_skull_coin` (Череп с монетой).
 * **Высота:** `Tier 0` (Под землей/водой).
 
 #### Состояния Объекта:
 | Фаза | Визуал на Карте | Взаимодействие (UI) | Геймплейная Роль |
 | :--- | :--- | :--- | :--- |
-| **Stable** | Маркер виден **только ночью** (цикл сервера). | Магазин: **"Contraband"**. | **Secret Shop:** Покупка редких инъекторов и информации о данжах. |
+| **Stable** | Маркер виден после открытия и только если подвалы сохранились. | Адресная карточка спорного права и слухов. | **Серая услуга:** поручительство или информация с явным последствием, без почасового окна. |
 | **Evac** | Маркер исчезает. | Нет. | Торговцы скрываются первыми. |
 | **Anomaly** | Скрыто. | Показывает инфо: *"Loot: Smuggled Goods"* | **Loot Spot:** Склады контрабандистов. Высокий шанс найти нелегальные предметы. |
 
@@ -191,7 +280,13 @@ related_systems:
 
 ### Шаблон POI (Template POI)
 [poi_id:: template_poi]
+[address_id:: address_id|none]
 [poi_role:: extraction_risk]
+[address_class:: central|stable_external|none]
+[availability:: permanent|stable_cycle|raid_only]
+[accepted_families:: family_id|none]
+[service_roles:: role_id|none]
+[central_fallback:: poi_id|none]
 [tier:: 1]
 [anomaly_tiers:: T1, T2, T3]
 [dominant_vector:: tech]

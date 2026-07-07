@@ -12,6 +12,7 @@ tags:
 related_files:
   - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
   - "[[03_Factions_Societies/Lore/Social_Political_Order|Social_Political_Order]]"
+  - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
 related_mechanics:
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
   - "[[03_Factions_Societies/Reputation_Rules|Reputation_Rules]]"
@@ -59,6 +60,7 @@ related_mechanics:
 [detail:: [[03_Factions_Societies/Lore/The_First_Reception|The_First_Reception]]]  
 [access_model:: sanitary_passes_foundling_care_quarantine]
 [rel_union:: common_storehouses] (первичный уход требует еды, тепла и базовых наборов)  
+[rel_union:: circle_of_interposition] (спорный живой или мёртвый не должен оставаться один перед заинтересованной стороной)  
 [rel_conflict:: weighing_houses] (найденыш, тело и долг лечения не должны становиться простой собственностью)  
 [rel_conflict:: keepers] (закрытие потока ради барьера спорит с правом принять живого)
 
@@ -80,6 +82,7 @@ related_mechanics:
 [detail:: [[03_Factions_Societies/Lore/The_Common_Storehouses|The_Common_Storehouses]]]  
 [access_model:: recovery_kits_basic_stock_shared_cells]
 [rel_union:: first_reception] (забота невозможна без минимума)  
+[rel_union:: circle_of_interposition] (спорную партию заменяют безопасным минимумом, не наказывая район голодом)  
 [rel_conflict:: weighing_houses] (долг не должен съедать право на минимум)  
 [rel_trade:: support_artels] (полки, фонари и ячейки требуют ремонта)
 
@@ -92,6 +95,31 @@ related_mechanics:
 - **Временные POI:** передвижная кухня, открытая зарядная стойка, ночная полка обмена.
 - **Тень:** минимум превращается в очередь, очередь - в унижение.
 
+## Защита и пауза: Круг Заслона
+
+[faction:: circle_of_interposition]  
+[faction_role:: hearth]  
+[hearth_origin:: late_inter_hearth]  
+[promise:: no_one_alone_before_power]  
+[player_label:: shelter_and_pause]  
+[detail:: [[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]]  
+[access_model:: neutral_shelter_witness_protection_seals_escorts]
+[rel_union:: first_reception] (биологический вывод требует защищённого пациента и сохранного тела)  
+[rel_union:: common_storehouses] (замена спорной партии сохраняет минимум)  
+[rel_union:: contour_chamber] (продление заслона требует проверяемого события и независимого свидетеля)  
+[rel_union:: weighing_houses] (право и происхождение должны пережить силовой спор)  
+[rel_spy:: minstrels] (слух способен запустить раннюю защиту и преждевременную травлю)  
+[rel_conflict:: keepers] (экзистенциальная срочность не должна оставаться единственным голосом)
+
+*Поздний межочаговый Очаг нейтральных убежищ, сопровождения, видимых пломб и временного разделения сторон.*
+
+- **Принимает:** просьбы об эвакуации, свидетелей под угрозой, опечатанные тела, пищу, образцы и выводы компетентных Очагов.
+- **Даёт игроку:** нейтральный кров, сопровождение спорного груза, защиту свидетеля, временные пломбы и контракты исполнения узких ограничений.
+- **Глаголы:** заслонить, эвакуировать, сопроводить, разделить, опечатать, защитить, исполнить.
+- **Не решает:** вину, происхождение, разумность, биологическую безопасность или окончательное право.
+- **Предел:** немедленно вмешивается только в наблюдаемый продолжающийся вред; продление требует чужой компетенции, независимого свидетеля, срока и публичного владельца ошибки.
+- **Тень:** пауза становится мягкой тюрьмой, защита — контролем речи, а временная пломба — оружием разорения.
+
 ## Карты и улики: Палата Контуров
 
 [faction:: contour_chamber]  
@@ -101,6 +129,7 @@ related_mechanics:
 [detail:: [[03_Factions_Societies/Lore/The_Contour_Chamber|The_Contour_Chamber]]]  
 [access_model:: maps_witness_records_route_sheets]
 [rel_spy:: minstrels] (слухи помогают раньше доказательства, но портят чистоту следа)  
+[rel_union:: circle_of_interposition] (маршрут и датированный факт дают заслону проверяемую границу)  
 [rel_conflict:: cathedral_all_faiths] (исповедь и ритуальная тайна не всегда могут стать публичным фактом)  
 [rel_monitor:: keepers] (закрытые маршруты иногда изымаются ради Якоря)
 
@@ -120,18 +149,19 @@ related_mechanics:
 [promise:: provenance_and_debt]  
 [player_label:: price_and_right]  
 [detail:: [[03_Factions_Societies/Lore/The_Weighing_Houses|The_Weighing_Houses]]]  
-[access_model:: provenance_auction_insurance_debt]
+[access_model:: provenance_collateral_insurance_transfer]
 [rel_trade:: common_storehouses] (минимум и долг постоянно спорят за одни ресурсы)  
+[rel_union:: circle_of_interposition] (спорный груз сохраняют до проверки права и происхождения)  
 [rel_conflict:: cathedral_all_faiths] (личная вещь погибшего может быть святыней, уликой или лотом)  
 [rel_spy:: night_guarantors] (серый выкуп возникает там, где официальный дом не может признать сделку)
 
-*Оценщики, ремонтники права, нотариусы, аукционные смотрители, долговые свидетели и мастера происхождения.*
+*Оценщики, ремонтники права, нотариусы, смотрители залога, долговые свидетели и мастера происхождения.*
 
 - **Принимает:** спорный лут, трофеи, долговые записи, трупные жетоны, предметы с грязным происхождением.
-- **Даёт игроку:** оценку, страховку, аукционный доступ, раздел добычи, долговые контракты.
+- **Даёт игроку:** оценку, страховку, залоговые записи, раздел добычи, легализацию конкретной передачи и долговые контракты.
 - **Глаголы:** оценить, закрепить, выкупить, разделить спорное, взыскать.
 - **Столы и сети:** Горячий Стол, Рунный Стол, Похоронные Кружки, Ночные Поручители.
-- **Временные POI:** выездной оценщик, краткий аукцион, поручитель тела, ремонтник права.
+- **Адреса:** постоянная центральная контора, внешний оценщик текущего Stable-цикла, поручитель тела, ремонтник права.
 - **Тень:** долг помнят лучше, чем человека.
 
 ## Ремонт и проходы: Артели Подпорки
@@ -164,6 +194,7 @@ related_mechanics:
 [detail:: [[03_Factions_Societies/Lore/The_Cathedral|The_Cathedral]]]  
 [access_model:: rites_relics_vows_memory_contracts]
 [rel_union:: funeral_circles] (имена и личные вещи погибших требуют ритуального языка)  
+[rel_union:: circle_of_interposition] (имя и тело должны пережить паузу до обряда и решения)  
 [rel_conflict:: proving_houses] (реликвия может быть святыней, а не материалом вскрытия)  
 [rel_conflict:: minstrels] (не вся исповедь должна стать городским слухом)
 
@@ -188,7 +219,7 @@ related_mechanics:
 [rel_conflict:: first_reception] (проба может быть лекарством или живым страдающим существом)  
 [rel_monitor:: keepers] (часть знаний нельзя повторять даже при рабочем результате)
 
-*Лаборатории, дворовые верстаки, алхимические кухни, кузницы, стекольные, батарейные лавки, рунные слесарни и полевые Столы.*
+*Лаборатории, дворовые верстаки, алхимические кухни, кузницы, стекольные, батарейные мастерские, рунные слесарни и полевые Столы.*
 
 - **Принимает:** неизвестные образцы, чертежи, сломанные артефакты, нестабильные батареи, журналы ошибок.
 - **Даёт игроку:** распознавание свойств, открытие тегов, чертежи, модификации, прототипы, экспериментальный крафт.
@@ -204,15 +235,16 @@ related_mechanics:
 [promise:: living_voice]  
 [player_label:: rumors_and_delivery]  
 [detail:: [[03_Factions_Societies/Lore/The_Minstrels|The_Minstrels]]]  
-[access_model:: rumors_messages_secret_paths_temporary_poi]
+[access_model:: rumors_messages_secret_paths_external_addresses]
 [rel_spy:: contour_chamber] (живой слух против доказуемой записи)  
+[rel_union:: circle_of_interposition] (раннее предупреждение позволяет защитить свидетеля до доказательства)  
 [rel_trade:: night_guarantors] (серые просьбы часто нуждаются в голосе без подписи)  
 [rel_conflict:: cathedral_all_faiths] (исповедь и песня несовместимы без согласия)
 
-*Сеть писем, песен, слухов, тайных ходов, репутационных убийств и новостей о временных лавках.*
+*Сеть писем, песен, слухов, тайных ходов, репутационных убийств и новостей об адресах внешних лепестков.*
 
 - **Принимает:** письма, личные вещи, компромат, маршруты, слухи, тайные просьбы, предметы с историей.
-- **Даёт игроку:** слухи, тайные входы, передачу сообщений, стелс-заказы, сведения о временных POI.
+- **Даёт игроку:** слухи, тайные входы, передачу сообщений, скрытные поручения, сведения о Stable-внешних адресах, их маршрутах и рисках.
 - **Глаголы:** передать, подслушать, исказить, раскрыть вовремя, спрятать.
 - **Положение:** пограничная сеть, а не главный Очаг.
 - **Тень:** слух спасает быстрее правды, но убивает чище ножа.
@@ -319,6 +351,7 @@ related_mechanics:
 [detail:: [[03_Factions_Societies/Lore/The_Keepers|The_Keepers]]]  
 [access_model:: emergency_protocols_anchor_routes_red_line]
 [rel_monitor:: all] (вмешиваются, когда спор угрожает Якорю, барьеру или экзистенциальной стабильности)
+[rel_conflict:: circle_of_interposition] (хранительская срочность спорит с правом на паузу, имя и свидетеля)
 
 *Древняя аварийная администрация, скрывающая лица за керамическими масками. Хранители не управляют городским бытом и не участвуют в нормальной конкуренции Очагов.*
 

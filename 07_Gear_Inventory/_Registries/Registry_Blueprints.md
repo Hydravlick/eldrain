@@ -4,66 +4,95 @@ status: active
 system: gear_inventory_registry
 registry_type: blueprints
 category: blueprints
-tags: [database, loot, trade, schematics, recipe_transaction]
+tags: [database, loot, limited_blueprint, physical_custody, recipe_transaction]
 related_files:
   - "[[06_Economy_Loot/Blueprints|Blueprints]]"
   - "[[07_Gear_Inventory/_Registries/Registry_CraftingRecipes|Registry_CraftingRecipes]]"
+  - "[[08_World_Generation/_Registries/Registry_POIs|Registry_POIs]]"
 ---
-# Реестр: Чертежи
+# Реестр: LimitedBlueprint
 
-Реестр хранит физические носители и зарегистрированные права исполнения. Старые списки готового фракционного снаряжения выведены из активного наполнения: Очаг может открыть Мастера, доверие или регистрацию, но не заменяет рейд источником ценной вещи и всех её входов.
+## 1. Ответственность и обещание
 
-## Контракт записи
+Реестр хранит только физические ограниченные инструкции для редких именованных схем. Вынесенный носитель даёт несколько будущих применений, но не заменяет извлечённый состав и подходящий мирный адрес.
+
+Базовый фильтр, батарея, ремонт, лечение и другие центральные услуги не требуют чертежа.
+
+## 2. Рабочий цикл
+
+1. Физический носитель находится и эвакуируется как обычный груз.
+2. Мирный адрес идентификации раскрывает связанную схему и число применений.
+3. Карта показывает совместимые центральные или Stable-внешние адреса.
+4. RecipeTransaction проверяет носитель и извлечённый состав.
+5. После подтверждённого результата `uses_remaining` уменьшается на одно.
+
+Ночной Верстак не исполняет LimitedBlueprint, не читает Схрон и не превращает его в полевую лицензию.
+
+## 3. Активный контракт
 
 ```text
 blueprint_id
-recipe_ids
-custody: physical | registered
-use_model: consumable | limited | permanent
-address
-transfer_rule
-local_conditions
+recipe_ids[]
+custody: physical
+use_model: limited
+uses_remaining
+address_ids[]
+transfer_rule: physical_item
+identification_state: unknown | identified
 source
 balance_state
 ```
 
-- `physical` занимает место, может быть потерян и используется полевой станцией;
-- `registered` существует только у указанного адреса и не передаётся дропом;
-- `consumable` сгорает после зафиксированного исхода;
-- `limited` теряет одно применение;
-- `permanent` возвращает носитель либо сохраняет регистрацию;
-- `source` обязан назвать рейд, контракт, Мастера или исследование, а не абстрактный уровень аккаунта.
+- носитель можно вынести, потерять и физически передать;
+- знание ингредиентов не заменяет предмет;
+- мирный адрес должен существовать в Registry_POIs;
+- отсутствие текущего Stable-адреса не расходует носитель;
+- preview, несовместимый состав и отмена до Commitment не уменьшают применения;
+- после идентификации `recipe_ids` и точный результат становятся видимыми;
+- числовое количество применений задаётся конкретной записью после калибровки.
 
-## Неопознанный носитель
+## 4. Повреждённый носитель
 
 ### Повреждённый планшет
 
 [blueprint_id:: damaged_unknown_carrier]
-[recipe_ids:: unknown]
+[recipe_ids:: unknown_until_identified]
 [custody:: physical]
 [use_model:: limited]
-[address:: proving_houses|field_station]
+[uses_remaining:: unknown_until_identified]
+[address_ids:: stable_mechanic_service]
 [transfer_rule:: physical_item]
-[local_conditions:: identification_required]
+[identification_state:: unknown]
 [source:: raid_archive_or_workshop]
 [balance_state:: unknown]
 
-До идентификации игрок видит цивилизацию, материальный язык и возможное семейство операции, но не точный результат. Дома Пробы могут зарегистрировать знание, восстановить часть страниц либо вернуть физический носитель; конкретный исход задаётся отдельной RecipeTransaction.
+До идентификации игрок видит цивилизацию, материальный язык и вероятный тип обработки, но не точный результат. Мирный мастер раскрывает `recipe_ids`, остаток применений и exact outcome; если текущего адреса нет, носитель остаётся в Схроне до подходящего Stable-цикла.
 
-## Шаблон
+## 5. Сознательно отложено
 
-### Шаблон Чертежа
+Следующие модели не участвуют в активном контракте и шаблоне:
 
-[blueprint_id:: template_blueprint]
-[recipe_ids:: template_recipe]
+- `consumable` — отдельный одноразовый класс;
+- `permanent` — постоянное разблокирование рецепта;
+- `registered` — хранение права у аккаунта, Очага или мастера;
+- копирование и продажа знания;
+- исполнение схемы на полевой станции или Ночном Верстаке.
+
+Их можно вернуть только отдельным авторским решением после проверки limited-модели на hoarding, snowball и ценность потери.
+
+## 6. Шаблон LimitedBlueprint
+
+```text
+[blueprint_id:: blueprint_id]
+[recipe_ids:: recipe_id]
 [custody:: physical]
-[use_model:: consumable|limited|permanent]
-[address:: public|hearth_id|table_id|master_id|field_station]
-[transfer_rule:: physical_item|registered_nontransferable]
-[local_conditions:: none]
-[source:: source_id]
+[use_model:: limited]
+[uses_remaining:: calibrated_value]
+[address_ids:: peaceful_address_id]
+[transfer_rule:: physical_item]
+[identification_state:: identified]
+[source:: raid_source_id]
 [balance_state:: unknown]
+```
 
-- **Player-facing promise:** какую новую операцию позволяет выполнить носитель.
-- **Custody feedback:** где он хранится и чем рискует игрок.
-- **Execution gate:** какой адрес, станция или состояние мира всё ещё требуется.
+Шаблон не допускает рейдовый адрес. Ограниченный носитель является редкой ставкой послерейдового планирования, а не условием обычного полевого производства.

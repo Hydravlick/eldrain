@@ -12,7 +12,7 @@ related_files:
   - "[[04_Player_Entities/MVP_3x3_Design_Contract|Контракт MVP-матрицы 3×3]]"
   - "[[07_Gear_Inventory/Gear_Progression|Gear_Progression]]"
 ---
-# Система Комбинаций Расы и Класса (Race x Class Combo)
+# Система Архетипов Расы и Практики (Race × Practice)
 
 > Этот документ описывает базовые P/Q/E. Развитие тегов конкретной Пешки и `Trait Fusion` определены в [[04_Player_Entities/Trait_Development|Trait Development]].
 
@@ -47,7 +47,7 @@ $$Ability = (Race\_Tag * Class\_Tag) + List[tags]$$
 
 В MVP готовый набор P/Q/E хранится в [[04_Player_Entities/_Registries/Registry_Combos]]. Это не ручной контр-пик, а результат слияния:
 
-- класс даёт методологию;
+- практика даёт методологию;
 - раса даёт физическое исполнение и ограничения;
 - теги и proficiency меняют итоговый Combat Profile, но не подменяют исходную фантазию combo.
 

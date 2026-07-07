@@ -13,6 +13,7 @@ related_files:
   - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
   - "[[03_Factions_Societies/Lore/The_Cartographers|The_Cartographers]]"
   - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
+  - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
   - "[[02_World_Lore/Lizard_Culture|Lizard_Culture]]"
 related_mechanics:
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
@@ -56,7 +57,8 @@ related_mechanics:
 - разбор ложных слухов;
 - доказательства происхождения района;
 - предупреждения о фазовых изменениях;
-- спор между "я видел" и "это можно проверить".
+- спор между "я видел" и "это можно проверить";
+- маршрут спорной партии, свидетеля или опечатанного груза между городскими адресами.
 
 ## Что получает игрок
 
@@ -100,6 +102,7 @@ related_mechanics:
 - **С Хранителями:** некоторые маршруты существуют, но не должны быть опубликованы.
 - **С Подпоркой:** карта может показать, что район нужно отсечь, раньше чем жители готовы это услышать.
 - **С Меловыми Руками:** неофициальная метка спасает сейчас, но может убить завтра.
+- **С Кругом Заслона:** Палата подтверждает наблюдаемый факт и границу маршрута, но не должна выдавать карту укрытия тем, от кого защищают свидетеля.
 
 ## Тень
 
