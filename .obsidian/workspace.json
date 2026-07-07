@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "06_Economy_Loot/Blueprints.md",
+                "file": "00_Index.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Blueprints"
+              "title": "00_Index"
             }
           }
         ]
@@ -205,6 +205,8 @@
   },
   "active": "e1df6c9ee538c761",
   "lastOpenFiles": [
+    "Claude.md",
+    "06_Economy_Loot/Blueprints.md",
     "06_Economy_Loot/Barter_System.md",
     "06_Economy_Loot/Auction_House.md",
     "03_Factions_Societies/_Registries/Registry_Factions.md",
@@ -230,8 +232,6 @@
     "07_Gear_Inventory/_Registries/Registry_CraftingRecipes.md",
     "08_World_Generation/Generation/18_POI_Metadata_Registry.md",
     "08_World_Generation/Generation/17_Dual_State_POIs.md",
-    "05_Combat_Survival/Field_Crafting.md",
-    "08_World_Generation/Generation/04_Global_Map_Rotation.md",
     "Images/Buildings/Edge_of_the_city.png",
     "Images/Weapons/Pasted image 20240309044824.webp",
     "Images/Weapons/Pasted image 20240310233800.webp",
