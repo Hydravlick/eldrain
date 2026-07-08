@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "00_Index.md",
+                "file": "03_Factions_Societies/_Matrices/00_Faction_Reputation.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "00_Index"
+              "title": "00_Faction_Reputation"
             }
           }
         ]
@@ -203,18 +203,23 @@
       "notion-like-tables:Create loom": false
     }
   },
-  "active": "e1df6c9ee538c761",
+  "active": "977ad2cccc7a3a5a",
   "lastOpenFiles": [
+    "Foodchain.md",
     "Claude.md",
+    "03_Factions_Societies/_Matrices/00_Faction_Reputation.md",
+    "03_Factions_Societies/_Matrices",
+    "03_Factions_Societies/Pledge_Contracts.md",
+    "03_Factions_Societies/Quest_Engine.md",
+    "03_Factions_Societies/Quest_Engine_Grammar.md",
+    "03_Factions_Societies/Reputation_Rules.md",
+    "03_Factions_Societies/_Registries/Registry_Factions.md",
+    "00_Index.md",
+    "Проектирование масштабируемой тактической боевой системы.md",
     "06_Economy_Loot/Blueprints.md",
     "06_Economy_Loot/Barter_System.md",
     "06_Economy_Loot/Auction_House.md",
-    "03_Factions_Societies/_Registries/Registry_Factions.md",
     "03_Factions_Societies/_Registries",
-    "03_Factions_Societies/Quest_Engine_Grammar.md",
-    "03_Factions_Societies/Quest_Engine.md",
-    "03_Factions_Societies/Pledge_Contracts.md",
-    "03_Factions_Societies/00_Faction_Reputation.md",
     "01_Core_Vision/01_Vision.md",
     "01_Core_Vision/02_Core_Loop.md",
     "01_Core_Vision/Glossary.md",
@@ -227,11 +232,6 @@
     "04_Player_Entities/_Matrices/00_Character_Matrix.md",
     "04_Player_Entities/_Matrices/00_Balance.md",
     "04_Player_Entities/_Matrices/00_Archetype_Matrix.md",
-    "Foodchain.md",
-    "07_Gear_Inventory/_Registries/Registry_Blueprints.md",
-    "07_Gear_Inventory/_Registries/Registry_CraftingRecipes.md",
-    "08_World_Generation/Generation/18_POI_Metadata_Registry.md",
-    "08_World_Generation/Generation/17_Dual_State_POIs.md",
     "Images/Buildings/Edge_of_the_city.png",
     "Images/Weapons/Pasted image 20240309044824.webp",
     "Images/Weapons/Pasted image 20240310233800.webp",
@@ -250,7 +250,6 @@
     "02_World_Lore.7z",
     "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20.zip",
     "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20",
-    "Истории/Вертикальный срез",
     "Untitled.canvas",
     "Собор.canvas",
     "Город/Кварталы/Концепты/Центр.canvas",
