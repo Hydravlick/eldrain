@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "bdf0d20147e4c1fe",
+        "id": "bff9a42cead50475",
         "type": "tabs",
         "children": [
           {
-            "id": "e1df6c9ee538c761",
+            "id": "c718d76a57860c48",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "split-diff-view",
               "state": {
-                "file": "03_Factions_Societies/_Matrices/00_Faction_Reputation.md",
-                "mode": "preview",
-                "source": false
+                "aFile": "03_Factions_Societies/_Matrices/00_Faction_Reputation.md",
+                "bFile": "03_Factions_Societies/_Matrices/00_Faction_Reputation.md",
+                "aRef": ""
               },
-              "icon": "lucide-file",
-              "title": "00_Faction_Reputation"
+              "icon": "diff",
+              "title": "Diff: 00_Faction_Reputation  (Working Tree)"
             }
           }
         ]
@@ -203,35 +203,38 @@
       "notion-like-tables:Create loom": false
     }
   },
-  "active": "977ad2cccc7a3a5a",
+  "active": "c718d76a57860c48",
   "lastOpenFiles": [
-    "Foodchain.md",
-    "Claude.md",
+    "_Archive/_MERGED_SOURCES.md",
+    "04_Player_Entities/Attributes_TOUCH.md",
+    "02_World_Lore/Toad_Culture.md",
+    "04_Player_Entities/_Registries/Registry_Combos.md",
+    "04_Player_Entities/_Matrices/00_Synergy_Map.md",
     "03_Factions_Societies/_Matrices/00_Faction_Reputation.md",
+    "03_Factions_Societies/_Registries/Registry_Factions.md",
+    "04_Player_Entities/_Registries/Registry_Tags.md",
+    "Gemini.md",
+    "tests/synergy-map.test.mjs",
+    "tests",
+    "docs/superpowers/plans/2026-07-08-synergy-map-three-modes.md",
+    "docs/superpowers/specs/2026-07-08-synergy-map-three-modes-design.md",
+    "04_Player_Entities/_Registries/Registry_Races.md",
+    "04_Player_Entities/_Matrices/00_Character_Matrix.md",
+    "04_Player_Entities/_Matrices/00_Balance.md",
+    "04_Player_Entities/_Matrices/00_Archetype_Matrix.md",
+    "07_Gear_Inventory/_Registries/Registry_Items.md",
+    "07_Gear_Inventory/Affix_Grammar.md",
+    "Claude.md",
+    "Foodchain.md",
     "03_Factions_Societies/_Matrices",
     "03_Factions_Societies/Pledge_Contracts.md",
     "03_Factions_Societies/Quest_Engine.md",
     "03_Factions_Societies/Quest_Engine_Grammar.md",
     "03_Factions_Societies/Reputation_Rules.md",
-    "03_Factions_Societies/_Registries/Registry_Factions.md",
     "00_Index.md",
     "Проектирование масштабируемой тактической боевой системы.md",
     "06_Economy_Loot/Blueprints.md",
-    "06_Economy_Loot/Barter_System.md",
-    "06_Economy_Loot/Auction_House.md",
     "03_Factions_Societies/_Registries",
-    "01_Core_Vision/01_Vision.md",
-    "01_Core_Vision/02_Core_Loop.md",
-    "01_Core_Vision/Glossary.md",
-    "01_Core_Vision/GDD_Main.md",
-    "04_Player_Entities/Entity_Grimoire.md",
-    "04_Player_Entities/Combat_Profile_Pipeline.md",
-    "04_Player_Entities/Attributes_TOUCH.md",
-    "04_Player_Entities/Ability_Synergy.md",
-    "04_Player_Entities/_Matrices/00_Synergy_Map.md",
-    "04_Player_Entities/_Matrices/00_Character_Matrix.md",
-    "04_Player_Entities/_Matrices/00_Balance.md",
-    "04_Player_Entities/_Matrices/00_Archetype_Matrix.md",
     "Images/Buildings/Edge_of_the_city.png",
     "Images/Weapons/Pasted image 20240309044824.webp",
     "Images/Weapons/Pasted image 20240310233800.webp",
@@ -248,8 +251,6 @@
     "Images/Buildings/107f45e2c6964b7584529f502c9cf540.webp",
     "03_Factions_Societies.7z",
     "02_World_Lore.7z",
-    "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20.zip",
-    "_Archive/Eldraine_MVP_3x3_Claude_handoff_2026-06-20",
     "Untitled.canvas",
     "Собор.canvas",
     "Город/Кварталы/Концепты/Центр.canvas",

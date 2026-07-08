@@ -3,14 +3,14 @@ type: mechanic
 status: active
 system: player_core
 category: attributes
-tags: [stats, touch, hidden_substats, arcanegun_combat, formulas, core]
+tags:
+  - stats
+  - touch
+  - hidden_substats
+  - arcanegun_combat
+  - formulas
+  - core
 base_attribute: 10
-touch_schema:
-  - { key: TRQ, label: Тяга }
-  - { key: GRP, label: Хват }
-  - { key: LYR, label: Слой }
-  - { key: GLW, label: Накал }
-  - { key: SNS, label: Чутье }
 related_files:
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile_Pipeline]]"
   - "[[05_Combat_Survival/Weapon_Core|Weapon_Core]]"

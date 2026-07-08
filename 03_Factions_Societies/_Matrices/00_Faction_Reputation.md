@@ -2,7 +2,8 @@
 type: mechanic
 status: active
 system: factions
-tags: [factions]
+tags:
+  - factions
 ---
 
 ```dataviewjs
@@ -32,14 +33,14 @@ try {
 
     // === 2.1 НАСТРОЙКА ЛЕГЕНДЫ ===
     const legendData = [
-        { label: "Враги", groupingKey: "Enemies", color: "#ff4757", priority: 10, types: ["enemy", "rival", "conflict", "hunt"] },
-        { label: "Власть", groupingKey: "Power", color: "#00b8ff", priority: 8, types: ["command", "client", "monitor"] },
-        { label: "Союз", groupingKey: "Union", color: "#00ff9d", priority: 6, types: ["partner", "synergy", "friend"] },
-        { label: "Культ", groupingKey: "Cult", color: "#d980fa", priority: 5, types: ["worship", "servant"] },
+        { label: "Враги", groupingKey: "Enemies", color: "#ff4757", priority: 10, types: ["conflict", "hunt"] },
+        { label: "Власть", groupingKey: "Power", color: "#00b8ff", priority: 8, types: ["monitor"] },
+        { label: "Союз", groupingKey: "Union", color: "#00ff9d", priority: 6, types: ["union"] }, 
         { label: "Торговля", groupingKey: "Trade", color: "#ffa502", priority: 4, types: ["trade"] },
-        { label: "Слежка", groupingKey: "Spy", color: "#a4b0be", priority: 2, types: ["spy"] }, 
-        { label: "Нейтрально", groupingKey: "Neutral", color: "#a4b0be", priority: 1, types: ["neutral", "default"] }
+        { label: "Тайны", groupingKey: "Spy", color: "#a4b0be", priority: 2, types: ["spy"] }
     ];
+
+    const UNKNOWN_COLOR = "#57606f"; 
 
     const colorMap = {};
     const priorityMap = {};
@@ -66,7 +67,7 @@ try {
     const cleanID = (str) => str ? str.toLowerCase().trim() : null;
     
     const getRelDetails = (text) => {
-        const re = /\[rel_([a-zA-Z0-9_]+)::\s*([^\]]+)\](?:[^\\n\\r]*?\(?([^)\n\r]+)\)?)?/g;
+        const re = /\[rel_([a-zA-Z0-9_]+)::\s*([^\]]+)\](?:[^\n\r]*?\(?([^)\n\r]+)\)?)?/g;
         return [...text.matchAll(re)].map(m => {
             let idRaw = m[2].trim();
             if (idRaw.includes('(')) idRaw = idRaw.split('(')[0].trim();
@@ -94,7 +95,7 @@ try {
         const idMatch = body.match(/\[faction::\s*([^\]]+)\]/);
         if (!idMatch) return;
         
-        const isCenter = /\[(role|tier|faction)::\s*(center|hidden|major)\]/i.test(body);
+        const isCenter = /\[(role|tier|faction|faction_role)::\s*(center|hidden|major|supra_faction)\]/i.test(body);
         const descMatch = body.match(/\*([^*]+)\*/);
 
         nodes.push({
@@ -120,7 +121,7 @@ try {
                 source: src, target: tgt,
                 relations: [],
                 maxPriority: -1,
-                dominantType: "neutral"
+                dominantType: null
             });
         }
         
@@ -149,17 +150,13 @@ try {
         });
 
         srcNode.rawRelations.forEach(rel => {
-            if (rel.targetId === "all" || rel.targetId === "any") {
-                nodes.forEach(targetNode => {
-                    if (targetNode.id !== srcNode.id && !explicitTargets.has(targetNode.id)) {
-                         addRelation(srcNode, targetNode, rel.type, rel.reason || "Universal relation");
-                    }
-                });
-            } else {
-                const targetNode = nodeMap.get(rel.targetId);
-                addRelation(srcNode, targetNode, rel.type, rel.reason);
-            }
-        });
+        if (rel.targetId === "all" || rel.targetId === "any") {
+            return; 
+        } else {
+            const targetNode = nodeMap.get(rel.targetId);
+            addRelation(srcNode, targetNode, rel.type, rel.reason);
+	        }
+	    });
     });
 
     // === 5. РАСЧЕТ КООРДИНАТ ===
@@ -173,7 +170,6 @@ try {
 
     outerNodes.forEach((d, i) => { d.y = outerRadius; d.x = i * (360 / outerNodes.length); });
     
-    // Поворот центрального круга
     const centerOffset = 360 / 12; 
     centerNodes.forEach((d, i) => { 
         d.y = innerRadius; 
@@ -194,6 +190,25 @@ try {
         };
     }).filter(l => l !== null);
 
+    function linkHasGroup(link, groupKey) {
+        return link.relations.some(r => typeToGroupMap[r.type] === groupKey);
+    }
+
+    function countRelationsForGroup(groupKey, links = finalLinks) {
+        return links.reduce((total, link) =>
+            total + link.relations.filter(r => typeToGroupMap[r.type] === groupKey).length,
+            0
+        );
+    }
+
+    function countPairsForGroup(groupKey, links = finalLinks) {
+        return links.filter(link => linkHasGroup(link, groupKey)).length;
+    }
+
+    const legendRelationCounts = {};
+    legendData.forEach(g => legendRelationCounts[g.groupingKey] = countRelationsForGroup(g.groupingKey));
+    const totalRelations = finalLinks.reduce((acc, l) => acc + l.relations.length, 0);
+
     // === 6. ОТРИСОВКА ===
     dv.container.innerHTML = "";
     const mainContainer = dv.container.createDiv({ cls: "faction-container" });
@@ -201,36 +216,64 @@ try {
     mainContainer.style.margin = "0 auto";
     
     // 6.1 ЛЕГЕНДА
+    let activeFilters = new Set(); 
+
     const legendDiv = mainContainer.createDiv({ cls: "faction-legend" });
     Object.assign(legendDiv.style, {
-        display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "10px",
-        marginBottom: "10px", padding: "5px", borderBottom: "1px solid var(--background-modifier-border)"
+        display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "4px",
+        marginBottom: "8px", padding: "4px", borderBottom: "1px solid var(--background-modifier-border)"
     });
 
-    const legendItems = d3.select(legendDiv)
-        .selectAll("div.legend-item")
-        .data(legendData)
-        .join("div")
-        .style("display", "flex")
-        .style("align-items", "center")
-        .style("font-size", "12px")
-        .style("color", "var(--text-muted)")
-        .style("cursor", "pointer")
-        .style("padding", "2px 6px")
+    const allChip = d3.select(legendDiv)
+        .append("button")
+        .style("padding", "5px 9px")
+        .style("border", "1px solid var(--background-modifier-border)")
         .style("border-radius", "4px")
-        .style("transition", "all 0.2s ease")
+        .style("background", "var(--background-secondary)")
+        .style("color", "var(--text-normal)")
+        .style("font-size", "12px")
+        .style("cursor", "pointer")
+        .style("font-family", "inherit")
+        .text(`Всего: ${totalRelations}`)
+        .on("click", () => {
+            activeFilters.clear();
+            applyFilters();
+        })
+        .on("mouseover", resetHighlight);
+
+    const legendItems = d3.select(legendDiv)
+        .selectAll("button.legend-item")
+        .data(legendData)
+        .join("button")
+        .attr("class", "legend-item")
+        .style("display", "inline-flex")
+        .style("align-items", "center")
+        .style("padding", "5px 9px")
+        .style("border", "1px solid transparent")
+        .style("border-radius", "4px")
+        .style("background", "transparent")
+        .style("color", "var(--text-muted)")
+        .style("font-size", "12px")
+        .style("cursor", "pointer")
+        .style("white-space", "nowrap")
+        .style("transition", "all 0.16s ease")
+        .style("font-family", "inherit")
+        .on("click", function(e, d) {
+            if (activeFilters.has(d.groupingKey)) {
+                activeFilters.delete(d.groupingKey);
+            } else {
+                activeFilters.add(d.groupingKey);
+            }
+            applyFilters();
+        })
         .on("mouseover", function(e, d) {
-            d3.select(this)
-                .style("color", "var(--text-normal)")
-                .style("font-weight", "bold")
-                .style("background", "var(--background-modifier-hover)");
-            highlightGroup(d.groupingKey, d.label, d.color);
+            if (activeFilters.size === 0) {
+                highlightGroup(d.groupingKey, d.label, d.color);
+            } else {
+                previewGroupWithinFilter(d.groupingKey, d.label, d.color);
+            }
         })
         .on("mouseout", function() {
-            d3.select(this)
-                .style("color", "var(--text-muted)")
-                .style("font-weight", "normal")
-                .style("background", "transparent");
             resetHighlight();
         });
 
@@ -242,8 +285,7 @@ try {
         .style("margin-right", "6px")
         .style("border-radius", "2px");
 
-    legendItems.append("span")
-        .text(d => d.label);
+    legendItems.append("span").text(d => `${d.label}: ${legendRelationCounts[d.groupingKey] || 0}`);
 
     // 6.2 SVG
     const svgContainer = mainContainer.createDiv();
@@ -264,18 +306,21 @@ try {
         .data(finalLinks).join("path")
         .attr("d", d => lineGen(d.path))
         .style("fill", "none")
-        .style("stroke", d => colorMap[d.dominantType] || "#555")
+        .style("stroke", d => colorMap[d.dominantType] || UNKNOWN_COLOR)
         .style("stroke-opacity", 0.4)
         .style("stroke-width", 2)
         .style("cursor", "pointer")
         .style("transition", "stroke-opacity 0.2s ease")
         .on("mouseover", function(e, d) {
-            d3.select(this).style("stroke-opacity", 1).style("stroke-width", 4);
+            if (!isLinkActive(d)) {
+                updateInfoPair(d);
+                return;
+            }
+            d3.select(this).style("stroke-opacity", 1).style("stroke-width", 4).raise();
             updateInfoPair(d);
         })
         .on("mouseout", function() {
-            d3.select(this).style("stroke-opacity", 0.4).style("stroke-width", 2);
-            setDefaultInfo();
+            resetHighlight();
         });
 
     const labelGroups = svg.append("g").selectAll("g")
@@ -334,68 +379,130 @@ try {
     });
 
     function setDefaultInfo() {
-        const totalRelations = finalLinks.reduce((acc, l) => acc + l.relations.length, 0);
-        
-        const counts = {};
-        legendData.forEach(g => counts[g.label] = 0);
-        
-        finalLinks.forEach(l => {
-            l.relations.forEach(r => {
-                const groupKey = typeToGroupMap[r.type];
-                const label = groupToLabelMap[groupKey];
-                if (label) counts[label]++;
-            });
-        });
-
-        const statsHtml = legendData
-            .filter(g => counts[g.label] > 0)
-            .map(g => `<span style="color:${g.color}; margin: 0 6px">● ${g.label}: ${counts[g.label]}</span>`)
-            .join("");
-
         infoPanel.innerHTML = `
-            <div style="font-size: 0.9em; display:flex; flex-wrap:wrap; justify-content:center; gap: 10px; line-height: 1.4;">
-                <span style="font-weight:bold; color:var(--text-normal)">Всего: ${totalRelations}</span>
-                ${statsHtml}
-            </div>
-            <div style="font-size: 0.8em; color:var(--text-muted); margin-top:4px">Наведите на узел или легенду для деталей</div>
+            <div style="font-weight:bold; color:var(--text-normal); font-size: 1em;">Карта отношений</div>
+            <div style="font-size: 0.82em; color:var(--text-muted); margin-top:4px">Наведите на узел, линию или тип связи для деталей</div>
         `;
     }
     
     setDefaultInfo();
+    
+    function isLinkActive(d) {
+        if (activeFilters.size === 0) return true;
+        return d.relations.some(r => activeFilters.has(typeToGroupMap[r.type]));
+    }
+
+    function dominantMatchedType(d) {
+        if (activeFilters.size === 0) return d.dominantType;
+        const matched = d.relations.filter(r => activeFilters.has(typeToGroupMap[r.type]));
+        if (matched.length === 0) return d.dominantType;
+        let maxP = -1, domT = d.dominantType;
+        matched.forEach(r => {
+            const p = priorityMap[r.type] ?? -1;
+            if (p > maxP) { maxP = p; domT = r.type; }
+        });
+        return domT;
+    }
+
+    function resolveLinkColor(d) {
+        return colorMap[dominantMatchedType(d)] || UNKNOWN_COLOR;
+    }
+
+    function nodeHasVisibleLink(n) {
+        return finalLinks.some(l => (l.source === n || l.target === n) && isLinkActive(l));
+    }
+
+    function renderBaseState() {
+        const filtered = activeFilters.size > 0;
+
+        linkPaths
+            .style("stroke", d => resolveLinkColor(d))
+            .style("stroke-opacity", d => filtered ? (isLinkActive(d) ? 0.8 : 0.02) : 0.4)
+            .style("stroke-width", d => filtered ? (isLinkActive(d) ? 3 : 1) : 2);
+
+        labels
+            .style("opacity", d => filtered ? (nodeHasVisibleLink(d) ? 1 : 0.25) : 1)
+            .style("font-weight", "normal")
+            .style("fill", "var(--text-normal)");
+        centers
+            .style("opacity", d => filtered ? (nodeHasVisibleLink(d) ? 1 : 0.25) : 1);
+
+        if (filtered) {
+            infoPanel.innerHTML = `<div style="font-weight:bold; font-size: 1.1em; color: var(--text-normal)">Режим фильтрации</div>
+            <div style="font-size: 0.9em; color:var(--text-muted)">Показаны связи: ${Array.from(activeFilters).map(k => groupToLabelMap[k]).join(" + ")}</div>`;
+        } else {
+            setDefaultInfo();
+        }
+    }
+
+    function applyFilters() {
+        const isAll = activeFilters.size === 0;
+
+        allChip
+            .style("background", isAll ? "var(--background-secondary)" : "transparent")
+            .style("border-color", isAll ? "var(--background-modifier-border)" : "transparent")
+            .style("color", isAll ? "var(--text-normal)" : "var(--text-muted)");
+
+        legendItems
+            .style("background", d => activeFilters.has(d.groupingKey) ? "var(--background-modifier-hover)" : "transparent")
+            .style("color", d => activeFilters.has(d.groupingKey) ? "var(--text-normal)" : "var(--text-muted)")
+            .style("font-weight", d => activeFilters.has(d.groupingKey) ? "600" : "normal")
+            .style("border-color", d => activeFilters.has(d.groupingKey) ? d.color : "transparent");
+
+        renderBaseState();
+    }
 
     function highlightGroup(groupKey, label, color) {
         linkPaths.style("stroke-opacity", d => {
-            const linkGroup = typeToGroupMap[d.dominantType];
-            return linkGroup === groupKey ? 1 : 0.05;
+            return linkHasGroup(d, groupKey) ? 1 : 0.05;
         }).style("stroke-width", d => {
-            const linkGroup = typeToGroupMap[d.dominantType];
-            return linkGroup === groupKey ? 3 : 2;
+            return linkHasGroup(d, groupKey) ? 3 : 2;
         });
         
-        const count = finalLinks.filter(d => typeToGroupMap[d.dominantType] === groupKey).length;
+        const relationCount = countRelationsForGroup(groupKey);
+        const pairCount = countPairsForGroup(groupKey);
 
         infoPanel.innerHTML = `
             <div style="font-weight:bold; color:${color}; font-size: 1.1em">${label}</div>
             <hr style="margin:5px 0; border-color:var(--background-modifier-border); width: 50%">
-            <div>Всего связей: <strong>${count}</strong></div>
+            <div>Отношений: <strong>${relationCount}</strong>; пар: <strong>${pairCount}</strong></div>
+        `;
+    }
+
+    function previewGroupWithinFilter(groupKey, label, color) {
+        linkPaths.style("stroke-opacity", d => {
+            if (!isLinkActive(d)) return 0.02;
+            return linkHasGroup(d, groupKey) ? 1 : 0.15;
+        }).style("stroke-width", d => {
+            if (!isLinkActive(d)) return 1;
+            return linkHasGroup(d, groupKey) ? 3 : 2;
+        });
+
+        const visibleLinks = finalLinks.filter(isLinkActive);
+        const relationCount = countRelationsForGroup(groupKey, visibleLinks);
+        const pairCount = countPairsForGroup(groupKey, visibleLinks);
+
+        infoPanel.innerHTML = `
+            <div style="font-weight:bold; color:${color}; font-size: 1.1em">${label}</div>
+            <hr style="margin:5px 0; border-color:var(--background-modifier-border); width: 50%">
+            <div>В текущем фильтре: <strong>${relationCount}</strong> отношений; <strong>${pairCount}</strong> пар</div>
         `;
     }
 
     function updateInfoPair(d) {
         const grouped = {};
         d.relations.forEach(r => {
-            const groupKey = typeToGroupMap[r.type] || "Neutral";
+            const groupKey = typeToGroupMap[r.type] || r.type;
             if (!grouped[groupKey]) {
                 grouped[groupKey] = {
                     key: groupKey, reasons: [], directions: new Set(),
-                    color: colorMap[r.type] || "#777", label: groupToLabelMap[groupKey] || r.type
+                    color: colorMap[r.type] || UNKNOWN_COLOR, label: groupToLabelMap[groupKey] || r.type
                 };
             }
             if (r.reason && !grouped[groupKey].reasons.includes(r.reason)) grouped[groupKey].reasons.push(r.reason);
             grouped[groupKey].directions.add(r.fromName);
         });
 
-        // === ВАЖНО: Тег <strong> вместо span font-weight ===
         let htmlContent = `<div style="margin-bottom: 6px; font-weight: bold; color: var(--text-normal)">Взаимодействия</div>`;
         const srcName = d.source.data.name;
         const tgtName = d.target.data.name;
@@ -430,11 +537,17 @@ try {
     }
 
     function highlightNode(d) {
-        linkPaths.style("stroke-opacity", 0.05);
+        const filtered = activeFilters.size > 0;
+
+        linkPaths
+            .style("stroke-opacity", l => (filtered && !isLinkActive(l)) ? 0.02 : 0.08)
+            .style("stroke-width", l => (filtered && !isLinkActive(l)) ? 1 : 2);
+
         labels.style("opacity", 0.3).style("font-weight", "normal").style("fill", "var(--text-normal)");
         centers.style("opacity", 0.3);
 
-        const related = linkPaths.filter(l => l.source === d || l.target === d)
+        const related = linkPaths
+            .filter(l => (l.source === d || l.target === d) && (!filtered || isLinkActive(l)))
             .style("stroke-opacity", 1).style("stroke-width", 3).raise();
 
         const neighbors = new Set([d]);
@@ -446,11 +559,10 @@ try {
         centers.filter(n => neighbors.has(n)).style("opacity", 1);
 
         labels.filter(n => n === d)
-            .style("fill", "#ffda79") // На графике оставляем желтый
+            .style("fill", "#ffda79") 
             .style("opacity", 1)
             .style("font-weight", "bold");
 
-        // В Инфо-панели используем <strong>, чтобы подхватил тему Obsidian
         infoPanel.innerHTML = `
             <strong style="font-size:1.1em; display:block; margin-bottom: 2px;">${d.data.name}</strong>
             <hr style="margin:5px 0; border-color:var(--background-modifier-border); width: 50%">
@@ -459,10 +571,7 @@ try {
     }
 
     function resetHighlight() {
-        linkPaths.style("stroke-opacity", 0.4).style("stroke-width", 2);
-        labels.style("opacity", 1).style("font-weight", "normal").style("fill", "var(--text-normal)");
-        centers.style("opacity", 1);
-        setDefaultInfo();
+        renderBaseState();
     }
 
     function openLink(d) {

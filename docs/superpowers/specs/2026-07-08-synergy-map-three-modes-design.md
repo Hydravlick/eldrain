@@ -37,6 +37,7 @@ No shared-vector or arsenal controls remain in the radial map. Their raw data ma
 - Remove all node dots. Labels are the interactive nodes.
 - Keep labels inside the SVG viewBox and use the same readable 11px interface typography as FR.
 - Label hover highlights the selected profile and related labels, dims unrelated labels, and shows only the active mode's relationships.
+- The hovered label uses FR's golden theme accent `var(--text-accent)` and returns to its base color on mouseout.
 - Mouseout always restores the current mode through `renderBaseState()`.
 
 ### Angular layout
