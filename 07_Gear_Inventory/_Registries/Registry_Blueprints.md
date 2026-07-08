@@ -2,114 +2,97 @@
 type: registry
 status: active
 system: gear_inventory_registry
-registry_type: items
+registry_type: blueprints
 category: blueprints
-tags: [database, loot, trade, schematics]
+tags: [database, loot, limited_blueprint, physical_custody, recipe_transaction]
+related_files:
+  - "[[06_Economy_Loot/Blueprints|Blueprints]]"
+  - "[[07_Gear_Inventory/_Registries/Registry_CraftingRecipes|Registry_CraftingRecipes]]"
+  - "[[08_World_Generation/_Registries/Registry_POIs|Registry_POIs]]"
 ---
-# Реестр: Предметы-Чертежи (Blueprints Items)
+# Реестр: LimitedBlueprint
 
-> **Логика:** Это физические носители информации (флешки, бумажные схемы, планшеты). Занимают место в сетке инвентаря.
-> **Mechanic:** Для крафта предмета этот Чертеж должен лежать произвольно в слотах "Input" у кузнеца.
-> **Consumption:**
-> * `[consumable:: true]` — Чертеж исчезает после крафта (одноразовый).
-> * `[consumable:: false]` — Чертеж возвращается игроку (многоразовая матрица).
+## 1. Ответственность и обещание
 
----
+Реестр хранит только физические ограниченные инструкции для редких именованных схем. Вынесенный носитель даёт несколько будущих применений, но не заменяет извлечённый состав и подходящий мирный адрес.
 
-## Фракционные Схемы (Faction Schematics)
-*Покупаются у интендантов. Обычно выглядят как защищенные карты памяти.*
+Базовый фильтр, батарея, ремонт, лечение и другие центральные услуги не требуют чертежа.
 
-### Схема: Маска "Чистый Воздух"
-[blueprint:: keeper_mask]
-*Зашифрованный чип Хранителей с инструкцией по сборке фильтров.*
-- **Статы:** `[weight:: 0.1kg]` | `[stack:: 5]` | `[value:: 300]`
-- **Тип:** `[consumable:: true]` (Одноразовый протокол).
-- **Требование:** `[rep:: keepers : +3]` для покупки.
+## 2. Рабочий цикл
 
-### Схема: Ботинки Первопроходца
-[blueprint:: pathfinder_boots]
-*Старая бумажная карта с пометками обувщика Картографов.*
-- **Статы:** `[weight:: 0.05kg]` | `[stack:: 10]` | `[value:: 250]`
-- **Тип:** `[consumable:: true]`.
-- **Требование:** `[rep:: cartographers : +2]` для покупки.
+1. Физический носитель находится и эвакуируется как обычный груз.
+2. Мирный адрес идентификации раскрывает связанную схему и число применений.
+3. Карта показывает совместимые центральные или Stable-внешние адреса.
+4. RecipeTransaction проверяет носитель и извлечённый состав.
+5. После подтверждённого результата `uses_remaining` уменьшается на одно.
 
-### Схема: Мод "Тихая Поступь"
-[blueprint:: silent_soles]
-*Акустическая матрица Менестрелей.*
-- **Статы:** `[weight:: 0.1kg]` | `[stack:: 5]` | `[value:: 400]`
-- **Тип:** `[consumable:: true]`.
-- **Требование:** `[rep:: minstrels : +2]` для покупки.
+Ночной Верстак не исполняет LimitedBlueprint, не читает Схрон и не превращает его в полевую лицензию.
 
-### Схема: Плащ Фантома
-[blueprint:: phantom_cloak]
-*Голографический проектор чертежа. Мерцает.*
-- **Статы:** `[weight:: 0.2kg]` | `[stack:: 1]` | `[value:: 1200]`
-- **Тип:** `[consumable:: true]`
-- **Требование:** `[rep:: minstrels : +4]` для покупки.
+## 3. Активный контракт
 
-### Схема: Вольт-Конденсатор
-[blueprint:: volt_condenser]
-*Синька (Blueprint) из Академии с печатью "Одобрено".*
-- **Статы:** `[weight:: 0.3kg]` | `[stack:: 1]` | `[value:: 800]`
-- **Тип:** `[consumable:: true]`.
-- **Требование:** `[rep:: academy : +2]` для покупки.
+```text
+blueprint_id
+recipe_ids[]
+custody: physical
+use_model: limited
+uses_remaining
+address_ids[]
+transfer_rule: physical_item
+identification_state: unknown | identified
+source
+balance_state
+```
 
-### Схема: Ловушка Теслы
-[blueprint:: tesla_trap]
-*Тяжелый технический мануал в переплете.*
-- **Статы:** `[weight:: 1.0kg]` | `[stack:: 1]` | `[value:: 1500]`
-- **Тип:** `[consumable:: true]`
-- **Требование:** `[rep:: academy : +4]` для покупки.
+- носитель можно вынести, потерять и физически передать;
+- знание ингредиентов не заменяет предмет;
+- мирный адрес должен существовать в Registry_POIs;
+- отсутствие текущего Stable-адреса не расходует носитель;
+- preview, несовместимый состав и отмена до Commitment не уменьшают применения;
+- после идентификации `recipe_ids` и точный результат становятся видимыми;
+- числовое количество применений задаётся конкретной записью после калибровки.
 
-### Схема: Булава Инквизитора
-[blueprint:: inquisitor_mace]
-*Свиток с молитвами и схемой балансировки.*
-- **Статы:** `[weight:: 0.2kg]` | `[stack:: 5]` | `[value:: 600]`
-- **Тип:** `[consumable:: true]`.
-- **Требование:** `[rep:: cathedral : +2]` для покупки.
+## 4. Повреждённый носитель
 
-### Схема: Гвоздомет "Заклепочник"
-[blueprint:: heavy_riveter]
-*Перфокарта Литейного Синдиката.*
-- **Статы:** `[weight:: 0.1kg]` | `[stack:: 10]` | `[value:: 500]`
-- **Тип:** `[consumable:: true]`.
-- **Требование:** `[rep:: foundry : +3]` для покупки.
+### Повреждённый планшет
 
-### Схема: Сумка Контрабандиста
-[blueprint:: smuggler_bag]
-*Набор выкроек на цифровой бумаге.*
-- **Статы:** `[weight:: 0.1kg]` | `[stack:: 5]` | `[value:: 1000]`
-- **Тип:** `[consumable:: true]`.
-- **Требование:** `[rep:: brokerage : +3]` для покупки.
+[blueprint_id:: damaged_unknown_carrier]
+[recipe_ids:: unknown_until_identified]
+[custody:: physical]
+[use_model:: limited]
+[uses_remaining:: unknown_until_identified]
+[address_ids:: stable_mechanic_service]
+[transfer_rule:: physical_item]
+[identification_state:: unknown]
+[source:: raid_archive_or_workshop]
+[balance_state:: unknown]
 
----
+До идентификации игрок видит цивилизацию, материальный язык и вероятный тип обработки, но не точный результат. Мирный мастер раскрывает `recipe_ids`, остаток применений и exact outcome; если текущего адреса нет, носитель остаётся в Схроне до подходящего Stable-цикла.
 
-## Дроповые Схемы (Raid Found)
-*Грязные, поврежденные носители информации, найденные в рейдах.*
+## 5. Сознательно отложено
 
-### [Unidentified] Поврежденный Планшет
-[blueprint:: unidentified]
-*Устройство заблокировано. Нужно отнести в Академию Эфира.*
-- **Статы:** `[weight:: 0.5kg]` | `[stack:: 5]` | `[value:: 100]`
-- **Действие:** При идентификации превращается в случайный рецепт T2/T3.
+Следующие модели не участвуют в активном контракте и шаблоне:
 
-### Схема: Сабля Призрачного Капитана
-[blueprint:: spectral_cutlass]
-*Кусок обшивки корабля с выгравированной схемой.*
-- **Статы:** `[weight:: 1.5kg]` | `[stack:: 1]` | `[value:: 5000]`
-- **Тип:** `[consumable:: false]` (Уникальная реликвия-схема).
-- **Источник:** Сейф Капитана (Шанс 100%).
----
+- `consumable` — отдельный одноразовый класс;
+- `permanent` — постоянное разблокирование рецепта;
+- `registered` — хранение права у аккаунта, Очага или мастера;
+- копирование и продажа знания;
+- исполнение схемы на полевой станции или Ночном Верстаке.
 
-## 0. Нулевой пациент: шаблон чертежа
+Их можно вернуть только отдельным авторским решением после проверки limited-модели на hoarding, snowball и ценность потери.
 
-### Шаблон Чертежа (Template Blueprint)
-[blueprint_id:: template_blueprint]
-[output_item:: template_item]
-[craft_station:: workbench]
-[required_skill:: none]
-[rarity:: common]
-*Короткое описание того, зачем игроку этот рецепт.*
-- **Ингредиенты:** предметы и количество.
-- **Модификаторы:** что меняет качество результата.
-- **Экономическая роль:** крафт дешевле, стабильнее или рискованнее покупки.
+## 6. Шаблон LimitedBlueprint
+
+```text
+[blueprint_id:: blueprint_id]
+[recipe_ids:: recipe_id]
+[custody:: physical]
+[use_model:: limited]
+[uses_remaining:: calibrated_value]
+[address_ids:: peaceful_address_id]
+[transfer_rule:: physical_item]
+[identification_state:: identified]
+[source:: raid_source_id]
+[balance_state:: unknown]
+```
+
+Шаблон не допускает рейдовый адрес. Ограниченный носитель является редкой ставкой послерейдового планирования, а не условием обычного полевого производства.

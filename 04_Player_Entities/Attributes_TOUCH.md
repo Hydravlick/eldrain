@@ -4,6 +4,13 @@ status: active
 system: player_core
 category: attributes
 tags: [stats, touch, hidden_substats, arcanegun_combat, formulas, core]
+base_attribute: 10
+touch_schema:
+  - { key: TRQ, label: Тяга }
+  - { key: GRP, label: Хват }
+  - { key: LYR, label: Слой }
+  - { key: GLW, label: Накал }
+  - { key: SNS, label: Чутье }
 related_files:
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile_Pipeline]]"
   - "[[05_Combat_Survival/Weapon_Core|Weapon_Core]]"
@@ -18,9 +25,21 @@ related_files:
 T.O.U.C.H. - это видимый фасад тела Пешки. Игрок видит пять характеристик, но боевые, лутовые и магострельные правила работают через скрытые производные параметры.
 
 ```text
-Final TOUCH = 10 + Race + Spec + Tags + Gear + Temporary Effects
+CoreTOUCH(A) = 10 + RaceDelta(A) + SpecDelta(A)
+
+ExternalShift(A) =
+  StableTagDelta(A)
+  + ActiveBodyInterfaceDelta(A)
+
+OrdinaryFinalTOUCH(A) = clamp(CoreTOUCH(A) + ExternalShift(A), 6, 20)
+FinalTOUCH(A) = OrdinaryFinalTOUCH(A) + ExplicitCorruptionException(A)
+
 Hidden Substats = f(Final TOUCH, Combo, Tags, Gear, Frame)
 ```
+
+T.O.U.C.H. остаётся телом Пешки. Теги описывают устойчивое изменение тела, а экипировка может сдвинуть первичный атрибут только через один активный [[07_Gear_Inventory/Thermos_System#Опорный контур|Опорный контур]].
+
+`Temporary Effects` намеренно удалены из первичной формулы MVP. Временные эффекты меняют substats, conditions и output modifiers, но не переписывают пять чисел тела.
 
 ## 1. Три слоя системы
 
@@ -56,14 +75,16 @@ Hidden Substats = f(Final TOUCH, Combo, Tags, Gear, Frame)
 
 > "Тяжесть - это надежно. Тяжесть не сдует ветром Пустоты."
 
-| Substat | Что делает |
-|:---|:---|
-| `carry_load` | лимит веса и запас до перегруза |
-| `recoil_damp` | гашение отдачи магострельного импульса |
-| `brace` | удержание осадной стойки, щита, двери, гарпуна |
-| `melee_force` | таран, дробящий урон, пролом |
-| `heavy_ready` | подготовка тяжелого фрейма к выстрелу |
-| `gate_resist` | вклад тела в переживание фазового давления |
+| Substat | Что делает | Единица | Статус MVP | Потребитель |
+|:---|:---|:---|:---|:---|
+| `carry_load` | лимит веса и запас до перегруза | `kg` | `formula` | Carry Load |
+| `recoil_damp` | гашение отдачи магострельного импульса | rating | `consumer` | Handcannon и тяжёлые Frame |
+| `brace` | удержание осадной стойки, щита, двери, гарпуна | rating | `consumer` | Longframe, Harpoon, shield |
+| `melee_force` | таран, stagger и пролом; не универсальный `+Damage` | rating | `prototype` | Weapon Melee impact/stagger |
+| `heavy_ready` | подготовка тяжелого фрейма к выстрелу | rating | `consumer` | Harpoon и тяжёлые Frame |
+| `reality_buffer` | ограниченный телесный вклад в фазовый удар | points | `consumer` | Gate Check `Shell.Reality_Buffer` |
+
+`gate_resist` поглощён `reality_buffer` и больше не является отдельным substat. Средовая защита модулей считается отдельно и не заменяется телом.
 
 **В бою:** высокий `TRQ` не делает стрелка точнее сам по себе. Он позволяет держать тяжелый фрейм, не терять стойку после импульса и меньше получать aim punch от чужого попадания.
 
@@ -75,15 +96,15 @@ Hidden Substats = f(Final TOUCH, Combo, Tags, Gear, Frame)
 
 > "Мир шершавый. Чтобы выжить, нужно уметь хватать, крутить и не отпускать."
 
-| Substat | Что делает |
-|:---|:---|
-| `loot_speed` | скорость обыска контейнеров |
-| `cell_swap_speed` | замена батареи в магостреле или катализаторе |
-| `bolt_wind_speed` | взвод механического фрейма |
-| `weapon_swap_speed` | смена оружия и быстрых предметов |
-| `lockwork` | взлом, отмычки, тонкая механика |
-| `drift_control` | контроль дрейфа импульса руками |
-| `field_craft_speed` | сборка болтов, тросов, стабилизаторов в рейде |
+| Substat | Что делает | Единица | Статус MVP | Потребитель |
+|:---|:---|:---|:---|:---|
+| `loot_speed` | скорость обыска контейнеров | `%` | `prototype` | Looting Process |
+| `cell_swap_speed` | замена батареи в магостреле или катализаторе | `%` | `formula` | Battery swap |
+| `bolt_wind_speed` | взвод механического фрейма | `%` | `consumer` | Needle Crossbow |
+| `weapon_swap_speed` | смена оружия и быстрых предметов | `%` | `prototype` | Weapon handling |
+| `lockwork` | взлом, отмычки, тонкая механика | rating | `prototype` | locks/devices |
+| `drift_control` | контроль дрейфа импульса руками | `%` | `formula` | Bloom Control |
+| `field_craft_speed` | сборка болтов, тросов, стабилизаторов в рейде | `%` | `prototype` | field crafting |
 
 **В бою:** высокий `GRP` ускоряет батарейный цикл и делает дальний бой менее беспомощным после выстрела, но не превращает магострел в скоростной DPS.
 
@@ -95,15 +116,17 @@ Hidden Substats = f(Final TOUCH, Combo, Tags, Gear, Frame)
 
 > "Зашей рану, намотай скотч, надень еще один свитер. Ты не сломаешься, пока держишься вместе."
 
-| Substat | Что делает |
-|:---|:---|
-| `structure_hp` | базовое здоровье |
-| `trauma_resist` | сопротивление кровотечению, переломам, stagger |
-| `bleed_resist` | снижение риска открытой раны |
-| `stamina_recovery` | восстановление после рывков и тяжести |
-| `armor_sync` | насколько тело принимает броню и пластины |
-| `backlash_resist` | сопротивление ожогам, отдаче батареи и кантрипам |
-| `downed_time` | окно до смерти после падения |
+| Substat | Что делает | Единица | Статус MVP | Потребитель |
+|:---|:---|:---|:---|:---|
+| `structure_hp` | базовое здоровье | `HP` | `formula` | MaxHP |
+| `trauma_resist` | сопротивление переломам и stagger | rating | `prototype` | Status Effects |
+| `bleed_resist` | порог получения открытой раны, не общий резист урону | rating | `prototype` | Bleed application |
+| `stamina_recovery` | восстановление после рывков и тяжести | `%` | `prototype` | Stamina |
+| `armor_sync` | насколько тело принимает броню и пластины | rating | `prototype` | armor interaction |
+| `backlash_resist` | сопротивление ожогам, отдаче батареи и кантрипам | points | `formula` | Backlash |
+| `downed_time` | окно до смерти после падения | seconds | `deferred` | отсутствующий в MVP Downed cycle |
+
+`downed_time` остаётся только как отложенный термин. Он не используется в активных формулах до появления полного цикла падения, спасения и смерти.
 
 **В бою:** высокий `LYR` дает шанс пережить ошибку, импульс в пластину, backlash или неудачный кантрип. Это не броня вместо экипировки, а запас целостности.
 
@@ -115,16 +138,18 @@ Hidden Substats = f(Final TOUCH, Combo, Tags, Gear, Frame)
 
 > "Батарея греет бок. Главное - не дай ей прожечь тебя насквозь."
 
-| Substat | Что делает |
-|:---|:---|
-| `heat_sink` | скорость остывания оружия, катушки, перчатки |
-| `battery_efficiency` | шанс снизить лишний heat/resonance от импульса |
-| `output_power` | сила эфирных навыков и катализаторов |
-| `overload_limit` | сколько перегруза тело выдерживает до backlash |
-| `spark_gain` | генерация искр, зарядов, биоэлектричества |
-| `reality_burn_power` | сила Reality Burn и стабилизирующего урона |
+| Substat | Что делает | Единица | Статус MVP | Потребитель |
+|:---|:---|:---|:---|:---|
+| `heat_sink` | скорость остывания оружия, катушки, перчатки | `%` | `formula` | Heat cycle |
+| `battery_efficiency` | шанс снизить лишний heat/dissonance от импульса | `%` | `consumer` | Batteries |
+| `output_power` | сила эфирных навыков и катализаторов | points | `consumer` | Catalyst/abilities |
+| `overload_limit` | сколько перегруза тело выдерживает до backlash | points | `prototype` | Overcharge |
+| `spark_gain` | скорость наполнения ограниченного биоэлектрического заряда от значимых импульсов | rating | `consumer` | `squirrel_assault` «Инерционный заряд» |
+| `reality_burn_power` | сила Reality Burn и стабилизирующего урона | points | `consumer` | Catalyst Focus |
 
-**В бою:** высокий `GLW` делает магострельный темп стабильнее: меньше перегрев, лучше переносимость Overcharge Cell, сильнее Q/E и Reality Burn. Но высокий `GLW` также может повышать заметность, если билд не гасит resonance.
+`spark_gain` имеет высший приоритет интеграции среди ещё не откалиброванных рейтингов. Расовое `+20` Белки не является готовыми `+20%`: оно должно войти в формулу порога значимого движения, убывающей отдачи и ёмкости накопленного импульса.
+
+**В бою:** высокий `GLW` делает магострельный темп стабильнее: меньше перегрев, лучше переносимость Overcharge Cell, сильнее Q/E и Reality Burn. Но высокий `GLW` также может повышать заметность, если билд не гасит Dissonance.
 
 ---
 
@@ -134,15 +159,15 @@ Hidden Substats = f(Final TOUCH, Combo, Tags, Gear, Frame)
 
 > "Если волоски на шее встали дыбом - беги. Даже если глаза ничего не видят."
 
-| Substat | Что делает |
-|:---|:---|
-| `danger_sense` | раннее предупреждение ловушек и засад |
-| `trace_read` | расследования, следы, эхо событий |
-| `shiny_detection` | поиск ценного лута |
-| `ambush_resist` | защита от внезапных входов |
-| `entropy_warning` | предупреждение о фазовом давлении и Gate Check |
-| `weakspot_read` | чтение уязвимых зон |
-| `heat_warning` | предупреждение о перегреве, дрейфе и нестабильной батарее |
+| Substat | Что делает | Единица | Статус MVP | Потребитель |
+|:---|:---|:---|:---|:---|
+| `danger_sense` | неполное предупреждение ловушек и засад | rating | `prototype` | trap/ambush warning |
+| `trace_read` | расследования, следы, эхо событий | rating | `prototype` | Echo/investigation content |
+| `shiny_detection` | ощущение потенциальной ценности без точной цены и содержимого | rating | `prototype` | «Экономика Плюшкина» |
+| `ambush_resist` | защита от внезапных входов | points | `consumer` | Needle Crossbow/ambush |
+| `entropy_warning` | предупреждение о фазовом давлении и Gate Check | rating | `prototype` | Gate warning |
+| `weakspot_read` | чтение уязвимых зон | points | `formula` | Weakspot Read |
+| `heat_warning` | предупреждение о перегреве, дрейфе и нестабильной батарее | rating | `prototype` | Heat warning |
 
 **В бою:** высокий `SNS` не делает персонажа танком. Он помогает раньше понять, где цель раскроется, когда импульс сорвется и куда лучше вложить дорогой заряд.
 
@@ -171,6 +196,22 @@ Hidden Substats = f(Final TOUCH, Combo, Tags, Gear, Frame)
 | `17-20` | экстремальная сборка |
 | `21+` | аномальные значения через теги, артефакты или редкие combo |
 
+### Внешний сдвиг и клэмп MVP
+
+- один активный Опорный контур даёт Gear-вклад не выше `+2` к одному атрибуту;
+- сумма положительных `Tags + Gear` не выше `+4` к одному атрибуту;
+- заявленный бонус выше `20` не конвертируется в другую силу;
+- UI показывает применённую часть и overflow до установки;
+- Corruption может явно сдвинуть один предел на `1` за собственную постоянно релевантную цену.
+
+```text
+Слабый случай:    Core 7  + External 4 = 11, Applied +4, Overflow 0
+Базовый случай:   Core 10 + External 4 = 14, Applied +4, Overflow 0
+Белка-Догмат GLW: Core 19 + External 4 = 20, Applied +1, Overflow 3
+```
+
+Экстремальное тело получает меньше пользы от усиления уже сильной стороны. Переполненный `touch_shift` можно носить ради других функций модуля, но лишние очки T.O.U.C.H. не работают.
+
 ---
 
 ## 8. Формулы MVP
@@ -190,13 +231,13 @@ CarryLoad = base_carry_load + (TRQ * 2.5kg) + substat_bonus(carry_load)
 ### Cell Swap
 
 ```text
-CellSwapTime = base_swap_time / (1 + ((GRP - 10) * 0.035) + substat_bonus(cell_swap_speed))
+CellSwapTime = base_cell_swap / (1 + ((GRP - 10) * 0.035) + (substat_bonus(cell_swap_speed) / 100))
 ```
 
 ### Heat Sink
 
 ```text
-HeatSink = base_heat_sink * (1 + ((GLW - 10) * 0.03) + substat_bonus(heat_sink))
+HeatSink = base_heat_sink * (1 + ((GLW - 10) * 0.03) + (substat_bonus(heat_sink) / 100))
 ```
 
 ### Bloom Control
@@ -208,7 +249,7 @@ BloomGain = frame_bloom
   + heat_penalty
   - (TRQ * 0.01)
   - (GRP * 0.012)
-  - substat_bonus(drift_control)
+  - (substat_bonus(drift_control) / 100)
 ```
 
 ### Weakspot Read
@@ -236,7 +277,7 @@ Race, Spec, Combo, Tags и Gear могут добавлять скрытые б�
 [substat_mult:: recoil_damp x1.10]
 [condition_bonus:: while_stationary: brace +20, recoil_damp +15]
 [cap_mod:: max_carry +5kg]
-[tradeoff:: relocation_speed -10, resonance_load +4]
+[tradeoff:: relocation_speed -10, dissonance_load +4]
 ```
 
 - `substat_bonus` - плоский бонус к скрытой подхарактеристике.
@@ -244,6 +285,25 @@ Race, Spec, Combo, Tags и Gear могут добавлять скрытые б�
 - `condition_bonus` - лучший формат для combo: сила включается при понятном поведении.
 - `cap_mod` - меняет пределы тела или экипировки.
 - `tradeoff` - цена, которая удерживает билд в балансе.
+
+### Единицы и readable labels
+
+`substat_bonus` не является общей безразмерной валютой. Единица закреплена в каталоге выше: процентные рейтинги входят в дробную формулу через `value / 100`, points складываются как очки, `kg` — как масса, а Capability хранится отдельным бинарным полем.
+
+Readable label строится по реализованному изменению действия, а не по сырому рейтингу:
+
+- менее `5%` — отдельная подпись не выводится;
+- `5–14%` — обычная короткая подпись;
+- `15%+` — усиленная подпись;
+- prototype без откалиброванного потребителя показывает конкретное поле без оценочного label.
+
+| Substat | `5–14%` | `15%+` |
+|:---|:---|:---|
+| `brace` | `Устойчивая стойка` | `Несдвигаемый` |
+| `cell_swap_speed` | `Быстрые руки` | `Батарея на лету` |
+| `heat_sink` | `Чистый контур` | `Холодный контур` |
+| `heat_warning` | `Чует перегрев` | `Слышит срыв` |
+| `loot_speed` | `Быстрые карманы` | `Обыск на ходу` |
 
 ## 10. Правило для combo
 
@@ -253,7 +313,7 @@ Combo не должно дублировать профиль Race/Spec. Оно 
 
 ```markdown
 [condition_bonus:: while_stationary: brace +20, recoil_damp +15]
-[tradeoff:: relocation_speed -10, resonance_load +3]
+[tradeoff:: relocation_speed -10, dissonance_load +3]
 ```
 
 Плохой combo-бонус:

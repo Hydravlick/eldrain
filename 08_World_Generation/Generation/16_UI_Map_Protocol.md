@@ -18,7 +18,12 @@ tags: [minimap, json, data_stream]
   "sector_phase": "ANOMALY",
   "current_tier": "T2",
   "time_to_phase_shift_sec": 312,
-  "time_to_collapse_sec": 7512,
+  "time_to_stabilization_sec": 7512,
+  "access_contract": "prepared_t2",
+  "environment_forecast": "RISK",
+  "dissonance_state": "YELLOW",
+  "population_state": "OPEN",
+  "entry_closes_in_sec": 6612,
   "fog_of_war_reset": false, // Нужно ли стереть открытую карту игрока
   "map_objects": [
     {
@@ -51,8 +56,8 @@ tags: [minimap, json, data_stream]
 
 | Layer | Что показывает | Пример |
 |:---|:---|:---|
-| **VISIBLE** | критичные числа, нужные каждую секунду | HP, stamina, заряды активной батареи, источник Q/E, прогноз цены кантрипа при модификаторе, таймер Gate Check |
+| **VISIBLE** | критичные числа, нужные каждую секунду | HP, stamina, Weapon/Casting ImpulseReserve, выбранный источник Q/E, прогноз цены кантрипа при модификаторе, таймер Gate Check |
 | **DIEGETIC** | читается через мир и приборы | треск фильтра, гул перегрева, цвет тумана, маркеры карты |
-| **LATENT** | скрыто до наведения, сканера или Mission Readiness | точный ResonanceLoad, SurvivalScore, шанс охоты, Tier-вариант POI |
+| **LATENT** | скрыто до наведения, сканера или Mission Readiness | точный DissonanceLoad, SurvivalScore, Access Price, Population Seat, шанс охоты, Tier-вариант POI |
 
 Mission Readiness показывает Latent-данные до входа. В рейде HUD держит только VISIBLE, а остальное отдает через звук, маску, карту и короткие предупреждения.

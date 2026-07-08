@@ -8,7 +8,7 @@ tags:
   - ballistics
   - physics
 related_files:
-  - "[[07_Gear_Inventory/_Registries/Registry_Armors|Registry_Armors]]"
+  - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
 ---
 # Баллистика PvP: Ткань и Пластины
 

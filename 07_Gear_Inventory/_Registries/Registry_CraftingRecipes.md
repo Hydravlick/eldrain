@@ -3,173 +3,125 @@ type: registry
 status: active
 system: gear_inventory_registry
 registry_type: crafting
-tags: [database, economy, upgrade, blueprints]
+tags: [database, economy, recipe_transaction, blueprints, variant_ingredient]
+related_files:
+  - "[[06_Economy_Loot/Barter_System|Barter_System]]"
+  - "[[06_Economy_Loot/Blueprints|Blueprints]]"
+  - "[[06_Economy_Loot/Craft_Modifiers|Craft_Modifiers]]"
+  - "[[07_Gear_Inventory/_Registries/Registry_Blueprints|Registry_Blueprints]]"
 ---
-# Реестр: Крафт и Модификации (Workshop)
+# Реестр: Адресные RecipeTransaction
 
-> **Логика:** Крафт требует **Верстак** (в Хабе или найденный в рейде) и **Чертеж** (Blueprint).
-> **Rarity Upgrades:** Сферы взаимодействуют с Энтропией предмета, повышая его редкость и меняя аффиксы, но не Tier конструкции.
-> **Requirements:** `[rep:: faction_id : level]` — требование репутации для покупки чертежа.
+## 1. Ответственность и обещание
 
----
+Этот реестр является единственным источником конкретных мирных сделок. Универсальный цикл принадлежит [[06_Economy_Loot/Barter_System|адресному бартеру]], limited-носители — [[06_Economy_Loot/Blueprints|чертежам]], а правило одного фиксированного варианта — [[06_Economy_Loot/Craft_Modifiers|вариантному ингредиенту]].
 
-## 1. Сферы Трансмутации (Upgrade Spheres)
-*Аналог валюты/орбов из PoE. Используются для повышения редкость и реролла статов.*
+Игрок видит точный результат до подтверждения. Сделка не перебрасывает найденные Affix, не повышает Rarity универсальным материалом и не превращает полевую станцию в безопасный магазин внутри Аномалии.
 
-### Сфера Потока (Orb of Flux)
-[item:: orb_flux]
-*Сгусток нестабильной энергии.*
-- **Эффект:** Превращает **Обычный (White)** предмет в **Необычный (Green)**.
-- **Свойства:** Добавляет 1-2 случайных аффикса (свойства).
-- **Дроп:** Магазин Академии Эфира.
+## 2. Рабочий цикл записи
 
-### Сфера Власти (Orb of Power)
-[item:: orb_power]
-*Стабилизированная структура эфира.*
-- **Эффект:** Превращает **Необычный (Green)** предмет в **Редкий (Blue)**.
-- **Свойства:** Добавляет аффикс из другого допустимого семейства. Не повышает базовый урон или броню автоматически.
-- **Дроп:** Рейды, Боссы.
+```text
+available address
+  + matching extracted multiset
+  + zero or one fixed variant
+  + limited blueprint when required
+  -> exact preview
+  -> atomic confirmation
+  -> provenance-preserving result
+```
 
-### Сфера Хаоса (Orb of Chaos)
-[item:: orb_chaos]
-*Энергия чистой случайности.*
-- **Эффект:** Полностью меняет (Reroll) все аффиксы на **Редком** предмете.
-- **Риск:** Нет риска поломки, но можно получить бесполезные статы.
+## 3. Активный контракт
 
-### Сфера Коллапса (Entropy Orb)
-[item:: orb_entropy]
-*Запрещенный артефакт. Выглядит как черная дыра в миниатюре.*
-- **Эффект:** "Оскверняет" (Corrupt) предмет.
-- **Результаты (Ролл 1d4):**
-    1.  **Прорыв:** Предмет получает Corruption-правило с сильным эффектом и встроенной ценой.
-    2.  **Мутация:** Меняется существующий рабочий цикл или тип взаимодействия, но не возникает бесплатный универсальный урон.
-    3.  **Стазис:** Предмет "замораживается" (нельзя больше менять, статы не меняются).
-    4.  **Аннигиляция:** Предмет превращается в горстку `[item:: scrap_metal]` (Уничтожается).
+```text
+recipe_id
+address_id
+address_class: central | stable_external
+availability: permanent | stable_cycle
+inputs
+source_rule: raid_extracted | resolved_provenance
+optional_variant: zero_or_one | none
+blueprint_id: limited | none
+service_cost
+exact_outcome
+provenance_result
+balance_state
+```
 
-## Реестр: Рецепты Крафта (Assembly Lines)
+- `address_id` должен существовать в [[08_World_Generation/_Registries/Registry_POIs|Registry_POIs]];
+- `availability` наследует срок адреса, а не создаёт собственное короткое окно;
+- `inputs` хранит теги/ID и мультимножество количеств;
+- `source_rule` не позволяет купить товар в центре и превратить его в прибыльный ресурсный вход;
+- `optional_variant` допускает максимум один объявленный ингредиент с фиксированным свойством;
+- `blueprint_id` используется только редкой limited-схемой;
+- `exact_outcome` является одним известным результатом, без случайной ветви Affix или Corruption;
+- `provenance_result` сохраняет источник значимых входов, адрес и Stable-цикл;
+- `balance_state` остаётся `unknown`, пока курс не проверен в полной экономике.
 
-> **Формула Крафта:** `[Input A] + [Input B] + [Blueprint Item] = [Output]`
-> **Blueprint Consumption:** Если чертеж одноразовый, он исчезает при нажатии "Собрать". Если многоразовый — остается в слоте.
+## 4. Центральный публичный пример
 
----
+### Базовый фильтр из извлечённой среды
 
-## Фракционное Снаряжение (Faction Gear)
+[recipe_id:: central_basic_filter_service]
+[address_id:: central_common_stores]
+[address_class:: central]
+[availability:: permanent]
+[inputs:: multiset(filter_medium, cloth)]
+[source_rule:: raid_extracted]
+[optional_variant:: none]
+[blueprint_id:: none]
+[service_cost:: central_basic_service]
+[exact_outcome:: basic_filter]
+[provenance_result:: processed_at(central_common_stores); preserve_input_manifests]
+[balance_state:: unknown]
 
-### Маска "Чистый Воздух" (Keeper Mask)
-*Защита от токсинов T1.*
-- **Input:**
-    - 1x `[blueprint:: keeper_mask]` (Чертеж)
-    - 5x `[item:: scrap_metal]` (Каркас)
-    - 2x `[item:: gas_filter]` (Фильтры)
-    - 1x `[item:: rubber_boots]` (Уплотнитель - разбор)
-- **Output:** `[gear:: keeper_mask]`
+Публичная сделка поддерживает следующий выход и не требует редкого знания. Точные количества и стоимость не фиксируются до калибровки.
 
-### Ботинки Первопроходца (Pathfinder Boots)
-*Скорость +10%, карабканье.*
-- **Input:**
-    - 1x `[blueprint:: pathfinder_boots]` (Чертеж)
-    - 4x `[item:: swamp_vine]` (Шнуровка)
-    - 2x `[item:: chitin_plate]` (Шипы)
-- **Output:** `[gear:: pathfinder_boots]`
+## 5. Внешний sidegrade-шаблон
 
-### Мод "Тихая Поступь" (Silent Soles)
-*Шум шагов -40%. Вставляется в ботинки.*
-- **Input:**
-    - 1x `[blueprint:: silent_soles]` (Чертеж)
-    - 5x `[item:: wet_fabric]` (Ткань)
-    - 3x `[item:: swamp_vine]` (Амортизатор)
-- **Output:** `[mod:: silent_soles]`
+### Профильная обработка Pattern
 
-### Плащ Фантома (Phantom Cloak)
-*Активная невидимость. Чертеж многоразовый.*
-- **Input:**
-    - 1x `[blueprint:: phantom_cloak]` (Многоразовый Чертеж)
-    - 10x `[item:: wet_fabric]`
-    - 2x `[item:: sea_tear]` (Жемчуг)
-    - 1x `[item:: deep_scale]` (Эссенция)
-- **Output:** `[gear:: phantom_cloak]`
+[recipe_id:: template_stable_pattern_sidegrade]
+[address_id:: stable_mechanic_service]
+[address_class:: stable_external]
+[availability:: stable_cycle]
+[inputs:: multiset(base_pattern, compatible_raid_material)]
+[source_rule:: raid_extracted]
+[optional_variant:: zero_or_one]
+[blueprint_id:: limited|none]
+[service_cost:: address_specific_service]
+[exact_outcome:: named_pattern_sidegrade]
+[provenance_result:: processed_at(stable_mechanic_service); preserve_input_manifests]
+[balance_state:: unknown]
 
-### Вольт-Конденсатор (Volt Condenser)
-*Электрическая дуга по 2 целям.*
-- **Input:**
-    - 1x `[blueprint:: volt_condenser]` (Чертеж)
-    - 1x `[weapon:: arcanegun]` (Любой конденсаторный фрейм)
-    - 3x `[item:: capacitor_cell]` (Накопитель)
-- **Output:** `[weapon:: volt_condenser]`
+- **Базовый выход:** фиксированный sidegrade с объявленной сильной ситуацией и tradeoff.
+- **Вариант:** при наличии совместимого ингредиента меняет одно заранее названное свойство результата.
+- **Граница:** не перебрасывает Affix базового экземпляра и не создаёт лучший универсальный Tier.
+- **Player-facing reason:** уцелевший внешний мастер и оборудование способны выполнить именно эту обработку.
 
-### Ловушка Теслы (Tesla Trap)
-*Стационарная турель.*
-- **Input:**
-    - 1x `[blueprint:: tesla_trap]` (Многоразовый Чертеж)
-    - 1x `[item:: battery_large]`
-    - 2x `[item:: coral_shard]`
-- **Output:** `[gadget:: tesla_trap]`
+## 6. Исключения
 
-### Булава Инквизитора (Inquisitor Mace)
-*Урон по магам.*
-- **Input:**
-    - 1x `[blueprint:: inquisitor_mace]` (Чертеж)
-    - 1x `[weapon:: blunt]` (Молот-основа)
-    - 50x `[item:: old_coins]` (Серебро)
-    - 1x `[item:: incense]` (Освящение)
-- **Output:** `[weapon:: inquisitor_mace]`
+- обычный крафт через полевую станцию не является активной RecipeTransaction;
+- Ночной Верстак использует отдельный контракт опасной рейдовой операции;
+- публичный рецепт боеприпасов внутри рейда удалён;
+- случайные исходы Defect/Corruption не добавляются к мирной сделке;
+- один адрес не принимает собственный выход в более выгодную петлю;
+- числовой курс не публикуется до проверки safe-profit и доминирования адресов.
 
-### Гвоздомет "Заклепочник" (Heavy Riveter)
-*Тяжелый гарпунно-заклепочный разрядник.*
-- **Input:**
-    - 1x `[blueprint:: heavy_riveter]` (Чертеж)
-    - 20x `[item:: scrap_metal]`
-    - 1x `[item:: capacitor_cell]`
-- **Output:** `[weapon:: heavy_riveter]`
+## 7. Шаблон новой записи
 
-### Сумка Контрабандиста (Smuggler Bag)
-*Защита от сканирования лута.*
-- **Input:**
-    - 1x `[blueprint:: smuggler_bag]` (Чертеж)
-    - 1x `[item:: pouch]`
-    - 5x `[item:: chitin_plate]`
-- **Output:** `[gear:: smuggler_bag]`
+```text
+[recipe_id:: recipe_id]
+[address_id:: address_id]
+[address_class:: central|stable_external]
+[availability:: permanent|stable_cycle]
+[inputs:: multiset(item_or_tag, item_or_tag)]
+[source_rule:: raid_extracted|resolved_provenance]
+[optional_variant:: zero_or_one|none]
+[blueprint_id:: limited|none]
+[service_cost:: service_cost_id]
+[exact_outcome:: outcome_id]
+[provenance_result:: processing_rule]
+[balance_state:: unknown]
+```
 
----
-
-## Редкое Снаряжение (Rare Assembly)
-
-### Сабля Призрачного Капитана (Spectral Cutlass)
-*Игнорирует броню.*
-- **Input:**
-    - 1x `[blueprint:: spectral_cutlass]` (Многоразовый Чертеж)
-    - 1x `[weapon:: blade]` (Сабля-основа)
-    - 1x `[item:: deep_scale]`
-    - 3x `[item:: sea_tear]`
-- **Output:** `[weapon:: spectral_cutlass]`
-
----
-
-## Трансмутация (Upgrades)
-*Не требует чертежей, требует Сферы.*
-
-### Enchant Weapon (Magic)
-- **Input:** 1x `[weapon:: any_white]` + 1x `[item:: orb_flux]`
-- **Output:** `[weapon:: random_green]`
-
-### Enchant Weapon (Rare)
-- **Input:** 1x `[weapon:: any_green]` + 1x `[item:: orb_power]`
-- **Output:** `[weapon:: random_blue]`
-
-### Corrupt Item
-- **Input:** 1x `[item:: any]` + 1x `[item:: orb_entropy]`
-- **Output:** `[item:: corrupted]` (See Entropy Table)
----
-
-## 0. Нулевой пациент: шаблон рецепта
-
-### Шаблон Рецепта (Template Recipe)
-[recipe_id:: template_recipe]
-[output_item:: template_item]
-[input_item:: scrap_metal]
-[station:: field_kit]
-[craft_time:: 10s]
-*Короткое описание операции.*
-- **Вход:** список ресурсов.
-- **Выход:** предмет, отходы, шанс редкости или аффикса.
-- **Ограничение:** станция, навык, фаза рейда или шум.
+Новая запись допускается только при существующих адресе, входах и результате. Описательный пример без реальных потребителей остаётся вне активного реестра.

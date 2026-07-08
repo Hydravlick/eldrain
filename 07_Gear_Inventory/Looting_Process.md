@@ -4,6 +4,7 @@ status: active
 system: interaction
 tags: [looting, timer, lockpicking, bodies, ux]
 related_files:
+  - "[[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction_Stabilization_Loop]]"
   - "[[07_Gear_Inventory/Containers_Slots|Containers_Slots]]"
   - "[[06_Economy_Loot/Loot_Distribution|Loot_Distribution]]"
 ---
@@ -30,6 +31,10 @@ related_files:
 * **Unidentified Slots:** Изначально слоты закрыты текстурой "шума" или "тени".
 * **Searching:** При открытии UI запускается процесс "Обыска". Слоты открываются последовательно (слева направо, сверху вниз) по 1 предмету в 0.5 сек.
 * **Навык `Search Speed`:** Ускоряет этот процесс.
+
+После обнаружения предмет показывает только известные Пешке признаки: вес, переносимость, `Native/Foreign/Hot`, `Stable/Volatile/Trace`, известный адрес и необходимость Back Slot. Точная цена или полный рецепт не обязаны быть известны без соответствующей профессии, мастера или опознания.
+
+Обычный серый утиль не скрывается как заведомо бесполезный. Его решение строится на весе, нужном количестве, текущем заказе и рецепте: взять надёжный материал сейчас или оставить место под неизвестную редкость.
 
 ## 3. Замки и Взлом (Lockpicking)
 Некоторые контейнеры заперты (`Locked`).

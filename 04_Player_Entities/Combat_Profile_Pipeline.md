@@ -14,15 +14,16 @@ related_files:
 ---
 # Combat Profile Pipeline
 
-> Канон расчета Оболочки: `Race + Spec -> Combo P/Q/E -> Allowed Arsenal -> Tags -> Proficiency Gates -> Combat Profile`.
+> Канон расчета Оболочки: `Race + Spec -> Combo P/Q/E + Module Capacity -> Allowed Arsenal -> Tags -> Proficiency Gates -> Combat Profile и допустимая сборка Термоса`.
 
 ## 1. Race + Spec
 
-Раса и специализация задают базовую биологию, роль, атрибуты и два стартовых тактических вектора.
+Раса и практика / специализация образуют **архетип**: задают базовую биологию, методологию, атрибуты и два стартовых тактических вектора. Это ещё не фактическая роль и не полный профиль вылазки.
 
 - Раса отвечает за физиологическую основу, физику тела и биологические ограничения.
-- Специализация отвечает за методологию давления, подготовки и решения задач.
+- Практика / специализация отвечает за методологию давления, подготовки и решения задач.
 - Их сумма не является готовой способностью. Готовые способности появляются только после слияния в `Registry_Combos`.
+- Фактический **Профиль вылазки** возникает только после учёта P/Q/E, арсенала, Термоса, батарей, тегов, контракта, команды и условий операции.
 - На этом шаге считается видимый `Final TOUCH` и первый слой скрытых подстатов: `brace`, `cell_swap_speed`, `heat_sink`, `weakspot_read`, `backlash_resist` и другие.
 
 ```text
@@ -34,7 +35,7 @@ Hidden Substats = f(Final TOUCH, Race.substat_bonus, Spec.substat_bonus)
 
 `Registry_Combos` - главный MVP-источник слияния способностей и разрешенного арсенала. Он не хранит Combat Profile напрямую.
 
-Игровой MVP использует зафиксированные расы Ёж, Крыса, Белка и классы Авангард, Технократ, Странник. `Registry_Combos` содержит ровно девять проектных слотов этой матрицы. Полная сетка 5x5 сохраняется как внутренняя карта расширения.
+Игровой MVP использует зафиксированные расы Ёж, Крыса, Белка и практики Авангард, Технократ, Странник. `Registry_Combos` содержит ровно девять проектных слотов этой матрицы. Полная сетка 5x5 сохраняется как внутренняя карта расширения.
 
 Наличие слота не означает готовый контент. Ячейка считается канонически спроектированной только после двойной проверки из [[04_Player_Entities/MVP_3x3_Design_Contract|контракта 3×3]].
 
@@ -64,7 +65,7 @@ Hidden Substats = f(Final TOUCH, Race.substat_bonus, Spec.substat_bonus)
 
 Это уже отражает `Allowed = (RaceList union SpecList) - RaceBanned`, но без необходимости прямо сейчас дробить RaceList и SpecList по отдельным файлам.
 
-`arcanegun` в этой системе означает магострельные и механические дальнобойные фреймы: разрядники, конденсаторы, эмиттеры, гарпуны и игольники. Они работают через батарейный цикл, heat, bloom и resonance.
+`arcanegun` в этой системе означает магострельные и механические дальнобойные фреймы: разрядники, конденсаторы, эмиттеры, гарпуны и игольники. Они работают через батарейный цикл, heat, bloom и Dissonance.
 
 ## 4. Tags
 
@@ -77,7 +78,7 @@ Hidden Substats = f(Final TOUCH, Race.substat_bonus, Spec.substat_bonus)
 - `exclusive_with` запрещает несовместимые теги.
 - `fusion_requires` описывает curated Trait Fusion, который появляется из двух тегов и связующего события.
 - `power_weight` хранит внутренний балансный вес тега, не являясь характеристикой мира.
-- `resonance_load` меняет постоянный фон только для физически или эфирно заметных тегов.
+- `dissonance_load` меняет постоянный фон только для физически или эфирно заметных тегов.
 - `substat_bonus` меняет скрытые параметры T.O.U.C.H.
 - `condition_bonus` включает бонус при понятном поведении.
 - `tradeoff` фиксирует цену силы.
@@ -96,19 +97,30 @@ Tier 1-2 - это использование оружия. Tier 3+ - это ра
 
 Открытие оружейного вектора не удаляет и не пересчитывает базовую общую слабость `Race × Spec`. Оно добавляет возможность в Combat Profile, сохраняя исходную цену архетипа.
 
+### Параллельный расчёт модулей
+
+Профильные ёмкости Термоса не добавляют вектор автоматически и не используют оружейный `vector_gate`.
+
+```text
+final_module_capacity = combo.module_capacity + stable_tags.module_capacity_delta
+installed_module_cost <= final_module_capacity
+```
+
+Итог определяет допустимость вшитой сборки у мастера. Физические слоты и положения читаются из выбранного Термоса, а не из Combat Profile.
+
 Для `arcanegun` открытый `weapon_vector:: ballistics` читается как **линейное дальнее давление**: stagger, aim punch, контроль линии, создание окна и безопасный добор, а не непрерывный DPS.
 
-Магострельные фреймы также читают скрытые подстаты:
+Магострельные фреймы читают скрытые substats и отдельные Frame Window. Frame Window описывает создаваемое оружием тактическое окно, а не числовой параметр тела.
 
-| Frame/System | Главные substats |
-|:---|:---|
-| `handcannon` | `recoil_damp`, `drift_control`, `cell_swap_speed` |
-| `condenser_longframe` | `brace`, `weakspot_read`, `heat_sink` |
-| `scatter_emitter` | `backlash_resist`, `heat_sink`, `melee_setup` |
-| `harpoon_driver` | `heavy_ready`, `brace`, `tether_control` |
-| `needle_crossbow` | `bolt_wind_speed`, `weakspot_read`, `ambush_resist` |
-| `catalyst_focus` | `output_power`, `reality_burn_power`, `backlash_resist` |
-| Batteries | `battery_efficiency`, `heat_sink`, `cell_swap_speed` |
+| Frame/System | Главные substats | Frame Window |
+|:---|:---|:---|
+| `handcannon` | `recoil_damp`, `drift_control`, `cell_swap_speed` | `pressure_open` |
+| `condenser_longframe` | `brace`, `weakspot_read`, `heat_sink` | `weakspot_open` |
+| `scatter_emitter` | `backlash_resist`, `heat_sink` | `melee_setup` |
+| `harpoon_driver` | `heavy_ready`, `brace` | `tether_control` |
+| `needle_crossbow` | `bolt_wind_speed`, `weakspot_read`, `ambush_resist` | `ambush_open` |
+| `catalyst_focus` | `output_power`, `reality_burn_power`, `backlash_resist` | `reality_burn` |
+| Batteries | `battery_efficiency`, `heat_sink`, `cell_swap_speed` | — |
 
 ## 6. Combat Profile
 
@@ -127,7 +139,7 @@ Tier 1-2 - это использование оружия. Tier 3+ - это ра
 
 ### Читаемое Резюме Билда
 
-Combat Profile должен выводить из суммы систем, а не из одного трейта:
+Combat Profile должен выводить из суммы систем, а не из одного тега/трейта:
 
 1. основную возможность;
 2. цену или обязательство;

@@ -38,7 +38,7 @@ $$Entity = (Race \times Specialization) + Tags$$
 
 Расчет боевого профиля не заканчивается на Race x Specialization. Полная цепочка описана в [[04_Player_Entities/Combat_Profile_Pipeline]]:
 
-`Race + Spec -> Combo P/Q/E -> Allowed Arsenal -> Tags -> Proficiency Gates -> Combat Profile`
+`Race + Spec -> Combo P/Q/E + Module Capacity -> Allowed Arsenal -> Tags -> Proficiency Gates -> Combat Profile и допустимая сборка Термоса`
 
 Для MVP `Registry_Combos` является главным источником уже смешанных P/Q/E и разрешенного арсенала.
 
@@ -46,4 +46,4 @@ $$Entity = (Race \times Specialization) + Tags$$
 Персонаж имеет слотовую структуру для модификаций:
 * **Body Core:** Слот Специализации (неизменяемый).
 * **Genetic Slot:** Слот Расы (неизменяемый).
-* **Growth Capacity (2/5):** Лимит приобретенных трейтов: 2 для Бомжа, до 5 для специалиста. Врожденные особенности и травмы учитываются отдельно по правилам конкретного тега.
+* **Growth Capacity (2/5):** Лимит приобретенных тегов/трейтов: 2 для Бомжа, до 5 для специалиста. Врожденные особенности и травмы учитываются отдельно по правилам конкретного тега.

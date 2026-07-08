@@ -1,0 +1,4 @@
+interface:
+  display_name: "Eldraine Lorekeeper"
+  short_description: "Проверяет идеи на совместимость с каноном"
+  default_prompt: "Use $eldraine-lorekeeper to check this idea against the current Eldraine canon."
