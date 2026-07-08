@@ -18,7 +18,7 @@ related_files:
   - "[[03_Factions_Societies/Lore/The_Cathedral|The_Cathedral]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
   - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
-  - "[[04_Player_Entities/_Registries/Registry_Races#Жаба (Bufo)|Registry_Races]]"
+  - "[[04_Player_Entities/Races/Toad|Жаба]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
   - "[[08_World_Generation/Content/World_Atlas/Sectors/Port/00_Port_Manifest|Port_Manifest]]"
   - "[[08_World_Generation/_Registries/Registry_Mobs|Registry_Mobs]]"

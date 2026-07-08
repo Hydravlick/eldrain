@@ -1,8 +1,15 @@
 ---
-type: lore
+type: faction
 category: faction
 status: active
-system: factions_lore
+system: factions
+faction_id: cathedral_all_faiths
+display_name: Собор Всех Вер
+sort_order: 70
+faction_role: hearth
+player_label: memory_and_vows
+promise: meaning_and_memory
+access_model: rites_relics_vows_memory_contracts
 tags:
   - religion
   - philosophy
@@ -23,9 +30,16 @@ related_files:
   - "[[02_World_Lore/Lizard_Culture|Lizard_Culture]]"
   - "[[02_World_Lore/Hedgehog_Culture|Hedgehog_Culture]]"
   - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
-  - "[[04_Player_Entities/_Registries/Registry_Races#Жаба (Bufo)|Registry_Races]]"
+  - "[[04_Player_Entities/Races/Toad|Жаба]]"
 ---
 # Память и обеты: Собор Всех Вер
+
+## Отношения
+
+[rel_union:: funeral_circles] (имена и личные вещи погибших требуют ритуального языка)
+[rel_union:: circle_of_interposition] (имя и тело должны пережить паузу до обряда и решения)
+[rel_conflict:: proving_houses] (реликвия может быть святыней, а не материалом вскрытия)
+[rel_conflict:: minstrels] (не вся исповедь должна стать городским слухом)
 
 **Игровой ярлык:** ритуалы, стресс, реликвии, имена погибших, обеты.
 

@@ -7,13 +7,13 @@ tags: [dataview, matrix]
 
 ```dataviewjs
 // === 1. ЗАГРУЗКА И КОНФИГУРАЦИЯ ===
-const files = {
-    races: "04_Player_Entities/_Registries/Registry_Races.md",
-    specs: "04_Player_Entities/_Registries/Registry_Specs.md",
+const sources = {
+    races: "04_Player_Entities/Races",
+    specs: "04_Player_Entities/Specs",
     combos: "04_Player_Entities/_Registries/Registry_Combos.md"
 };
 
-const currentPath = dv.current()?.file?.path || files.combos;
+const currentPath = dv.current()?.file?.path || sources.combos;
 
 const paradoxRules = {
     hazard: ["shadow", "kinetics", "ballistics"],
@@ -85,7 +85,7 @@ async function loadD3() {
 
 // === 2. ПАРСИНГ РЕЕСТРОВ ===
 function cleanId(value) {
-    return value ? value.toLowerCase().trim() : null;
+    return value ? String(value).toLowerCase().trim() : null;
 }
 
 function parseInlineValue(text, key) {
@@ -107,7 +107,36 @@ function displayName(header) {
         .trim();
 }
 
-async function parseRegistry(path, kind) {
+function entityRecord(page) {
+    return {
+        id: cleanId(page.id),
+        name: page.display_name || page.file.name,
+        path: page.file.path,
+        baseVector: cleanId(page.base_vector),
+        weakTo: Array.from(page.weak_to || []).map(cleanId).filter(Boolean)
+    };
+}
+
+function loadEntityFolder(folder, type) {
+    const records = Array.from(dv.pages(`"${folder}"`))
+        .filter(page => page.type === type)
+        .map(entityRecord)
+        .filter(record => record.id);
+
+    if (!records.length) {
+        return { records: [], error: `Не найдены сущности type=${type}: ${folder}` };
+    }
+
+    const ids = records.map(record => record.id);
+    const duplicates = ids.filter((id, index) => ids.indexOf(id) !== index);
+    if (duplicates.length) {
+        return { records: [], error: `Дублирующиеся ID в ${folder}: ${unique(duplicates).join(", ")}` };
+    }
+
+    return { records, error: null };
+}
+
+async function parseComboRegistry(path) {
     const page = dv.page(path);
     if (!page) return { records: [], error: `Файл не найден: ${path}` };
 
@@ -132,15 +161,8 @@ async function parseRegistry(path, kind) {
             body
         };
 
-        if (kind === "race" || kind === "spec") {
-            record.baseVector = cleanId(parseInlineValue(body, "base_vector"));
-            record.weakTo = parseInlineList(body, "weak_to");
-        }
-
-        if (kind === "combo") {
-            record.reqRace = cleanId(parseInlineValue(body, "req_race"));
-            record.reqSpec = cleanId(parseInlineValue(body, "req_spec"));
-        }
+        record.reqRace = cleanId(parseInlineValue(body, "req_race"));
+        record.reqSpec = cleanId(parseInlineValue(body, "req_spec"));
 
         records.push(record);
     }
@@ -314,9 +336,9 @@ try {
     const d3 = await loadD3();
 
     const [raceResult, specResult, comboResult] = await Promise.all([
-        parseRegistry(files.races, "race"),
-        parseRegistry(files.specs, "spec"),
-        parseRegistry(files.combos, "combo")
+        loadEntityFolder(sources.races, "race"),
+        loadEntityFolder(sources.specs, "spec"),
+        parseComboRegistry(sources.combos)
     ]);
 
     const loadErrors = [raceResult.error, specResult.error, comboResult.error].filter(Boolean);
@@ -511,7 +533,7 @@ try {
         })
         .on("mouseout", resetHighlight)
         .on("click", (event, node) => {
-            dv.app.workspace.openLinkText(`${files.combos}#${node.data.header}`, currentPath, false);
+            dv.app.workspace.openLinkText(`${sources.combos}#${node.data.header}`, currentPath, false);
         });
 
     const labels = labelGroups.append("text")

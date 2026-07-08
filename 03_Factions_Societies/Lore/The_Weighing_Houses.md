@@ -1,8 +1,15 @@
 ---
-type: lore
+type: faction
 category: faction
 status: active
-system: factions_lore
+system: factions
+faction_id: weighing_houses
+display_name: Весовые Дома
+sort_order: 50
+faction_role: hearth
+player_label: price_and_right
+promise: provenance_and_debt
+access_model: provenance_collateral_insurance_transfer
 tags:
   - hearth
   - property
@@ -19,6 +26,13 @@ related_mechanics:
   - "[[06_Economy_Loot/Barter_System|Barter_System]]"
 ---
 # Цена и право: Весовые Дома
+
+## Отношения
+
+[rel_trade:: common_storehouses] (минимум и долг постоянно спорят за одни ресурсы)
+[rel_union:: circle_of_interposition] (спорный груз сохраняют до проверки права и происхождения)
+[rel_conflict:: cathedral_all_faiths] (личная вещь погибшего может быть святыней, уликой или лотом)
+[rel_spy:: night_guarantors] (серый выкуп возникает там, где официальный дом не может признать сделку)
 
 **Игровой ярлык:** оценка, происхождение, право владения, долги, залоги, страховка, передача.
 

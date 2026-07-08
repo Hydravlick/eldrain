@@ -17,7 +17,7 @@ related_files:
   - "[[02_World_Lore/Culture_Language|Culture_Language]]"
   - "[[02_World_Lore/Energy_Concept|Energy_Concept]]"
   - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
-  - "[[04_Player_Entities/_Registries/Registry_Races#Ёж (Erinaceus)|Registry_Races]]"
+  - "[[04_Player_Entities/Races/Hedgehog|Ёж]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
 ---
 # Ежи: Культура Удерживаемого Пространства

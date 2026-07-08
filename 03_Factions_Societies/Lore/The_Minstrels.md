@@ -1,8 +1,15 @@
 ---
-type: lore
+type: faction
 category: faction
 status: active
-system: factions_lore
+system: factions
+faction_id: minstrels
+display_name: Лига Менестрелей
+sort_order: 90
+faction_role: liminal_network
+player_label: rumors_and_delivery
+promise: living_voice
+access_model: rumors_messages_secret_paths_external_addresses
 tags:
   - intel
   - rumors
@@ -11,7 +18,7 @@ tags:
   - external_addresses
 related_files:
   - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
-  - "[[03_Factions_Societies/_Registries/Registry_Factions#Лига Менестрелей|Registry_Factions]]"
+  - "[[03_Factions_Societies/_Registries/Registry_Factions|Registry_Factions]]"
   - "[[03_Factions_Societies/Lore/The_Contour_Chamber|The_Contour_Chamber]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
 related_mechanics:
@@ -20,6 +27,13 @@ related_mechanics:
   - "[[06_Economy_Loot/Vendor_Logic|Vendor_Logic]]"
 ---
 # Слухи и доставка: Лига Менестрелей
+
+## Отношения
+
+[rel_spy:: contour_chamber] (живой слух против доказуемой записи)
+[rel_union:: circle_of_interposition] (раннее предупреждение позволяет защитить свидетеля до доказательства)
+[rel_trade:: night_guarantors] (серые просьбы часто нуждаются в голосе без подписи)
+[rel_conflict:: cathedral_all_faiths] (исповедь и песня несовместимы без согласия)
 
 **Игровой ярлык:** слухи, письма, тайные пути, внешние адреса, серые сведения.
 

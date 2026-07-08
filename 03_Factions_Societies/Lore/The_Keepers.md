@@ -1,8 +1,14 @@
 ---
-type: lore
+type: faction
 category: faction
 status: active
-system: factions_lore
+system: factions
+faction_id: keepers
+display_name: Хранители
+sort_order: 190
+faction_role: supra_faction
+promise: anchor_stability
+access_model: emergency_protocols_anchor_routes_red_line
 tags:
   - secret_service
   - high_tech
@@ -10,7 +16,7 @@ tags:
   - administration
 related_mechanics:
   - "[[03_Factions_Societies/Quest_Engine]]"
-  - "[[03_Factions_Societies/_Registries/Registry_Factions#Хранители (The Keepers)]]"
+  - "[[03_Factions_Societies/_Registries/Registry_Factions|Registry_Factions]]"
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
 related_files:
   - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
@@ -19,6 +25,11 @@ related_files:
   - "[[02_World_Lore/The_Ark|The_Ark]]"
 ---
 # Хранители (The Keepers)
+
+## Отношения
+
+[rel_monitor:: all] (вмешиваются, когда спор угрожает Якорю, барьеру или экзистенциальной стабильности)
+[rel_conflict:: circle_of_interposition] (хранительская срочность спорит с правом на паузу, имя и свидетеля)
 
 > *«Нас не интересует, кто управляет районами или контролирует торговые пути. Решайте свои конфликты как хотите. Но если кто-то из вас активирует артефакт, способный разрушить барьер Якоря — мы вмешаемся. Без предупреждения. Без переговоров.»*
 > — *Агент "Ворон" во время инструктажа Картографов.*

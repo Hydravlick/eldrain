@@ -1,8 +1,15 @@
 ---
-type: lore
+type: faction
 category: faction
 status: active
-system: factions_lore
+system: factions
+faction_id: common_storehouses
+display_name: Общие Кладовые
+sort_order: 20
+faction_role: hearth
+player_label: food_and_stock
+promise: no_empty_hands
+access_model: recovery_kits_basic_stock_shared_cells
 tags:
   - hearth
   - mutual_aid
@@ -20,6 +27,13 @@ related_mechanics:
   - "[[06_Economy_Loot/Barter_System|Barter_System]]"
 ---
 # Еда и запас: Общие Кладовые
+
+## Отношения
+
+[rel_union:: first_reception] (забота невозможна без минимума)
+[rel_union:: circle_of_interposition] (спорную партию заменяют безопасным минимумом, не наказывая район голодом)
+[rel_conflict:: weighing_houses] (долг не должен съедать право на минимум)
+[rel_trade:: support_artels] (полки, фонари и ячейки требуют ремонта)
 
 **Игровой ярлык:** пайки, базовые расходники, ячейки, восстановление после провала.
 

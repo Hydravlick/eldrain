@@ -17,7 +17,7 @@ related_files:
   - "[[02_World_Lore/Energy_Concept|Energy_Concept]]"
   - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
   - "[[03_Factions_Societies/Lore/The_Cartographers|The_Cartographers]]"
-  - "[[04_Player_Entities/_Registries/Registry_Races#Ящерица (Lacerta)|Registry_Races]]"
+  - "[[04_Player_Entities/Races/Lizard|Ящерица]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
 ---
 # Ящерицы: Культура Измеримого Мгновения

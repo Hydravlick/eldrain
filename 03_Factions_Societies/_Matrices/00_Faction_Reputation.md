@@ -29,7 +29,7 @@ try {
     const innerRadius = 50;             
     const bundleTension = 0.60;         
     
-    const sourceFilePath = "Registry_Factions.md"; 
+    const sourceFolder = "03_Factions_Societies/Lore";
 
     // === 2.1 НАСТРОЙКА ЛЕГЕНДЫ ===
     const legendData = [
@@ -59,11 +59,6 @@ try {
     const nodeColors = { "center": "#feca57", "default": "#ffffff" };
 
     // === 3. ПАРСИНГ ДАННЫХ ===
-    const page = dv.page(sourceFilePath);
-    if (!page) throw new Error("Файл не найден: " + sourceFilePath);
-
-    const rawContent = (await dv.io.load(page.file.path)) + "\n\n## END_MARKER";
-    const rawBlocks = rawContent.split(/^##\s+/m).slice(1); 
     const cleanID = (str) => str ? str.toLowerCase().trim() : null;
     
     const getRelDetails = (text) => {
@@ -80,33 +75,55 @@ try {
         });
     };
 
-    let nodes = [];
-    nodes.push({
-        id: "player", name: "Player", fullName: "Player Character",
-        isCenter: true, desc: "Центр событий.", rawRelations: []
+    const factionPages = Array.from(dv.pages('"03_Factions_Societies/Lore"'))
+        .filter(page => page.type === "faction")
+        .sort((a, b) => Number(a.sort_order ?? 9999) - Number(b.sort_order ?? 9999));
+
+    if (factionPages.length === 0) {
+        throw new Error("В папке фракций не найдено ни одной сущности");
+    }
+
+    const factionNodes = await Promise.all(factionPages.map(async page => {
+        const body = await dv.io.load(page.file.path);
+        return {
+            id: cleanID(page.faction_id),
+            name: page.display_name || page.file.name,
+            path: page.file.path,
+            isCenter: ["supra_faction", "hidden"].includes(cleanID(page.faction_role)),
+            desc: page.promise || "...",
+            rawRelations: getRelDetails(body)
+        };
+    }));
+
+    const errors = [];
+    const validTypes = new Set(legendData.flatMap(group => group.types));
+    const factionIds = new Set();
+
+    factionNodes.forEach(node => {
+        if (!node.id) {
+            errors.push(`Нет faction_id: ${node.path}`);
+            return;
+        }
+        if (factionIds.has(node.id)) errors.push(`Повтор faction_id: ${node.id}`);
+        factionIds.add(node.id);
     });
 
-    rawBlocks.forEach(blockText => {
-        const lines = blockText.split('\n');
-        const header = lines[0].trim();
-        if (header === "END_MARKER") return; 
-
-        const body = lines.slice(1).join('\n');
-        const idMatch = body.match(/\[faction::\s*([^\]]+)\]/);
-        if (!idMatch) return;
-        
-        const isCenter = /\[(role|tier|faction|faction_role)::\s*(center|hidden|major|supra_faction)\]/i.test(body);
-        const descMatch = body.match(/\*([^*]+)\*/);
-
-        nodes.push({
-            id: cleanID(idMatch[1]),
-            name: header.split('(')[0].trim(),
-            fullName: header,
-            isCenter: isCenter,
-            desc: descMatch ? descMatch[1] : "...",
-            rawRelations: getRelDetails(body)
+    factionNodes.forEach(node => {
+        node.rawRelations.forEach(rel => {
+            if (!validTypes.has(rel.type)) errors.push(`Неизвестный тип связи ${rel.type}: ${node.id}`);
+            if (!["all", "any"].includes(rel.targetId) && !factionIds.has(rel.targetId)) {
+                errors.push(`Неизвестная цель ${rel.targetId}: ${node.id}`);
+            }
+            if (!rel.reason) errors.push(`Нет причины связи ${node.id} -> ${rel.targetId}`);
         });
     });
+
+    if (errors.length > 0) throw new Error(errors.join("; "));
+
+    const nodes = [{
+        id: "player", name: "Player", path: null,
+        isCenter: true, desc: "Центр событий.", rawRelations: []
+    }, ...factionNodes];
 
     // === 4. ГРУППИРОВКА СВЯЗЕЙ ===
     const nodeMap = new Map(nodes.map(n => [n.id, n]));
@@ -575,8 +592,8 @@ try {
     }
 
     function openLink(d) {
-         const link = `${sourceFilePath}#${d.data.fullName}`;
-         dv.app.workspace.openLinkText(link, sourceFilePath, false);
+         if (!d.data.path) return;
+         dv.app.workspace.openLinkText(d.data.path, sourceFolder, false);
     }
 
 } catch (e) {

@@ -20,11 +20,111 @@ related_files:
 
 ## Зафиксированная матрица
 
-| | Авангард `assault` | Технократ `support` | Странник `scout` |
-|---|---|---|---|
-| Ёж `hedgehog` | `hedgehog_assault` | `hedgehog_support` | `hedgehog_scout` |
-| Крыса `rat` | `rat_assault` | `rat_support` | `rat_scout` |
-| Белка `squirrel` | `squirrel_assault` | `squirrel_support` | `squirrel_scout` |
+```dataviewjs
+const races = dv.pages('"04_Player_Entities/Races"').where(page => page.type === "race");
+const specs = dv.pages('"04_Player_Entities/Specs"').where(page => page.type === "spec");
+const currentPath = dv.current().file.path;
+const comboSource = await dv.io.load(currentPath);
+
+const cleanId = value => value ? String(value).trim().toLowerCase() : null;
+const inline = (body, key) => body.match(new RegExp(`\\[${key}::\\s*([^\\]]+)\\]`, "i"))?.[1]?.trim();
+const asList = value => Array.from(value || []).map(cleanId).filter(Boolean);
+const displayName = header => header.replace(/\s*\(.*?\)\s*/g, "").trim();
+
+function pageRecord(page) {
+    return {
+        id: cleanId(page.id),
+        name: page.display_name || page.file.name,
+        path: page.file.path,
+        link: page.file.link,
+        sortOrder: Number(page.sort_order) || 999,
+        scope: page.content_scope || "unknown",
+        baseVector: cleanId(page.base_vector),
+        weakTo: asList(page.weak_to)
+    };
+}
+
+const raceRecords = Array.from(races).map(pageRecord).filter(item => item.id);
+const specRecords = Array.from(specs).map(pageRecord).filter(item => item.id);
+const comboRecords = comboSource.split(/^##\s+/m).slice(1).flatMap(block => {
+    const lines = block.split("\n");
+    const header = (lines[0] || "").trim();
+    const body = lines.slice(1).join("\n");
+    const id = cleanId(inline(body, "id"));
+    if (!id || id.startsWith("template_")) return [];
+    return [{
+        id,
+        header,
+        name: displayName(header),
+        raceId: cleanId(inline(body, "req_race")),
+        specId: cleanId(inline(body, "req_spec")),
+        status: cleanId(inline(body, "design_status")) || "missing"
+    }];
+});
+
+const duplicateIds = values => values
+    .filter((id, index) => values.indexOf(id) !== index)
+    .filter((id, index, all) => all.indexOf(id) === index);
+const duplicates = [
+    ...duplicateIds(raceRecords.map(item => item.id)),
+    ...duplicateIds(specRecords.map(item => item.id)),
+    ...duplicateIds(comboRecords.map(item => item.id))
+];
+
+if (duplicates.length) {
+    dv.paragraph(`⚠️ Дублирующиеся ID: ${duplicates.join(", ")}`);
+}
+
+const racesById = new Map(raceRecords.map(item => [item.id, item]));
+const specsById = new Map(specRecords.map(item => [item.id, item]));
+const combosByPair = new Map(comboRecords.map(item => [`${item.raceId}::${item.specId}`, item]));
+const mvpRaces = raceRecords.filter(item => item.scope === "mvp").sort((a, b) => a.sortOrder - b.sortOrder);
+const mvpSpecs = specRecords.filter(item => item.scope === "mvp").sort((a, b) => a.sortOrder - b.sortOrder);
+
+if (!mvpRaces.length || !mvpSpecs.length) {
+    dv.paragraph("⚠️ Не найдены MVP-расы или MVP-практики.");
+} else {
+    dv.table(
+        ["Раса \\ Практика", ...mvpSpecs.map(spec => spec.link)],
+        mvpRaces.map(race => [
+            race.link,
+            ...mvpSpecs.map(spec => {
+                const combo = combosByPair.get(`${race.id}::${spec.id}`);
+                if (!combo) return "⚠️ missing";
+                return `${dv.sectionLink(currentPath, combo.header, false, combo.name)}<br><small>${combo.status}</small>`;
+            })
+        ])
+    );
+}
+
+const inheritedRows = comboRecords.map(combo => {
+    const race = racesById.get(combo.raceId);
+    const spec = specsById.get(combo.specId);
+    const sharedWeakness = race && spec
+        ? race.weakTo.filter(value => spec.weakTo.includes(value))
+        : [];
+    const issues = [
+        race ? null : `нет расы ${combo.raceId || "UNKNOWN"}`,
+        spec ? null : `нет практики ${combo.specId || "UNKNOWN"}`
+    ].filter(Boolean);
+
+    return [
+        dv.sectionLink(currentPath, combo.header, false, combo.name),
+        race?.link || `⚠️ ${combo.raceId || "UNKNOWN"}`,
+        spec?.link || `⚠️ ${combo.specId || "UNKNOWN"}`,
+        [race?.baseVector, spec?.baseVector].filter(Boolean).join(" + ") || "⚠️ нет",
+        sharedWeakness.join(", ") || "⚠️ нет общей слабости",
+        issues.length ? `⚠️ ${issues.join("; ")}` : combo.status
+    ];
+});
+
+if (inheritedRows.length) {
+    dv.header(3, "Производный профиль");
+    dv.table(["Комбинация", "Раса", "Практика", "Векторы", "Общая слабость", "Статус"], inheritedRows);
+} else {
+    dv.paragraph("⚠️ В Registry_Combos не найдено ни одной записи.");
+}
+```
 
 Жаба, Ящерица, Страж и Догмат остаются expansion-направлениями. Для них не создаются фиктивные готовые комбо до отдельного прохода.
 
@@ -71,7 +171,6 @@ related_files:
 [req_race:: hedgehog]
 [req_spec:: assault]
 [design_status:: pending]
-[base_weakness:: hazard]
 [module_capacity:: UNKNOWN]
 
 Проектный слот. Не наследует автоматически старого «Джаггернаута», стационарную турель или «Сенсорную Броню».
@@ -84,7 +183,6 @@ related_files:
 [req_race:: hedgehog]
 [req_spec:: support]
 [design_status:: pending]
-[base_weakness:: shadow]
 [module_capacity:: UNKNOWN]
 
 Проектный слот. Сила должна рождаться из смешения телесной массы и инженерной методологии, а не из универсальной роли танка.
@@ -97,7 +195,6 @@ related_files:
 [req_race:: hedgehog]
 [req_spec:: scout]
 [design_status:: pending]
-[base_weakness:: hazard]
 [module_capacity:: UNKNOWN]
 
 Проектный слот. Мобильность Странника не обязана означать рывок; допустимы маршрутизация, контролируемый перенос массы и подготовленное изменение позиции.
@@ -110,7 +207,6 @@ related_files:
 [req_race:: rat]
 [req_spec:: assault]
 [design_status:: pending]
-[base_weakness:: kinetics]
 [module_capacity:: UNKNOWN]
 
 Проектный слот. Третий хват и техническая биология должны менять способ ведения оружейного давления, а не давать бесплатную скорость действий.
@@ -123,7 +219,6 @@ related_files:
 [req_race:: rat]
 [req_spec:: support]
 [design_status:: pending]
-[base_weakness:: shadow, kinetics, detection]
 [ability_model:: mono_vector_fusion]
 [module_capacity:: UNKNOWN]
 
@@ -137,7 +232,6 @@ related_files:
 [req_race:: rat]
 [req_spec:: scout]
 [design_status:: pending]
-[base_weakness:: detection]
 [module_capacity:: UNKNOWN]
 
 Проектный слот. Должен работать через маршрут, инструмент и чтение пространства, не превращаясь в обязательный пик для закрытых локаций.
@@ -150,7 +244,6 @@ related_files:
 [req_race:: squirrel]
 [req_spec:: assault]
 [design_status:: foundation_approved]
-[base_weakness:: tech]
 [module_capacity:: UNKNOWN]
 [substat_consumer:: spark_gain]
 [spark_rule:: meaningful_movement_impulse]
@@ -174,7 +267,6 @@ related_files:
 [req_race:: squirrel]
 [req_spec:: support]
 [design_status:: pending]
-[base_weakness:: shadow]
 [module_capacity:: UNKNOWN]
 
 Проектный слот. Перегрузка — сильное направление фантазии, но требует цены, телеграфа и восстановления; не должна производить бесплатные батареи или бесконечное питание устройств.
@@ -187,7 +279,6 @@ related_files:
 [req_race:: squirrel]
 [req_spec:: scout]
 [design_status:: pending]
-[base_weakness:: ballistics]
 [module_capacity:: UNKNOWN]
 
 Проектный слот. Это наиболее мобильная методология матрицы, но мобильность должна жить в теле и маршруте; способности остаются медленными, ситуативными и уязвимыми.

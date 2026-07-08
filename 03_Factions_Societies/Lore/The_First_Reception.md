@@ -1,8 +1,15 @@
 ---
-type: lore
+type: faction
 category: faction
 status: active
-system: factions_lore
+system: factions
+faction_id: first_reception
+display_name: Круг Первого Приёма
+sort_order: 10
+faction_role: hearth
+player_label: entry_and_care
+promise: entry_and_care
+access_model: sanitary_passes_foundling_care_quarantine
 tags:
   - hearth
   - medicine
@@ -20,6 +27,13 @@ related_mechanics:
   - "[[03_Factions_Societies/Quest_Engine|Quest_Engine]]"
 ---
 # Вход и забота: Круг Первого Приёма
+
+## Отношения
+
+[rel_union:: common_storehouses] (первичный уход требует еды, тепла и базовых наборов)
+[rel_union:: circle_of_interposition] (спорный живой или мёртвый не должен оставаться один перед заинтересованной стороной)
+[rel_conflict:: weighing_houses] (найденыш, тело и долг лечения не должны становиться простой собственностью)
+[rel_conflict:: keepers] (закрытие потока ради барьера спорит с правом принять живого)
 
 **Игровой ярлык:** вход, лечение, карантин, найденыши, первичная защита.
 

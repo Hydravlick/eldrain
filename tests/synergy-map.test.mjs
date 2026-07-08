@@ -1,9 +1,12 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+import path from "node:path";
 import test from "node:test";
 import vm from "node:vm";
+import { fileURLToPath } from "node:url";
 
 const NOTE_PATH = new URL("../04_Player_Entities/_Matrices/00_Synergy_Map.md", import.meta.url);
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 function loadHelpers() {
     const markdown = readFileSync(NOTE_PATH, "utf8");
@@ -62,6 +65,28 @@ function parseRegistry(relativePath, kind) {
         }
         return [record];
     });
+}
+
+function parseEntityFolder(relativePath) {
+    const directory = path.join(ROOT, relativePath);
+    if (!existsSync(directory)) return [];
+
+    return readdirSync(directory).filter(name => name.endsWith(".md")).map(name => {
+        const text = readFileSync(path.join(directory, name), "utf8");
+        const yaml = text.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] || "";
+        const scalar = key => yaml.match(new RegExp(`^${key}:\\s*([^\\n]+)$`, "m"))?.[1]?.trim().replace(/^["']|["']$/g, "");
+        const list = key => (scalar(key) || "[]")
+            .replace(/^\[|\]$/g, "")
+            .split(",")
+            .map(value => value.trim().toLowerCase())
+            .filter(Boolean);
+        return {
+            id: scalar("id")?.toLowerCase(),
+            name: scalar("display_name") || name.replace(/\.md$/, ""),
+            baseVector: scalar("base_vector")?.toLowerCase(),
+            weakTo: list("weak_to")
+        };
+    }).filter(item => item.id);
 }
 
 test("counter mode keeps only a strict directional advantage", () => {
@@ -195,8 +220,8 @@ test("matrix view has tabs, a responsive host, and focusable cells", () => {
 
 test("current registries produce the expected sparse radial counts", () => {
     const { buildModeLinks } = loadHelpers().helpers;
-    const races = parseRegistry("04_Player_Entities/_Registries/Registry_Races.md", "race");
-    const specs = parseRegistry("04_Player_Entities/_Registries/Registry_Specs.md", "spec");
+    const races = parseEntityFolder("04_Player_Entities/Races");
+    const specs = parseEntityFolder("04_Player_Entities/Specs");
     const combos = parseRegistry("04_Player_Entities/_Registries/Registry_Combos.md", "combo");
     const racesById = new Map(races.map(item => [item.id, item]));
     const specsById = new Map(specs.map(item => [item.id, item]));
