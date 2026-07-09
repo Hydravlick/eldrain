@@ -2,11 +2,16 @@
 type: core_concept
 status: active
 system: core_vision
-tags: [art_direction, aesthetics, material_grammar, sectors, magipunk]
+tags:
+  - art_direction
+  - aesthetics
+  - material_grammar
+  - sectors
+  - magipunk
 related_files:
   - "[[01_Core_Vision/01_Vision|Vision]]"
   - "[[02_World_Lore/Magipunk_Physics|Magipunk_Physics]]"
-  - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
+  - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[03_Factions_Societies/Lore/The_Proving_Houses|The_Proving_Houses]]"
   - "[[02_World_Lore/Lizard_Culture|Lizard_Culture]]"
   - "[[08_World_Generation/Generation/01_World_Concept_Palimpsest|World_Concept_Palimpsest]]"

@@ -13,7 +13,7 @@ related_files:
   - "[[06_Economy_Loot/Economy_Core|Economy_Core]]"
   - "[[07_Gear_Inventory/Inventory_QoL|Inventory_QoL]]"
   - "[[07_Gear_Inventory/Inventory_Architecture|Inventory_Architecture]]"
-  - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
+  - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
 ---
 # Архитектура Схрона и Менеджмент (Stash & Organization)

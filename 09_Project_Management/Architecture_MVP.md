@@ -24,7 +24,7 @@ tags:
 |:---|:---|:---|
 | `01_Core_Vision` | Концепция, тон, основной цикл | [[01_Core_Vision/GDD_Main]], [[01_Core_Vision/02_Core_Loop]], [[01_Core_Vision/Glossary]] |
 | `02_World_Lore` | Ковчег, Коллапс, Якорь, Сущность, магипанк и культуры | [[02_World_Lore/The_Ark]], [[02_World_Lore/The_Collapse]], [[02_World_Lore/The_Anchor]], [[02_World_Lore/Protocol_Resonance]], [[02_World_Lore/Culture_Language]] |
-| `03_Factions_Societies` | Фракции, репутация, поручения, допуски, контракты и становление города | [[03_Factions_Societies/_Registries/Registry_Factions]], [[03_Factions_Societies/Reputation_Rules]], [[03_Factions_Societies/Pledge_Contracts]], [[03_Factions_Societies/Quest_Engine]], [[03_Factions_Societies/Lore/City_Anatomy]] |
+| `03_Factions_Societies` | Фракции, репутация, поручения, допуски, контракты и становление города | [[03_Factions_Societies/_Registries/Registry_Factions]], [[03_Factions_Societies/Reputation_Rules]], [[03_Factions_Societies/Pledge_Contracts]], [[03_Factions_Societies/Quest_Engine]], [[03_Factions_Societies/Lore/City_Genesis]], [[03_Factions_Societies/Lore/Civic_Ethos_Under_Lamps]], [[03_Factions_Societies/Lore/Faction_Address_System]] |
 | `04_Player_Entities` | Оболочки, расы, практики, архетипы, TOUCH, синергии | [[04_Player_Entities/Shell_Specification]], [[04_Player_Entities/MVP_3x3_Design_Contract]], [[04_Player_Entities/_Registries/Registry_Races]], [[04_Player_Entities/_Registries/Registry_Specs]], [[04_Player_Entities/Combat_Profile_Pipeline]] |
 | `05_Combat_Survival` | Бой, магострелы, батареи, статусы, выживание | [[05_Combat_Survival/Combat_Three_Debts]], [[05_Combat_Survival/Weapon_Core]], [[05_Combat_Survival/Magic_Batteries]], [[05_Combat_Survival/Status_Effects]], [[05_Combat_Survival/Dissonance_System]] |
 | `06_Economy_Loot` | Рез, бартер, чертежи, экстракция и стабилизация лута | [[06_Economy_Loot/Extraction_Stabilization_Loop]], [[06_Economy_Loot/Economy_Core]], [[06_Economy_Loot/Currency_Rez]], [[06_Economy_Loot/Loot_Distribution]], [[06_Economy_Loot/Barter_System]], [[06_Economy_Loot/Blueprints]], [[06_Economy_Loot/Craft_Modifiers]] |
@@ -112,7 +112,7 @@ related_mechanics:
 
 ### 6.1. Сущности с собственным контекстом
 
-Раса, практика / специализация и реестровая фракция получают отдельную заметку, если их нужно читать как самостоятельный объект с лором, функцией, ограничениями и зависимостями.
+Раса, практика / специализация, реестровая фракция и оружейный фрейм получают отдельную заметку, если их нужно читать как самостоятельный объект с лором, функцией, ограничениями и зависимостями.
 
 - YAML заметки является единым источником её стабильных полей.
 - Тело заметки хранит биологическую, профессиональную или общественную основу, правила и читаемое объяснение.
@@ -123,11 +123,13 @@ related_mechanics:
 - Фиксированный числовой контракт хранится плоскими полями с пространством имён, например `touch_TRQ`, `touch_GRP`, `touch_LYR`, `touch_GLW`, `touch_SNS`.
 - Переменные наборы модификаторов хранятся в теле страницы как inline Dataview-поля: `[substats:: ...]`, `[cap_mod:: ...]`, `[condition_bonus:: ...]`, `[tradeoff:: ...]`.
 
-Канонические источники находятся в `04_Player_Entities/Races/` и `04_Player_Entities/Specs/`. [[04_Player_Entities/_Registries/Registry_Races|Registry_Races]] и [[04_Player_Entities/_Registries/Registry_Specs|Registry_Specs]] являются семейными представлениями и не содержат копий полей сущностей.
+Канонические источники персонажных сущностей находятся в `04_Player_Entities/Races/` и `04_Player_Entities/Specs/`. [[04_Player_Entities/_Registries/Registry_Races|Registry_Races]] и [[04_Player_Entities/_Registries/Registry_Specs|Registry_Specs]] являются семейными представлениями и не содержат копий полей сущностей.
+
+Канонические источники оружейных фреймов находятся в `05_Combat_Survival/Weapons/` и определяются полем `type: weapon_frame`. [[05_Combat_Survival/Registry_Weapons|Registry_Weapons]] является семейным представлением: хранит контракт, Dataview-таблицы и проверки, но не копирует поля самих фреймов. Варианты оружия остаются внутри страницы своего фрейма как inline Dataview-поля, потому что вариант является исполнением фрейма, а не отдельной архетипной сущностью.
 
 ### 6.2. Реестры атомарных и реляционных записей
 
-Предметы, расходники, рецепты, теги и комбинации `Race × Spec` по умолчанию остаются блоками общего реестра. Для них отдельный файл не создаётся только ради ID или связи с двумя другими сущностями.
+Предметы, расходники, рецепты, теги и комбинации `Race × Spec` по умолчанию остаются блоками общего реестра. Для них отдельный файл не создаётся только ради ID или связи с двумя другими сущностями. Оружейные фреймы являются исключением из-за `frame_vector`, окон, `exposure_channels` и связи с proficiency; конкретные варианты оружия этим исключением не становятся.
 
 [[04_Player_Entities/_Registries/Registry_Combos|Registry_Combos]] хранит только собственную дельту комбинации:
 

@@ -17,8 +17,8 @@ tags:
   - armor
   - infrastructure
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
-  - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
+  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[02_World_Lore/Hedgehog_Culture|Hedgehog_Culture]]"
 related_mechanics:
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"

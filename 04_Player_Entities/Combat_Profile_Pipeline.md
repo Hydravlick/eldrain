@@ -14,7 +14,7 @@ related_files:
 ---
 # Combat Profile Pipeline
 
-> Канон расчета Оболочки: `Race + Spec -> Combo P/Q/E + Module Capacity -> Allowed Arsenal -> Tags -> Proficiency Gates -> Combat Profile и допустимая сборка Термоса`.
+> Канон расчета Оболочки: `Race + Spec -> Combo P/Q/E + Module Capacity -> Allowed Arsenal -> Tags -> Proficiency Gates -> Combat Profile, Frame Commitment и допустимая сборка Термоса`.
 
 ## 1. Race + Spec
 
@@ -44,8 +44,8 @@ Hidden Substats = f(Final TOUCH, Race.substat_bonus, Spec.substat_bonus)
 ```markdown
 [req_race:: rat]
 [req_spec:: scout]
-[arsenal_type:: blade] | [prof:: 2]
-[arsenal_type:: arcanegun] | [prof:: 1]
+[weapon_instance:: combat_shiv] | [weapon_frame:: short_blade] | [prof:: 2] | [combat_role:: route_finish]
+[weapon_instance:: spark_handcannon] | [weapon_frame:: handcannon] | [prof:: 1] | [combat_role:: panic_stop]
 ```
 
 - **P/Q/E** — смешанные способности конкретной пары `Race × Spec`.
@@ -59,11 +59,11 @@ Hidden Substats = f(Final TOUCH, Race.substat_bonus, Spec.substat_bonus)
 Для MVP итоговый арсенал берется из combo-блока:
 
 ```markdown
-[arsenal_type:: blade] | [prof:: 2]
-[arsenal_type:: arcanegun] | [prof:: 1]
+[weapon_instance:: combat_shiv] | [weapon_frame:: short_blade] | [prof:: 2] | [combat_role:: route_finish]
+[weapon_instance:: spark_handcannon] | [weapon_frame:: handcannon] | [prof:: 1] | [combat_role:: panic_stop]
 ```
 
-Это уже отражает `Allowed = (RaceList union SpecList) - RaceBanned`, но без необходимости прямо сейчас дробить RaceList и SpecList по отдельным файлам.
+Строка арсенала указывает конкретный экземпляр фрейма для MVP-доктрины. Если владение не заявлено, строка не пишется; `prof:: 0` не хранится как данные.
 
 `arcanegun` в этой системе означает магострельные и механические дальнобойные фреймы: разрядники, конденсаторы, эмиттеры, гарпуны и игольники. Они работают через батарейный цикл, heat, bloom и Dissonance.
 
@@ -71,8 +71,8 @@ Hidden Substats = f(Final TOUCH, Race.substat_bonus, Spec.substat_bonus)
 
 Теги накладываются поверх combo.
 
-- `add_vector` добавляет активный вектор.
-- `block_vector` выключает активный или оружейный вектор.
+- `add_vector` добавляет активный архетипный вектор только через тело, мутацию или редкую Fusion.
+- `block_vector` выключает активный архетипный вектор.
 - `prof_delta` меняет tier владения.
 - `override_race_ban` разрешает физиологически спорный арсенал.
 - `exclusive_with` запрещает несовместимые теги.
@@ -83,23 +83,23 @@ Hidden Substats = f(Final TOUCH, Race.substat_bonus, Spec.substat_bonus)
 - `condition_bonus` включает бонус при понятном поведении.
 - `tradeoff` фиксирует цену силы.
 
-## 5. Proficiency Gates
+## 5. Proficiency Gates и Frame Commitment
 
-Оружие не добавляет вектор автоматически.
+Оружие не добавляет новый активный вектор в Combat Profile.
 
 ```text
 final_prof = combo_prof + tag_prof_delta + temporary_modifiers
-if final_prof >= vector_gate:
-    Combat Profile gains weapon_vector
+if final_prof >= mastery_gate:
+    current frame unlocks mastery_unlock
 ```
 
-Tier 1-2 - это использование оружия. Tier 3+ - это раскрытие скрытого тактического вектора оружия.
+Tier 1-2 - это использование оружия. Tier 3+ - это раскрытие мастерства фрейма: стабильность, техника, cancel, снижение экспозиции или дополнительное окно исполнения.
 
-Открытие оружейного вектора не удаляет и не пересчитывает базовую общую слабость `Race × Spec`. Оно добавляет возможность в Combat Profile, сохраняя исходную цену архетипа.
+Фрейм имеет `frame_vector`, но этот вектор имеет `vector_scope:: commitment`. Он активен только когда игрок берёт обязательство действием: замах, aim hold, charge, shot, block или recovery. `frame_vector` не пересчитывает `Race.weak_to ∩ Spec.weak_to` и не входит в базовую карту Двойного Парадокса.
 
 ### Параллельный расчёт модулей
 
-Профильные ёмкости Термоса не добавляют вектор автоматически и не используют оружейный `vector_gate`.
+Профильные ёмкости Термоса не добавляют вектор автоматически и не используют оружейный `mastery_gate`.
 
 ```text
 final_module_capacity = combo.module_capacity + stable_tags.module_capacity_delta
@@ -108,9 +108,9 @@ installed_module_cost <= final_module_capacity
 
 Итог определяет допустимость вшитой сборки у мастера. Физические слоты и положения читаются из выбранного Термоса, а не из Combat Profile.
 
-Для `arcanegun` открытый `weapon_vector:: ballistics` читается как **линейное дальнее давление**: stagger, aim punch, контроль линии, создание окна и безопасный добор, а не непрерывный DPS.
+Для `arcanegun` `frame_vector:: ballistics` читается как временное обязательство линейного дальнего давления: stagger, aim punch, контроль линии, создание окна и безопасный добор, а не непрерывный DPS и не новый архетипный вектор.
 
-Магострельные фреймы читают скрытые substats и отдельные Frame Window. Frame Window описывает создаваемое оружием тактическое окно, а не числовой параметр тела.
+Фреймы читают скрытые substats и отдельные Frame Window. Frame Window описывает создаваемое оружием тактическое окно, а не числовой параметр тела.
 
 | Frame/System | Главные substats | Frame Window |
 |:---|:---|:---|
@@ -122,6 +122,42 @@ installed_module_cost <= final_module_capacity
 | `catalyst_focus` | `output_power`, `reality_burn_power`, `backlash_resist` | `reality_burn` |
 | Batteries | `battery_efficiency`, `heat_sink`, `cell_swap_speed` | — |
 
+### Current Commitment
+
+Текущий фрейм добавляет не слабость архетипа, а моментную экспозицию:
+
+```text
+Current Commitment =
+  equipped frame
+  + active action phase
+  + frame_vector
+  + exposure_channels
+  + commitment_time / recovery_time
+```
+
+Оружие в рюкзаке не создаёт экспозицию. Второй quick-slot может быть показан как готовая альтернатива, но не участвует в расчёте, пока игрок не достал фрейм и не начал действие.
+
+Для компактной статистики используются:
+
+```text
+Frame Power =
+  creates_window
+  + exploits_window
+  + mitigates_window
+  + range_control
+  + reliability
+
+Frame Exposure =
+  exposure_weight
+  + commitment_time
+  + recovery_time
+  + heat
+  + dissonance_pulse
+  + weight / carry_tax
+```
+
+Численные веса являются прототипными и не заменяют playtest.
+
 ## 6. Combat Profile
 
 Итоговый профиль содержит:
@@ -130,7 +166,7 @@ installed_module_cost <= final_module_capacity
 - вычисленную общую слабость `Race.weak_to ∩ Spec.weak_to`;
 - дополнительные слабости от тегов;
 - использованную `Growth Capacity`;
-- открытые оружейные векторы;
+- текущий `Frame Commitment`, если Пешка находится в действии или recovery;
 - видимые T.O.U.C.H. значения;
 - скрытые substats и активные condition bonuses;
 - окна доминации по матрице Двойного Парадокса.

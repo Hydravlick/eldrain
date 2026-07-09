@@ -95,8 +95,8 @@ tags:
 
 - Создать: `03_Factions_Societies/Lore/The_Circle_of_Interposition.md`
 - Изменить: `03_Factions_Societies/Registry_Factions.md`
-- Изменить: `03_Factions_Societies/Lore/Faction_Ecosystem.md`
-- Изменить: `03_Factions_Societies/Lore/Social_Political_Order.md`
+- Изменить: `03_Factions_Societies/Lore/Faction_Address_System.md`
+- Изменить: `03_Factions_Societies/Lore/Civic_Ethos_Under_Lamps.md`
 - Изменить: `03_Factions_Societies/Reputation_Rules.md`
 - Изменить: `03_Factions_Societies/Pledge_Contracts.md`
 - Изменить: `03_Factions_Societies/Quest_Engine.md`

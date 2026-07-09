@@ -19,8 +19,8 @@ tags:
   - temporary_separation
   - civic_safety
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
-  - "[[03_Factions_Societies/Lore/Social_Political_Order|Social_Political_Order]]"
+  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Lore/Civic_Ethos_Under_Lamps|Civic_Ethos_Under_Lamps]]"
   - "[[03_Factions_Societies/Lore/The_First_Reception|The_First_Reception]]"
   - "[[03_Factions_Societies/Lore/The_Common_Storehouses|The_Common_Storehouses]]"
   - "[[03_Factions_Societies/Lore/The_Contour_Chamber|The_Contour_Chamber]]"

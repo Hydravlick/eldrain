@@ -11,7 +11,7 @@ tags:
   - qol
 related_files:
   - "[[03_Factions_Societies/Reputation_Rules|Reputation_Rules]]"
-  - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
+  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
   - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
   - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server_Lifecycle]]"
 ---

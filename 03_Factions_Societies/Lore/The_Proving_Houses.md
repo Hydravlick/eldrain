@@ -17,7 +17,7 @@ tags:
   - laboratories
   - workshops
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
+  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
   - "[[01_Core_Vision/Art_Direction_Material_Grammar|Art_Direction_Material_Grammar]]"
 related_mechanics:
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"

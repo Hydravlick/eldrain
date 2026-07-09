@@ -22,14 +22,14 @@ related_mechanics:
   - "[[03_Factions_Societies/Reputation_Rules]]"
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
+  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
   - "[[02_World_Lore/Rat_Culture|Rat_Culture]]"
   - "[[02_World_Lore/Toad_Culture|Toad_Culture]]"
   - "[[02_World_Lore/Squirrel_Culture|Squirrel_Culture]]"
   - "[[02_World_Lore/Lizard_Culture|Lizard_Culture]]"
   - "[[02_World_Lore/Hedgehog_Culture|Hedgehog_Culture]]"
-  - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
+  - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[04_Player_Entities/Races/Toad|Жаба]]"
 ---
 # Память и обеты: Собор Всех Вер
@@ -52,7 +52,7 @@ related_files:
 
 Собор Всех Вер держит смысл, память и способность жителей возвращаться к жизни после ужаса.
 
-В новой фракционной экосистеме Собор остаётся полноценным [[03_Factions_Societies/Lore/Faction_Ecosystem|Очагом]], но его сила не в продаже "баффов". Он принимает то, что нельзя просто продать, взвесить или записать: имя погибшего, личную вещь, обет, признание, реликвию, вину выжившего, страх перед следующим выходом.
+В новой фракционной экосистеме Собор остаётся полноценным [[03_Factions_Societies/Lore/Faction_Address_System|Очагом]], но его сила не в продаже "баффов". Он принимает то, что нельзя просто продать, взвесить или записать: имя погибшего, личную вещь, обет, признание, реликвию, вину выжившего, страх перед следующим выходом.
 
 **Общее дыхание** - не новое имя фракции, а соборная практика. Это ритуал, в котором разные веры, неверующие практики и травмированные рейдеры синхронизируют дыхание, позу, голос и память, чтобы снова стать частью города.
 

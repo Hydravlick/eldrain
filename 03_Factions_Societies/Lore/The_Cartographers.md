@@ -12,7 +12,7 @@ related_mechanics:
   - "[[03_Factions_Societies/Quest_Engine|Quest_Engine]]"
 related_files:
   - "[[03_Factions_Societies/Lore/The_Contour_Chamber|The_Contour_Chamber]]"
-  - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
+  - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[02_World_Lore/Lizard_Culture|Lizard_Culture]]"
 ---
 # Карты и разведка: Картографы Палаты Контуров

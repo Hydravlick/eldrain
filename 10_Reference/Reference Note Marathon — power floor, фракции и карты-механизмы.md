@@ -18,10 +18,10 @@ related_files:
   - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]]"
   - "[[08_World_Generation/Generation/08_Gate_Check|Gate Check]]"
 source_dialogues:
-  - "[[Gemini 2]]"
+  - "[[Gemini 2.2]]"
 web_sources:
-  - "https://www.marathonthegame.com/"
-  - "https://en.wikipedia.org/wiki/Marathon_(2026_video_game)"
+  - https://www.marathonthegame.com/
+  - https://en.wikipedia.org/wiki/Marathon_(2026_video_game)
 ---
 # Marathon: power floor, фракции и карты-механизмы
 

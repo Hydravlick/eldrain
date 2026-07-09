@@ -17,7 +17,7 @@ tags:
   - liminal_network
   - external_addresses
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
+  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
   - "[[03_Factions_Societies/_Registries/Registry_Factions|Registry_Factions]]"
   - "[[03_Factions_Societies/Lore/The_Contour_Chamber|The_Contour_Chamber]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"

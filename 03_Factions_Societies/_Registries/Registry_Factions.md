@@ -10,8 +10,8 @@ tags:
   - contracts
   - crafting
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
-  - "[[03_Factions_Societies/Lore/Social_Political_Order|Social_Political_Order]]"
+  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Lore/Civic_Ethos_Under_Lamps|Civic_Ethos_Under_Lamps]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
 related_mechanics:
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"

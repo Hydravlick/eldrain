@@ -2,353 +2,231 @@
 type: registry
 status: active
 system: combat_survival_registry
-registry_type: weapons
+registry_type: weapon_frames
 tags:
   - database
   - equipment
-  - templates
+  - frames
 related_files:
   - "[[05_Combat_Survival/Combat_Three_Debts|Combat_Three_Debts]]"
+  - "[[04_Player_Entities/Proficiency_Arsenal|Proficiency_Arsenal]]"
+  - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile_Pipeline]]"
+  - "[[04_Player_Entities/_Registries/Registry_Combos|Registry_Combos]]"
 ---
+# Реестр: фреймы оружия
+
+> Оружие определяется фреймом, вариантом и паттерном. Фрейм задаёт форму обязательства: чем игрок угрожает, на какое окно ставит темп и чем становится наказуем во время действия.
+
 > [!TODO] Оружейные взаимодействия с линиями мутаций
 > - [ ] Определить теги для локального выжигания роста, безопасной проверки мимика и переноса сигнальной метки без универсального «правильного оружия».
 > - [ ] Проверить цену шума: быстрый ответ против Корнехвата или Двереглота должен менять риск встречи со стандартной экосистемой.
 > - **Основа:** [[08_World_Generation/_Registries/Registry_Anomaly_Mutations|Registry_Anomaly_Mutations]]. Урон, дальность и имплициты этой правкой не меняются.
-> [!TODO] Добавить свойства архетипов
-> - [ ] Прописать поле `[implicit:: ...]` для всех пушек (напр. `ambush`, `armor_break`).
-> - [ ] Прописать поле `[sweet_spot_range:: float]` для алебард.
+
+> [!TODO] Калибровка фреймов
 > - [ ] Проверить коридор летальности `spark_handcannon 45` против `condenser_longframe 75` на HP, пластинах, точности, полном цикле заряда, Heat, Pulse и стоимости потери; разница одиночного урона сама по себе не доказывает ни норму, ни нарушение прогрессии.
 
-# Реестр: Типы Оружия (Magipunk Arsenal)
+## Правило реестра
 
-> **Философия Дизайна:**
-> Оружие определяется не "именем", а **Конструкцией (Frame)** и **Паттерном (Pattern)**.
-> * **Frame:** Определяет хитбокс, анимации и встроенное свойство (Implicit).
-> * **Pattern:** Определяет происхождение, тип импульса и стабильность.
-> * **Tier:** Определяет допустимую энергетическую нагрузку, Heat/Recovery-коридор и совместимость с усиленными батареями.
-> * **Rarity:** Определяет аффиксы и специализацию экземпляра, но не входит в общий Power Score.
-> * **Battery Cycle:** Для магострелов темп задается батареей, охлаждением, heat, bloom и Dissonance.
+Канонические данные каждого фрейма хранятся на странице самого фрейма в `05_Combat_Survival/Weapons/`. Этот реестр только собирает семейство, как [[03_Factions_Societies/_Registries/Registry_Factions|Registry_Factions]] собирает фракции.
 
-> **Легенда Типов:**
-> `blade` — Клинковое (Мечи, Ножи)
-> `blunt` — Дробящее (Молоты, Булавы)
-> `polearm` — Древковое (Копья, Алебарды)
-> `arcanegun` — Магострел и дальнобойный фрейм (разрядники, конденсаторы, эмиттеры, игольники)
-> `catalyst` — совместимое имя семейства специализированных эфирных устройств; оно не является обязательным оружием кастера
-> `shield` — Щит (Баклеры, Ростовые)
+Фрейм может иметь `frame_vector`, но это не `base_vector`, не третий архетипный вектор и не новый источник `weak_to`.
 
-> **Параметры:**
-> `[range:: N]` — Дальность (м).
-> `[weapon_vector:: ...]` — скрытый тактический вектор оружия.
-> `[vector_gate:: 3]` — минимальный итоговый proficiency tier, при котором оружие добавляет свой вектор в Combat Profile.
-> `[frame:: ...]` — конкретный дальнобойный фрейм.
-> `[impulse_cost:: N]` — сколько импульсов выбранного резерва тратит действие.
-> `[impulse_reserve:: N]` — текущий внутренний запас уже переданной энергии.
-> `[load_acceptance:: base/stable/overcharge]` — какие транзакции зарядки выдерживает Frame.
-> `[heat:: N]` — сколько тепла создает импульс.
-> `[bloom:: low/medium/high]` — насколько быстро растет эфирный разброс.
-> `[dissonance_pulse:: N]` — временный эфирный всплеск при применении.
-> `[primary_window_function:: create/exploit/mitigate]` — главная работа фрейма с окном.
-> `[creates_window:: ...]`, `[exploits_window:: ...]`, `[mitigates_window:: ...]` — нормализованные ID окон либо `none`.
-> До открытия гейта оружие остается инструментом урона/анимаций, но не становится отдельным узлом Двойного Парадокса.
+```text
+base_vector = кто Пешка по телу и практике
+frame_vector = чем она временно выставилась во время обязательства
+```
 
----
-## 1. Клинковое Оружие (Blades)
-*Режущий/колющий урон. Вызывает кровотечения и хорошо закрывает окна, созданные дальним боем.*
+`frame_vector` активен только в фазах из `activates_on`: замах, прицеливание, удержание заряда, выстрел, блок, recovery. Он нужен для статистики экспозиции и компактной панели "чем это наказать сейчас", а не для пересчёта Двойного Парадокса.
 
-### Боевой Нож (Combat Shiv) [1H]
-[weapon_type:: blade]
-[weapon_vector:: shadow]
-[vector_gate:: 3]
-[heat:: 0]
-[dissonance_pulse:: 0]
-[primary_window_function:: exploit]
-[creates_window:: none]
-[exploits_window:: back_exposed, stagger_entry]
-[mitigates_window:: none]
-[weight:: 0.5kg]|[dmg:: 15]
-*Короткий клинок для "грязной" работы в клинче.*
-* **Мувсет:** Очень быстрые колющие удары. Минимальный расход стамины.
-* **Implicit (Встроенное):** **(Ambush)** Урон в спину x1.5. Удары не сбивают скорость бега.
+## Контракт фрейма
 
-### Мачете / Тесак (Cleaver) [1H]
-[weapon_type:: blade]
-[weapon_vector:: shadow]
-[vector_gate:: 3]
-[heat:: 0]
-[dissonance_pulse:: 0]
-[primary_window_function:: exploit]
-[creates_window:: none]
-[exploits_window:: soft_zone_exposed]
-[mitigates_window:: none]
-[weight:: 1.5kg]|[dmg:: 35]
-*Тяжелое лезвие с смещенным центром тяжести.*
-* **Мувсет:** Широкие рубящие удары. Задевает несколько целей.
-* **Implicit (Встроенное):** **(Maim)** Шанс 20% наложить "Глубокую рану" (снижает макс. HP до конца рейда). Урон по "мягким" целям +30%.
+```yaml
+type: weapon_frame
+frame_id: condenser_longframe
+weapon_family: arcanegun
+frame_vector: ballistics
+vector_scope: commitment
+activates_on: [aim_hold, charge, shot_recovery]
+primary_window_function: create
+creates_window: [weakspot_open]
+exploits_window: [exposed_weakspot]
+mitigates_window: [none]
+exposure_channels: [open_line, flank, charge_interrupt, heat]
+frame_power: 4
+exposure_weight: 4
+mastery_unlock: [stable_charge_cancel]
+```
 
-### Рапира / Эсток (Estoc) [1H]
-[weapon_type:: blade]
-[weapon_vector:: shadow]
-[vector_gate:: 3]
-[heat:: 0]
-[dissonance_pulse:: 0]
-[primary_window_function:: exploit]
-[creates_window:: none]
-[exploits_window:: joint_exposed]
-[mitigates_window:: none]
-[weight:: 1.2kg]|[dmg:: 25]
-*Тонкий клинок для уколов в сочленения брони.*
-* **Мувсет:** Линейные выпады. Длинная дистанция удара.
-* **Implicit (Встроенное):** **(Needle Point)** Игнорирует часть мягкой защиты. Крит требует попадания в уязвимую зону; твердая пластина продолжает блокировать удар по физическим правилам.
+- `weapon_family` — семейство допуска и proficiency: `blade`, `blunt`, `polearm`, `arcanegun`, `catalyst`, `shield`.
+- `frame_vector` — временный вектор обязательства, используемый только для moment/exposure-аналитики.
+- `vector_scope: commitment` — обязательная метка, отделяющая фрейм от архетипных векторов.
+- `activates_on` — фазы, где экспозиция видима и наказуема.
+- `frame_power` — черновая шкала 1-5: насколько фрейм создаёт, использует или закрывает окно.
+- `exposure_weight` — черновая шкала 1-5: насколько дорого промахнуться, задержаться или быть прерванным.
+- `mastery_unlock` — что открывает высокий proficiency: техника, стабильность, cancel, темп или снижение экспозиции, но не новый активный вектор.
 
----
+## Главный MVP
 
-## 2. Дробящее (Blunt / Impact)
-*Урон ударом. Ломает кости и стамину. Эффективно против Латы.*
+`handcannon / spark_handcannon` является якорем MVP-оружия. Он не самый сильный и не самый безопасный фрейм; он лучше всех показывает сеттинг в одном раннем обмене: батарея становится импульсом, импульс даёт `stagger_entry`, выстрел оставляет Heat, DissonancePulse, шум, bloom и Recovery, а бой всё ещё требует добивания, позиции или отхода.
 
-### Кувалда (Sledgehammer) [2H]
-[weapon_type:: blunt]
-[weapon_vector:: kinetics]
-[vector_gate:: 3]
-[heat:: 0]
-[dissonance_pulse:: 0]
-[primary_window_function:: create]
-[creates_window:: guard_break]
-[exploits_window:: none]
-[mitigates_window:: none]
-[weight:: 8kg]|[dmg:: 55]
-*Инструмент, превращенный в оружие. Медленный и неотвратимый.*
-* **Мувсет:** Вертикальный удар (пробивает блок) и Горизонтальный (сбивает с ног).
-* **Implicit (Встроенное):** **(Breach)** Снимает у цели 30 ед. Выносливости (Stamina) за удар. Если Выносливость 0 — сбивает с ног. Разрушает двери/укрытия.
+Главный MVP не заменяет мили и не превращает магострел в современный DPS. Он доказывает базовый язык Элдрейна: оружие создаёт временное окно и временную экспозицию.
 
-### Булава / Дубинка (Mace) [1H]
-[weapon_type:: blunt]
-[weapon_vector:: kinetics]
-[vector_gate:: 3]
-[heat:: 0]
-[dissonance_pulse:: 0]
-[primary_window_function:: create]
-[creates_window:: disorientation]
-[exploits_window:: none]
-[mitigates_window:: none]
-[weight:: 3.5kg]|[dmg:: 30]
-*Компактный вес.*
-* **Implicit (Встроенное):** **(Concussion)** Удары в голову накладывают эффект "Дезориентация" (размытие экрана, сбой звука) на 3 сек.
+## Взвешивание фреймов
 
----
+```text
+MVP Fit =
+  mvp_signal
+  + mvp_readability
+  + mvp_coverage
+  - mvp_dominance_risk
+  - mvp_fantasy_drift_risk
+```
 
-## 3. Древковое (Polearms)
-*Контроль дистанции. "Зонинг" противников.*
+- `mvp_signal` — насколько фрейм сразу показывает магипанк, батареи, Диссонанс, аномальность и цену действия.
+- `mvp_readability` — насколько игрок понимает угрозу, окно и наказание без чтения таблиц.
+- `mvp_coverage` — сколько MVP-задач фрейм помогает проверить: PvE, PvP, темп, маршрут, команда, экономика потери.
+- `mvp_dominance_risk` — насколько легко фрейм станет скучным универсальным ответом.
+- `mvp_fantasy_drift_risk` — насколько фрейм тянет игру в обычное фентези/RPG вместо Элдрейна.
 
-### Алебарда (Halberd) [2H]
-[weapon_type:: polearm]
-[weapon_vector:: kinetics]
-[vector_gate:: 3]
-[heat:: 0]
-[dissonance_pulse:: 0]
-[primary_window_function:: create]
-[creates_window:: distance_control]
-[exploits_window:: none]
-[mitigates_window:: melee_entry]
-[weight:: 5.5kg]|[dmg:: 45]
-*Топор на длинной палке с шипом.*
-* **Мувсет:** Укол (Poke) на дистанции, Рубящий (Swing) вблизи.
-* **Implicit (Встроенное):** **(Sweet Spot)** Наносит 100% урона только лезвием (на конце). Если ударить древком (вплотную) — урон 30%.
+```dataview
+TABLE WITHOUT ID
+  file.link AS "Фрейм",
+  mvp_fit AS "Fit",
+  mvp_verdict AS "Вердикт",
+  mvp_signal AS "Сеттинг",
+  mvp_readability AS "Чтение",
+  mvp_coverage AS "Покрытие",
+  mvp_dominance_risk AS "Риск доминации",
+  mvp_fantasy_drift_risk AS "Риск RPG",
+  mvp_reason AS "Почему"
+FROM "05_Combat_Survival/Weapons"
+WHERE type = "weapon_frame"
+SORT mvp_fit DESC, sort_order ASC
+```
 
-### Боевая Коса (War Scythe) [2H]
-[weapon_type:: polearm]
-[weapon_vector:: kinetics]
-[vector_gate:: 3]
-[heat:: 0]
-[dissonance_pulse:: 0]
-[primary_window_function:: exploit]
-[creates_window:: none]
-[exploits_window:: shield_flank]
-[mitigates_window:: none]
-[weight:: 4.0kg]|[dmg:: 42]
-*Лезвие под углом.*
-* **Implicit (Встроенное):** **(Reap)** Игнорирует щиты (Shield Bypass), так как лезвие заходит за блок.
+Формула аудита:
 
----
+```text
+Doctrine Score =
+  Core Fit
+  + Frame Power
+  + Threat Coverage
+  - Exposure Weight
+  - Resource Burn
+  - Weight / Carry Tax
+```
 
-## 4. Дальний Бой: Магострельные Фреймы
-*Медленное дальнее давление. Оружие может убивать, но чаще открывает окно для ближнего боя, Q/E или команды.*
+Точные числа остаются предметом прототипа. Они не являются Gear Score.
 
-### Ручной Разрядник (Spark Handcannon) [1H]
-[weapon_id:: spark_handcannon]
-[weapon_type:: arcanegun]
-[frame:: handcannon]
-[tier:: 1]
-[weapon_vector:: ballistics]
-[vector_gate:: 3]
-[weight:: 1.8kg]|[dmg:: 45]
-[impulse_cost:: 1]
-[heat:: 35]
-[bloom:: high]
-[dissonance_pulse:: 4]
-[primary_window_function:: create]
-[creates_window:: stagger_entry]
-[exploits_window:: none]
-[mitigates_window:: none]
-*Грубый одноручный магострел: короткая дистанция, сильный удар, плохая дисциплина разряда.*
-* **Implicit:** **(Stopping Pulse)** попадание сбивает спринт и дает `Aim Punch`.
-* **Слабость:** при стрельбе на бегу bloom резко растет.
+## Фреймы
 
-### Конденсаторный Длинник (Condenser Longframe) [2H]
-[weapon_id:: condenser_longframe]
-[weapon_type:: arcanegun]
-[frame:: condenser_longframe]
-[tier:: 2]
-[weapon_vector:: ballistics]
-[vector_gate:: 3]
-[weight:: 4.5kg]|[dmg:: 75]
-[impulse_cost:: 1]
-[charge_time:: 0.8s]
-[heat:: 45]
-[bloom:: medium]
-[dissonance_pulse:: 6]
-[primary_window_function:: create]
-[creates_window:: weakspot_open]
-[exploits_window:: exposed_weakspot]
-[mitigates_window:: none]
-*Дальний фрейм с удержанием заряда. Силен, если игрок успел стабилизировать импульс.*
-* **Implicit:** **(Shield Breaker)** повышенное давление по щитам, барьерам и кастерам.
-* **Слабость:** плох под давлением; сбитый заряд уходит в heat и Dissonance.
+```dataview
+TABLE WITHOUT ID
+  file.link AS "Фрейм",
+  weapon_family AS "Семейство",
+  frame_vector AS "Commitment",
+  primary_window_function AS "Работа",
+  join(creates_window, ", ") AS "Создаёт",
+  join(exploits_window, ", ") AS "Использует",
+  join(mitigates_window, ", ") AS "Закрывает",
+  frame_power AS "Power",
+  exposure_weight AS "Exposure"
+FROM "05_Combat_Survival/Weapons"
+WHERE type = "weapon_frame"
+SORT sort_order ASC
+```
 
-### Веерный Эмиттер (Scatter Emitter) [2H]
-[weapon_id:: scatter_emitter]
-[weapon_type:: arcanegun]
-[frame:: scatter_emitter]
-[tier:: 1]
-[weapon_vector:: ballistics]
-[vector_gate:: 3]
-[weight:: 3.8kg]|[dmg:: 10x6]
-[impulse_cost:: 1]
-[charge_time:: 0.4s]
-[heat:: 50]
-[bloom:: high]
-[dissonance_pulse:: 5]
-[primary_window_function:: create]
-[creates_window:: melee_entry]
-[exploits_window:: none]
-[mitigates_window:: enemy_entry]
-*Выплескивает веер нестабильной энергии. Не про точность, а про остановку входа.*
-* **Implicit:** **(Stagger Cone)** мелкие цели отбрасываются, крупные получают сильный aim punch.
-* **Слабость:** на средней дистанции урон распадается, heat копится быстро.
+## Варианты
 
-### Гарпунный Драйвер (Harpoon Driver) [2H]
-[weapon_id:: harpoon_driver]
-[weapon_type:: arcanegun]
-[frame:: harpoon_driver]
-[tier:: 2]
-[weapon_vector:: ballistics]
-[vector_gate:: 3]
-[weight:: 6.0kg]|[dmg:: 40]
-[impulse_cost:: 1]
-[charge_time:: 0.7s]
-[heat:: 30]
-[bloom:: low]
-[dissonance_pulse:: 5]
-[primary_window_function:: create]
-[creates_window:: tether_control]
-[exploits_window:: none]
-[mitigates_window:: escape_route]
-*Катушка разгоняет гарпун с тросом. Главная ценность - не урон, а фиксация.*
-* **Implicit:** **(Tether)** цель замедлена, привязана или вытянута из укрытия.
-* **Слабость:** промах оставляет игрока с тяжелым фреймом и потерянным темпом.
+```dataview
+TABLE WITHOUT ID
+  file.link AS "Фрейм",
+  variant_id AS "Вариант",
+  tier AS "T",
+  weight AS "Вес",
+  dmg AS "Урон",
+  implicit AS "Implicit",
+  implicit_rule AS "Правило",
+  input_pattern AS "Ввод",
+  combo_reset AS "Reset",
+  dissonance_pulse AS "Pulse"
+FROM "05_Combat_Survival/Weapons"
+WHERE type = "weapon_frame"
+SORT sort_order ASC
+```
 
-### Игольный Арбалет (Needle Crossbow) [2H]
-[weapon_id:: needle_crossbow]
-[weapon_type:: arcanegun]
-[frame:: needle_crossbow]
-[tier:: 1]
-[power_source:: mechanical]
-[weapon_vector:: ballistics]
-[vector_gate:: 3]
-[weight:: 2.4kg]|[dmg:: 35]
-[impulse_cost:: 0]
-[heat:: 0]
-[bloom:: low]
-[dissonance_pulse:: 0]
-[primary_window_function:: exploit]
-[creates_window:: none]
-[exploits_window:: soft_zone_exposed, concealment]
-[mitigates_window:: none]
-*Механический дальнобойный фрейм без батареи. Тихий, но медленный.*
-* **Implicit:** **(Puncture)** хорошо работает по мягким зонам и тканям.
-* **Слабость:** долгий взвод, слабый stagger, плохая работа против тяжелых пластин.
+## Оружие в MVP-комбинациях
 
-## 5. Специализированные Эфирные Устройства
-*Совместимое семейство `catalyst` хранит фокусы Reality Burn и ритуальные устройства. Оно не является обязательным оружием кастера и не обслуживает обычный цикл Q/E.*
+```dataviewjs
+const comboPath = "04_Player_Entities/_Registries/Registry_Combos.md";
+const comboSource = await dv.io.load(comboPath);
+const clean = value => value ? String(value).trim() : "";
+const field = (line, key) => line.match(new RegExp(`\\[${key}::\\s*([^\\]]+)\\]`, "i"))?.[1]?.trim();
+const displayName = header => header.replace(/\s*\(.*?\)\s*/g, "").trim();
 
-### Фокус Реальности (Reality Focus) [2H]
-[weapon_id:: reality_focus]
-[weapon_type:: catalyst]
-[frame:: catalyst_focus]
-[tier:: 2]
-[weapon_vector:: aether]
-[vector_gate:: 3]
-[weight:: 3.0kg]|[dmg:: 55]
-[impulse_cost:: 1]
-[charge_item:: reality_charge]
-[charge_time:: 1.0s]
-[heat:: 40]
-[bloom:: medium]
-[dissonance_pulse:: 8]
-[primary_window_function:: create]
-[creates_window:: reality_exposed]
-[exploits_window:: none]
-[mitigates_window:: anomalous_immunity]
-*Проводник, который заставляет аномальное тело принять нормальные законы.*
-* **Implicit:** **(Reality Burn)** временно делает аномальную цель уязвимой к обычному урону.
-* **Расход:** тратит подготовленный `Reality Charge`, `Overcharge Cell` или стабилизатор. Не списывает сырой Рез из кошелька во время рейда.
-* **Слабость:** высокий Dissonance, backlash без батареи, слабый темп против живых гуманоидов.
+const weaponPages = Array.from(dv.pages('"05_Combat_Survival/Weapons"'))
+  .filter(page => page.type === "weapon_frame");
+const byVariant = new Map(weaponPages.map(page => [clean(page.variant_id), page]));
+const byFrame = new Map(weaponPages.map(page => [clean(page.frame_id), page]));
 
----
+const rows = comboSource.split(/^##\s+/m).slice(1).flatMap(block => {
+  const lines = block.split("\n");
+  const header = clean(lines[0]);
+  const body = lines.slice(1).join("\n");
+  const comboId = body.match(/\[id::\s*([^\]]+)\]/i)?.[1]?.trim();
+  if (!comboId || comboId.startsWith("template_")) return [];
 
-## 6. Щиты (Shields)
+  return lines
+    .filter(line => line.includes("[weapon_instance::"))
+    .map(line => {
+      const instanceId = clean(field(line, "weapon_instance"));
+      const frameId = clean(field(line, "weapon_frame"));
+      const prof = clean(field(line, "prof"));
+      const role = clean(field(line, "combat_role"));
+      const weapon = byVariant.get(instanceId) || byFrame.get(frameId);
+      return [
+        dv.sectionLink(comboPath, header, false, displayName(header)),
+        prof || "⚠️",
+        role || "—",
+        weapon?.file?.link || `⚠️ ${instanceId || frameId || "missing"}`,
+        weapon?.implicit || "⚠️",
+        weapon?.implicit_rule || "⚠️",
+        weapon?.input_pattern || "⚠️"
+      ];
+    });
+});
 
-### Баклер (Buckler) [1H]
-[weapon_type:: shield]
-[primary_window_function:: mitigate]
-[creates_window:: parry_stagger]
-[exploits_window:: none]
-[mitigates_window:: melee_entry]
-[weight:: 1.0kg]
-*Маленький кулачный щит.*
-* **Implicit:** Окно блока очень маленькое (0.5 сек), но при идеальном блоке (Parry) ошеломляет атакующего.
+if (rows.length) {
+  dv.table(["Комбо", "Prof", "Роль", "Оружие", "Implicit", "Правило", "Ввод"], rows);
+} else {
+  dv.paragraph("⚠️ Нет `[weapon_instance:: ...]` в Registry_Combos.");
+}
+```
 
-### Ростовой Щит (Tower Shield) [1H]
-[weapon_type:: shield]
-[primary_window_function:: mitigate]
-[creates_window:: covered_advance]
-[exploits_window:: none]
-[mitigates_window:: ranged_line]
-[weight:: 15kg]
-*Дверь от сейфа/машины.*
-* **Implicit:** Создает "Полное укрытие". Можно стрелять из пистолета, не опуская щит (вслепую). Сильно режет скорость (-40 MS).
----
+## Проверки
 
-## 0. Нулевой пациент: шаблон оружия
-
-### Шаблон Оружия (Template Weapon) [1H]
-[weapon_id:: template_weapon]
-[weapon_type:: blade]
-[frame:: template_frame]
-[tier:: 1]
-[weapon_vector:: shadow]
-[vector_gate:: 3]
-[weight:: 1.0kg]
-[impulse_cost:: 0]
-[heat:: 0]
-[bloom:: none]
-[dissonance_pulse:: 0]
-[primary_window_function:: create]
-[creates_window:: template_window]
-[exploits_window:: none]
-[mitigates_window:: none]
-[value:: 0]
-*Короткое описание боевой фантазии.*
-- **Сильная дистанция:** где оружие раскрывается.
-- **Слабость:** что мешает реализовать урон.
-- **Мастерство:** какие свойства открываются на высоком proficiency.
+Пустая таблица ниже означает, что проверка не нашла проблем.
+```dataview
+TABLE WITHOUT ID
+  file.link AS "Фрейм",
+  frame_id AS "frame_id",
+  vector_scope AS "scope",
+  activates_on AS "activates_on",
+  mastery_unlock AS "mastery",
+  implicit AS "implicit",
+  implicit_rule AS "implicit_rule",
+  input_pattern AS "input"
+FROM "05_Combat_Survival/Weapons"
+WHERE type = "weapon_frame"
+  AND (vector_scope != "commitment"
+    OR !activates_on
+    OR !mastery_unlock
+    OR !variant_id
+    OR !implicit
+    OR !implicit_rule
+    OR !input_pattern
+    OR implicit_rule = "UNKNOWN"
+    OR input_pattern = "UNKNOWN"
+    OR sweet_spot_range = "UNKNOWN")
+SORT sort_order ASC
+```

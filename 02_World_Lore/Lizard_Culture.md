@@ -15,7 +15,7 @@ related_files:
   - "[[02_World_Lore/Anomaly_Weather_Systems|Anomaly_Weather_Systems]]"
   - "[[02_World_Lore/Culture_Language|Culture_Language]]"
   - "[[02_World_Lore/Energy_Concept|Energy_Concept]]"
-  - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
+  - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[03_Factions_Societies/Lore/The_Cartographers|The_Cartographers]]"
   - "[[04_Player_Entities/Races/Lizard|Ящерица]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"

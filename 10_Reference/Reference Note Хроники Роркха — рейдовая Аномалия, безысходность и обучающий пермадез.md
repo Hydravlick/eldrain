@@ -12,19 +12,19 @@ tags:
 related_files:
   - "[[01_Core_Vision/01_Vision|Vision]]"
   - "[[02_World_Lore/The_Entity|The Entity]]"
-  - "[[03_Factions_Societies/Lore/Slice_of_Life_Under_Lamps|Slice of Life Under Lamps]]"
+  - "[[Истории/Slice_of_Life_Under_Lamps|Slice of Life Under Lamps]]"
   - "[[04_Player_Entities/Lifecycle_Roster|Lifecycle Roster]]"
   - "[[08_World_Generation/Anomaly/00_Anomaly_Core_Loop|Anomaly Core Loop]]"
   - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]]"
   - "[[08_World_Generation/Hub/00_Hub_Environment|Hub Environment]]"
 web_sources:
-  - "https://author.today/work/series/7236"
-  - "https://author.today/work/64890"
-  - "https://author.today/work/81640"
-  - "https://author.today/work/91725"
-  - "https://frictionalgames.com/2012-04-10-ways-to-evolve-horror-games/"
-  - "https://frictionalgames.com/2014-04-4-layers-a-narrative-design-approach/"
-  - "https://www.gamedeveloper.com/design/fear-in-unpredictability-i-alien-isolation-i-s-brand-of-survival-horror"
+  - https://author.today/work/series/7236
+  - https://author.today/work/64890
+  - https://author.today/work/81640
+  - https://author.today/work/91725
+  - https://frictionalgames.com/2012-04-10-ways-to-evolve-horror-games/
+  - https://frictionalgames.com/2014-04-4-layers-a-narrative-design-approach/
+  - https://www.gamedeveloper.com/design/fear-in-unpredictability-i-alien-isolation-i-s-brand-of-survival-horror
 ---
 # Хроники Роркха: рейдовая Аномалия, безысходность и обучающий пермадез
 
@@ -233,7 +233,7 @@ Frictional Games отдельно подчёркивали ценность аг
 
 Безопасность нужна не как уступка хоррору, а как его измерительная шкала. Хаб возвращает тепло, предсказуемость и социальную жизнь; короткие окна контроля внутри рейда позволяют почувствовать, что именно снова отнимает Аномалия.
 
-Одной невозможности умереть в Хабе недостаточно. Тепло должно быть переживаемым: еда без чрезвычайного повода, знакомый голос, смешной спор, помощь без немедленной расплаты, работа ради общего удобства, похоронный ритуал и праздник, который не является прикрытием следующей катастрофы. [[03_Factions_Societies/Lore/Slice_of_Life_Under_Lamps|Жизнь под лампами]] уже задаёт эту норму через Тёплую Кухню, общие кладовые, бытовой юмор и признание чужого намерения.
+Одной невозможности умереть в Хабе недостаточно. Тепло должно быть переживаемым: еда без чрезвычайного повода, знакомый голос, смешной спор, помощь без немедленной расплаты, работа ради общего удобства, похоронный ритуал и праздник, который не является прикрытием следующей катастрофы. [[Истории/Slice_of_Life_Under_Lamps|Жизнь под лампами]] уже задаёт эту норму через Тёплую Кухню, общие кладовые, бытовой юмор и признание чужого намерения.
 
 Долги, политика и дефицит работают только потому, что угрожают настоящей повседневной жизни. Если каждая доброта оказывается инвестицией, каждая услуга — рычагом, а каждый разговор — торгом, игрок перестаёт защищать город и начинает считать его ещё одной формой Аномалии.
 
