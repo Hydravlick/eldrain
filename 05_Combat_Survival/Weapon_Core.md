@@ -11,7 +11,7 @@ related_files:
   - "[[05_Combat_Survival/Combat_Three_Debts|Combat_Three_Debts]]"
   - "[[05_Combat_Survival/Weapon_Ranged|Weapon_Ranged]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
-  - "[[05_Combat_Survival/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
   - "[[07_Gear_Inventory/Gear_Progression|Gear_Progression]]"
 ---
 # Оружие: Магострельный Канон и Тиры

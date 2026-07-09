@@ -13,7 +13,7 @@ related_files:
   - "[[05_Combat_Survival/Acoustic_Stealth|Acoustic_Stealth]]"
   - "[[05_Combat_Survival/Ballistics_PvP|Ballistics_PvP]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
-  - "[[05_Combat_Survival/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
 ---
 # Оружие: Дальний Бой
 

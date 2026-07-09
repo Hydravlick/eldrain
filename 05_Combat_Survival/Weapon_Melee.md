@@ -10,7 +10,7 @@ tags:
 related_files:
   - "[[05_Combat_Survival/Combat_Three_Debts|Combat_Three_Debts]]"
   - "[[05_Combat_Survival/Acoustic_Stealth|Acoustic_Stealth]]"
-  - "[[05_Combat_Survival/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
   - "[[05_Combat_Survival/Status_Effects|Status_Effects]]"
 ---
 # Оружие: Ближний Бой
@@ -43,7 +43,7 @@ Perception
 
 ### Цепочка ввода
 
-Ближний фрейм может иметь цепочку `tap -> hold -> hold`, похожую на короткую серию ударов: первый ввод выбирает opener, удержание или продолжение берёт следующий Commitment, а пауза после `Ready` возвращает оружие к первому движению.
+Ближний вариант описывает ввод через `[combo_chain:: ...]` и `[alt_action:: ...]`. Первый ввод выбирает opener, удержание или продолжение берёт следующий Commitment, а пауза после `Ready` возвращает оружие к первому движению.
 
 ```text
 opener
@@ -122,7 +122,7 @@ AI и другие игроки получают последнюю слышим
 - **Halberd:** рабочая голова создаёт угрозу на внешнем радиусе; древко сохраняет контакт, но не подменяет эффект лезвия.
 - **Spear:** узкая траектория проходит в коридоре и удерживает линию, но хуже отвечает на обход и близкий боковой контакт.
 
-Структурированные экземпляры и Implicit хранятся в [[05_Combat_Survival/Registry_Weapons|реестре оружия]]. Этот документ определяет общий язык, а не числовые профили конкретных предметов.
+Структурированные экземпляры живут на страницах фреймов в `05_Combat_Survival/Weapons/`, а [[05_Combat_Survival/_Registries/Registry_Weapons|реестр оружия]] только собирает и проверяет их. `implicit_keyword` и `implicit_rule` принадлежат фрейму; варианты не дублируют их inline-полями.
 
 ## 7. Критерии прототипа
 

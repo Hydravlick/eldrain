@@ -125,7 +125,7 @@ related_mechanics:
 
 Канонические источники персонажных сущностей находятся в `04_Player_Entities/Races/` и `04_Player_Entities/Specs/`. [[04_Player_Entities/_Registries/Registry_Races|Registry_Races]] и [[04_Player_Entities/_Registries/Registry_Specs|Registry_Specs]] являются семейными представлениями и не содержат копий полей сущностей.
 
-Канонические источники оружейных фреймов находятся в `05_Combat_Survival/Weapons/` и определяются полем `type: weapon_frame`. [[05_Combat_Survival/Registry_Weapons|Registry_Weapons]] является семейным представлением: хранит контракт, Dataview-таблицы и проверки, но не копирует поля самих фреймов. Варианты оружия остаются внутри страницы своего фрейма как inline Dataview-поля, потому что вариант является исполнением фрейма, а не отдельной архетипной сущностью.
+Канонические источники оружейных фреймов находятся в `05_Combat_Survival/Weapons/` и определяются полем `type: weapon_frame`. [[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]] является семейным представлением: хранит контракт, Dataview-таблицы и проверки, но не копирует поля самих фреймов. Варианты оружия остаются внутри страницы своего фрейма как inline Dataview-поля, потому что вариант является исполнением фрейма, а не отдельной архетипной сущностью.
 
 ### 6.2. Реестры атомарных и реляционных записей
 

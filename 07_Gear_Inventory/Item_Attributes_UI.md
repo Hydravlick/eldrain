@@ -2,11 +2,18 @@
 type: mechanic
 status: active
 system: ui_ux
-tags: [tooltip, stats, identification, rarity, origin, math, auction_vis]
+tags:
+  - tooltip
+  - stats
+  - identification
+  - rarity
+  - origin
+  - math
+  - auction_vis
 related_files:
   - "[[07_Gear_Inventory/Dissonance_Value|Dissonance_Value]]"
   - "[[07_Gear_Inventory/Gear_Progression|Gear_Progression]]"
-  - "[[05_Combat_Survival/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Thermoses|Registry_Thermoses]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"

@@ -2,12 +2,18 @@
 type: mechanic
 status: active
 system: gear_progression
-tags: [affixes, rarity, defects, legendary, corruption, crafting]
+tags:
+  - affixes
+  - rarity
+  - defects
+  - legendary
+  - corruption
+  - crafting
 related_files:
   - "[[07_Gear_Inventory/Gear_Progression|Gear_Progression]]"
   - "[[06_Economy_Loot/Craft_Modifiers|Craft_Modifiers]]"
   - "[[07_Gear_Inventory/_Registries/Registry_CraftingRecipes|Registry_CraftingRecipes]]"
-  - "[[05_Combat_Survival/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
 ---

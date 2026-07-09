@@ -2,13 +2,19 @@
 type: matrix
 status: active
 system: gear_balance
-tags: [items, weight, value, dissonance, survival_score, calibration]
+tags:
+  - items
+  - weight
+  - value
+  - dissonance
+  - survival_score
+  - calibration
 related_files:
   - "[[07_Gear_Inventory/_Registries/Registry_Items|Registry_Items]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Thermoses|Registry_Thermoses]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Consumables|Registry_Consumables]]"
-  - "[[05_Combat_Survival/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
   - "[[08_World_Generation/Generation/08_Gate_Check|Gate_Check]]"
   - "[[08_World_Generation/Generation/19_Access_Contracts|Access_Contracts]]"
   - "[[05_Combat_Survival/Dissonance_System|Dissonance_System]]"

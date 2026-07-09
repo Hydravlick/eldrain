@@ -2,10 +2,15 @@
 type: mechanic
 status: active
 system: action_combat
-tags: [status, windows, buildup, control, injuries]
+tags:
+  - status
+  - windows
+  - buildup
+  - control
+  - injuries
 related_files:
   - "[[05_Combat_Survival/Combat_Three_Debts|Combat_Three_Debts]]"
-  - "[[05_Combat_Survival/Registry_StatusEffects|Registry_StatusEffects]]"
+  - "[[05_Combat_Survival/_Registries/Registry_StatusEffects|Registry_StatusEffects]]"
   - "[[05_Combat_Survival/Ballistics_PvP|Ballistics_PvP]]"
   - "[[04_Player_Entities/Ability_Synergy|Ability_Synergy]]"
 ---
