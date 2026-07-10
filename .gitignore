@@ -6,7 +6,6 @@
 .stversions/
 .stfolder/
 .stfolder.removed-*/
-
 # Local Codex design skills and their working specifications
 .agents/skills/
 docs/superpowers/
@@ -15,3 +14,5 @@ docs/superpowers/
 /Истории/
 
 /AGENTS.md
+
+.ignore

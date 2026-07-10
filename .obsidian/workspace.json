@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": ".ignore",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -74,7 +74,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -203,7 +204,7 @@
       "notion-like-tables:Create loom": false
     }
   },
-  "active": "977ad2cccc7a3a5a",
+  "active": "3a289d75a45d6d02",
   "lastOpenFiles": [
     "05_Combat_Survival/_Registries/Registry_Weapons.md",
     "05_Combat_Survival/_Registries/Registry_StatusEffects.md",
