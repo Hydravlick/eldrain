@@ -26,7 +26,7 @@ The interface has one mutually exclusive segmented control with three modes:
 
 3. **Общая слабость**
    - One undirected line is shown when two profiles share at least one calculated common weakness.
-   - Shared weakness remains derived from the intersection of Race and Practice `weak_to` values.
+   - Shared weakness remains derived from the intersection of Race and Spec `weak_to` values.
    - The mode uses `#e0af68` and a restrained dashed stroke.
 
 No shared-vector or arsenal controls remain in the radial map. Their raw data may remain in the calculation layer for future use, but they are not part of this interface.

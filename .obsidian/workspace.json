@@ -11,14 +11,14 @@
             "id": "c718d76a57860c48",
             "type": "leaf",
             "state": {
-              "type": "split-diff-view",
+              "type": "markdown",
               "state": {
-                "aFile": ".agents/skills/eldraine-gdd-author/SKILL.md",
-                "bFile": ".agents/skills/eldraine-gdd-author/SKILL.md",
-                "aRef": ""
+                "file": "04_Player_Entities/_Registries/Registry_Specs.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "diff",
-              "title": "Diff: SKILL  (Working Tree)"
+              "icon": "lucide-file",
+              "title": "Registry_Specs"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "material",
+                "query": "Practice",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -74,7 +74,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -205,33 +206,33 @@
   },
   "active": "c718d76a57860c48",
   "lastOpenFiles": [
+    "01_Core_Vision/Glossary.md",
+    "04_Player_Entities/Two_Paradox_Birth.md",
+    "04_Player_Entities/Trait_Development.md",
+    "04_Player_Entities/Tags_System.md",
+    "04_Player_Entities/Proficiency_Arsenal.md",
+    "04_Player_Entities/MVP_3x3_Design_Contract.md",
+    "04_Player_Entities/Ability_Synergy.md",
+    "docs/superpowers/specs/2026-07-08-synergy-map-three-modes-design.md",
     "00_Index.md",
-    "AGENTS.md",
-    "docs/superpowers/plans/2026-07-10-semantic-gdd-index.md",
-    "docs/superpowers/specs/2026-07-10-semantic-gdd-index-design.md",
-    "01_Core_Vision/01_Vision.md",
-    "05_Combat_Survival/Weapon_Core.md",
-    "base.base",
-    "02_World_Lore/The_Collapse.md",
-    "01_Core_Vision/GDD_Main.md",
-    "01_Core_Vision/Art_Direction_Material_Grammar.md",
-    "01_Core_Vision/02_Core_Loop.md",
-    "05_Combat_Survival/Weapons/Архитектура.md",
+    "docs/superpowers/specs/2026-06-28-eldraine-material-art-direction-design.md",
+    "03_Factions_Societies/Lore/Civic_Ethos_Under_Lamps.md",
+    "03_Factions_Societies/Lore/The_Cathedral.md",
+    "05_Combat_Survival/Weapons/Weapon_Manifesto.md",
+    "04_Player_Entities/Two_Paradox_Vector_Matrix.md",
+    "09_Project_Management/Systemic_Revision_Plan_2026-07-07.md",
+    "04_Player_Entities/Shell_Foundlings.md",
+    "04_Player_Entities/_Registries/Registry_Skill_Types.md",
+    "_Archive/Merged/Legacy_00_Balance.md",
+    "04_Player_Entities/Combat_Profile_Pipeline.md",
+    "09_Project_Management/Architecture_MVP.md",
     "05_Combat_Survival/Weapons/Unused.md",
-    "05_Combat_Survival/Weapons/Reach_Polearm.md",
-    "05_Combat_Survival/Weapons/Scatter_Emitter.md",
-    "05_Combat_Survival/Weapons/Short_Blade.md",
-    "05_Combat_Survival/Weapons/Tower_Shield.md",
-    "05_Combat_Survival/Weapons/Buckler.md",
-    "05_Combat_Survival/Weapons/Heavy_Blade.md",
-    "05_Combat_Survival/Weapons/Heavy_Impact.md",
-    "05_Combat_Survival/Weapons/Hook_Polearm.md",
-    "05_Combat_Survival/Weapons/Needle_Blade.md",
-    "05_Combat_Survival/Weapons/Needle_Crossbow.md",
-    "05_Combat_Survival/Weapons/Harpoon_Driver.md",
-    "05_Combat_Survival/Magic_Batteries.md",
-    "02_World_Lore/Magipunk_Physics.md",
-    "02_World_Lore/Energy_Concept.md",
+    "05_Combat_Survival/Weapons/Архитектура.md",
+    "AGENTS.md",
+    "docs/superpowers/specs/2026-06-20-trilogy-reader-orientation-design.md",
+    "docs/superpowers/specs/2026-06-20-imena-dlya-chudovishch-editorial-design.md",
+    "docs/superpowers/specs/2026-06-18-eldraine-design-skills-design.md",
+    "base.base",
     "eldrain.7z",
     "05_Combat_Survival/Weapons/Weapons.7z",
     "05_Combat_Survival/_Registries",
