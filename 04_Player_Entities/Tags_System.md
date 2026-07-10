@@ -13,6 +13,10 @@ related_files:
 ---
 # Система Тегов: Системный Слой
 
+## Арсенальные дельты
+
+`[arsenal_grant:: frame_id @N]` добавляет фрейм с стартовым proficiency `N`, а `[arsenal_block:: frame_id]` снимает его из списка до отключения тега. Тег не выдаёт конкретный экземпляр, не меняет его хват и не отменяет `load_tier`, происхождение или цену действия.
+
 ## 1. Что такое Тег?
 **Тег (Tag)** — исполняемый модификатор, закрепленный за Пешкой. Это может быть опыт, особенность характера, травма, мутация, болезнь или имплант.
 
@@ -142,6 +146,8 @@ GearContribution(attribute) <= +2
 [vulnerability:: none]
 [deferred_rule:: none]
 [override_race_ban:: heavy_weapon]
+[arsenal_grant:: breach_impact_2h @1]
+[arsenal_block:: catalyst_rig_2h]
 [exclusive_with:: incompatible_tag]
 [fusion_with:: other_tag -> result_tag]
 [fusion_requires:: source_tag_a, source_tag_b]
@@ -163,6 +169,8 @@ GearContribution(attribute) <= +2
 - `vulnerability` называет постоянно релевантную цену, которую обязан показать UI.
 - `deferred_rule` сохраняет пост-MVP идею, но не участвует в исполняемом профиле.
 - `override_race_ban` разрешает оружие, которое физиология обычно запрещает.
+- `arsenal_grant` добавляет конкретный фрейм с указанным proficiency.
+- `arsenal_block` запрещает фрейм и сильнее обычного `prof_delta`.
 - `exclusive_with` фиксирует несовместимые теги.
 - `fusion_with` показывает возможное слияние у исходного тега.
 - `fusion_requires` у fusion-тега фиксирует пару источников.

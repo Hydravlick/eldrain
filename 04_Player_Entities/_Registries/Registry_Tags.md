@@ -19,6 +19,7 @@ related_files:
 ## Правила тегов
 
 - `[tag_kind:: proficiency]` меняет владение оружием и/или профильную ёмкость модулей Термоса, но не добавляет архетипный вектор.
+- `[arsenal_grant:: frame_id @N]` добавляет фрейм с proficiency `N`; `[arsenal_block:: frame_id]` явно его запрещает.
 - `[module_capacity_delta:: family +N, family -N]` сдвигает ёмкости, но не создаёт физический слот.
 - `[tag_kind:: mutation]` меняет физику тела и активные/заблокированные векторы.
 - `[add_vector:: ...]` допустим только для мутаций, физической перестройки или curated Fusion; обычное мастерство работает через `prof_delta`, substats и мастерство фрейма.
@@ -53,6 +54,8 @@ related_files:
 [vulnerability:: none]
 [deferred_rule:: none]
 [override_race_ban:: heavy_weapon]
+[arsenal_grant:: breach_impact_2h @1]
+[arsenal_block:: none]
 [exclusive_with:: incompatible_tag]
 [fusion_with:: other_tag -> result_tag]
 [fusion_requires:: source_tag_a, source_tag_b]
@@ -92,7 +95,8 @@ related_files:
 [tag:: heavy_lifter]
 [tag_kind:: proficiency]
 [tag_polarity:: mixed]
-[prof_delta:: heavy_weapon +1]
+[prof_delta:: blunt +1, arcanegun +1]
+[arsenal_grant:: breach_impact_2h @1, tether_launcher_2h @1]
 [attr_delta:: TRQ +1, SNS -1]
 [substat_bonus:: heavy_ready +10, brace +8]
 [exclusive_with:: hollow_bones]
@@ -100,7 +104,7 @@ related_files:
 [trait_pool:: standard, specialist]
 [event_family:: carrying, rescue, labor]
 [power_weight:: 3]
-* **Эффект:** `[heavy_weapon +1]` - тяжелые разрядники, гарпуны, молоты.
+* **Эффект:** открывает двуручный проломный ударник и тросовый пускатель на `prof:: 1`.
 * **Эффект:** позволяет перезаряжать тяжелое оружие на ходу, если итоговый proficiency не ниже `2`.
 * **Штраф:** `[SNS -1]` - привычка к шуму делает мелкие сигналы менее заметными.
 * **Лор:** *Мышечная память тех, кто таскал ящики с хламом по 16 часов в сутки.*

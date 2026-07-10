@@ -308,8 +308,8 @@ route_affinity
 [solo_gaps:: armor, sustained_pressure]
 [condition_bonus:: ...]
 [tradeoff:: ...]
-[weapon_instance:: combat_shiv] | [weapon_frame:: short_blade] | [prof:: 2] | [combat_role:: route_finish]
-[weapon_instance:: spark_handcannon] | [weapon_frame:: handcannon] | [prof:: 1] | [combat_role:: panic_stop]
+[weapon_frame:: short_cut_1h] | [prof:: 2] | [combat_role:: route_finish]
+[weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: panic_stop]
 [module_capacity:: plate 1, optic 1, seal 1, conduit 1, rig 2, weave 2]
 ```
 

@@ -44,8 +44,8 @@ Hidden Substats = f(Final TOUCH, Race.substat_bonus, Spec.substat_bonus)
 ```markdown
 [req_race:: rat]
 [req_spec:: scout]
-[weapon_instance:: combat_shiv] | [weapon_frame:: short_blade] | [prof:: 2] | [combat_role:: route_finish]
-[weapon_instance:: spark_handcannon] | [weapon_frame:: handcannon] | [prof:: 1] | [combat_role:: panic_stop]
+[weapon_frame:: short_cut_1h] | [prof:: 2] | [combat_role:: route_finish]
+[weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: panic_stop]
 ```
 
 - **P/Q/E** — смешанные способности конкретной пары `Race × Spec`.
@@ -59,8 +59,8 @@ Hidden Substats = f(Final TOUCH, Race.substat_bonus, Spec.substat_bonus)
 Для MVP итоговый арсенал берется из combo-блока:
 
 ```markdown
-[weapon_instance:: combat_shiv] | [weapon_frame:: short_blade] | [prof:: 2] | [combat_role:: route_finish]
-[weapon_instance:: spark_handcannon] | [weapon_frame:: handcannon] | [prof:: 1] | [combat_role:: panic_stop]
+[weapon_frame:: short_cut_1h] | [prof:: 2] | [combat_role:: route_finish]
+[weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: panic_stop]
 ```
 
 Строка арсенала указывает конкретный экземпляр фрейма для MVP-доктрины. Если владение не заявлено, строка не пишется; `prof:: 0` не хранится как данные.
@@ -114,12 +114,13 @@ installed_module_cost <= final_module_capacity
 
 | Frame/System | Главные substats | Frame Window |
 |:---|:---|:---|
-| `handcannon` | `recoil_damp`, `drift_control`, `cell_swap_speed` | `pressure_open` |
-| `condenser_longframe` | `brace`, `weakspot_read`, `heat_sink` | `weakspot_open` |
-| `scatter_emitter` | `backlash_resist`, `heat_sink` | `melee_setup` |
-| `harpoon_driver` | `heavy_ready`, `brace` | `tether_control` |
-| `needle_crossbow` | `bolt_wind_speed`, `weakspot_read`, `ambush_resist` | `ambush_open` |
-| `catalyst_focus` | `output_power`, `reality_burn_power`, `backlash_resist` | `reality_burn` |
+| `pulse_tool_1h` | `recoil_damp`, `drift_control`, `cell_swap_speed` | `stagger_entry` |
+| `condenser_rig_2h` | `brace`, `weakspot_read`, `heat_sink` | `weakspot_open` |
+| `scatter_valve_2h` | `backlash_resist`, `heat_sink` | `entry_denied` |
+| `tether_launcher_2h` | `heavy_ready`, `brace` | `tether_control` |
+| `needle_thrower_2h` | `bolt_wind_speed`, `weakspot_read`, `ambush_resist` | `quiet_puncture` |
+| `catalyst_rig_2h` | `output_power`, `reality_burn_power`, `backlash_resist` | `reality_exposed` |
+| `interposition_panel_1h` | `brace`, `weapon_swap_speed` | `covered_transition` |
 | Batteries | `battery_efficiency`, `heat_sink`, `cell_swap_speed` | — |
 
 ### Current Commitment
