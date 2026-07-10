@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "14_Extraction_System",
+                "query": "",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -74,8 +74,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -204,7 +203,7 @@
       "notion-like-tables:Create loom": false
     }
   },
-  "active": "761942d75935a6b7",
+  "active": "977ad2cccc7a3a5a",
   "lastOpenFiles": [
     "08_World_Generation/Anomaly/14_Extraction_System.md",
     "08_World_Generation/Content/World_Atlas/Sectors/Port/00_Port_Manifest.md",
