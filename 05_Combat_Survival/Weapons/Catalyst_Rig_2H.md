@@ -1,32 +1,20 @@
 ---
-type: weapon_frame
-status: active
-system: combat_survival
-frame_id: catalyst_rig_2h
-display_name: Катализаторная рама, две руки
-weapon_family: catalyst
-grip: two_hand
-frame_vector: aether
-vector_scope: commitment
-activates_on: [prepare, channel, release, backlash_recovery]
-primary_window_function: create
-creates_window: [reality_exposed]
-implicit_keyword: reality_assay
-implicit_rule: Рама удерживает аномальную защиту в измеримом контуре и открывает её для ответа, но требует подготовленного источника, линии и уязвимого канала.
-exploits_window: [none]
-mitigates_window: [anomalous_immunity]
-exposure_channels: [backlash, dissonance_pulse, interrupt, living_target_tempo]
-mastery_unlock: [safe_break, assay_hold]
-sort_order: 510
-tags: [weapon_frame, ranged, catalyst, two_hand]
+type: skill_device_concept
+status: deferred
+system: player_entities
+device_id: anomaly_procedure_rig
+display_name: Рама аномальной процедуры
+skill_type: anomaly_procedure
+tags: [skill_device, anomaly, device, deferred]
 related_files:
-  - "[[05_Combat_Survival/Weapon_Ranged|Weapon_Ranged]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
+  - "[[04_Player_Entities/_Registries/Registry_Skill_Types|Registry_Skill_Types]]"
 ---
-# Катализаторная рама, две руки
+# Рама аномальной процедуры
 
-Это не посох и не отдельный класс. Катализаторная рама - специализированный прибор для аномального окна; против живой цели её медленный канал остаётся плохим ответом.
+> Этот материал больше не описывает оружейный фрейм. Вскрытие аномального правила — работа устройства навыка с явным источником, каналом, контр-окном и Backlash, а не дальняя атака.
+
+Это не посох и не отдельный класс. Рама аномальной процедуры — специализированный прибор для аномального окна; конкретная Combo должна определить его `energy_contract:: device`, источник, цель процедуры, прерывание и последствие ошибки до активации в арсенале Пешки.
 
 ## Экземпляры
 

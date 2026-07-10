@@ -65,7 +65,7 @@ Hidden Substats = f(Final TOUCH, Race.substat_bonus, Spec.substat_bonus)
 
 Строка арсенала указывает конкретный экземпляр фрейма для MVP-доктрины. Если владение не заявлено, строка не пишется; `prof:: 0` не хранится как данные.
 
-`arcanegun` в этой системе означает магострельные и механические дальнобойные фреймы: разрядники, конденсаторы, эмиттеры, гарпуны и игольники. Они работают через батарейный цикл, heat, bloom и Dissonance.
+`arcanegun` в этой системе означает магострельные и механические дальнобойные фреймы: разрядники, конденсаторы, эмиттеры и игольники. Они работают через батарейный цикл, heat, bloom и Dissonance.
 
 ## 4. Tags
 
@@ -117,10 +117,7 @@ installed_module_cost <= final_module_capacity
 | `pulse_tool_1h` | `recoil_damp`, `drift_control`, `cell_swap_speed` | `stagger_entry` |
 | `condenser_rig_2h` | `brace`, `weakspot_read`, `heat_sink` | `weakspot_open` |
 | `scatter_valve_2h` | `backlash_resist`, `heat_sink` | `entry_denied` |
-| `tether_launcher_2h` | `heavy_ready`, `brace` | `tether_control` |
 | `needle_thrower_2h` | `bolt_wind_speed`, `weakspot_read`, `ambush_resist` | `quiet_puncture` |
-| `catalyst_rig_2h` | `output_power`, `reality_burn_power`, `backlash_resist` | `reality_exposed` |
-| `interposition_panel_1h` | `brace`, `weapon_swap_speed` | `covered_transition` |
 | Batteries | `battery_efficiency`, `heat_sink`, `cell_swap_speed` | — |
 
 ### Current Commitment

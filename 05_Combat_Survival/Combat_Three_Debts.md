@@ -5,6 +5,7 @@ system: action_combat
 tags: [combat, windows, commitment, three_debts, archetypes]
 related_files:
   - "[[05_Combat_Survival/Weapon_Core|Weapon_Core]]"
+  - "[[05_Combat_Survival/Hunt_Frontier_Loop|Hunt_Frontier_Loop]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
   - "[[05_Combat_Survival/Movement_Physics|Movement_Physics]]"
   - "[[05_Combat_Survival/Acoustic_Stealth|Acoustic_Stealth]]"
@@ -45,6 +46,8 @@ Perception
 - **Debt Collection:** действие раскрывает позицию, тело, ресурс или темп.
 - **Recovery:** совершённый выбор остаётся уязвимостью независимо от активного предмета.
 - **Ready:** игрок снова способен полноценно выбрать канал.
+
+Сильное действие меняет не только HP или статус, но и охоту вокруг места: оставляет доступный контр-игре след, меняет маршрут, создаёт спорный груз или открывает работу POI. Бездействие не получает отдельного наказания от системы; цену создают выбранные действие, маршрут и отказ от возможной ценности.
 
 Полный спринт, точное прицеливание, тяжёлый блок и подготовленный каст взаимно ограничивают друг друга. Универсальная сборка получает больше ответов, но не держит их одновременно готовыми.
 

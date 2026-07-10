@@ -44,7 +44,8 @@ related_files:
 [tag_polarity:: mixed]
 [add_vector:: tech]
 [block_vector:: hazard]
-[prof_delta:: arcanegun +1, catalyst -1]
+[prof_delta:: arcanegun +1]
+[skill_prof_delta:: anomaly_procedure -1]
 [module_capacity_delta:: weave +1, plate -1]
 [attr_delta:: TRQ +2, SNS -1]
 [substat_bonus:: heat_sink +0, cell_swap_speed +0, drift_control +0]
@@ -78,7 +79,8 @@ related_files:
 [tag:: trench_veteran]
 [tag_kind:: proficiency]
 [tag_polarity:: mixed]
-[prof_delta:: arcanegun +1, blade +1, catalyst -1]
+[prof_delta:: arcanegun +1, blade +1]
+[skill_prof_delta:: anomaly_procedure -1]
 [substat_bonus:: drift_control +8, recoil_damp +6]
 [exclusive_with:: cultist_mark]
 [fusion_with:: street_rat -> street_breacher]
@@ -86,7 +88,7 @@ related_files:
 [event_family:: close_combat, corridor_survival]
 [power_weight:: 4]
 * **Эффект:** `[arcanegun +1]` | `[blade +1]`
-* **Штраф:** `[catalyst -1]` - технологии подавляют магическое чутье.
+* **Штраф:** `[anomaly_procedure -1]` - технологии подавляют чутьё к сложной аномальной процедуре.
 * **Смысл:** тег усиливает ближний бой в коридорах и стрельбу в упор, но мешает чистой магии.
 * **Лор:** *«В узком проходе не спорят с дистанцией. Упрись, пережди вспышку и бей, когда стена вернёт тебе шаг.» — наставление аварийных дозорных.*
 
@@ -96,7 +98,7 @@ related_files:
 [tag_kind:: proficiency]
 [tag_polarity:: mixed]
 [prof_delta:: blunt +1, arcanegun +1]
-[arsenal_grant:: breach_impact_2h @1, tether_launcher_2h @1]
+[arsenal_grant:: breach_impact_2h @1]
 [attr_delta:: TRQ +1, SNS -1]
 [substat_bonus:: heavy_ready +10, brace +8]
 [exclusive_with:: hollow_bones]
@@ -104,7 +106,7 @@ related_files:
 [trait_pool:: standard, specialist]
 [event_family:: carrying, rescue, labor]
 [power_weight:: 3]
-* **Эффект:** открывает двуручный проломный ударник и тросовый пускатель на `prof:: 1`.
+* **Эффект:** открывает двуручный проломный ударник на `prof:: 1`; тросовая работа принадлежит отдельному навыку, если Combo её получает.
 * **Эффект:** позволяет перезаряжать тяжелое оружие на ходу, если итоговый proficiency не ниже `2`.
 * **Штраф:** `[SNS -1]` - привычка к шуму делает мелкие сигналы менее заметными.
 * **Лор:** *Мышечная память тех, кто таскал ящики с хламом по 16 часов в сутки.*
@@ -114,7 +116,7 @@ related_files:
 [tag:: cultist_mark]
 [tag_kind:: proficiency]
 [tag_polarity:: mixed]
-[prof_delta:: catalyst +2, shield -1]
+[skill_prof_delta:: anomaly_procedure +2, defense -1]
 [substat_bonus:: output_power +10, reality_burn_power +6]
 [exclusive_with:: trench_veteran]
 [fusion_with:: alchemical_eye -> echo_oracle]
@@ -122,9 +124,9 @@ related_files:
 [event_family:: ritual, aether_exposure, faction_cathedral]
 [power_weight:: 8]
 [dissonance_load:: 8]
-* **Эффект:** `[catalyst +2]`
-* **Штраф:** `[shield -1]` - вера становится единственной защитой.
-* **Фрейм:** усиливает эфирные фреймы и кантрипы, но не добавляет `aether` как архетипный вектор.
+* **Эффект:** `[anomaly_procedure +2]`
+* **Штраф:** `[defense -1]` - вера сужает доступ к защитным устройствам.
+* **Навык:** усиливает процедуру и кантрипы, но не добавляет `aether` как архетипный вектор и не создаёт оружейный фрейм.
 * **Лор:** *Выжженный на лбу символ позволяет проводить больше эфира через тело, игнорируя боль.*
 
 ### Дитя Улиц (Gutter Born)
@@ -302,7 +304,8 @@ related_files:
 [tag:: tremor_hands]
 [tag_kind:: flaw]
 [tag_polarity:: negative]
-[prof_delta:: arcanegun -1, blade -1, catalyst +1]
+[prof_delta:: arcanegun -1, blade -1]
+[skill_prof_delta:: anomaly_procedure +1]
 [block_vector:: ballistics]
 [substat_bonus:: drift_control -15, cell_swap_speed -8, output_power +6]
 [exclusive_with:: alchemical_eye, extra_fingers]
@@ -310,7 +313,7 @@ related_files:
 [event_family:: trauma, failed_precision]
 [power_weight:: 0]
 * **Штраф:** дальняя точность и чистая фехтовальная моторика падают.
-* **Компенсация:** нервный тремор помогает чувствовать ритм эфира, поэтому `[catalyst +1]`.
+* **Компенсация:** нервный тремор помогает чувствовать ритм эфира, поэтому `[anomaly_procedure +1]`.
 * **Матрица Парадокса:** блокирует архетипный или телесный `ballistics`; оружейный `frame_vector` остаётся commitment-экспозицией и не пересчитывает `weak_to`.
 
 ### Хрупкая Воля
@@ -372,7 +375,8 @@ related_files:
 [tag_kind:: fusion]
 [tag_polarity:: positive]
 [fusion_requires:: street_rat, trench_veteran]
-[prof_delta:: blade +2, arcanegun +1, catalyst -1]
+[prof_delta:: blade +2, arcanegun +1]
+[skill_prof_delta:: anomaly_procedure -1]
 [module_capacity_delta:: weave +1, plate -1]
 [add_vector:: shadow]
 [substat_bonus:: drift_control +10, weapon_swap_speed +10, ambush_resist +8]
@@ -408,7 +412,7 @@ related_files:
 [tag_kind:: fusion]
 [tag_polarity:: positive]
 [fusion_requires:: alchemical_eye, cultist_mark]
-[prof_delta:: catalyst +2, shield -1]
+[skill_prof_delta:: anomaly_procedure +2, defense -1]
 [attr_delta:: SNS +3, GLW +1]
 [add_vector:: aether, detection]
 [substat_bonus:: trace_read +20, weakspot_read +15, reality_burn_power +10]

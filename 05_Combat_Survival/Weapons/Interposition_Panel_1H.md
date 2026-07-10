@@ -1,31 +1,19 @@
 ---
-type: weapon_frame
-status: active
-system: combat_survival
-frame_id: interposition_panel_1h
-display_name: Панель заслона, одна рука
-weapon_family: accessory
-grip: one_hand
-frame_vector: kinetics
-vector_scope: commitment
-activates_on: [raise, brace, lower_recovery]
-primary_window_function: mitigate
-creates_window: [covered_transition]
-implicit_keyword: narrow_interposition
-implicit_rule: Панель закрывает один выбранный угол на коротком переходе, но занимает руку, обзор и бок; она не даёт неподвижной полной неуязвимости.
-exploits_window: [none]
-mitigates_window: [ranged_line, melee_entry]
-exposure_channels: [flank, low_mobility, open_side, lower_recovery]
-mastery_unlock: [angle_shift, measured_lower]
-sort_order: 610
-tags: [weapon_frame, accessory, one_hand]
+type: skill_device_concept
+status: deferred
+system: player_entities
+device_id: interposition_panel
+display_name: Панель заслона
+skill_type: defense
+tags: [skill_device, defense, transition, deferred]
 related_files:
-  - "[[05_Combat_Survival/Weapon_Melee|Weapon_Melee]]"
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
+  - "[[04_Player_Entities/_Registries/Registry_Skill_Types|Registry_Skill_Types]]"
 ---
-# Панель заслона, одна рука
+# Панель заслона
 
-Аксессуар существует как переносимая часть городской работы, а не как рыцарский щит. Он даёт секунды на переход, помощь или смену оружия, но никогда не делает фронтальное стояние лучшей стратегией.
+> Этот материал больше не описывает оружейный фрейм. Заслон меняет условия сцены и принадлежит защитному навыку или устройству, а не слоту оружия.
+
+Панель существует как переносимая часть городской работы, а не как рыцарский щит. Она может дать секунды на переход, помощь или смену оружия, но конкретная Combo обязана назвать источник, подготовку, занимаемую руку, фланг, Recovery и контр-окно до допуска устройства в рейд.
 
 ## Экземпляры
 

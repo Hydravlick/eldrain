@@ -174,7 +174,6 @@ if (inheritedRows.length) {
 [design_status:: pending]
 [module_capacity:: UNKNOWN]
 [weapon_frame:: breach_impact_2h] | [prof:: 2] | [combat_role:: breach]
-[weapon_frame:: interposition_panel_1h] | [prof:: 2] | [combat_role:: covered_advance]
 [weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: stagger_opener]
 [weapon_frame:: reach_line_2h] | [prof:: 1] | [combat_role:: distance_control]
 
@@ -189,10 +188,8 @@ if (inheritedRows.length) {
 [req_spec:: support]
 [design_status:: pending]
 [module_capacity:: UNKNOWN]
-[weapon_frame:: interposition_panel_1h] | [prof:: 2] | [combat_role:: protected_work]
 [weapon_frame:: compact_impact_1h] | [prof:: 1] | [combat_role:: concussion_window]
 [weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: interrupt]
-[weapon_frame:: catalyst_rig_2h] | [prof:: 1] | [combat_role:: anomaly_open]
 
 Проектный слот. Сила должна рождаться из смешения телесной массы и инженерной методологии, а не из универсальной роли танка.
 
@@ -207,7 +204,6 @@ if (inheritedRows.length) {
 [module_capacity:: UNKNOWN]
 [weapon_frame:: reach_line_2h] | [prof:: 2] | [combat_role:: route_hold]
 [weapon_frame:: needle_thrower_2h] | [prof:: 1] | [combat_role:: quiet_pick]
-[weapon_frame:: interposition_panel_1h] | [prof:: 1] | [combat_role:: parry_entry]
 [weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: emergency_stop]
 
 Проектный слот. Мобильность Странника не обязана означать рывок; допустимы маршрутизация, контролируемый перенос массы и подготовленное изменение позиции.
@@ -223,8 +219,6 @@ if (inheritedRows.length) {
 [module_capacity:: UNKNOWN]
 [weapon_frame:: pulse_tool_1h] | [prof:: 2] | [combat_role:: third_grip_pressure]
 [weapon_frame:: short_cut_1h] | [prof:: 2] | [combat_role:: clinch_finish]
-[weapon_frame:: interposition_panel_1h] | [prof:: 1] | [combat_role:: entry_guard]
-[weapon_frame:: tether_launcher_2h] | [prof:: 1] | [combat_role:: tether_open]
 
 Проектный слот. Третий хват и техническая биология должны менять способ ведения оружейного давления, а не давать бесплатную скорость действий.
 
@@ -240,8 +234,6 @@ if (inheritedRows.length) {
 [module_capacity:: UNKNOWN]
 [weapon_frame:: needle_thrower_2h] | [prof:: 2] | [combat_role:: quiet_tool]
 [weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: interrupt]
-[weapon_frame:: catalyst_rig_2h] | [prof:: 2] | [combat_role:: anomaly_protocol]
-[weapon_frame:: interposition_panel_1h] | [prof:: 1] | [combat_role:: close_safety]
 
 Проектный слот. Совпадение `tech + tech` усиливает глубину технического исполнения, но не выдаёт бесплатный второй вектор.
 
@@ -299,8 +291,6 @@ if (inheritedRows.length) {
 [module_capacity:: UNKNOWN]
 [weapon_frame:: scatter_valve_2h] | [prof:: 2] | [combat_role:: overload_cone]
 [weapon_frame:: condenser_rig_2h] | [prof:: 1] | [combat_role:: held_line]
-[weapon_frame:: catalyst_rig_2h] | [prof:: 1] | [combat_role:: anomaly_probe]
-[weapon_frame:: interposition_panel_1h] | [prof:: 1] | [combat_role:: close_reset]
 
 Проектный слот. Перегрузка — сильное направление фантазии, но требует цены, телеграфа и восстановления; не должна производить бесплатные батареи или бесконечное питание устройств.
 

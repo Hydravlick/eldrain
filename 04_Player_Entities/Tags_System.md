@@ -41,7 +41,7 @@ Race + Spec + P/Q/E
 = читаемый стиль билда
 ```
 
-`prof_delta` отвечает за оружейное владение. `module_capacity_delta` меняет допустимую сложность вшитых модулей конкретного семейства. Остальные поля нескольких тегов/трейтов совместно определяют, как Пешка использует сборку.
+`prof_delta` отвечает только за оружейное владение активным фреймом. `skill_prof_delta` меняет владение уже полученным навыком или устройством и не добавляет P/Q/E. `module_capacity_delta` меняет допустимую сложность вшитых модулей конкретного семейства. Остальные поля нескольких тегов/трейтов совместно определяют, как Пешка использует сборку.
 
 Не создавать скрытый бонус для каждой пары тегов. Явное новое правило возникает только когда:
 
@@ -78,8 +78,8 @@ GearContribution(attribute) <= +2
 ### За эффектом:
 1.  **Теги Мастерства (Proficiency Tags):** 
 	- Повышают Tier владения оружием и/или профильную ёмкость модулей. 
-	- *Пример:* `[Trench Reflex]` (+Arcanegun, +Blade, -Catalyst).
-	- В Dataview: `[prof_delta:: arcanegun +1, catalyst -1]`.
+	- *Пример:* `[Trench Reflex]` (+Arcanegun, +Blade; хуже проводит аномальную процедуру).
+	- В Dataview: `[prof_delta:: arcanegun +1]` и `[skill_prof_delta:: anomaly_procedure -1]`.
 2.  **Теги Мутации (Mutation Tags):**
 	- Меняют правила игры или тип урона. 
 	- *Пример:* `[Voltaic Blood]` (Конвертирует физ. урон в электрический).
@@ -136,7 +136,8 @@ GearContribution(attribute) <= +2
 [tag_polarity:: positive | mixed | negative]
 [add_vector:: tech]
 [block_vector:: hazard]
-[prof_delta:: arcanegun +1, catalyst -1]
+[prof_delta:: arcanegun +1]
+[skill_prof_delta:: anomaly_procedure -1]
 [module_capacity_delta:: weave +1, plate -1]
 [attr_delta:: TRQ +2, SNS -1]
 [substat_bonus:: heat_sink +10, cell_swap_speed +8]
@@ -147,7 +148,6 @@ GearContribution(attribute) <= +2
 [deferred_rule:: none]
 [override_race_ban:: heavy_weapon]
 [arsenal_grant:: breach_impact_2h @1]
-[arsenal_block:: catalyst_rig_2h]
 [exclusive_with:: incompatible_tag]
 [fusion_with:: other_tag -> result_tag]
 [fusion_requires:: source_tag_a, source_tag_b]
@@ -159,7 +159,8 @@ GearContribution(attribute) <= +2
 
 - `add_vector` добавляет активный вектор к Combat Profile только для мутации, физической перестройки или редкой Fusion.
 - `block_vector` выключает активный архетипный вектор.
-- `prof_delta` меняет итоговый tier владения.
+- `prof_delta` меняет итоговый tier владения оружейным фреймом.
+- `skill_prof_delta` меняет владение уже полученным навыком или устройством и не создаёт P/Q/E сам по себе.
 - `module_capacity_delta` меняет профильную ёмкость семейства Термоса и не добавляет физический слот.
 - `substat_bonus` меняет скрытые параметры T.O.U.C.H. вроде `heat_sink`, `cell_swap_speed`, `drift_control`.
 - `condition_bonus` включает бонус только при понятном поведении.

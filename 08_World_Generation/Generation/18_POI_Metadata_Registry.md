@@ -31,6 +31,10 @@ WorldMetadata
 - профиль источников, а не гарантированный предмет;
 - допустимые Tier-состояния;
 - тип опасной операции POI, если она существует.
+- `heat_state`: `cold | warm | hot` для текущего рейдового инстанса;
+- `heat_signal`: физический или поведенческий признак Heat;
+- `heat_work`: контракт, способ, Embedded-узел, спасение, ключ маршрута или иной предмет работы;
+- `approach_contract`: повторяемые записи `approach_id | entry_anchor | route_layer | world_cue | approach_cost | refusal_path`. `entry_anchor` и `route_layer` обязаны отличать реальные пространственные входы, а не две цены у одной двери.
 
 ### `stable_projection`
 
@@ -52,7 +56,14 @@ WorldMetadata
     "map_token": "icon_herbalist_silhouette",
     "source_tags": ["organic", "filter_medium"],
     "tier_states": ["T1", "T2", "T3"],
-    "field_operation_id": null
+    "field_operation_id": null,
+    "heat_state": "warm",
+    "heat_signal": "вентиляция работает рывками, а свет в стекле идёт против дождя",
+    "heat_work": "sanitation_contract",
+    "approach_contract": [
+      {"approach_id": "service_door", "entry_anchor": "canal_service_door", "route_layer": "wet_low", "world_cue": "запах пара у служебной двери", "approach_cost": "шумный короткий вход", "refusal_path": "вернуться во двор"},
+      {"approach_id": "roof_pipe", "entry_anchor": "roof_condensate_pipe", "route_layer": "dry_crown", "world_cue": "след конденсата на внешней трубе", "approach_cost": "вертикаль и стамина", "refusal_path": "остаться на крыше"}
+    ]
   },
   "stable_projection": {
     "projection_role": "address",
@@ -85,6 +96,8 @@ else:
 ```
 
 Metadata не содержит торговый коэффициент, глобальный бонус дохода или случайный ассортимент. `recipe_ids` разрешаются адресным слоем из канонического реестра сделок.
+
+`heat_state` не переносится в Stable-проекцию как бонус торговли. У Hot POI обязательны минимум две записи `approach_contract` с различными `approach_id` и `entry_anchor`, разными `route_layer` либо доказанно разными пространственными связями, и один читаемый `refusal_path`; отсутствие любого поля делает рейдовую процедуру недоступной, а не молча безопасной.
 
 ## 5. Проверки
 

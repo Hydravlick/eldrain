@@ -9,6 +9,7 @@ tags:
   - tags
 related_files:
   - "[[05_Combat_Survival/Combat_Three_Debts|Combat_Three_Debts]]"
+  - "[[05_Combat_Survival/Hunt_Frontier_Loop|Hunt_Frontier_Loop]]"
   - "[[05_Combat_Survival/Acoustic_Stealth|Acoustic_Stealth]]"
   - "[[07_Gear_Inventory/Dissonance_Value|Dissonance_Value]]"
   - "[[04_Player_Entities/_Registries/Registry_Tags|Registry_Tags]]"
@@ -35,6 +36,8 @@ AnomalyPressure = DissonanceLoad + RecentDissonancePulse
 ```
 
 `DissonanceLoad` проверяется перед входом и задает базовую заметность. `RecentDissonancePulse` существует только внутри рейда, затухает со временем и отвечает за вспышки внимания.
+
+Диссонанс не является анти-кемперским таймером и не регистрирует простое ожидание. Он отвечает только на принесённую чужеродность, состояние тела и описанные эфирные действия. В охоте это эфирный след: он меняет реакцию Аномалии, но не заменяет звук, зрение или право игрока прочитать физическое место.
 
 ## 2. DissonanceLoad
 

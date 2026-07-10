@@ -76,8 +76,6 @@ frame_vector = чем она временно выставилась во вре
 | `blunt` | `kinetics` | guard break, stagger, пролом | замах, шум, recovery |
 | `polearm` | `kinetics` | дистанция, удержание входа | мёртвая зона, фланг, вес |
 | `arcanegun` | `ballistics` | линия давления, stagger, weakspot | шум, Heat, open line, interrupt |
-| `catalyst` | `aether` | reality burn, эфирное окно | Dissonance, backlash, прерывание |
-| `accessory` | `kinetics` | узкое прикрытие перехода | фланг, занятая рука, низкая мобильность |
 
 Высокий proficiency улучшает работу с этими ценами, но не превращает фрейм в третий базовый вектор. Базовая общая слабость `Race × Spec` сохраняется всегда.
 
