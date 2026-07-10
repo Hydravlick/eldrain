@@ -7,21 +7,32 @@ display_name: Малый парирующий щит
 weapon_family: shield
 frame_vector: kinetics
 vector_scope: commitment
-activates_on: [parry_window, block_recovery]
+activates_on:
+  - parry_window
+  - block_recovery
 primary_window_function: mitigate
-creates_window: [parry_stagger]
-exploits_window: [none]
-mitigates_window: [melee_entry]
-exposure_channels: [mistimed_block, ranged_line, close_commit]
+creates_window:
+  - parry_stagger
+implicit_keyword: tight_parry
+exploits_window:
+  - none
+mitigates_window:
+  - melee_entry
+exposure_channels:
+  - mistimed_block
+  - ranged_line
+  - close_commit
 frame_power: 2
 exposure_weight: 2
-implicit_keyword: tight_parry
-implicit_rule: "Точный block в parry_window создаёт parry_stagger; ранний или поздний блок открывает руку и линию."
-mastery_unlock: [parry_reset]
+mastery_unlock:
+  - parry_reset
 mvp_verdict: core_pair
-mvp_reason: "Хорошая пара к handcannon/ножу для чтения commitment, но сам по себе слишком жанровый."
+mvp_reason: Хорошая пара к handcannon/ножу для чтения commitment, но сам по себе слишком жанровый.
 sort_order: 610
-tags: [weapon_frame, weapons, shield]
+tags:
+  - weapon_frame
+  - weapons
+  - shield
 related_files:
   - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
   - "[[04_Player_Entities/Proficiency_Arsenal|Proficiency_Arsenal]]"
@@ -33,31 +44,28 @@ related_files:
 ## Варианты
 
 ### Баклер (Buckler) [1H]
-[variant_id:: buckler] | [tier:: 1] | [weight:: 1.0kg] | [setting_status:: mvp]
-[guard_input:: Tap Parry / Hold Guard] | [guard_mechanic:: parry_window -> active_block]
-[combo_reset:: после block_recovery следующий блок снова начинается с cover twitch]
+[variant_id:: buckler]
+[tier:: 1]
+[weight:: 1.0kg]
+[guard_input:: Hold]
+[guard_mechanic:: parry_window (0.2s) -> active_block]
 
-*Маленький кулачный щит.*
-- **Отличие:** самый чистый тест точного parry_window.
+Маленький кулачный щит.
+
+- **Мувсет:** узкое зашитое временное окно (parry window) в момент начала анимации блока, переходящее в обычный active block.
 - **Implicit:** `tight_parry` снижает цену входа только при точном чтении удара.
 - **Слабость:** окно блока очень маленькое; ошибка оставляет руку и корпус открытыми.
 
-### Котельная крышка (Kettle Buckler) [1H]
-[variant_id:: kettle_buckler] | [tier:: 1] | [weight:: 1.6kg] | [setting_status:: prototype]
-[guard_input:: Hold Guard / Tap Bash] | [guard_mechanic:: noisy_block -> weak_parry]
-[combo_reset:: после bash цепочка защиты возвращается к Hold Guard]
+### Шипастый Баклер (Spiked Buckler) [1H]
+[variant_id:: spiked_buckler]
+[tier:: 2]
+[weight:: 1.6kg]
+[guard_input:: Hold]
+[guard_mechanic:: parry_window (0.35s) -> counter_thrust]
 
-*Импровизированный щит из толстой крышки и ремня.*
-- **Отличие:** легче простить ранний блок, но хуже даёт parry_stagger.
-- **Implicit:** `tight_parry` почти отсутствует без точного чтения.
-- **Слабость:** шумит и плохо закрывает линию выстрела.
+Тот же кулачный щит, но с вбитым в центр шипом для ответного удара.
 
-### Шарнирный баклер (Hinged Buckler) [1H]
-[variant_id:: hinged_buckler] | [tier:: 2] | [weight:: 1.3kg] | [setting_status:: prototype]
-[guard_input:: Tap Parry / Hold Angle] | [guard_mechanic:: tight_parry -> angle_shift]
-[combo_reset:: angle_shift возвращает следующий блок к Tap Parry]
-
-*Гильдейский малый щит с шарнирной кромкой.*
-- **Отличие:** лучше перестраивает угол после удачного парирования.
-- **Implicit:** `tight_parry` становится инструментом входа, но не постоянной защитой.
-- **Слабость:** дороже потеря и всё ещё слаб против дальнего давления.
+- **Мувсет:** более широкое окно парирования, но вместо перехода в обычный active block точный блок сразу открывает короткий counter_thrust шипом.
+- **Implicit:** `tight_parry` здесь конвертируется в урон, а не только в открытое окно для другого оружия.
+- **Слабость:** тяжелее и медленнее поднимается; после counter_thrust щит на мгновение не может парировать повторно.
+- **Отличие:** шире окно парирования и даёт собственный урон через контрудар, но за счёт веса и отсутствия обычного sustained block Баклера.

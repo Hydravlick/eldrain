@@ -31,6 +31,12 @@ Do not use modification date as authority.
 
 Treat `fixed` as strong working canon, not an infallible verdict. Preserve it unless the author requests change, but report `TENSION` when it closes a risk while leaving a deeper contradiction in player fantasy, causality, or emotional meaning.
 
+### Системные каталоги и вторичные источники
+
+Не читать `.obsidian/`, `.codex/` или `.git/` при лорной проверке; они нужны только для задач о настройках, плагинах или диагностике. Не подключать `_Archive/`, `Истории/` и `docs/` без запроса автора либо явной исторической сверки.
+
+`10_Reference/` читать только после релевантного активного канона: он помогает понять референс, исходное намерение или сформулировать вопрос автору, но не канон и не доказательство действующего правила. Последнее явное решение автора и активные страницы GDD всегда имеют приоритет.
+
 ## Audit
 
 Extract the claims contained in the proposed idea. Classify relevant evidence as established canon, accepted but underwritten decision, design intent, open question, or direct contradiction.

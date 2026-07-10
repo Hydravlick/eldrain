@@ -7,21 +7,34 @@ display_name: Ручной разрядник
 weapon_family: arcanegun
 frame_vector: ballistics
 vector_scope: commitment
-activates_on: [aim_snap, shot, shot_recovery]
+activates_on:
+  - aim_snap
+  - shot
+  - shot_recovery
 primary_window_function: create
-creates_window: [stagger_entry]
-exploits_window: [none]
-mitigates_window: [none]
-exposure_channels: [open_line, noise, heat, reload_timing]
+creates_window:
+  - stagger_entry
+implicit_keyword: stopping_pulse
+exploits_window:
+  - none
+mitigates_window:
+  - none
+exposure_channels:
+  - open_line
+  - noise
+  - heat
+  - reload_timing
 frame_power: 3
 exposure_weight: 3
-implicit_keyword: stopping_pulse
-implicit_rule: "Короткий тяжёлый импульс сбивает вход, спринт или каст, но после выстрела стрелок платит шумом, Heat и recovery."
-mastery_unlock: [recoil_recover]
+mastery_unlock:
+  - recoil_recover
 mvp_verdict: anchor
 mvp_reason: "Главный MVP: один импульс сразу проверяет батарею, Heat, Pulse, шум, stagger, Recovery и нужду в добивании."
 sort_order: 410
-tags: [weapon_frame, weapons, arcanegun]
+tags:
+  - weapon_frame
+  - weapons
+  - arcanegun
 related_files:
   - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
   - "[[04_Player_Entities/Proficiency_Arsenal|Proficiency_Arsenal]]"
@@ -34,31 +47,36 @@ related_files:
 ## Варианты
 
 ### Ручной Разрядник (Spark Handcannon) [1H]
-[variant_id:: spark_handcannon] | [tier:: 1] | [weight:: 1.8kg] | [dmg:: 45] | [impulse_cost:: 1] | [heat:: 35] | [bloom:: high] | [dissonance_pulse:: 4] | [setting_status:: mvp]
-[fire_input:: Tap: aim snap / Hold: braced pulse] | [reload_mechanic:: break-action cell latch]
-[combo_reset:: после shot_recovery следующий выстрел снова начинается с aim snap]
+[variant_id:: spark_handcannon]
+[tier:: 1]
+[weight:: 1.8kg] | [dmg:: 45]
+[impulse_cost:: 1]
+[heat:: 35]
+[bloom:: high]
+[dissonance_pulse:: 4]
+[fire_input:: Tap (Semi-Auto)]
+[reload_mechanic:: Single-load]
 
-*Грубый одноручный магострел: короткая дистанция, сильный удар, плохая дисциплина разряда.*
-- **Отличие:** главный MVP-экземпляр: один импульс создаёт окно, но не закрывает бой сам.
-- **Implicit:** `stopping_pulse` сбивает вход и требует добивания.
+Грубый одноручный магострел: короткая дистанция, сильный удар, плохая дисциплина разряда.
+
+- **Мувсет:** быстрый aim snap и одиночный мощный импульс; ставка на стаггер здесь, а не на точность.
+- **Implicit:** `stopping_pulse` создаёт окно, но редко закрывает бой без добивания.
 - **Слабость:** при стрельбе на бегу bloom резко растёт.
 
-### Трубный хлопок (Pipe Popper) [1H]
-[variant_id:: pipe_popper] | [tier:: 1] | [weight:: 1.2kg] | [dmg:: 34] | [impulse_cost:: 1] | [heat:: 45] | [bloom:: very_high] | [dissonance_pulse:: 3] | [setting_status:: prototype]
-[fire_input:: Tap: panic pop / Hold: unsafe brace] | [reload_mechanic:: loose cell shove]
-[combo_reset:: перегрев или осечка возвращают цикл к panic pop]
+### Линзовый Разрядник (Lens Emitter) [1H]
+[variant_id:: lens_emitter]
+[tier:: 2]
+[weight:: 1.5kg] | [dmg:: 38]
+[impulse_cost:: 1]
+[heat:: 25]
+[bloom:: low]
+[dissonance_pulse:: 3]
+[fire_input:: Hold (Windup)]
+[reload_mechanic:: Single-load]
 
-*Дешёвый кустарный разрядник, который страшнее звучит, чем держит темп.*
-- **Отличие:** дешевле и легче, но хуже повторяет сильное действие.
-- **Implicit:** `stopping_pulse` остаётся, но требует почти идеального момента.
-- **Слабость:** быстро перегревается и плохо переносит движение.
+Прицельная версия разрядника: хитскан вместо грубого импульса, время калибровки сокращено до 0.5 секунды.
 
-### Гильдейский щелкун (Guild Snapper) [1H]
-[variant_id:: guild_snapper] | [tier:: 2] | [weight:: 2.0kg] | [dmg:: 48] | [impulse_cost:: 1] | [heat:: 28] | [bloom:: medium] | [dissonance_pulse:: 5] | [setting_status:: prototype]
-[fire_input:: Tap: controlled snap / Hold: recoil-set pulse] | [reload_mechanic:: hinged capacitor gate]
-[combo_reset:: после reload_timing цикл возвращается к controlled snap]
-
-*Более чистый разрядник с нормальной защёлкой и предсказуемой отдачей.*
-- **Отличие:** покупает повторяемость и стабильность, а не право убивать.
-- **Implicit:** `stopping_pulse` надёжнее создаёт stagger_entry.
-- **Слабость:** дороже потеря и выше диссонансная заметность.
+- **Мувсет:** во время калибровки разрешены медленные шаги в прицеле, но прыжок или спринт мгновенно сбрасывают фокус.
+- **Implicit:** `stopping_pulse` здесь точнее по цели, но требует полной калибровки перед выстрелом, а не мгновенного aim snap.
+- **Слабость:** линза даёт яркий блик до выстрела, выдавая позицию стрелка; попытка перестреливаться с нескольких сторон почти всегда заканчивается смертью.
+- **Отличие:** ниже bloom и точнее базового Разрядника, но требует полной неподвижности при калибровке и выдаёт позицию до выстрела.

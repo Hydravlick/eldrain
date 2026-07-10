@@ -7,21 +7,34 @@ display_name: Дистанционная древка
 weapon_family: polearm
 frame_vector: kinetics
 vector_scope: commitment
-activates_on: [brace, poke, swing_recovery]
+activates_on:
+  - brace
+  - poke
+  - swing_recovery
 primary_window_function: create
-creates_window: [distance_control]
-exploits_window: [none]
-mitigates_window: [melee_entry]
-exposure_channels: [dead_zone, flank, whiff_recovery, weight]
+creates_window:
+  - distance_control
+implicit_keyword: sweet_spot
+exploits_window:
+  - none
+mitigates_window:
+  - melee_entry
+exposure_channels:
+  - dead_zone
+  - flank
+  - whiff_recovery
+  - weight
 frame_power: 4
 exposure_weight: 4
-implicit_keyword: sweet_spot
-implicit_rule: "Рабочая голова даёт полный эффект только во внешнем диапазоне; древко вблизи сохраняет контакт, но теряет пролом."
-mastery_unlock: [sweet_spot_recover]
+mastery_unlock:
+  - sweet_spot_recover
 mvp_verdict: support
-mvp_reason: "Нужен для проверки reach и геометрии, но главный MVP не должен быть обычной алебардой."
+mvp_reason: Нужен для проверки reach и геометрии, но главный MVP не должен быть обычной алебардой.
 sort_order: 310
-tags: [weapon_frame, weapons, polearm]
+tags:
+  - weapon_frame
+  - weapons
+  - polearm
 related_files:
   - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
   - "[[04_Player_Entities/Proficiency_Arsenal|Proficiency_Arsenal]]"
@@ -33,31 +46,34 @@ related_files:
 ## Варианты
 
 ### Алебарда (Halberd) [2H]
-[variant_id:: halberd] | [tier:: 1] | [weight:: 5.5kg] | [dmg:: 45] | [sweet_spot_range:: 1.7-2.4m] | [setting_status:: mvp]
-[combo_chain:: brace poke -> head sweep -> haft recover] | [alt_action:: butt check]
-[combo_reset:: пауза после Ready возвращает цепочку к brace poke]
+[variant_id:: halberd]
+[tier:: 1]
+[weight:: 5.5kg] | [dmg:: 45]
+[sweet_spot_range:: 1.7-2.4m]
+[heat:: 0] | [dissonance_pulse:: 0]
+[combo_chain:: Brace Poke -> Haft Push -> Brace Poke]
+[alt_action:: Head Sweep]
+[combo_reset:: пауза после Ready возвращает цепочку к Brace Poke]
 
-*Топор на длинной палке с шипом.*
-- **Отличие:** самый широкий учебный пример sweet spot и мёртвой зоны.
-- **Implicit:** `sweet_spot` читается дистанцией и контактом головы.
-- **Слабость:** вплотную древко наносит слабый урон; обход сбоку ломает контроль.
+Топор на длинной палке с шипом. Active Frames по оси Z держатся экстремально долго.
 
-### Трубное копьё (Pipe Pike) [2H]
-[variant_id:: pipe_pike] | [tier:: 1] | [weight:: 3.2kg] | [dmg:: 32] | [sweet_spot_range:: 1.9-2.7m] | [setting_status:: prototype]
-[combo_chain:: line brace -> narrow thrust -> pull back] | [alt_action:: wall plant]
-[combo_reset:: цель в dead_zone возвращает цепочку к line brace]
+- **Мувсет:** длинный прямой выпад, фиксирующий дистанцию; короткий тычок древком от себя наносит всего 1 урон, но отталкивает врага и сбивает ему Windup, освобождая место для повторного выпада.
+- **Implicit:** `sweet_spot` читается дистанцией и контактом головы, а не скрытым множителем.
+- **Слабость:** мёртвая зона в упор — если враг прошёл остриё, оружие теряет до 80% урона; обход сбоку ломает дистанционный контроль.
 
-*Простая труба с насаженным жалом, удобная для коридоров.*
-- **Отличие:** легче и уже алебарды, лучше держит прямую линию, хуже рубит.
-- **Implicit:** `sweet_spot` работает как дисциплина расстояния.
-- **Слабость:** почти не отвечает на боковой обход.
+### Дозорное Копьё (Sentry Pike) [2H]
+[variant_id:: sentry_pike]
+[tier:: 1]
+[weight:: 3.6kg] | [dmg:: 30]
+[sweet_spot_range:: 1.2-1.9m]
+[heat:: 0] | [dissonance_pulse:: 0]
+[combo_chain:: Brace Poke -> Brace Poke]
+[alt_action:: None]
+[combo_reset:: пауза после Ready возвращает цепочку к Brace Poke]
 
-### Складная дозорная древка (Watch Pole) [2H]
-[variant_id:: watch_pole] | [tier:: 2] | [weight:: 4.8kg] | [dmg:: 38] | [sweet_spot_range:: 1.5-2.2m] | [setting_status:: prototype]
-[combo_chain:: extend check -> snap thrust -> lock sweep] | [alt_action:: collapse haft]
-[combo_reset:: collapse haft возвращает оружие к extend check]
+Облегчённое древко без топорного навершия: только прямой укол, без рубящей фазы.
 
-*Древка с фиксатором, которую можно переносить в тесном маршруте.*
-- **Отличие:** платит надёжностью за переносимость и быструю смену длины.
-- **Implicit:** `sweet_spot` становится видимым через раскладку древка.
-- **Слабость:** фиксатор создаёт отдельный момент сбоя под давлением.
+- **Мувсет:** два одинаковых быстрых укола подряд, без отдельного alt-действия и без рубящего свинга Алебарды.
+- **Implicit:** `sweet_spot` срабатывает раньше по дистанции (ближе к цели), но с меньшим окном подтверждения контакта.
+- **Слабость:** ниже урон и короче эффективная дистанция, чем у Алебарды; полностью зависит от повторного укола, поскольку нет альтернативного действия.
+- **Отличие:** легче почти в полтора раза и быстрее возвращается в стойку, чем Алебарда, но заметно слабее в уроне и держит меньшую дистанцию.
