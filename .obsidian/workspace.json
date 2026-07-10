@@ -13,12 +13,12 @@
             "state": {
               "type": "split-diff-view",
               "state": {
-                "aFile": "09_Project_Management/TODO.md",
-                "bFile": "09_Project_Management/TODO.md",
+                "aFile": "09_Project_Management/Verify_Weapons_Contract.ps1",
+                "bFile": "09_Project_Management/Verify_Weapons_Contract.ps1",
                 "aRef": ""
               },
               "icon": "diff",
-              "title": "Diff: TODO  (Working Tree)"
+              "title": "Diff: Verify_Weapons_Contract.ps1  (Working Tree)"
             }
           }
         ]
@@ -203,8 +203,10 @@
       "notion-like-tables:Create loom": false
     }
   },
-  "active": "977ad2cccc7a3a5a",
+  "active": "761942d75935a6b7",
   "lastOpenFiles": [
+    "05_Combat_Survival/Weapon_Manifesto.md",
+    "09_Project_Management/TODO.md",
     "08_World_Generation/Anomaly/14_Extraction_System.md",
     "08_World_Generation/Content/World_Atlas/Sectors/Port/00_Port_Manifest.md",
     "00_Index.md",
@@ -230,8 +232,6 @@
     "05_Combat_Survival/Acoustic_Stealth.md",
     "05_Combat_Survival/Combat_Consumables.md",
     "05_Combat_Survival/Communication_Vox.md",
-    "07_Gear_Inventory/Fashion_Gear.md",
-    "04_Player_Entities/_Registries/Registry_Combos.md",
     "09_Project_Management/Verify_Weapons_Contract.ps1",
     "base.base",
     "eldrain.7z",

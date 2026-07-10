@@ -3,9 +3,13 @@ type: registry
 status: active
 system: combat_survival_registry
 registry_type: weapon_frames
-tags: [weapons, frames, instances, arsenal]
+tags:
+  - weapons
+  - frames
+  - instances
+  - arsenal
 related_files:
-  - "[[05_Combat_Survival/Weapons/Weapon_Manifesto|Weapon_Manifesto]]"
+  - "[[05_Combat_Survival/Weapon_Manifesto|Weapon_Manifesto]]"
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile_Pipeline]]"
   - "[[04_Player_Entities/_Registries/Registry_Combos|Registry_Combos]]"
   - "[[04_Player_Entities/Tags_System|Tags_System]]"
