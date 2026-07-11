@@ -161,14 +161,12 @@ if (inheritedRows.length) {
 [bad_matchups:: detection, open_sightline, swarm]
 [route_affinity:: confined_space, alternate_route]
 [solo_gaps:: armor, sustained_pressure]
-[condition_bonus:: ...]
-[tradeoff:: ...]
 [weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: stagger_opener]
 [weapon_frame:: short_cut_1h] | [prof:: 2] | [combat_role:: window_finish]
 [module_capacity:: plate 1, optic 1, seal 1, conduit 1, rig 2, weave 2]
 ```
 
-После полей идут фантазия, повторяемый цикл, смешанные `P/Q/E`, 2–4 доктрины, результаты успеха/отхода/провала и заметки прототипа. Числа шаблона показывают формат; каждая ячейка получает собственные значения только после отдельного прохода.
+После полей идут фантазия, повторяемый цикл, смешанные `P/Q/E`, 2–4 доктрины, результаты успеха/отхода/провала и заметки прототипа. Каждая P/Q/E в теле блока использует полный контракт из [[04_Player_Entities/Skill_Build_Philosophy|философии навыков]] и [[04_Player_Entities/_Registries/Registry_Skill_Types|грамматики навыков]]; реестр не дублирует его в заголовочных полях Combo. Числа шаблона показывают формат; каждая ячейка получает собственные значения только после отдельного прохода.
 
 `design_status:: pending` означает, что слот существует, но способности, арсенал и доктрины не являются каноном.
 
@@ -270,25 +268,14 @@ if (inheritedRows.length) {
 [id:: squirrel_assault]
 [req_race:: squirrel]
 [req_spec:: assault]
-[design_status:: foundation_approved]
+[design_status:: pending]
 [module_capacity:: UNKNOWN]
-[substat_consumer:: spark_gain]
-[spark_rule:: meaningful_movement_impulse]
 [weapon_frame:: pulse_tool_1h] | [prof:: 2] | [combat_role:: recoil_to_motion]
 [weapon_frame:: short_cut_1h] | [prof:: 1] | [combat_role:: momentum_finish]
 [weapon_frame:: reach_line_2h] | [prof:: 1] | [combat_role:: moving_reach]
 [weapon_frame:: scatter_valve_2h] | [prof:: 1] | [combat_role:: entry_control]
 
-### Утверждённая пассивная основа: «Инерционный заряд»
-
-- заряд возникает от **значимого импульса движения**, а не от пройденных метров;
-- источники: разгон, смена траектории, контролируемое приземление, смена высоты, выход из давления, перенос оружейной отдачи телом;
-- повтор одного безопасного движения даёт убывающую отдачу;
-- накопленный импульс готовит тяжёлое действие Авангарда, а не даёт постоянный DPS или бесплатное ускорение;
-- `spark_gain` меняет скорость наполнения ограниченного заряда от значимых импульсов, но не увеличивает урон напрямую;
-- точные пороги, расход заряда, оружейные связи и `Q/E` не утверждены.
-
-Предложение «низкий заряд = высокая точность, нагрев = низкая точность, заряженный выстрел» остаётся примером возможного чтения, а не главным или каноническим решением.
+Старая пассивная основа «Инерционный заряд» снята: она зависела от удалённого `spark_gain` и не прошла новый контракт многокомпонентной пассивки и downstream-envelope. Телесная проводимость Белки и методология Авангарда остаются входами, но вся P/Q/E-тройка проектируется заново.
 
 ---
 

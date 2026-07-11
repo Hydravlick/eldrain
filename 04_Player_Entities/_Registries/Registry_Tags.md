@@ -22,8 +22,8 @@ related_files:
 - `[arsenal_grant:: frame_id @N]` добавляет фрейм с proficiency `N`; `[arsenal_block:: frame_id]` явно его запрещает.
 - `[module_capacity_delta:: family +N, family -N]` сдвигает ёмкости, но не создаёт физический слот.
 - `[tag_kind:: mutation]` меняет физику тела и активные/заблокированные векторы.
-- `[add_vector:: ...]` допустим только для мутаций, физической перестройки или curated Fusion; обычное мастерство работает через `prof_delta`, substats и мастерство фрейма.
-- `[tag_kind:: attribute]` меняет атрибуты T.O.U.C.H. и вторичные параметры.
+- `[add_vector:: ...]` допустим только для мутаций, физической перестройки или curated Fusion; обычное мастерство работает через `prof_delta` и мастерство фрейма.
+- `[tag_kind:: attribute]` меняет видимые атрибуты T.O.U.C.H. или явную физическую capability.
 - `[tag_kind:: flaw]` дает штраф или сужает стиль игры без автоматической компенсации Диссонансом.
 - `[tag_kind:: fusion]` описывает curated Trait Fusion, возникающий из двух проявленных тегов и связующего события.
 - `[exclusive_with:: ...]` запрещает одновременную установку несовместимых тегов.
@@ -45,12 +45,9 @@ related_files:
 [add_vector:: tech]
 [block_vector:: hazard]
 [prof_delta:: arcanegun +1]
-[skill_prof_delta:: anomaly_procedure -1]
 [module_capacity_delta:: weave +1, plate -1]
 [attr_delta:: TRQ +2, SNS -1]
-[substat_bonus:: heat_sink +0, cell_swap_speed +0, drift_control +0]
-[condition_bonus:: none]
-[output_mod:: none]
+[owned_output_mod:: none]
 [capability:: none]
 [vulnerability:: none]
 [deferred_rule:: none]
@@ -80,16 +77,13 @@ related_files:
 [tag_kind:: proficiency]
 [tag_polarity:: mixed]
 [prof_delta:: arcanegun +1, blade +1]
-[skill_prof_delta:: anomaly_procedure -1]
-[substat_bonus:: drift_control +8, recoil_damp +6]
 [exclusive_with:: cultist_mark]
 [fusion_with:: street_rat -> street_breacher]
 [trait_pool:: standard, specialist]
 [event_family:: close_combat, corridor_survival]
 [power_weight:: 4]
 * **Эффект:** `[arcanegun +1]` | `[blade +1]`
-* **Штраф:** `[anomaly_procedure -1]` - технологии подавляют чутьё к сложной аномальной процедуре.
-* **Смысл:** тег усиливает ближний бой в коридорах и стрельбу в упор, но мешает чистой магии.
+* **Смысл:** тег усиливает ближний бой в коридорах и стрельбу в упор; аномальные процедуры не получают скрытого общего штрафа и оплачиваются собственным устройством и контрактом.
 * **Лор:** *«В узком проходе не спорят с дистанцией. Упрись, пережди вспышку и бей, когда стена вернёт тебе шаг.» — наставление аварийных дозорных.*
 
 ### Портовый Грузчик (Dock Hand)
@@ -100,14 +94,13 @@ related_files:
 [prof_delta:: blunt +1, arcanegun +1]
 [arsenal_grant:: breach_impact_2h @1]
 [attr_delta:: TRQ +1, SNS -1]
-[substat_bonus:: heavy_ready +10, brace +8]
 [exclusive_with:: hollow_bones]
 [fusion_with:: piston_arm -> siege_frame]
 [trait_pool:: standard, specialist]
 [event_family:: carrying, rescue, labor]
 [power_weight:: 3]
 * **Эффект:** открывает двуручный проломный ударник на `prof:: 1`; тросовая работа принадлежит отдельному навыку, если Combo её получает.
-* **Эффект:** позволяет перезаряжать тяжелое оружие на ходу, если итоговый proficiency не ниже `2`.
+* **Мастерство:** техника тяжёлого Frame открывается только его обычным proficiency gate; тег не создаёт отдельную перезарядку на ходу.
 * **Штраф:** `[SNS -1]` - привычка к шуму делает мелкие сигналы менее заметными.
 * **Лор:** *Мышечная память тех, кто таскал ящики с хламом по 16 часов в сутки.*
 
@@ -116,17 +109,13 @@ related_files:
 [tag:: cultist_mark]
 [tag_kind:: proficiency]
 [tag_polarity:: mixed]
-[skill_prof_delta:: anomaly_procedure +2, defense -1]
-[substat_bonus:: output_power +10, reality_burn_power +6]
 [exclusive_with:: trench_veteran]
 [fusion_with:: alchemical_eye -> echo_oracle]
 [trait_pool:: specialist]
 [event_family:: ritual, aether_exposure, faction_cathedral]
 [power_weight:: 8]
 [dissonance_load:: 8]
-* **Эффект:** `[anomaly_procedure +2]`
-* **Штраф:** `[defense -1]` - вера сужает доступ к защитным устройствам.
-* **Навык:** усиливает процедуру и кантрипы, но не добавляет `aether` как архетипный вектор и не создаёт оружейный фрейм.
+* **Навык:** знак объясняет доступ к культовым процедурам в контенте и фракционной реакции, но не даёт общего рейтинга навыков, скрытого штрафа защиты, нового P/Q/E, `aether` или Frame.
 * **Лор:** *Выжженный на лбу символ позволяет проводить больше эфира через тело, игнорируя боль.*
 
 ### Дитя Улиц (Gutter Born)
@@ -136,7 +125,6 @@ related_files:
 [tag_polarity:: mixed]
 [prof_delta:: blade +1]
 [module_capacity_delta:: weave +1, plate -1]
-[substat_bonus:: ambush_resist +8, loot_speed +6]
 [capability:: vent_fit]
 [exclusive_with:: loud_aura]
 [fusion_with:: trench_veteran -> street_breacher, hollow_bones -> vent_runner]
@@ -160,7 +148,6 @@ related_files:
 [tag_polarity:: mixed]
 [add_vector:: aether]
 [block_vector:: hazard]
-[substat_bonus:: spark_gain +10]
 [deferred_rule:: shock_output, wet_backlash]
 [exclusive_with:: ether_leech, rust_allergy]
 [trait_pool:: specialist]
@@ -179,15 +166,13 @@ related_files:
 [tag_polarity:: mixed]
 [add_vector:: aether]
 [block_vector:: tech]
-[substat_bonus:: output_power +8, battery_efficiency +6]
 [deferred_rule:: natural_recharge]
 [exclusive_with:: voltaic_blood, brittle_nerves]
 [trait_pool:: specialist]
 [event_family:: reality_burn, aether_exposure]
 [power_weight:: 12]
 [dissonance_load:: 12]
-* **Эффект:** убийство врага восстанавливает часть маны и дает заряд перегрузки.
-* **Штраф:** естественное восстановление маны отключено.
+* **Отложенное правило:** `natural_recharge` не участвует в активном профиле. Будущая версия обязана иметь внешний энергетический источник и не может питаться собственным убийством по замкнутому циклу.
 * **Матрица Парадокса:** усиливает `aether`, но блокирует стабильную технику.
 * **Лор:** *Ваша батарея сломана. Теперь вы заряжаетесь, высасывая угасающий свет из глаз умирающих.*
 
@@ -199,7 +184,6 @@ related_files:
 [add_vector:: kinetics]
 [block_vector:: shadow]
 [attr_delta:: LYR +2, GRP -2]
-[substat_bonus:: trauma_resist +15, backlash_resist +8]
 [exclusive_with:: hollow_bones]
 [trait_pool:: standard, specialist]
 [event_family:: anomaly_exposure, trauma_survival]
@@ -223,7 +207,6 @@ related_files:
 [add_vector:: kinetics]
 [prof_delta:: blunt +1, heavy_weapon +1]
 [attr_delta:: TRQ +2, SNS -1]
-[substat_bonus:: heavy_ready +15, recoil_damp +10, brace +8]
 [override_race_ban:: heavy_weapon]
 [exclusive_with:: hollow_bones]
 [fusion_with:: heavy_lifter -> siege_frame]
@@ -243,7 +226,6 @@ related_files:
 [tag_polarity:: positive]
 [add_vector:: detection]
 [attr_delta:: SNS +2]
-[substat_bonus:: weakspot_read +10, trace_read +8, heat_warning +6]
 [vulnerability:: dissonance_load +5]
 [exclusive_with:: tremor_hands]
 [fusion_with:: cultist_mark -> echo_oracle]
@@ -251,8 +233,8 @@ related_files:
 [event_family:: surgery, investigation]
 [power_weight:: 5]
 [dissonance_load:: 5]
-* **Эффект:** `[SNS +2]` - лут, точность, распознавание следов.
-* **Эффект:** видит живых существ сквозь дым и темноту.
+* **Эффект:** `[SNS +2]`; конкретные навыки и устройства могут лучше читать тепловой контраст.
+* **Граница:** глаз не видит сквозь стены и не выдаёт готовую цель без линии, следа или подготовленной процедуры.
 * **Матрица Парадокса:** добавляет `detection`.
 * **Лор:** *Глаз заменен на колбу с реактивом, реагирующим на тепло.*
 
@@ -264,15 +246,13 @@ related_files:
 [add_vector:: shadow]
 [block_vector:: kinetics]
 [attr_delta:: LYR -2]
-[output_mod:: move_speed +10%, movement_noise -8]
-[substat_bonus:: ambush_resist +6]
-[tradeoff:: brace -10]
+[owned_output_mod:: body.move_speed +10%]
 [exclusive_with:: stone_skin, piston_arm, heavy_lifter]
 [fusion_with:: street_rat -> vent_runner]
 [trait_pool:: standard, specialist]
 [event_family:: fall_survival, vertical_traversal]
 [power_weight:: 2]
-* **Эффект:** `[Speed +10%]` | `[Fall Damage -50%]`
+* **Эффект:** прямой модификатор скорости действует как один видимый телесный результат; бесшумность и снижение урона от падения не предоставляются автоматически.
 * **Штраф:** `[LYR -2]` - кости ломаются от удара.
 * **Матрица Парадокса:** добавляет `shadow`, но блокирует грубую `kinetics`.
 * **Лор:** *Мутация, характерная для жителей верхних уровней, где гравитация слабее.*
@@ -284,7 +264,6 @@ related_files:
 [tag_polarity:: positive]
 [add_vector:: tech]
 [attr_delta:: GRP +2]
-[substat_bonus:: cell_swap_speed +8, drift_control +8, lockwork +8]
 [vulnerability:: rigid_handwear_incompatible]
 [exclusive_with:: tremor_hands]
 [trait_pool:: standard, specialist]
@@ -292,7 +271,7 @@ related_files:
 [power_weight:: 4]
 * **Эффект:** `[GRP +2]` - хват, перезарядка, скорость лута.
 * **Матрица Парадокса:** добавляет `tech`.
-* **Лор:** *Выглядит жутко, но позволяет перезаряжать револьвер одной рукой, пока вторая держит меч.*
+* **Граница:** дополнительные пальцы объясняют `[GRP +2]`, но не создают свободную руку и не обходят хват, занятые руки или Commitment.
 
 ---
 
@@ -305,15 +284,13 @@ related_files:
 [tag_kind:: flaw]
 [tag_polarity:: negative]
 [prof_delta:: arcanegun -1, blade -1]
-[skill_prof_delta:: anomaly_procedure +1]
 [block_vector:: ballistics]
-[substat_bonus:: drift_control -15, cell_swap_speed -8, output_power +6]
 [exclusive_with:: alchemical_eye, extra_fingers]
 [trait_pool:: standard, specialist]
 [event_family:: trauma, failed_precision]
 [power_weight:: 0]
 * **Штраф:** дальняя точность и чистая фехтовальная моторика падают.
-* **Компенсация:** нервный тремор помогает чувствовать ритм эфира, поэтому `[anomaly_procedure +1]`.
+* **Компенсация:** нервный тремор может быть художественным cue эфира, но не превращается в общий бонус ко всем аномальным процедурам.
 * **Матрица Парадокса:** блокирует архетипный или телесный `ballistics`; оружейный `frame_vector` остаётся commitment-экспозицией и не пересчитывает `weak_to`.
 
 ### Хрупкая Воля
@@ -323,7 +300,6 @@ related_files:
 [tag_polarity:: negative]
 [attr_delta:: GLW -2, SNS +1]
 [block_vector:: aether]
-[substat_bonus:: heat_warning +6, backlash_resist -10]
 [exclusive_with:: ether_leech, cultist_mark]
 [trait_pool:: standard, specialist]
 [event_family:: stress, backlash]
@@ -339,7 +315,6 @@ related_files:
 [tag_polarity:: negative]
 [attr_delta:: LYR -1]
 [block_vector:: tech]
-[substat_bonus:: armor_sync -8, field_craft_speed -6]
 [exclusive_with:: voltaic_blood, piston_arm]
 [trait_pool:: standard, specialist]
 [event_family:: corrosion, industrial_exposure]
@@ -354,7 +329,6 @@ related_files:
 [tag_polarity:: negative]
 [attr_delta:: SNS -1, GLW +1]
 [block_vector:: shadow]
-[substat_bonus:: ambush_resist -8]
 [dissonance_load:: 6]
 [exclusive_with:: street_rat]
 [trait_pool:: standard, specialist]
@@ -376,10 +350,8 @@ related_files:
 [tag_polarity:: positive]
 [fusion_requires:: street_rat, trench_veteran]
 [prof_delta:: blade +2, arcanegun +1]
-[skill_prof_delta:: anomaly_procedure -1]
 [module_capacity_delta:: weave +1, plate -1]
 [add_vector:: shadow]
-[substat_bonus:: drift_control +10, weapon_swap_speed +10, ambush_resist +8]
 [exclusive_with:: loud_aura, cultist_mark]
 [trait_pool:: standard, specialist]
 [event_family:: ambush_chain, close_combat_escape]
@@ -396,7 +368,6 @@ related_files:
 [prof_delta:: heavy_weapon +2, blunt +1]
 [attr_delta:: TRQ +3, SNS -2, GRP -1]
 [add_vector:: kinetics]
-[substat_bonus:: heavy_ready +25, recoil_damp +15, brace +12]
 [override_race_ban:: heavy_weapon]
 [exclusive_with:: hollow_bones, rust_allergy]
 [trait_pool:: specialist]
@@ -412,16 +383,15 @@ related_files:
 [tag_kind:: fusion]
 [tag_polarity:: positive]
 [fusion_requires:: alchemical_eye, cultist_mark]
-[skill_prof_delta:: anomaly_procedure +2, defense -1]
 [attr_delta:: SNS +3, GLW +1]
 [add_vector:: aether, detection]
-[substat_bonus:: trace_read +20, weakspot_read +15, reality_burn_power +10]
 [exclusive_with:: brittle_nerves, trench_veteran]
 [trait_pool:: specialist]
 [event_family:: investigation, ritual, trace_discovery]
 [power_weight:: 11]
 [dissonance_load:: 11]
-* **Эффект:** персонаж видит остаточные следы событий и может читать слабости через дым, стены и эфирные шумы.
+* **Эффект:** персонаж лучше читает остаточные следы через подготовленную процедуру, дым и эфирный шум.
+* **Граница:** стены и отсутствие физического следа не обходятся автоматически.
 * **Риск:** высокий Диссонанс делает дорогой лут и активные заклинания заметнее.
 
 ### Вентиляционный Бегун (Vent Runner)
@@ -433,12 +403,10 @@ related_files:
 [prof_delta:: blade +1]
 [module_capacity_delta:: weave +2, plate -2]
 [attr_delta:: LYR -2]
-[output_mod:: move_speed +15%, movement_noise -12]
+[owned_output_mod:: body.move_speed +15%]
 [add_vector:: shadow]
 [block_vector:: kinetics]
-[substat_bonus:: loot_speed +10]
 [capability:: vent_fit]
-[tradeoff:: brace -15]
 [exclusive_with:: stone_skin, piston_arm, loud_aura]
 [trait_pool:: standard, specialist]
 [event_family:: vent_escape, vertical_traversal]

@@ -4,6 +4,7 @@ status: active
 system: combat_profile
 tags: [combat_profile, two_paradox, abilities, arsenal, tags]
 related_files:
+  - "[[04_Player_Entities/Skill_Build_Philosophy|Философия навыков и билдостроения]]"
   - "[[04_Player_Entities/Ability_Synergy]]"
   - "[[04_Player_Entities/Shell_Construction]]"
   - "[[04_Player_Entities/Proficiency_Arsenal]]"
@@ -14,7 +15,7 @@ related_files:
 ---
 # Combat Profile Pipeline
 
-> Канон расчета Оболочки: `Race + Spec -> Combo P/Q/E + Module Capacity -> Allowed Arsenal -> Tags -> Proficiency Gates -> Combat Profile, Frame Commitment и допустимая сборка Термоса`.
+> Канон расчета Оболочки: `Race + Spec -> Final TOUCH -> прямые потребители тела/Frame/P/Q/E -> Allowed Arsenal -> Tags -> Proficiency Gates -> Combat Profile, Frame Commitment и допустимая сборка Термоса`.
 
 ## 1. Race + Spec
 
@@ -24,11 +25,12 @@ related_files:
 - Практика / специализация отвечает за методологию давления, подготовки и решения задач.
 - Их сумма не является готовой способностью. Готовые способности появляются только после слияния в `Registry_Combos`.
 - Фактический **Профиль вылазки** возникает только после учёта P/Q/E, арсенала, Термоса, батарей, тегов, контракта, команды и условий операции.
-- На этом шаге считается видимый `Final TOUCH` и первый слой скрытых подстатов: `brace`, `cell_swap_speed`, `heat_sink`, `weakspot_read`, `backlash_resist` и другие.
+- На этом шаге считается только видимый `Final TOUCH`. Тело, Frame, батарея и P/Q/E затем независимо рассчитывают свои конечные параметры из названного T.O.U.C.H.; общего слоя скрытых рейтингов нет.
 
 ```text
-Final TOUCH = 10 + Race + Spec + Tags + Gear + Temporary Effects
-Hidden Substats = f(Final TOUCH, Race.substat_bonus, Spec.substat_bonus)
+Ordinary Final TOUCH = clamp(10 + Race + Spec + Stable Tags + Active Body Interface, 6, 20)
+Final TOUCH = Ordinary Final TOUCH + Explicit Corruption Exception
+Action Parameter = OwnerResolve(OwnerBase, R(Final TOUCH)^w) × One Explicit Doctrine Modifier
 ```
 
 ## 2. Combo P/Q/E
@@ -37,7 +39,7 @@ Hidden Substats = f(Final TOUCH, Race.substat_bonus, Spec.substat_bonus)
 
 Игровой MVP использует зафиксированные расы Ёж, Крыса, Белка и практики Авангард, Технократ, Странник. `Registry_Combos` содержит ровно девять проектных слотов этой матрицы. Полная сетка 5x5 сохраняется как внутренняя карта расширения.
 
-Наличие слота не означает готовый контент. Ячейка считается канонически спроектированной только после двойной проверки из [[04_Player_Entities/MVP_3x3_Design_Contract|контракта 3×3]].
+Наличие слота не означает готовый контент. Ячейка считается канонически спроектированной только после тройной проверки из [[04_Player_Entities/MVP_3x3_Design_Contract|контракта 3×3]].
 
 Каждый combo обязан содержать:
 
@@ -52,7 +54,7 @@ Hidden Substats = f(Final TOUCH, Race.substat_bonus, Spec.substat_bonus)
 - **Q/E** — самостоятельные ситуативные действия, а не обязательная ротация.
 - **Combat Profile** вычисляется матрицами: `primary = Race.base_vector`, `secondary = Spec.base_vector`, `shared_weakness = Race.weak_to ∩ Spec.weak_to`.
 - **Ability Model** выводится автоматически: одинаковые векторы дают `mono_vector_fusion`, разные - `race_spec_fusion`.
-- **Substat Model** берется из `condition_bonus` и `tradeoff` combo. Combo не должен дублировать Race/Spec атрибуты, он должен задавать условную манеру исполнения.
+- **Ability Component Model** читается из P/Q/E: прямые T.O.U.C.H.-компоненты, фиксированный долг, downstream и общий envelope. Combo не хранит второй пакет числовых бонусов поверх Race/Spec.
 
 ## 3. Allowed Arsenal
 
@@ -79,9 +81,9 @@ Hidden Substats = f(Final TOUCH, Race.substat_bonus, Spec.substat_bonus)
 - `fusion_requires` описывает curated Trait Fusion, который появляется из двух тегов и связующего события.
 - `power_weight` хранит внутренний балансный вес тега, не являясь характеристикой мира.
 - `dissonance_load` меняет постоянный фон только для физически или эфирно заметных тегов.
-- `substat_bonus` меняет скрытые параметры T.O.U.C.H.
-- `condition_bonus` включает бонус при понятном поведении.
-- `tradeoff` фиксирует цену силы.
+- `attr_delta` меняет видимый Final TOUCH только для устойчивого изменения тела и проходит общий предел внешнего сдвига.
+- `capability`, `vulnerability`, `arsenal_grant/block`, proficiency и module capacity являются допустимыми явными изменениями.
+- Тег не добавляет коэффициент P/Q/E, скрытый рейтинг или второй источник уже оплаченного результата.
 
 ## 5. Proficiency Gates и Frame Commitment
 
@@ -110,15 +112,15 @@ installed_module_cost <= final_module_capacity
 
 Для `arcanegun` `frame_vector:: ballistics` читается как временное обязательство линейного дальнего давления: stagger, aim punch, контроль линии, создание окна и безопасный добор, а не непрерывный DPS и не новый архетипный вектор.
 
-Фреймы читают скрытые substats и отдельные Frame Window. Frame Window описывает создаваемое оружием тактическое окно, а не числовой параметр тела.
+Фреймы читают Final TOUCH напрямую и имеют отдельные Frame Window. Frame Window описывает создаваемое оружием тактическое окно, а не числовой параметр тела.
 
-| Frame/System | Главные substats | Frame Window |
+| Frame/System | Прямые T.O.U.C.H.-входы | Frame Window |
 |:---|:---|:---|
-| `pulse_tool_1h` | `recoil_damp`, `drift_control`, `cell_swap_speed` | `stagger_entry` |
-| `condenser_rig_2h` | `brace`, `weakspot_read`, `heat_sink` | `weakspot_open` |
-| `scatter_valve_2h` | `backlash_resist`, `heat_sink` | `entry_denied` |
-| `needle_thrower_2h` | `bolt_wind_speed`, `weakspot_read`, `ambush_resist` | `quiet_puncture` |
-| Batteries | `battery_efficiency`, `heat_sink`, `cell_swap_speed` | — |
+| `pulse_tool_1h` | `TRQ` держит импульс; `GRP` возвращает руку; `GLW` обслуживает Heat | `stagger_entry` |
+| `condenser_rig_2h` | `TRQ` держит стойку; `SNS` читает линию; `GLW` обслуживает заряд | `weakspot_open` |
+| `scatter_valve_2h` | `TRQ` держит конус; `LYR/GLW` разрешают исход перегруза | `entry_denied` |
+| `needle_thrower_2h` | `GRP` обслуживает взвод; `SNS` читает открытую точку | `quiet_puncture` |
+| Batteries | `GRP` обслуживает замену; `GLW` разрешает Heat/Overload | — |
 
 ### Current Commitment
 
@@ -166,7 +168,7 @@ Frame Exposure =
 - использованную `Growth Capacity`;
 - текущий `Frame Commitment`, если Пешка находится в действии или recovery;
 - видимые T.O.U.C.H. значения;
-- скрытые substats и активные condition bonuses;
+- конечные параметры прямых потребителей и активные doctrine exchanges;
 - окна доминации по матрице Двойного Парадокса.
 
 Контра всегда означает **возможность** доминации, а не автоматическую победу.

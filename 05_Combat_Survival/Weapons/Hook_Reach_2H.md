@@ -6,6 +6,7 @@ frame_id: hook_reach_2h
 display_name: Зацепная линия, две руки
 weapon_family: polearm
 grip: two_hand
+skill_interfaces: [edge, contact_surface, reach]
 frame_vector: kinetics
 vector_scope: commitment
 activates_on: [hook_swing, pull, hook_recovery]

@@ -6,6 +6,7 @@ frame_id: point_tool_1h
 display_name: Линейный пробойник, одна рука
 weapon_family: blade
 grip: one_hand
+skill_interfaces: [point, contact_surface, free_hand]
 frame_vector: shadow
 vector_scope: commitment
 activates_on: [thrust, line_hold, precision_recovery]

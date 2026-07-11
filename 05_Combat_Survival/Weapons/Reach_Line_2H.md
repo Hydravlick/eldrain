@@ -6,6 +6,7 @@ frame_id: reach_line_2h
 display_name: Дистанционная линия, две руки
 weapon_family: polearm
 grip: two_hand
+skill_interfaces: [impact_surface, contact_surface, brace, reach]
 frame_vector: kinetics
 vector_scope: commitment
 activates_on: [brace, poke, reach_recovery]

@@ -6,6 +6,7 @@ frame_id: pulse_tool_1h
 display_name: Импульсный инструмент, одна рука
 weapon_family: arcanegun
 grip: one_hand
+skill_interfaces: [conduit, impact_surface, free_hand]
 frame_vector: ballistics
 vector_scope: commitment
 activates_on: [aim_snap, emission, pulse_recovery]

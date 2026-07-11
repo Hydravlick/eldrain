@@ -6,6 +6,7 @@ frame_id: needle_thrower_2h
 display_name: Игольный метатель, две руки
 weapon_family: arcanegun
 grip: two_hand
+skill_interfaces: [projectile, reach]
 frame_vector: ballistics
 vector_scope: commitment
 activates_on: [wind, aim_hold, release, wind_recovery]

@@ -6,6 +6,7 @@ frame_id: short_cut_1h
 display_name: Короткий рез, одна рука
 weapon_family: blade
 grip: one_hand
+skill_interfaces: [edge, contact_surface, free_hand]
 frame_vector: shadow
 vector_scope: commitment
 activates_on: [draw, cut, close_recovery]

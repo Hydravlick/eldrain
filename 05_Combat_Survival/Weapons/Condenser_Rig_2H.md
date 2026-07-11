@@ -6,6 +6,7 @@ frame_id: condenser_rig_2h
 display_name: Конденсаторная рама, две руки
 weapon_family: arcanegun
 grip: two_hand
+skill_interfaces: [conduit, brace, reach]
 frame_vector: ballistics
 vector_scope: commitment
 activates_on: [aim_hold, charge, emission, charge_recovery]

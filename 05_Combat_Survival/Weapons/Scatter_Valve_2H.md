@@ -6,6 +6,7 @@ frame_id: scatter_valve_2h
 display_name: Веерный клапан, две руки
 weapon_family: arcanegun
 grip: two_hand
+skill_interfaces: [conduit, brace]
 frame_vector: ballistics
 vector_scope: commitment
 activates_on: [brace, valve_open, volley_lock, vent_recovery]

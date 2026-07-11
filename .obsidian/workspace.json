@@ -11,14 +11,14 @@
             "id": "761942d75935a6b7",
             "type": "leaf",
             "state": {
-              "type": "split-diff-view",
+              "type": "markdown",
               "state": {
-                "aFile": "09_Project_Management/Hunt_Frontier_Ecosystem_Design.md",
-                "bFile": "09_Project_Management/Hunt_Frontier_Ecosystem_Design.md",
-                "aRef": ""
+                "file": "04_Player_Entities/_Registries/Registry_Skill_Types.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "diff",
-              "title": "Diff: Hunt_Frontier_Ecosystem_Design  (Working Tree)"
+              "icon": "lucide-file",
+              "title": "Registry_Skill_Types"
             }
           }
         ]
@@ -203,8 +203,12 @@
       "notion-like-tables:Create loom": false
     }
   },
-  "active": "977ad2cccc7a3a5a",
+  "active": "761942d75935a6b7",
   "lastOpenFiles": [
+    "09_Project_Management/_Fixtures/Skill_Contract_Valid.md",
+    "09_Project_Management/_Fixtures",
+    "09_Project_Management/Verify_Skill_Build_Contract.ps1",
+    "04_Player_Entities/Ability_Synergy.md",
     "docs/superpowers/skill-drafts/eldraine-location-designer/agents",
     "docs/superpowers/skill-drafts/eldraine-location-designer",
     "docs/superpowers/specs/2026-07-10-semantic-gdd-index-design.md",
@@ -231,16 +235,12 @@
     "docs/superpowers/plans/2026-06-30-voda-dlya-doma.md",
     "docs/superpowers/plans/2026-06-30-rorkh-raid-anomaly-reference.md",
     "docs/superpowers/plans/2026-06-29-poslednyaya-lampa.md",
-    "docs/superpowers/plans/2026-06-28-port-spatial-flow.md",
     "docs/superpowers/staging",
     "docs/superpowers/skill-drafts",
     "docs/superpowers/specs",
     "docs/superpowers/plans",
     "docs/superpowers",
     "docs",
-    "09_Project_Management/Verify_Hunt_Frontier_Contract.ps1",
-    "09_Project_Management/Verify_Weapons_Contract.ps1",
-    "09_Project_Management/Verify_Canon_Refactor.ps1",
     "Images/Buildings/Edge_of_the_city.png",
     "Images/Weapons/Pasted image 20240309044824.webp",
     "Images/Weapons/Pasted image 20240310233800.webp",
