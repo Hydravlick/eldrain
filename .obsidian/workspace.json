@@ -13,12 +13,12 @@
             "state": {
               "type": "split-diff-view",
               "state": {
-                "aFile": "09_Project_Management/Verify_Weapons_Contract.ps1",
-                "bFile": "09_Project_Management/Verify_Weapons_Contract.ps1",
+                "aFile": "05_Combat_Survival/Weapons/Interposition_Panel_1H.md",
+                "bFile": "05_Combat_Survival/Weapons/Interposition_Panel_1H.md",
                 "aRef": ""
               },
               "icon": "diff",
-              "title": "Diff: Verify_Weapons_Contract.ps1  (Working Tree)"
+              "title": "Diff: Interposition_Panel_1H  (Working Tree)"
             }
           }
         ]
@@ -205,11 +205,22 @@
   },
   "active": "761942d75935a6b7",
   "lastOpenFiles": [
+    "00_Index.md",
+    "Gemini.md",
+    "04_Player_Entities/Skill_Build_Philosophy.md",
+    "09_Project_Management/Verify_Hunt_Frontier_Contract.ps1",
+    "09_Project_Management/Verify_Weapons_Contract.ps1",
+    "09_Project_Management/Verify_Canon_Refactor.ps1",
+    "04_Player_Entities/Accessible_Candidates.md",
+    "05_Combat_Survival/Status_Effects.md",
+    "05_Combat_Survival/Traversal_Core.md",
+    "05_Combat_Survival/Weapon_Core.md",
     "05_Combat_Survival/Weapon_Manifesto.md",
+    "05_Combat_Survival/Weapon_Melee.md",
+    "05_Combat_Survival/Weapon_Ranged.md",
     "09_Project_Management/TODO.md",
     "08_World_Generation/Anomaly/14_Extraction_System.md",
     "08_World_Generation/Content/World_Atlas/Sectors/Port/00_Port_Manifest.md",
-    "00_Index.md",
     "05_Combat_Survival/Hunt_Frontier_Loop.md",
     "05_Combat_Survival/Combat_Three_Debts.md",
     "09_Project_Management/Hunt_Frontier_Ecosystem_Implementation_Plan.md",
@@ -219,20 +230,10 @@
     "05_Combat_Survival/Weapons/Catalyst_Rig_2H.md",
     "05_Combat_Survival/Weapons/Breach_Impact_2H.md",
     "05_Combat_Survival/Weapons/Gemini.md",
-    "09_Project_Management/Verify_Hunt_Frontier_Contract.ps1",
     "09_Project_Management/Hunt_Frontier_Ecosystem_Design.md",
-    "05_Combat_Survival/Weapon_Core.md",
     "05_Combat_Survival/Magic_Batteries.md",
     "04_Player_Entities/Proficiency_Arsenal.md",
     "02_World_Lore/Magipunk_Physics.md",
-    "07_Gear_Inventory/Thermos_System.md",
-    "05_Combat_Survival/Ballistics_PvP.md",
-    "05_Combat_Survival/Ballistics_PvE.md",
-    "05_Combat_Survival/Ballistics_Armor.md",
-    "05_Combat_Survival/Acoustic_Stealth.md",
-    "05_Combat_Survival/Combat_Consumables.md",
-    "05_Combat_Survival/Communication_Vox.md",
-    "09_Project_Management/Verify_Weapons_Contract.ps1",
     "base.base",
     "eldrain.7z",
     "05_Combat_Survival/Weapons/Weapons.7z",
@@ -240,7 +241,6 @@
     "05_Combat_Survival/Weapons",
     "tests/faction-registry.test.mjs",
     "04_Player_Entities/Specs",
-    "04_Player_Entities/Races",
     "Images/Buildings/Edge_of_the_city.png",
     "Images/Weapons/Pasted image 20240309044824.webp",
     "Images/Weapons/Pasted image 20240310233800.webp",

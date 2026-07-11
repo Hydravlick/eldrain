@@ -5,6 +5,8 @@ system: player_entities_matrix
 tags: [dataview, matrix]
 ---
 
+> Это необязательное интерактивное представление для Obsidian. Канонические данные лежат в [[04_Player_Entities/_Registries/Registry_Combos|реестре Combo]]; его статическая карта остаётся читаемой без Dataview.
+
 ```dataviewjs
 // === 1. ЗАГРУЗКА И КОНФИГУРАЦИЯ ===
 const sources = {

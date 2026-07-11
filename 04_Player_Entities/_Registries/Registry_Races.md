@@ -18,6 +18,13 @@ related_files:
 
 Стабильные поля каждой расы находятся только в YAML её страницы. Этот файл является семейным обзором и не дублирует данные сущностей.
 
+## Статическая навигация
+
+**MVP:** [[04_Player_Entities/Races/Hedgehog|Ёж]] · [[04_Player_Entities/Races/Rat|Крыса]] · [[04_Player_Entities/Races/Squirrel|Белка]].  
+**Расширение:** [[04_Player_Entities/Races/Toad|Жаба]] · [[04_Player_Entities/Races/Lizard|Ящерица]].
+
+Таблица ниже — необязательное Dataview-представление этих же YAML-записей. Внешний читатель открывает страницы рас по ссылкам выше.
+
 ```dataview
 TABLE WITHOUT ID
   file.link AS "Раса",

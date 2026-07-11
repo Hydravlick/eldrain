@@ -93,7 +93,7 @@ related_files:
 - Modify: `04_Player_Entities/_Registries/Registry_Combos.md`
 - Modify: `04_Player_Entities/Tags_System.md`
 - Modify: `09_Project_Management/Verify_Weapons_Contract.ps1`
-- Reclassify: `05_Combat_Survival/Weapons/Tether_Launcher_2H.md`, `05_Combat_Survival/Weapons/Catalyst_Rig_2H.md`, `05_Combat_Survival/Weapons/Interposition_Panel_1H.md`
+- Remove: упразднённые неоружейные концепты из `05_Combat_Survival/Weapons/`
 
 **Consumes:** `weapon_frame` records, Combo arsenal rows, the existing `mobility`, `defense` and `device` energy contracts.
 
@@ -107,15 +107,15 @@ related_files:
   Фрейм отвечает только на то, как оружие поражает тело или поверхность: хват, траекторию, линию, конус, подготовку и Recovery. Изменение маршрута, переносной заслон и аномальная процедура не являются функцией оружейного фрейма.
   ```
 
-- [ ] **Step 2: Reclassify the three non-weapon concepts before removing active access.**
+- [ ] **Step 2: Remove the three non-weapon concepts before removing active access.**
 
-  Change their frontmatter to a non-`weapon_frame` proposal type, set `status: deferred`, and add a one-line destination:
+  Remove their pages from the weapon directory. Their former functions have no active content owner until a concrete Combo ability is approved:
 
   ```markdown
   Тросовая связь станет `mobility`/`crowd_control` навыком; заслон — `defense` навыком; аномальная процедура — `device` навыком с явным источником энергии.
   ```
 
-  Do not delete their material, risks or fiction; they are valid sources for future Combo abilities.
+  Do not preserve a weapon-shaped placeholder as a source of future content. A later Combo must restate its own source, commitment, counter-window and failure outcome.
 
 - [ ] **Step 3: Move only the ownership, not invented abilities.**
 

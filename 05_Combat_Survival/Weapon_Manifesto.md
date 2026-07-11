@@ -14,7 +14,6 @@ related_files:
   - "[[05_Combat_Survival/Weapon_Ranged|Weapon_Ranged]]"
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile_Pipeline]]"
   - "[[08_World_Generation/Content/World_Atlas/Sectors/Port/00_Port_Manifest|Port_Manifest]]"
-  - "[[05_Combat_Survival/Архитектура|Архитектура оружия]]"
 ---
 # Манифест оружия Элдрейна
 

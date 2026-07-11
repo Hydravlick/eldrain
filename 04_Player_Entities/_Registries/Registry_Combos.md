@@ -128,6 +128,16 @@ if (inheritedRows.length) {
 
 Жаба, Ящерица, Страж и Догмат остаются expansion-направлениями. Для них не создаются фиктивные готовые комбо до отдельного прохода.
 
+## Статическая карта MVP
+
+Эта таблица — навигация для чтения вне Obsidian. Единственный источник статуса, арсенала и будущих P/Q/E — записи ячеек ниже; таблица не повторяет их поля.
+
+| Раса \ Практика | Авангард | Технократ | Странник |
+|:---|:---|:---|:---|
+| Ёж | [[04_Player_Entities/_Registries/Registry_Combos#Ёж × Авангард|Ёж × Авангард]] | [[04_Player_Entities/_Registries/Registry_Combos#Ёж × Технократ|Ёж × Технократ]] | [[04_Player_Entities/_Registries/Registry_Combos#Ёж × Странник|Ёж × Странник]] |
+| Крыса | [[04_Player_Entities/_Registries/Registry_Combos#Крыса × Авангард|Крыса × Авангард]] | [[04_Player_Entities/_Registries/Registry_Combos#Крыса × Технократ|Крыса × Технократ]] | [[04_Player_Entities/_Registries/Registry_Combos#Крыса × Странник|Крыса × Странник]] |
+| Белка | [[04_Player_Entities/_Registries/Registry_Combos#Белка × Авангард|Белка × Авангард]] | [[04_Player_Entities/_Registries/Registry_Combos#Белка × Технократ|Белка × Технократ]] | [[04_Player_Entities/_Registries/Registry_Combos#Белка × Странник|Белка × Странник]] |
+
 ## Контракт записи
 
 Завершённая ячейка хранит:

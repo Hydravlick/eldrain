@@ -18,6 +18,13 @@ related_files:
 
 Стабильные поля каждой практики находятся только в YAML её страницы. Этот файл является семейным обзором и не дублирует данные сущностей.
 
+## Статическая навигация
+
+**MVP:** [[04_Player_Entities/Specs/Vanguard|Авангард]] · [[04_Player_Entities/Specs/Technocrat|Технократ]] · [[04_Player_Entities/Specs/Drifter|Странник]].  
+**Расширение:** [[04_Player_Entities/Specs/Guardian|Страж]] · [[04_Player_Entities/Specs/Dogmat|Догмат]].
+
+Таблица ниже — необязательное Dataview-представление этих же YAML-записей. Внешний читатель открывает страницы практик по ссылкам выше.
+
 ```dataview
 TABLE WITHOUT ID
   file.link AS "Практика",

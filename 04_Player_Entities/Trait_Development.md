@@ -6,7 +6,7 @@ tags: [tags, traits, biography, growth, fusion, roguelike]
 related_files:
   - "[[04_Player_Entities/Tags_System|Tags_System]]"
   - "[[04_Player_Entities/_Registries/Registry_Tags|Registry_Tags]]"
-  - "[[04_Player_Entities/Shell_Projections|Shell_Projections]]"
+  - "[[04_Player_Entities/Accessible_Candidates|Accessible_Candidates]]"
   - "[[04_Player_Entities/Shell_Foundlings|Shell_Foundlings]]"
 ---
 # Развитие Тегов/Трейтов: Биография и Опыт
@@ -70,8 +70,8 @@ related_files:
 
 | Категория | Общий каталог | Growth Capacity | Роль |
 |---|---:|---:|---|
-| **Бомж** | около 30 стандартных тегов/трейтов | 2 приобретенных тега/трейта | быстрые понятные билды, доступное восстановление ростера |
-| **Специалист / Найдёныш** | около 70, включая стандартные | до 5 приобретенных тегов/трейтов | редкие билды, профессиональные ветви, сложные Fusion |
+| **Доступный кандидат** | см. [[04_Player_Entities/Shell_Specification|Спецификацию Пешек]] | см. [[04_Player_Entities/Shell_Specification|Спецификацию Пешек]] | быстрые понятные билды, доступное восстановление ростера |
+| **Специалист / Найдёныш** | см. [[04_Player_Entities/Shell_Specification|Спецификацию Пешек]] | см. [[04_Player_Entities/Shell_Specification|Спецификацию Пешек]] | редкие билды, профессиональные ветви, сложные Fusion |
 
 Каталог специалиста дополнительно включает:
 
