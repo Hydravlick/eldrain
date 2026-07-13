@@ -25,17 +25,16 @@ related_files:
 [kernel:: strike | deploy | alter | guard | traverse | treat | perceive | operate]
 [window_function:: create | exploit | mitigate]
 [effect_domain:: harm | displacement | state | restore | protection | information | interaction]
-[delivery_form:: self | contact | weapon_bound | projectile | thrown | placed | tether | field | channel | procedure]
-[carrier_contract:: body | current_frame | consumable | device | environment_node]
-[supply_contract:: stamina | biological_reserve | battery_impulse | item_charge | device_charge | local_material]
-[carrier_fate:: retained | consumed | deployed]
+[delivery_form:: self | contact | projectile | thrown | placed | tether | field | channel | procedure]
+[carrier_contract:: body | device | environment_node]
+[supply_contract:: stamina | biological_reserve | battery_impulse | device_charge | local_material]
+[carrier_fate:: retained | deployed]
 [effect_persistence:: instant | maintained | attached | anchored]
 [target_scope:: self | single | line | cone | area | surface | device | environment_node]
 [required_interface:: none | interface_id]
-[compatible_frames:: none | any_with_interface | frame_id; frame_id]
-[carrier_ref:: none | registry_id | equipped_frame]
-[consume_amount:: none | amount_and_unit]
-[consumption_point:: none | commitment | release | placement | maintenance]
+[carrier_ref:: none | registry_id]
+[consume_amount:: none]
+[consumption_point:: none]
 [depletion_rule:: none | rule_id]
 [retrieval_rule:: none | destroy_only | rule_id]
 [economic_output:: none | nonextractable]
@@ -44,8 +43,8 @@ related_files:
 [reserve_capacity:: none | amount]
 [reserve_recovery:: none | rule_id]
 [nonextractable:: true | false]
-[payload_family:: none | family_id]
-[status_effect:: none | effect_id | from_carrier]
+[payload_family:: none]
+[status_effect:: none | effect_id]
 [output_properties:: final_parameter; final_parameter; ...]
 [passive_trigger:: none | event_id]
 [passive_state:: none | state_or_right_id]
@@ -54,7 +53,7 @@ related_files:
 [touch_components:: TOUCH -> final_parameter @weight; ...]
 [fixed_terms:: target_rule, geometry, loss_rule]
 [fixed_debt:: telegraph, commitment, recovery]
-[interrupt_rule:: rule_id]
+[interrupt_rule:: none | interruptible | rule_id]
 [counterplay:: response_id]
 [downstream_edges:: property -> consumer.parameter; ... | none]
 [energy_contract:: body | hybrid | device]
@@ -77,6 +76,28 @@ related_files:
 - право отменить действие без остатка;
 - материальный расход и источник энергии;
 - primary window function и базовая контр-игра.
+
+## 1.1. Два независимых контура
+
+`P/Q/E` — это **утилиты-терминалы** Combo. Каждая утилита владеет собственной формой доставки, целью, батарейной ценой, телеграфом, Recovery и контригрой. Её исполнитель — тело, устройство или узел среды; текущий Frame не является её носителем, не передаёт её статус и не меняет её геометрию.
+
+Frame — отдельный **оружейный контур**. Он владеет обычной атакой, оружейным обязательством, native Frame Window, физическим последствием попадания и собственным мастерством. Нож может открывать рану, молот — ломать стойку, магострел — удерживать линию, но ни один из них не становится почтальоном общего Q/E.
+
+```text
+Combo P/Q/E -> utility terminal -> body | device | environment node
+Frame       -> weapon loop -> native attack | Frame Window | mastery
+Tag         -> новый допустимый Frame, телесная возможность или явная цена
+```
+
+Тег расширяет набор оружейных позиций, но не включает и не преобразует уже известную утилиту. Связь между контурами остаётся тактической: оружие может создать окно для утилиты или защитить её исполнение, но не доставляет её эффект.
+
+## 1.2. Не геройский шутер
+
+Пешка не становится героем, который перекрывает оружейный цикл ротацией сильных кнопок. P/Q/E дают **ограниченный инструмент ситуации**: получить сведения, удержать линию, подготовить отход, пережить ошибку ценой ресурса или открыть короткое окно. Они не должны сами по себе гарантировать убийство, безопасный отход, неуязвимость либо полный контроль другой Пешки.
+
+Утилита всегда оставляет владельца в сцене: её выдают телеграф, занятые руки, открытая линия, позиция, ресурс, Recovery или доступ к узлу среды. Оружие, укрытие, звук, дистанция и решение игрока остаются главными причинами исхода перестрелки.
+
+Статус от утилиты обязан соблюдать [[05_Combat_Survival/_Registries/Registry_StatusEffects|бюджет статусов]]. Навык может создать условие для решения, но не складывает в одном результате высокий урон, жёсткий контроль, запрет лечения и безопасную доставку. Если утилита отмечена `[interrupt_rule:: interruptible]`, [[05_Combat_Survival/_Registries/Registry_StatusEffects#Разрыв Канала|silence]] может временно запретить её новое применение; оружие, предметы и действия без этой отметки остаются доступными.
 
 ## 2. Многокомпонентная пассивка
 
@@ -140,30 +161,29 @@ Component_i = Base_i × R(FinalTOUCH_i) ^ w_i
 
 Такой обмен хранится как `doctrine_exchange`, а не как универсальные `[condition_bonus]` и `[tradeoff]`. Он показывает два конечных параметра `до → после` и действует в той же сцене, где получена выгода.
 
-`Modifier + Q/E` не используется для выбора формульной ветки: этот ввод зарезервирован за кантрипом. Формулу выбирают в Хабе через физический модуль, устройство или Frame-доктрину.
+`Modifier + Q/E` не используется для выбора формульной ветки: этот ввод зарезервирован за кантрипом. Формулу утилиты выбирают в Хабе через физический модуль или устройство; Frame-доктрина меняет только оружейный контур.
 
 ## 5. Закон материальности
 
-`Race × Spec` владеет способом действия, но не создаёт его материальный носитель.
+`Race × Spec` владеет способом действия. Полная энергетическая версия исполняется батареей через тело, устройство или узел среды; она создаёт временное не извлекаемое состояние, а не новый предмет инвентаря.
 
 ```text
 телесная возможность
   + изученная процедура
-  + физически присутствующий носитель
-  + источник энергии, если нужен
+  + исполнитель: body | device | environment_node
+  + батарея, если нужна полная версия
   -> эффект и окно
 ```
 
-Если действие оставляет вещество или объект — яд, лекарство, колбу, капкан, мину, панель или физическую стену, — носитель обязан существовать в теле, инвентаре, устройстве или authored-среде. Cooldown не является источником материи.
+Батарейный навык может оставить поле, tether, якорное состояние, барьер или иной временный эффект, но такой результат не подбирается, не продаётся, не передаётся и прекращается по правилу энергии, якоря либо прерывания. Если система действительно создаёт переносимый товар или вещество, его источник обязан существовать вне навыка; P/Q/E не производит такой предмет.
 
-- покрытие оружия расходует подготовленную дозу или заряд резервуара;
-- бросок колбы расходует переносимую колбу и занимает руки;
-- ловушка требует корпуса, установки и лимита одновременно размещённых устройств;
-- лечение применяет физическое средство или подтверждённую функцию тела;
-- энергетический барьер требует фокуса, источника и поддержания;
-- аномальная процедура требует конкретного узла, устройства и канала.
+- покрытие, бросок, ловушка и зона существуют только как объявленная батарейная процедура, а не расходуемая колба, граната или корпус;
+- временный барьер требует устройства/исполнителя, источника и поддержания либо объявленного правила якоря;
+- лечебная Q/E восстанавливает `CurrentHP`, но не тратит медицинский предмет и не возвращает `FieldCapacity`;
+- бинт, стимулятор и полевая коррекция остаются самостоятельными уязвимыми предметными процедурами;
+- аномальная процедура требует конкретного узла, устройства/исполнителя, источника и канала.
 
-Статус и его физический путь определяет [[05_Combat_Survival/_Registries/Registry_StatusEffects|Registry Status Effects]]. Способность не выбирает произвольный статус из реестра и не превращает его в бесплатный payload.
+Статус и его контригру определяет [[05_Combat_Survival/_Registries/Registry_StatusEffects|Registry Status Effects]]. Способность не выбирает произвольный статус из реестра и не создаёт передаваемый payload.
 
 ## 6. Уникальность и универсальность
 
@@ -184,7 +204,7 @@ Component_i = Base_i × R(FinalTOUCH_i) ^ w_i
 - полезна минимум в двух сценах из `улица / интерьер / путь к Порогу`;
 - решает одну общую задачу, но не закрывает вход, победу и отход одновременно.
 
-Frame может дать совместимый интерфейс и изменить постановку, хват, угол или обязательство. Он не меняет семейство результата, правило цели, источник вещества, primary window function или базовую контр-игру.
+Frame не является интерфейсом P/Q/E. Он меняет только постановку, хват, угол и обязательство собственного оружейного действия; семейство результата, правило цели, источник вещества, primary window function и базовая контр-игра утилиты принадлежат Combo.
 
 ## 7. Охват T.O.U.C.H.
 
@@ -229,4 +249,6 @@ ConsumerSet(A) = Body + Frame + Battery + P/Q/E + Module
 - Q/E используется по готовности только для поддержания нормального состояния;
 - навык создаёт извлекаемый предмет или вещество без материального расхода;
 - одна практика является единственным доступным ответом на длительный статус;
+- лечебный навык возвращает `FieldCapacity`, снимает телесную травму или обходит общий `restore_saturation`;
+- один T.O.U.C.H. одновременно повышает число лечебных импульсов и общий объём восстановления;
 - игрок не может назвать усиленный параметр, оставшийся долг и причину провала без чтения формулы.

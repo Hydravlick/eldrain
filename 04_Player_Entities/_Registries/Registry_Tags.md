@@ -302,7 +302,7 @@ related_files:
 [block_vector:: aether]
 [exclusive_with:: ether_leech, cultist_mark]
 [trait_pool:: standard, specialist]
-[event_family:: stress, backlash]
+[event_family:: overload, backlash]
 [power_weight:: 0]
 * **Штраф:** персонаж хуже держит перегрузки, ритуалы и долгий каст.
 * **Компенсация:** постоянная тревога дает `[SNS +1]`.
@@ -317,7 +317,7 @@ related_files:
 [block_vector:: tech]
 [exclusive_with:: voltaic_blood, piston_arm]
 [trait_pool:: standard, specialist]
-[event_family:: corrosion, industrial_exposure]
+[event_family:: industrial_exposure]
 [power_weight:: 0]
 * **Штраф:** импланты, скрап-броня и грязные механизмы чаще вызывают воспаление.
 * **Матрица Парадокса:** блокирует `tech`, если тот пришел только от тега.

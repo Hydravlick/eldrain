@@ -2,161 +2,117 @@
 type: registry
 status: active
 system: gear_inventory_registry
-registry_type: consumables
-tags: [database, healing, utility, batteries]
+registry_type: necessary_consumables
+tags: [database, medicine, access, expedition]
+related_files:
+  - "[[05_Combat_Survival/Combat_Consumables|Медицина, здоровье и необходимые расходники]]"
+  - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
+  - "[[05_Combat_Survival/_Registries/Registry_StatusEffects|Registry_StatusEffects]]"
 ---
-> [!TODO] Расходники против линий Чужой воды
-> - [ ] Спроектировать мягкие ответы на Споровый дождь, Голодный дождь и Белую лихорадку без полной иммунности.
-> - [ ] Проверить отдельные роли: фильтрация спор, локальная очистка белого следа, сигнальная приманка и безопасная проверка мимика.
-> - [ ] Каждый ответ должен иметь время применения, ресурсную цену и риск, а не отменять выбранную линию.
-> - **Основа:** [[08_World_Generation/_Registries/Registry_Anomaly_Mutations|Registry_Anomaly_Mutations]]. Числа требуют отдельного balance pass.
-# Реестр: Расходные Материалы (Consumables)
+# Реестр: необходимые расходники и экспедиционные предметы
 
-> **Логика:** Предметы, которые уничтожаются или истощаются при использовании.
-> **Action:** Использование требует времени (блокирует атаку) и запускает анимацию.
-> **Stack:** Максимальное количество в одной ячейке.
+> Расходник уничтожается или истощается конкретным применением. Батареи являются источниками энергии и описываются в [[05_Combat_Survival/Magic_Batteries|Magic_Batteries]], а не как второй payload боевого навыка.
 
----
+## 1. Контракт записи
 
-## 0. Нулевой пациент: шаблон расходника
+```markdown
+[item_id:: stable_id]
+[item_kind:: medical | access | evidence]
+[consumed_on:: none | use | failure | access]
+[use_time:: none | duration]
+[movement_rule:: none | slow_walk | stationary]
+[restores_current_hp:: none | amount]
+[restores_field_capacity:: none | amount]
+[removes_effect:: none | effect_id]
+[applies_effect:: none | effect_id]
+[countered_by:: none | response_id]
+[waste_item:: none | item_id]
+```
 
-Используйте этот блок как эталон объекта в реестре.
+`restores_current_hp` и `restores_field_capacity` всегда разделены. Одно применение не заполняет обе шкалы автоматически. Числа, токсичность и лимиты стека являются предметом прототипа.
 
-### Шаблон Расходника (Template Consumable)
-[consumable_id:: template_consumable]
-[consumable_category:: medical]
-[consumable_role:: triage]
-[weight:: 0.1kg]
-[stack:: 1]
-[value:: 0]
-[use_time:: 3s]
+## 2. Медицина
+
+### Бинт полевого ухода
+[item_id:: field_bandage]
+[item_kind:: medical]
+[consumed_on:: use]
+[use_time:: prototype]
+[movement_rule:: slow_walk]
+[restores_current_hp:: prototype_minor]
+[restores_field_capacity:: none]
 [removes_effect:: bleed]
 [applies_effect:: none]
+[countered_by:: interruption]
 [waste_item:: none]
-*Короткое описание предмета и его фантазии.*
-- **Статы:** вес, стак, цена, редкость.
-- **Эффект:** что лечит, накладывает или активирует.
-- **Механика:** время применения, движение, возможность отмены, отходы.
 
----
+Останавливает открытую рану и покупает короткое окно. Не устраняет увечье, не возвращает `FieldCapacity` и не заменяет лечебную Q/E.
 
-## 1. Медицина (Medical Supplies)
-*Жизненно важные препараты для выживания.*
+### Стимулятор
+[item_id:: stim_pack]
+[item_kind:: medical]
+[consumed_on:: use]
+[use_time:: prototype]
+[movement_rule:: slow_walk]
+[restores_current_hp:: prototype]
+[restores_field_capacity:: none]
+[removes_effect:: none]
+[applies_effect:: none]
+[countered_by:: interruption]
+[waste_item:: empty_vial]
 
-### Бинт (Field Bandage)
-[consumable_id:: bandage]
-*Грязная тряпка, пропитанная спиртом. Лучше, чем ничего.*
-- **Статы:** `[weight:: 0.1kg]` | `[stack:: 5]` | `[value:: 50]`
-- **Эффект:**
-	- `[removes_effect:: bleed]` (Останавливает кровотечение).
-	- `[heal:: 10]` (Восстанавливает малое кол-во HP).
-- **Механика:** Время применения **3 сек**. Можно применять на ходу (со штрафом к скорости -30%).
+Быстро возвращает боеспособность ценой уязвимости применения. Отдельная система передозировки пока не объявлена: стимулятор не ссылается на несуществующий глобальный статус. Не закрывает тяжёлую травму и не подменяет аккумулятор навыка.
 
-### Инъектор "Стимулятор" (Stim-Pack)
-[consumable_id:: stim_pack]
-*Военный коктейль из адреналина и коагулянтов.*
-- **Статы:** `[weight:: 0.2kg]` | `[stack:: 3]` | `[value:: 350]`
-- **Эффект:**
-	- `[heal:: 50]` (Быстрое лечение).
-	- `[applies_effect:: stamina_boost]` (Мгновенно восстанавливает 30% стамины).
-- **Механика:** Время применения **2 сек**. После использования оставляет мусор: `[item:: empty_vial]`.
+### Набор полевой коррекции
+[item_id:: field_correction_kit]
+[item_kind:: medical]
+[consumed_on:: use]
+[use_time:: prototype_long]
+[movement_rule:: stationary]
+[restores_current_hp:: none]
+[restores_field_capacity:: prototype_limited]
+[removes_effect:: cripple]
+[applies_effect:: none]
+[countered_by:: interruption]
+[waste_item:: used_correction_frame]
 
-### Хирургический Набор / Шина (Surgical Splint)
-[consumable_id:: splint]
-*Набор скоб и жестких фиксаторов.*
-- **Статы:** `[weight:: 0.5kg]` | `[stack:: 1]` | `[value:: 200]`
-- **Эффект:**
-	- `[removes_effect:: cripple]` (Лечит переломы конечностей).
-- **Механика:** Время применения **6 сек**. Персонаж должен стоять на месте (анимация на колене).
+Поддерживает повреждённую функцию тела и ограниченно возвращает доступную телесную ёмкость. Это уязвимая процедура, а не безопасная кнопка продолжить рейд.
 
-### Антирад (Iodine Pills)
-[consumable_id:: anti_rad]
-*Таблетки с тяжелым металлическим привкусом.*
-- **Статы:** `[weight:: 0.05kg]` | `[stack:: 10]` | `[value:: 150]`
-- **Эффект:**
-	- `[removes_effect:: radiation]` (Снижает накопленную дозу облучения на 20 ед).
+## 3. Допуск и свидетельство
 
----
+### Одноразовый ключ
+[item_id:: single_use_key]
+[item_kind:: access]
+[consumed_on:: access]
+[use_time:: prototype]
+[movement_rule:: stationary]
+[restores_current_hp:: none]
+[restores_field_capacity:: none]
+[removes_effect:: none]
+[applies_effect:: none]
+[countered_by:: none]
+[waste_item:: broken_key]
 
-## 2. Инструменты и Утилиты (Utility Tools)
-*Технические средства для разведки и взлома.*
+Открывает конкретный доступ и не является боевой утилитой.
 
-### Отмычка (Lockpick)
-[consumable_id:: lockpick]
-*Тонкий инструмент из закаленной стали.*
-- **Статы:** `[weight:: 0.01kg]` | `[stack:: 20]` | `[value:: 25]`
-- **Использование:** Открытие запертых ящиков и дверей T1/T2.
-- **Механика:** При неудаче в мини-игре ломается и исчезает.
+### Карта и след
+[item_id:: expedition_trace]
+[item_kind:: evidence]
+[consumed_on:: none]
+[use_time:: none]
+[movement_rule:: none]
+[restores_current_hp:: none]
+[restores_field_capacity:: none]
+[removes_effect:: none]
+[applies_effect:: none]
+[countered_by:: none]
+[waste_item:: none]
 
-### Сигнальный Флаер (Flare)
-[consumable_id:: flare]
-*Химический источник света.*
-- **Статы:** `[weight:: 0.2kg]` | `[stack:: 5]` | `[value:: 40]`
-- **Использование:** Освещает радиус 15м на 60 сек.
-- **Эффект:** Отпугивает монстров с тегом `[fear:: light]` (например, Теневых Крыс).
+Карта, след или доказательство дают информацию, маршрут либо право на дальнейшую процедуру. Они сохраняются, пока конкретный контракт не объявляет их расход.
 
----
+## 4. Запреты
 
-## 3. Источники Энергии (Energy Sources)
-*Топливо для магии и технологий.*
-
-### Слабая Батарея (Cracked Cell)
-[consumable_id:: cracked_cell]
-[cell_size:: standard]
-[charge_count:: 1]
-[stability:: low]
-*Треснувший цилиндр с грязным эфиром. Один импульс, много шума.*
-- **Статы:** `[weight:: 0.3kg]` | `[stack:: 3]` | `[value:: 250]`
-- **Использование:** 1 выстрел, заклинание или активация Q/E.
-- **Отход:** после расхода становится `[item:: drained_cell]`.
-
-### Хорошая Батарея (Capacitor Cell)
-[consumable_id:: capacitor_cell]
-[cell_size:: standard]
-[charge_count:: 3]
-[stability:: normal]
-*Стандартная гильдейская батарея того же размера, но с тремя стабильными зарядами.*
-- **Статы:** `[weight:: 0.3kg]` | `[stack:: 3]` | `[value:: 700]`
-- **Использование:** 3 импульса с cooldown между ними.
-- **Отход:** после третьего заряда становится `[item:: drained_cell]`.
-
-### Якорная Батарея (Anchor Cell)
-[consumable_id:: anchor_cell]
-[cell_size:: standard]
-[charge_count:: 3]
-[stability:: high]
-*Дорогая батарея с чистым светом Якоря.*
-- **Статы:** `[weight:: 0.3kg]` | `[stack:: 3]` | `[value:: 1400]`
-- **Использование:** 3 стабильных импульса с меньшим bloom, heat и Dissonance.
-- **Отход:** после расхода становится `[item:: drained_cell]`, но зарядка может требовать сервис.
-
-### Перегрузочная Батарея (Overcharge Cell)
-[consumable_id:: overcharge_cell]
-[cell_size:: standard]
-[charge_count:: 1]
-[stability:: volatile]
-*Одноразовая батарея с подготовленным каналом Reality Burn. Слишком яркая, чтобы быть безопасной.*
-- **Статы:** `[weight:: 0.3kg]` | `[stack:: 1]` | `[value:: 1200]`
-- **Использование:** 1 мощный импульс для щитов, аномальных тел и аварийного добивания. Не списывает Рез из кошелька в рейде.
-- **Отход:** после расхода становится `[item:: drained_cell]` или ломается сюжетным событием.
-
-### Заряд Реальности (Reality Charge)
-[consumable_id:: reality_charge]
-[consumable_category:: stabilizer]
-[cell_size:: insert]
-[charge_count:: 1]
-[stability:: tuned]
-*Подготовленная вставка нормальности для катализаторов и стабилизаторов.*
-- **Статы:** `[weight:: 0.1kg]` | `[stack:: 3]` | `[value:: 450]`
-- **Использование:** расходуется катализатором, стабилизаторной ампулой или ритуальным устройством для Reality Burn.
-- **Создание:** в Хабе из Реза, энергии Якоря или фракционного сервиса.
-- **Отход:** не оставляет батарею; после применения исчезает.
-
-### Истощенная Батарея (Drained Cell)
-[consumable_id:: drained_cell]
-[cell_size:: standard]
-[charge_count:: 0]
-[stability:: inert]
-*Пустой носитель. Не выбрасывайте: после успешной экстракции он снова заряжается в Хабе.*
-- **Статы:** `[weight:: 0.3kg]` | `[stack:: 3]` | `[value:: 80]`
-- **Использование:** возвращается в зарядный цикл после эвакуации.
+- колбы, гранаты, ловушки, химические зоны, световые шары и барьеры не существуют как обычные боевые расходники;
+- боевой навык не требует медицинский предмет как второй платёж;
+- расходник не создаёт новый P/Q/E или бесконечное восстановление по cooldown;
+- доступ, карта и след не заменяют [[08_World_Generation/Generation/08_Gate_Check|Gate Check]], бой или обязательную экстракцию.
