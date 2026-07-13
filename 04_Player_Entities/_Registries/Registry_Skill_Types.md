@@ -10,6 +10,8 @@ related_files:
   - "[[05_Combat_Survival/_Registries/Registry_StatusEffects|Registry Status Effects]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Consumables|Registry Consumables]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic Batteries]]"
+  - "[[08_World_Generation/_Registries/Registry_Environment_States|Registry Environment States]]"
+  - "[[09_Project_Management/Risk_Register|Risk Register]]"
 ---
 # Реестр: грамматика и границы навыков
 
@@ -43,15 +45,25 @@ related_files:
 [payload_family:: none]
 [status_effect:: none | effect_id]
 [output_properties:: final_parameter; final_parameter; ...]
+[output_profile:: none | impact | coverage | persistence]
 [passive_trigger:: none | event_id]
 [passive_state:: none | state_or_right_id]
 [passive_properties:: none | property_id; property_id; property_id]
 [passive_loss_rule:: none | rule_id]
-[touch_components:: TOUCH -> final_parameter @weight; ...]
+[touch_components:: TOUCH -> final_parameter @weight @baseline_N @coefficient; ...]
 [fixed_terms:: target_rule, geometry, loss_rule]
 [fixed_debt:: telegraph, commitment, recovery]
-[interrupt_rule:: rule_id]
+[interrupt_rule:: none | interruptible | rule_id]
 [counterplay:: response_id]
+[support_family:: none | seal | signal | access | maintenance | expose]
+[support_polarity:: none | allied_buff | hostile_expose]
+[benefit_axis:: none | ingress | information | permission | sustain]
+[attribute_mutation:: forbidden]
+[status_interaction:: none | named_effect_or_ingress_path]
+[stack_group:: none | family_id]
+[baseline_path:: none | named_non_support_option]
+[uptime_contract:: none | battery | battery_and_terminal_health | channel_commitment]
+[terminal_integrity:: none | declared]
 [downstream_edges:: property -> consumer.parameter; ... | none]
 [energy_contract:: body | hybrid | device]
 [battery_version:: effect_id | none]
@@ -228,10 +240,24 @@ casting_reserve_required: true
 
 ## 10. Поддержка, восстановление и импульсы
 
-`restore`, `aura`, `area` и `buff` являются формами вывода из контракта, а не готовыми классами. Направленный импульс, tether, аура, якорная область и бафф имеют разные геометрию, батарейную цену и контригру.
+`restore`, `aura`, `area` и `buff` являются формами вывода из одного контракта, а не готовыми классами. Для поддержки обязательны `support_family`, `benefit_axis`, `baseline_path`, `uptime_contract`, `stack_group` и обычные поля источника, цели, доставки, долга и контригры.
 
 - лечебный навык восстанавливает только `CurrentHP` по [[05_Combat_Survival/Combat_Consumables|контракту здоровья]];
 - АоЕ и аура делят один общий `restore`-бюджет между целями;
 - на цели действует общий `restore_saturation`, который не обходится сменой лекаря;
 - `healing_suppression` уменьшает входящее восстановление, а `restoration_fracture` откладывает его части; оба имеют обычную контрмеру;
-- T.O.U.C.H. может менять `pulse_count` по формуле `floor`, но тот же компонент не увеличивает одновременно общий restore, радиус, длительность и безопасность.
+- T.O.U.C.H. может менять `pulse_count` по формуле `floor`, но тот же компонент не увеличивает одновременно общий restore, радиус, длительность и безопасность;
+- `attribute_mutation` всегда `forbidden`; поддержка не усиливает Frame и не превращает доступ к сцене в обязательный гейт;
+- аура — пространственный терминал: для поставленного поля нужны батарея, граница, здоровье тотема, правило разрушения и `baseline_path`;
+- `maintenance` удерживает только один объявленный собственный терминал; `expose` раскрывает активный механизм врага, не саму цель;
+- владелец читает фазу и направление внешнего источника на минимальном личном HUD; противник читает источник, границу, фазу и ближайшую контригру без HUD владельца.
+
+## 11. Боевой output
+
+`effect_domain: harm` использует один `output_profile`, выбранный в Хабе физическим модулем: `impact`, `coverage` или `persistence`. Frame не выбирает профиль и не доставляет результат.
+
+- `impact` допускает прямой линейный harm от T.O.U.C.H.;
+- `coverage` скейлит только геометрию или покрытие;
+- `persistence` скейлит только длительность, интервал либо заранее видимые импульсы;
+- общий `weight` не разрешает одновременно полный harm, охват, частоту, контроль, антихил и батарейную эффективность в одной причинной цепи;
+- коэффициенты harm/radius и пороги TTK являются прототипными, пока не закрыт [[09_Project_Management/Risk_Register|R61]].

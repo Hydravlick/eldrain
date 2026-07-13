@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "10_Reference/Concept Note Баффы — утилиты без связности с фреймами.md",
+                "file": "08_World_Generation/Content/World_Atlas/Sectors/Port/Tables/01_Difficulty.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Concept Note Баффы — утилиты без связности с фреймами"
+              "title": "01_Difficulty"
             }
           }
         ]
@@ -205,8 +205,8 @@
   },
   "active": "761942d75935a6b7",
   "lastOpenFiles": [
-    "08_World_Generation/Content/World_Atlas/Sectors/Port/Tables/01_Difficulty.md",
     "10_Reference/Concept Note Баффы — утилиты без связности с фреймами.md",
+    "08_World_Generation/Content/World_Atlas/Sectors/Port/Tables/01_Difficulty.md",
     "docs/superpowers/specs/2026-06-27-extraction-stabilization-loot-design.md",
     "07_Gear_Inventory/Affix_Grammar.md",
     "07_Gear_Inventory/Stash_Architecture.md",

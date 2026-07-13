@@ -53,13 +53,18 @@ GearContribution(A) <= +2
 
 ## 3. Прямой consumer contract
 
+Каждый прямой consumer объявляет базовую точку `N` и один линейный коэффициент. Это не отдельная кривая силы для урона, радиуса или иной способности: общий вход один — видимый `FinalTOUCH`, а коэффициент только переводит его в единицы конкретного владельца.
+
 ```text
-FinalParameter =
-  OwnerResolve(OwnerBase, R(FinalTOUCH)^w)
-  × OneExplicitDoctrineModifier
+TouchDelta_N = FinalTOUCH - N
+
+FinalParameter = Parameter_at_N + StepCoefficient × TouchDelta_N
+
+для пропорционального harm:
+Harm = Harm_at_N × (1 + HarmCoefficient × TouchDelta_N)
 ```
 
-`R` — единая для системы нормализованная ограниченная кривая. `OwnerResolve` только переводит её фактор в единицы владельца: секунды, метры, килограммы, градусы или порог. Владелец не изобретает вторую кривую силы. Для одиночного прямого результата `w = 1`; доли многокомпонентной способности подчиняются общему envelope.
+`N`, `StepCoefficient` и `HarmCoefficient` объявляются на карточке конечного параметра и калибруются прототипом. Первый вариант применяется к секундам, метрам, килограммам, градусам и порогам; второй — только когда параметр по смыслу является долей базового harm. Владелец не добавляет нелинейную ветку, скрытый substat или второй множитель силы. Для одиночного прямого результата `weight = 1`; доли многокомпонентной способности подчиняются общему envelope из [[04_Player_Entities/Skill_Build_Philosophy|философии навыков]].
 
 Допустимые владельцы: тело, конкретный Frame, батарейный цикл, броневая процедура, P/Q/E, физический модуль или authored-правило среды.
 
@@ -72,22 +77,23 @@ FinalParameter =
 5. T.O.U.C.H. не открывает новый глагол, статус, иммунитет, цель или cancel;
 6. рост характеристики монотонен: больше T.O.U.C.H. не ухудшает параметр;
 7. безопасность, Recovery и материальная цена не исчезают от той же характеристики, которая усиливает результат.
+8. коэффициент обязан оставлять параметр валидным во всём обычном диапазоне `FinalTOUCH 6..20`; он не создаёт новую capability на точке `N` или выше неё.
 
 ## 4. Прямые результаты тела
 
 Формы формул закреплены, коэффициенты калибруются прототипом:
 
 ```text
-MaxHP             = BodyBaseHP + BodyCurve(LYR)
-CarryLoad         = BodyBaseLoad + BodyCurve(TRQ)
-CellSwapTime      = BatteryBaseSwap / HandlingCurve(GRP)
-HeatDissipation   = HeatBase × ConductionCurve(GLW)
-CueLead           = CueBase × SenseCurve(SNS)
-OverloadThreshold       = CastingBase resolved through R(GLW)
-BacklashInjurySeverity  = InjuryBase resolved through R(LYR)
+MaxHP                    = MaxHP_at_N + LYRStep × TouchDelta_N
+CarryLoad                = CarryLoad_at_N + TRQStep × TouchDelta_N
+CellSwapTime             = CellSwap_at_N - GRPStep × TouchDelta_N
+HeatDissipation          = HeatDissipation_at_N + GLWStep × TouchDelta_N
+CueLead                  = CueLead_at_N + SNSStep × TouchDelta_N
+OverloadThreshold        = Overload_at_N + GLWStep × TouchDelta_N
+BacklashInjurySeverity   = Injury_at_N - LYRStep × TouchDelta_N
 ```
 
-Это конечные результаты, а не скрытые характеристики. Они показываются там, где игрок принимает решение: на карточке тела, Frame, батареи, способности или предупреждения.
+Знаки коэффициента следуют смыслу результата: больше `GRP` уменьшает время замены, больше `LYR` уменьшает тяжесть срыва. Это конечные результаты, а не скрытые характеристики. Они показываются там, где игрок принимает решение: на карточке тела, Frame, батареи, способности или предупреждения.
 
 Если Frame использует два T.O.U.C.H., они отвечают за разные физические части. Например, `TRQ` может держать отдачу, а `GRP` — возвращать руку; они не складываются в общий `recoil_damp`.
 

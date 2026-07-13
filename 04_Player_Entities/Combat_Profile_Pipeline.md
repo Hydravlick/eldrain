@@ -30,7 +30,10 @@ related_files:
 ```text
 Ordinary Final TOUCH = clamp(10 + Race + Spec + Stable Tags + Active Body Interface, 6, 20)
 Final TOUCH = Ordinary Final TOUCH + Explicit Corruption Exception
-Action Parameter = OwnerResolve(OwnerBase, R(Final TOUCH)^w) × One Explicit Doctrine Modifier
+Touch Delta = Final TOUCH - Parameter Baseline N
+Action Parameter = Parameter at N + Declared Step Coefficient × Touch Delta
+Proportional Harm = Harm at N × (1 + Declared Harm Coefficient × Touch Delta)
+Doctrine Exchange = one explicit, player-visible change to named final parameters
 ```
 
 ## 2. Combo P/Q/E
