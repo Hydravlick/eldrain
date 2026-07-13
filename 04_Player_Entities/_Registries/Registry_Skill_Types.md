@@ -17,9 +17,10 @@ related_files:
 
 > Реестр классифицирует уже обоснованное действие. Он не легализует предмет, вещество, биологию или технологию одним названием типа.
 
-## 1. Полный контракт
+## 1. Общий контракт и условные продолжения
 
 ```markdown
+## Общая часть каждой P/Q/E
 [skill_slot:: P | Q | E]
 [kernel:: strike | deploy | alter | guard | traverse | treat | perceive | operate]
 [window_function:: create | exploit | mitigate]
@@ -27,50 +28,32 @@ related_files:
 [delivery_form:: self | contact | projectile | thrown | placed | tether | field | channel | procedure]
 [carrier_contract:: body | device | environment_node]
 [supply_contract:: stamina | biological_reserve | battery_impulse | device_charge | local_material]
-[carrier_fate:: retained | deployed]
 [effect_persistence:: instant | maintained | attached | anchored]
 [target_scope:: self | single | line | cone | area | surface | device | environment_node]
-[required_interface:: none | interface_id]
-[carrier_ref:: none | registry_id]
-[consume_amount:: none]
-[consumption_point:: none]
-[depletion_rule:: none | rule_id]
-[retrieval_rule:: none | destroy_only | rule_id]
-[economic_output:: none | nonextractable]
-[placement_limit:: none | integer]
-[reserve_id:: none | reserve_id]
-[reserve_capacity:: none | amount]
-[reserve_recovery:: none | rule_id]
-[nonextractable:: true | false]
-[payload_family:: none]
-[status_effect:: none | effect_id]
 [output_properties:: final_parameter; final_parameter; ...]
-[output_profile:: none | impact | coverage | persistence]
-[passive_trigger:: none | event_id]
-[passive_state:: none | state_or_right_id]
-[passive_properties:: none | property_id; property_id; property_id]
-[passive_loss_rule:: none | rule_id]
-[touch_components:: TOUCH -> final_parameter @weight @baseline_N @coefficient; ...]
+[touch_components:: TOUCH -> final_parameter @weight; ...]
 [fixed_terms:: target_rule, geometry, loss_rule]
 [fixed_debt:: telegraph, commitment, recovery]
 [interrupt_rule:: none | interruptible | rule_id]
 [counterplay:: response_id]
-[support_family:: none | seal | signal | access | maintenance | expose]
-[support_polarity:: none | allied_buff | hostile_expose]
-[benefit_axis:: none | ingress | information | permission | sustain]
-[attribute_mutation:: forbidden]
-[status_interaction:: none | named_effect_or_ingress_path]
-[stack_group:: none | family_id]
-[baseline_path:: none | named_non_support_option]
-[uptime_contract:: none | battery | battery_and_terminal_health | channel_commitment]
-[terminal_integrity:: none | declared]
-[downstream_edges:: property -> consumer.parameter; ... | none]
-[energy_contract:: body | hybrid | device]
-[battery_version:: effect_id | none]
-[cantrip_version:: effect_id | none]
-[overcharge_version:: effect_id | none]
-[impulse_cost:: 0]
-[casting_reserve_required:: false]
+
+## Только если это нужно типу
+P: [passive_trigger:: event_id] [passive_state:: state_or_right_id]
+   [passive_properties:: property_id; ...] [passive_loss_rule:: rule_id]
+state/restore: [status_effect:: effect_id]
+terminal/anchor/node: [carrier_fate:: retained | deployed] [carrier_ref:: registry_id]
+   [required_interface:: interface_id] [placement_limit:: integer]
+   [terminal_integrity:: declared] [uptime_contract:: battery | battery_and_terminal_health | channel_commitment]
+   [reserve_id:: reserve_id] [reserve_capacity:: amount] [reserve_recovery:: rule_id]
+   [depletion_rule:: rule_id] [retrieval_rule:: destroy_only | rule_id]
+support: [support_family:: seal | signal | access | maintenance | expose]
+   [support_polarity:: allied_buff | hostile_expose] [benefit_axis:: ingress | information | permission | sustain]
+   [status_interaction:: named_effect_or_ingress_path] [stack_group:: family_id]
+   [baseline_path:: named_non_support_option] [attribute_mutation:: forbidden]
+downstream: [downstream_edges:: property -> consumer.parameter; ...]
+energy variant: [energy_contract:: body | hybrid | device] [battery_version:: effect_id]
+   [cantrip_version:: effect_id | none] [overcharge_version:: effect_id | none]
+   [impulse_cost:: 0] [casting_reserve_required:: false]
 ```
 
 `direct_damage`, `area_damage`, `crowd_control`, `buff_debuff`, `healing`, `mobility`, `defense` и `anomaly_procedure` больше не являются достаточными типами способности. При необходимости они выводятся как отчётные ярлыки из полного контракта.
@@ -252,12 +235,12 @@ casting_reserve_required: true
 - `maintenance` удерживает только один объявленный собственный терминал; `expose` раскрывает активный механизм врага, не саму цель;
 - владелец читает фазу и направление внешнего источника на минимальном личном HUD; противник читает источник, границу, фазу и ближайшую контригру без HUD владельца.
 
-## 11. Боевой output
+## 11. Боевой результат
 
-`effect_domain: harm` использует один `output_profile`, выбранный в Хабе физическим модулем: `impact`, `coverage` или `persistence`. Frame не выбирает профиль и не доставляет результат.
+`effect_domain: harm` не получает дополнительную билдовую ветку и не выбирается через модуль в Хабе. Запись способности объявляет один прямой конечный параметр через `touch_components`; остальные определяющие параметры живут в `fixed_terms`.
 
-- `impact` допускает прямой линейный harm от T.O.U.C.H.;
-- `coverage` скейлит только геометрию или покрытие;
-- `persistence` скейлит только длительность, интервал либо заранее видимые импульсы;
+- direct harm фиксирует геометрию, число целей, импульсы, частоту, помощь попаданию, контроль, антихил и батарейную эффективность;
+- поле может скейлить один объявленный параметр границы **или** времени, не direct harm на цель;
+- длительный эффект может скейлить один объявленный параметр длительности, интервала либо заранее видимого числа импульсов, не burst-harm и геометрию;
 - общий `weight` не разрешает одновременно полный harm, охват, частоту, контроль, антихил и батарейную эффективность в одной причинной цепи;
-- коэффициенты harm/radius и пороги TTK являются прототипными, пока не закрыт [[09_Project_Management/Risk_Register|R61]].
+- параметры harm/radius и пороги TTK являются прототипными, пока не закрыт [[09_Project_Management/Risk_Register|R61]].

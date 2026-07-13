@@ -20,7 +20,7 @@ related_files:
 2.  **Interaction Zone:** Ready Access, Back Slot, обычный груз.
 3.  **Known Address:** мастер, Очаг, рецепт, разбор или собственный билд.
 4.  **Reliability:** Trace/Disputed, Volatile, Stable.
-5.  **Rarity:** Artifact -> Legendary -> Epic -> Rare -> Common -> Rusty внутри одной смысловой группы.
+5.  **Rarity:** Legendary -> Epic -> Rare -> Common -> Rusty внутри одной смысловой группы; Реликвия отмечается происхождением, а не местом в цветовой очереди.
 6.  **Weight:** от тяжёлого к лёгкому либо по `value/kg`, если игрок выбрал этот фильтр.
 
 ### Пример результата сортировки:

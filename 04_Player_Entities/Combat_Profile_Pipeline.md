@@ -30,10 +30,9 @@ related_files:
 ```text
 Ordinary Final TOUCH = clamp(10 + Race + Spec + Stable Tags + Active Body Interface, 6, 20)
 Final TOUCH = Ordinary Final TOUCH + Explicit Corruption Exception
-Touch Delta = Final TOUCH - Parameter Baseline N
-Action Parameter = Parameter at N + Declared Step Coefficient × Touch Delta
-Proportional Harm = Harm at N × (1 + Declared Harm Coefficient × Touch Delta)
-Doctrine Exchange = one explicit, player-visible change to named final parameters
+R(N) = 1
+R(T) = (1 + r) ^ (T - N)
+Action Parameter = OwnerResolve(OwnerBase, R(Final TOUCH) ^ weight)
 ```
 
 ## 2. Combo P/Q/E
@@ -69,6 +68,18 @@ Doctrine Exchange = one explicit, player-visible change to named final parameter
 ```
 
 Строка арсенала указывает конкретный экземпляр фрейма для MVP-доктрины. Если владение не заявлено, строка не пишется; `prof:: 0` не хранится как данные.
+
+### Доступ к Frame
+
+Обычный Frame не получает числовой атрибутный допуск и не становится закрытым, пока игрок не соберёт нужную характеристику. Доступ проходит три разных проверки:
+
+```text
+arsenal capability -> тело физически допускает Frame
+proficiency gate  -> открывается его техника мастерства
+named TOUCH consumer -> улучшается уже доступный физический результат
+```
+
+Первая граница бинарна только для настоящей анатомической несовместимости и живёт в capability/теге. Вторая принадлежит proficiency. Третья может улучшить удержание тяжёлой линии, взвод, Heat-цикл или возврат руки, но не запрещает базовое применение и не выдаёт общий урон.
 
 `arcanegun` в этой системе означает магострельные и механические дальнобойные фреймы: разрядники, конденсаторы, эмиттеры и игольники. Они работают через батарейный цикл, heat, bloom и Dissonance.
 
