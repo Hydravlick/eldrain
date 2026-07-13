@@ -11,14 +11,14 @@
             "id": "761942d75935a6b7",
             "type": "leaf",
             "state": {
-              "type": "split-diff-view",
+              "type": "markdown",
               "state": {
-                "aFile": "05_Combat_Survival/Weapon_Core.md",
-                "bFile": "05_Combat_Survival/Weapon_Core.md",
-                "aRef": ""
+                "file": "10_Reference/Concept Note T.O.U.C.H. — реестр производных параметров.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "diff",
-              "title": "Diff: Weapon_Core  (Working Tree)"
+              "icon": "lucide-file",
+              "title": "Concept Note T.O.U.C.H. — реестр производных параметров"
             }
           }
         ]
@@ -205,6 +205,8 @@
   },
   "active": "761942d75935a6b7",
   "lastOpenFiles": [
+    "10_Reference/Concept Note T.O.U.C.H. — реестр производных параметров.md",
+    "04_Player_Entities/_Registries/Registry_TOUCH.md",
     "04_Player_Entities/Attributes_TOUCH.md",
     "docs/superpowers/plans/2026-07-13-skill-touch-relic-boundaries-plan.md",
     "08_World_Generation/Content/World_Atlas/Sectors/Port/Tables/01_Difficulty.md",
@@ -230,10 +232,8 @@
     "Registry_Skill_Types_Expanded.md",
     "claude.md",
     "07_Gear_Inventory/_Registries/Registry_Consumables.md",
-    "05_Combat_Survival/Combat_Consumables.md",
     "Не подтвержден 554931.crdownload",
     "Не подтвержден 213131.crdownload",
-    "07_Gear_Inventory/_Registries/Registry_Thermoses.md",
     "09_Project_Management/_Fixtures",
     "09_Project_Management/Verify_Skill_Build_Contract.ps1",
     "docs/superpowers/skill-drafts/eldraine-location-designer/agents",

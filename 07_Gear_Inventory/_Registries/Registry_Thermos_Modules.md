@@ -35,6 +35,8 @@ related_files:
 - `[tier:: ...]` — класс конструкции, не автоматическая стоимость;
 - `[rarity:: ...]` — настройки экземпляра, не автоматическая стоимость;
 - `[module_axes:: ...]` — фактические игровые оси;
+- `[module_type:: ...]` — особая физическая форма модуля либо `none`; тип не создаёт новое семейство;
+- `[active_cell_capacity_delta:: ...]` — сколько дополнительных подготовленных батарей может держать активная очередь; допустимо только для `module_type:: battery_rack`;
 - `[body_interface:: ...]` — тип Опорного контура либо `none`; это не семейство;
 - `[touch_shift:: ...]` — фиксированный сдвиг первичного T.O.U.C.H. только активного контура;
 - `[doctrine_exchange:: ...]` — ситуативное устройство меняет один названный конечный результат и показывает цену; оно не меняет T.O.U.C.H.;
@@ -75,7 +77,9 @@ const rows = blocks.map(block => {
         field(block, "slot_size") || "UNKNOWN",
         (field(block, "module_positions") || "UNKNOWN").replaceAll("|", ", "),
         field(block, "tier") || "UNKNOWN",
+        field(block, "module_type") || "none",
         (field(block, "module_axes") || "UNKNOWN").replaceAll(",", ", "),
+        field(block, "active_cell_capacity_delta") || "0",
         field(block, "body_interface") || "none",
         field(block, "touch_shift") || "none",
         field(block, "vulnerability") || "none",
@@ -88,7 +92,7 @@ const rows = blocks.map(block => {
   .sort((a, b) => a[1].localeCompare(b[1]) || a[0].localeCompare(b[0]));
 
 if (rows.length) {
-    dv.table(["Модуль", "Семейства", "Стоимость", "Слоты", "Позиции", "Tier", "Оси", "Контур", "T.O.U.C.H.", "Уязвимость", "Покрытие", "Вес", "Допуск", "Баланс"], rows);
+    dv.table(["Модуль", "Семейства", "Стоимость", "Слоты", "Позиции", "Tier", "Тип", "Оси", "Активные ячейки", "Контур", "T.O.U.C.H.", "Уязвимость", "Покрытие", "Вес", "Допуск", "Баланс"], rows);
 } else {
     dv.paragraph("⚠️ В Registry_Thermos_Modules нет активных модулей.");
 }
@@ -185,6 +189,31 @@ if (rows.length) {
 Единственная плита прикрывает сердце, а остальная конструкция распределяет переносимый груз. Обвязка не создаёт универсальные карманы: её Cargo-функция обязана быть описана отдельно.
 
 ## Проводники и плетение
+
+### Кассета активных ячеек «Долгая нить»
+[module:: long_thread_battery_rack]
+[module_id:: long_thread_battery_rack]
+[module_type:: battery_rack]
+[module_families:: conduit|rig]
+[module_cost:: conduit UNKNOWN, rig UNKNOWN]
+[slot_size:: UNKNOWN]
+[module_positions:: back|waist]
+[tier:: UNKNOWN]
+[rarity:: UNKNOWN]
+[module_axes:: energy, battery_reserve]
+[active_cell_capacity_delta:: +1]
+[armor_plates:: none]
+[weight:: UNKNOWN]
+[body_interface:: none]
+[touch_shift:: none]
+[vulnerability:: none]
+[interface_state:: inactive]
+[install_state:: blocked_calibration]
+[install_location:: hub_professional]
+[field_state:: stitched_locked]
+[balance_state:: prototype]
+
+Кассета держит ещё одну целую батарею в заранее объявленной очереди выбранного контура. Она не делает импульс сильнее, не снижает Heat, Recovery, Bloom или Dissonance и не даёт вторую ману: батарея всё так же становится `Drained Cell` при маршрутизации. Цена кассеты — физический узел, профильная ёмкость, вес и риск вынести в рейд больше дорогих источников; отдельной простреливаемой уязвимости у неё нет.
 
 ### Эфирная ветвь «Проводник»
 [module:: conduit_robe]
