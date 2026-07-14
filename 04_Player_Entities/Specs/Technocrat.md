@@ -8,6 +8,8 @@ english_name: The Technocrat
 aliases: [Технократ, The Technocrat]
 sort_order: 30
 content_scope: mvp
+base_vector: tech
+weak_to: [shadow, kinetics, detection]
 tags: [spec, practice, player_entity]
 ---
 # Технократ (The Technocrat)

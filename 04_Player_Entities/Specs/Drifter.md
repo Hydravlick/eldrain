@@ -8,6 +8,8 @@ english_name: The Drifter
 aliases: [Странник, The Drifter]
 sort_order: 40
 content_scope: mvp
+base_vector: shadow
+weak_to: [hazard, ballistics, detection]
 tags: [spec, practice, player_entity]
 ---
 # Странник (The Drifter)

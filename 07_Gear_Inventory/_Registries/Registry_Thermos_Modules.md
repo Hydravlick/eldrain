@@ -515,9 +515,9 @@ if (rows.length) {
 [environment_resistance:: UNKNOWN]
 [conduit_layout:: none]
 [weight:: UNKNOWN]
-[install_state:: installable]
+[install_state:: blocked_calibration]
 [install_location:: hub_professional]
 [field_state:: stitched_locked]
 [balance_state:: unknown]
 
-Короткое описание функции, видимого признака и цены модуля.
+Форматная запись, а не игровой предмет. Она остаётся `blocked_calibration`, пока `UNKNOWN` не заменены измеренными значениями и отдельный authored-модуль не пройдёт контракт установки.

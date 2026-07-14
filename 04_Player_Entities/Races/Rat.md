@@ -10,6 +10,11 @@ aliases:
   - Rattus
 sort_order: 20
 content_scope: mvp
+base_vector: tech
+weak_to:
+  - shadow
+  - kinetics
+  - detection
 culture: "[[02_World_Lore/Rat_Culture|Крысы: Культура Продолжения]]"
 tags:
   - race

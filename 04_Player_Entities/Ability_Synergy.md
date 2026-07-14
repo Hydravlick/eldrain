@@ -4,6 +4,7 @@ status: active
 system: player_core
 tags: [skills, abilities, synergy, archetypes]
 related_files:
+  - "[[04_Player_Entities/Two_Paradox_Vector_Matrix|Двойной Парадокс]]"
   - "[[04_Player_Entities/Skill_Build_Philosophy|Философия навыков и билдостроения]]"
   - "[[04_Player_Entities/_Registries/Registry_Skill_Types|Грамматика навыков]]"
   - "[[05_Combat_Survival/Combat_Three_Debts|Combat_Three_Debts]]"
@@ -59,6 +60,8 @@ P/Q/E создаются только пересечением `Race × Spec` и
 - раса даёт физическое исполнение и ограничения;
 - authored-ячейка называет P/Q/E, арсенал, модули и сигнатуру решений;
 - Chronicle меняет личную ситуацию и последствия, а loadout выбирает один из authored Frame; `prof` остаётся стабильным отношением hero-kit к Frame. Ни один из этих слоёв не подменяет исходную фантазию набора.
+
+Параллельно [[04_Player_Entities/Two_Paradox_Vector_Matrix|Двойной Парадокс]] автоматически читает `base_vector` расы и практики и помещает координату в общую карту отношений. Он не является источником P/Q/E: векторное ребро формулирует вопрос к дизайну, а эта страница определяет фактический способ действия.
 
 ## 4. Структура Навыков (2+1)
 * **2 Активных Навыка (Q/E):** независимые ситуативные действия с условием, подготовкой, раскрытием, эффектом и Recovery.

@@ -10,6 +10,11 @@ aliases:
   - Bufo
 sort_order: 40
 content_scope: post_mvp
+base_vector: hazard
+weak_to:
+  - tech
+  - aether
+  - detection
 culture: "[[02_World_Lore/Toad_Culture|Жабы: Культура Удерживаемой Среды]]"
 tags:
   - race

@@ -8,6 +8,8 @@ english_name: Guardian
 aliases: [Страж, Guardian]
 sort_order: 10
 content_scope: post_mvp
+base_vector: kinetics
+weak_to: [hazard, shadow, aether]
 tags: [spec, practice, player_entity]
 ---
 # Страж (Guardian)

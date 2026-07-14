@@ -10,6 +10,11 @@ aliases:
   - Erinaceus
 sort_order: 10
 content_scope: mvp
+base_vector: kinetics
+weak_to:
+  - hazard
+  - shadow
+  - aether
 culture: "[[02_World_Lore/Hedgehog_Culture|Ежи: Культура Удерживаемого Пространства]]"
 tags:
   - race

@@ -10,6 +10,11 @@ aliases:
   - Lacerta
 sort_order: 50
 content_scope: post_mvp
+base_vector: detection
+weak_to:
+  - kinetics
+  - ballistics
+  - aether
 culture: "[[02_World_Lore/Lizard_Culture|Ящерицы: Культура Измеримого Мгновения]]"
 tags:
   - race

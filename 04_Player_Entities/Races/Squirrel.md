@@ -8,6 +8,8 @@ latin_name: Sciurus
 aliases: [Белка, Sciurus]
 sort_order: 30
 content_scope: mvp
+base_vector: aether
+weak_to: [shadow, tech, ballistics]
 culture: "[[02_World_Lore/Squirrel_Culture|Белки: Культура Распределённой Весны]]"
 tags: [race, player_entity]
 ---

@@ -8,6 +8,8 @@ english_name: The Scholar
 aliases: [Догмат, The Scholar]
 sort_order: 50
 content_scope: post_mvp
+base_vector: aether
+weak_to: [shadow, tech, ballistics]
 tags: [spec, practice, player_entity]
 ---
 # Догмат (The Scholar)
