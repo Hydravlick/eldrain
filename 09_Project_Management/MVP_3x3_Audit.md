@@ -1,6 +1,6 @@
 ---
 type: audit
-status: active
+status: superseded
 system: player_core
 tags: [mvp, 3x3, audit, validation]
 related_files:
@@ -11,6 +11,8 @@ related_files:
   - "[[10_Reference/Reference Note Техническая архитектура способностей и vertical slice|Техническая архитектура и vertical slice]]"
 ---
 # Аудит MVP-матрицы 3×3
+
+> **Исторический аудит.** Этот проход проверял наследуемые векторы и раннюю пассивную основу. Они сняты. Текущий критерий готовности — полный authored hero-kit из [[04_Player_Entities/MVP_3x3_Design_Contract|контракта 3×3]] и [[04_Player_Entities/_Registries/Registry_Combos|Registry Combos]].
 
 > Цель аудита — отделить готовность проектного контракта от готовности девяти ячеек. На текущем этапе каркас согласован, но восемь ячеек не имеют утверждённого содержания, а у Белки × Авангарда утверждена только пассивная основа.
 

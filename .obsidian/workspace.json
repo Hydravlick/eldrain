@@ -13,12 +13,12 @@
             "state": {
               "type": "split-diff-view",
               "state": {
-                "aFile": "04_Player_Entities/Races/Toad.md",
-                "bFile": "04_Player_Entities/Races/Toad.md",
+                "aFile": "06_Economy_Loot/P2P_Interaction.md",
+                "bFile": "06_Economy_Loot/P2P_Interaction.md",
                 "aRef": ""
               },
               "icon": "diff",
-              "title": "Diff: Toad  (Working Tree)"
+              "title": "Diff: P2P_Interaction  (Working Tree)"
             }
           }
         ]
@@ -205,6 +205,7 @@
   },
   "active": "761942d75935a6b7",
   "lastOpenFiles": [
+    "04_Player_Entities/_Registries/Registry_Combos.md",
     "04_Player_Entities/_Matrices/00_Synergy_Map.md",
     "04_Player_Entities/Two_Paradox_Birth.md",
     "04_Player_Entities/Two_Paradox_Vector_Matrix.md",
@@ -230,7 +231,6 @@
     "08_World_Generation/_Registries/Registry_Anomaly_Mutations.md",
     "08_World_Generation/Anomaly/13_Insertion_Logic.md",
     "08_World_Generation/Anomaly/Anomaly_System.md",
-    "08_World_Generation/Districts/City_Center.md",
     "_Archive/Merged/Skill_Architecture_2026-07-13",
     "Не подтвержден 554931.crdownload",
     "Не подтвержден 213131.crdownload",

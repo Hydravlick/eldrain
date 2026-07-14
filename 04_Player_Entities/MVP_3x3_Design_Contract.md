@@ -12,7 +12,7 @@ tags:
 related_files:
   - "[[04_Player_Entities/Skill_Build_Philosophy|Философия навыков и билдостроения]]"
   - "[[04_Player_Entities/_Registries/Registry_Skill_Types|Грамматика навыков]]"
-  - "[[09_Project_Management/MVP_3x3_Audit|Аудит MVP-матрицы 3×3]]"
+  - "[[09_Project_Management/Risk_Register|Реестр рисков]]"
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat Profile Pipeline]]"
   - "[[04_Player_Entities/Ability_Synergy|Ability Synergy]]"
   - "[[04_Player_Entities/_Matrices/00_Synergy_Map|Карта решений hero-kit]]"

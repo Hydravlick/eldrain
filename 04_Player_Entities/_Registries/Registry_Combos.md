@@ -247,12 +247,11 @@ if (authoredRows.length) {
 [design_status:: pending]
 [decision_signature:: UNKNOWN]
 [named_module:: UNKNOWN]
-[ability_model:: mono_vector_fusion]
 [module_capacity:: UNKNOWN]
 [weapon_frame:: needle_thrower_2h] | [prof:: 2] | [combat_role:: quiet_tool]
 [weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: interrupt]
 
-Проектный слот. Совпадение `tech + tech` усиливает глубину технического исполнения, но не выдаёт бесплатный второй вектор.
+Проектный слот. Техническая физиология Крысы и метод Технократа являются причинными входами, но не создают готовую силу, слабость или действие до отдельного authored-прохода ячейки.
 
 ---
 

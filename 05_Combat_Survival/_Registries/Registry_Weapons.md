@@ -11,24 +11,25 @@ tags:
 related_files:
   - "[[05_Combat_Survival/Weapon_Manifesto|Weapon_Manifesto]]"
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile_Pipeline]]"
+  - "[[04_Player_Entities/Proficiency_Arsenal|Proficiency_Arsenal]]"
   - "[[04_Player_Entities/_Registries/Registry_Combos|Registry_Combos]]"
-  - "[[04_Player_Entities/Tags_System|Tags_System]]"
   - "[[06_Economy_Loot/Loot_Distribution|Loot_Distribution]]"
 ---
 # Реестр оружейных фреймов
 
-> Фрейм задаёт хват, геометрию обязательства, постоянное поведение (`implicit`) и неснимаемый долг. Экземпляр задаёт moveset или поведение выпуска, происхождение, диапазон редкости и контекст появления. Комбинация владеет фреймами, не именами предметов.
+> Frame задаёт хват, локальные фазы действия, `commitment`, `exposure_channels`, постоянное поведение (`implicit`) и неснимаемый долг. Экземпляр задаёт moveset или поведение выпуска, происхождение, диапазон редкости и контекст появления. Полный authored hero-kit владеет допуском к Frame и `prof`, а не именами предметов.
 
 ## Контракт доступа
 
 ```text
-AllowedFrames = ComboFrames + TagGrants - RaceBans - TagBlocks
-EligibleInstance = allowed frame + matching grip + load tier + rarity band + spawn profile
+AllowedFrames(hero_kit_id) = Registry_Combos[hero_kit_id].weapon_frame
+FrameProf(hero_kit_id, frame_id) = Registry_Combos[hero_kit_id].prof
+EligibleInstance = authored Frame + matching grip + load tier + rarity band + spawn profile
 ```
 
-- `Registry_Combos` хранит `[weapon_frame:: ...] | [prof:: ...]`.
-- `Registry_Tags` использует `[arsenal_grant:: frame_id @N]` и `[arsenal_block:: frame_id]`.
-- Экземпляр не может менять `grip`, `implicit_keyword`, основную функцию окна или базовую экспозицию своего фрейма.
+- `Registry_Combos` хранит законченный authored-перечень `[weapon_frame:: ...] | [prof:: ...] | [combat_role:: ...]` каждого hero-kit `Race × Spec`; списки родителей не складываются формулой.
+- Chronicle, Origin trait, редкость Пешки и история использования не добавляют и не блокируют Frame, не сдвигают `prof` и не меняют gunfeel двух Пешек одного hero-kit.
+- Экземпляр не может менять `grip`, `activates_on`, `commitment`, `exposure_channels`, `implicit_keyword` или основную функцию окна своего Frame.
 - `load_tier` говорит о допустимой энергетической нагрузке; `rarity_band` говорит, в каких цветах может существовать Pattern. Это разные оси.
 
 ## Контракт экземпляра
@@ -58,6 +59,8 @@ TABLE WITHOUT ID
   weapon_family AS "Семейство",
   implicit_keyword AS "Поведение",
   primary_window_function AS "Работа",
+  join(activates_on, ", ") AS "Фазы действия",
+  commitment AS "Обязательство",
   join(creates_window, ", ") AS "Создаёт",
   join(exploits_window, ", ") AS "Использует",
   join(exposure_channels, ", ") AS "Цена"
@@ -86,4 +89,4 @@ SORT sort_order ASC
 
 ## Проверка
 
-[[09_Project_Management/Verify_Weapons_Contract|Verify_Weapons_Contract]] проверяет активные ID фреймов, хват, данные экземпляров, Combo mastery и контракт тегов. Числа урона, Heat, точные задержки и веса остаются предметом прототипа, а не скрытого Power Score. Трос, заслон и аномальная процедура являются устройствами навыков и не входят в активный список фреймов.
+Проверка контракта реестра должна сверять активные ID Frame, хват, локальные фазы, `commitment`, `exposure_channels`, данные экземпляров и authored arsenal/prof hero-kit. Отдельная проверка подтверждает, что Chronicle не меняет Frame, gunfeel или `prof`. Числа урона, Heat, точные задержки и веса остаются предметом прототипа, а не скрытого Power Score. Трос, заслон и аномальная процедура являются устройствами навыков и не входят в активный список Frame.

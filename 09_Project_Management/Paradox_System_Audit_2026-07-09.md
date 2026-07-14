@@ -1,6 +1,6 @@
 ---
 type: audit
-status: active
+status: superseded
 system: player_core
 tags: [audit, two_paradox, vectors, synergy_map, mvp]
 related_files:
@@ -11,6 +11,8 @@ related_files:
   - "[[04_Player_Entities/_Registries/Registry_Combos|Registry_Combos]]"
 ---
 # Аудит системы Двойного Парадокса
+
+> **Исторический аудит.** Автоматическая векторная модель снята: она вычисляла профиль ещё не созданного hero-kit и воспроизводила скрытую универсальную шкалу. Активное решение находится в [[04_Player_Entities/Two_Paradox_Vector_Matrix|заметке о снятии]] и [[04_Player_Entities/_Matrices/00_Synergy_Map|карте authored-решений]].
 
 > Цель аудита: сохранить автоматические векторы без ручной таблицы matchup, но отделить полезный расчет тактических окон от визуального шума и ложной уверенности.
 

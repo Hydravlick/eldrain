@@ -5,7 +5,7 @@ system: insertion
 tags: [lore_integrated, matchmaking, spawn_logic, sarcophagus, squad_mechanics]
 related_files:
   - "[[08_World_Generation/Generation/13_Async_Double_Buffer|Async_Double_Buffer]]"
-  - "[[04_Player_Entities/Shell_Specification|Shell_Specification]]"
+  - "[[04_Player_Entities/Lifecycle_Roster|Lifecycle_Roster]]"
   - "[[08_World_Generation/Generation/19_Access_Contracts|Access_Contracts]]"
   - "[[08_World_Generation/Generation/08_Gate_Check|Gate_Check]]"
 ---
@@ -24,7 +24,7 @@ related_files:
 При нажатии "Deploy" система фильтрует список активных серверов по выбранному [[08_World_Generation/Generation/19_Access_Contracts|Access Contract]]:
 
 1.  **Ping Limit:** < 100ms (стабильность нейро-линка).
-2.  **Contract Tier:** контракт совпадает с фазой сектора: T1 Walk-In, Prepared T2, Deep T3, Recovery Drop или Mixed High-Risk.
+2.  **Contract Tier:** контракт совпадает с фазой сектора: T1 Walk-In, Prepared T2, Deep T3, Late Service Drop или Mixed High-Risk.
 3.  **Stabilization Safety:** стандартный вход запрещён, если до финальной Стабилизации меньше 15 минут. Исключения возможны только для явно отмеченных Recovery-событий.
 4.  **Environment Forecast:** Mission Readiness показывает `OK/Risk/Fail`. `Fail` блокирует стандартный вход, если Пешка погибнет до агентности.
 5.  **Dissonance Budget:** `DissonanceLoad` не превышает hard-limit выбранного сектора.
@@ -38,7 +38,7 @@ related_files:
 
 - `Prepared T2` - основной mid-core вход.
 - `Deep T3` - дорогой маршрут в фазу Пересборки.
-- `Recovery Drop` - бедный поздний вход для возврата темпа и заполнения живого сервера.
+- `Late Service Drop` - добровольный периферийный поздний вход с объявленной работой для любой Ready-Пешки, прошедшей общий `CanDeploy`; это не очередь бедных или zero-roster маршрут.
 
 Цена открывает маршрут. Она не отменяет среду, Диссонанс, деградацию выходов или риск потери Пешки.
 
@@ -49,16 +49,20 @@ related_files:
 
 В игре нет случайного спавна. Каждая точка входа (люк, пол подвала, трещина в асфальте) оценивается перед запуском.
 
-**Алгоритм Безопасности ($S$):**
-Для каждой точки $P$ рассчитывается вес:
-$$S = (Dist_{Enemy} * W_{Safe}) + (Dist_{Loot} * W_{Greed}) + (LineOfSight_{Check} * W_{Stealth})$$
+**Алгоритм Безопасности ($S$):** сначала удаляет все невалидные точки hard-veto правилами, затем ранжирует оставшиеся по расстоянию до давления, цене маршрута и качеству нескольких выходов. Высокий score никогда не отменяет veto.
 
 ### Критерии Отмены (Hard Veto)
 Система **запрещает** высадку в точку, если:
-1.  **Proximity Breach:** В радиусе **80м** есть враг (Саркофаг слишком громкий, его услышат).
-2.  **Combat Zone:** Точка находится в зоне активного боя AI (NavMesh Alert).
-3.  **Hot Pipe:** Точка использовалась < 3 минут назад (Труба еще горячая/Перезарядка).
-4.  **Objective Skip:** точка дает прямой доступ к боссу, хранилищу, найденышу или главной награде без процедуры сектора.
+
+1. **Hostile line:** существует hostile LoS или прогнозируемая firing line на сам Breach либо выход из `Wake Up`.
+2. **Prepared camp:** у точки или на подходах есть hostile trap, projectile, observer либо недавний `kill/aim/dwell heat`.
+3. **Threat proximity:** противник находится внутри серверного `BreachThreatRadius(P)`, зависящего от слышимости, рельефа и времени выхода, а не от одного постоянного числа.
+4. **Combat zone:** точка находится в активном бою игроков или AI либо на его непосредственном пути.
+5. **Hot pipe:** точка или её подход недавно использовались и ещё читаемо опасны.
+6. **Objective skip:** точка даёт прямой доступ к боссу, хранилищу, Foundling или главной награде без процедуры сектора.
+7. **No egress:** после `Wake Up` нет минимум двух обычных достижимых направлений к cover/route, не проходящих через одну и ту же линию огня.
+
+Те же veto действуют для Standard, Deep и Late Service Drop. Поздний контракт не означает более дешёвую жизнь.
 
 ---
 
@@ -75,6 +79,18 @@ $$S = (Dist_{Enemy} * W_{Safe}) + (Dist_{Loot} * W_{Greed}) + (LineOfSight_{Chec
 ---
 
 ## 5. Машина Состояний: Прибытие (Arrival State Machine)
+
+До необратимого входа цена и Population Seat только резервируются:
+
+```text
+SeatReserved
+  -> assets loaded
+  -> Spawn Scorer finds and revalidates a point
+      -> no valid point: release seat + refund price + offer another SessionID
+      -> valid point: atomic BreachCommitted + ParticipationClaim + physical Breach
+```
+
+`ParticipationLedger` остаётся `NeverParticipated` до `BreachCommitted`. Точка повторно проходит все veto непосредственно перед физическим Breach; если она стала опасной во время загрузки, выбирается другая без расхода участия. Claim создаётся только вместе с необратимым появлением Breach-объекта в валидной геометрии.
 
 | State | Лорное Описание | Техническая Реализация |
 | :--- | :--- | :--- |
