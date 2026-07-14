@@ -213,28 +213,6 @@ central_fallback
 | **Evac** | Маркер исчезает. | Нет. | Торговцы скрываются первыми. |
 | **Anomaly** | Скрыто. | Показывает инфо: *"Loot: Smuggled Goods"* | **Loot Spot:** Склады контрабандистов. Высокий шанс найти нелегальные предметы. |
 
-### [PREFAB:: PORT_REVERSE_TIDE_RELAY] — "Реле обратного прилива"
-*Аварийная насосная, где Чужая вода временами идёт против уклона. Авторский Hot POI первого фронтирного среза.*
-[poi_id:: port_reverse_tide_relay]
-[address_id:: none]
-[address_class:: none]
-[availability:: raid_only]
-[tier:: 1]
-[anomaly_tiers:: T1, T2, T3]
-[dominant_vector:: tech]
-[dual_state:: anomaly]
-[heat_state:: hot]
-[heat_signal:: вода идёт вверх в слив; крюк крана дрожит в обратный такт]
-[heat_work:: route_frequency_trace]
-[approach_contract:: relay_drain_inlet | relay_drain_inlet | wet_low | вода течёт вверх в слив | длинный приседный проход, вода и близкая встреча | вернуться по дренажу к каналу]
-[approach_contract:: relay_crane_gantry | relay_crane_gantry | dry_crown | кран дрожит в обратный такт | вертикаль, силуэт и шумный спуск | остаться на галерее и уйти к crane_splice]
-* **Роль:** спорная работа над частотой глубокого маршрута; не лут-множитель.
-* **Пространственный контракт:** два входа начинаются на разных якорях и слоях. `habitation_bypass` сохраняет отказ и поисковый путь к другому кандидату Нестабильного Порога.
-* **Кандидаты Порога:** `tide_lift_void`, `crane_splice`, `quarantine_arch`; ни один не является постоянным выходом.
-
-
----
-
 # 2. Категория: Подземелья (Dungeons)
 *Крупные структуры-ориентиры. В Аномалии их силуэты служат маяками для навигации.*
 

@@ -6,7 +6,7 @@ tags: [superseded, attributes, migration]
 related_files:
   - "[[04_Player_Entities/MVP_3x3_Design_Contract|Контракт hero-kit 3×3]]"
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat Profile Pipeline]]"
-  - "[[04_Player_Entities/Trait_Development|Chronicle и трейты]]"
+  - "[[04_Player_Entities/Tags_System|Личные теги]]"
   - "[[07_Gear_Inventory/Thermos_System|Термос и модули]]"
 ---
 # T.O.U.C.H. — снятая архитектура
@@ -52,6 +52,6 @@ Hero-kit является самостоятельной ячейкой пере
 | Heat, Overload, Vent, Recovery | [[05_Combat_Survival/Magic_Batteries|Magic Batteries]] и владелец действия |
 | раннее предупреждение | конкретная угроза, прибор, hero-kit или модуль |
 | средовая стойкость | броня, маска, фильтр и [[08_World_Generation/Generation/08_Gate_Check|Gate Check]] |
-| личное развитие | [[04_Player_Entities/Trait_Development|Chronicle]], без общего статового роста |
+| личное развитие | [[04_Player_Entities/Tags_System|Личные теги]], без общего статового роста |
 
 Если старый документ всё ещё просит значение T.O.U.C.H., `touch_shift`, `touch_components` или `FinalTOUCH`, зависимость не переносится автоматически: её нужно вернуть названному владельцу либо удалить как не имеющую самостоятельной игровой сцены.
