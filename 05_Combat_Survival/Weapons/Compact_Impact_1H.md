@@ -7,9 +7,8 @@ display_name: Компактный ударник, одна рука
 weapon_family: blunt
 grip: one_hand
 skill_interfaces: [impact_surface, contact_surface, free_hand]
-frame_vector: kinetics
-vector_scope: commitment
 activates_on: [swing, impact, close_recovery]
+commitment: close_range_followthrough_before_ready
 primary_window_function: create
 creates_window: [disorientation]
 implicit_keyword: local_concussion

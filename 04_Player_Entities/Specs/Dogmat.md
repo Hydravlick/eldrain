@@ -8,13 +8,6 @@ english_name: The Scholar
 aliases: [Догмат, The Scholar]
 sort_order: 50
 content_scope: post_mvp
-base_vector: aether
-weak_to: [shadow, tech, ballistics]
-touch_TRQ: 0
-touch_GRP: 1
-touch_LYR: -1
-touch_GLW: 5
-touch_SNS: 1
 tags: [spec, practice, player_entity]
 ---
 # Догмат (The Scholar)
@@ -25,7 +18,7 @@ tags: [spec, practice, player_entity]
 
 - Догмат воспроизводит батарейный импульс телесным проводником и осознанно принимает общий кантрипный долг;
 - допустимые компоненты: проводимость конкретного эффекта, телеграф напряжения, предел телесного исхода;
-- практика не получает общий `output_power`, Reality Burn или Heat Sink поверх `GLW`;
+- практика не получает общий `output_power`, Reality Burn или Heat Sink; каждый канал владеет своей проводимостью, телеграфом и телесным исходом;
 - каждая активная способность сохраняет физический источник полной версии, а кантрип не создаёт материю или извлекаемую ценность.
 
 ## Методология

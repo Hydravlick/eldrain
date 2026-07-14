@@ -7,9 +7,8 @@ display_name: Игольный метатель, две руки
 weapon_family: arcanegun
 grip: two_hand
 skill_interfaces: [projectile, reach]
-frame_vector: ballistics
-vector_scope: commitment
 activates_on: [wind, aim_hold, release, wind_recovery]
+commitment: full_wind_and_fixed_rewind_between_shots
 primary_window_function: exploit
 creates_window: [none]
 implicit_keyword: quiet_puncture

@@ -8,13 +8,6 @@ english_name: Guardian
 aliases: [Страж, Guardian]
 sort_order: 10
 content_scope: post_mvp
-base_vector: kinetics
-weak_to: [hazard, shadow, aether]
-touch_TRQ: 3
-touch_GRP: -2
-touch_LYR: 4
-touch_GLW: 2
-touch_SNS: -1
 tags: [spec, practice, player_entity]
 ---
 # Страж (Guardian)
@@ -25,7 +18,7 @@ tags: [spec, practice, player_entity]
 
 - Страж принимает нагрузку, связывает её с материалом и укрепляет существующий проход;
 - допустимые компоненты: предел удержания, время установки материала, распределение удара по подготовленной защите;
-- практика не выдаёт общий brace, Armor Sync или резист поверх `TRQ/LYR`;
+- практика не выдаёт общий brace, Armor Sync или резист; каждое удержание принадлежит конкретному материалу, позе и пределу;
 - стена, пластина и барьер требуют физического носителя.
 
 ## Методология

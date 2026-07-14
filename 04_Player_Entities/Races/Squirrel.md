@@ -8,13 +8,6 @@ latin_name: Sciurus
 aliases: [Белка, Sciurus]
 sort_order: 30
 content_scope: mvp
-base_vector: aether
-weak_to: [shadow, tech, ballistics]
-touch_TRQ: -2
-touch_GRP: 2
-touch_LYR: -1
-touch_GLW: 4
-touch_SNS: 1
 culture: "[[02_World_Lore/Squirrel_Culture|Белки: Культура Распределённой Весны]]"
 tags: [race, player_entity]
 ---
@@ -26,7 +19,7 @@ tags: [race, player_entity]
 
 - нервная система и хвост могут проводить краткий импульс между движением, теплом и совместимым интерфейсом;
 - допустимые компоненты: направление передачи, удерживаемый тепловой предел, телеграф накопленного напряжения;
-- раса не получает общий `spark_gain`, Heat Sink, Battery Efficiency или усиление Q/E поверх `GLW`;
+- раса не получает общий `spark_gain`, Heat Sink, Battery Efficiency или усиление Q/E; проводимость принадлежит конкретному контуру и его пределу;
 - конкретная пассивка не наследуется автоматически: каждая специализация определяет собственный trigger, состояние и loss rule.
 
 ## Биологическая основа: Импульсная проводимость

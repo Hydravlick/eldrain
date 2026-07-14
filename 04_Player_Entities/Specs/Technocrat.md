@@ -8,13 +8,6 @@ english_name: The Technocrat
 aliases: [Технократ, The Technocrat]
 sort_order: 30
 content_scope: mvp
-base_vector: tech
-weak_to: [shadow, kinetics, detection]
-touch_TRQ: -1
-touch_GRP: 1
-touch_LYR: 0
-touch_GLW: 3
-touch_SNS: 3
 tags: [spec, practice, player_entity]
 ---
 # Технократ (The Technocrat)

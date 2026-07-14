@@ -7,9 +7,8 @@ display_name: Импульсный инструмент, одна рука
 weapon_family: arcanegun
 grip: one_hand
 skill_interfaces: [conduit, impact_surface, free_hand]
-frame_vector: ballistics
-vector_scope: commitment
 activates_on: [aim_snap, emission, pulse_recovery]
+commitment: exposed_line_until_hand_settle
 primary_window_function: create
 creates_window: [stagger_entry]
 implicit_keyword: stopping_pulse

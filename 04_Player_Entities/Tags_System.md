@@ -2,118 +2,146 @@
 type: mechanic
 status: active
 system: player_core
-tags: [tags, traits, mutation, implants]
+tags: [chronicle, traits, biography, extraction, situations]
 related_files:
   - "[[04_Player_Entities/_Registries/Registry_Tags|Registry Tags]]"
   - "[[04_Player_Entities/Trait_Development|Trait Development]]"
-  - "[[04_Player_Entities/Attributes_TOUCH|T.O.U.C.H.]]"
-  - "[[04_Player_Entities/Skill_Build_Philosophy|Философия навыков]]"
+  - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat Profile Pipeline]]"
+  - "[[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction and Breakline]]"
 ---
-# Система тегов: системный слой
+# Chronicle-трейты: системный слой
 
-## 1. Что такое тег
+## 1. Что такое трейт
 
-Тег и трейт — один исполняемый объект биографии Пешки. `tag` используется в данных, `трейт` — в игроковом тексте.
+`tag` — технический ключ, `трейт` — игроковое название одной исполняемой записи Chronicle конкретного человека.
 
-Тег может описывать устойчивое изменение тела, опыт, травму, мутацию, имплант, доступ или уязвимость. Он не является вторым деревом навыков и не хранит скрытый пакет числовых бонусов.
-
-## 2. Допустимые изменения
-
-- `attr_delta` — устойчиво меняет видимый T.O.U.C.H. и проходит общий ExternalShift cap;
-- `prof_delta` — меняет владение оружейным семейством;
-- `module_capacity_delta` — меняет допустимую сложность Термоса без создания физического слота;
-- `arsenal_grant` / `arsenal_block` — явно меняют доступ к Frame;
-- `capability` — даёт бинарную физическую возможность;
-- `vulnerability` — называет постоянно релевантную цену;
-- `add_vector` / `block_vector` — меняют вектор только через мутацию, физическую перестройку или редкую Fusion;
-- `dissonance_load` — меняет постоянный фон только при физически или эфирно заметной причине;
-- `owned_output_mod` — допустим только для одного конечного видимого результата в форме `owner_id.final_parameter delta`.
-
-Запрещены:
-
-- `substats`, `substat_bonus`, `substat_mult`;
-- `condition_bonus` и общий `tradeoff`;
-- прямое изменение T.O.U.C.H.-компонента P/Q/E;
-- создание новой P/Q/E или нового payload;
-- скрытый порог, где сумма рейтингов внезапно создаёт capability;
-- двойной путь `attr_delta + бонус производному` одного действия.
-
-## 3. Итоговый билд
+Трейт не оценивает качество Пешки и не заменяет hero-kit. Он превращает прожитое событие в повторяемую личную ситуацию:
 
 ```text
-Race + Spec + P/Q/E
-  + Final TOUCH
-  + Arsenal / Proficiency
-  + Module Capacity
-  + Capabilities / Vulnerabilities
-  + Frame, Battery, Armor and Material Payload
-  = Combat Profile
+Trouble
+  -> осознанное Leverage
+  -> Residue после решения
 ```
 
-T.O.U.C.H.-скейлинг навыка принадлежит самой P/Q/E. Явный обмен сборки принадлежит физическому модулю или Frame-доктрине и показывает конечные параметры `до → после`.
+- **Trouble** вмешивается только при понятном контексте и создаёт проблему, а не постоянный штраф к управлению.
+- **Leverage** даёт способ обратить эту же проблему в преимущество через действие, цену или риск.
+- **Residue** записывает, что изменилось после использования, отказа или провала: отношение, след, маршрут, обязательство, состояние места или форма самого трейта.
 
-## 4. Внешний сдвиг T.O.U.C.H.
+Все три части принадлежат одному событию. Нельзя вынести Leverage как бесплатный пассивный бонус, а Trouble спрятать в редком исключении.
 
-```text
-PositiveExternalShift(A) = StableTags + ActiveBodyInterface
-PositiveExternalShift(A) <= +4
-GearContribution(A) <= +2
-```
+## 2. Универсальный потолок
 
-Положительный `attr_delta` требует лорной причины устойчивого изменения тела. Редкость, `power_weight` и несовместимость сами по себе не являются ценой; цена читается через слот развития, vulnerability, блокировку функции, Dissonance либо потерю альтернативного пути.
+Ward, обычный житель, фракционный специалист и Найдёныш используют один каталог, один бюджет сложности и один будущий предел Chronicle.
 
-## 5. Типы тегов
+- `Origin trait` Найдёныша — обычный трейт с `source_kind:: origin`;
+- он занимает обычное место Chronicle и не добавляется сверх потолка;
+- происхождение меняет причинность и стартовый контекст, но не открывает сильный пул;
+- точная ёмкость Chronicle остаётся `UNKNOWN` до прототипа и не восстанавливается из старых лимитов типов Пешек.
 
-1. **Proficiency:** оружие, устройство, процедура и ёмкость.
-2. **Mutation:** физически меняет тело, интерфейс или вектор.
-3. **Attribute:** устойчиво меняет один или несколько видимых T.O.U.C.H.
-4. **Flaw:** даёт блокировку, vulnerability или отрицательный attr delta.
-5. **Fusion:** заменяет две биографические линии одной более выразительной возможностью и новой ценой; не уплотняет скрытые бонусы.
+## 3. Разрешённые изменения
 
-## 6. Иерархия конфликтов
+Трейт может:
 
-1. физиология и устойчивые теги тела;
-2. ядро Combo P/Q/E;
-3. материальный carrier/supply contract;
-4. Proficiency Gate;
-5. текущий Frame, модуль и их Commitment;
-6. автоматическая matchup-карта.
+- предъявить личную проблему на маршруте к Порогу или при переносе ставки;
+- открыть один дорогой способ прочитать, изменить или пережить эту проблему;
+- изменить личное отношение, адрес, след, obligation или Origin Continuation;
+- переосмыслить собственную форму после значимого исхода;
+- дать situational permission только внутри названной сцены и с физическим интерфейсом;
+- участвовать в одном foreground-событии вылазки.
 
-Capability не создаёт материальный payload. Например, `vent_fit` разрешает физический проход, но не переносит тело через стену; `eligible_contact_surface` разрешает нанесение состава, но не создаёт дозу.
+Трейт не может:
 
-## 7. Контракт тега
+- менять базовый урон, точность, темп огня, отдачу, перезарядку или TTK;
+- добавлять общие HP, Carry, Heat, Energy, Resistance или другой RPG-атрибут;
+- переписывать P/Q/E, их геометрию, fixed debt или counterplay;
+- добавлять оружейный Frame, универсальный proficiency, модульный слот или `module_capacity`;
+- давать extra trait slot, пассивный доход, бесплатный контракт, Access или право на выход;
+- создавать извлекаемый payload либо эффект после KIA;
+- быть только положительным или только отрицательным roll.
+
+Физическая мутация или имплант может существовать в мире как состояние тела/предметная процедура. Chronicle-трейт описывает, как конкретный человек с ней живёт; он не превращает мутацию в пакет общих статов.
+
+## 4. Foreground
+
+В одной вылазке Директор выводит на передний план не более одной личной Chronicle-ситуации на Пешку. Остальные записи остаются биографией и не складываются в каскад случайных модификаторов.
+
+Foreground выбирается из фактов текущей сцены:
+
+- сектор и фаза;
+- переносимый груз или Living Cargo;
+- открытый личный след/Continuation;
+- отношения и присутствующие лица;
+- уже возникшая Catastrophe или путь к Порогу.
+
+Игрок видит, какой трейт активен, что его вызвало и какое действие может принять. Скрытый roll во время перестрелки запрещён.
+
+## 5. Контракт записи
 
 ```markdown
-[id:: template_tag]
-[tag:: template_tag]
-[tag_kind:: proficiency | mutation | attribute | flaw | fusion]
-[tag_polarity:: positive | mixed | negative]
-[add_vector:: tech]
-[block_vector:: hazard]
-[prof_delta:: arcanegun +1]
-[module_capacity_delta:: weave +1, plate -1]
-[attr_delta:: TRQ +2, SNS -1]
-[owned_output_mod:: body.movement_noise +8]
-[capability:: none]
-[vulnerability:: none]
-[deferred_rule:: none]
-[override_race_ban:: heavy_weapon]
-[arsenal_grant:: breach_impact_2h @1]
-[arsenal_block:: none]
-[exclusive_with:: incompatible_tag]
-[fusion_with:: other_tag -> result_tag]
-[fusion_requires:: source_tag_a, source_tag_b]
-[trait_pool:: standard | specialist]
-[event_family:: rescue, survival]
-[dissonance_load:: 0]
-[power_weight:: 0]
+[id:: template_chronicle_trait]
+[tag:: template_chronicle_trait]
+[trait_kind:: chronicle | origin | scar | relationship | evolved]
+[source_kind:: survived_event | origin | relationship | breakline | fusion]
+[source_event:: event_id]
+[situation_family:: threshold | route | custody | catastrophe | contract | relationship]
+[foreground_weight:: authored_context]
+
+[trouble_trigger:: visible_condition]
+[trouble_rule:: world_or_decision_change]
+[trouble_tell:: player_visible_cue]
+
+[leverage_condition:: chosen_action_and_cost]
+[leverage_rule:: one_situational_permission_or_exchange]
+[leverage_cost:: cargo | battery | time | exposure | obligation | route]
+
+[residue_success:: consequence_id]
+[residue_refusal:: consequence_id]
+[residue_failure:: consequence_id]
+
+[exclusive_with:: incompatible_trait | none]
+[evolves_to:: trait_id | none]
+[continuation_seed:: story_pin_id | none]
+[does_not_affect:: gunfeel, p_q_e, arsenal, module_capacity, access]
 ```
+
+Поле `source_kind` объясняет происхождение экземпляра, но не выбирает отдельный пул. `foreground_weight` не является rarity или power; это проверка релевантности конкретной сцены.
+
+## 6. Развитие и Fusion
+
+Значимое событие может проявить, изменить или связать запись. Оно не выдаёт награду за число повторов.
+
+Fusion допустима только как authored-переосмысление двух уже связанных биографических линий. Она:
+
+- не освобождает автоматически место для ещё одного бонуса;
+- не складывает прежние Leverage;
+- создаёт одну новую Trouble/Leverage/Residue-ситуацию;
+- сохраняет причинность обоих событий и новую цену;
+- не становится высшим тиром трейта.
+
+Точная ёмкость и правила замещения измеряются отдельно. Пока они неизвестны, Fusion нельзя использовать как способ обойти будущий предел Chronicle.
+
+## 7. Иерархия конфликтов
+
+1. физическое состояние мира и тела;
+2. authored hero-kit;
+3. материальный carrier/supply contract;
+4. выбранный Frame, батарея и модуль;
+5. foreground Chronicle-ситуация;
+6. UI-подсказка и автоматическая matchup-карта.
+
+Трейт не отменяет физическую границу более высокого слоя. Например, он может помочь распознать unstable Threshold, но не телепортирует через закрытый Порог и не создаёт ключ.
 
 ## 8. Проверки
 
-- один источник не оплачивает T.O.U.C.H. и производный результат отдельно;
-- тег не меняет коэффициент P/Q/E;
-- capability имеет физический интерфейс и не создаёт предмет;
-- vulnerability релевантна тем же рейдам, где полезен тег;
-- Fusion не создаёт третий engine или свободный слот бесконечного роста;
-- Dissonance используется только как доказательство мира, а не универсальный балансный налог.
+Запись отклоняется, если:
+
+- Trouble можно игнорировать, сохранив весь Leverage;
+- Leverage полезен всегда, а trigger существует редко;
+- результат меняет базовое ощущение стрельбы между двумя людьми одного hero-kit;
+- эффект оценивается как «хороший/плохой roll» без нового решения;
+- игрок должен оценивать скрытые числа во время опасной сцены;
+- смерть или safe handoff ускоряют следующий roll;
+- Origin получает дополнительный потолок;
+- повторный Breakline гарантированно выращивает trait;
+- Residue не меняет ничего после решения;
+- несколько traits одновременно спорят за внимание или складывают один цикл.

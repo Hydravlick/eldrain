@@ -2,7 +2,7 @@
 type: architecture
 status: active
 system: project_management
-version: 3.5
+version: 3.6
 tags:
   - structure
   - pipeline
@@ -25,7 +25,7 @@ tags:
 | `01_Core_Vision` | Концепция, тон, основной цикл | [[01_Core_Vision/GDD_Main]], [[01_Core_Vision/02_Core_Loop]], [[01_Core_Vision/Glossary]] |
 | `02_World_Lore` | Ковчег, Коллапс, Якорь, Сущность, магипанк и культуры | [[02_World_Lore/The_Ark]], [[02_World_Lore/The_Collapse]], [[02_World_Lore/The_Anchor]], [[02_World_Lore/Protocol_Resonance]], [[02_World_Lore/Culture_Language]] |
 | `03_Factions_Societies` | Фракции, репутация, поручения, допуски, контракты и становление города | [[03_Factions_Societies/_Registries/Registry_Factions]], [[03_Factions_Societies/Reputation_Rules]], [[03_Factions_Societies/Pledge_Contracts]], [[03_Factions_Societies/Quest_Engine]], [[03_Factions_Societies/Lore/City_Genesis]], [[03_Factions_Societies/Lore/Civic_Ethos_Under_Lamps]], [[03_Factions_Societies/Lore/Faction_Address_System]] |
-| `04_Player_Entities` | Оболочки, расы, практики, архетипы, TOUCH, синергии | [[04_Player_Entities/Shell_Specification]], [[04_Player_Entities/MVP_3x3_Design_Contract]], [[04_Player_Entities/Skill_Build_Philosophy|философия навыков]], [[04_Player_Entities/_Registries/Registry_Skill_Types|грамматика навыков]], [[04_Player_Entities/_Registries/Registry_Races]], [[04_Player_Entities/_Registries/Registry_Specs]], [[04_Player_Entities/Combat_Profile_Pipeline]] |
+| `04_Player_Entities` | смертные Пешки, hero-kit `Race × Spec`, ростер и Chronicle | [[04_Player_Entities/Lifecycle_Roster]], [[04_Player_Entities/MVP_3x3_Design_Contract]], [[04_Player_Entities/Combat_Profile_Pipeline]], [[04_Player_Entities/Trait_Development]], [[04_Player_Entities/_Registries/Registry_Races]], [[04_Player_Entities/_Registries/Registry_Specs]], [[04_Player_Entities/_Registries/Registry_Combos]] |
 | `05_Combat_Survival` | Бой, магострелы, батареи, статусы, выживание | [[05_Combat_Survival/Combat_Three_Debts]], [[05_Combat_Survival/Weapon_Core]], [[05_Combat_Survival/Magic_Batteries]], [[05_Combat_Survival/Status_Effects]], [[05_Combat_Survival/Dissonance_System]] |
 | `06_Economy_Loot` | Рез, бартер, чертежи, экстракция и стабилизация лута | [[06_Economy_Loot/Extraction_Stabilization_Loop]], [[06_Economy_Loot/Economy_Core]], [[06_Economy_Loot/Currency_Rez]], [[06_Economy_Loot/Loot_Distribution]], [[06_Economy_Loot/Barter_System]], [[06_Economy_Loot/Blueprints]], [[06_Economy_Loot/Craft_Modifiers]] |
 | `07_Gear_Inventory` | Инвентарь, экипировка, предметы, крафт-реестры | [[07_Gear_Inventory/Inventory_Architecture]], [[07_Gear_Inventory/Thermos_System]], [[07_Gear_Inventory/_Registries/Registry_Thermoses]], [[07_Gear_Inventory/_Registries/Registry_Thermos_Modules]], [[07_Gear_Inventory/Gear_Progression]], [[07_Gear_Inventory/Equipment_PaperDoll]], [[07_Gear_Inventory/_Registries/Registry_Items]] |
@@ -65,7 +65,7 @@ related_mechanics:
 
 Минимальный вертикальный срез должен проходить через одну связную цепочку:
 
-1. Игрок выбирает одну из трёх representative cells и сборку через [[04_Player_Entities/MVP_3x3_Design_Contract|контракт матрицы 3×3]] и [[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile_Pipeline]]. Остальные шесть ячеек расширяют уже доказанный срез.
+1. Игрок выбирает один полный hero-kit `Race × Spec`, затем физический loadout и конкретную Пешку через [[04_Player_Entities/MVP_3x3_Design_Contract|контракт матрицы 3×3]], [[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile Pipeline]] и [[04_Player_Entities/Lifecycle_Roster|жизненный цикл ростера]]. Остальные ячейки расширяют уже доказанный срез.
 2. Карта Хаба показывает доступные T1/T2/T3 локации, цену маршрута и живые слоты через [[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]].
 3. Перед входом игрок выбирает [[08_World_Generation/Generation/19_Access_Contracts|Access Contract]], а сборка проходит [[08_World_Generation/Generation/08_Gate_Check|Gate_Check]] и проверку Диссонанса через [[05_Combat_Survival/Dissonance_System|Dissonance_System]] / [[05_Combat_Survival/Threat_Thresholds|Threat_Thresholds]].
 4. В рейде темп задают [[08_World_Generation/Generation/07_Server_Lifecycle|Server_Lifecycle]], [[08_World_Generation/Anomaly/Anomaly_System|Anomaly_System]] и [[05_Combat_Survival/Magic_Batteries|Magic_Batteries]].
@@ -120,8 +120,8 @@ related_mechanics:
 - Для page-level YAML используется native Dataview. Dataview не копирует значения и не становится вторым источником.
 - Целевые каталоги для миграции: `04_Player_Entities/Races/` и `04_Player_Entities/Specs/`.
 - YAML Properties используют только типы, которые Obsidian умеет редактировать нативно: текст, число, checkbox, дата, список скаляров и ссылка. Вложенные словари и списки объектов не используются.
-- Фиксированный числовой контракт хранится плоскими полями с пространством имён, например `touch_TRQ`, `touch_GRP`, `touch_LYR`, `touch_GLW`, `touch_SNS`.
-- Страницы рас и практик не хранят пакеты `[substats]`, `[condition_bonus]` или `[tradeoff]`. Их числовой вклад ограничен page-level T.O.U.C.H.; особое исполнение раскрывается в P/Q/E конкретной Combo, а бинарные физические возможности — через явные `capability`/`vulnerability`.
+- Страницы рас и практик не хранят общий числовой пакет, скрытый power budget или RPG-атрибуты. Они описывают физиологическую и методологическую причинность, из которой автор проектирует конкретный hero-kit.
+- Локальный параметр хранится только у своего владельца: тела, Frame, батареи, способности, инвентаря, защиты или модуля. Бинарные физические возможности раскрываются через явные `capability`/`vulnerability`.
 
 Канонические источники персонажных сущностей находятся в `04_Player_Entities/Races/` и `04_Player_Entities/Specs/`. [[04_Player_Entities/_Registries/Registry_Races|Registry_Races]] и [[04_Player_Entities/_Registries/Registry_Specs|Registry_Specs]] являются семейными представлениями и не содержат копий полей сущностей.
 
@@ -129,16 +129,16 @@ related_mechanics:
 
 ### 6.2. Реестры атомарных и реляционных записей
 
-Предметы, расходники, рецепты, теги и комбинации `Race × Spec` по умолчанию остаются блоками общего реестра. Для них отдельный файл не создаётся только ради ID или связи с двумя другими сущностями. Оружейные фреймы являются исключением из-за `frame_vector`, окон, `exposure_channels` и связи с proficiency; конкретные варианты оружия этим исключением не становятся.
+Предметы, расходники, рецепты, теги и комбинации `Race × Spec` по умолчанию остаются блоками общего реестра. Для них отдельный файл не создаётся только ради ID или связи с двумя другими сущностями. Оружейные фреймы являются исключением из-за фаз Commitment, окон, `exposure_channels` и связи с proficiency; конкретные варианты оружия этим исключением не становятся.
 
-[[04_Player_Entities/_Registries/Registry_Combos|Registry_Combos]] хранит только собственную дельту комбинации:
+[[04_Player_Entities/_Registries/Registry_Combos|Registry_Combos]] хранит собственный полный контракт hero-kit:
 
 - `id`, `req_race`, `req_spec`, `design_status`;
-- уникальные `P/Q/E`, окна, состояния и доктрины;
-- арсенал, proficiency, ёмкости модулей;
+- уникальные `P/Q/E`, decision signature, состояния и долги;
+- именованные арсенал и модули, proficiency, ёмкости и доктрины;
 - цену, ресурсное давление, условия, ограничения и провалы.
 
-Комбинация не копирует `TOUCH`, `base_vector`, `weak_to`, биологическую основу, методологию практики или другие поля родителей. DataviewJS разрешает `req_race` и `req_spec`, читает две исходные сущности и вычисляет производный профиль. Obsidian-эмбед служит только отображением текста и не используется как механизм наследования.
+Комбинация не копирует прозу биологической основы или методологии родителей и не выводит готовый kit арифметикой. `req_race` и `req_spec` задают причинные источники, а сама запись владеет P/Q/E, арсеналом, модулями и decision signature. Obsidian-эмбед служит только отображением текста и не используется как механизм наследования.
 
 Если общий реестр перестанет быть читаемым после расширения, его можно разделить на реестры по расам. Формат блока и ID при этом не меняются; отдельный файл на каждую комбинацию не является целевой архитектурой.
 
@@ -148,9 +148,9 @@ related_mechanics:
 
 | Представление | Единственный вопрос | Решение |
 |:---|:---|:---|
-| [[04_Player_Entities/_Registries/Registry_Combos|Registry_Combos]] | Какие ячейки существуют, каков их статус и куда перейти? | Обзорная сетка `Race × Spec` и компактная производная таблица. |
-| [[04_Player_Entities/_Matrices/00_Synergy_Map|00_Synergy_Map]] | Кто создаёт контр-окно, сильную поддержку или общую слабость? | Основная тактическая визуализация. |
-| Автоматические тесты | Совпадают ли источники, слабости и связи с каноническим правилом? | Техническая проверка без отдельной пользовательской матрицы. |
+| [[04_Player_Entities/_Registries/Registry_Combos|Registry_Combos]] | Какие ячейки существуют и какие обязательства полного hero-kit заполнены? | Обзорная сетка и проверка authored-полей без наследуемой силы. |
+| [[04_Player_Entities/_Matrices/00_Synergy_Map|00_Synergy_Map]] | Какие наблюдаемые окна kit создаёт, использует и закрывает, и чем за это платит? | Карта решений и незаполненных обязательств. |
+| Автоматические тесты | У каждой утверждённой ячейки есть собственные P/Q/E, арсенал, модули, Exposure и доступная сейчас контригра? | Техническая проверка без вычисляемых matchup-полей. |
 
 Старые обзорная, персонажная и балансная матрицы сохранены только как архивные источники и не участвуют в активной навигации или pipeline.
 
@@ -163,9 +163,9 @@ related_mechanics:
 1. каждая раса и специализация существует ровно в одном page-level YAML-источнике;
 2. семейные реестры не содержат копий полей сущностей;
 3. `Registry_Combos` содержит только собственные поля комбинаций;
-4. производные значения вычисляются из ссылок на источники;
+4. ссылка на родителя подтверждает причинность, но не вычисляет силу, слабость или допуск ячейки;
 5. отсутствующий родитель, дублирующий ID и пустой результат видны в представлении;
-6. `00_Synergy_Map` и автоматические проверки читают новый источник без ручных matchup-полей.
+6. `00_Synergy_Map` и автоматические проверки читают authored-поля hero-kit и оставляют незаполненную ячейку `pending`.
 
 ### 6.5. Фракции и отношения
 

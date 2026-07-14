@@ -38,10 +38,10 @@ related_files:
 - `[module_type:: ...]` — особая физическая форма модуля либо `none`; тип не создаёт новое семейство;
 - `[active_cell_capacity_delta:: ...]` — сколько дополнительных подготовленных батарей может держать активная очередь; допустимо только для `module_type:: battery_rack`;
 - `[body_interface:: ...]` — тип Опорного контура либо `none`; это не семейство;
-- `[touch_shift:: ...]` — фиксированный сдвиг первичного T.O.U.C.H. только активного контура;
-- `[doctrine_exchange:: ...]` — ситуативное устройство меняет один названный конечный результат и показывает цену; оно не меняет T.O.U.C.H.;
+- `[interface_output:: ...]` — локальный обмен `до → после` только активного Опорного контура;
+- `[doctrine_exchange:: ...]` — ситуативное устройство меняет один названный конечный результат и показывает цену;
 - `[vulnerability:: ...]` — наблюдаемая цена усиления;
-- `[interface_state:: inactive|active]` — работает ли `touch_shift` на текущей сборке;
+- `[interface_state:: inactive|active]` — работает ли `interface_output` на текущей сборке;
 - `[armor_plates:: ...]` — защищаемые зоны либо `none`;
 - `[soft_coverage:: ...]` — мягкий слой, остающийся между пластинами либо `none`;
 - `[seam_exposure:: ...]` — видимые стыки и открытые направления либо `none`;
@@ -81,7 +81,7 @@ const rows = blocks.map(block => {
         (field(block, "module_axes") || "UNKNOWN").replaceAll(",", ", "),
         field(block, "active_cell_capacity_delta") || "0",
         field(block, "body_interface") || "none",
-        field(block, "touch_shift") || "none",
+        field(block, "interface_output") || "none",
         field(block, "vulnerability") || "none",
         (field(block, "armor_plates") || "none").replaceAll(",", ", "),
         field(block, "weight") || "UNKNOWN",
@@ -92,7 +92,7 @@ const rows = blocks.map(block => {
   .sort((a, b) => a[1].localeCompare(b[1]) || a[0].localeCompare(b[0]));
 
 if (rows.length) {
-    dv.table(["Модуль", "Семейства", "Стоимость", "Слоты", "Позиции", "Tier", "Тип", "Оси", "Активные ячейки", "Контур", "T.O.U.C.H.", "Уязвимость", "Покрытие", "Вес", "Допуск", "Баланс"], rows);
+    dv.table(["Модуль", "Семейства", "Стоимость", "Слоты", "Позиции", "Tier", "Тип", "Оси", "Активные ячейки", "Контур", "Локальный выход", "Уязвимость", "Покрытие", "Вес", "Допуск", "Баланс"], rows);
 } else {
     dv.paragraph("⚠️ В Registry_Thermos_Modules нет активных модулей.");
 }
@@ -205,7 +205,7 @@ if (rows.length) {
 [armor_plates:: none]
 [weight:: UNKNOWN]
 [body_interface:: none]
-[touch_shift:: none]
+[interface_output:: none]
 [vulnerability:: none]
 [interface_state:: inactive]
 [install_state:: blocked_calibration]
@@ -259,7 +259,7 @@ if (rows.length) {
 
 ## Prototype: Опорные контуры
 
-Эти десять модулей фиксируют два разных обмена для каждого атрибута. Они заблокированы для монтажа до калибровки полных комплектов; числа являются проверяемыми prototype anchors, а не активным лутовым пулом.
+Эти десять модулей фиксируют разные локальные обмены переноса, ручной работы, устойчивости, Heat и чтения сигнала. Они заблокированы для монтажа до калибровки полных комплектов; числа являются проверяемыми prototype anchors, а не активным лутовым пулом.
 
 ### Противовесное ярмо
 [module:: counterweight_yoke]
@@ -274,7 +274,7 @@ if (rows.length) {
 [armor_plates:: none]
 [weight:: 8kg]
 [body_interface:: load_bearing]
-[touch_shift:: TRQ +2]
+[interface_output:: sustained_carry_limit normal -> higher]
 [vulnerability:: weight +8kg, turn_speed -10%]
 [interface_state:: inactive]
 [install_state:: blocked_calibration]
@@ -297,7 +297,7 @@ if (rows.length) {
 [armor_plates:: none]
 [weight:: 4kg]
 [body_interface:: none]
-[touch_shift:: none]
+[interface_output:: none]
 [doctrine_exchange:: brace_hold_limit normal -> extended; activation_heat 0 -> +10; movement_noise 0 -> +8]
 [vulnerability:: heat_per_activation +10, movement_noise +8]
 [interface_state:: inactive]
@@ -321,8 +321,8 @@ if (rows.length) {
 [armor_plates:: none]
 [weight:: 2kg]
 [body_interface:: motor_control]
-[touch_shift:: GRP +1, TRQ -1]
-[vulnerability:: TRQ -1]
+[interface_output:: powered_tool_precision normal -> higher; heavy_tool_hold normal -> lower]
+[vulnerability:: heavy_tool_hold lower]
 [interface_state:: inactive]
 [install_state:: blocked_calibration]
 [install_location:: hub_professional]
@@ -344,7 +344,7 @@ if (rows.length) {
 [armor_plates:: none]
 [weight:: 3kg]
 [body_interface:: none]
-[touch_shift:: none]
+[interface_output:: none]
 [doctrine_exchange:: device_interaction_time normal -> shorter; heat_per_interaction 0 -> +8; rigid_handwear compatible -> incompatible]
 [vulnerability:: heat_per_interaction +8, rigid_handwear_incompatible]
 [interface_state:: inactive]
@@ -368,7 +368,7 @@ if (rows.length) {
 [armor_plates:: none]
 [weight:: 2kg]
 [body_interface:: layer_support]
-[touch_shift:: LYR +1]
+[interface_output:: post_impact_stability normal -> extended]
 [vulnerability:: stamina_recovery -10%]
 [interface_state:: inactive]
 [install_state:: blocked_calibration]
@@ -391,7 +391,7 @@ if (rows.length) {
 [armor_plates:: chest, back]
 [weight:: 6kg]
 [body_interface:: layer_support]
-[touch_shift:: LYR +2]
+[interface_output:: soft_layer_impact_tolerance normal -> higher]
 [vulnerability:: weight +6kg, move_speed -8%]
 [interface_state:: inactive]
 [install_state:: blocked_calibration]
@@ -414,7 +414,7 @@ if (rows.length) {
 [armor_plates:: none]
 [weight:: 1kg]
 [body_interface:: thermal_conduction]
-[touch_shift:: GLW +1]
+[interface_output:: body_to_thermos_heat_transfer normal -> earlier]
 [vulnerability:: dissonance_load +4]
 [interface_state:: inactive]
 [install_state:: blocked_calibration]
@@ -437,7 +437,7 @@ if (rows.length) {
 [armor_plates:: none]
 [weight:: 2kg]
 [body_interface:: none]
-[touch_shift:: none]
+[interface_output:: none]
 [doctrine_exchange:: overload_threshold normal -> higher; cantrip_backlash_outcome normal -> +1 step; dissonance_pulse 0 -> +3]
 [vulnerability:: cantrip_backlash_outcome +1 step, dissonance_pulse +3]
 [interface_state:: inactive]
@@ -461,7 +461,7 @@ if (rows.length) {
 [armor_plates:: none]
 [weight:: 1kg]
 [body_interface:: sensory_gain]
-[touch_shift:: SNS +1]
+[interface_output:: local_environment_cue_lead normal -> earlier]
 [vulnerability:: dissonance_load +3]
 [interface_state:: inactive]
 [install_state:: blocked_calibration]
@@ -484,9 +484,9 @@ if (rows.length) {
 [armor_plates:: none]
 [weight:: 2kg]
 [body_interface:: none]
-[touch_shift:: none]
+[interface_output:: none]
 [doctrine_exchange:: cue_lead normal -> earlier; injury_threshold normal -> lower; heat_warning false_positives none -> enabled]
-[vulnerability:: LYR -1, heat_warning false_positives]
+[vulnerability:: injury_threshold lower, heat_warning false_positives]
 [interface_state:: inactive]
 [install_state:: blocked_calibration]
 [install_location:: hub_professional]
@@ -508,7 +508,7 @@ if (rows.length) {
 [rarity:: common]
 [module_axes:: coverage, energy]
 [body_interface:: none]
-[touch_shift:: none]
+[interface_output:: none]
 [vulnerability:: none]
 [interface_state:: inactive]
 [armor_plates:: chest]

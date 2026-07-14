@@ -7,9 +7,8 @@ display_name: Конденсаторная рама, две руки
 weapon_family: arcanegun
 grip: two_hand
 skill_interfaces: [conduit, brace, reach]
-frame_vector: ballistics
-vector_scope: commitment
 activates_on: [aim_hold, charge, emission, charge_recovery]
+commitment: held_open_line_until_charge_recovery
 primary_window_function: create
 creates_window: [weakspot_open]
 implicit_keyword: held_line

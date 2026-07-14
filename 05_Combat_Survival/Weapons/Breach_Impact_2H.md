@@ -7,9 +7,8 @@ display_name: Проломный ударник, две руки
 weapon_family: blunt
 grip: two_hand
 skill_interfaces: [impact_surface, contact_surface, brace]
-frame_vector: kinetics
-vector_scope: commitment
 activates_on: [brace, windup, impact, heavy_recovery]
+commitment: both_hands_below_guard_after_committed_impact
 primary_window_function: create
 creates_window: [breach_open]
 implicit_keyword: structural_breach

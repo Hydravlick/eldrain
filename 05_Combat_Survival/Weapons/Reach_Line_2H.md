@@ -7,9 +7,8 @@ display_name: Дистанционная линия, две руки
 weapon_family: polearm
 grip: two_hand
 skill_interfaces: [impact_surface, contact_surface, brace, reach]
-frame_vector: kinetics
-vector_scope: commitment
 activates_on: [brace, poke, reach_recovery]
+commitment: two_hand_outer_line_with_close_dead_zone
 primary_window_function: create
 creates_window: [distance_control]
 implicit_keyword: outer_line

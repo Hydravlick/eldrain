@@ -8,13 +8,6 @@ english_name: The Vanguard
 aliases: [Авангард, The Vanguard]
 sort_order: 20
 content_scope: mvp
-base_vector: ballistics
-weak_to: [hazard, kinetics, tech]
-touch_TRQ: 2
-touch_GRP: 2
-touch_LYR: 1
-touch_GLW: 2
-touch_SNS: -2
 tags: [spec, practice, player_entity]
 ---
 # Авангард (The Vanguard)

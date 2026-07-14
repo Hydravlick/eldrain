@@ -7,9 +7,8 @@ display_name: Короткий рез, одна рука
 weapon_family: blade
 grip: one_hand
 skill_interfaces: [edge, contact_surface, free_hand]
-frame_vector: shadow
-vector_scope: commitment
 activates_on: [draw, cut, close_recovery]
+commitment: front_line_draw_until_close_recovery
 primary_window_function: exploit
 creates_window: [none]
 implicit_keyword: draw_cut

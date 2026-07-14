@@ -28,7 +28,6 @@ const comboSource = await dv.io.load(currentPath);
 
 const cleanId = value => value ? String(value).trim().toLowerCase() : null;
 const inline = (body, key) => body.match(new RegExp(`\\[${key}::\\s*([^\\]]+)\\]`, "i"))?.[1]?.trim();
-const asList = value => Array.from(value || []).map(cleanId).filter(Boolean);
 const displayName = header => header.replace(/\s*\(.*?\)\s*/g, "").trim();
 
 function pageRecord(page) {
@@ -38,9 +37,7 @@ function pageRecord(page) {
         path: page.file.path,
         link: page.file.link,
         sortOrder: Number(page.sort_order) || 999,
-        scope: page.content_scope || "unknown",
-        baseVector: cleanId(page.base_vector),
-        weakTo: asList(page.weak_to)
+        scope: page.content_scope || "unknown"
     };
 }
 
@@ -58,7 +55,13 @@ const comboRecords = comboSource.split(/^##\s+/m).slice(1).flatMap(block => {
         name: displayName(header),
         raceId: cleanId(inline(body, "req_race")),
         specId: cleanId(inline(body, "req_spec")),
-        status: cleanId(inline(body, "design_status")) || "missing"
+        status: cleanId(inline(body, "design_status")) || "missing",
+        signature: inline(body, "decision_signature"),
+        namedModule: inline(body, "named_module"),
+        primaryWindow: cleanId(inline(body, "primary_window_function")),
+        createsWindow: inline(body, "creates_window"),
+        exploitsWindow: inline(body, "exploits_window"),
+        mitigatesWindow: inline(body, "mitigates_window")
     }];
 });
 
@@ -75,8 +78,6 @@ if (duplicates.length) {
     dv.paragraph(`⚠️ Дублирующиеся ID: ${duplicates.join(", ")}`);
 }
 
-const racesById = new Map(raceRecords.map(item => [item.id, item]));
-const specsById = new Map(specRecords.map(item => [item.id, item]));
 const combosByPair = new Map(comboRecords.map(item => [`${item.raceId}::${item.specId}`, item]));
 const mvpRaces = raceRecords.filter(item => item.scope === "mvp").sort((a, b) => a.sortOrder - b.sortOrder);
 const mvpSpecs = specRecords.filter(item => item.scope === "mvp").sort((a, b) => a.sortOrder - b.sortOrder);
@@ -97,30 +98,26 @@ if (!mvpRaces.length || !mvpSpecs.length) {
     );
 }
 
-const inheritedRows = comboRecords.map(combo => {
-    const race = racesById.get(combo.raceId);
-    const spec = specsById.get(combo.specId);
-    const sharedWeakness = race && spec
-        ? race.weakTo.filter(value => spec.weakTo.includes(value))
-        : [];
-    const issues = [
-        race ? null : `нет расы ${combo.raceId || "UNKNOWN"}`,
-        spec ? null : `нет практики ${combo.specId || "UNKNOWN"}`
+const authoredRows = comboRecords.map(combo => {
+    const missing = [
+        !combo.signature || cleanId(combo.signature) === "unknown" ? "decision signature" : null,
+        !combo.namedModule || cleanId(combo.namedModule) === "unknown" ? "named module" : null,
+        !combo.primaryWindow ? "primary window" : null,
+        !combo.createsWindow && !combo.exploitsWindow && !combo.mitigatesWindow ? "window contract" : null
     ].filter(Boolean);
 
     return [
         dv.sectionLink(currentPath, combo.header, false, combo.name),
-        race?.link || `⚠️ ${combo.raceId || "UNKNOWN"}`,
-        spec?.link || `⚠️ ${combo.specId || "UNKNOWN"}`,
-        [race?.baseVector, spec?.baseVector].filter(Boolean).join(" + ") || "⚠️ нет",
-        sharedWeakness.join(", ") || "⚠️ нет общей слабости",
-        issues.length ? `⚠️ ${issues.join("; ")}` : combo.status
+        combo.signature || "⚠️ UNKNOWN",
+        combo.namedModule || "⚠️ UNKNOWN",
+        combo.primaryWindow || "⚠️ UNKNOWN",
+        missing.length ? `⚠️ ${missing.join(", ")}` : combo.status
     ];
 });
 
-if (inheritedRows.length) {
-    dv.header(3, "Производный профиль");
-    dv.table(["Комбинация", "Раса", "Практика", "Векторы", "Общая слабость", "Статус"], inheritedRows);
+if (authoredRows.length) {
+    dv.header(3, "Полнота authored hero-kit");
+    dv.table(["Hero-kit", "Сигнатура решений", "Именованный модуль", "Основная работа окна", "Статус"], authoredRows);
 } else {
     dv.paragraph("⚠️ В Registry_Combos не найдено ни одной записи.");
 }
@@ -147,6 +144,7 @@ if (inheritedRows.length) {
 [req_race:: template_race]
 [req_spec:: template_spec]
 [design_status:: approved]
+[decision_signature:: read_scene -> commit_named_tool -> redirect_pressure -> leave_residue]
 [primary_window_function:: create]
 [creates_window:: route_open, concealment]
 [exploits_window:: blind, distraction]
@@ -163,12 +161,13 @@ if (inheritedRows.length) {
 [solo_gaps:: armor, sustained_pressure]
 [weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: stagger_opener]
 [weapon_frame:: short_cut_1h] | [prof:: 2] | [combat_role:: window_finish]
+[named_module:: servo_tendon] | [module_role:: hands_busy_shortcut] | [module_debt:: heat_and_exposed_hands]
 [module_capacity:: plate 1, optic 1, seal 1, conduit 1, rig 2, weave 2]
 ```
 
-После полей идут фантазия, повторяемый цикл, смешанные `P/Q/E`, 2–4 доктрины, результаты успеха/отхода/провала и заметки прототипа. Каждая P/Q/E в теле блока использует полный контракт из [[04_Player_Entities/Skill_Build_Philosophy|философии навыков]] и [[04_Player_Entities/_Registries/Registry_Skill_Types|грамматики навыков]]; реестр не дублирует его в заголовочных полях Combo. Числа шаблона показывают формат; каждая ячейка получает собственные значения только после отдельного прохода.
+После полей идут фантазия, повторяемый цикл, смешанные `P/Q/E`, 2–4 доктрины, результаты успеха/отхода/провала и заметки прототипа. `decision_signature` называет повторяемую цепь решений, а `named_module` продолжает её конкретным локальным обменом. Каждая P/Q/E в теле блока использует полный контракт из [[04_Player_Entities/Skill_Build_Philosophy|философии навыков]] и [[04_Player_Entities/_Registries/Registry_Skill_Types|грамматики навыков]]; реестр не дублирует его в заголовочных полях Combo. Числа шаблона показывают формат; каждая ячейка получает собственные значения только после отдельного прохода.
 
-`design_status:: pending` означает, что слот существует, но способности, арсенал и доктрины не являются каноном.
+`design_status:: pending` означает, что координата существует, но ещё не является готовым hero-kit. До утверждения ей нужны P/Q/E, именованный арсенал, именованные модули и `decision_signature`; `UNKNOWN` не заменяется суммой свойств родителей.
 
 `primary_window_function` называет доминирующую работу повторяемого цикла. `creates_window`, `exploits_window` и `mitigates_window` используют тот же словарь, что оружие и способности; ячейка не должна одинаково хорошо выполнять все три функции без отдельной цены.
 
@@ -180,6 +179,8 @@ if (inheritedRows.length) {
 [req_race:: hedgehog]
 [req_spec:: assault]
 [design_status:: pending]
+[decision_signature:: UNKNOWN]
+[named_module:: UNKNOWN]
 [module_capacity:: UNKNOWN]
 [weapon_frame:: breach_impact_2h] | [prof:: 2] | [combat_role:: breach]
 [weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: stagger_opener]
@@ -195,6 +196,8 @@ if (inheritedRows.length) {
 [req_race:: hedgehog]
 [req_spec:: support]
 [design_status:: pending]
+[decision_signature:: UNKNOWN]
+[named_module:: UNKNOWN]
 [module_capacity:: UNKNOWN]
 [weapon_frame:: compact_impact_1h] | [prof:: 1] | [combat_role:: concussion_window]
 [weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: interrupt]
@@ -209,6 +212,8 @@ if (inheritedRows.length) {
 [req_race:: hedgehog]
 [req_spec:: scout]
 [design_status:: pending]
+[decision_signature:: UNKNOWN]
+[named_module:: UNKNOWN]
 [module_capacity:: UNKNOWN]
 [weapon_frame:: reach_line_2h] | [prof:: 2] | [combat_role:: route_hold]
 [weapon_frame:: needle_thrower_2h] | [prof:: 1] | [combat_role:: quiet_pick]
@@ -224,6 +229,8 @@ if (inheritedRows.length) {
 [req_race:: rat]
 [req_spec:: assault]
 [design_status:: pending]
+[decision_signature:: UNKNOWN]
+[named_module:: UNKNOWN]
 [module_capacity:: UNKNOWN]
 [weapon_frame:: pulse_tool_1h] | [prof:: 2] | [combat_role:: third_grip_pressure]
 [weapon_frame:: short_cut_1h] | [prof:: 2] | [combat_role:: clinch_finish]
@@ -238,6 +245,8 @@ if (inheritedRows.length) {
 [req_race:: rat]
 [req_spec:: support]
 [design_status:: pending]
+[decision_signature:: UNKNOWN]
+[named_module:: UNKNOWN]
 [ability_model:: mono_vector_fusion]
 [module_capacity:: UNKNOWN]
 [weapon_frame:: needle_thrower_2h] | [prof:: 2] | [combat_role:: quiet_tool]
@@ -253,6 +262,8 @@ if (inheritedRows.length) {
 [req_race:: rat]
 [req_spec:: scout]
 [design_status:: pending]
+[decision_signature:: UNKNOWN]
+[named_module:: UNKNOWN]
 [module_capacity:: UNKNOWN]
 [weapon_frame:: short_cut_1h] | [prof:: 2] | [combat_role:: route_finish]
 [weapon_frame:: needle_thrower_2h] | [prof:: 2] | [combat_role:: quiet_pick]
@@ -269,6 +280,8 @@ if (inheritedRows.length) {
 [req_race:: squirrel]
 [req_spec:: assault]
 [design_status:: pending]
+[decision_signature:: UNKNOWN]
+[named_module:: UNKNOWN]
 [module_capacity:: UNKNOWN]
 [weapon_frame:: pulse_tool_1h] | [prof:: 2] | [combat_role:: recoil_to_motion]
 [weapon_frame:: short_cut_1h] | [prof:: 1] | [combat_role:: momentum_finish]
@@ -285,6 +298,8 @@ if (inheritedRows.length) {
 [req_race:: squirrel]
 [req_spec:: support]
 [design_status:: pending]
+[decision_signature:: UNKNOWN]
+[named_module:: UNKNOWN]
 [module_capacity:: UNKNOWN]
 [weapon_frame:: scatter_valve_2h] | [prof:: 2] | [combat_role:: overload_cone]
 [weapon_frame:: condenser_rig_2h] | [prof:: 1] | [combat_role:: held_line]
@@ -299,6 +314,8 @@ if (inheritedRows.length) {
 [req_race:: squirrel]
 [req_spec:: scout]
 [design_status:: pending]
+[decision_signature:: UNKNOWN]
+[named_module:: UNKNOWN]
 [module_capacity:: UNKNOWN]
 [weapon_frame:: short_cut_1h] | [prof:: 2] | [combat_role:: vertical_ambush]
 [weapon_frame:: needle_thrower_2h] | [prof:: 2] | [combat_role:: quiet_route]

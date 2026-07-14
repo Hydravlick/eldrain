@@ -1,6 +1,6 @@
 ---
 type: implementation_plan
-status: complete
+status: superseded
 system: project_management
 tags: [registry, migration, dataview, player_entities]
 related_files:
@@ -11,6 +11,8 @@ related_files:
   - "[[04_Player_Entities/_Matrices/00_Synergy_Map|Synergy Map]]"
 ---
 # Entity Registry Migration Implementation Plan
+
+> **Исторический план.** Миграция была выполнена для прежней наследуемой модели, но её вычисляемые `base_vector`, `weak_to` и T.O.U.C.H.-поля сняты новым контрактом authored hero-kit. Этот файл не является источником активной схемы; текущий канон: [[04_Player_Entities/Combat_Profile_Pipeline|Combat Profile Pipeline]] и [[04_Player_Entities/_Registries/Registry_Combos|Registry Combos]].
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use `superpowers:subagent-driven-development` (recommended) or `superpowers:executing-plans` to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
