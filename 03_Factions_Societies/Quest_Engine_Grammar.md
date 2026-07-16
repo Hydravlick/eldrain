@@ -58,7 +58,7 @@ related_files:
 
 ### Origin Continuation в ленте
 
-Грамматика **потребляет**, но не создаёт Origin Continuation. Источник — reveal и послерейдовый исход в [[04_Player_Entities/Shell_Foundlings|Shell_Foundlings]]; правила Origin tag принадлежат [[04_Player_Entities/Trait_Development|Trait_Development]]. Quest-система не выдаёт roster access, не определяет собственность на человека и не меняет общий предел Major Tags.
+Грамматика **потребляет**, но не создаёт Origin Continuation. Источник — reveal и послерейдовый исход в [[04_Player_Entities/Shell_Foundlings|Shell_Foundlings]]; правила Origin tag принадлежат [[04_Player_Entities/Tags_System|Tags_System]], а память о нём — [[04_Player_Entities/Trait_Development|Chronicle]]. Quest-система не выдаёт roster access, не определяет собственность на человека и не меняет общий предел трёх Personal Tags.
 
 Минимальная входная запись:
 

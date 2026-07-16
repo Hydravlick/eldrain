@@ -2,10 +2,16 @@
 type: matrix
 status: active
 system: player_entities_matrix
-tags: [dataview, matrix]
+tags: [dataview, matrix, double_paradox, synergy]
+related_files:
+  - "[[04_Player_Entities/Two_Paradox_Vector_Matrix|Двойной Парадокс]]"
+  - "[[04_Player_Entities/Tags_System|Personal Tags]]"
+  - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat Profile Pipeline]]"
 ---
 
 > Это необязательное интерактивное представление для Obsidian. Канонические данные лежат в [[04_Player_Entities/_Registries/Registry_Combos|реестре Combo]]; его статическая карта остаётся читаемой без Dataview.
+
+Двойной Парадокс, автоматические векторы, производные слабости, контрпики и поддержка остаются самостоятельным аналитическим слоем. Personal Tags не заменяют эту топологию и не удаляют её рёбра. Поздний tag-pass может добавить отдельное представление зарегистрированных `body/action/craft/environment` state-edges, но не имеет права выводить из вектора готовый tag, способность или число.
 
 ```dataviewjs
 // === 1. ЗАГРУЗКА И КОНФИГУРАЦИЯ ===

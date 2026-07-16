@@ -108,6 +108,7 @@ related_files:
 | `FrameID.NativeAction` | геометрия атаки, `charge_time`, базовая отдача, Bloom, Heat, Commitment и Recovery | это базовый gunfeel Frame; P/Q/E, trait и биография его не переписывают |
 | `BatteryID` | `charge_count`, стабильность пакета, доступный режим импульса и собственный Pulse | батарея не владеет попаданием, точностью или реакцией цели |
 | `BodyID` | конкретная capability/vulnerability, текущая травма и возможность исполнить названный хват или стойку | тело не даёт общий множитель урона, точности или защиты |
+| `PawnID.PersonalTagID` | один `mastery_step` названного Frame и одна видимая mastery-expression | не обходит несовместимость тела, не влияет на другие Frame и не создаёт `prof 4` |
 | `InventoryOwner` | вес, занятые слоты, Ready Access и физическая доступность батареи | переносимость не меняет параметры выстрела |
 | `HeroKitID.ActionID` | собственные параметры authored-P/Q/E комбинации `Race × Spec` | hero-kit может создать окно для оружия, но не становится вторым владельцем gunfeel Frame |
 
