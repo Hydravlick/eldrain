@@ -13,6 +13,14 @@ Evaluate complete loadouts over repeated raids, not isolated item stats. A healt
 
 Work only with ordinary files inside the current Eldraine vault. Do not inspect or use Git state, history, diffs, branches, worktrees, staging, commits, remotes, pushes, or pull requests. If another workflow requests a Git step, skip it and continue with local file reads or edits. This changes no authorization boundary: read-only requests stay read-only, and files are edited only when the user explicitly asks.
 
+## Responsibility Boundary
+
+Own equipment progression and risk-adjusted value of complete loadouts over repeated raids. Tags, hero-kits, roster rules, and maps enter this model only when they change equipment access, capability, loss, logistics, replacement, or dominance.
+
+Do not judge the whole buildcraft architecture, player certainty budget, or tag-system quality by the number of authored builds. Use `eldraine-system-architect` first for cross-system buildcraft, genre compatibility, decision ownership, or scaling. When called by the architect, test only the delegated gear boundary.
+
+`INSUFFICIENT DATA` applies to the specific equipment-dominance or numeric claim, not to structural findings outside it.
+
 ## Establish the Model
 
 Read the relevant weapon, armor, battery, Gate Check, Resonance, weight, loot, and replacement-cost files. Label every input:
@@ -34,6 +42,8 @@ Separate these jobs before judging strength:
 | Anomaly risk | What `ResonanceLoad` and `ResonancePulse` does it create? |
 
 ## Mandatory Loadout Test
+
+Use this comparison when equipment progression or a dominant loadout is the question. It is not an automatic prerequisite for a cross-system architecture review.
 
 Compare at least:
 
@@ -119,6 +129,6 @@ Lead with the highest-risk dominant strategy. Then provide:
 6. **Healthy niches** — strong options that still pay meaningful costs.
 7. **Minimal repair** — smallest rule change that restores choice.
 8. **Systemic alternative** — only if the minimal repair preserves the root failure.
-9. **Prototype measurements** — prices, loss rates, task completion, ammunition/battery use, and loadout frequency needed for proof.
+9. **Prototype measurements** — prices, loss rates, task completion, ammunition/battery use, and loadout frequency needed for numeric or empirical proof.
 
 Do not fix a dominance problem by adding another universal score. Recommend `eldraine-balance-modeler` for numeric corridors, `eldraine-crash-test` for broader abuse chains, and `eldraine-player-experience` when the rule cannot be perceived or understood in play.

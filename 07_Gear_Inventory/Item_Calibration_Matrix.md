@@ -2,13 +2,19 @@
 type: matrix
 status: active
 system: gear_balance
-tags: [items, weight, value, dissonance, survival_score, calibration]
+tags:
+  - items
+  - weight
+  - value
+  - dissonance
+  - survival_score
+  - calibration
 related_files:
   - "[[07_Gear_Inventory/_Registries/Registry_Items|Registry_Items]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Thermoses|Registry_Thermoses]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Consumables|Registry_Consumables]]"
-  - "[[05_Combat_Survival/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
   - "[[08_World_Generation/Generation/08_Gate_Check|Gate_Check]]"
   - "[[08_World_Generation/Generation/19_Access_Contracts|Access_Contracts]]"
   - "[[05_Combat_Survival/Dissonance_System|Dissonance_System]]"
@@ -50,9 +56,9 @@ related_files:
 | `module_positions` | допустимые позиции модуля либо `none` |
 | `module_cost` | раздельная стоимость по семействам либо `none` |
 | `active_body_interface` | ID активного Опорного контура либо `none` |
-| `requested_touch_shift` | заявленный сдвиг активного контура |
-| `applied_touch_shift` | часть сдвига после внешнего и итогового клэмпа |
-| `touch_overflow` | неприменённая часть сдвига |
+| `interface_owner` | доменный владелец локального результата |
+| `interface_output` | явный обмен конечного параметра `до -> после` |
+| `interface_validation` | `valid`, `duplicate_cycle`, `incompatible` или `UNKNOWN` |
 | `interface_vulnerability` | наблюдаемая цена контура |
 
 Если поле не применимо, ставится `0` или `none`. Если значение ещё не определено, оно маркируется `UNKNOWN`, а не заменяется догадкой.
@@ -63,7 +69,7 @@ related_files:
 |---|---:|---:|---:|---:|---:|---:|---|
 | `Scavenger Wrap` | 1 | 6.0 кг | `UNKNOWN` | 15 | 0 | 0 | `slot_size` и `module_cost` не определены |
 | `Cracked Cell` | 1 | 0.3 кг | 250 | 0 | 0 | `UNKNOWN` | buffer не определен |
-| T1 оружие Бомжа | 1 | `UNKNOWN` | `UNKNOWN` | 0 | 0 | 0 | конкретный предмет не закреплен |
+| Базовое оружие Welfare-набора | 1 | `UNKNOWN` | `UNKNOWN` | 0 | 0 | 0 | конкретный предмет не закреплен |
 | Базовая маска | 1 | `UNKNOWN` | `UNKNOWN` | 0 | `UNKNOWN` | 0 | стартовая модель не закреплена |
 | Базовая Пешка | — | — | — | `Current_HP UNKNOWN` | 0 | 0 | `Reality_Buffer = 0` в текущем MVP |
 
@@ -99,16 +105,16 @@ AnomalyPressure =
 
 Обязательные комплекты для первой калибровки:
 
-1. **Welfare:** бесплатный Бомж без найденного усиления.
+1. **Welfare:** Ready Pawn с фиксированным заёмным набором без найденного усиления.
 2. **Prepared T1:** разумно собранный комплект перед входом.
 3. **Field Upgraded:** стартовый комплект плюс найденная в рейде подготовка к T2.
 4. **Overgeared:** дорогой комплект, переживающий среду, но приближающийся к Yellow/Red Dissonance.
-5. **Foundling Standard:** типичный комплект ценной Пешки, потеря которого должна быть экономически болезненной.
+5. **Chronicle Standard:** типичный собственный комплект развитой Пешки; происхождение человека не меняет предметную цену.
 6. **Armor Rat:** сильная броня плюс самое дешевое летальное оружие.
 7. **Glass Cannon:** сильное оружие плюс минимальная допустимая защита.
 8. **T1 Specialist:** редкий низкотировый предмет в своей лучшей нише.
 9. **Squad Carrier:** один продвинутый Frame на группу с бюджетными союзниками.
-10. **Recovery Drop:** бедный поздний вход в T2/T3 без главного прогресса контрактов.
+10. **Late Service Drop:** добровольный периферийный поздний вход в T2/T3 с собственной объявленной работой, а не режим бедного игрока.
 
 ### Проверка Опорного контура
 
@@ -118,11 +124,11 @@ Prototype-модули `body_interface` остаются `blocked_calibration`, 
 |:---|:---|:---|:---|
 | Welfare | базовая летальность и T1 остаются доступны без контура | обязательный слот прогрессии | `unmeasured` |
 | Balanced | один контур создаёт специализацию, не закрывая все задачи | универсальный безопасный обмен | `unmeasured` |
-| Armor Rat | `+LYR/+TRQ` оплачены мобильностью, лутом или темпом | дешёвая летальность плюс слишком много права на ошибку | `unmeasured` |
-| Glass Cannon | `+GLW/+GRP` не отменяют Heat, Recovery и батарейный риск | непрерывный DPS | `unmeasured` |
+| Armor Rat | локальная устойчивость/перенос оплачены мобильностью, лутом или темпом | дешёвая летальность плюс слишком много права на ошибку | `unmeasured` |
+| Glass Cannon | локальная ручная/thermal выгода не отменяет Heat, Recovery и батарейный риск | непрерывный DPS | `unmeasured` |
 | T1 Specialist | дешёвый старый контур сохраняет узкую нишу | обязательная замена на Tier выше | `unmeasured` |
 | Squad Carrier | контур усиливает только носителя | бесплатный групповой проход | `unmeasured` |
-| Overgeared | один активный контур и клэмпы не позволяют поднять всё тело | богатая сборка без уязвимости | `unmeasured` |
+| Overgeared | один активный контур не позволяет улучшить несколько циклов | богатая сборка без уязвимости | `unmeasured` |
 
 ### Проверка Боевого Долга
 
@@ -163,4 +169,4 @@ Prototype-модули `body_interface` остаются `blocked_calibration`, 
 5. Только после этого менять пороги `140/260` и процент доходности полного комплекта.
 6. Сравнить риск-скорректированную доходность `Balanced`, `Armor Rat`, `Glass Cannon` и `Squad Carrier`.
 7. Проверить, что глубокая награда требует повторяемого рабочего цикла, но не запрещает T1 совершить PvP-переворот.
-8. Проверить, что `Deep T3` и `Recovery Drop` поддерживают плотность поздней фазы, но не превращают T3 в бесплатный scav-фарм.
+8. Проверить, что `Deep T3` и `Late Service Drop` поддерживают плотность поздней фазы, но не превращают T3 в бесплатный scav-фарм.

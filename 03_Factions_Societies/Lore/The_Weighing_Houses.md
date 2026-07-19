@@ -1,8 +1,15 @@
 ---
-type: lore
+type: faction
 category: faction
 status: active
-system: factions_lore
+system: factions
+faction_id: weighing_houses
+display_name: Весовые Дома
+sort_order: 50
+faction_role: hearth
+player_label: price_and_right
+promise: provenance_and_debt
+access_model: provenance_collateral_insurance_transfer
 tags:
   - hearth
   - property
@@ -10,8 +17,8 @@ tags:
   - collateral
   - provenance
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
-  - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
+  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
   - "[[02_World_Lore/Rat_Culture|Rat_Culture]]"
 related_mechanics:
@@ -19,6 +26,13 @@ related_mechanics:
   - "[[06_Economy_Loot/Barter_System|Barter_System]]"
 ---
 # Цена и право: Весовые Дома
+
+## Отношения
+
+[rel_trade:: common_storehouses] (минимум и долг постоянно спорят за одни ресурсы)
+[rel_union:: circle_of_interposition] (спорный груз сохраняют до проверки права и происхождения)
+[rel_conflict:: cathedral_all_faiths] (личная вещь погибшего может быть святыней, уликой или лотом)
+[rel_spy:: night_guarantors] (серый выкуп возникает там, где официальный дом не может признать сделку)
 
 **Игровой ярлык:** оценка, происхождение, право владения, долги, залоги, страховка, передача.
 
@@ -100,7 +114,7 @@ related_mechanics:
 
 - **С Общими Кладовыми:** долг не должен отменять минимум, но минимум не должен стирать право.
 - **С Собором Всех Вер:** личная вещь погибшего может быть святыней, уликой или спорным залогом.
-- **С Кругом Первого Приёма:** найденыш не должен становиться собственностью, но уход за ним стоит ресурсов.
+- **С Кругом Первого Приёма:** Foundling не является собственностью или обеспечением долга; спорить можно о custody, доказанной услуге и стоимости ухода.
 - **С Менестрелями:** слух о грязном происхождении может разрушить цену быстрее доказательства.
 - **С Кругом Заслона:** пломба сохраняет спорный груз до проверки, но не должна превращать оценщика права в судью над человеком.
 

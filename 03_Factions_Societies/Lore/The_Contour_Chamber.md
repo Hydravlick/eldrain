@@ -1,8 +1,15 @@
 ---
-type: lore
+type: faction
 category: faction
 status: active
-system: factions_lore
+system: factions
+faction_id: contour_chamber
+display_name: Палата Контуров
+sort_order: 40
+faction_role: hearth
+player_label: maps_and_evidence
+promise: proof_and_route
+access_model: maps_witness_records_route_sheets
 tags:
   - hearth
   - maps
@@ -10,9 +17,9 @@ tags:
   - investigation
   - routes
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
+  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
   - "[[03_Factions_Societies/Lore/The_Cartographers|The_Cartographers]]"
-  - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
+  - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
   - "[[02_World_Lore/Lizard_Culture|Lizard_Culture]]"
 related_mechanics:
@@ -21,6 +28,13 @@ related_mechanics:
   - "[[08_World_Generation/Generation/19_Access_Contracts|Access_Contracts]]"
 ---
 # Карты и улики: Палата Контуров
+
+## Отношения
+
+[rel_spy:: minstrels] (слухи помогают раньше доказательства, но портят чистоту следа)
+[rel_union:: circle_of_interposition] (маршрут и датированный факт дают заслону проверяемую границу)
+[rel_conflict:: cathedral_all_faiths] (исповедь и ритуальная тайна не всегда могут стать публичным фактом)
+[rel_monitor:: keepers] (закрытые маршруты иногда изымаются ради Якоря)
 
 **Игровой ярлык:** карты, улики, маршруты, доказательства.
 

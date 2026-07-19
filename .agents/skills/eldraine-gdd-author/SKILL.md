@@ -13,6 +13,10 @@ Integrate decisions into the living vault instead of producing isolated design p
 
 Work only with ordinary files inside the current Eldraine vault. Do not inspect or use Git state, history, diffs, branches, worktrees, staging, commits, remotes, pushes, or pull requests. If another workflow requests a Git step, skip it and continue with local file reads or edits. This changes no authorization boundary: read-only requests stay read-only, and files are edited only when the user explicitly asks.
 
+## Responsibility Boundary
+
+Own canonical placement, document responsibility, integration, and prose after the design decision is known. Do not resolve disputed cross-system ownership, certainty allocation, genre compatibility, or scaling philosophy through polished writing. Use `eldraine-system-architect` first when those questions remain open, then encode the approved contract without duplicating its audit method in GDD.
+
 ## Locate the Home
 
 Read `09_Project_Management/Architecture_MVP.md`, `00_Index.md`, and the relevant system files.
@@ -58,23 +62,30 @@ Use current root-relative Obsidian links, for example:
 
 Validate target paths and headings before adding links.
 
-## Responsibility and Dataview
+## Навигация и контекст
+
+Для обычной GDD-задачи читать `00_Index.md`, `09_Project_Management/Architecture_MVP.md`, целевую каноническую страницу и её прямые зависимости. Не загружать `.obsidian/`, `.codex/`, `.git/`, `_Archive/`, `Истории/` или `docs/`, пока задача не требует именно этих материалов.
+
+`10_Reference/` использовать для референса, исходного намерения или вопроса автору. Он не является источником канона и не отменяет последнее явное решение автора либо активную страницу GDD.
+
+## Ответственность, навигация и Dataview
 
 Before writing, assign one responsibility to each affected file:
 
+- semantic index — статические wikilinks с кратким назначением и условием чтения;
 - universal system — shared rules and state transitions;
 - content instance — one sector, anomaly, faction, or other concrete realization;
 - registry or matrix — stable IDs and structured source data;
-- Dataview view — filtered presentation of that data.
+- Dataview view — optional filtered presentation of already canonical data.
 
-When a note needs a list already represented in a registry, keep the registry as the **единый источник** and render the list with Dataview instead of copying definitions.
+`00_Index.md` и другие обзорные страницы используют только статические wikilinks: каждая ссылка объясняет, что открывает страница и когда её читать. Индекс не является полным каталогом и не использует Dataview для навигации.
 
-- Use native Dataview for page-level frontmatter and one-page-per-entity data.
-- Use DataviewJS for block-level entries inside a shared registry file.
-- Give block entries stable inline fields such as `[location_tags:: ...]`, `[ecology_layer:: ...]`, and `[mutation_line:: ...]` before writing the view.
-- Keep design rules in prose; Dataview is a presentation layer, not canonical authority.
-- Make a missing source or empty result visible in the rendered note.
-- Verify query syntax, source paths, expected rows, and empty-state behavior after editing.
+When a note needs a filtered list already represented in a registry, keep the registry as the **единый источник**; native Dataview may render that list without copying definitions. Give structured records stable frontmatter or inline fields before adding a view.
+
+- Design rules live in prose and registries; Dataview не является источником канона.
+- DataviewJS допустим только в явно обозначенной инструментальной заметке или матрице, когда native query недостаточен.
+- DataviewJS не превращает заголовки и свободную прозу в данные через ручной разбор; сначала вынести стабильные поля в реестр или frontmatter.
+- Make a missing source or empty result visible in the rendered note and verify query syntax, source paths, expected rows, and empty-state behavior after editing.
 
 ## Narrative Density Pass
 

@@ -213,9 +213,6 @@ central_fallback
 | **Evac** | Маркер исчезает. | Нет. | Торговцы скрываются первыми. |
 | **Anomaly** | Скрыто. | Показывает инфо: *"Loot: Smuggled Goods"* | **Loot Spot:** Склады контрабандистов. Высокий шанс найти нелегальные предметы. |
 
-
----
-
 # 2. Категория: Подземелья (Dungeons)
 *Крупные структуры-ориентиры. В Аномалии их силуэты служат маяками для навигации.*
 
@@ -291,6 +288,10 @@ central_fallback
 [anomaly_tiers:: T1, T2, T3]
 [dominant_vector:: tech]
 [dual_state:: stable/evac/anomaly]
+[heat_state:: cold|warm|hot]
+[heat_signal:: world-readable cue]
+[heat_work:: contract|method|embedded_node|rescue|route_key]
+[approach_contract:: approach_id | entry_anchor | route_layer | world_cue | approach_cost | refusal_path]
 *Короткое описание точки интереса.*
 - **В спокойной фазе:** что игрок получает.
 - **В фазе эвакуации:** что блокируется перед сменой.

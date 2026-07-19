@@ -1,8 +1,16 @@
 ---
-type: lore
+type: faction
 category: faction
 status: active
-system: factions_lore
+system: factions
+faction_id: circle_of_interposition
+display_name: Круг Заслона
+sort_order: 30
+faction_role: hearth
+player_label: shelter_and_pause
+promise: no_one_alone_before_power
+access_model: neutral_shelter_witness_protection_seals_escorts
+hearth_origin: late_inter_hearth
 tags:
   - hearth
   - inter_hearth
@@ -11,8 +19,8 @@ tags:
   - temporary_separation
   - civic_safety
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
-  - "[[03_Factions_Societies/Lore/Social_Political_Order|Social_Political_Order]]"
+  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Lore/Civic_Ethos_Under_Lamps|Civic_Ethos_Under_Lamps]]"
   - "[[03_Factions_Societies/Lore/The_First_Reception|The_First_Reception]]"
   - "[[03_Factions_Societies/Lore/The_Common_Storehouses|The_Common_Storehouses]]"
   - "[[03_Factions_Societies/Lore/The_Contour_Chamber|The_Contour_Chamber]]"
@@ -23,6 +31,15 @@ related_mechanics:
   - "[[03_Factions_Societies/Quest_Engine|Quest_Engine]]"
 ---
 # Круг Заслона
+
+## Отношения
+
+[rel_union:: first_reception] (биологический вывод требует защищённого пациента и сохранного тела)
+[rel_union:: common_storehouses] (замена спорной партии сохраняет минимум)
+[rel_union:: contour_chamber] (продление заслона требует проверяемого события и независимого свидетеля)
+[rel_union:: weighing_houses] (право и происхождение должны пережить силовой спор)
+[rel_spy:: minstrels] (слух способен запустить раннюю защиту и преждевременную травлю)
+[rel_conflict:: keepers] (экзистенциальная срочность не должна оставаться единственным голосом)
 
 **Игровой ярлык:** нейтральный кров, защита свидетеля, сопровождение спорного груза, временное разделение сторон.
 

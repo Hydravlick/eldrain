@@ -51,10 +51,10 @@ tags:
 - Изменить: `08_World_Generation/_Registries/Registry_Mobs.md`
 - Изменить при прямом конфликте: `01_Core_Vision/GDD_Main.md`, `01_Core_Vision/Glossary.md`
 
-**Результат:** практика/специализация, архетип и профиль вылазки разведены; контры создают окна, а не автоматические победы; Tier конструкции отделён от уровня владения; MMO-ярлыки заменены фактическими глаголами поведения.
+**Результат:** специализация, архетип и профиль вылазки разведены; контры создают окна, а не автоматические победы; Tier конструкции отделён от уровня владения; MMO-ярлыки заменены фактическими глаголами поведения.
 
 - [x] Исправить прямые конфликтующие формулировки.
-- [x] Добавить прозрачные подписи к пяти практикам.
+- [x] Добавить прозрачные подписи к пяти специализациям.
 - [x] Сохранить schema-ID и обозначить их как внутренние.
 - [x] Проверить, что отрицательные примеры внешних MMO-ролей не удалены механически.
 
@@ -95,8 +95,8 @@ tags:
 
 - Создать: `03_Factions_Societies/Lore/The_Circle_of_Interposition.md`
 - Изменить: `03_Factions_Societies/Registry_Factions.md`
-- Изменить: `03_Factions_Societies/Lore/Faction_Ecosystem.md`
-- Изменить: `03_Factions_Societies/Lore/Social_Political_Order.md`
+- Изменить: `03_Factions_Societies/Lore/Faction_Address_System.md`
+- Изменить: `03_Factions_Societies/Lore/Civic_Ethos_Under_Lamps.md`
 - Изменить: `03_Factions_Societies/Reputation_Rules.md`
 - Изменить: `03_Factions_Societies/Pledge_Contracts.md`
 - Изменить: `03_Factions_Societies/Quest_Engine.md`

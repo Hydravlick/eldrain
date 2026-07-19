@@ -35,19 +35,24 @@ related_files:
 - `[tier:: ...]` — класс конструкции, не автоматическая стоимость;
 - `[rarity:: ...]` — настройки экземпляра, не автоматическая стоимость;
 - `[module_axes:: ...]` — фактические игровые оси;
+- `[module_type:: ...]` — особая физическая форма модуля либо `none`; тип не создаёт новое семейство;
+- `[active_cell_capacity_delta:: ...]` — сколько дополнительных подготовленных батарей может держать активная очередь; допустимо только для `module_type:: battery_rack`;
 - `[body_interface:: ...]` — тип Опорного контура либо `none`; это не семейство;
-- `[touch_shift:: ...]` — фиксированный сдвиг первичного T.O.U.C.H. только активного контура;
-- `[touch_condition:: ...]` — условие работы сдвига;
+- `[interface_output:: ...]` — локальный обмен `до → после` только активного Опорного контура;
+- `[doctrine_exchange:: ...]` — ситуативное устройство меняет один названный конечный результат и показывает цену;
 - `[vulnerability:: ...]` — наблюдаемая цена усиления;
-- `[interface_state:: inactive|active]` — работает ли `touch_shift` на текущей сборке;
+- `[interface_state:: inactive|active]` — работает ли `interface_output` на текущей сборке;
 - `[armor_plates:: ...]` — защищаемые зоны либо `none`;
+- `[soft_coverage:: ...]` — мягкий слой, остающийся между пластинами либо `none`;
+- `[seam_exposure:: ...]` — видимые стыки и открытые направления либо `none`;
+- `[collision_silhouette:: ...]` — читаемое обещание формы коллайдера либо `none`;
 - `[install_state:: installable|blocked_calibration]` — допущен ли модуль к сборке;
 - `[install_location:: hub_professional]` — единственный обычный монтаж;
 - `[field_state:: stitched_locked]` — в Аномалии сборка заблокирована.
 
 Функциональный модуль обязан иметь положительный `module_cost` хотя бы в одном семействе. Гибрид платит каждую цену отдельно.
 
-Мастер показывает только записи с `install_state:: installable`. Любой `UNKNOWN` в `slot_size`, `module_cost` или физических позициях автоматически блокирует монтаж. Многозонный пакет со статусом `blocked_calibration` остаётся источником визуальной и лутовой концепции, но не считается одной устанавливаемой навеской и не участвует в расчёте сборки.
+Мастер показывает только записи с `install_state:: installable`. Любой `UNKNOWN` в `slot_size`, `module_cost` или физических позициях автоматически блокирует монтаж. Устанавливаемая пластина также требует непустые `armor_plates`, `soft_coverage`, `seam_exposure`, `collision_silhouette`, вес, уязвимость и не-`unknown` состояние калибровки. Многозонный пакет со статусом `blocked_calibration` остаётся источником визуальной и лутовой концепции, но не считается одной устанавливаемой навеской и не участвует в расчёте сборки.
 
 ## Dataview: сводка модулей
 
@@ -72,9 +77,11 @@ const rows = blocks.map(block => {
         field(block, "slot_size") || "UNKNOWN",
         (field(block, "module_positions") || "UNKNOWN").replaceAll("|", ", "),
         field(block, "tier") || "UNKNOWN",
+        field(block, "module_type") || "none",
         (field(block, "module_axes") || "UNKNOWN").replaceAll(",", ", "),
+        field(block, "active_cell_capacity_delta") || "0",
         field(block, "body_interface") || "none",
-        field(block, "touch_shift") || "none",
+        field(block, "interface_output") || "none",
         field(block, "vulnerability") || "none",
         (field(block, "armor_plates") || "none").replaceAll(",", ", "),
         field(block, "weight") || "UNKNOWN",
@@ -85,7 +92,7 @@ const rows = blocks.map(block => {
   .sort((a, b) => a[1].localeCompare(b[1]) || a[0].localeCompare(b[0]));
 
 if (rows.length) {
-    dv.table(["Модуль", "Семейства", "Стоимость", "Слоты", "Позиции", "Tier", "Оси", "Контур", "T.O.U.C.H.", "Уязвимость", "Покрытие", "Вес", "Допуск", "Баланс"], rows);
+    dv.table(["Модуль", "Семейства", "Стоимость", "Слоты", "Позиции", "Tier", "Тип", "Оси", "Активные ячейки", "Контур", "Локальный выход", "Уязвимость", "Покрытие", "Вес", "Допуск", "Баланс"], rows);
 } else {
     dv.paragraph("⚠️ В Registry_Thermos_Modules нет активных модулей.");
 }
@@ -183,6 +190,31 @@ if (rows.length) {
 
 ## Проводники и плетение
 
+### Кассета активных ячеек «Долгая нить»
+[module:: long_thread_battery_rack]
+[module_id:: long_thread_battery_rack]
+[module_type:: battery_rack]
+[module_families:: conduit|rig]
+[module_cost:: conduit UNKNOWN, rig UNKNOWN]
+[slot_size:: UNKNOWN]
+[module_positions:: back|waist]
+[tier:: UNKNOWN]
+[rarity:: UNKNOWN]
+[module_axes:: energy, battery_reserve]
+[active_cell_capacity_delta:: +1]
+[armor_plates:: none]
+[weight:: UNKNOWN]
+[body_interface:: none]
+[interface_output:: none]
+[vulnerability:: none]
+[interface_state:: inactive]
+[install_state:: blocked_calibration]
+[install_location:: hub_professional]
+[field_state:: stitched_locked]
+[balance_state:: prototype]
+
+Кассета держит ещё одну целую батарею в заранее объявленной очереди выбранного контура. Она не делает импульс сильнее, не снижает Heat, Recovery, Bloom или Dissonance и не даёт вторую ману: батарея всё так же становится `Drained Cell` при маршрутизации. Цена кассеты — физический узел, профильная ёмкость, вес и риск вынести в рейд больше дорогих источников; отдельной простреливаемой уязвимости у неё нет.
+
 ### Эфирная ветвь «Проводник»
 [module:: conduit_robe]
 [module_id:: conduit_robe]
@@ -227,7 +259,7 @@ if (rows.length) {
 
 ## Prototype: Опорные контуры
 
-Эти десять модулей фиксируют два разных обмена для каждого атрибута. Они заблокированы для монтажа до калибровки полных комплектов; числа являются проверяемыми prototype anchors, а не активным лутовым пулом.
+Эти десять модулей фиксируют разные локальные обмены переноса, ручной работы, устойчивости, Heat и чтения сигнала. Они заблокированы для монтажа до калибровки полных комплектов; числа являются проверяемыми prototype anchors, а не активным лутовым пулом.
 
 ### Противовесное ярмо
 [module:: counterweight_yoke]
@@ -242,8 +274,7 @@ if (rows.length) {
 [armor_plates:: none]
 [weight:: 8kg]
 [body_interface:: load_bearing]
-[touch_shift:: TRQ +2]
-[touch_condition:: always]
+[interface_output:: sustained_carry_limit normal -> higher]
 [vulnerability:: weight +8kg, turn_speed -10%]
 [interface_state:: inactive]
 [install_state:: blocked_calibration]
@@ -265,9 +296,9 @@ if (rows.length) {
 [module_axes:: mobility, energy]
 [armor_plates:: none]
 [weight:: 4kg]
-[body_interface:: load_bearing]
-[touch_shift:: TRQ +2]
-[touch_condition:: while_braced]
+[body_interface:: none]
+[interface_output:: none]
+[doctrine_exchange:: brace_hold_limit normal -> extended; activation_heat 0 -> +10; movement_noise 0 -> +8]
 [vulnerability:: heat_per_activation +10, movement_noise +8]
 [interface_state:: inactive]
 [install_state:: blocked_calibration]
@@ -290,9 +321,8 @@ if (rows.length) {
 [armor_plates:: none]
 [weight:: 2kg]
 [body_interface:: motor_control]
-[touch_shift:: GRP +1, TRQ -1]
-[touch_condition:: always]
-[vulnerability:: TRQ -1]
+[interface_output:: powered_tool_precision normal -> higher; heavy_tool_hold normal -> lower]
+[vulnerability:: heavy_tool_hold lower]
 [interface_state:: inactive]
 [install_state:: blocked_calibration]
 [install_location:: hub_professional]
@@ -313,9 +343,9 @@ if (rows.length) {
 [module_axes:: support, energy]
 [armor_plates:: none]
 [weight:: 3kg]
-[body_interface:: motor_control]
-[touch_shift:: GRP +2]
-[touch_condition:: while_powered]
+[body_interface:: none]
+[interface_output:: none]
+[doctrine_exchange:: device_interaction_time normal -> shorter; heat_per_interaction 0 -> +8; rigid_handwear compatible -> incompatible]
 [vulnerability:: heat_per_interaction +8, rigid_handwear_incompatible]
 [interface_state:: inactive]
 [install_state:: blocked_calibration]
@@ -338,8 +368,7 @@ if (rows.length) {
 [armor_plates:: none]
 [weight:: 2kg]
 [body_interface:: layer_support]
-[touch_shift:: LYR +1]
-[touch_condition:: always]
+[interface_output:: post_impact_stability normal -> extended]
 [vulnerability:: stamina_recovery -10%]
 [interface_state:: inactive]
 [install_state:: blocked_calibration]
@@ -362,8 +391,7 @@ if (rows.length) {
 [armor_plates:: chest, back]
 [weight:: 6kg]
 [body_interface:: layer_support]
-[touch_shift:: LYR +2]
-[touch_condition:: always]
+[interface_output:: soft_layer_impact_tolerance normal -> higher]
 [vulnerability:: weight +6kg, move_speed -8%]
 [interface_state:: inactive]
 [install_state:: blocked_calibration]
@@ -386,8 +414,7 @@ if (rows.length) {
 [armor_plates:: none]
 [weight:: 1kg]
 [body_interface:: thermal_conduction]
-[touch_shift:: GLW +1]
-[touch_condition:: always]
+[interface_output:: body_to_thermos_heat_transfer normal -> earlier]
 [vulnerability:: dissonance_load +4]
 [interface_state:: inactive]
 [install_state:: blocked_calibration]
@@ -409,10 +436,10 @@ if (rows.length) {
 [module_axes:: energy]
 [armor_plates:: none]
 [weight:: 2kg]
-[body_interface:: thermal_conduction]
-[touch_shift:: GLW +2]
-[touch_condition:: while_powered]
-[vulnerability:: backlash_resist -10, dissonance_pulse +3]
+[body_interface:: none]
+[interface_output:: none]
+[doctrine_exchange:: overload_threshold normal -> higher; cantrip_backlash_outcome normal -> +1 step; dissonance_pulse 0 -> +3]
+[vulnerability:: cantrip_backlash_outcome +1 step, dissonance_pulse +3]
 [interface_state:: inactive]
 [install_state:: blocked_calibration]
 [install_location:: hub_professional]
@@ -434,8 +461,7 @@ if (rows.length) {
 [armor_plates:: none]
 [weight:: 1kg]
 [body_interface:: sensory_gain]
-[touch_shift:: SNS +1]
-[touch_condition:: always]
+[interface_output:: local_environment_cue_lead normal -> earlier]
 [vulnerability:: dissonance_load +3]
 [interface_state:: inactive]
 [install_state:: blocked_calibration]
@@ -457,10 +483,10 @@ if (rows.length) {
 [module_axes:: detection, energy]
 [armor_plates:: none]
 [weight:: 2kg]
-[body_interface:: sensory_gain]
-[touch_shift:: SNS +2, LYR -1]
-[touch_condition:: while_powered]
-[vulnerability:: LYR -1, heat_warning false_positives]
+[body_interface:: none]
+[interface_output:: none]
+[doctrine_exchange:: cue_lead normal -> earlier; injury_threshold normal -> lower; heat_warning false_positives none -> enabled]
+[vulnerability:: injury_threshold lower, heat_warning false_positives]
 [interface_state:: inactive]
 [install_state:: blocked_calibration]
 [install_location:: hub_professional]
@@ -482,17 +508,16 @@ if (rows.length) {
 [rarity:: common]
 [module_axes:: coverage, energy]
 [body_interface:: none]
-[touch_shift:: none]
-[touch_condition:: always]
+[interface_output:: none]
 [vulnerability:: none]
 [interface_state:: inactive]
 [armor_plates:: chest]
 [environment_resistance:: UNKNOWN]
 [conduit_layout:: none]
 [weight:: UNKNOWN]
-[install_state:: installable]
+[install_state:: blocked_calibration]
 [install_location:: hub_professional]
 [field_state:: stitched_locked]
 [balance_state:: unknown]
 
-Короткое описание функции, видимого признака и цены модуля.
+Форматная запись, а не игровой предмет. Она остаётся `blocked_calibration`, пока `UNKNOWN` не заменены измеренными значениями и отдельный authored-модуль не пройдёт контракт установки.

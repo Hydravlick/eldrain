@@ -1,8 +1,15 @@
 ---
-type: lore
+type: faction
 category: faction
 status: active
-system: factions_lore
+system: factions
+faction_id: support_artels
+display_name: Артели Подпорки
+sort_order: 60
+faction_role: hearth
+player_label: repair_and_passages
+promise: city_must_stand
+access_model: lifts_bridges_reinforcement_heavy_repair
 tags:
   - hearth
   - engineering
@@ -10,8 +17,8 @@ tags:
   - armor
   - infrastructure
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
-  - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
+  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[02_World_Lore/Hedgehog_Culture|Hedgehog_Culture]]"
 related_mechanics:
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
@@ -19,6 +26,12 @@ related_mechanics:
   - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
 ---
 # Ремонт и проходы: Артели Подпорки
+
+## Отношения
+
+[rel_trade:: common_storehouses] (кладовые требуют пола, света и полок)
+[rel_conflict:: garden_chains] (корни, вода и грибы кормят город, но ломают стены)
+[rel_conflict:: keepers] (аварийное отсечение района может выглядеть как жертвоприношение)
 
 **Игровой ярлык:** ремонт, броня, мосты, лифты, укрепления.
 

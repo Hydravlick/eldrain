@@ -12,7 +12,7 @@ related_files:
   - "[[02_World_Lore/The_Ark|The_Ark]]"
   - "[[02_World_Lore/Culture_Language|Culture_Language]]"
   - "[[02_World_Lore/Toad_Culture|Toad_Culture]]"
-  - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
+  - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
 related_mechanics:
   - "[[08_World_Generation/Anomaly/Anomaly_System|Anomaly_System]]"

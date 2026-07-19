@@ -8,7 +8,7 @@ related_files:
   - "[[04_Player_Entities/Trait_Development|Trait_Development]]"
   - "[[04_Player_Entities/_Registries/Registry_Tags|Registry_Tags]]"
   - "[[04_Player_Entities/Shell_Foundlings|Shell_Foundlings]]"
-  - "[[04_Player_Entities/Shell_Projections|Shell_Projections]]"
+  - "[[04_Player_Entities/Accessible_Candidates|Accessible_Candidates]]"
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile_Pipeline]]"
   - "[[10_Reference/Reference Notes New|Reference Notes New]]"
 web_sources:

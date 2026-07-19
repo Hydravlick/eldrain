@@ -22,13 +22,13 @@ related_files:
   - "[[08_World_Generation/Generation/08_Gate_Check|Gate Check]]"
 source_dialogues:
   - "[[Gemini 1]]"
-  - "[[Gemini 2]]"
+  - "[[Gemini 2.2]]"
 web_sources:
-  - "https://store.steampowered.com/app/2016590/Dark_and_Darker/"
-  - "https://store.steampowered.com/app/1422450/Deadlock/"
-  - "https://www.marathonthegame.com/"
-  - "https://arcraiders.com/"
-  - "https://en.wikipedia.org/wiki/The_Cycle:_Frontier"
+  - https://store.steampowered.com/app/2016590/Dark_and_Darker/
+  - https://store.steampowered.com/app/1422450/Deadlock/
+  - https://www.marathonthegame.com/
+  - https://arcraiders.com/
+  - https://en.wikipedia.org/wiki/The_Cycle:_Frontier
 ---
 # Competitor Mechanics Matrix: extraction, способности, соло и анти-кемпинг
 

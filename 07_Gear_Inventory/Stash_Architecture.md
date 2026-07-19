@@ -13,14 +13,14 @@ related_files:
   - "[[06_Economy_Loot/Economy_Core|Economy_Core]]"
   - "[[07_Gear_Inventory/Inventory_QoL|Inventory_QoL]]"
   - "[[07_Gear_Inventory/Inventory_Architecture|Inventory_Architecture]]"
-  - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
+  - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
 ---
 # Архитектура Схрона и Менеджмент (Stash & Organization)
 
 ## 1. Концепция: Общий Склад (Account-Wide)
 Схрон — это физическое хранилище в Хабе.
-* **Общий Доступ:** Схрон является **глобальным** для всех персонажей (Оболочек/Shells) на аккаунте игрока. Это позволяет передавать снаряжение от высокоуровневого "мэйна" к новому персонажу.
+* **Общий Доступ:** Схрон является **глобальным** для всех Пешек аккаунта. Это позволяет передавать совместимое снаряжение между любыми Ready-Пешками; человеческих уровней или «мэйна», владеющего силой аккаунта, нет.
 * **Изоляция:** Предметы `Soulbound` (привязанные к душе) нельзя положить в Общий Схрон. Они хранятся только в инвентаре конкретной Оболочки.
 
 ### Городское происхождение

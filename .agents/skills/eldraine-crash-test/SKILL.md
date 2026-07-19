@@ -1,6 +1,6 @@
 ---
 name: eldraine-crash-test
-description: Use when reviewing an Eldraine mechanic, build, economy loop, progression rule, reward, party interaction, or risk system for exploits, dominant strategies, safe farming, degenerate play, or boring optimal behavior.
+description: Use when attacking a defined Eldraine mechanic, build, economy loop, progression rule, reward, party interaction, or risk contract for exploits, dominant strategies, safe farming, degenerate play, or boring optimal behavior.
 ---
 
 # Eldraine Crash Test
@@ -13,6 +13,12 @@ Attack the incentive structure, not the prose. Find what rational players will r
 
 Work only with ordinary files inside the current Eldraine vault. Do not inspect or use Git state, history, diffs, branches, worktrees, staging, commits, remotes, pushes, or pull requests. If another workflow requests a Git step, skip it and continue with local file reads or edits. This changes no authorization boundary: read-only requests stay read-only, and files are edited only when the user explicitly asks.
 
+## Responsibility Boundary
+
+Own adversarial evidence against an explicit decision, cost, reward, invariant, or interface. Do not invent the intended cross-system contract, allocate uncertainty, or judge the architecture by content volume. If ownership, reveal timing, acceptable behaviour, or system boundaries are unresolved, report that dependency and use `eldraine-system-architect` first.
+
+When called by the architect, attack only the supplied boundary or invariant. Do not replace the architecture review with the full default attack-surface checklist.
+
 ## Prepare
 
 Read the mechanic and its direct dependencies. Record:
@@ -21,6 +27,8 @@ Read the mechanic and its direct dependencies. Record:
 - cost, reward, failure state, and repeat rate;
 - stated counters and limits;
 - missing values or assumptions.
+
+If the intended decision or owner is absent, label it as an architectural dependency instead of silently choosing one.
 
 Mark claims as `GDD FACT`, `INFERENCE`, or `TEST ASSUMPTION`.
 
@@ -61,6 +69,6 @@ Then provide:
 - **Abuse chains:** combinations of otherwise valid systems.
 - **False positives:** powerful strategies that still have healthy counterplay.
 - **Fix options:** one surgical constraint, one systemic fix, and the cost of each.
-- **Prototype tests:** concrete metrics or scenarios needed to verify the concern.
+- **Prototype tests:** concrete metrics or scenarios needed to verify an empirical concern after the intended contract is defined.
 
 Do not fabricate numeric certainty. Recommend `eldraine-balance-modeler` when the verdict depends on uncalibrated values. Do not edit GDD unless asked.

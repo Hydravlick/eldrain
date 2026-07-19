@@ -12,7 +12,7 @@ tags:
 related_files:
   - "[[02_World_Lore/Culture_Language|Culture_Language]]"
   - "[[03_Factions_Societies/Lore/The_Cathedral|The_Cathedral]]"
-  - "[[04_Player_Entities/_Registries/Registry_Races#Крыса (Rattus)|Registry_Races]]"
+  - "[[04_Player_Entities/Races/Rat|Крыса]]"
   - "[[06_Economy_Loot/Currency_Rezs_Lore|Currency_Rezs_Lore]]"
   - "[[07_Gear_Inventory/Fashion_Gear|Fashion_Gear]]"
 ---

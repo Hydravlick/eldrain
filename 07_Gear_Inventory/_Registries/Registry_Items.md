@@ -3,7 +3,7 @@ type: registry
 status: active
 system: gear_inventory_registry
 registry_type: items
-tags: [database, resources, loot, artifacts]
+tags: [database, resources, loot, relics]
 ---
 > [!TODO] Ингредиенты линий Чужой воды
 > - [ ] После отдельного балансного прохода добавить материалы Мешкоголова, Корнехвата, Сыпуна, Прихватыша, Двереглота, Домоеда, Звоночника, Беляка и Вылизня.
@@ -95,11 +95,13 @@ tags: [database, resources, loot, artifacts]
 *Пульсирующий орган, пропитанный магией глубин.*
 - **Статы:** `[weight:: 2.0kg]` | `[stack:: 1]` | `[value:: 1500]`
 - **Источник:** `[mob:: mired_lord]` (Boss Drop).
-- **Применение:** Создание эпических артефактов, квест Собора.
+- **Применение:** Создание именных Реликвий, квест Собора.
 ---
 
 ## 3. Реликвии и Квестовые (Relics & Key Items)
 *Уникальные объекты с особыми свойствами.*
+
+Реликвия — не редкость и не общий «сильный предмет». Каждая запись обязана назвать carrier role (`frame`, `terminal`, `battery`, `protective_equipment` или `interaction_tool`), одну процедуру либо материальное исключение, источник, долг, отказ и контригру.
 
 ### [RELIC] Компас Бездны (Void Compass)
 [merit:: relic_compass]
@@ -133,7 +135,7 @@ tags: [database, resources, loot, artifacts]
 [origin_rule:: session_relative]
 *Короткое описание материальной пользы.*
 - **Используется для:** крафт, квест, продажа, стабилизация.
-- **Редкость:** common/uncommon/rare/artifact; не определяет полезность или стабильность.
+- **Редкость:** common/uncommon/rare/epic/legendary; не определяет полезность или стабильность. Реликвия хранится отдельным происхождением, не значением rarity.
 - **Надёжность:** stable/volatile/trace/civic_legacy.
 - **Происхождение в рейде:** native/foreign/hot/retuned вычисляется относительно текущей сессии.
 - **Переносимость:** ready_access/cargo/back_slot/living/embedded.

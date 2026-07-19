@@ -1,8 +1,15 @@
 ---
-type: lore
+type: faction
 category: faction
 status: active
-system: factions_lore
+system: factions
+faction_id: first_reception
+display_name: Круг Первого Приёма
+sort_order: 10
+faction_role: hearth
+player_label: entry_and_care
+promise: entry_and_care
+access_model: sanitary_passes_foundling_care_quarantine
 tags:
   - hearth
   - medicine
@@ -10,16 +17,25 @@ tags:
   - foundlings
   - social_care
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
-  - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
+  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
   - "[[02_World_Lore/Toad_Culture|Toad_Culture]]"
 related_mechanics:
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
   - "[[03_Factions_Societies/Reputation_Rules|Reputation_Rules]]"
   - "[[03_Factions_Societies/Quest_Engine|Quest_Engine]]"
+  - "[[04_Player_Entities/Lifecycle_Roster|Lifecycle_Roster]]"
+  - "[[04_Player_Entities/Spawn_Logic|Spawn_Logic]]"
 ---
 # Вход и забота: Круг Первого Приёма
+
+## Отношения
+
+[rel_union:: common_storehouses] (первичный уход требует еды, тепла и базовых наборов)
+[rel_union:: circle_of_interposition] (спорный живой или мёртвый не должен оставаться один перед заинтересованной стороной)
+[rel_conflict:: weighing_houses] (custody, стоимость ухода и право конкретного человека нельзя свести к собственности)
+[rel_conflict:: keepers] (закрытие потока ради барьера спорит с правом принять живого)
 
 **Игровой ярлык:** вход, лечение, карантин, найденыши, первичная защита.
 
@@ -78,6 +94,20 @@ related_mechanics:
 
 Приём особенно важен после неудачных рейдов: он не делает игрока богаче, но уменьшает шанс, что ошибка станет необратимой.
 
+## Протокол нулевого ростера
+
+Круг не отправляет лишившегося людей игрока в отдельный «пруд», квалификационный рейд или низкоприоритетную очередь. После окончательного разрешения прошлой вылазки он действует только при `ReadyCount = 0`:
+
+1. называет одного конкретного живого подопечного с заранее объявленным hero-kit;
+2. записывает человека в ростер с `readiness = Ready`;
+3. фиксирует создание так, чтобы reconnect и параллельные запросы не дали второго Ward;
+4. только после появления Ready-Пешки Общие Кладовые вычисляют `WelfareEligible(AccountID, PawnID)` и закрепляют loan, лишь если отсутствуют и active overlay, и доступный совместимый viable loadout;
+5. человек может войти в следующий обычный shared-рейд по общему `CanDeploy` независимо от того, понадобился ли loan.
+
+Здесь нет карусели тел, trait-preview, reroll, таймера ожидания или обязательной экстракции для восстановления нормального доступа. Ward начинает без проявленного Personal Tag; первая успешная вылазка создаёт его Chronicle: First Return и проявляет одно личное свойство без открытия account-доступа.
+
+Если Ready-Пешка уже существует, но аккаунт лишился жизнеспособного loadout, Круг не создаёт нового человека и не требует KIA: Общие Кладовые накладывают тот же единственный loan на выбранную Пешку по [[04_Player_Entities/Spawn_Logic#3. Фиксированный Welfare loan|общему правилу Welfare]].
+
 ## Квестовые глаголы
 
 | Глагол | Пример |
@@ -102,7 +132,7 @@ related_mechanics:
 
 ## Напряжения
 
-- **С Весовыми Домами:** кому принадлежит найденыш, тело, долг лечения или спасённое снаряжение.
+- **С Весовыми Домами:** кто несёт custody и стоимость ухода за живым, кому возвращают тело погибшего и кому принадлежит спасённое снаряжение.
 - **С Палатой Контуров:** что можно записывать о пациенте, пока он ещё не понимает город.
 - **С Собором Всех Вер:** когда имя и ритуал нужны раньше диагноза.
 - **С Хранителями:** когда поток нужно закрыть ради барьера, но Приём видит живых у двери.

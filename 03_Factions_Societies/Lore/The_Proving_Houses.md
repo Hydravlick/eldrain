@@ -1,8 +1,15 @@
 ---
-type: lore
+type: faction
 category: faction
 status: active
-system: factions_lore
+system: factions
+faction_id: proving_houses
+display_name: Дома Пробы
+sort_order: 80
+faction_role: hearth
+player_label: crafting_and_trials
+promise: useful_trial
+access_model: tables_blueprints_prototypes_error_logs
 tags:
   - hearth
   - crafting
@@ -10,7 +17,7 @@ tags:
   - laboratories
   - workshops
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Ecosystem|Faction_Ecosystem]]"
+  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
   - "[[01_Core_Vision/Art_Direction_Material_Grammar|Art_Direction_Material_Grammar]]"
 related_mechanics:
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
@@ -19,6 +26,12 @@ related_mechanics:
   - "[[07_Gear_Inventory/_Registries/Registry_Blueprints|Registry_Blueprints]]"
 ---
 # Крафт и пробы: Дома Пробы
+
+## Отношения
+
+[rel_trade:: support_artels] (прототипы должны выдерживать городскую нагрузку)
+[rel_conflict:: first_reception] (проба может быть лекарством или живым страдающим существом)
+[rel_monitor:: keepers] (часть знаний нельзя повторять даже при рабочем результате)
 
 **Игровой ярлык:** крафт, анализ, рецепты, прототипы, опасные испытания.
 

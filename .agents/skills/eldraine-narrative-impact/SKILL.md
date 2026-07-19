@@ -13,6 +13,10 @@ Treat story changes as dependency changes. Preserve intentional consequences whi
 
 Work only with ordinary files inside the current Eldraine vault. Do not inspect or use Git state, history, diffs, branches, worktrees, staging, commits, remotes, pushes, or pull requests. If another workflow requests a Git step, skip it and continue with local file reads or edits. This changes no authorization boundary: read-only requests stay read-only, and files are edited only when the user explicitly asks.
 
+## Responsibility Boundary
+
+Own the downstream narrative and world-state dependency graph of a changed premise. Do not decide the cross-system gameplay contract or use narrative cost as proof that an architecture is healthy. When a gameplay architecture change drives the story change, `eldraine-system-architect` decides the system boundary and this skill reports its narrative blast radius.
+
 ## Trace the Change
 
 Read the changed premise and search for every directly named character, faction, location, quest, service, reveal, and term. Build a compact dependency chain:

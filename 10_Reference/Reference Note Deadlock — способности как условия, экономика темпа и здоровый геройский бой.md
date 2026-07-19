@@ -17,11 +17,11 @@ related_files:
   - "[[05_Combat_Survival/Magic_Batteries|Magic Batteries]]"
   - "[[05_Combat_Survival/Threat_Thresholds|Threat Thresholds]]"
 source_dialogues:
-  - "[[Gemini 2]]"
+  - "[[Gemini 2.2]]"
 web_sources:
-  - "https://store.steampowered.com/app/1422450/Deadlock/"
-  - "https://en.wikipedia.org/wiki/Deadlock_(video_game)"
-  - "https://www.wired.com/story/valve-deadlock-playtest-tips"
+  - https://store.steampowered.com/app/1422450/Deadlock/
+  - https://en.wikipedia.org/wiki/Deadlock_(video_game)
+  - https://www.wired.com/story/valve-deadlock-playtest-tips
 ---
 # Deadlock: способности как условия, экономика темпа и здоровый геройский бой
 

@@ -1,4 +1,4 @@
 interface:
   display_name: "Eldraine Gear Progression"
   short_description: "Audit extraction gear progression and loadout value"
-  default_prompt: "Use $eldraine-gear-progression to test this equipment progression model for dominant loadouts and meaningful upgrades."
+  default_prompt: "Use $eldraine-gear-progression to test this Eldraine equipment-progression boundary for dominant loadouts and meaningful upgrades."

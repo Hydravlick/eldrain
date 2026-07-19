@@ -13,7 +13,7 @@ related_files:
   - "[[07_Gear_Inventory/Inventory_Architecture|Inventory_Architecture]]"
   - "[[07_Gear_Inventory/Fashion_Gear|Fashion_Gear]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
-  - "[[05_Combat_Survival/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
   - "[[07_Gear_Inventory/Gear_Progression|Gear_Progression]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Thermoses|Registry_Thermoses]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"

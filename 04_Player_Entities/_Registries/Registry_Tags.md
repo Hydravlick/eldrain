@@ -2,441 +2,234 @@
 type: registry
 status: active
 system: player_entities_registry
-registry_type: tags
-tags: [customization, modifiers, dna, loot]
+registry_type: personal_tags
+tags: [database, personal_tags, mastery, mutations, relics]
 related_files:
-  - "[[04_Player_Entities/Tags_System|Tags_System]]"
-  - "[[04_Player_Entities/Proficiency_Arsenal|Proficiency_Arsenal]]"
-  - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
+  - "[[04_Player_Entities/Tags_System|Personal Tags]]"
+  - "[[04_Player_Entities/Trait_Development|Chronicle]]"
+  - "[[04_Player_Entities/Proficiency_Arsenal|Arsenal and Proficiency]]"
+  - "[[04_Player_Entities/Shell_Foundlings|Найдёныши]]"
+  - "[[05_Combat_Survival/_Registries/Registry_StatusEffects|Registry Status Effects]]"
+  - "[[08_World_Generation/_Registries/Registry_Environment_States|Registry Environment States]]"
 ---
-# Реестр: Теги/Трейты, Мутации и Модификации
+# Реестр личных тегов
 
-> **Логика системы:** реестр хранит исполняемые эффекты. Биография и события развития определены в [[04_Player_Entities/Trait_Development|Trait Development]].
-> **Роль в пайплайне:** `Race + Spec -> Combo P/Q/E + Module Capacity -> Allowed Arsenal -> Tags -> Proficiency Gates -> Combat Profile и допустимая сборка Термоса`.
-> **Dataview-контракт:** каждый объект начинается с `[id:: ...]`, а затем хранит тип, полярность, модификаторы, исключения и возможное слияние.
-> **Терминология:** `tag` и `trait` обозначают один объект. `[tag:: ...]` — канонический ключ данных; `трейт` — допустимое игроко-нарративное название этого же эффекта.
+> Реестр хранит механические свойства конкретных Пешек. Биография, Chronicle и Origin Continuation живут рядом, но не маскируются под perks.
 
-## Правила тегов
+## Правила реестра
 
-- `[tag_kind:: proficiency]` меняет владение оружием и/или профильную ёмкость модулей Термоса.
-- `[module_capacity_delta:: family +N, family -N]` сдвигает ёмкости, но не создаёт физический слот.
-- `[tag_kind:: mutation]` меняет физику тела и активные/заблокированные векторы.
-- `[tag_kind:: attribute]` меняет атрибуты T.O.U.C.H. и вторичные параметры.
-- `[tag_kind:: flaw]` дает штраф или сужает стиль игры без автоматической компенсации Диссонансом.
-- `[tag_kind:: fusion]` описывает curated Trait Fusion, возникающий из двух проявленных тегов и связующего события.
-- `[exclusive_with:: ...]` запрещает одновременную установку несовместимых тегов.
-- `[fusion_with:: other_tag -> result_tag]` показывает простой путь слияния прямо у исходного тега.
-- `[fusion_requires:: tag_a, tag_b]` у результата фиксирует, какие два тега нужно объединить.
-- `[trait_pool:: standard, specialist]` задает доступность. Если поле отсутствует, тег считается доступным обоим каталогам.
-- `[event_family:: ...]` перечисляет события, повышающие вес результата.
-- `[power_weight:: ...]` является внутренним балансным весом и не существует как ресурс внутри мира.
-- `[dissonance_load:: ...]` используется только при физическом или эфирном источнике постоянного фона.
+- У одной Пешки не более трёх Personal Tags; Origin занимает одно обычное место.
+- Каждый тег имеет `tag_form:: light | situational`.
+- `light` меняет один параметр одного действия или состояния и публикует точное число.
+- `situational` использует `trigger -> rule_shift -> tell -> counter/debt` и не даёт отдельную кнопку.
+- Тег читает только зарегистрированный сигнал каналов `body`, `action`, `craft` или `environment`.
+- `rarity` описывает частоту источника, а не потенциал человека.
+- Постоянный скрытый коэффициент не меняет базовый урон, автоматический RPM, полёт импульса или точность.
+- Frame-вариант `tag_kind:: mastery` дополнительно публикует один `mastery_frame`, `mastery_step:: 1` и собственную `mastery_expression`. Он всегда combat-facing: два таких тега могут провести базу `0` до нормального `prof 2`, а базу `1` — до `prof 3`. Освоение обычного действия вроде перевязки остаётся action-mastery и не участвует в FrameProf.
+- `design_status:: concept` и `prototype` не означают финальную калибровку.
 
----
-## 0. Нулевой пациент: шаблон тега
+## Шаблон лёгкого тега
 
-### Шаблон Тега (Template Tag)
-[id:: template_tag]
-[tag:: template_tag]
+```markdown
+[id:: template_light_tag]
+[tag:: template_light_tag]
+[tag_form:: light]
+[tag_kind:: first_return|origin|mastery|mutation|scar|relic_imprint]
+[source_kind:: first_return|origin|practice|anomaly|relic|breakline]
+[source_event:: event_or_item_id]
+[rarity:: common]
+[owner_domain:: body|action|frame_action|relic_carrier]
+[setting_channel:: body|action|craft|environment]
+[signal_ref:: registered_signal_id]
+[physical_or_action_owner:: owner_id]
+[trigger:: persistent_local_condition]
+[affected_parameter:: one_local_parameter]
+[modifier:: explicit_value_and_unit]
+[rule_shift:: none]
+[tell_owner:: exact_breakdown_and_sensory_cue]
+[tell_observer:: external_cue_if_counter_timing_changes]
+[cost_or_debt:: none|time|battery|exposure|injury|route|slot]
+[counterplay:: none|named_current_response]
+[stack_group:: group_id]
+[exclusive_with:: none]
+[design_status:: prototype]
+```
+
+Для Frame-варианта `tag_kind:: mastery` к любому шаблону обязательны дополнительные поля:
+
+```markdown
+[mastery_frame:: frame_id]
+[mastery_step:: 1]
+[mastery_expression:: named_sidegrade_of_one_frame_phase]
+[mastery_expression_phase:: draw|windup|contact|recovery|guard|manual_cycle]
+```
+
+`mastery_step` собирается открытой формулой proficiency и не считается вторым ситуационным эффектом. `mastery_expression` остаётся единственным собственным механическим правилом тега и продолжает работать при достижении потолка `prof 3`.
+
+## Шаблон ситуационного тега
+
+```markdown
+[id:: template_situational_tag]
+[tag:: template_situational_tag]
+[tag_form:: situational]
+[tag_kind:: first_return|origin|mastery|mutation|scar|relic_imprint]
+[source_kind:: first_return|origin|practice|anomaly|relic|breakline]
+[source_event:: event_or_item_id]
+[rarity:: uncommon]
+[owner_domain:: body|action|frame_action|relic_carrier]
+[setting_channel:: body|action|craft|environment]
+[signal_ref:: registered_signal_id]
+[physical_or_action_owner:: owner_id]
+[trigger:: visible_condition]
+[affected_parameter:: none|one_local_parameter]
+[modifier:: none|explicit_value_and_unit]
+[rule_shift:: one_automatic_rule]
+[tell_owner:: exact_ui_and_sensory_cue]
+[tell_observer:: external_sensory_cue]
+[cost_or_debt:: time|cargo|battery|exposure|injury|route|slot|none]
+[counterplay:: named_current_response]
+[stack_group:: group_id]
+[exclusive_with:: none]
+[design_status:: prototype]
+```
+
+## Prototype: Frame-mastery
+
+### Обратная ножевая хватка
+
+**Тултип:** `Короткий рез: мастерство +1. При занятой второй руке Frame можно извлечь обратным хватом. До завершения первого Recovery нельзя поставить блок или сменить предмет.`
+
+[id:: reverse_knife_grip]
+[tag:: reverse_knife_grip]
+[tag_form:: situational]
+[tag_kind:: mastery]
+[source_kind:: practice]
+[source_event:: survived_close_contact_with_offhand_occupied]
+[rarity:: uncommon]
+[owner_domain:: frame_action]
+[setting_channel:: action]
+[signal_ref:: short_cut_1h.draw_with_offhand_occupied]
+[physical_or_action_owner:: short_cut_1h.draw]
+[mastery_frame:: short_cut_1h]
+[mastery_step:: 1]
+[mastery_expression:: allow_reverse_grip_draw_while_offhand_occupied_then_lock_guard_and_item_swap_until_first_recovery]
+[mastery_expression_phase:: draw]
+[trigger:: draw_short_cut_1h_while_offhand_is_occupied]
+[affected_parameter:: none]
+[modifier:: none]
+[rule_shift:: reverse_grip_draw_is_allowed_and_guard_plus_item_swap_remain_locked_until_first_recovery_ends]
+[tell_owner:: reverse_grip_icon_and_locked_guard_swap_inputs]
+[tell_observer:: visible_reverse_grip_and_committed_first_attack_pose]
+[cost_or_debt:: lost_guard_and_item_swap_until_first_recovery]
+[counterplay:: force_or_feint_the_committed_first_contact_then_punish_recovery]
+[stack_group:: short_cut_1h_draw_expression]
+[exclusive_with:: other_short_cut_1h_draw_rewrites]
+[design_status:: prototype]
+
+* **Как работает накопление:** для hero-kit с `BaseFrameProf 0` тег открывает полевое владение `1`; второй mastery-тег `short_cut_1h` с другой expression доведёт его до нормального `2`. При базовом `2` этот тег даст мастерство `3`. При базовом `3` уровень не изменится, но обратная хватка останется доступна.
+* **Почему это не скрытый бонус:** карточка показывает `база + mastery = итог`, стойка видна в руках, а цена существует в том же коротком обмене.
+
+## Prototype: ситуационная телесная мутация
+
+### Токсичная кровь
+
+[id:: toxic_blood]
+[tag:: toxic_blood]
+[tag_form:: situational]
 [tag_kind:: mutation]
-[tag_polarity:: mixed]
-[add_vector:: tech]
-[block_vector:: hazard]
-[prof_delta:: arcanegun +1, catalyst -1]
-[module_capacity_delta:: weave +1, plate -1]
-[attr_delta:: TRQ +2, SNS -1]
-[substat_bonus:: heat_sink +0, cell_swap_speed +0, drift_control +0]
-[condition_bonus:: none]
-[output_mod:: none]
-[capability:: none]
-[vulnerability:: none]
-[deferred_rule:: none]
-[override_race_ban:: heavy_weapon]
-[exclusive_with:: incompatible_tag]
-[fusion_with:: other_tag -> result_tag]
-[fusion_requires:: source_tag_a, source_tag_b]
-[trait_pool:: standard, specialist]
-[event_family:: survival]
-[power_weight:: 0]
-[dissonance_load:: 0]
-* **Название:** Шаблонный Тег
-* **Тип:** Mutation / Proficiency / Attribute / Flaw / Fusion
-* **Эффект:** что меняется в арсенале, теле, векторах или экономике риска.
-* **Штраф:** какая слабость, блокировка или цена удерживает тег в балансе.
-* **Окно Двойного Парадокса:** какая общая слабость появляется после добавления или блокировки вектора.
-* **Лор:** короткое физическое или ментальное объяснение.
+[source_kind:: anomaly]
+[source_event:: compatible_toxic_blood_exposure]
+[rarity:: rare]
+[owner_domain:: body]
+[setting_channel:: body]
+[signal_ref:: bleed, poison]
+[physical_or_action_owner:: circulatory_system]
+[trigger:: fresh_penetrating_or_cutting_wound_at_contact_distance]
+[affected_parameter:: none]
+[modifier:: none]
+[rule_shift:: fresh_blood_physically_applies_registered_poison_exposure_to_unsealed_contact_target]
+[tell_owner:: darkened_vessels_before_raid_and_visible_toxic_spray_on_trigger]
+[tell_observer:: dark_vessels_visible_at_close_range_and_colored_spray_on_wound]
+[cost_or_debt:: active_bleed_and_normal_treatment_pressure]
+[counterplay:: maintain_distance_or_use_sealed_contact_layer_or_stop_contact_pressure]
+[stack_group:: mutation_contact_response]
+[exclusive_with:: none]
+[design_status:: prototype]
 
-## Категория A: Теги Мастерства (Proficiency Tags)
-*Опыт, тренировки и чужие воспоминания. Повышают эффективность арсенала, но почти всегда сужают другой стиль игры.*
+* **Почему это тег:** отдельной атаки нет; сначала тело получает физическую рану, затем изменённая кровь становится источником зарегистрированного `poison`.
+* **Почему это не бесплатный навык:** владелец действительно ранен и сохраняет обычную цену Bleed. Противник может не входить в контакт, использовать герметичный слой либо прекратить давление после первого tell.
+* **Что не утверждено:** радиус контакта, buildup, длительность poison и допустимые материалы защиты.
 
-### Коридорный Рефлекс (Corridor Reflex)
-[id:: trench_veteran]
-[tag:: trench_veteran]
-[tag_kind:: proficiency]
-[tag_polarity:: mixed]
-[prof_delta:: arcanegun +1, blade +1, catalyst -1]
-[substat_bonus:: drift_control +8, recoil_damp +6]
-[exclusive_with:: cultist_mark]
-[fusion_with:: street_rat -> street_breacher]
-[trait_pool:: standard, specialist]
-[event_family:: close_combat, corridor_survival]
-[power_weight:: 4]
-* **Эффект:** `[arcanegun +1]` | `[blade +1]`
-* **Штраф:** `[catalyst -1]` - технологии подавляют магическое чутье.
-* **Смысл:** тег усиливает ближний бой в коридорах и стрельбу в упор, но мешает чистой магии.
-* **Лор:** *«В узком проходе не спорят с дистанцией. Упрись, пережди вспышку и бей, когда стена вернёт тебе шаг.» — наставление аварийных дозорных.*
+## Prototype: лёгкое освоенное свойство
 
-### Портовый Грузчик (Dock Hand)
-[id:: heavy_lifter]
-[tag:: heavy_lifter]
-[tag_kind:: proficiency]
-[tag_polarity:: mixed]
-[prof_delta:: heavy_weapon +1]
-[attr_delta:: TRQ +1, SNS -1]
-[substat_bonus:: heavy_ready +10, brace +8]
-[exclusive_with:: hollow_bones]
-[fusion_with:: piston_arm -> siege_frame]
-[trait_pool:: standard, specialist]
-[event_family:: carrying, rescue, labor]
-[power_weight:: 3]
-* **Эффект:** `[heavy_weapon +1]` - тяжелые разрядники, гарпуны, молоты.
-* **Эффект:** позволяет перезаряжать тяжелое оружие на ходу, если итоговый proficiency не ниже `2`.
-* **Штраф:** `[SNS -1]` - привычка к шуму делает мелкие сигналы менее заметными.
-* **Лор:** *Мышечная память тех, кто таскал ящики с хламом по 16 часов в сутки.*
+### Выученный перевязочный ритм
 
-### Метка Послушника (Acolyte Mark)
-[id:: cultist_mark]
-[tag:: cultist_mark]
-[tag_kind:: proficiency]
-[tag_polarity:: mixed]
-[prof_delta:: catalyst +2, shield -1]
-[add_vector:: aether]
-[substat_bonus:: output_power +10, reality_burn_power +6]
-[exclusive_with:: trench_veteran]
-[fusion_with:: alchemical_eye -> echo_oracle]
-[trait_pool:: specialist]
-[event_family:: ritual, aether_exposure, faction_cathedral]
-[power_weight:: 8]
-[dissonance_load:: 8]
-* **Эффект:** `[catalyst +2]`
-* **Штраф:** `[shield -1]` - вера становится единственной защитой.
-* **Матрица Парадокса:** добавляет `aether`, если слот тегов не заблокирован.
-* **Лор:** *Выжженный на лбу символ позволяет проводить больше эфира через тело, игнорируя боль.*
+[id:: learned_bandage_rhythm]
+[tag:: learned_bandage_rhythm]
+[tag_form:: light]
+[tag_kind:: mastery]
+[source_kind:: practice]
+[source_event:: completed_field_treatment_practice]
+[rarity:: common]
+[owner_domain:: action]
+[setting_channel:: action]
+[signal_ref:: stop_and_bandage]
+[physical_or_action_owner:: bandage_commitment]
+[trigger:: using_standard_bandage_on_self]
+[affected_parameter:: bandage_commitment_time]
+[modifier:: TEST_VALUE_seconds]
+[rule_shift:: none]
+[tell_owner:: final_treatment_time_breakdown_and_distinct_prepared_hand_pose]
+[tell_observer:: shortened_hand_sequence_must_remain_animated]
+[cost_or_debt:: none]
+[counterplay:: punish_the_visible_treatment_commitment]
+[stack_group:: personal_treatment_time]
+[exclusive_with:: none]
+[design_status:: prototype]
 
-### Дитя Улиц (Gutter Born)
-[id:: street_rat]
-[tag:: street_rat]
-[tag_kind:: proficiency]
-[tag_polarity:: mixed]
-[prof_delta:: blade +1]
-[module_capacity_delta:: weave +1, plate -1]
-[add_vector:: shadow]
-[substat_bonus:: ambush_resist +8, loot_speed +6]
-[capability:: vent_fit]
-[exclusive_with:: loud_aura]
-[fusion_with:: trench_veteran -> street_breacher, hollow_bones -> vent_runner]
-[trait_pool:: standard, specialist]
-[event_family:: stealth, scavenging, escape]
-[power_weight:: 3]
-* **Эффект:** `[blade +1]` и `[weave capacity +1]`.
-* **Штраф:** `[plate capacity -1]` — тяжёлая пластинчатая навеска ломает привычный ритм движения.
-* **Матрица Парадокса:** добавляет `shadow`, но делает сборку зависимой от темпа и позиции.
-* **Лор:** *Ты знаешь, куда ударить заточкой, чтобы пробить фильтр противогаза.*
+* **Граница:** это один явный параметр одного действия, а не Dexterity, которая ускоряет лечение, двери, reload и revive одновременно.
+* **Что не утверждено:** величина изменения и правило получения mastery.
 
----
+## Зарезервированные направления
 
-## Категория B: Теги Мутации (Mutation Tags)
-*Искажения плоти под влиянием Аномалии или алхимии. Меняют не цифры, а правила тела.*
+### Роговой шов
 
-### Гальваническая Кровь
-[id:: voltaic_blood]
-[tag:: voltaic_blood]
+[id:: horn_seam]
+[tag:: horn_seam]
+[tag_form:: situational]
 [tag_kind:: mutation]
-[tag_polarity:: mixed]
-[add_vector:: aether]
-[block_vector:: hazard]
-[substat_bonus:: spark_gain +10]
-[deferred_rule:: shock_output, wet_backlash]
-[exclusive_with:: ether_leech, rust_allergy]
-[trait_pool:: specialist]
-[event_family:: shock_survival, aether_exposure]
-[power_weight:: 10]
-[dissonance_load:: 10]
-* **Эффект:** физический урон может конвертироваться в электрический, если оружие или способность допускают проводимость.
-* **Штраф:** `[block_vector:: hazard]` - токсичные и влажные среды становятся опаснее.
-* **Побочный эффект:** при попадании в воду персонаж получает перегрев/короткое замыкание.
-* **Лор:** *В ваших венах течет не кровь, а электролит из разбитых батарей.*
+[source_kind:: anomaly]
+[signal_ref:: pending_registered_body_or_craft_signal]
+[design_status:: concept]
 
-### Эфирная Пиявка
-[id:: ether_leech]
-[tag:: ether_leech]
+Название и телесная фантазия приняты как направление. До `prototype` нужно определить конкретный шов, trigger, физический материал, автоматический ответ, внешний tell и контрмеру. Общий бонус брони или скрытое снижение урона не проходит контракт.
+
+### Жар под кожей
+
+[id:: heat_under_skin]
+[tag:: heat_under_skin]
+[tag_form:: situational]
 [tag_kind:: mutation]
-[tag_polarity:: mixed]
-[add_vector:: aether]
-[block_vector:: tech]
-[substat_bonus:: output_power +8, battery_efficiency +6]
-[deferred_rule:: natural_recharge]
-[exclusive_with:: voltaic_blood, brittle_nerves]
-[trait_pool:: specialist]
-[event_family:: reality_burn, aether_exposure]
-[power_weight:: 12]
-[dissonance_load:: 12]
-* **Эффект:** убийство врага восстанавливает часть маны и дает заряд перегрузки.
-* **Штраф:** естественное восстановление маны отключено.
-* **Матрица Парадокса:** усиливает `aether`, но блокирует стабильную технику.
-* **Лор:** *Ваша батарея сломана. Теперь вы заряжаетесь, высасывая угасающий свет из глаз умирающих.*
+[source_kind:: anomaly]
+[setting_channel:: action]
+[signal_ref:: stationary_action_state_and_pending_body_heat_rule]
+[design_status:: concept]
 
-### Серая Хворь (Greyscale)
-[id:: stone_skin]
-[tag:: stone_skin]
-[tag_kind:: mutation]
-[tag_polarity:: mixed]
-[add_vector:: kinetics]
-[block_vector:: shadow]
-[attr_delta:: LYR +2, GRP -2]
-[substat_bonus:: trauma_resist +15, backlash_resist +8]
-[exclusive_with:: hollow_bones]
-[trait_pool:: standard, specialist]
-[event_family:: anomaly_exposure, trauma_survival]
-[power_weight:: 7]
-[dissonance_load:: 7]
-* **Эффект:** кожа становится каменной и дает естественную броню.
-* **Штраф:** `[GRP -2]` - пальцы теряют гибкость.
-* **Матрица Парадокса:** добавляет `kinetics`, но закрывает полноценный `shadow`.
-* **Лор:** *Полезная болезнь, если успеть остановить ее до того, как окаменеет сердце.*
+Принято направление персонажа, для которого неподвижность создаёт телесную проблему и меняет роль привычного оружия. До `prototype` нужно зарегистрировать телесный Heat отдельно от Heat конкретного Frame, определить buildup, вентиляцию движением, внешний tell и последствия. Тег не получает абстрактный урон «за стояние» без материального источника.
 
----
+## Исключённый старый шаблон
 
-## Категория C: Теги Атрибутов (Attribute Tags)
-*Физические улучшения и настройки организма. Хороши как инженерные заплатки, но создают шум, вес или зависимость.*
+`Trouble -> Leverage -> Residue`, личная цель, адрес, свидетель, спорный груз и Origin Continuation не являются механическими тегами. Они остаются Chronicle/Quest-содержанием. Прототипы, в которых тег фактически создавал квест или цельную активную способность, удалены из этого реестра.
 
-### Пневмо-сустав (Piston Joint)
-[id:: piston_arm]
-[tag:: piston_arm]
-[tag_kind:: attribute]
-[tag_polarity:: mixed]
-[add_vector:: kinetics]
-[prof_delta:: blunt +1, heavy_weapon +1]
-[attr_delta:: TRQ +2, SNS -1]
-[substat_bonus:: heavy_ready +15, recoil_damp +10, brace +8]
-[override_race_ban:: heavy_weapon]
-[exclusive_with:: hollow_bones]
-[fusion_with:: heavy_lifter -> siege_frame]
-[trait_pool:: specialist]
-[event_family:: surgery, heavy_weapon_mastery]
-[power_weight:: 6]
-[dissonance_load:: 6]
-* **Эффект:** `[TRQ +2]` и доступ к физиологически спорному тяжелому оружию.
-* **Штраф:** `[SNS -1]` - грохот механизмов заглушает шаги и дыхание врагов.
-* **Матрица Парадокса:** добавляет `kinetics`.
-* **Лор:** *Ржавая, но надежная гидравлика, врезанная прямо в кость.*
+## Проверка записи
 
-### Алхимический Зрачок
-[id:: alchemical_eye]
-[tag:: alchemical_eye]
-[tag_kind:: attribute]
-[tag_polarity:: positive]
-[add_vector:: detection]
-[attr_delta:: SNS +2]
-[substat_bonus:: weakspot_read +10, trace_read +8, heat_warning +6]
-[vulnerability:: dissonance_load +5]
-[exclusive_with:: tremor_hands]
-[fusion_with:: cultist_mark -> echo_oracle]
-[trait_pool:: specialist]
-[event_family:: surgery, investigation]
-[power_weight:: 5]
-[dissonance_load:: 5]
-* **Эффект:** `[SNS +2]` - лут, точность, распознавание следов.
-* **Эффект:** видит живых существ сквозь дым и темноту.
-* **Матрица Парадокса:** добавляет `detection`.
-* **Лор:** *Глаз заменен на колбу с реактивом, реагирующим на тепло.*
+Тег не проходит в `approved`, если:
 
-### Полые Кости (Avian DNA)
-[id:: hollow_bones]
-[tag:: hollow_bones]
-[tag_kind:: attribute]
-[tag_polarity:: mixed]
-[add_vector:: shadow]
-[block_vector:: kinetics]
-[attr_delta:: LYR -2]
-[output_mod:: move_speed +10%, movement_noise -8]
-[substat_bonus:: ambush_resist +6]
-[tradeoff:: brace -10]
-[exclusive_with:: stone_skin, piston_arm, heavy_lifter]
-[fusion_with:: street_rat -> vent_runner]
-[trait_pool:: standard, specialist]
-[event_family:: fall_survival, vertical_traversal]
-[power_weight:: 2]
-* **Эффект:** `[Speed +10%]` | `[Fall Damage -50%]`
-* **Штраф:** `[LYR -2]` - кости ломаются от удара.
-* **Матрица Парадокса:** добавляет `shadow`, но блокирует грубую `kinetics`.
-* **Лор:** *Мутация, характерная для жителей верхних уровней, где гравитация слабее.*
-
-### Лишние Пальцы
-[id:: extra_fingers]
-[tag:: extra_fingers]
-[tag_kind:: attribute]
-[tag_polarity:: positive]
-[add_vector:: tech]
-[attr_delta:: GRP +2]
-[substat_bonus:: cell_swap_speed +8, drift_control +8, lockwork +8]
-[vulnerability:: rigid_handwear_incompatible]
-[exclusive_with:: tremor_hands]
-[trait_pool:: standard, specialist]
-[event_family:: lockwork, rapid_handling]
-[power_weight:: 4]
-* **Эффект:** `[GRP +2]` - хват, перезарядка, скорость лута.
-* **Матрица Парадокса:** добавляет `tech`.
-* **Лор:** *Выглядит жутко, но позволяет перезаряжать револьвер одной рукой, пока вторая держит меч.*
-
----
-
-## Категория D: Негативные Теги/Трейты (Flaw Tags)
-*Штрафные теги нужны для баланса сильных плюсов. Они не являются "плохим билдом"; они создают дешевую, но опасную специализацию.*
-
-### Дрожащие Руки
-[id:: tremor_hands]
-[tag:: tremor_hands]
-[tag_kind:: flaw]
-[tag_polarity:: negative]
-[prof_delta:: arcanegun -1, blade -1, catalyst +1]
-[block_vector:: ballistics]
-[substat_bonus:: drift_control -15, cell_swap_speed -8, output_power +6]
-[exclusive_with:: alchemical_eye, extra_fingers]
-[trait_pool:: standard, specialist]
-[event_family:: trauma, failed_precision]
-[power_weight:: 0]
-* **Штраф:** дальняя точность и чистая фехтовальная моторика падают.
-* **Компенсация:** нервный тремор помогает чувствовать ритм эфира, поэтому `[catalyst +1]`.
-* **Матрица Парадокса:** блокирует `ballistics`, если этот вектор был открыт только оружием.
-
-### Хрупкая Воля
-[id:: brittle_nerves]
-[tag:: brittle_nerves]
-[tag_kind:: flaw]
-[tag_polarity:: negative]
-[attr_delta:: GLW -2, SNS +1]
-[block_vector:: aether]
-[substat_bonus:: heat_warning +6, backlash_resist -10]
-[exclusive_with:: ether_leech, cultist_mark]
-[trait_pool:: standard, specialist]
-[event_family:: stress, backlash]
-[power_weight:: 0]
-* **Штраф:** персонаж хуже держит перегрузки, ритуалы и долгий каст.
-* **Компенсация:** постоянная тревога дает `[SNS +1]`.
-* **Матрица Парадокса:** блокирует `aether`.
-
-### Аллергия на Ржавчину
-[id:: rust_allergy]
-[tag:: rust_allergy]
-[tag_kind:: flaw]
-[tag_polarity:: negative]
-[attr_delta:: LYR -1]
-[block_vector:: tech]
-[substat_bonus:: armor_sync -8, field_craft_speed -6]
-[exclusive_with:: voltaic_blood, piston_arm]
-[trait_pool:: standard, specialist]
-[event_family:: corrosion, industrial_exposure]
-[power_weight:: 0]
-* **Штраф:** импланты, скрап-броня и грязные механизмы чаще вызывают воспаление.
-* **Матрица Парадокса:** блокирует `tech`, если тот пришел только от тега.
-
-### Громкая Аура
-[id:: loud_aura]
-[tag:: loud_aura]
-[tag_kind:: flaw]
-[tag_polarity:: negative]
-[attr_delta:: SNS -1, GLW +1]
-[block_vector:: shadow]
-[substat_bonus:: ambush_resist -8]
-[dissonance_load:: 6]
-[exclusive_with:: street_rat]
-[trait_pool:: standard, specialist]
-[event_family:: anomaly_exposure, detection_failure]
-[power_weight:: 0]
-* **Штраф:** персонажа легче заметить акустикой, эхом и магическими датчиками.
-* **Компенсация:** нестабильная аура дает небольшой прирост `[GLW +1]`.
-* **Матрица Парадокса:** блокирует `shadow`.
-
----
-
-## Категория E: Trait Fusion
-*Trait Fusion уничтожает два малых тега и заменяет их одним мощным. Это не третий бесплатный бонус, а curated-развитие конкретной Пешки. Повышенный DissonanceLoad применяется только там, где результат физически или эфирно фонит.*
-
-### Уличный Проломщик (Street Breacher)
-[id:: street_breacher]
-[tag:: street_breacher]
-[tag_kind:: fusion]
-[tag_polarity:: positive]
-[fusion_requires:: street_rat, trench_veteran]
-[prof_delta:: blade +2, arcanegun +1, catalyst -1]
-[module_capacity_delta:: weave +1, plate -1]
-[add_vector:: shadow]
-[substat_bonus:: drift_control +10, weapon_swap_speed +10, ambush_resist +8]
-[exclusive_with:: loud_aura, cultist_mark]
-[trait_pool:: standard, specialist]
-[event_family:: ambush_chain, close_combat_escape]
-[power_weight:: 7]
-* **Эффект:** превращает знание улиц и коридорный напор в стиль коротких засад.
-* **Гейт:** если `blade` или `arcanegun` достигает `3+`, оружейный вектор может войти в Combat Profile.
-
-### Осадная Рама (Siege Frame)
-[id:: siege_frame]
-[tag:: siege_frame]
-[tag_kind:: fusion]
-[tag_polarity:: positive]
-[fusion_requires:: heavy_lifter, piston_arm]
-[prof_delta:: heavy_weapon +2, blunt +1]
-[attr_delta:: TRQ +3, SNS -2, GRP -1]
-[add_vector:: kinetics]
-[substat_bonus:: heavy_ready +25, recoil_damp +15, brace +12]
-[override_race_ban:: heavy_weapon]
-[exclusive_with:: hollow_bones, rust_allergy]
-[trait_pool:: specialist]
-[event_family:: siege_combat, heavy_weapon_mastery]
-[power_weight:: 10]
-[dissonance_load:: 10]
-* **Эффект:** тело становится лафетом для тяжелого оружия.
-* **Штраф:** акустический профиль резко растет; скрытность почти невозможна.
-
-### Эхо-Оракул (Echo Oracle)
-[id:: echo_oracle]
-[tag:: echo_oracle]
-[tag_kind:: fusion]
-[tag_polarity:: positive]
-[fusion_requires:: alchemical_eye, cultist_mark]
-[prof_delta:: catalyst +2, shield -1]
-[attr_delta:: SNS +3, GLW +1]
-[add_vector:: aether, detection]
-[substat_bonus:: trace_read +20, weakspot_read +15, reality_burn_power +10]
-[exclusive_with:: brittle_nerves, trench_veteran]
-[trait_pool:: specialist]
-[event_family:: investigation, ritual, trace_discovery]
-[power_weight:: 11]
-[dissonance_load:: 11]
-* **Эффект:** персонаж видит остаточные следы событий и может читать слабости через дым, стены и эфирные шумы.
-* **Риск:** высокий Диссонанс делает дорогой лут и активные заклинания заметнее.
-
-### Вентиляционный Бегун (Vent Runner)
-[id:: vent_runner]
-[tag:: vent_runner]
-[tag_kind:: fusion]
-[tag_polarity:: positive]
-[fusion_requires:: hollow_bones, street_rat]
-[prof_delta:: blade +1]
-[module_capacity_delta:: weave +2, plate -2]
-[attr_delta:: LYR -2]
-[output_mod:: move_speed +15%, movement_noise -12]
-[add_vector:: shadow]
-[block_vector:: kinetics]
-[substat_bonus:: loot_speed +10]
-[capability:: vent_fit]
-[tradeoff:: brace -15]
-[exclusive_with:: stone_skin, piston_arm, loud_aura]
-[trait_pool:: standard, specialist]
-[event_family:: vent_escape, vertical_traversal]
-[power_weight:: 6]
-* **Эффект:** максимальная мобильность в узких маршрутах, шахтах и вентиляции.
-* **Штраф:** любые силовые столкновения становятся смертельно опасными.
-
----
+- `signal_ref` не существует в активном реестре или authored action contract;
+- `light` не публикует один `affected_parameter` и точный `modifier`;
+- `situational` не публикует trigger, rule shift, внешний tell и текущую контрмеру;
+- один коэффициент влияет на несколько независимых действий;
+- механика требует знания Race, Spec, другого tag ID, rarity или скрытого будущего;
+- Origin получает дополнительное место или отдельный силовой пул;
+- один tag запускает второй напрямую;
+- KIA или отказ от спасённого человека является самым дешёвым рероллом.

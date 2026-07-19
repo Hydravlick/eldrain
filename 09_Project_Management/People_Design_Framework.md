@@ -14,7 +14,7 @@ related_files:
   - "[[02_World_Lore/Squirrel_Culture|Squirrel_Culture]]"
   - "[[02_World_Lore/Lizard_Culture|Lizard_Culture]]"
   - "[[02_World_Lore/Hedgehog_Culture|Hedgehog_Culture]]"
-  - "[[03_Factions_Societies/Lore/City_Anatomy|City_Anatomy]]"
+  - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[03_Factions_Societies/Lore/The_Cathedral|The_Cathedral]]"
   - "[[04_Player_Entities/_Registries/Registry_Races|Registry_Races]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
