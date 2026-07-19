@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "BUILDCRAFT_ARCHITECTURE_SPEC.md",
+                "file": "02_World_Lore/Shamanism_and_Ritual.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "BUILDCRAFT_ARCHITECTURE_SPEC"
+              "title": "Shamanism_and_Ritual"
             }
           }
         ]
@@ -205,6 +205,17 @@
   },
   "active": "761942d75935a6b7",
   "lastOpenFiles": [
+    "02_World_Lore/Anomaly_Weather_Systems.md",
+    "supplement_RAID_INGRESS_EGRESS_ARCHITECTURE_SPEC.md",
+    "03_Factions_Societies/Mechanics_Integration_Notes.md",
+    "03_Factions_Societies/Faction_Mystic_Notes.md",
+    "02_World_Lore/Shamanism_and_Ritual.md",
+    "02_World_Lore/Blood_Metal.md",
+    "02_World_Lore/Urban_Legends.md",
+    "02_World_Lore/The_Teeming.md",
+    "02_World_Lore/The_Strangeness_Principle.md",
+    "02_World_Lore/The_Strangeness_Fragmentary.md",
+    "02_World_Lore/Tamed_Strangeness.md",
     "RAID_INGRESS_EGRESS_ARCHITECTURE_SPEC.md",
     "BUILDCRAFT_ARCHITECTURE_SPEC.md",
     "docs/plans/2026-07-17-eldraine-system-architecture-skills-design.md",
@@ -221,17 +232,6 @@
     "04_Player_Entities/Specs/Dogmat.md",
     "04_Player_Entities/Races/Toad.md",
     "04_Player_Entities/Races/Squirrel.md",
-    "04_Player_Entities/Races/Rat.md",
-    "04_Player_Entities/Races/Lizard.md",
-    "04_Player_Entities/_Registries/Registry_Interaction_Families.md",
-    "04_Player_Entities/Two_Paradox_Vector_Matrix.md",
-    "04_Player_Entities/Two_Paradox_Birth.md",
-    "04_Player_Entities/Proficiency_Arsenal.md",
-    "03_Factions_Societies/_Matrices/00_Faction_Reputation.md",
-    "01_Core_Vision/Build_Extraction_Concept_Slice.md",
-    "04_Player_Entities/Shell_Foundlings.md",
-    "04_Player_Entities/Skill_Build_Philosophy.md",
-    "04_Player_Entities/Combat_Profile_Pipeline.md",
     "_Archive/Merged/Skill_Architecture_2026-07-13",
     "Не подтвержден 554931.crdownload",
     "Не подтвержден 213131.crdownload",
