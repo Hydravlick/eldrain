@@ -1,6 +1,6 @@
 ---
 name: eldraine-player-lens
-description: Use when evaluating who an Eldraine mechanic, quest, reward, loss, social feature, or progression loop serves, what behavior it encourages, and why different players may engage, optimize, quit, or become frustrated.
+description: Use when evaluating how relevant player profiles will behave around a defined Eldraine mechanic, quest, reward, loss, social feature, or progression contract, including engagement, optimization, frustration, and churn.
 ---
 
 # Eldraine Player Lens
@@ -12,6 +12,14 @@ Evaluate behavior, not demographic stereotypes. Ask what each relevant player se
 ## Local Vault Only
 
 Work only with ordinary files inside the current Eldraine vault. Do not inspect or use Git state, history, diffs, branches, worktrees, staging, commits, remotes, pushes, or pull requests. If another workflow requests a Git step, skip it and continue with local file reads or edits. This changes no authorization boundary: read-only requests stay read-only, and files are edited only when the user explicitly asks.
+
+## Responsibility Boundary
+
+Own behavioural evidence: who adapts, optimizes, avoids, returns, or quits under a defined contract. Do not decide cross-system ownership, uncertainty allocation, genre compatibility, or the final architecture. When those are disputed, use `eldraine-system-architect` first and return the profile consequences of its stated alternatives.
+
+Sparse authored content is not itself a player-behaviour verdict. Evaluate the behaviour taught by the grammar; label instance coverage separately.
+
+Do not repair frustration by adding selection, reroll, replacement, or guaranteed synergy. When the authored fantasy places agency in adapting to an uncontrollable but viable person, evaluate whether the system supplies legibility and meaningful responses after the reveal.
 
 ## Profiles
 

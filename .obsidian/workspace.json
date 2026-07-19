@@ -11,14 +11,14 @@
             "id": "761942d75935a6b7",
             "type": "leaf",
             "state": {
-              "type": "split-diff-view",
+              "type": "markdown",
               "state": {
-                "aFile": "04_Player_Entities/Tags_System.md",
-                "bFile": "04_Player_Entities/Tags_System.md",
-                "aRef": ""
+                "file": "BUILDCRAFT_ARCHITECTURE_SPEC.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "diff",
-              "title": "Diff: Tags_System  (Working Tree)"
+              "icon": "lucide-file",
+              "title": "BUILDCRAFT_ARCHITECTURE_SPEC"
             }
           }
         ]
@@ -205,6 +205,10 @@
   },
   "active": "761942d75935a6b7",
   "lastOpenFiles": [
+    "RAID_INGRESS_EGRESS_ARCHITECTURE_SPEC.md",
+    "BUILDCRAFT_ARCHITECTURE_SPEC.md",
+    "docs/plans/2026-07-17-eldraine-system-architecture-skills-design.md",
+    "docs/plans",
     "04_Player_Entities/_Registries/Registry_Tags.md",
     "04_Player_Entities/Trait_Development.md",
     "04_Player_Entities/Tags_System.md",
@@ -228,9 +232,6 @@
     "04_Player_Entities/Shell_Foundlings.md",
     "04_Player_Entities/Skill_Build_Philosophy.md",
     "04_Player_Entities/Combat_Profile_Pipeline.md",
-    "04_Player_Entities/_Registries/Registry_TOUCH.md",
-    "04_Player_Entities/Attributes_TOUCH.md",
-    "08_World_Generation/Anomaly/14_Extraction_System.md",
     "_Archive/Merged/Skill_Architecture_2026-07-13",
     "Не подтвержден 554931.crdownload",
     "Не подтвержден 213131.crdownload",
@@ -240,7 +241,6 @@
     "docs/superpowers/skill-drafts/eldraine-location-designer",
     "docs/superpowers/staging",
     "docs/superpowers/skill-drafts",
-    "docs/superpowers/specs",
     "Images/Buildings/Edge_of_the_city.png",
     "Images/Weapons/Pasted image 20240309044824.webp",
     "Images/Weapons/Pasted image 20240310233800.webp",

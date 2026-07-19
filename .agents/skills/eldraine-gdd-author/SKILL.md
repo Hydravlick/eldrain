@@ -13,6 +13,10 @@ Integrate decisions into the living vault instead of producing isolated design p
 
 Work only with ordinary files inside the current Eldraine vault. Do not inspect or use Git state, history, diffs, branches, worktrees, staging, commits, remotes, pushes, or pull requests. If another workflow requests a Git step, skip it and continue with local file reads or edits. This changes no authorization boundary: read-only requests stay read-only, and files are edited only when the user explicitly asks.
 
+## Responsibility Boundary
+
+Own canonical placement, document responsibility, integration, and prose after the design decision is known. Do not resolve disputed cross-system ownership, certainty allocation, genre compatibility, or scaling philosophy through polished writing. Use `eldraine-system-architect` first when those questions remain open, then encode the approved contract without duplicating its audit method in GDD.
+
 ## Locate the Home
 
 Read `09_Project_Management/Architecture_MVP.md`, `00_Index.md`, and the relevant system files.

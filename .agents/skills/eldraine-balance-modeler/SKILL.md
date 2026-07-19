@@ -1,6 +1,6 @@
 ---
 name: eldraine-balance-modeler
-description: Use when an Eldraine rule depends on numbers, formulas, thresholds, probabilities, costs, rewards, time, scaling, breakpoints, or when a claimed balance corridor needs to be demonstrated with examples.
+description: Use when the truth of an Eldraine rule or claimed balance corridor depends on numbers, formulas, thresholds, probabilities, costs, rewards, time, numerical scaling, or breakpoints and must be demonstrated with examples.
 ---
 
 # Eldraine Balance Modeler
@@ -12,6 +12,12 @@ Turn design language into a falsifiable model. Prefer a rough honest model over 
 ## Local Vault Only
 
 Work only with ordinary files inside the current Eldraine vault. Do not inspect or use Git state, history, diffs, branches, worktrees, staging, commits, remotes, pushes, or pull requests. If another workflow requests a Git step, skip it and continue with local file reads or edits. This changes no authorization boundary: read-only requests stay read-only, and files are edited only when the user explicitly asks.
+
+## Responsibility Boundary
+
+Own numeric truth only. Do not decide the intended player promise, responsibility boundaries, acceptable uncertainty, genre contract, or whether missing content invalidates a framework. Use `eldraine-system-architect` for those questions and model only the parameter whose value can change its verdict.
+
+`INSUFFICIENT DATA` is local to the numeric claim. It must not be expanded into a verdict on the whole architecture.
 
 ## Build the Model
 

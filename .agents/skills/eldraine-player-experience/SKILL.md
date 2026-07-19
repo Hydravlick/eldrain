@@ -1,6 +1,6 @@
 ---
 name: eldraine-player-experience
-description: Use when evaluating Eldraine onboarding, first-hour flow, combat feel, encounter pacing, readability, feedback, failure comprehension, hub-to-raid flow, or any feature that is described as a system but not yet as a lived player experience.
+description: "Use when translating or evaluating an already bounded Eldraine feature as a lived sequence: onboarding, first-hour flow, combat feel, encounter pacing, readability, feedback, failure comprehension, or hub-to-raid flow."
 ---
 
 # Eldraine Player Experience
@@ -12,6 +12,12 @@ Describe the game from outside the system. Every important rule must become some
 ## Local Vault Only
 
 Work only with ordinary files inside the current Eldraine vault. Do not inspect or use Git state, history, diffs, branches, worktrees, staging, commits, remotes, pushes, or pull requests. If another workflow requests a Git step, skip it and continue with local file reads or edits. This changes no authorization boundary: read-only requests stay read-only, and files are edited only when the user explicitly asks.
+
+## Responsibility Boundary
+
+Own the chronological evidence of what the player perceives, believes, decides, commits, and learns in a bounded flow. Do not define cross-system ownership, the total certainty budget, the genre contract, or scaling invariants. When the question spans several system layers or asks whether the framework itself is sound, use `eldraine-system-architect` first and answer only its bounded experience question.
+
+Do not convert an architectural uncertainty into a prototype checklist. Prototype questions here may measure perception, timing, feel, or comprehension only after the intended rule and decision are defined.
 
 ## Choose a Mode
 
@@ -47,6 +53,6 @@ After the slice provide:
 - **Misread risks:** what players may wrongly infer
 - **Minimum feel pass:** smallest audio, visual, animation, camera, or timing additions
 - **Three outcomes:** success, retreat, and failure when relevant
-- **Prototype questions:** observations to collect from playtests
+- **Prototype questions:** observations about perception, timing, feel, or comprehension to collect from playtests
 
 Do not solve weak feel by adding UI alone. Do not confuse mechanical complexity with meaningful tension. Recommend `eldraine-player-lens` for audience differences and `eldraine-balance-modeler` for numerical tuning. Do not edit GDD unless asked.
