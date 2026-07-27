@@ -74,9 +74,21 @@ Before writing, assign one responsibility to each affected file:
 
 - semantic index — статические wikilinks с кратким назначением и условием чтения;
 - universal system — shared rules and state transitions;
-- content instance — one sector, anomaly, faction, or other concrete realization;
-- registry or matrix — stable IDs and structured source data;
+- entity page — identity, in-world context, relations, and the entity's own lived or institutional reality;
+- content instance — one sector, anomaly, encounter, or other concrete realization of an existing grammar;
+- interface registry — one normalized relation between an entity and a mechanic;
+- registry or matrix — stable atomic IDs, records, and structured source data;
 - Dataview view — optional filtered presentation of already canonical data.
+
+Use **entity page + interface registry + system owner** for a faction, Hearth, place, culture, NPC, or other entity that participates in several mechanics:
+
+1. The entity page answers what the entity is. It does not own rewards, state transitions, formulas, validators, runtime IDs, or service resolution merely because the mechanic is presented through that entity.
+2. Each distinct playable interaction gets one interface record. The record names the entity, player-facing verb/result, the entity's role, one canonical mechanic owner, and an explicit boundary; it links to rules instead of copying them.
+3. The system page remains the only normative owner of rules and failure handling.
+4. The entity page may render a short linked list of interfaces. This is a projection, not a second contract.
+5. Create a separate player-experience page only when the entity has a unique multi-step lived loop. Do not create one file per semantic layer by default.
+
+An entity may be an `ADDRESS`, `ISSUER`, `PROVIDER`, `WITNESS`, `PRESENTER`, or `CONSUMER` of a mechanic. These roles describe participation, not authority. A missing mechanic owner is `MISSING_OWNER`; do not hide it in prose or assign it to the entity as a writing convenience.
 
 `00_Index.md` и другие обзорные страницы используют только статические wikilinks: каждая ссылка объясняет, что открывает страница и когда её читать. Индекс не является полным каталогом и не использует Dataview для навигации.
 

@@ -12,6 +12,8 @@ related_files:
   - "[[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction_Stabilization_Loop]]"
   - "[[08_World_Generation/Anomaly/14_Extraction_System|Extraction_System]]"
   - "[[04_Player_Entities/_Registries/Registry_Interaction_Families|Семейства взаимодействий]]"
+  - "[[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly]]"
+  - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Interfaces|Thermos Interfaces]]"
 ---
 # Механика: Архитектура Инвентаря (Mass & Access)
 
@@ -48,3 +50,52 @@ related_files:
 * **Выбор:** рюкзак дает объем лута, капсула найденыша дает будущего персонажа, тело может вернуть страховку или закрыть контракт.
 * **Манифест:** на выходе защищается только фактически занятый Back Slot. Брошенный генератор, тело или капсула не считаются эвакуированными и получают отдельный исход финальной Стабилизации.
 * **Носитель:** у груза один текущий carrier. Передача, кэш, волочение или эстафета остаются физическими состояниями мира; они не создают виртуальный общий инвентарь и не снимают массу, bulk либо риск потери.
+
+## 3. ItemID, custody и сборка Термоса
+
+`INVENTORY_CUSTODY` единолично владеет существованием, текущим владельцем/контейнером и reservation-state каждого физического `ItemID`. [[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly]] решает законность монтажа, но не может клонировать, самовольно перемещать либо считать свободным предмет, которого нет в подтверждённом custody snapshot.
+
+```yaml
+ItemCustodySnapshot:
+  item_id: ItemID
+  item_definition_id: DefinitionID
+  custody_revision: Revision
+  current_container: StashID | AssemblyID | RaidEntityID | WorldEntityID
+  condition_revision: Revision
+  reservation_state: FREE | PREPARED(ReservationID) | COMMITTED(AssemblyID)
+```
+
+### Prepare / commit
+
+Монтаж у мастера использует одну транзакционную границу:
+
+1. `AssemblyDraft` передаёт список требуемых реальных `ItemID` и ожидаемые revisions.
+2. `INVENTORY_CUSTODY` атомарно проверяет существование, контейнер, condition и отсутствие другого reservation.
+3. Успешный prepare создаёт durable `ItemReservation`; он ещё не меняет живую сборку.
+4. Assembly Resolver проверяет fit, topology, service legality и effect/debt contracts только на подготовленных snapshots.
+5. Финальный commit одной операцией:
+   - привязывает новые ItemID к `AssemblyID`;
+   - возвращает снятые ItemID в указанный легальный контейнер;
+   - фиксирует новый `assembly_revision`;
+   - завершает reservation.
+6. Любой отказ до commit оставляет прежнюю сборку и custody без частичного монтажа. После подтверждённого commit восстановление после сбоя читает durable journal, а не откатывает предметы в два места.
+
+Один `ItemID` не может одновременно находиться в двух reservations, сборках либо контейнерах. Повреждение меняет `condition_revision`, но не создаёт новый предмет.
+
+### Preset и ghost plan
+
+Preset хранит DefinitionID, желаемые patterns и предпочтения замены. Он не хранит custody и не резервирует ItemID. После потери сборки ghost plan может помнить состав и показывать отсутствующие части, но:
+
+- не создаёт уничтоженный предмет;
+- не выбирает substitute без preview;
+- не подтверждает денежную цену;
+- не обходит новый fit/topology/service resolver;
+- не превращает одну редкую вещь в несколько подготовленных комплектов.
+
+## 4. Граница полномочий
+
+- Inventory владеет `ItemID`, custody, condition revision, Ready Access и Back Slot.
+- Thermos Assembly владеет fit/topology/service-legality и атомарным составом сборки.
+- [[07_Gear_Inventory/Physical_Weight|Physical Weight]] владеет итоговой массой и load stages.
+- Экономика владеет получением, ценой и заменой, но не монтажной законностью.
+- Повреждённый support-модуль не запускает полевой демонтаж или каскадный пересчёт legality. Его runtime-эффект может отключиться; повторная полная валидация выполняется только у мастера.

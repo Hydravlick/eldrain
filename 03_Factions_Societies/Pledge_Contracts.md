@@ -15,7 +15,7 @@ related_files:
 related_mechanics:
   - "[[03_Factions_Societies/Reputation_Rules|Reputation_Rules]]"
   - "[[03_Factions_Societies/Quest_Engine|Quest_Engine]]"
-  - "[[08_World_Generation/Generation/19_Access_Contracts|Access_Contracts]]"
+  - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
   - "[[06_Economy_Loot/Vendor_Logic|Vendor_Logic]]"
 ---
 # Поручения, адрес вклада и допуски

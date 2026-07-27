@@ -18,6 +18,7 @@ related_files:
   - "[[07_Gear_Inventory/Gear_Progression|Gear_Progression]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
   - "[[04_Player_Entities/_Registries/Registry_Interaction_Families|Семейства взаимодействий]]"
+  - "[[04_Player_Entities/_Registries/Registry_Parameter_Contracts|Реестр параметрических контрактов]]"
 ---
 # Система: Магия и Батареи
 
@@ -47,18 +48,39 @@ ActiveCellCapacity = BaseActiveCellCapacity(N)
 
 `N` и стоимость расширения — `UNKNOWN` до прототипа. Кассета Термоса расширяет только эту очередь: она даёт магу больше заранее подготовленных источников и более длинную непрерывную батарейную последовательность, но не создаёт вторую ману и не усиливает отдельный импульс.
 
+`MAGIC_BATTERIES` принимает `installed_battery_rack` только из committed [[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly Snapshot]] и разрешает запрос через `prepared_battery_queue_capacity`. Кассета не меняет `BaseServiceCapacity`, не финансирует собственный монтаж и не пишет результат очереди обратно в assembly-legality.
+
 При вооружении очереди каждая батарея заранее и явно назначается либо в `Weapon Circuit`, либо в `Casting Circuit`; её качество и число импульсов остаются отдельным пакетом. Маршрутизация каждого пакета необратима:
 
 ```text
 Full Battery
   -> назначить Weapon Circuit или Casting Circuit
-  -> батарея немедленно становится Drained Cell
-  -> выбранный ActiveImpulseQueue получает пакет Battery.ChargeCount
+  -> atomic discharge: Full Battery становится Drained Cell, создаётся один ImpulsePacket
+  -> выбранный ActiveImpulseQueue получает этот пакет
   -> текущий ImpulseReserve берёт следующий пакет только после исчерпания предыдущего
   -> действие расходует собственный impulse_cost
 ```
 
-`Weapon.ImpulseReserve` и `Casting.ImpulseReserve` раздельны. Переданные импульсы нельзя вернуть в целую батарею, переложить между контурами или усреднить между пакетами разного качества. Следующий пакет активной очереди не отменяет Heat, Bloom, Recovery или Dissonance предыдущего; когда очередь исчерпана, новая подготовка снова требует обычного уязвимого окна. Решение принимается до действия: вложить источник в оружейный цикл или подготовить боевые Q/E.
+Разрядка является одной атомарной транзакцией:
+
+```yaml
+ImpulsePacket:
+  packet_id: SourceBatteryID × ChargeEpoch
+  source_battery_id: BatteryID
+  charge_epoch: ChargeEpoch
+  packet_scope_id: PresenceEpoch × SessionID
+  assigned_circuit: WEAPON | CASTING
+  quality_snapshot: BatteryQuality
+  initial_charges: ChargeCount
+  consumed_charges: 0..ChargeCount
+  state: QUEUED | ACTIVE | DEPLETED | TOMBSTONED
+```
+
+Транзакция CAS-ит физическую батарею `FULL(ChargeEpoch) → DRAINED(ChargeEpoch)` и создаёт ровно один `PacketID`. Повтор той же команды возвращает существующий результат и не создаёт пакет заново. После будущей зарядки батарея получает новый `ChargeEpoch`, поэтому старый и новый пакет не имеют одинаковой identity.
+
+`Weapon.ImpulseReserve` и `Casting.ImpulseReserve` раздельны. Переданные импульсы нельзя вернуть в целую батарею, переложить между контурами, усреднить или смешать с другим пакетом. Cancel до atomic discharge ничего не меняет; после commit unspent charges остаются только в назначенном packet. Reconnect той же Presence восстанавливает `consumed_charges`; смена оружия, loadout или circuit не переносит остаток. При terminal Session/Presence остаток получает `TOMBSTONED` и не возвращает заряд, предмет или экономическую ценность. Исчерпанный packet становится `DEPLETED`.
+
+Следующий пакет активной очереди не отменяет Heat, Bloom, Recovery или Dissonance предыдущего; когда очередь исчерпана, новая подготовка снова требует обычного уязвимого окна. Решение принимается до действия: вложить источник в оружейный цикл или подготовить боевые Q/E.
 
 Маршрутизация всегда подтверждается явно. Система не выбирает скрыто лучшую батарею при первом нажатии Q/E. Конкретная клавиша и экран выбора определяются прототипом управления, но игрок видит качество источника, число передаваемых импульсов и целевой контур до подтверждения.
 
@@ -109,7 +131,7 @@ Full Battery
 
 - **Механика:** 3 заряда в том же размере инвентаря.
 - **Ограничение:** между импульсами нужен cooldown; быстрый повтор повышает heat и bloom.
-- **Перезарядка:** после третьего заряда батарея становится `Drained_Cell` и заменяется (`R`).
+- **Исчерпание:** после третьего импульса packet становится `DEPLETED`; физическая батарея уже стала `Drained Cell` при создании packet и остаётся переносимым пустым предметом.
 
 ### Редкая батарея (Anchor Cell)
 [consumable:: anchor_cell]
@@ -126,8 +148,9 @@ Full Battery
 ```text
 Full Battery
   -> явная маршрутизация в Weapon Circuit или Casting Circuit
-  -> Drained Cell возвращается в переносимый инвентарь
-  -> Selected.ImpulseReserve += Battery.ChargeCount
+  -> atomic FULL(epoch) → DRAINED(epoch) + unique PacketID
+  -> Drained Cell остаётся в переносимом инвентаре
+  -> PacketID добавляется в выбранную очередь без смешивания
   -> действие расходует impulse_cost
   -> heat + recovery + профильный DissonancePulse
   -> cooldown, следующая подготовка или пустой резерв
@@ -135,19 +158,19 @@ Full Battery
 
 Оружие и кастерский контур не хранят физическую батарею после транзакции. Они хранят уже переданный внутренний запас импульсов. `Drained Cell` появляется сразу, остается физическим предметом и может быть вынесена для зарядки в Хабе.
 
-Разные батареи передают разное число и качество импульсов. В MVP непустой резерв нельзя дозарядить или смешать с другим качеством источника. Frame и способность задают `impulse_cost`, Heat, Recovery и допустимый Overcharge.
+Разные батареи передают разное число и качество импульсов. В MVP непустой packet нельзя дозарядить или смешать с другим качеством источника; очередь хранит отдельные PacketID. Frame и способность задают `impulse_cost`, Heat, Recovery и допустимый Overcharge.
 
 ### Локальное владение батарейного цикла
 
 Батарейный цикл не читает универсальные RPG-атрибуты и не вычисляет общий рейтинг силы. Конкретные владельцы публикуют только свои величины:
 
-- `BatteryID` владеет `charge_count`, стабильностью пакета, доступными режимами импульса и собственным `DissonancePulse`;
+- `BatteryID` владеет `charge_count`, стабильностью пакета, доступными режимами импульса и intrinsic debt передачи;
 - `FrameID.NativeAction` владеет оружейными `impulse_cost`, Heat/Bloom, пределом режима и Recovery;
 - `HeroKitID.ActionID`, authored для конкретной комбинации `Race × Spec`, владеет результатом полной или малой версии, её геометрией, телеграфом, `impulse_cost` и долгом;
 - `BodyID.CantripState` владеет переходами `Clear / Strained / Scarred / Broken` и конкретной поставленной под риск функцией;
 - `InventoryOwner` владеет размером активной очереди, размещением целых и пустых ячеек и Ready Access; физическая переносимость не добавляет импульсы.
 
-Heat, Overload, Vent и Recovery одного источника проходят `thermal_cycle` из [[04_Player_Entities/_Registries/Registry_Interaction_Families|реестра семейств взаимодействий]]. Допустимый `downstream_edges` имеет вид `source.property -> owner.parameter`: одна причина меняет один конечный результат и получает одну читаемую цену в той же сцене. Например, стабильность конкретной батареи может уменьшить `FrameID.NativeAction.heat_spike`, но тем же edge не сокращает Recovery, не добавляет заряд и не глушит Pulse. Модуль или authored-P может объявить другую локальную связь, но не становится совладельцем результата и не отменяет обязательный долг.
+Heat, Overload, Vent и Recovery одного источника проходят `thermal_cycle` из [[04_Player_Entities/_Registries/Registry_Interaction_Families|реестра семейств взаимодействий]]. Допустимый `downstream_edges` имеет вид `source.property -> owner.parameter`: одна причина меняет один конечный результат и получает одну читаемую цену в той же сцене. Например, стабильность конкретной батареи может уменьшить `FrameID.NativeAction.heat_spike`, но тем же edge не сокращает Recovery, не добавляет заряд и не глушит Pulse. Батарея — contributor: её packet request проходит policy владельца параметра; он не создаёт второй Pulse поверх Dissonance occurrence действия. Модуль или authored-P может объявить другую локальную связь, но не становится совладельцем результата и не отменяет обязательный долг.
 
 Ячейка в cargo не входит в Ready Access или ActiveImpulseQueue только потому, что тело способно её нести.
 

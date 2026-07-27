@@ -52,6 +52,14 @@ Check:
 3. Social and cultural logic.
 4. Fiction-to-mechanics connection.
 
+For a faction, Hearth, people, place, NPC, or other world entity, distinguish:
+
+- **in-world authority** — what people recognize the entity as entitled or obliged to decide, witness, provide, remember, or present;
+- **playable interface** — the bounded role through which the player encounters that authority;
+- **mechanic authority** — the system that actually resolves eligibility, state, cost, result, and failure.
+
+The lore page owns the first layer. It may explain why a Hearth is trusted to issue a seal or acknowledge a testimony, but it does not inherit the contract lifecycle, reward, access check, combat effect, roster transition, or runtime resolver. Require an interface record and a canonical mechanic owner for every playable claim. When no owner exists, return `MISSING_OWNER`; do not turn an evocative institution into a system as a reconciliation shortcut.
+
 Choose one verdict:
 
 | Verdict | Meaning |
@@ -81,6 +89,7 @@ If evidence is insufficient, say what remains unknown. Do not invent canon.
 - Do not treat every blank space as an error.
 - Do not forbid retcons; label their cost and affected dependencies.
 - Do not resolve a deliberate mystery merely to remove ambiguity.
+- Do not use social authority as proof of runtime authority.
 - Do not accept a `fixed` status as proof that the player-facing problem is solved.
 - Do not perform full balance or audience reviews; recommend the matching Eldraine skill.
 - Do not modify project documents without a direct request.

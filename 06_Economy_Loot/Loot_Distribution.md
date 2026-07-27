@@ -79,7 +79,7 @@ related_files:
 Модель Термоса и свободный модуль являются разными физическими предметами.
 
 - модель определяет посадку, вес и топологию;
-- модуль несёт функцию, позицию, `slot_size` и `module_cost`;
+- Module Definition несёт allowed mount patterns, `service_load` и EffectContracts; конкретный ItemID получает selected pattern и occupied nodes только в committed assembly;
 - найденный модуль остаётся Cargo до работы Мастера в Хабе;
 - готовая сборка может быть трофеем, но не обходит повторную проверку fit и ёмкостей новой Пешки;
 - `blocked_calibration` не появляется в активном лут-пуле.

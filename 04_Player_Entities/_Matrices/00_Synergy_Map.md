@@ -116,12 +116,13 @@ function displayName(header) {
 }
 
 function entityRecord(page) {
+    const baseVector = cleanId(page.base_vector);
     return {
         id: cleanId(page.id),
         name: page.display_name || page.file.name,
         path: page.file.path,
-        baseVector: cleanId(page.base_vector),
-        weakTo: Array.from(page.weak_to || []).map(cleanId).filter(Boolean)
+        baseVector,
+        weakTo: Object.keys(paradoxRules).filter(vector => dominates(vector, baseVector))
     };
 }
 
@@ -477,7 +478,7 @@ try {
     });
 
     if (!profiles.length) {
-        info.textContent = "Недостаточно данных: проверьте req_race, req_spec, base_vector и weak_to.";
+        info.textContent = "Недостаточно данных: проверьте req_race, req_spec и base_vector.";
         return;
     }
 

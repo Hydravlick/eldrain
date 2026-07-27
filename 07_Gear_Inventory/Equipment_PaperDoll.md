@@ -17,6 +17,7 @@ related_files:
   - "[[07_Gear_Inventory/Gear_Progression|Gear_Progression]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Thermoses|Registry_Thermoses]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
+  - "[[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly]]"
 ---
 # Кукла Персонажа (Equipment Slots)
 
@@ -32,10 +33,10 @@ related_files:
 2.  **Filter Slot (Фильтр):** Сменный картридж. Если таймер фильтра истек, маска перестает защищать.
 
 ### Б. Тело (Body Zone)
-1. **Body Base (Основа):** выбранная модель Термоса с `slot_count`, `slot_layout`, `fit_system` и собственным весом.
-2. **Module Slots:** физические позиции конкретного Термоса. Один модуль может занимать один или несколько узлов и обязан совпадать с `module_positions`.
-3. **Profile Capacity:** отдельная панель Пешки показывает доступную и занятую ёмкость семейств `plate`, `optic`, `seal`, `conduit`, `rig`, `weave`.
-4. **Installed State:** после работы мастера все функциональные модули получают состояние `stitched_locked`. В рейде их можно осматривать, но нельзя переставлять.
+1. **Body Base (Основа):** реальный экземпляр модели Термоса с `fit_envelope`, `FitRecord`, физическими `mount_nodes` и собственной массой.
+2. **Installed Modules:** кукла показывает выбранный pattern каждого реального ItemID и фактически занятые nodes из committed `ThermosAssemblySnapshot`; она не решает topology сама.
+3. **Service Panel:** отдельная панель показывает `Base / SupportLoad / Final / Used / Remaining` по затронутым семействам `plate`, `optic`, `seal`, `conduit`, `rig`, `weave`.
+4. **Installed State:** `stitched_locked`, damage и выбранный `active_body_interface_module_id` принадлежат экземпляру сборки. В рейде их можно осматривать, но нельзя переставлять.
 
 Количество заплат и карточная внешность не создают слот и не повышают профильную ёмкость. Скрытый трансмог не используется.
 
@@ -53,6 +54,6 @@ related_files:
 
 ---
 ## 3. Визуализация
-У мастера сначала выбираются Пешка и модель Термоса. Кукла показывает физические позиции, свободные слоты, профильные ёмкости и раздельную стоимость каждого модуля. До подтверждения игрок видит итоговый вес, покрытие, среду и Mission Readiness; после подтверждения швы закрываются замками.
+У мастера сначала выбираются Пешка и модель Термоса. Кукла показывает nodes, допустимые mount patterns, затронутые service families и `service_load` каждого модуля. До подтверждения игрок видит единый список причин отказа и доменные проекции массы, Диссонанса, эффектов и покрытия. Покрытие показывает тот же Ballistics-owned `ResolvedCoverageSnapshot`, который использует hit resolver; PaperDoll не строит собственную геометрию.
 
 В Аномалии экран работает только на чтение: видны установленные, повреждённые и отключённые модули, но перетаскивание недоступно. Маска остаётся отдельным предметом, а визуальная отделка не скрывает фактическую геометрию Термоса.

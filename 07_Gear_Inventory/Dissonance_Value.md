@@ -79,4 +79,4 @@ current_dissonance = base_dissonance * sync_multiplier
 - боевую силу;
 - право входа в Tier само по себе.
 
-Диссонанс является верхней границей риска в [[08_World_Generation/Generation/19_Access_Contracts|Access Contracts]] и входом в [[05_Combat_Survival/Dissonance_System|Dissonance_System]].
+Диссонанс является отдельной верхней границей риска, показываемой рядом с [[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Entry Quote]], и входом в [[05_Combat_Survival/Dissonance_System|Dissonance_System]].

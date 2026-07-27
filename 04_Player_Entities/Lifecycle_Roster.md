@@ -1,159 +1,104 @@
 ---
-type: mechanic
+type: system_contract
 status: active
-system: player_core
-tags: [roster, permadeath, extraction, foundlings, readiness, breakline]
+system: player_lifecycle_roster
+tags: [roster, permadeath, readiness, presence, recovery, life_closure]
 related_files:
-  - "[[04_Player_Entities/Entity_Grimoire|Entity_Grimoire]]"
-  - "[[04_Player_Entities/Spawn_Logic|Spawn_Logic]]"
-  - "[[04_Player_Entities/Trait_Development|Trait_Development]]"
-  - "[[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction_Stabilization_Loop]]"
-  - "[[08_World_Generation/Generation/19_Access_Contracts|Access_Contracts]]"
-  - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
+  - "[[04_Player_Entities/Last_Thread_Recovery|Last Thread Recovery]]"
+  - "[[04_Player_Entities/Lifecycle_Resolver|Lifecycle Resolver]]"
+  - "[[04_Player_Entities/Recovery_Lifecycle|Recovery Lifecycle]]"
+  - "[[04_Player_Entities/Life_Closure|Life Closure]]"
+  - "[[04_Player_Entities/Spawn_Logic|Spawn Logic]]"
+  - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid Approach and Entry]]"
+  - "[[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion Logic]]"
 ---
-# Жизненный Цикл Пешки
+# Lifecycle Roster
 
-## 1. Колода Оболочек (Shell Deck)
-Ростер представлен картами на операционном столе Хаба.
-* **Лимит колоды:** 3 активных слота (расширяется модулями Хаба).
-* **Активный персонаж:** Карта, выбранная для Рейда.
-* **Запас:** Неактивные персонажи остаются жителями Хаба и представлены личными делами, контрактами или медицинским статусом.
-* **Кладбище (Graveyard):** При смерти Оболочки карта сгорает.
+> Active owner of roster membership, readiness, Pawn Presence, terminal projection, and the one account-level Last Thread slot. A roster is a population of named people, not an active deck.
 
-Все карты обозначают смертных людей со своим прошлым. Ростер не является коллекцией пустых тел.
+## Responsibility
 
-### Независимые оси Пешки
+`LIFECYCLE_ROSTER` owns roster membership and derived counts; `readiness`, deployability and the authoritative `PawnPresenceLease` projection; the account's single `account_last_thread_slot` and its exactly-once release after a terminal Recovery result; and projection of terminal `KIA`, `LOST_CLOSED`, and living `CLOSED_CIVIC` states from their owning resolvers.
 
-Карточка не сводит человека, его происхождение и текущую готовность в один тип или рейтинг. Запись Пешки хранит независимые оси:
+It does **not** classify a lethal event, accept a Recovery request, create or resolve a `RecoveryCase`, bind Recovery to a raid, set its clock, own `LifeClosure` readiness or write Chronicle facts. It also does not impose active slots, a Shell Deck, or a Reserve state.
 
-| Ось | Что фиксирует | Чего не определяет |
-|---|---|---|
-| `origin` | как человек вошёл в историю ростера: городской житель, квестовый союзник, спасённый Foundling или иной живой источник | человеческую ценность, доступ к рейду или силу бесплатного набора |
-| `civic_status` | текущее отношение города: житель, подопечный (`Ward`), пациент, спорный прибывший и другие правовые или заботящие статусы | тип Пешки, принадлежность игроку или разрешённый Tier |
-| `readiness` | может ли живой человек быть выбран сейчас: `Ready`, `Care`, `MIA` или другое явно заданное состояние | качество героя, происхождение и содержимое схрона |
-| `hero_kit` | устойчивую комбинацию `Race × Spec`, её P/Q/E, арсенал и профильные ёмкости | биографию, гражданский статус и источник экипировки |
-| `personal_tags` | до трёх лёгких или ситуационных свойств тела, освоенного действия либо физического носителя | Chronicle, незавершённые цели, Access Price, стоимость тела или право печатать снаряжение |
+## Pawn record and Presence
 
-`loadout_source` является полем конкретной подготовки: собственный схрон, вынесенный предмет, Welfare loan или иной физический источник. Выбранный [[08_World_Generation/Generation/19_Access_Contracts|Access Contract]] принадлежит вылазке. Ни одно из этих полей не является свойством ценности Пешки и не меняет её `origin`, `civic_status`, `hero_kit` или `chronicle`.
+Each Pawn keeps independent identity axes: origin, civic status, hero-kit, personal tags, Chronicle facts, lifecycle state, and physical loadout preparation. None is a value rating or a right to deploy.
 
-### ReadyCount
+```yaml
+PawnLifecycle:
+  pawn_id: PawnID
+  account_id: AccountID
+  readiness: READY | IN_RAID | MIA | CARE | CLOSED | KIA | LOST_CLOSED
+  presence_lease:
+    state: HUB | RAID | RECOVERY_TRANSIT | CARE | TERMINAL
+    session_id: null | SessionID
+    entity_id: null | EntityID
+    presence_epoch: PresenceEpoch
+  terminal_projection: null | KIA | LOST_CLOSED | CLOSED_CIVIC
 
-```text
-ReadyCount(AccountID) = число живых Пешек аккаунта с readiness = Ready и deployable = true
+AccountLifecycle:
+  account_id: AccountID
+  account_last_thread_slot: EMPTY | CaseID
 ```
 
-- подсчёт охватывает весь ростер, включая Reserve и готовых Foundlings, а не только три активные карты;
-- `deployable` здесь означает ростерную доступность живого человека, а не результат `CanDeploy` для конкретного контракта;
-- отсутствие оружия, дорогого комплекта или выбранного active-slot не уменьшает `ReadyCount`;
-- `Care`, `MIA` и подтверждённая смерть не считаются Ready;
-- ручное перемещение живой готовой карты в Reserve не создаёт пустой ростер;
-- новый подопечный Первого Приёма считается Ready сразу после атомарного принятия в ростер, а не после обязательной «квалификационной» экстракции.
+`UNIQUE_ACTIVE(PawnID)` is mandatory: one Pawn can have no more than one non-terminal Presence. `RECOVERY_TRANSIT` is not a raid body and is not a completed or accepted Recovery Case; it is only the roster projection after the atomic source-raidside handoff has finished.
 
-### Термос и профильные ёмкости на карте Пешки
-
-Карточка Пешки показывает стабильные `module_capacity` её authored hero-kit `Race × Spec`. Личные теги не меняют эти ёмкости; выбранный [[07_Gear_Inventory/Thermos_System|Термос]] остаётся сменным предметом с собственными слотами и посадкой.
-
-- Пешка может владеть несколькими Термосами и менять их в Хабе.
-- Перед Deploy мастер проверяет посадку, физические позиции и сумму `module_cost` по каждому семейству.
-- Уже вшитая сборка другого владельца не обходит ёмкости новой Пешки и требует повторной проверки.
-- Памятные заплаты могут отражать историю экземпляра, но не дают слот, ёмкость или боевой уровень.
-- В Аномалии сборка заблокирована; найденные модули остаются Cargo до возвращения.
-- При подтверждённой смерти надетый Термос и модули выпадают как обычное снаряжение. Вещи, оставленные в Хабе, сохраняются в схроне.
-
-## 2. Получение Новых Пешек
-
-Новые персонажи входят в ростер несколькими путями:
-
-- конкретные жители доступны как социальная или контрактная поддержка;
-- жители присоединяются после выполненных поручений;
-- фракции передают специалиста за доверие или услугу;
-- раненых, пленных и стазисных выживших можно спасти из Аномалии.
-
-Если после разрешения судьбы предыдущей вылазки `ReadyCount = 0`, [[04_Player_Entities/Spawn_Logic|Spawn_Logic]] атомарно вводит в ростер одного конкретного живого подопечного Первого Приёма. Он приходит без проявленного gameplay-trait, без карусели кандидатов, ожидания, ухудшения характеристик или усиления за прошлые смерти. Это другой человек, а не восстановленная погибшая Пешка.
-
-### Механика получения
-1.  **Находка:** В мире встречаются раненые жители, пленники и маги-капсулы с древними выжившими.
-2.  **Эвакуация:** Игрок физически выносит человека или капсулу.
-3.  **Восстановление:** В безопасной зоне раскрываются личность, hero-kit, биография и, для спасённого Foundling, один обычный `Origin`-тег.
-4.  **Решение:** Предложить место в ростере / передать безопасной стороне или фракции / отказаться от контракта.
-
-## 3. Происхождение, а не сорт людей
-
-* **Городской вход:** конкретный живой житель приходит через поддержку, поручение или Первый Приём. Источник не задаёт отдельный каталог силы и не делает человека расходным телом.
-* **Foundling (Найдёныш):** спасённый житель, древний выживший или человек с выраженным прошлым. Его ценность создают сочетание `hero_kit`, одного уже проявленного Origin tag, прожитой истории, связей и будущих ситуаций, а не отдельная человеческая категория.
-
-Любая Ready-Пешка может быть выбрана для обычного shared-рейда. Доступ к конкретному сектору определяет вылазка и её реальные проверки, а не происхождение, статус Ward, Chronicle, личный tag или источник loadout. Базовая Пешка способна победить, эвакуироваться и измениться в пределах своей жизни. Кантрипная сила не растёт от близости смерти, а не закреплённый батарейным устройством эффект прекращается вместе с дееспособностью пользователя.
-
-### Коридор стоимости Пешки
-
-Пешка хранит личность и до трёх Personal Tags, но не присваивает себе весь билд аккаунта. Hero-kit, его базовые Frame, рецепты, схрон, городские сервисы и модульный каталог переживают KIA. Теги могут локально менять цену одного действия или сильнее переписывать правило при видимом trigger; Frame-mastery является узким исключением и добавляет один открытый шаг владения одному названному Frame. Теги не создают общий stat, новый P/Q/E или module capacity. Foundling получает один Origin раньше Ward, но не более высокий предел.
-
-Следствие для решения в рейде: игрок защищает конкретного человека и его незавершённые линии, а не многомесячный пакет обязательного DPS. Normal Threshold остаётся способом спасти и человека, и добычу; Breakline даёт отдельную опасную попытку сохранить только человека, когда ставка уже рушится.
-
-## 4. Смерть и Неопределенная Судьба
-
-Смерть — окончательная потеря человека, а не техническая ротация карты.
-
-1.  **KIA (Убит):** Гибель подтверждена. Снаряжение выпадает, тело остается на карте, карта сгорает без возможности воскресить личность.
-2.  **MIA (Пропал):** Судьба не подтверждена. Персонаж недоступен ростеру и может стать целью отдельного Recovery-контента.
-3.  **Recovered:** Возвращение возможно только если персонаж не был подтвержденно мертв. Это спасение пропавшего, а не воскрешение.
-
-Финальная Стабилизация является подтверждённой смертью для Пешки игрока, оставшейся внутри рейдового инстанса. Она не получает `MIA` и не может вернуться через Recovery. Неопределённость сохраняется только для тех событий, где персонаж исчез до финала и контент явно не подтвердил гибель.
-
-Осколок сохраняет освоенный способ действия, но не память и личность погибшей Пешки.
-
-Смерть не конвертирует телесный долг в новый ресурс ростера. Новый Ward Первого Приёма является другим жителем и не наследует незавершённые поля, связи, контроль или телесные резервы погибшего.
-
-### Participation Claim
-
-Один аккаунт получает не более одного участия в одном живом рейдовом инстансе:
+## Readiness and derived counts
 
 ```text
-ParticipationClaim = AccountID × PawnID × SessionID
+ReadySelectable(AccountID) = all roster Pawns where
+  readiness = READY
+  AND Presence.state = HUB
+  AND terminal_projection = null
+
+ReadyCount = count(ReadySelectable)
+RecoverablePawnCount = count(Pawns referenced by an unresolved Case)
+LivingCareCount = count(Pawns where readiness = CARE)
 ```
 
-- цена, место и PawnID сначала резервируются; claim создаётся атомарно только при финально валидированном `BreachCommitted` и закрывается при Normal Threshold, успешном Breakline, KIA или ином терминальном исходе вылазки;
-- если безопасной точки нет до `BreachCommitted`, резервация откатывается и `ParticipationLedger` остаётся `NeverParticipated`;
-- освобождение Population Seat после ухода или смерти не даёт тому же `AccountID` второе участие в том же `SessionID`;
-- новый Ward после KIA доступен немедленно, но может войти только в другой SessionID;
-- squad contract не заменяет погибшего или ушедшего через Breakline участника новой Пешкой либо новым приглашённым игроком.
+`ReadySelectable` covers the full roster. A player may deliberately maintain a broad library of known specialists; no hidden three-slot cap or UI grouping can turn living members into non-members. A prepared loadout, an unavailable item, or the occupied account Last Thread slot does not change this count. The occupied slot merely makes Last Thread unavailable for another Pawn until its Case resolves.
 
-Мгновенная помощь аккаунту не является подкреплением продолжающегося боя.
-
-## 5. Breakline: возврат до смерти
-
-Breakline — аварийный личный выход живой Пешки из уже проигрываемой вылазки. Он сохраняет человека и его личные теги ценой всей текущей ставки, но не отменяет KIA и не является обязательным account gate.
+## State projection
 
 ```text
-ACTIVE
-  -> server-confirmed CATASTROPHE, Pawn ещё жив
-      -> продолжить путь к Normal Threshold
-      -> принять помощь союзника
-      -> объявить BREAKLINE
-
-BREAKLINE
-  -> blind seam reached: Person + Personal Tags return
-  -> pursuit wins: KIA
+ADMITTED → READY ↔ IN_RAID
+IN_RAID → CARE | MIA | KIA | RECOVERY_TRANSIT
+RECOVERY_TRANSIT → IN_RAID (only after ordinary Breach COMMIT) | CARE | KIA | LOST_CLOSED
+CARE → READY
+READY → CLOSED (only after Life Closure result)
+KIA | LOST_CLOSED | CLOSED are terminal roster states
 ```
 
-Обязательные границы:
+`MIA` denotes an authored unresolved fate outside Last Thread and does not by itself create a Case. `CLOSED` is a living civic outcome, never a death alias. A terminal state is projected only from the owner that resolves it; UI, tags, quests and equipment cannot write it directly.
 
-- Breakline доступен только в серверно подтверждённом `Catastrophe` до KIA; подтверждённая смерть необратима;
-- одного низкого HP, friendly/self-damage, logout или disconnect недостаточно для открытия состояния;
-- объявление необратимо: оно не лечит, не очищает состояния, не даёт неуязвимость, не возвращает боевой reset и не позволяет снова вооружиться;
-- Пешка получает несколько локально ощущаемых направлений к `blind seam`, а не единственную глобально отмеченную точку; точное число, расстояния и окно остаются прототипными значениями;
-- противник читает Breakline wake и может перехватить беглеца, но не получает точные маркеры всех seam;
-- каждый seam принимает только объявившую Breakline живую Пешку и не переносит её gear, cargo, contract claim или Living Cargo;
-- успешный Breakline возвращает ту же личность и личные теги, но сам по себе не гарантирует новый tag, контрактную награду или экономический результат;
-- `ParticipationClaim` этого SessionID закрывается независимо от успеха погони.
+## Account Last Thread slot
 
-Материальный `SortieStakeSnapshot`, Forfeit и права на физический wreck определяет [[06_Economy_Loot/Extraction_Stabilization_Loop#4.5 Breakline и необратимая ставка|контракт экстракции и стабилизации]].
+The account owns exactly one slot, initially `EMPTY`. An eligibility check or prepared intercept does not reserve it. During final atomic Case acceptance, this owner alone performs versioned `CAS(EMPTY → CaseID)` in the same commit that removes the source Presence and creates the Case. A failed CAS aborts the whole intercept; there is no intermediate `RESERVED` state to strand.
 
-### Найденыш на Плече
-Если погибает носильщик, найденыш не записывается в ростер автоматически и не считается спасенным.
+On immutable `RecoveryResolution(result, terminal_pawn_outcome, cause_ref)`, this owner releases the same `CaseID` exactly once and projects the supplied Pawn outcome without choosing between `CARE`, `KIA` or `LOST_CLOSED`.
 
-При объявлении Breakline капсула или тело Foundling физически падает до начала погони. Blind seam не принимает Living Cargo; дальнейший исход сохраняет обычный Rescue Timer и требует другого живого носителя.
+No accepted Case exists while the source `PawnPresenceLease` remains `RAID`. Participation/custody/physical-entity/Case changes are first prepared without visible effects; after the final slot precondition succeeds, one atomic commit simultaneously projects the lease to `RECOVERY_TRANSIT`, CASes `EMPTY → CaseID`, accepts the Case and exposes every prepared source projection. Any failed leg aborts the whole handoff and leaves the source raid authoritative.
 
-- **Rescued:** другой живой носитель принимает Back Slot, custody и весь оставшийся portable-support timer, затем физически выносит капсулу.
-- **Hostile Custody:** чужой игрок выносит капсулу; город разрешает происхождение, помощь, выкуп услуги и спор о custody, но не продаёт человека и не оценивает его как товар.
-- **Unresolved:** отсоединённая либо изначально Urgent-капсула получает authored-исход смерти, MIA или внешнего спасения. Нетронутая Routine-капсула не умирает из-за того, что игрок прошёл мимо: она остаётся герметичной, становится публичной находкой либо перемещается вместе с состоянием сектора.
+## Continuity admission boundary
+
+Recruitment remains a separate owner. It may read only the derived predicate:
+
+```text
+ContinuityAdmissionAllowed =
+  ReadyCount == 0
+  AND RecoverablePawnCount == 0
+  AND LivingCareCount == 0
+  AND PendingAdmissionCount == 0
+```
+
+It cannot use deliberate death, Closure, a Recovery transition, or temporary presentation state to mint a replacement. A new Ward is another person and inherits neither identity, Chronicle, tags, gear nor unresolved obligations.
+
+## Direct handoffs
+
+- [[04_Player_Entities/Lifecycle_Resolver|Lifecycle Resolver]] supplies authoritative lethal and STANDARD Dawn outcomes; this owner only projects them.
+- [[04_Player_Entities/Last_Thread_Recovery|Last Thread Recovery]] supplies a prepared intercept and source-handoff proofs; it cannot reserve or mutate the slot.
+- [[04_Player_Entities/Recovery_Lifecycle|Recovery Lifecycle]] supplies deterministic `CaseID` for the final atomic CAS and emits one immutable terminal result; it never owns the slot.
+- [[04_Player_Entities/Life_Closure|Life Closure]] emits an irreversible living closure result; it never writes roster membership or Chronicle.
+- [[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion Logic]] owns `PhysicalRaidEntity` materialization and publishes ordinary Breach `COMMIT`. `LIFECYCLE_ROSTER` consumes that fact and alone projects the corresponding `PawnPresenceLease`. These are distinct records. [[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid Approach and Entry]] owns only Approach/Binding/Quote and cannot create either.

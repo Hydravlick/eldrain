@@ -18,12 +18,18 @@ tags: [minimap, json, data_stream]
   "sector_phase": "ANOMALY",
   "current_tier": "T2",
   "time_to_phase_shift_sec": 312,
-  "time_to_stabilization_sec": 7512,
-  "access_contract": "prepared_t2",
+  "time_to_seal_sec": 3912,
+  "time_to_dawn_sec": 7512,
+  "approach_summary": "PREPARED",
+  "entry_quote_summary": {
+    "status": "CONFIRMED",
+    "shown_phase": "T2",
+    "entry_window": "OPEN",
+    "environment_forecast": "RISK"
+  },
   "environment_forecast": "RISK",
   "dissonance_state": "YELLOW",
-  "population_state": "OPEN",
-  "entry_closes_in_sec": 6612,
+  "entry_state": "OPEN",
   "fog_of_war_reset": false, // Нужно ли стереть открытую карту игрока
   "map_objects": [
     {
@@ -58,6 +64,6 @@ tags: [minimap, json, data_stream]
 |:---|:---|:---|
 | **VISIBLE** | критичные числа, нужные каждую секунду | HP, stamina, Weapon/Casting ImpulseReserve, выбранный источник Q/E, прогноз цены кантрипа при модификаторе, таймер Gate Check |
 | **DIEGETIC** | читается через мир и приборы | треск фильтра, гул перегрева, цвет тумана, маркеры карты |
-| **LATENT** | скрыто до наведения, сканера или Mission Readiness | точный DissonanceLoad, SurvivalScore, Access Price, Population Seat, шанс охоты, Tier-вариант POI |
+| **LATENT** | скрыто до наведения, сканера или готовности к рейду | точный DissonanceLoad, SurvivalScore, внутренняя доступность входа, шанс охоты, Tier-вариант POI |
 
-Mission Readiness показывает Latent-данные до входа. В рейде HUD держит только VISIBLE, а остальное отдает через звук, маску, карту и короткие предупреждения.
+До входа карта показывает готовность, прогноз и понятную карточку подхода/ставки. В рейде HUD держит только VISIBLE, а остальное отдаёт через звук, маску, карту и короткие предупреждения. Он не раскрывает технические очереди, резервации или внутренние идентификаторы входа.

@@ -14,7 +14,8 @@ related_files:
   - "[[07_Gear_Inventory/Dissonance_Value|Dissonance_Value]]"
   - "[[04_Player_Entities/_Registries/Registry_Tags|Registry_Tags]]"
   - "[[05_Combat_Survival/Threat_Thresholds|Threat_Thresholds]]"
-  - "[[08_World_Generation/Generation/19_Access_Contracts|Access_Contracts]]"
+  - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
+  - "[[04_Player_Entities/_Registries/Registry_Parameter_Contracts|Реестр параметрических контрактов]]"
 ---
 # Механика: Диссонанс (Dissonance)
 
@@ -68,7 +69,7 @@ Foreign-предметы создают полный фон. Native-лут си�
 - громкая аура;
 - адаптация, маскирующая тело от Аномалии.
 
-Профессия, страх, привычка или обычная травма не получают автоматическую цену Диссонанса. Их сила учитывается через `power_weight`, слот, несовместимость и игровые ограничения.
+Профессия, страх, привычка или обычная травма не получают автоматическую цену Диссонанса. Если конкретное свойство имеет механический эффект, его цена остаётся локальной: named slot, физическая несовместимость, конкретный debt или owner-bound effect. Общего `power_weight` не существует.
 
 Числа `dissonance_load` в реестрах являются предварительными до общей калибровки с предметами.
 
@@ -83,7 +84,11 @@ Foreign-предметы создают полный фон. Native-лут си�
 - активация эфирного устройства;
 - отдельные погодные и статусные реакции.
 
-Оружие хранит поле `[dissonance_pulse:: N]`.
+Каждый **physical occurrence** создаёт один `DissonanceEvent`; он может добавить не более одного Pulse-вклада. Действие, Backlash или среда публикуют request с физическим источником, а этот resolver принимает его по [[04_Player_Entities/_Registries/Registry_Parameter_Contracts#dissonance_occurrence|контракту Dissonance occurrence]]. Нельзя добавить отдельный Pulse за батарею, модуль и само действие, если это одна физическая вспышка.
+
+Committed [[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly]] передаёт только список установленных persistent-signature sources и contributor rules конкретных ItemID. `DISSONANCE_SYSTEM` единолично разрешает их итоговый постоянный вклад и occurrence events. Ни Module Definition, ни Assembly не складывают локальный `dissonance_load/pulse`, а итог Диссонанса не возвращается в монтажный resolver как право разрешить или запретить сам модуль.
+
+Оружие хранит профиль occurrence, а не независимый второй долг: `[dissonance_pulse:: N]` описывает вклад его NativeAction после разрешения.
 
 ```text
 RecentDissonancePulse =
@@ -98,23 +103,23 @@ Pulse:
 - сообщает Охотникам направление или район, но не обязательно точные координаты;
 - постепенно затухает, если игрок перестает фонить.
 
-В [[05_Combat_Survival/Combat_Three_Debts|Законе трёх долгов]] Pulse является отложенным слоем долга внимания и напряжения. Немедленная контригра обеспечивается телеграфом, направлением действия и `Action Recovery`; случайная будущая Охота не балансирует сильное действие в одиночку.
+В [[05_Combat_Survival/Combat_Three_Debts|Законе трёх долгов]] Pulse является отложенным слоем долга внимания и напряжения. Немедленная контригра обеспечивается телеграфом, направлением действия и `Action Recovery`; случайная будущая Охота не балансирует сильное действие в одиночку. `AcousticEvent` остаётся отдельным: один физический жест может породить и звук, и DissonanceEvent, но это два разных домена, не два Pulse.
 
 ## 4. Командная Угроза
 
 Для группы:
 
 ```text
-GroupLoad = Max(MemberDissonanceLoad) + sum(OtherMemberDissonanceLoad * 0.2)
+GroupLoad = DOMAIN_POLICY_AGGREGATE(MemberDissonanceLoad[])
 GroupPulse = sum(MemberRecentDissonancePulse)
 GroupPressure = GroupLoad + GroupPulse
 ```
 
 - Самый громкий постоянный билд задает базовый класс внимания.
-- Остальные участники повышают плотность угрозы.
+- Остальные участники повышают плотность угрозы по ещё не откалиброванной non-dominant aggregation policy.
 - Одновременный залп группы создает резкий Pulse независимо от стоимости их экипировки.
 
-Точные коэффициенты подлежат калибровке.
+Единицы, вес остальных участников и числовой corridor — `UNKNOWN` до модели и прототипа; активный контракт фиксирует только структуру агрегации.
 
 ## 5. Границы Термина
 
@@ -127,4 +132,4 @@ GroupPressure = GroupLoad + GroupPulse
 - физический шум шагов;
 - gear score для матчмейкинга.
 
-Это отдельная верхняя граница риска, связанная с [[08_World_Generation/Generation/19_Access_Contracts|Access Contracts]], но не заменяющая Gate Check, цену входа или размер группы.
+Это отдельная верхняя граница риска, проецируемая рядом с [[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Entry Quote]], но не заменяющая Gate Check, цену подхода или правила группы.

@@ -1,106 +1,119 @@
 ---
-type: mechanic
+type: system_contract
 status: active
-system: insertion
-tags: [lore_integrated, matchmaking, spawn_logic, sarcophagus, squad_mechanics]
+system: raid_ingress
+tags:
+  - ingress
+  - admission
+  - breach
+  - spawn_safety
+  - participation
 related_files:
-  - "[[08_World_Generation/Generation/13_Async_Double_Buffer|Async_Double_Buffer]]"
-  - "[[04_Player_Entities/Lifecycle_Roster|Lifecycle_Roster]]"
-  - "[[08_World_Generation/Generation/19_Access_Contracts|Access_Contracts]]"
-  - "[[08_World_Generation/Generation/08_Gate_Check|Gate_Check]]"
+  - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid Approach and Entry]]"
+  - "[[08_World_Generation/Generation/20_Egress_Solvency|Egress Solvency]]"
+  - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]]"
+  - "[[04_Player_Entities/Spawn_Logic|Spawn Logic]]"
+  - "[[08_World_Generation/_Registries/Registry_Raid_Interfaces|Raid interfaces]]"
 ---
-# Логика Входа: Протокол "Саркофаг"
+# Insertion Logic
 
-## 1. Мета-Концепция: Транзит
-**Лор:** Пешки доставляются в Аномалию физически через древнюю сеть подземных Пневмо-Магистралей. В момент открытия крышки внимание Осколка полностью сходится на выбранной Пешке; для неё это ощущается как собственное пробуждение и собранность, а не внешнее подключение.
-**Техника:** Асинхронное подключение к уже идущей сессии.
+> Физический вход — не поездка и не безопасная комната. Это атомарный перевод подтверждённого намерения в уязвимое присутствие внутри уже живого сектора.
 
----
+## Responsibility
 
-## 2. Поиск Канала (Matchmaking)
-> *«Диспетчер ищет стабильную частоту в Шторме...»*
+`INSERTION_ADMISSION_RESOLVER` владеет `AdmissionHold`, проверкой текущей допустимости кандидата и освобождением временных ресурсов.
 
-**System Logic:**
-При нажатии "Deploy" система фильтрует список активных серверов по выбранному [[08_World_Generation/Generation/19_Access_Contracts|Access Contract]]:
+`INSERTION_BREACH_COORDINATOR` владеет:
 
-1.  **Ping Limit:** < 100ms (стабильность нейро-линка).
-2.  **Contract Tier:** контракт совпадает с фазой сектора: T1 Walk-In, Prepared T2, Deep T3, Late Service Drop или Mixed High-Risk.
-3.  **Stabilization Safety:** стандартный вход запрещён, если до финальной Стабилизации меньше 15 минут. Исключением может быть только заранее объявленный `Late Service Drop` с собственной поздней целью; это добровольный общий контракт, а не recovery-маршрут после потери ростера.
-4.  **Environment Forecast:** Mission Readiness показывает `OK/Risk/Fail`. `Fail` блокирует стандартный вход, если Пешка погибнет до агентности.
-5.  **Dissonance Budget:** `DissonanceLoad` не превышает hard-limit выбранного сектора.
-6.  **Population Seat:** кол-во игроков ниже целевого лимита для текущей фазы и размера группы.
+- финальным выбором и повторной проверкой физической точки;
+- единственным durable-решением `BreachTransaction=COMMIT|ABORT`;
+- атомарным созданием `ParticipationClaim` и runtime `PhysicalRaidEntity` при `COMMIT`;
+- первым доступным body frame после входа.
 
-Система не считает среднюю стоимость экипировки группы и не сортирует игроков по скрытому gear score.
+Эти владельцы не выбирают скрытую цель, не меняют `EntryQuote`, не определяют цену подхода, не считают обеспеченность выхода, не решают судьбу на Dawn и не создают специальные Recovery-инстансы. `PhysicalRaidEntity` — симулируемое тело мира; отдельный `PawnPresenceLease` является проекцией [[04_Player_Entities/Lifecycle_Roster|Lifecycle Roster]].
 
-### Direct T2/T3 Entry
+## AdmissionHold
 
-Прямой вход в T2/T3 разрешен, если контракт оплачен или получен через фракцию, ключ, долг, след расследования или событие.
+Подтверждённый `EntryQuote` может открыть один ограниченный по времени `AdmissionHold`. Hold связывает Account, Pawn, sealed party roster, loadout snapshot, target epoch и quote revision. Он временно удерживает только ресурсы подготовки входа.
 
-- `Prepared T2` - основной mid-core вход.
-- `Deep T3` - дорогой маршрут в фазу Пересборки.
-- `Late Service Drop` - добровольный периферийный поздний вход с объявленной работой для любой Ready-Пешки, прошедшей общий `CanDeploy`; это не очередь бедных или zero-roster маршрут.
+`AdmissionHold`:
 
-Цена открывает маршрут. Она не отменяет среду, Диссонанс, деградацию выходов или риск потери Пешки.
+- не является местом игрока в мире;
+- не создаёт `Presence` или `ParticipationClaim`;
+- не расходует право участия;
+- не обещает конкретную точку;
+- не переживает Seal, superseded quote или terminal target revision.
 
----
+Перед передачей в Breach Coordinator Admission Resolver повторно проверяет readiness, неизменность подтверждённых фактов, допустимость участия, актуальный lifecycle fence и наличие solvent pre-Seal envelope. Любое расхождение освобождает Hold либо возвращает поток в конечный administrative resolution; оно не переносит игрока на другую цель молча.
 
-## 3. Выбор Точки Прорыва (Spawn Scorer)
-> *«Навигатор ищет точку, где земля достаточно мягкая для пробития, и где нет свидетелей.»*
+## Candidate selection and veto
 
-В игре нет случайного спавна. Каждая точка входа (люк, пол подвала, трещина в асфальте) оценивается перед запуском.
+Кандидаты создаются только в подготовленной физической геометрии сектора. Ранжирование применяется после hard veto и никогда его не отменяет.
 
-**Алгоритм Безопасности ($S$):** сначала удаляет все невалидные точки hard-veto правилами, затем ранжирует оставшиеся по расстоянию до давления, цене маршрута и качеству нескольких выходов. Высокий score никогда не отменяет veto.
+Точка запрещена, если на момент проверки:
 
-### Критерии Отмены (Hard Veto)
-Система **запрещает** высадку в точку, если:
+1. hostile actor, observer, trap, projectile или firing line контролирует появление либо первый обычный маршрут;
+2. рядом идёт активный бой или прогнозируемое немедленное столкновение;
+3. недавний kill/aim/dwell heat показывает подготовленную засаду;
+4. точка обходит обязательную процедуру сектора или даёт прямой доступ к ключевой награде;
+5. нет как минимум двух материально разных достижимых направлений к укрытию или маршруту;
+6. геометрия, navmesh, collision, streaming readiness или target revision не подтверждены;
+7. до Seal не остаётся времени для полного commit path.
 
-1. **Hostile line:** существует hostile LoS или прогнозируемая firing line на сам Breach либо выход из `Wake Up`.
-2. **Prepared camp:** у точки или на подходах есть hostile trap, projectile, observer либо недавний `kill/aim/dwell heat`.
-3. **Threat proximity:** противник находится внутри серверного `BreachThreatRadius(P)`, зависящего от слышимости, рельефа и времени выхода, а не от одного постоянного числа.
-4. **Combat zone:** точка находится в активном бою игроков или AI либо на его непосредственном пути.
-5. **Hot pipe:** точка или её подход недавно использовались и ещё читаемо опасны.
-6. **Objective skip:** точка даёт прямой доступ к боссу, хранилищу, Foundling или главной награде без процедуры сектора.
-7. **No egress:** после `Wake Up` нет минимум двух обычных достижимых направлений к cover/route, не проходящих через одну и ту же линию огня.
+Для группы используется согласованный кластер; veto одного обязательного участника отменяет весь кластер. RecoveryBindingAttempt проходит те же правила и не получает частной или более безопасной геометрии.
 
-Те же veto действуют для Standard, Deep и Late Service Drop. Поздний контракт не означает более дешёвую жизнь.
+## Breach transaction
 
----
-
-## 4. Групповая Высадка (Squad Deployment)
-> *«Синхронизированный залп. Три капсулы пробивают пол в одном зале. Нейро-линки сплетены.»*
-
-Если игроки в Пати, алгоритм меняется:
-1.  **Cluster Search:** Система ищет только те точки спавна, которые имеют тег `[Size:: Large]` или `[Cluster_ID]`.
-    * *Пример:* Три соседних канализационных люка на одном перекрестке.
-2.  **Simultaneous Launch:** Все клиенты группы получают команду на вход одновременно.
-3.  **Link Protection:** Если для одного члена группы точка небезопасна — она отменяется для всей группы.
-4.  **Pressure Declaration:** группа входит как единый шумный объект; реакция Аномалии использует `GroupPressure`, а не среднюю цену снаряжения.
-
----
-
-## 5. Машина Состояний: Прибытие (Arrival State Machine)
-
-До необратимого входа цена и Population Seat только резервируются:
+Перед необратимостью кандидат повторно валидируется по свежему world snapshot.
 
 ```text
-SeatReserved
-  -> assets loaded
-  -> Spawn Scorer finds and revalidates a point
-      -> no valid point: release seat + refund price + offer another SessionID
-      -> valid point: atomic BreachCommitted + ParticipationClaim + physical Breach
+AdmissionHold
+  -> candidate selected
+  -> final veto + lifecycle + participation + solvency fences
+      -> ABORT: release resources; no PhysicalRaidEntity; no participation consumed
+      -> COMMIT: materialize Breach + ParticipationClaim + PhysicalRaidEntity atomically
 ```
 
-`ParticipationLedger` остаётся `NeverParticipated` до `BreachCommitted`. Точка повторно проходит все veto непосредственно перед физическим Breach; если она стала опасной во время загрузки, выбирается другая без расхода участия. Claim создаётся только вместе с необратимым появлением Breach-объекта в валидной геометрии.
+`COMMIT` — единственная граница участия:
 
-| State | Лорное Описание | Техническая Реализация |
-| :--- | :--- | :--- |
-| **Connecting** | *«Загрузка нейро-буфера...»* | Загрузка ассетов уровня. |
-| **Transit** | *«Саркофаг несется по трубам. Удары, скрежет.»* | Loading Screen (анимированный, вид из глаз или от 3-го лица на капсулу). |
-| **Breach** | *«Удар! Капсула пробивает поверхность. Пар и пыль.»* | Спавн объекта `Sarcophagus_BP` с анимацией `Impact`. Включается Collider. |
-| **The Blink** | *«Внимание сходится. Глаза открываются.»* | Передача управления (Possess Pawn). Включение HUD. |
-| **Wake Up** | *«Оболочку тошнит после транзита. Продувка систем.»* | Анимация выхода (3 сек). Статус **Invulnerable**. |
+- для `AccountID × SessionID` создаётся ровно один lifetime `ParticipationClaim`;
+- claim, `PhysicalRaidEntity` и физический Breach получают общий transaction key;
+- до durable decision и при `ABORT` ни одна из трёх сущностей не существует;
+- после durable `COMMIT` любой частичный технический результат идемпотентно достраивается до тех же `ParticipationClaim`, `PhysicalRaidEntity` и физического Breach с тем же transaction key; откат к их отсутствию запрещён;
+- после `COMMIT` ledger остаётся consumed до завершения SessionID независимо от выхода, KIA или reconnect;
+- освободившуюся вместимость может занять другой допустимый AccountID, но не повторное тело уже участвовавшего аккаунта.
 
-### Anti-Camp Protection
-Если игрок нажимает "Огонь" во время фазы `Wake Up`:
-* **Лор:** Адреналин сбивает калибровку щитов.
-* **Код:** Неуязвимость снимается мгновенно.
+`ABORT` не расходует участие и не создаёт наблюдаемого следа игрока в мире. Причина фиксируется, Hold освобождается, а дальнейший исход следует точной административной ветке.
+
+## Economic commitment handoff
+
+Ingress не владеет ценой, долгом, ключом или заложенной вещью. Он публикует immutable `BreachDecisionRef` объявленным commitment owners:
+
+- durable `COMMIT` разрешает каждому владельцу exactly-once consume только собственной зарезервированной обязанности;
+- `ABORT` требует release/refund по исходному commitment contract;
+- повторная доставка того же decision ref не может списать ценность второй раз;
+- сбой projection не меняет уже принятое Breach decision и восстанавливается владельцем обязательства.
+
+Item custody и физические locks принадлежат [[07_Gear_Inventory/Inventory_Architecture|Inventory Architecture]], денежная проводка — [[06_Economy_Loot/Currency_Rez|Currency Rez]], а pledge/debt obligation — [[03_Factions_Societies/Pledge_Contracts|Pledge Contracts]].
+
+## First-frame control contract
+
+Первое клиенту доступное состояние существует только после durable `COMMIT`. В первом отрисованном и симулируемом body frame игрок:
+
+- уже является обычной уязвимой `Presence`;
+- имеет полный стандартный контроль движения, обзора, оружия и отменяемых действий;
+- получает синхронизированный HUD и collision state;
+- может быть замечен и атакован по тем же правилам, что другие присутствия.
+
+Нет транспортной капсулы, фазы пробуждения, временной неуязвимости, блокировки управления или безопасной комнаты. Если система не может одновременно дать валидную геометрию, уязвимость и полный контроль, она обязана `ABORT` до материализации.
+
+## Failure and reconnect
+
+Разрыв клиента до `COMMIT` приводит к освобождению Hold или конечной same-target administrative resolution. Разрыв после `COMMIT` не отменяет Presence и не возвращает участие: стандартный reconnect присоединяет клиента к уже существующему телу, не создавая новый Breach.
+
+## Non-ownership
+
+- Approach/Binding/Quote: [[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid Approach and Entry]].
+- Normal-egress solvency: [[08_World_Generation/Generation/20_Egress_Solvency|Egress Solvency]].
+- Phase order, Seal and Dawn: [[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]].
+- Pawn readiness and roster state: [[04_Player_Entities/Spawn_Logic|Spawn Logic]] and lifecycle owners.

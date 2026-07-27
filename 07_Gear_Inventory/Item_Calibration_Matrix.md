@@ -16,7 +16,7 @@ related_files:
   - "[[07_Gear_Inventory/_Registries/Registry_Consumables|Registry_Consumables]]"
   - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
   - "[[08_World_Generation/Generation/08_Gate_Check|Gate_Check]]"
-  - "[[08_World_Generation/Generation/19_Access_Contracts|Access_Contracts]]"
+  - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
   - "[[05_Combat_Survival/Dissonance_System|Dissonance_System]]"
   - "[[05_Combat_Survival/Threat_Thresholds|Threat_Thresholds]]"
   - "[[07_Gear_Inventory/Gear_Progression|Gear_Progression]]"
@@ -51,11 +51,12 @@ related_files:
 | `load_class` | допустимая энергетическая нагрузка оружейного Frame |
 | `strong_cycle` | число усиленных действий до критического Recovery |
 | `battery_compatibility` | базовая, усиленная и Overcharge-совместимость |
-| `slot_count` | физические узлы модели Термоса либо `none` |
-| `slot_size` | число узлов, занимаемых модулем, либо `none` |
-| `module_positions` | допустимые позиции модуля либо `none` |
-| `module_cost` | раздельная стоимость по семействам либо `none` |
-| `active_body_interface` | ID активного Опорного контура либо `none` |
+| `mount_nodes` | версионированная topology модели Термоса либо `none` |
+| `allowed_mount_patterns` | отдельные OR-patterns с AND node claims модуля либо `none` |
+| `service_load` | раздельная нагрузка обслуживания по семействам либо `none` |
+| `service_support_delta` | явный вклад support-source либо `none`; его load сначала обязан поместиться в Base |
+| `coverage_contract_ids` | pattern-bound coverage/collider contracts либо `none` |
+| `selected_body_interface_effect` | ID выбранного Опорного контура committed assembly либо `none` |
 | `interface_owner` | доменный владелец локального результата |
 | `interface_output` | явный обмен конечного параметра `до -> после` |
 | `interface_validation` | `valid`, `duplicate_cycle`, `incompatible` или `UNKNOWN` |
@@ -67,7 +68,7 @@ related_files:
 
 | Предмет | Tier | Вес | Цена | Environment | Filter | Battery Buffer | Статус |
 |---|---:|---:|---:|---:|---:|---:|---|
-| `Scavenger Wrap` | 1 | 6.0 кг | `UNKNOWN` | 15 | 0 | 0 | `slot_size` и `module_cost` не определены |
+| `Scavenger Wrap` | 1 | 6.0 кг | `UNKNOWN` | 15 | 0 | 0 | mount patterns, service load и coverage contracts не определены |
 | `Cracked Cell` | 1 | 0.3 кг | 250 | 0 | 0 | `UNKNOWN` | buffer не определен |
 | Базовое оружие Welfare-набора | 1 | `UNKNOWN` | `UNKNOWN` | 0 | 0 | 0 | конкретный предмет не закреплен |
 | Базовая маска | 1 | `UNKNOWN` | `UNKNOWN` | 0 | `UNKNOWN` | 0 | стартовая модель не закреплена |
@@ -78,12 +79,14 @@ related_files:
 Для каждого тестового комплекта считать:
 
 ```text
-InstalledModuleEnvironment =
-  sum(InstalledThermosModule.environment_resistance)
+ResolvedEnvironmentProtection =
+  EnvironmentProtectionOwner(
+    committed AssemblySnapshot.installed_effect_bindings,
+    current module conditions)
 
 SurvivalScore =
   Current_HP
-  + InstalledModuleEnvironment
+  + ResolvedEnvironmentProtection
   + Filter_Rating
   + Battery_Buffer
   + Stabilizer_Bonus
@@ -101,7 +104,7 @@ AnomalyPressure =
   + RecentDissonancePulse
 ```
 
-В `InstalledModuleEnvironment` входят только установленные работающие модули с `install_state:: installable`. `Shell.Reality_Buffer` читает явный телесный substat `reality_buffer`; пока ни одна MVP-запись не выдаёт его, значение остаётся `0`. Он не входит в модульную защиту и не заменяет Environment Seal.
+`ResolvedEnvironmentProtection` не суммирует старые registry-поля. Он может появиться только из реальных ItemID committed assembly через зарегистрированный ParameterContract и профильного environment owner. Такой owner пока `MISSING_OWNER`, поэтому числовой вклад модулей в `SurvivalScore` остаётся `UNKNOWN`, а не вычисляется локально этой матрицей. `Shell.Reality_Buffer` читает явный телесный substat `reality_buffer`; пока ни одна MVP-запись не выдаёт его, значение остаётся `0`. Он не входит в модульную защиту и не заменяет Environment Seal.
 
 Обязательные комплекты для первой калибровки:
 
@@ -152,7 +155,7 @@ Prototype-модули `body_interface` остаются `blocked_calibration`, 
 | Метрика | Формула |
 |---|---|
 | Стоимость входа | сумма replacement cost экипировки и расходников |
-| Цена Access Contract | Rez, допуск, ключ, долг или услуга за выбранное окно |
+| Цена Approach | Rez, допуск, ключ, долг или услуга за заявленный способ подхода |
 | Вес входа | сумма веса всего снаряжения |
 | Свободная грузоподъемность | carry limit минус вес входа |
 | Средняя добыча | медиана успешного рейда по Tier |

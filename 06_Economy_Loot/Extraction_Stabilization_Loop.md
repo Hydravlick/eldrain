@@ -23,7 +23,8 @@ related_files:
   - "[[07_Gear_Inventory/Looting_Process|Looting_Process]]"
   - "[[08_World_Generation/Anomaly/14_Extraction_System|Extraction_System]]"
   - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server_Lifecycle]]"
-  - "[[08_World_Generation/Generation/19_Access_Contracts|Access_Contracts]]"
+  - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
+  - "[[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion_Logic]]"
   - "[[08_World_Generation/Generation/17_Dual_State_POIs|Dual_State_POIs]]"
 ---
 # Экстракция, стабилизация и наследие сектора
@@ -137,7 +138,7 @@ related_files:
 2. фиксирует только реально вынесенный груз;
 3. переводит квестовые объекты в `Delivered` по правилам их адреса;
 4. запускает отдельную обработку Living Cargo;
-5. рассчитывает личную долю и выполненные условия Access/полевого контракта;
+5. рассчитывает личную долю и выполненные условия заявленного полевого контракта;
 6. очищает сессионную локальность предмета, но не гарантирует его городскую надёжность.
 
 `Secure` означает «успешно вынесено», а не «автоматически стабильно, опознано и легально».
@@ -169,8 +170,8 @@ SortieStakeSnapshot =
 - Пешка локально ощущает несколько возможных `blind seam`, но не получает одну глобальную гарантированную точку; точное количество, расстояния, окно и профиль успеха остаются параметрами прототипа;
 - локальный Breakline wake сообщает ближайшим участникам о беглеце, не очищает накопленную угрозу и не раскрывает противнику точные позиции всех seam;
 - достижение seam возвращает в Хаб `Person + Chronicle` и ничего больше; перехват до seam заканчивается обычным KIA;
-- успешный Breakline сам по себе не создаёт trait, награду, Access, контрактный прогресс или экономическую компенсацию;
-- [[08_World_Generation/Generation/19_Access_Contracts#Один аккаунт — одно участие в SessionID|Participation Claim]] закрывается терминально: этот AccountID не входит повторно в тот же SessionID даже другой Пешкой.
+- успешный Breakline сам по себе не создаёт trait, награду, право нового входа, контрактный прогресс или экономическую компенсацию;
+- [[08_World_Generation/Anomaly/13_Insertion_Logic#Breach transaction|Participation Claim]] остаётся consumed: этот AccountID не входит повторно в тот же SessionID даже другой Пешкой.
 
 #### Материальный Severed Wreck
 
@@ -271,7 +272,7 @@ Forfeit-ledger имеет приоритет над обычной переда�
 - Обычный тайник не превращает вещь в `Embedded Legacy`.
 - Встроенная реликвия зависит от места и становится публичным POI, а не отложенным инвентарём нашедшего.
 - Страховка не возвращает новый лут, Найдёнышей, тела, капсулы или груз, поглощённый финальной Стабилизацией.
-- Late Service Drop остаётся добровольным поздним Access Contract со своими заранее объявленными целями; он не является account-safety gate и не меняет право предмета на экстракцию по источнику loadout.
+- Поздний сервисный Approach остаётся добровольным способом войти до Seal с заранее объявленными условиями; он не является account-safety gate и не меняет право предмета на возврат по источнику loadout.
 - Breakline-снимок запечатывается до решения игрока; drop и squad transfer после Catastrophe не уменьшают Forfeit.
 - Оплаченный `Severed Wreck` появляется только на доступном `ContestableWreckAnchor`; постоянный `ForfeitBeneficiarySet` не позволяет исходному аккаунту и squad трогать, скрывать, уничтожать или когда-либо вернуть его в частную выгоду.
 - Профессия или специализация может улучшать чтение, перенос, опознание и обработку, но не отменяет обязательную экстракцию.

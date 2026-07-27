@@ -7,6 +7,7 @@ tags: [database, races, dataview]
 related_files:
   - "[[04_Player_Entities/MVP_3x3_Design_Contract|Контракт MVP-матрицы 3×3]]"
   - "[[04_Player_Entities/_Registries/Registry_Combos|Registry Combos]]"
+  - "[[09_Project_Management/People_Design_Framework|Исторический контракт народов]]"
 ---
 # Реестр: Расы
 
@@ -32,7 +33,7 @@ TABLE WITHOUT ID
   file.link AS "Раса",
   content_scope AS "Контур",
   base_vector AS "Вектор ДП",
-  culture AS "Культура"
+  culture_reference AS "Культура"
 FROM "04_Player_Entities/Races"
 WHERE type = "race"
 SORT sort_order ASC

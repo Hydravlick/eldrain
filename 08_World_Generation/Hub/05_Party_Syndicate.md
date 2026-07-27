@@ -29,4 +29,4 @@ related_files:
 
 ## 3. Роли в Отряде
 * **The Anchor (Хост):** Его "Стол" является мастер-инстансом. Если у Хоста высокий пинг до сервера, лагать может навигация всей группы.
-* **Partners (Клиенты):** Подтверждают готовность. Карта партнёра получает `Invalid` только если выбранные Pawn, loadout и Contract не проходят одну из явных строк `CanDeploy`: readiness, Environment Seal, Dissonance, Access Price, Population Seat или Participation Ledger. У Пешки нет отдельного level/Tier Lock.
+* **Partners (Клиенты):** Подтверждают готовность и одну точную `EntryQuote` для запечатанного состава. Карта партнёра получает `Invalid` только по объяснимой причине: Пешка не Ready, изменился loadout/quote, Dissonance выше границы, условия подхода не выполнены либо этот AccountID уже участвовал в SessionID. Внутренние seat, hold и transaction состояния игроку не показываются. У Пешки нет отдельного level/Tier Lock.

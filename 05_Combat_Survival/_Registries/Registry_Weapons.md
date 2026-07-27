@@ -24,14 +24,14 @@ related_files:
 ```text
 BaseAllowedFrames(hero_kit_id) = Registry_Combos[hero_kit_id].weapon_frame
 BaseFrameProf(hero_kit_id, frame_id) = Registry_Combos[hero_kit_id].prof or 0
-MasteryContribution(pawn_id, frame_id) = count(active frame-mastery tags for frame_id)
+MasteryContribution(pawn_id, frame_id) = count(active frame-mastery tags for frame_id where mastery_step = 1)
 EffectiveFrameProf = min(3, BaseFrameProf + MasteryContribution)
 AllowedFrames(pawn_id) = physically compatible frames where EffectiveFrameProf >= 1
 EligibleInstance = registered Frame + matching grip + load tier + rarity band + spawn profile
 ```
 
 - `Registry_Combos` хранит законченный authored-перечень `[weapon_frame:: ...] | [prof:: ...] | [combat_role:: ...]` каждого hero-kit `Race × Spec`; списки родителей не складываются формулой.
-- Chronicle, Origin без Frame-mastery, редкость Пешки и простая история использования не добавляют и не блокируют Frame. Frame-mastery tag даёт `mastery_step:: 1` одному физически совместимому Frame и собственную expression одной фазы. Ни один Personal Tag не меняет баллистику, базовый урон, автоматический RPM или точность скрытым постоянным коэффициентом.
+- Chronicle, Origin без Frame-mastery, редкость Пешки и простая история использования не добавляют и не блокируют Frame. Frame-mastery tag даёт одному физически совместимому Frame строго один результат: либо `mastery_step:: 1`, либо собственную named sidegrade-expression одной фазы. Expression не увеличивает `MasteryContribution`. Ни один Personal Tag не меняет баллистику, базовый урон, автоматический RPM или точность скрытым постоянным коэффициентом.
 - Экземпляр не может менять `grip`, `activates_on`, `commitment`, `exposure_channels`, `implicit_keyword` или основную функцию окна своего Frame.
 - `load_tier` говорит о допустимой энергетической нагрузке; `rarity_band` говорит, в каких цветах может существовать Pattern. Это разные оси.
 
@@ -92,4 +92,4 @@ SORT sort_order ASC
 
 ## Проверка
 
-Проверка контракта реестра должна сверять активные ID Frame, хват, локальные фазы, `commitment`, `exposure_channels`, данные экземпляров, authored BaseFrameProf и личный MasteryContribution. Отдельная проверка подтверждает, что Chronicle не меняет механику, каждый Frame-mastery tag касается одного Frame и одной expression, итог не превышает `3`, а физический запрет не обходится. Числа урона, Heat, точные задержки и веса остаются предметом прототипа, а не скрытого Power Score. Трос, заслон и аномальная процедура являются устройствами навыков и не входят в активный список Frame.
+Проверка контракта реестра должна сверять активные ID Frame, хват, локальные фазы действия, `commitment`, `exposure_channels`, данные экземпляров, authored BaseFrameProf и личный MasteryContribution. Отдельная проверка подтверждает, что Chronicle не меняет механику, каждый Frame-mastery tag касается одного Frame и имеет строгий XOR между `mastery_step:: 1` и named sidegrade-expression, итог не превышает `3`, expression не даёт скрытого шага, а физический запрет не обходится. Числа урона, Heat, точные задержки и веса остаются предметом прототипа, а не скрытого Power Score. Трос, заслон и аномальная процедура являются устройствами навыков и не входят в активный список Frame.

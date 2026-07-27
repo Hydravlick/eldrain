@@ -9,7 +9,7 @@ tags:
   - dissonance
 related_files:
   - "[[05_Combat_Survival/Dissonance_System|Dissonance_System]]"
-  - "[[08_World_Generation/Generation/19_Access_Contracts|Access_Contracts]]"
+  - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
   - "[[08_World_Generation/Generation/08_Gate_Check|Gate_Check]]"
 ---
 # Механика: Пороги Давления Аномалии (Dissonance Thresholds)
@@ -22,13 +22,13 @@ related_files:
 AnomalyPressure = DissonanceLoad + RecentDissonancePulse
 ```
 
-Это не проверка силы снаряжения для выживания в новом Tier. За фильтр среды отвечает [[08_World_Generation/Generation/08_Gate_Check|Gate Check]]. За маршрут, цену и место в живом сервере отвечает [[08_World_Generation/Generation/19_Access_Contracts|Access Contract]].
+Это не проверка силы снаряжения для выживания в новом Tier. За физический результат фазового импульса отвечает [[08_World_Generation/Generation/08_Gate_Check|Gate Check]]. Способ подхода и точные условия выбранной вылазки принадлежат [[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid Approach and Entry]], а физический вход — отдельному ingress owner.
 
 - **Gate Check:** слишком слабый комплект получает травму или погибает при Phase Shift.
 - **Dissonance Threshold:** слишком дорогой/чужеродный комплект привлекает Аномалию или не допускается на вход.
-- **Access Price:** игрок покупает окно входа, а не право игнорировать среду.
+- **Entry Quote:** игрок подтверждает точные условия подхода, а не покупает право игнорировать среду.
 
-Все три проверки выводятся вместе как `Access Readiness`: нижняя граница - выживаемость среды, верхняя - допустимый Диссонанс, внешний слой - цена и окно маршрута. Игрок должен видеть, что он может быть одновременно "слишком слабым для T2" и "слишком громким для T1".
+В Mission Readiness эти факты выводятся рядом, но остаются разными: прогноз среды, Dissonance и точная котировка подхода. Игрок должен видеть, что он может быть одновременно «слишком слабым для T2» и «слишком громким для T1», не принимая цену маршрута за оценку силы.
 
 ## 2. Уровни Агрессии (Traffic Light System)
 
@@ -45,7 +45,7 @@ AnomalyPressure = DissonanceLoad + RecentDissonancePulse
 
 **Условие:** входной `DissonanceLoad > 150%` от лимита выбранного сектора.
 
-**Эффект:** стандартный Access Contract не запускается. Саркофаг не может стабильно провести такую чужеродную сборку через выбранную частоту.
+**Эффект:** котировка показывает `Rejected: Dissonance`; подтверждение не создаёт `AdmissionHold`, пока loadout остаётся выше границы. Это не сбой транспорта и не оценка человеческой ценности.
 
 **Значение:** это не наказание за богатство, а защита низких и средних секторов от стерильного фарма топовой экипировкой.
 
@@ -56,9 +56,9 @@ AnomalyPressure = DissonanceLoad + RecentDissonancePulse
 Группа не усредняет стоимость экипировки для матчмейкинга. Она создает групповое давление:
 
 ```text
-GroupLoad = Max(MemberDissonanceLoad) + sum(OtherMemberDissonanceLoad * 0.2)
+GroupLoad = DOMAIN_POLICY_AGGREGATE(MemberDissonanceLoad[])
 GroupPulse = sum(MemberRecentDissonancePulse)
 GroupPressure = GroupLoad + GroupPulse
 ```
 
-Это используется для реакции Аномалии и PvE-директора, а не для сортировки игроков в "честные" лобби.
+Точная числовая агрегация принадлежит domain policy и остаётся `UNKNOWN` до калибровки. Здесь закреплена только структура входных данных. Результат используется для реакции Аномалии и PvE-директора, а не для сортировки игроков в "честные" лобби.
