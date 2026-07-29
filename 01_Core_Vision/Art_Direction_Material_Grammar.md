@@ -1,6 +1,11 @@
 ---
 type: core_concept
 status: active
+index_route: owner
+index_group: core_vision
+index_order: 30
+index_summary: "Задаёт правила и последствия системы «Материальная грамматика Элдрейна»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Материальная грамматика Элдрейна»."
 system: core_vision
 tags:
   - art_direction

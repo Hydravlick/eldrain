@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 270
+index_summary: "Задаёт правила и последствия системы «Слой Связности (Connectivity Layer)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Слой Связности (Connectivity Layer)»."
 system: traversal
 tags: [verticality, parkour, pathfinding]
 ---

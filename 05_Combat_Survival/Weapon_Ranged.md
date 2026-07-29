@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: combat_survival
+index_order: 200
+index_summary: "Задаёт правила и последствия системы «Оружие: дальний бой»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Оружие: дальний бой»."
 system: action_combat
 tags: [ranged, arcanegun, battery_cycle, mechanical]
 related_files:

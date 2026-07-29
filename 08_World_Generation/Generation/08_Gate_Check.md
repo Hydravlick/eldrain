@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 200
+index_summary: "Задаёт правила и последствия системы «Гейт-проверка»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Гейт-проверка»."
 system: phase_pulse_survival
 tags:
   - damage_event

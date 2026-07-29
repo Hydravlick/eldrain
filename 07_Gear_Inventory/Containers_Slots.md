@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: gear_inventory
+index_order: 100
+index_summary: "Задаёт правила и последствия системы «Механика: Контейнеры и Слоты (Containers Hierarchy)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Механика: Контейнеры и Слоты (Containers Hierarchy)»."
 system: inventory
 tags:
   - containers

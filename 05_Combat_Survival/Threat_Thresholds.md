@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: combat_survival
+index_order: 160
+index_summary: "Задаёт правила и последствия системы «Механика: Пороги Давления Аномалии (Dissonance Thresholds)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Механика: Пороги Давления Аномалии (Dissonance Thresholds)»."
 system: world_systems
 tags:
   - aggression

@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 80
+index_summary: "Задаёт правила и последствия системы «Опасности Среды»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Опасности Среды»."
 system: environment
 tags: [traps, mines, anomalies, parkour]
 ---

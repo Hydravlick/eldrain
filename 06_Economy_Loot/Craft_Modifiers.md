@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: economy_loot
+index_order: 30
+index_summary: "Задаёт правила и последствия системы «Вариантный Ингредиент»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Вариантный Ингредиент»."
 system: trade_craft
 tags: [crafting, variant_ingredient, sidegrade, recipe_transaction]
 related_files:

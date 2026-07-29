@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: gear_inventory
+index_order: 50
+index_summary: "Задаёт правила и последствия системы «Реестр: Предметы и Ресурсы (General Items)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр: Предметы и Ресурсы (General Items)»."
 system: gear_inventory_registry
 registry_type: items
 tags: [database, resources, loot, relics]

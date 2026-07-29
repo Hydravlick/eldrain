@@ -1,6 +1,11 @@
 ---
 type: tech_spec
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 230
+index_summary: "Задаёт правила и последствия системы «Система Сокетов (Socket System)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Система Сокетов (Socket System)»."
 system: generation_algo
 tags: [math, vectors, snapping]
 ---

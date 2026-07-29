@@ -1,6 +1,11 @@
 ---
 type: system
 status: active
+index_route: owner
+index_group: gear_inventory
+index_order: 220
+index_summary: "Задаёт правила и последствия системы «Термос: носимая система экипировки»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Термос: носимая система экипировки»."
 system: thermos_wearable_equipment
 tags: [thermos, wearable_equipment, assembly, service_capacity, hub]
 related_files:

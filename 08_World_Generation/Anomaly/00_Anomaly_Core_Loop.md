@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 70
+index_summary: "Задаёт правила и последствия системы «Ядро Аномалии: Правила Арены»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Ядро Аномалии: Правила Арены»."
 system: game_loop
 tags: [session_logic, storm, entropy, difficulty_curve, director_ai]
 related_files:

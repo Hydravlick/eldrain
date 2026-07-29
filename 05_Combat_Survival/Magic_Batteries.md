@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: combat_survival
+index_order: 120
+index_summary: "Задаёт правила и последствия системы «Система: Магия и Батареи»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Система: Магия и Батареи»."
 system: action_combat
 tags:
   - magic

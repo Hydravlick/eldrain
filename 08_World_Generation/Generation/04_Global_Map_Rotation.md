@@ -1,6 +1,11 @@
 ---
 type: system
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 160
+index_summary: "Задаёт правила и последствия системы «Ротация Активных и Stable-Секторов»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Ротация Активных и Stable-Секторов»."
 system: world_map
 tags: [rotation, server_state, exploration, stable_addresses]
 related_files:

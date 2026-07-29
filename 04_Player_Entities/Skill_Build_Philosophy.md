@@ -1,6 +1,11 @@
 ---
 type: system
 status: active
+index_route: owner
+index_group: player_entities
+index_order: 110
+index_summary: "Задаёт правила и последствия системы «Философия навыков и билдостроения»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Философия навыков и билдостроения»."
 system: player_core
 tags: [skills, builds, hero_kit, passive, action_contract]
 related_files:

@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: player_entities
+index_order: 120
+index_summary: "Задаёт правила и последствия системы «Логика Спавна и Снаряжения Оболочек»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Логика Спавна и Снаряжения Оболочек»."
 system: player_core
 tags:
   - shell

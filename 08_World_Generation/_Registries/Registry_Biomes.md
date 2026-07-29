@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 20
+index_summary: "Задаёт правила и последствия системы «Реестр: Биомы и Уровни Угрозы (Biomes Registry)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр: Биомы и Уровни Угрозы (Biomes Registry)»."
 system: world_generation_registry
 registry_type: biomes
 tags: [database, world_generation, environment]

@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: gear_inventory
+index_order: 60
+index_summary: "Задаёт правила и последствия системы «Реестр интерфейсов Термоса»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр интерфейсов Термоса»."
 system: thermos_interfaces
 tags: [thermos, interfaces, ownership, assembly]
 related_files:

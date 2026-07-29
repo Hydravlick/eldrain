@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 10
+index_summary: "Задаёт правила и последствия системы «Реестр: линии мутаций Аномалий»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр: линии мутаций Аномалий»."
 system: world_generation_registry
 registry_type: anomaly_mutations
 tags:

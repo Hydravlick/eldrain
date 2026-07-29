@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: player_entities
+index_order: 20
+index_summary: "Задаёт правила и последствия системы «Реестр: семейства взаимодействий»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр: семейства взаимодействий»."
 system: player_entities_registry
 registry_type: interaction_families
 tags: [owners, loops, operations, debt, information, validation]

@@ -1,6 +1,11 @@
 ---
 type: lore_framework
 status: active
+index_route: owner
+index_group: factions_societies
+index_order: 40
+index_summary: "Задаёт правила и последствия системы «Социальная грамматика районов Элдрейна»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Социальная грамматика районов Элдрейна»."
 system: factions_lore
 tags:
   - city_districts

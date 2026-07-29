@@ -1,6 +1,11 @@
 ---
 type: system_contract
 status: active
+index_route: owner
+index_group: economy_loot
+index_order: 110
+index_summary: "Задаёт правила и последствия системы «Return Manifest Contract»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Return Manifest Contract»."
 system: extraction_return
 tags:
   - extraction

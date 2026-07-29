@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 320
+index_summary: "Задаёт правила и последствия системы «Живая Миниатюра: Карта Рейдов и Адресов»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Живая Миниатюра: Карта Рейдов и Адресов»."
 system: hub_navigation
 tags:
   - map

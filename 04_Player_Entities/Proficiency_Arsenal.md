@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: player_entities
+index_order: 90
+index_summary: "Задаёт правила и последствия системы «Адаптивный арсенал и профильные ёмкости»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Адаптивный арсенал и профильные ёмкости»."
 system: player_core
 tags: [weapons, proficiency, arsenal, modules, hero_kit]
 related_files:

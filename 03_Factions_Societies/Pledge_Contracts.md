@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: factions_societies
+index_order: 70
+index_summary: "Задаёт правила и последствия системы «Поручения, адрес вклада и допуски»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Поручения, адрес вклада и допуски»."
 system: faction_contracts
 tags:
   - contracts

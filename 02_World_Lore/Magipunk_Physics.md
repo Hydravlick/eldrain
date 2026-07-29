@@ -2,6 +2,11 @@
 type: lore
 category: foundation
 status: active
+index_route: owner
+index_group: world_lore
+index_order: 30
+index_summary: "Задаёт правила и последствия системы «Технологии: Наследие Света»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Технологии: Наследие Света»."
 system: world_lore
 tags:
   - technology

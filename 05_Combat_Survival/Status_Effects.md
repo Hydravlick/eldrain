@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: combat_survival
+index_order: 150
+index_summary: "Задаёт правила и последствия системы «Механика: Статусные Эффекты»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Механика: Статусные Эффекты»."
 system: action_combat
 tags:
   - status

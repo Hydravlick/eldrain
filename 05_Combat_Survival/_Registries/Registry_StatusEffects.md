@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: combat_survival
+index_order: 10
+index_summary: "Задаёт правила и последствия системы «Реестр: Статусные Эффекты»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр: Статусные Эффекты»."
 system: combat_survival_registry
 registry_type: status_effects
 tags: [database, combat, effects, windows]

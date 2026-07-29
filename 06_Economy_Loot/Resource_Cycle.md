@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: economy_loot
+index_order: 100
+index_summary: "Задаёт правила и последствия системы «Цикл Ресурсов: Состав и Адрес»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Цикл Ресурсов: Состав и Адрес»."
 system: economy_loop
 tags: [salvage, scrap, barter, materials, addresses]
 related_files:

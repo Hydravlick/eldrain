@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: gear_inventory
+index_order: 170
+index_summary: "Задаёт правила и последствия системы «Атрибуты Предмета и UI (Item Passport)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Атрибуты Предмета и UI (Item Passport)»."
 system: ui_ux
 tags:
   - tooltip

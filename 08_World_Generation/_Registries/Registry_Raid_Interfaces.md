@@ -1,6 +1,11 @@
 ---
 type: interface_registry
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 60
+index_summary: "Задаёт правила и последствия системы «Registry: Raid Interfaces»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Registry: Raid Interfaces»."
 system: raid_interfaces
 coverage_status: active_with_explicit_gaps
 tags:

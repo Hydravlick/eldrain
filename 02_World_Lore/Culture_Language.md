@@ -2,6 +2,11 @@
 type: lore
 category: culture
 status: active
+index_route: owner
+index_group: world_lore
+index_order: 20
+index_summary: "Задаёт правила и последствия системы «Культура Элдрейна: Мозаика Миров»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Культура Элдрейна: Мозаика Миров»."
 system: world_lore
 tags:
   - language

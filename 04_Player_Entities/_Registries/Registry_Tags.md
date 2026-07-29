@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: player_entities
+index_order: 70
+index_summary: "Задаёт правила и последствия системы «Реестр личных тегов»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр личных тегов»."
 system: player_entities_registry
 registry_type: personal_tags
 tags: [database, personal_tags, mastery, mutations, relics]

@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: gear_inventory
+index_order: 150
+index_summary: "Задаёт правила и последствия системы «Механика: Архитектура Инвентаря (Mass & Access)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Механика: Архитектура Инвентаря (Mass & Access)»."
 system: inventory
 tags:
   - weight

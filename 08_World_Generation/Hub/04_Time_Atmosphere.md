@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 350
+index_summary: "Задаёт правила и последствия системы «Время и Атмосфера»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Время и Атмосфера»."
 system: atmosphere
 tags: [time, weather, mood, lofi, visual]
 ---

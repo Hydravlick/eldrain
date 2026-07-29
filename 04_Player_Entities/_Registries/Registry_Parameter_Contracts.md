@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: player_entities
+index_order: 30
+index_summary: "Задаёт правила и последствия системы «Реестр параметрических контрактов»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр параметрических контрактов»."
 system: parameter_contracts
 tags: [parameter_contracts, buildcraft, ownership, modifiers, debt]
 related_files:

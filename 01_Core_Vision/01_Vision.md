@@ -1,6 +1,11 @@
 ---
 type: core_concept
 status: active
+index_route: owner
+index_group: core_vision
+index_order: 10
+index_summary: "Задаёт правила и последствия системы «Видение Проекта (Vision & Atmosphere)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Видение Проекта (Vision & Atmosphere)»."
 system: core_vision
 tags: [vision, atmosphere, magipunk, aesthetics]
 related_files:

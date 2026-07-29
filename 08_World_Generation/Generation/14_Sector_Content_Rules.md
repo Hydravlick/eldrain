@@ -1,6 +1,11 @@
 ---
 type: design_rule
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 260
+index_summary: "Задаёт правила и последствия системы «Правила Наполнения Сектора»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Правила Наполнения Сектора»."
 system: level_design
 tags: [pois, shelters, balance]
 ---

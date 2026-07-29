@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: combat_survival
+index_order: 60
+index_summary: "Задаёт правила и последствия системы «Медицина, здоровье и необходимые расходники»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Медицина, здоровье и необходимые расходники»."
 system: action_combat
 tags: [medicine, health, field_capacity, action_commitment]
 related_files:

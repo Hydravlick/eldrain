@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: player_entities
+index_order: 10
+index_summary: "Задаёт правила и последствия системы «Реестр: ячейки Race × Spec»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр: ячейки Race × Spec»."
 system: player_entities_registry
 registry_type: combos
 tags: [database, builds, proficiency, mvp]

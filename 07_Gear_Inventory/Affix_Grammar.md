@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: gear_inventory
+index_order: 90
+index_summary: "Задаёт правила и последствия системы «Грамматика Аффиксов»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Грамматика Аффиксов»."
 system: gear_progression
 tags:
   - affixes

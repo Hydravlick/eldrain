@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 370
+index_summary: "Задаёт правила и последствия системы «Гроссбух: Архитектура Сохранений»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Гроссбух: Архитектура Сохранений»."
 system: backend_save
 tags: [database, transaction, wipe, safety]
 related_files:

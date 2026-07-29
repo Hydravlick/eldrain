@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: gear_inventory
+index_order: 190
+index_summary: "Задаёт правила и последствия системы «Механика: Физический Вес (Physical Weight)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Механика: Физический Вес (Physical Weight)»."
 system: inventory
 tags:
   - physics

@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: economy_loot
+index_order: 40
+index_summary: "Задаёт правила и последствия системы «Валюта: Рез (Rez)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Валюта: Рез (Rez)»."
 system: currency
 tags:
   - rez

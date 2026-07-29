@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 40
+index_summary: "Задаёт правила и последствия системы «Реестр: Глобальный бестиарий»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр: Глобальный бестиарий»."
 system: world_generation_registry
 registry_type: mobs
 tags: [database, bestiary, ai_behavior]

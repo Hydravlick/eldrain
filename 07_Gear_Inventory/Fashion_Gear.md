@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: gear_inventory
+index_order: 130
+index_summary: "Задаёт правила и последствия системы «Визуальный язык Термоса»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Визуальный язык Термоса»."
 system: gear_inventory
 tags: [visuals, armor, identification, thermos, readability]
 related_mechanics:

@@ -1,6 +1,11 @@
 ---
 type: system_contract
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 180
+index_summary: "Задаёт правила и последствия системы «Асинхронные таймеры и regional service»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Асинхронные таймеры и regional service»."
 system: regional_service
 tags: [regional_scheduler, rolling_pool, capacity, low_population, service_availability]
 related_files:

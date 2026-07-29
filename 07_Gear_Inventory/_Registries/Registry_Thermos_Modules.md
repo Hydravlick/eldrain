@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: gear_inventory
+index_order: 70
+index_summary: "Задаёт правила и последствия системы «Реестр модулей Термоса»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр модулей Термоса»."
 system: gear_inventory
 registry_type: thermos_modules
 tags: [thermos, modules, registry, topology, service]

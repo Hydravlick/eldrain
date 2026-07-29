@@ -1,6 +1,11 @@
 ---
 type: system_contract
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 190
+index_summary: "Задаёт правила и последствия системы «Жизненный цикл сервера»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Жизненный цикл сервера»."
 system: server_lifecycle
 tags:
   - session_clock

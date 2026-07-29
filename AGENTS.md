@@ -4,12 +4,14 @@ This project folder contains the current Eldrain GDD canon.
 
 ## Reading
 
-1. Start with `00_Index.md`.
-2. Resolve the requested subject to its active canonical owner.
+1. Start with `00_Index.md` and select the relevant system route page.
+2. Resolve the requested subject to its `index_route: owner` page.
 3. Open that owner and only its direct dependencies.
 4. Exclusion clauses narrow source selection and do not add sources.
 5. Use project-wide search only after owner selection, for dependency and consistency checks.
 6. Treat an exclusion clause as a source filter, never as an additional search target.
+
+The route pages and `00_Index.md` are generated projections. Do not edit them manually; update owner metadata and run `python tools/build_routes.py --write`.
 
 ## Authority
 

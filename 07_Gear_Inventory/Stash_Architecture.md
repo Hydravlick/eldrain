@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: gear_inventory
+index_order: 200
+index_summary: "Задаёт правила и последствия системы «Архитектура Схрона и Менеджмент (Stash & Organization)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Архитектура Схрона и Менеджмент (Stash & Organization)»."
 system: economy_storage
 tags:
   - stash

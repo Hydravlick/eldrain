@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: combat_survival
+index_order: 80
+index_summary: "Задаёт правила и последствия системы «Акустический Протокол и VOIP»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Акустический Протокол и VOIP»."
 system: communication
 tags: [voip, radio, acoustic, immersion]
 related_files:

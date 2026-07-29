@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: combat_survival
+index_order: 20
+index_summary: "Задаёт правила и последствия системы «Реестр оружейных фреймов»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр оружейных фреймов»."
 system: combat_survival_registry
 registry_type: weapon_frames
 tags:

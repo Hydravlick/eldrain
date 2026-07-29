@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: player_entities
+index_order: 100
+index_summary: "Задаёт правила и последствия системы «Найдёныши: спасение, custody и Origin»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Найдёныши: спасение, custody и Origin»."
 system: player_core
 tags:
   - shell

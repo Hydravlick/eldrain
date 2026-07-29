@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 50
+index_summary: "Задаёт правила и последствия системы «Реестр: Объекты Карты (Map Table Objects)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр: Объекты Карты (Map Table Objects)»."
 system: world_generation_registry
 registry_type: map_objects
 tags: [ui_map, prefabs, pois, dungeons]

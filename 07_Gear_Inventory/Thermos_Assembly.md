@@ -1,6 +1,11 @@
 ---
 type: system
 status: active
+index_route: owner
+index_group: gear_inventory
+index_order: 210
+index_summary: "Задаёт правила и последствия системы «Сборка Термоса»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Сборка Термоса»."
 system: thermos_assembly
 tags: [thermos, assembly_resolver, fit, topology, service, instances]
 related_files:

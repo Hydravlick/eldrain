@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: player_entities
+index_order: 130
+index_summary: "Задаёт правила и последствия системы «Личные теги: свойства прожитой Пешки»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Личные теги: свойства прожитой Пешки»."
 system: player_core
 tags: [personal_tags, chronicle, mastery, mutations, relics, extraction]
 related_files:

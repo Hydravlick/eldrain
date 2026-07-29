@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: economy_loot
+index_order: 70
+index_summary: "Задаёт правила и последствия системы «Распределение Лута»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Распределение Лута»."
 system: loot_generation
 tags: [spawn, containers, biomes, mutation_lines, semantic_loot]
 related_files:

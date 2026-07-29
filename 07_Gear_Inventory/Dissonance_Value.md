@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: gear_inventory
+index_order: 110
+index_summary: "Задаёт правила и последствия системы «Механика: Диссонанс Предмета (Dissonance Value)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Механика: Диссонанс Предмета (Dissonance Value)»."
 system: inventory
 tags:
   - dissonance

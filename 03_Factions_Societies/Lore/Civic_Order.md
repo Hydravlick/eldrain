@@ -1,6 +1,11 @@
 ---
 type: lore_framework
 status: active
+index_route: owner
+index_group: factions_societies
+index_order: 50
+index_summary: "Задаёт правила и последствия системы «Гражданский порядок Элдрейна»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Гражданский порядок Элдрейна»."
 system: factions_lore
 tags:
   - civic_order

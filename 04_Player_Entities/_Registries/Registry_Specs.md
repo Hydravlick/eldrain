@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: player_entities
+index_order: 60
+index_summary: "Задаёт правила и последствия системы «Реестр: Практики / специализации»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр: Практики / специализации»."
 registry_type: specs
 system: player_entities_registry
 tags: [database, specs, practices, dataview]

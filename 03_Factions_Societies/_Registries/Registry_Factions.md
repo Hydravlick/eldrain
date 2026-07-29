@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: factions_societies
+index_order: 30
+index_summary: "Задаёт правила и последствия системы «Реестр: городские Очаги и фракционные адреса»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр: городские Очаги и фракционные адреса»."
 system: factions_societies_registry
 registry_type: factions
 tags:

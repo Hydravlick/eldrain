@@ -1,6 +1,11 @@
 ---
 type: system
 status: active
+index_route: owner
+index_group: player_entities
+index_order: 80
+index_summary: "Задаёт правила и последствия системы «Контракт морфологии тела»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Контракт морфологии тела»."
 system: body_morphology
 tags: [body, morphology, fit, ownership, thermos]
 related_files:
@@ -71,4 +76,3 @@ incompatible
 3. Fit не даёт телу новые mount interfaces и не удаляет permanent constraints.
 4. Ошибка или отсутствие body owner даёт `MISSING_MORPHOLOGY_SNAPSHOT`, а не универсальную совместимость.
 5. Ни один downstream-потребитель не пишет обратно в `BODY_MORPHOLOGY`.
-

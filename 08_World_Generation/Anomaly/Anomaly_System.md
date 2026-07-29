@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 130
+index_summary: "Задаёт правила и последствия системы «Система: Аномалии (The Anomaly Engine)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Система: Аномалии (The Anomaly Engine)»."
 system: world_systems
 tags:
   - hazards

@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 330
+index_summary: "Задаёт правила и последствия системы «Сервисы Хаба: Работа Через Диораму»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Сервисы Хаба: Работа Через Диораму»."
 system: hub_services
 tags: [ui, diegetic, interaction, addresses]
 related_files:

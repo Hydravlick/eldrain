@@ -10,6 +10,7 @@ from tools.vault_guard import (
     check_links,
     check_owners,
     check_surface,
+    parse_frontmatter,
     project_files,
     resolve_wikilink,
 )
@@ -39,6 +40,11 @@ class VaultGuardTests(unittest.TestCase):
         self.write(source)
         self.write(target)
         self.assertEqual(resolve_wikilink(source, "01_Core_Vision/Target", set(project_files(root))), target)
+
+    def test_resolves_root_relative_wikilink_from_relative_corpus(self) -> None:
+        source = Path("01_Core_Vision/Source.md")
+        target = Path("01_Core_Vision/Target.md")
+        self.assertEqual(resolve_wikilink(source, "01_Core_Vision/Target", {source, target}), target)
 
     def test_resolves_alias_and_heading(self) -> None:
         root = self.make_root()
@@ -77,6 +83,20 @@ class VaultGuardTests(unittest.TestCase):
         for name in ("A", "B"):
             self.write(root / "01_Core_Vision" / f"{name}.md", "---\nstatus: active\nowns: shared.rule\n---\n")
         self.assertIn("DUPLICATE_OWNS", {v.code for v in check_owners(root)})
+
+    def test_reports_unquoted_route_text_metadata(self) -> None:
+        root = self.make_root()
+        self.write(
+            root / "01_Core_Vision" / "Broken.md",
+            "---\nstatus: active\nindex_summary: Правило: с двоеточием.\nread_when: Читайте: при изменении.\n---\n",
+        )
+        self.assertIn("ROUTE_TEXT_NOT_QUOTED", {v.code for v in check_frontmatter(root)})
+
+    def test_parses_escaped_double_quoted_metadata(self) -> None:
+        root = self.make_root()
+        path = root / "01_Core_Vision" / "Quoted.md"
+        self.write(path, '---\nindex_summary: "Топология: \\"Цветок\\"."\n---\n')
+        self.assertEqual(parse_frontmatter(path)["index_summary"], 'Топология: "Цветок".')
 
     def test_reports_forbidden_local_state_file(self) -> None:
         root = self.make_root()

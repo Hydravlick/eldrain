@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: combat_survival
+index_order: 90
+index_summary: "Задаёт правила и последствия системы «Механика: Диссонанс (Dissonance)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Механика: Диссонанс (Dissonance)»."
 system: world_systems
 tags:
   - dissonance

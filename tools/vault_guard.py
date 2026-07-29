@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -24,6 +25,7 @@ STRICT_MANAGEMENT = {
     "Architecture_MVP.md", "TODO.md", "Risk_Register.md", "Refactor_Unresolved_Registry_2026-07-23.md",
 }
 WIKILINK = re.compile(r"\[\[([^\]]+)\]\]")
+ROUTE_TEXT_FIELDS = {"index_summary", "read_when"}
 
 
 def project_files(root: Path) -> list[Path]:
@@ -34,20 +36,27 @@ def markdown_files(root: Path) -> list[Path]:
     return [p for p in project_files(root) if p.suffix.lower() == ".md"]
 
 
-def parse_frontmatter(path: Path) -> dict[str, object]:
+def frontmatter_lines(path: Path) -> list[str]:
     text = path.read_text(encoding="utf-8")
     if not text.startswith("---\n"):
-        return {}
+        return []
     end = text.find("\n---", 4)
-    if end < 0:
-        return {}
+    return text[4:end].splitlines() if end >= 0 else []
+
+
+def parse_frontmatter(path: Path) -> dict[str, object]:
     data: dict[str, object] = {}
-    for line in text[4:end].splitlines():
+    for line in frontmatter_lines(path):
         if ":" not in line or line.startswith((" ", "-")):
             continue
         key, value = (part.strip() for part in line.split(":", 1))
         if value.startswith("[") and value.endswith("]"):
             data[key] = [x.strip().strip('"\'') for x in value[1:-1].split(",") if x.strip()]
+        elif value.startswith('"') and value.endswith('"'):
+            try:
+                data[key] = json.loads(value)
+            except json.JSONDecodeError:
+                data[key] = value.strip('"')
         else:
             data[key] = value.strip('"\'')
     return data
@@ -75,7 +84,12 @@ def resolve_wikilink(source: Path, target: str, corpus: set[Path]) -> Path | Non
         return None
     root = next((parent for parent in [source.parent, *source.parents] if any(p.parent == parent for p in corpus)), source.parent)
     candidates = [p for p in corpus if p.name == f"{target}.md" or p.stem == target]
-    exact = [p for p in corpus if p.as_posix().endswith(f"/{target}.md") or p.as_posix().endswith(f"/{target}")]
+    exact = [
+        p for p in corpus
+        if p.as_posix() in {f"{target}.md", target}
+        or p.as_posix().endswith(f"/{target}.md")
+        or p.as_posix().endswith(f"/{target}")
+    ]
     if len(exact) == 1:
         return exact[0]
     return candidates[0] if len(candidates) == 1 else None
@@ -101,6 +115,10 @@ def check_frontmatter(root: Path) -> list[Violation]:
                 violations.append(Violation("NONACTIVE_PAGE", str(relative), str(data.get("status"))))
             if data.get("owns") and not data.get("canonical_id"):
                 violations.append(Violation("OWNER_MISSING_CANONICAL_ID", str(relative), "owns requires canonical_id"))
+            for line in frontmatter_lines(path):
+                key, separator, value = line.partition(":")
+                if key in ROUTE_TEXT_FIELDS and separator and value.strip() and not value.lstrip().startswith(('"', "'")):
+                    violations.append(Violation("ROUTE_TEXT_NOT_QUOTED", str(relative), f"{key} must be quoted"))
     return violations
 
 

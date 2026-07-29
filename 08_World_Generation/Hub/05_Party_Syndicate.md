@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 360
+index_summary: "Задаёт правила и последствия системы «Система Группы: Протокол \"Стол\"»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Система Группы: Протокол \"Стол\"»."
 system: party_backend
 tags: [social, squad, lobby, ui]
 related_files:

@@ -1,6 +1,11 @@
 ---
 type: tech_spec
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 240
+index_summary: "Задаёт правила и последствия системы «Стратегии Генерации Города»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Стратегии Генерации Города»."
 system: proc_gen
 tags: [wfc, algorithms, strategy_pattern]
 ---

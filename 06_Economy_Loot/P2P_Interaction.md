@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: economy_loot
+index_order: 90
+index_summary: "Задаёт правила и последствия системы «Физическая Передача Между Игроками»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Физическая Передача Между Игроками»."
 system: social
 tags: [trading, dropping, provenance, loot_share]
 related_files:

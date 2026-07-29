@@ -2,6 +2,11 @@
 type: lore
 category: foundation
 status: active
+index_route: owner
+index_group: world_lore
+index_order: 60
+index_summary: "Задаёт правила и последствия системы «Гибель Реальности: Синтез Времени»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Гибель Реальности: Синтез Времени»."
 system: world_lore
 tags:
   - history

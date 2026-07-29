@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 310
+index_summary: "Задаёт правила и последствия системы «Хаб: Операционный Бункер»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Хаб: Операционный Бункер»."
 system: hub
 tags: [core, immersion, camera]
 ---

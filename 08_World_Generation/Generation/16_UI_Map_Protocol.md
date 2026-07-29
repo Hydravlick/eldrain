@@ -1,6 +1,11 @@
 ---
 type: tech_spec
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 280
+index_summary: "Задаёт правила и последствия системы «Протокол Данных Мини-карты»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Протокол Данных Мини-карты»."
 system: ui_hud
 tags: [minimap, json, data_stream]
 ---

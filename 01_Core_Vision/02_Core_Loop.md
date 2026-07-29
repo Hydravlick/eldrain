@@ -2,6 +2,11 @@
 type: mechanic
 system: core_loop
 status: active
+index_route: owner
+index_group: core_vision
+index_order: 20
+index_summary: "Задаёт правила и последствия системы «Игровой Цикл (The Core Loop)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Игровой Цикл (The Core Loop)»."
 tags:
   - loop
   - flow

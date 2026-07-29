@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: economy_loot
+index_order: 130
+index_summary: "Задаёт правила и последствия системы «Адреса, Поставщики и Мастера»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Адреса, Поставщики и Мастера»."
 system: faction
 tags:
   - vendors

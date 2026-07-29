@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: gear_inventory
+index_order: 120
+index_summary: "Задаёт правила и последствия системы «Кукла Персонажа (Equipment Slots)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Кукла Персонажа (Equipment Slots)»."
 system: inventory_ui
 tags:
   - slots

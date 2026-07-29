@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 110
+index_summary: "Задаёт правила и последствия системы «Система линий мутаций Аномалии»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Система линий мутаций Аномалии»."
 system: anomaly_mutation_lines
 tags:
   - anomalies

@@ -1,6 +1,11 @@
 ---
 type: lore_framework
 status: active
+index_route: owner
+index_group: factions_societies
+index_order: 60
+index_summary: "Задаёт правила и последствия системы «Анатомия Очага»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Анатомия Очага»."
 system: factions_lore
 tags:
   - hearths

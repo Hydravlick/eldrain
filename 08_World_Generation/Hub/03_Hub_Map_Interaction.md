@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 340
+index_summary: "Задаёт правила и последствия системы «Интерактивный Стол: Мирная Проекция»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Интерактивный Стол: Мирная Проекция»."
 system: hub_ui
 tags:
   - map_table

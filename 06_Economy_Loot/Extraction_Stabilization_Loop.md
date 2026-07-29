@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: economy_loot
+index_order: 60
+index_summary: "Задаёт правила и последствия системы «Экстракция, стабилизация и наследие сектора»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Экстракция, стабилизация и наследие сектора»."
 system: extraction_economy
 tags:
   - extraction

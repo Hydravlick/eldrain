@@ -2,6 +2,11 @@
 type: lore
 category: world_foundation
 status: active
+index_route: owner
+index_group: world_lore
+index_order: 70
+index_summary: "Задаёт правила и последствия системы «Энтропия: Дыхание Пустоты»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Энтропия: Дыхание Пустоты»."
 system: world_lore
 tags:
   - mechanics

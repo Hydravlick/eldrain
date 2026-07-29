@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: gear_inventory
+index_order: 140
+index_summary: "Задаёт правила и последствия системы «Прогрессия Снаряжения»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Прогрессия Снаряжения»."
 system: gear_progression
 tags: [gear, progression, tiers, rarity, loadouts, extraction, balance]
 related_files:

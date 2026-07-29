@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: economy_loot
+index_order: 120
+index_summary: "Задаёт правила и последствия системы «Расходы и Вывод Валюты (Money Sinks)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Расходы и Вывод Валюты (Money Sinks)»."
 system: economy
 tags:
   - sinks

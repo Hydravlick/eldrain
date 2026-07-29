@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: player_entities
+index_order: 40
+index_summary: "Задаёт правила и последствия системы «Реестр: Расы»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр: Расы»."
 registry_type: races
 system: player_entities_registry
 tags: [database, races, dataview]
