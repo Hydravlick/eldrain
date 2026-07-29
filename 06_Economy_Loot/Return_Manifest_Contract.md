@@ -13,7 +13,6 @@ tags:
   - custody
   - dawn
   - threshold
-  - migration_foundation
 related_files:
   - "[[04_Player_Entities/Lifecycle_Resolver|Lifecycle Resolver]]"
   - "[[04_Player_Entities/Last_Thread_Recovery|Last Thread Recovery]]"

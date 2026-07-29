@@ -82,11 +82,11 @@ Fit возвращает только `compatible`, `refit_required` или `inc
 
 До commit игрок видит: (1) silhouette/patterns/service/exchanges; (2) один resolver-pass со всеми ошибками; (3) snapshot покрытия, массы, Диссонанса, функций и ближайшей уязвимости. В рейде остаётся consequence-only reading: установлено/повреждено/отключено и действующие последствия. Remount, refit и interface switch запрещены после Deploy.
 
-## 6. Cutover и acceptance
+## 6. Assembly validation и acceptance
 
 Все текущие модели остаются `blocked_topology`, а модули — `blocked_calibration`, пока не существуют topology, EffectContracts, domain-owner links, coverage/collision data и калибровка.
 
-Shadow resolver сравнивает legacy/new output по одному domain owner; old resolver удаляется только после parity. Atomic cutover одновременно заменяет legacy capacity formulas, `slot_count/slot_layout/module_positions` legality, definition-held `interface_state/field_state` и UI-local calculation на assembly snapshot.
+Assembly validation закрепляет одного domain owner для каждого результата и записывает revision assembly, domain revisions и причину mismatch. Revisioned assembly snapshot является единственным входом для capacity, legality `slot_count/slot_layout/module_positions`, состояния body interface и UI calculations; definition не хранит этот live state. Публикация snapshot допускается только после fixture validation.
 
 - Один результат fit/topology/service/effect/mass/Dissonance/economy имеет одного owner.
 - Definition не содержит live state; одна definition работает в нескольких assemblies без shared state.

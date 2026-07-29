@@ -30,7 +30,7 @@ tags:
 
 ### 1.1. Вердикт
 
-Текущий канон — **CONTRADICTORY**. [[08_World_Generation/Generation/19_Access_Contracts|Access Contracts]] смешивает фазу, маршрут, цену, место и readiness; Tier превращён в билет. Старое описание входа использует Саркофаг, Wake Up и invulnerability; Blackout отбирает управление и переносит Пешку в укрытие. Safe Door Frame/комнаты, универсальная транспортная причинность и [[08_World_Generation/Anomaly/15_Frequency_Tuner|Trace redeploy]] конфликтуют с живой асинхронной сессией.
+Этот proposal-аудит фиксирует, что прежний совмещённый контракт входа смешивал фазу, маршрут, цену, место и readiness; Tier превращался в билет. В действующем каноне эти обязанности разделены между [[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid Approach and Entry]] и [[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion Logic]]. Старое описание входа использует Саркофаг, Wake Up и invulnerability; Blackout отбирает управление и переносит Пешку в укрытие. Safe Door Frame/комнаты, универсальная транспортная причинность и [[08_World_Generation/Anomaly/15_Frequency_Tuner|Trace redeploy]] конфликтуют с живой асинхронной сессией.
 
 После hardening целевая архитектура — **COHERENT** и implementation-neutral **REALIZABLE**. Её контракты допускают co-located transaction либо durable coordinator с идемпотентными проекциями, но не зависят от конкретной базы данных, сетевого стека или engine API.
 
@@ -1461,7 +1461,7 @@ Authority переносится одновременно; старый Access C
 | [[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]] | Clock, PhaseRevision, barriers, arbitration, ProtectedVolume snapshot. |
 | [[08_World_Generation/Generation/06_Async_Timers|Async Timers]] | Rolling service set, Seal/Dawn ordering and deadlines. |
 | [[08_World_Generation/Generation/05_Difficulty_Slots|Difficulty Slots]] | Remove matchmaking/access authority; keep only derived world-age semantics where needed. |
-| [[08_World_Generation/Generation/19_Access_Contracts|Access Contracts]] | Deprecate/replace with focused Offer, Binding and Ingress opportunity owners. |
+| [[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid Approach and Entry]] + [[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion Logic]] | Current focused owners for Offer/Binding and physical ingress. |
 | [[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion Logic]] | Conditional fences, durable Breach decision/projections, candidate veto and pressure field. |
 | [[08_World_Generation/Anomaly/14_Extraction_System|Extraction System]] | Pre-seal static supply/global EgressSolvencyBundle, JIT assignment, SyncLease and durable ReturnManifest. |
 | [[08_World_Generation/Generation/08_Gate_Check|Gate Check]] | Envelope/exact forecast and phase pulse; no offer/binding ownership. |

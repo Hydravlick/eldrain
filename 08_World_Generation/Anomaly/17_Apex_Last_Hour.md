@@ -12,7 +12,6 @@ tags:
   - raid
   - survival
   - conditional_cooperation
-  - migration_foundation
 related_files:
   - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]]"
   - "[[08_World_Generation/Generation/20_Egress_Solvency|Egress Solvency]]"

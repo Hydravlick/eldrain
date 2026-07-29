@@ -13,7 +13,6 @@ tags:
   - solvency
   - threshold
   - obligations
-  - migration_foundation
 related_files:
   - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]]"
   - "[[08_World_Generation/Anomaly/14_Extraction_System|Extraction System]]"

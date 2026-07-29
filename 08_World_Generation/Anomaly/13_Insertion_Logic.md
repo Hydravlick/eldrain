@@ -47,7 +47,7 @@ related_files:
 - не создаёт `Presence` или `ParticipationClaim`;
 - не расходует право участия;
 - не обещает конкретную точку;
-- не переживает Seal, superseded quote или terminal target revision.
+- не переживает Seal, invalidated quote или terminal target revision.
 
 Перед передачей в Breach Coordinator Admission Resolver повторно проверяет readiness, неизменность подтверждённых фактов, допустимость участия, актуальный lifecycle fence и наличие solvent pre-Seal envelope. Любое расхождение освобождает Hold либо возвращает поток в конечный administrative resolution; оно не переносит игрока на другую цель молча.
 

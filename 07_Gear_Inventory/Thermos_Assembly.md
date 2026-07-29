@@ -91,7 +91,7 @@ Assembly публикует revisioned `PatternCoverageBinding`; [[05_Combat_Sur
 - Unknown topology, effect owner/tell/failure, ItemID reservation or installability blocks commit.
 - Raid PaperDoll is read-only; disabled module never opens field respec.
 
-Shadow resolver records legacy/new results, assembly revision, domain revisions and mismatch reason. Remove old resolver only after fixtures pass: compatible/refit/incompatible; OR/AND nodes; support boundary; mutual support; hybrid; collision; damage; duplicate ItemID; atomic swap.
+Assembly validation records the assembly revision, domain revisions, and mismatch reason. A revisioned assembly snapshot is accepted only after fixtures pass: compatible/refit/incompatible; OR/AND nodes; support boundary; mutual support; hybrid; collision; damage; duplicate ItemID; atomic swap.
 
 1. Two drafts request one ItemID: exactly one commit succeeds.
 2. Support at Base is eligible; one point over Base fails even if delta would make Final sufficient.

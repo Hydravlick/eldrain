@@ -17,6 +17,11 @@ sources:
 
 > Здесь остаются только открытые действия. Доска ведёт к одному проверяемому игровому срезу, а не к одновременной полировке всех систем. Завершённые решения уходят в [[_Archive/_MERGED_SOURCES|merge log]], подтверждённые риски — в [[09_Project_Management/Risk_Register|Risk Register]].
 
+## Отложенные границы
+
+- [ ] **Civic Attire → [[07_Gear_Inventory/Fashion_Gear|Fashion Gear]]:** role card appearance / irreversible compatible Thermos-module ingredient / mutually exclusive memory-function choice. Entry condition: core loop stable and Thermos visual-readability boundary proven.
+- [ ] **Premium currency and marketplace → [[06_Economy_Loot/Economy_Core|Economy Core]]:** which non-combat-power goods, sources/sinks, P2P limits, anti-RMT/provenance rules are allowed. Entry condition: accessible-cosmetics role and visual-readability boundary approved.
+
 ## 0. Срочно разобрать: ритм возвращения, регулярные поводы и боссы-события
 
 > **Комментарий автора:** вычищая старые MMO-шаблоны из квестовой грамматики, нельзя случайно выкинуть полезные функции: повод зайти в игру, регулярную систему поощрения, событийных боссов и ощущение, что сегодня на карте есть что-то особенное. POI-пин — это способ взаимодействия с миром, но не вся мотивационная петля.
@@ -150,9 +155,6 @@ sources:
 - [ ] **AFK/disconnect policy:** прописать судьбу Пешки, лута и группы при обрыве связи без безопасного дюпа, убийства союзником ради страховки и обхода риска.
 
 ## Later: контент после устойчивого core loop
-
-- [ ] **Civic Attire decision pass:** решить, возвращается ли система как внешность карточки, необратимый ингредиент модуля или выбор между памятью и функцией. До решения она не является Body Base, рейдовым лутом или активной косметикой.
-- [ ] **Premium currency and marketplace:** спроектировать источники, sinks, P2P-передачу, anti-RMT и товары только после определения доступной косметики и границ визуальной читаемости; не связывать систему с текущим MVP.
 - [ ] **Narrative foundation:** сформулировать центральную рану текущего момента — почему именно сейчас старых договорённостей города недостаточно и как это связано с Якорем, Сущностью, фазами и Очагами.
 - [ ] **Anomaly narrative:** для каждого главного события определить, какое городское обещание оно искажает; Аномалия должна быть второй половиной фабулы, а не только зоной опасности.
 - [ ] **Technology texture:** собрать 12–20 характерных технологий/процедур по формуле «какую нужду закрывает, какую поломку создаёт».

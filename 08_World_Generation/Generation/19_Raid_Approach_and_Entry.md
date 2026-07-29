@@ -13,7 +13,6 @@ tags:
   - approach
   - target_binding
   - entry_quote
-  - migration_foundation
 related_files:
   - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]]"
   - "[[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion Logic]]"

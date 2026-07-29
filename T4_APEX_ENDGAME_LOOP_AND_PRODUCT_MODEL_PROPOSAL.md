@@ -158,7 +158,7 @@ Content flywheel состоит из новых Apex families, совмести�
 > [!note] PRODUCT HYPOTHESIS
 > Рекомендуемая гипотеза: buy-to-play, бесплатные shared gameplay/Apex updates, постоянные optional cosmetic/supporter/archive-presentation packs. Крупные сюжетно-визуальные дополнения допустимы только если базовый Apex runtime и matchmaking не paywall. Коммерческая модель независима от gameplay ADR; нужны budget, CAC и retention данные, и это не финансовое решение.
 
-Запрещено продавать T4 entry, ticket, Dawn insurance, extra Last Thread/life, loot multiplier, gear/stat, progression skip, camouflage или audio advantage, paid priority, mandatory battle pass и expiring power. Premium stash capacity конфликтует с extraction economy/P2W и должна быть удалена либо отдельно переоценена; [[06_Economy_Loot/Premium_Shards|Premium Shards]] остаётся deferred. Допустимы лишь readability-safe cosmetics: Chronicle covers/seals, profile/banner, Hub Table presentation, finishes оружия и gear при сохранённом silhouette. Это примеры класса, не обещание каталога.
+Запрещено продавать T4 entry, ticket, Dawn insurance, extra Last Thread/life, loot multiplier, gear/stat, progression skip, camouflage или audio advantage, paid priority, mandatory battle pass и expiring power. Premium stash capacity конфликтует с extraction economy/P2W и должна быть удалена либо отдельно переоценена; вопрос премиальной валюты и площадки остаётся TBD в [[06_Economy_Loot/Economy_Core|Economy Core]]. Допустимы лишь readability-safe cosmetics: Chronicle covers/seals, profile/banner, Hub Table presentation, finishes оружия и gear при сохранённом silhouette. Это примеры класса, не обещание каталога.
 
 ## Population и сервисная реальность
 

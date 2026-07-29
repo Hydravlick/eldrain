@@ -7,7 +7,6 @@ tags:
   - last_thread
   - lifecycle
   - public_raid
-  - migration_foundation
 related_files:
   - "[[04_Player_Entities/Last_Thread_Recovery|Last Thread Recovery]]"
   - "[[04_Player_Entities/Lifecycle_Resolver|Lifecycle Resolver]]"
