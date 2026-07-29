@@ -11,14 +11,14 @@
             "id": "761942d75935a6b7",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "split-diff-view",
               "state": {
-                "file": "09_Project_Management/Generation_Algorithm_Notes.md",
-                "mode": "preview",
-                "source": false
+                "aFile": ".obsidian/workspace.json",
+                "bFile": ".obsidian/workspace.json",
+                "aRef": ""
               },
-              "icon": "lucide-file",
-              "title": "Generation_Algorithm_Notes"
+              "icon": "diff",
+              "title": "Diff: workspace.json  (Working Tree)"
             }
           }
         ]
@@ -205,6 +205,13 @@
   },
   "active": "761942d75935a6b7",
   "lastOpenFiles": [
+    "Истории/Под лампами.md",
+    "docs/superpowers/specs/2026-06-18-eldraine-design-skills-design.md",
+    "docs/superpowers/specs/2026-07-10-semantic-gdd-index-design.md",
+    "docs/superpowers/specs/2026-06-20-imena-dlya-chudovishch-editorial-design.md",
+    "docs/superpowers/plans/2026-06-18-eldraine-design-skills.md",
+    "docs/plans/2026-07-17-eldraine-system-architecture-skills-design.md",
+    "09_Project_Management/Generation_Algorithm_Notes.md",
     "09_Project_Management/Hunt_Frontier_Ecosystem_Design.md",
     "09_Project_Management/People_Design_Framework.md",
     "09_Project_Management/_Fixtures/Skill_Contract_Valid.md",
@@ -220,17 +227,10 @@
     "09_Project_Management/Canonical_Refactor_Migration_Map_2026-07-23.md",
     "09_Project_Management/Art_Direction_Implementation_Plan.md",
     "09_Project_Management/Refactor_Skills.md",
-    "Истории/Slice_of_Life_Under_Lamps.md",
     "02_World_Lore/Hedgehog_Culture.md",
     "02_World_Lore/Energy_Concept.md",
     "02_World_Lore/Culture_Language.md",
     "04_Player_Entities/Races/Lizard.md",
-    "04_Player_Entities/Races/Hedgehog.md",
-    "04_Player_Entities/Accessible_Candidates.md",
-    "04_Player_Entities/Specs/Drifter.md",
-    "04_Player_Entities/Specs/Dogmat.md",
-    "04_Player_Entities/_Matrices/00_Synergy_Map.md",
-    "03_Factions_Societies/Pledge_Contracts.md",
     "docs/plans",
     "_Archive/Merged/Skill_Architecture_2026-07-13",
     "Не подтвержден 554931.crdownload",
