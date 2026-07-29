@@ -128,17 +128,17 @@ if (authoredRows.length) {
 }
 ```
 
-Жаба, Ящерица, Страж и Догмат остаются expansion-направлениями. Для них не создаются фиктивные готовые комбо до отдельного прохода.
+Жаба, Ящерица, Заступник и Догмат остаются expansion-направлениями. Для них не создаются фиктивные готовые комбо до отдельного прохода.
 
 ## Статическая карта MVP
 
 Эта таблица — навигация для чтения вне Obsidian. Единственный источник статуса, **базового** арсенала, `BaseFrameProf` и будущих P/Q/E — записи ячеек ниже; таблица не повторяет их поля. Личный `MasteryContribution` хранится у Пешки и не переписывает эти authored-записи.
 
-| Раса \ Практика | Авангард | Технократ | Странник |
+| Раса \ Практика | Застрельщик | Ладчик | Странник |
 |:---|:---|:---|:---|
-| Ёж | [[04_Player_Entities/_Registries/Registry_Combos#Ёж × Авангард|Ёж × Авангард]] | [[04_Player_Entities/_Registries/Registry_Combos#Ёж × Технократ|Ёж × Технократ]] | [[04_Player_Entities/_Registries/Registry_Combos#Ёж × Странник|Ёж × Странник]] |
-| Крыса | [[04_Player_Entities/_Registries/Registry_Combos#Крыса × Авангард|Крыса × Авангард]] | [[04_Player_Entities/_Registries/Registry_Combos#Крыса × Технократ|Крыса × Технократ]] | [[04_Player_Entities/_Registries/Registry_Combos#Крыса × Странник|Крыса × Странник]] |
-| Белка | [[04_Player_Entities/_Registries/Registry_Combos#Белка × Авангард|Белка × Авангард]] | [[04_Player_Entities/_Registries/Registry_Combos#Белка × Технократ|Белка × Технократ]] | [[04_Player_Entities/_Registries/Registry_Combos#Белка × Странник|Белка × Странник]] |
+| Ёж | [[04_Player_Entities/_Registries/Registry_Combos#Ёж × Застрельщик|Ёж × Застрельщик]] | [[04_Player_Entities/_Registries/Registry_Combos#Ёж × Ладчик|Ёж × Ладчик]] | [[04_Player_Entities/_Registries/Registry_Combos#Ёж × Странник|Ёж × Странник]] |
+| Крыса | [[04_Player_Entities/_Registries/Registry_Combos#Крыса × Застрельщик|Крыса × Застрельщик]] | [[04_Player_Entities/_Registries/Registry_Combos#Крыса × Ладчик|Крыса × Ладчик]] | [[04_Player_Entities/_Registries/Registry_Combos#Крыса × Странник|Крыса × Странник]] |
+| Белка | [[04_Player_Entities/_Registries/Registry_Combos#Белка × Застрельщик|Белка × Застрельщик]] | [[04_Player_Entities/_Registries/Registry_Combos#Белка × Ладчик|Белка × Ладчик]] | [[04_Player_Entities/_Registries/Registry_Combos#Белка × Странник|Белка × Странник]] |
 
 ## Контракт записи
 
@@ -180,7 +180,7 @@ if (authoredRows.length) {
 
 ---
 
-## Ёж × Авангард
+## Ёж × Застрельщик
 
 [id:: hedgehog_assault]
 [req_race:: hedgehog]
@@ -197,7 +197,7 @@ if (authoredRows.length) {
 
 ---
 
-## Ёж × Технократ
+## Ёж × Ладчик
 
 [id:: hedgehog_support]
 [req_race:: hedgehog]
@@ -230,7 +230,7 @@ if (authoredRows.length) {
 
 ---
 
-## Крыса × Авангард
+## Крыса × Застрельщик
 
 [id:: rat_assault]
 [req_race:: rat]
@@ -246,7 +246,7 @@ if (authoredRows.length) {
 
 ---
 
-## Крыса × Технократ
+## Крыса × Ладчик
 
 [id:: rat_support]
 [req_race:: rat]
@@ -280,7 +280,7 @@ if (authoredRows.length) {
 
 ---
 
-## Белка × Авангард
+## Белка × Застрельщик
 
 [id:: squirrel_assault]
 [req_race:: squirrel]
@@ -298,7 +298,7 @@ if (authoredRows.length) {
 
 ---
 
-## Белка × Технократ
+## Белка × Ладчик
 
 [id:: squirrel_support]
 [req_race:: squirrel]

@@ -42,6 +42,24 @@ central_fallback
 
 `stable_external` не означает «лучше центра». Он обозначает услугу, существующую благодаря текущей Stable-конфигурации сектора.
 
+## Контракт рейдового Реквиема
+
+Реквием создаётся только как вариант уже существующего рейдового POI. Он не является постоянным пином Хаба, отдельной линией мутации или персональной инстанс-локацией.
+
+```text
+poi_role: requiem_overlay
+availability: raid_only
+constant_ref: canonical Constantine record
+relic_trace: object | place | procedure
+precedent: short disputed civic rule
+t1_tell: observable early sign
+human_cost: whom the rule protects, burdens, or excludes
+counterplay_or_refusal: visible route
+evidence_payload: extractable proof | none
+```
+
+`constant_ref` связывает POI с канонической записью Константы, а не с экипируемым персонажем или баффом. Запись обязана дать игроку читаемое условие, цену и путь отказа; T3 не вправе отменять раскрытое правило без нового сигнала. Метафизический источник этого наложения определяет [[02_World_Lore/The_Entity#Реквиемы Констант|Сущность]].
+
 # 0. Центральные Пины
 
 ### Общие Кладовые
