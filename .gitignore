@@ -6,8 +6,9 @@
 .stversions/
 .stfolder/
 .stfolder.removed-*/
+.superpowers/brainstorm/
+
 # Local Codex design skills and their working specifications
-.agents/skills/
 docs/superpowers/
 
 # Private fiction drafts
