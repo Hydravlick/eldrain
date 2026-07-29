@@ -10,6 +10,12 @@ description: Use when evaluating Eldraine weapon, armor, battery, rarity, tier, 
 Evaluate complete loadouts over repeated raids, not isolated item stats. A healthy upgrade must change capability, reliability, or risk-adjusted opportunity without making cheaper gear either universally optimal or completely obsolete.
 
 
+## Active Canon Language
+
+Describe the accepted target state affirmatively: name the active entities, rules, scope, and consequences.
+
+Historical context belongs outside active rule statements. When it helps explain provenance or a reference, label it as contextual material and return the adopted model in the canonical result.
+
 ## Responsibility Boundary
 
 Own equipment progression and risk-adjusted value of complete loadouts over repeated raids. Tags, hero-kits, roster rules, and maps enter this model only when they change equipment access, capability, loss, logistics, replacement, or dominance.

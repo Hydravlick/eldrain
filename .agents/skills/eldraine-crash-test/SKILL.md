@@ -10,6 +10,12 @@ description: Use when attacking a defined Eldraine mechanic, build, economy loop
 Attack the incentive structure, not the prose. Find what rational players will repeatedly do when rewards, risk, coordination, and time pressure interact.
 
 
+## Active Canon Language
+
+Describe the accepted target state affirmatively: name the active entities, rules, scope, and consequences.
+
+Historical context belongs outside active rule statements. When it helps explain provenance or a reference, label it as contextual material and return the adopted model in the canonical result.
+
 ## Responsibility Boundary
 
 Own adversarial evidence against an explicit decision, cost, reward, invariant, or interface. Do not invent the intended cross-system contract, allocate uncertainty, or judge the architecture by content volume. If ownership, reveal timing, acceptable behaviour, or system boundaries are unresolved, report that dependency and use `eldraine-system-architect` first.

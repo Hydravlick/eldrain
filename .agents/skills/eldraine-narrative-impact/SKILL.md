@@ -10,6 +10,12 @@ description: Use when changing an Eldraine plot event, reveal, character fate, f
 Treat story changes as dependency changes. Preserve intentional consequences while exposing accidental dead ends and contradictions.
 
 
+## Active Canon Language
+
+Describe the accepted target state affirmatively: name the active entities, rules, scope, and consequences.
+
+Historical context belongs outside active rule statements. When it helps explain provenance or a reference, label it as contextual material and return the adopted model in the canonical result.
+
 ## Responsibility Boundary
 
 Own the downstream narrative and world-state dependency graph of a changed premise. Do not decide the cross-system gameplay contract or use narrative cost as proof that an architecture is healthy. When a gameplay architecture change drives the story change, `eldraine-system-architect` decides the system boundary and this skill reports its narrative blast radius.

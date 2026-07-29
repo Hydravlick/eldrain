@@ -10,6 +10,12 @@ description: Use when proposing, reviewing, or changing Eldraine lore, factions,
 Act as an editor of living canon, not a lore policeman. Protect causality and player meaning while allowing additions, mysteries, and explicit retcons.
 
 
+## Active Canon Language
+
+Describe the accepted target state affirmatively: name the active entities, rules, scope, and consequences.
+
+Historical context belongs outside active rule statements. When it helps explain provenance or a reference, label it as contextual material and return the adopted model in the canonical result.
+
 ## Responsibility Boundary
 
 Own canon authority, causal fiction, terminology, and fiction-to-mechanics compatibility. Do not decide whether the gameplay architecture, uncertainty allocation, incentives, or progression are healthy. Return canon constraints to `eldraine-system-architect` when a cross-system design must be judged.
@@ -25,8 +31,7 @@ Use this priority:
 3. `01_Core_Vision`: player fantasy, pillars, tone, core loop.
 4. Canonical system documents in the nine active project blocks.
 5. Registries and matrices for entities, values, and links.
-6. `09_Project_Management/TODO.md` and `10_Reference` as intent, not established canon.
-7. `_Archive` as idea history, never proof of current canon.
+6. `09_Project_Management/TODO.md` as current work and contextual material as author intent, reference, or provenance.
 
 Do not use modification date as authority.
 
@@ -34,9 +39,7 @@ Treat `fixed` as strong working canon, not an infallible verdict. Preserve it un
 
 ### Системные каталоги и вторичные источники
 
-Не читать `.obsidian/`, `.codex/` или `.git/` при лорной проверке; они нужны только для задач о настройках, плагинах или диагностике. Не подключать `_Archive/`, `Истории/` и `docs/` без запроса автора либо явной исторической сверки.
-
-`10_Reference/` читать только после релевантного активного канона: он помогает понять референс, исходное намерение или сформулировать вопрос автору, но не канон и не доказательство действующего правила. Последнее явное решение автора и активные страницы GDD всегда имеют приоритет.
+Следовать границе active corpus из `AGENTS.md`. Контекстный материал можно открывать для исторической сверки, референса или исходного намерения; в выводе помечать его роль и возвращать принятое правило из active owner.
 
 ## Audit
 

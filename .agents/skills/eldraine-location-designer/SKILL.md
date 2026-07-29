@@ -10,6 +10,12 @@ description: Use when designing or reviewing an Eldraine sector, district, raid 
 Design a location as a sequence of readable spatial decisions. Make every phase change preserve causality, navigation and a credible production method.
 
 
+## Active Canon Language
+
+Describe the accepted target state affirmatively: name the active entities, rules, scope, and consequences.
+
+Historical context belongs outside active rule statements. When it helps explain provenance or a reference, label it as contextual material and return the adopted model in the canonical result.
+
 ## Responsibility Boundary
 
 Own the location's spatial decisions, route grammar, connectivity, phase readability, and production method. Report which spatial facts remain learnable across procedural variants and which uncertainty the map contributes. Do not allocate the total uncertainty budget across map, Pawn, build, encounter, and rules; use `eldraine-system-architect` when those layers interact.

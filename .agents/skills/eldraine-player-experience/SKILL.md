@@ -10,6 +10,12 @@ description: "Use when translating or evaluating an already bounded Eldraine fea
 Describe the game from outside the system. Every important rule must become something the player can perceive, interpret, decide about, and remember.
 
 
+## Active Canon Language
+
+Describe the accepted target state affirmatively: name the active entities, rules, scope, and consequences.
+
+Historical context belongs outside active rule statements. When it helps explain provenance or a reference, label it as contextual material and return the adopted model in the canonical result.
+
 ## Responsibility Boundary
 
 Own the chronological evidence of what the player perceives, believes, decides, commits, and learns in a bounded flow. Do not define cross-system ownership, the total certainty budget, the genre contract, or scaling invariants. When the question spans several system layers or asks whether the framework itself is sound, use `eldraine-system-architect` first and answer only its bounded experience question.

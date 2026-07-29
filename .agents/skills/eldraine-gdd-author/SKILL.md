@@ -10,6 +10,12 @@ description: Use when turning Eldraine notes, references, dictated ideas, decisi
 Integrate decisions into the living vault instead of producing isolated design prose. Find the canonical home before creating a file.
 
 
+## Active Canon Language
+
+Describe the accepted target state affirmatively: name the active entities, rules, scope, and consequences.
+
+Historical context belongs outside active rule statements. When it helps explain provenance or a reference, label it as contextual material and return the adopted model in the canonical result.
+
 ## Responsibility Boundary
 
 Own canonical placement, document responsibility, integration, and prose after the design decision is known. Do not resolve disputed cross-system ownership, certainty allocation, genre compatibility, or scaling philosophy through polished writing. Use `eldraine-system-architect` first when those questions remain open, then encode the approved contract without duplicating its audit method in GDD.
@@ -25,7 +31,7 @@ Choose among:
 3. Create a new focused document inside one of the nine active blocks.
 4. Keep the material as a proposal when core decisions remain unresolved.
 
-Prefer extension over duplication. Never revive legacy namespaces or use `_Archive` as the target for active design.
+Prefer extension over duplication. Place active design in an active owner, registry, or new focused document; contextual material retains provenance while the adopted rule lives in its active owner.
 
 ## Resolve Before Writing
 
@@ -61,9 +67,9 @@ Validate target paths and headings before adding links.
 
 ## Навигация и контекст
 
-Для обычной GDD-задачи читать `00_Index.md`, `09_Project_Management/Architecture_MVP.md`, целевую каноническую страницу и её прямые зависимости. Не загружать `.obsidian/`, `.codex/`, `.git/`, `_Archive/`, `Истории/` или `docs/`, пока задача не требует именно этих материалов.
+Для обычной GDD-задачи читать `00_Index.md`, `09_Project_Management/Architecture_MVP.md`, целевую каноническую страницу и её прямые зависимости. Следовать границе active corpus из `AGENTS.md`.
 
-`10_Reference/` использовать для референса, исходного намерения или вопроса автору. Он не является источником канона и не отменяет последнее явное решение автора либо активную страницу GDD.
+Контекстный материал можно открывать для референса, исходного намерения или вопроса автору. Помечать его роль в результате; принятое правило и его доказательство брать из active owner.
 
 ## Ответственность, навигация и Dataview
 

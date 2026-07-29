@@ -10,6 +10,12 @@ description: Use when evaluating how relevant player profiles will behave around
 Evaluate behavior, not demographic stereotypes. Ask what each relevant player seeks, learns, repeats, avoids, and values under extraction pressure.
 
 
+## Active Canon Language
+
+Describe the accepted target state affirmatively: name the active entities, rules, scope, and consequences.
+
+Historical context belongs outside active rule statements. When it helps explain provenance or a reference, label it as contextual material and return the adopted model in the canonical result.
+
 ## Responsibility Boundary
 
 Own behavioural evidence: who adapts, optimizes, avoids, returns, or quits under a defined contract. Do not decide cross-system ownership, uncertainty allocation, genre compatibility, or the final architecture. When those are disputed, use `eldraine-system-architect` first and return the profile consequences of its stated alternatives.

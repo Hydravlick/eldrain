@@ -1,6 +1,6 @@
 # Eldrain
 
-This project folder contains the current Eldrain GDD canon.
+This project folder contains the active Eldrain corpus and contextual material.
 
 ## Reading
 
@@ -8,10 +8,25 @@ This project folder contains the current Eldrain GDD canon.
 2. Resolve the requested subject to its `index_route: owner` page.
 3. Open that owner and only its direct dependencies.
 4. Exclusion clauses narrow source selection and do not add sources.
-5. Use project-wide search only after owner selection, for dependency and consistency checks.
-6. Treat an exclusion clause as a source filter, never as an additional search target.
+5. Use corpus-wide search within `00_Index.md` and `01_` through `09_` only after owner selection, for dependency and consistency checks.
 
 The route pages and `00_Index.md` are generated projections. Do not edit them manually; update owner metadata and run `python tools/build_routes.py --write`.
+
+## Canonical Corpus
+
+The current canonical corpus is `00_Index.md` and the `01_` through `09_` directories.
+
+- `00_Index.md` and the generated `00_Routes.md` pages provide navigation.
+- Active owner pages under `01_` through `08_` establish current game rules.
+- `09_Project_Management` establishes current work, risks, and approved placement; it does not redefine a game rule owned under `01_` through `08_`.
+
+Current-canon claims cite active owners. Select owners and resolve rule conflicts inside this corpus before opening contextual material.
+
+## Contextual Materials
+
+`10_Reference`, `Истории`, `docs`, root-level proposals, media, configuration, runtime folders, and `.agents` serve reference, provenance, instructions, or tooling roles.
+
+Contextual materials may be opened without a separate user request when useful for provenance, reference, or historical understanding. Label their role in the result, then state the adopted model from its active owner. They contribute context; active owners supply current-rule evidence.
 
 ## Authority
 
@@ -60,12 +75,6 @@ Expected return: <evidence, table, constraint, or verdict>
 ```
 
 Skills remain explicit-only in their metadata. The root agent performs the explicit selection described above; users may also invoke a skill directly with `$skill-name`.
-
-## Scope
-
-- Only files currently present in this project folder may supply current canon.
-- Do not inspect `.git`, sibling folders, deleted files, backups, caches, or external archives.
-- If a requested historical source is absent, return `HISTORICAL_SOURCE_NOT_IN_PROJECT` and ask the user to provide it.
 
 ## Verification
 

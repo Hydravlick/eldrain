@@ -10,6 +10,12 @@ description: Use when designing or reviewing Eldraine cross-system architecture,
 Protect player competence while the world remains hostile and uncertain. Judge the stable grammar of the game before judging how many instances, values, or prototype results currently exist.
 
 
+## Active Canon Language
+
+Describe the accepted target state affirmatively: name the active entities, rules, scope, and consequences.
+
+Historical context belongs outside active rule statements. When it helps explain provenance or a reference, label it as contextual material and return the adopted model in the canonical result.
+
 ## Responsibility Boundary
 
 Own only the **cross-system contract**:

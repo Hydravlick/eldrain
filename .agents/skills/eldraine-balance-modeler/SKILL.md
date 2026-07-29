@@ -10,6 +10,12 @@ description: Use when the truth of an Eldraine rule or claimed balance corridor 
 Turn design language into a falsifiable model. Prefer a rough honest model over precise-looking invented balance.
 
 
+## Active Canon Language
+
+Describe the accepted target state affirmatively: name the active entities, rules, scope, and consequences.
+
+Historical context belongs outside active rule statements. When it helps explain provenance or a reference, label it as contextual material and return the adopted model in the canonical result.
+
 ## Responsibility Boundary
 
 Own numeric truth only. Do not decide the intended player promise, responsibility boundaries, acceptable uncertainty, genre contract, or whether missing content invalidates a framework. Use `eldraine-system-architect` for those questions and model only the parameter whose value can change its verdict.
