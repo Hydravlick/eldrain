@@ -13,6 +13,7 @@ tags:
   - remote_presence
 related_files:
   - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
+  - "[[08_World_Generation/City_State/Civic_Event_Lifecycle|Civic_Event_Lifecycle]]"
   - "[[08_World_Generation/Generation/17_Dual_State_POIs|Dual_State_POIs]]"
   - "[[08_World_Generation/Generation/18_POI_Metadata_Registry|POI_Metadata]]"
 ---
@@ -24,7 +25,7 @@ related_files:
 
 ## 2. Появление пинов
 
-`GenerationSnapshot` передаёт фактически размещённые и сохранившиеся POI. Metadata resolver создаёт пин только если:
+Опубликованная `WorldRevision` передаёт фактически размещённые и сохранившиеся POI. Metadata resolver создаёт пин только если:
 
 1. ассет присутствует в Stable-конфигурации;
 2. его сервисная функция не уничтожена;
@@ -44,7 +45,7 @@ related_files:
 
 - пин доступен весь Stable-цикл сектора;
 - у него нет почасового расписания или ночного появления;
-- следующий аномальный цикл замещает внешнюю диораму и пересобирает список пинов;
+- следующая опубликованная `WorldRevision` может заместить внешнюю диораму и пересобрать список пинов;
 - незавершённый preview ничего не расходует;
 - закреплённая цель и знание типа POI сохраняются;
 - центральный минимум остаётся доступен независимо от внешней ротации.

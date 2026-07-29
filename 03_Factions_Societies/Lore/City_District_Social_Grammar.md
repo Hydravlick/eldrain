@@ -19,6 +19,7 @@ related_files:
   - "[[03_Factions_Societies/Lore/Hearth_Anatomy|Hearth_Anatomy]]"
   - "[[03_Factions_Societies/Lore/The_Cathedral|The_Cathedral]]"
   - "[[08_World_Generation/Anomaly/Anomaly_System|Anomaly_System]]"
+  - "[[08_World_Generation/City_State/Civic_Event_Lifecycle|Civic_Event_Lifecycle]]"
   - "[[08_World_Generation/Districts/City_Center|City_Center]]"
 ---
 # Социальная грамматика районов Элдрейна
@@ -103,7 +104,7 @@ related_files:
 2. **Человеческую зависимость или боль** — кто на этом живёт, от чего страдает или чего лишится при запрете.
 3. **Спор о цене** — чья ответственность, какое право, долг или риск нельзя решить одной технической починкой.
 
-Так улица с чудом остаётся улицей людей, а не производственным узлом. Эта грамматика не добавляет новый класс POI и не меняет геометрию: физический путь и рейдовый объект по-прежнему принадлежат страницам генерации.
+Так улица с чудом остаётся улицей людей, а не производственным узлом. Эта грамматика не добавляет новый класс POI, не меняет геометрию и не хранит состояние явления: физический путь и рейдовый объект принадлежат страницам генерации, а общие `CivicEvent` и их исходы — [[08_World_Generation/City_State/Civic_Event_Lifecycle|Civic Event Lifecycle]].
 
 ## Повторяемые типы городской ткани
 

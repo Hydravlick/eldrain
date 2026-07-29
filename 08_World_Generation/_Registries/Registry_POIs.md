@@ -11,6 +11,7 @@ registry_type: map_objects
 tags: [ui_map, prefabs, pois, dungeons]
 related_systems:
   - "[[08_World_Generation/Anomaly/Anomaly_System|Anomaly_System]]"
+  - "[[08_World_Generation/City_State/Civic_Event_Lifecycle|Civic_Event_Lifecycle]]"
   - "[[08_World_Generation/Generation/12_Generation_Strategies|Generation_Strategies]]"
   - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
 ---
@@ -42,6 +43,12 @@ central_fallback
 
 `stable_external` не означает «лучше центра». Он обозначает услугу, существующую благодаря текущей Stable-конфигурации сектора.
 
+### Общий POI и отношение аккаунта
+
+`poi_id`, размещение, базовое правило, доступная форма и рейдовый тип POI принадлежат опубликованной `world_revision` общего CityState. Параллельные сессии на одной ревизии получают один и тот же POI-контракт, хотя живые действия внутри сессии остаются локальными.
+
+Аккаунт отдельно хранит открытие типа POI, связь с контрактом, личную награду и след знания. Эти поля не создают персональный POI, не меняют его геометрию и не переписывают правило для других игроков.
+
 ## Контракт рейдового Реквиема
 
 Реквием создаётся только как вариант уже существующего рейдового POI. Он не является постоянным пином Хаба, отдельной линией мутации или персональной инстанс-локацией.
@@ -50,7 +57,13 @@ central_fallback
 poi_role: requiem_overlay
 availability: raid_only
 constant_ref: canonical Constantine record
-relic_trace: object | place | procedure
+relic_trace_family_ref: canonical Constantine trace family
+manifestation_anchor: existing POI element
+manifestation_form: creature | object | route | scene | localized_weather
+manifestation_extent: bounded POI subspace
+entry_tell: observable boundary signal
+exit_condition: declared completion or withdrawal condition
+refusal_path: visible bypass or cost
 precedent: short disputed civic rule
 t1_tell: observable early sign
 human_cost: whom the rule protects, burdens, or excludes
@@ -58,7 +71,7 @@ counterplay_or_refusal: visible route
 evidence_payload: extractable proof | none
 ```
 
-`constant_ref` связывает POI с канонической записью Константы, а не с экипируемым персонажем или баффом. Запись обязана дать игроку читаемое условие, цену и путь отказа; T3 не вправе отменять раскрытое правило без нового сигнала. Метафизический источник этого наложения определяет [[02_World_Lore/The_Entity#Реквиемы Констант|Сущность]].
+`constant_ref` и `relic_trace_family_ref` связывают POI с канонической записью Константы и её семейством следа, а не с экипируемым персонажем или баффом. Носителей у одного семейства может быть несколько: материальных, пространственных, устных или процедурных. Запись обязана дать игроку читаемое условие, цену и путь отказа; T3 не вправе отменять раскрытое правило без нового сигнала. Метафизический источник этого наложения определяет [[02_World_Lore/The_Entity#Реквиемы Констант|Сущность]].
 
 # 0. Центральные Пины
 

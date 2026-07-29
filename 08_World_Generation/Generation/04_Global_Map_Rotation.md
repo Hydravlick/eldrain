@@ -11,6 +11,7 @@ tags: [rotation, server_state, exploration, stable_addresses]
 related_files:
   - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server_Lifecycle]]"
   - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
+  - "[[08_World_Generation/City_State/Civic_Event_Lifecycle|Civic_Event_Lifecycle]]"
 ---
 # Ротация Активных и Stable-Секторов
 
@@ -21,14 +22,13 @@ related_files:
 ## 2. Рабочий цикл
 
 ```text
-Active Anomaly
-  -> final Stabilization
-  -> GenerationSnapshot
-  -> Stable peaceful projection + external address pins
-  -> next anomalous replacement
+published WorldRevision
+  -> parallel Active Anomaly sessions consume it
+  -> CityState revision barrier
+  -> next WorldRevision + Stable peaceful projection and external address pins
 ```
 
-Игрок видит рядом активные рейдовые сектора и внешние Stable-лепестки. Закреплённый адрес связывает план добычи с активным сектором, а следующий цикл заменяет набор внешних возможностей.
+Игрок видит рядом активные рейдовые сектора и внешние Stable-лепестки. Закреплённый адрес связывает план добычи с активным сектором, а следующая ревизия CityState заменяет набор внешних возможностей. Исход одной рейдовой сессии не публикует новую общую карту.
 
 ## 3. Состояния сектора
 
@@ -47,7 +47,7 @@ Active Anomaly
 ## 5. Правила замещения
 
 - Стабилизация не выдаёт оставленный переносимый лут.
-- Пины создаются только из фактических ассетов GenerationSnapshot.
+- Пины создаются только из фактических ассетов опубликованной WorldRevision.
 - Новый цикл заменяет доступность POI, но не стирает знание открытого типа сервиса.
 - Закрытие лепестка не расходует неподтверждённую сделку и не уничтожает предметы в Схроне.
 - Центральный минимум не участвует в ротации.

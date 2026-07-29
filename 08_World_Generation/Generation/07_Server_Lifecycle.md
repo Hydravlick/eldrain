@@ -22,6 +22,7 @@ related_files:
   - "[[06_Economy_Loot/Return_Manifest_Contract|Return Manifest Contract]]"
   - "[[04_Player_Entities/Recovery_Lifecycle|Recovery Lifecycle]]"
   - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub Map Table]]"
+  - "[[08_World_Generation/City_State/Civic_Event_Lifecycle|Civic Event Lifecycle]]"
 ---
 # Жизненный цикл сервера
 
@@ -29,14 +30,17 @@ related_files:
 
 `SERVER_LIFECYCLE` — единственный владелец `SessionID`, elapsed session clock, производной phase band, монотонного `PhaseRevision`, phase barriers и полного порядка решений на одном ключе. Один `SessionID` живёт шесть часов; это непрерывная жизнь одной карты, а не длительность личного рейда или отдельная очередь.
 
+При создании `SessionID` Lifecycle читает опубликованный [[08_World_Generation/City_State/Civic_Event_Lifecycle|CityState]]: `city_state_id`, `city_revision` и `world_revision`. Он не выбирает эту ревизию и не меняет её. Сессии, начатые на одной `world_revision`, получают одинаковую базовую генерацию; их живые локальные изменения по-прежнему не синхронизируются.
+
 `T1`, `T2`, `T3` и `T4` — только производные состояния возраста мира. Они никогда не являются билетом, уровнем снаряжения, продуктом доступа или matchmaking bucket. Вход, materialization, target binding, egress и per-Presence исходы принадлежат профильным владельцам; Server Lifecycle поставляет им только время, revision и order.
 
 ```yaml
 SessionClock:
   owner: SERVER_LIFECYCLE
   source: SessionID
+  city_state_input: city_state_id + city_revision + world_revision (read-only)
   elapsed_session_clock: monotonic
-  phase_revision: monotonic_committed_world_revision
+  phase_revision: monotonic_committed_session_phase_revision
   lifecycle: created_once_per_session; never_reset_or_merged
 ```
 
@@ -52,7 +56,7 @@ SessionClock:
 | `05:00–06:00` | sealed T4 Apex | Та же карта и тот же `SessionID` остаются live, но ingress больше не публикуется. |
 | `06:00` | Dawn resolving / terminal | Барьер запускает per-Presence settlement у профильных lifecycle owners. |
 
-Фазовая смена может менять committed world revision и его authored world rules, но не переносит игроков в комнату, безопасный Саркофаг или иную локацию. Первое доступное body frame и полный контроль после materialization принадлежат [[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion Logic]], а не этому owner.
+Фазовая смена может менять локальную `PhaseRevision` и authored-правила текущей сессии, но не публикует новую `world_revision` для города и не переносит игроков в комнату, безопасный Саркофаг или иную локацию. Первое доступное body frame и полный контроль после materialization принадлежат [[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion Logic]], а не этому owner.
 
 ## 3. Барьеры и полный порядок
 
@@ -72,11 +76,11 @@ SessionClock:
 
 `PENDING_OWNER:LIFECYCLE_RESOLVER` единолично принимает per-STANDARD `DawnSettlementDecision=STANDARD_RETURN|LETHAL_TERMINAL`. [[04_Player_Entities/Recovery_Lifecycle|RECOVERY_LIFECYCLE]] единолично принимает Recovery outcome. [[06_Economy_Loot/Return_Manifest_Contract|EXTRACTION_RETURN_RESOLVER / Return Manifest]] получает только committed `STANDARD_RETURN` и производно доставляет физический custody; он никогда не владеет survival или settlement decision. Эта страница не выбирает ни одну ветку `UR-001`, `UR-002` или `UR-003`.
 
-## 4. Непрерывность SessionID и Stable snapshot
+## 4. Непрерывность SessionID и общий WorldRevision
 
-Seal и Dawn не создают второй рейдовый инстанс. После terminal settlement Server Lifecycle фиксирует завершённый `SessionID` и его committed world snapshot для мирной проекции; переносимый предмет не становится личной наградой от самого snapshot.
+Seal и Dawn не создают второй рейдовый инстанс. После terminal settlement Lifecycle фиксирует локальный итог `SessionID`; переносимый предмет не становится личной наградой от итоговой карты.
 
-Snapshot содержит committed generation facts: seed/идентификатор цикла, размещённые assets, связи маршрутов, порождённые POI, подтверждённые типы POI и кандидатов во внешние адреса. [[08_World_Generation/Hub/01_Hub_Map_Table|Hub Map Table]] использует snapshot как мирную проекцию, а не как свободно посещаемую карту. Следующий цикл получает новый `SessionID`; старые clocks не reset, не merge и не перепривязываются.
+Публичный `world_revision` приходит из `CityState`, а не складывается из исхода одной сессии. Он содержит seed/идентификатор ревизии, размещённые assets, связи маршрутов, порождённые POI, подтверждённые типы POI и кандидатов во внешние адреса. [[08_World_Generation/Hub/01_Hub_Map_Table|Hub Map Table]] читает опубликованную ревизию как мирную проекцию, а не как свободно посещаемую карту. Следующий `SessionID` читает актуальную опубликованную ревизию; старые clocks не reset, не merge и не перепривязываются.
 
 ## 5. Граница с regional service
 
