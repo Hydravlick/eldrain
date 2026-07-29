@@ -1,29 +1,67 @@
 ---
 name: eldraine-narrative-impact
-description: Use when an approved Eldraine narrative or world-state change needs its downstream story and content dependencies traced.
+description: Use when changing an Eldraine plot event, reveal, character fate, faction state, player choice, quest outcome, secret, or chronology and downstream narrative or systemic dependencies may break.
 ---
 
 # Eldraine Narrative Impact
 
 ## Principle
 
-Treat a narrative change as a dependency change with intentional consequences and explicit replacements.
+Treat story changes as dependency changes. Preserve intentional consequences while exposing accidental dead ends and contradictions.
 
-## Current Sources
 
-Read `00_Index.md`, the changed active owner, and direct active owners for named characters, factions, locations, quests, services, reveals, and states.
+## Responsibility Boundary
 
-## Workflow
+Own the downstream narrative and world-state dependency graph of a changed premise. Do not decide the cross-system gameplay contract or use narrative cost as proof that an architecture is healthy. When a gameplay architecture change drives the story change, `eldraine-system-architect` decides the system boundary and this skill reports its narrative blast radius.
 
-1. Trace `changed fact → affected state or knowledge → affected content → required response`.
-2. Separate established, inferred, and undocumented dependencies.
-3. Check immediate play, the current arc, long-term continuity, and player knowledge separately from character knowledge.
-4. Classify logic holes, orphaned content, pacing damage, system dependencies, intentional irreversibility, and new opportunities.
+## Trace the Change
 
-## Output
+Read the changed premise and search for every directly named character, faction, location, quest, service, reveal, and term. Build a compact dependency chain:
 
-Lead with `LOCAL`, `ARC`, or `FOUNDATIONAL`. Provide a horizon table with evidence and response, then the minimum continuity patch, stronger branch, intentional losses, files to update, and author decisions.
+`changed fact -> affected knowledge/state -> affected content -> required replacement`
 
-## Stop
+Separate:
 
-If the changed fact or a required owner is absent, return `MISSING_OWNER`. If the change needs a shared architecture decision, return `BLOCKED: ARCHITECTURE_DECISION_REQUIRED` with exact owner paths and one question. Do not invoke another skill automatically.
+- established dependency;
+- inferred dependency;
+- missing documentation.
+
+## Time Horizons
+
+Check:
+
+1. **Immediate:** current scene, tutorial, reward, access, dialogue, party state.
+2. **Current arc:** active quests, faction relationships, pacing, available services.
+3. **Long term:** later reveals, endings, recurring characters, world-state logic.
+
+Also check player knowledge versus character knowledge. Early truth can break suspense even when world causality remains valid.
+
+## Classify Damage
+
+Use:
+
+- `LOGIC HOLE` — content assumes a fact that is no longer true.
+- `ORPHANED CONTENT` — quest or asset loses its trigger or purpose.
+- `PACING DAMAGE` — reveal, escalation, or emotional beat arrives at the wrong time.
+- `SYSTEM DEPENDENCY` — access, economy, tutorial, or progression relied on the narrative state.
+- `INTENTIONAL IRREVERSIBILITY` — meaningful consequence that should remain.
+- `NEW OPPORTUNITY` — branch or theme unlocked by the change.
+
+## Answer Contract
+
+Lead with the overall blast radius: `LOCAL`, `ARC`, or `FOUNDATIONAL`.
+
+Then provide:
+
+| Horizon | Broken or changed dependency | Evidence | Required response |
+|---|---|---|---|
+
+Finish with:
+
+- minimum continuity patch;
+- stronger branch that embraces the consequence;
+- content that should remain lost because the choice needs weight;
+- files that require updates;
+- unresolved author decisions.
+
+Do not restore all lost content automatically. Do not confuse expensive consequences with narrative errors. Use `eldraine-lorekeeper` when the problem is canon authority rather than downstream structure. Do not edit files unless asked.

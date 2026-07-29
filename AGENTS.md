@@ -29,6 +29,36 @@ This project folder contains the current Eldrain GDD canon.
 3. Run project-folder validation.
 4. Remove the temporary source after successful migration.
 
+## Skill Orchestration
+
+The root agent is the Eldrain orchestrator. It explicitly selects skills from `.agents/skills/` when their condition matches; this is intentional orchestration, not passive description matching.
+
+1. For a broad, cross-owner, ownership, lifecycle, uncertainty, or architecture question, start with `eldraine-system-architect`.
+2. For a bounded question, select the matching specialist directly:
+   - spatial flow, topology, sectors, routes, or production feasibility → `eldraine-location-designer`;
+   - approved canonical placement or revision → `eldraine-gdd-author`;
+   - lore, factions, terminology, metaphysics, or fiction-to-mechanics compatibility → `eldraine-lorekeeper`;
+   - exploits, incentive abuse, dominance, or safe farming → `eldraine-crash-test`;
+   - formulas, thresholds, probabilities, rewards, or numeric corridors → `eldraine-balance-modeler`;
+   - equipment, loadouts, replacement, or progression dominance → `eldraine-gear-progression`;
+   - lived sequence, feedback, readability, or failure comprehension → `eldraine-player-experience`;
+   - motivation, adaptation, churn, or profile conflict → `eldraine-player-lens`;
+   - story consequence, world-state change, reveal, or chronology → `eldraine-narrative-impact`.
+3. A selected skill may request one bounded specialist handoff when that evidence can change its verdict. The request must name the target skill, active owner paths, exact question, and expected return artifact.
+4. The orchestrator invokes the requested specialist, returns its evidence to the caller, and does not fan out to unrelated skills. A handoff never transfers final ownership of the original verdict.
+5. If the request has no subject, owner, or approved decision, ask for the missing input or return `MISSING_OWNER`, `SOURCE_CONFLICT`, or `APPROVAL_REQUIRED`; do not manufacture scope.
+
+### Handoff Contract
+
+```text
+HANDOFF: <skill-name>
+Affected owners: <exact active paths>
+Question: <one bounded question>
+Expected return: <evidence, table, constraint, or verdict>
+```
+
+Skills remain explicit-only in their metadata. The root agent performs the explicit selection described above; users may also invoke a skill directly with `$skill-name`.
+
 ## Scope
 
 - Only files currently present in this project folder may supply current canon.
