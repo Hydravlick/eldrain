@@ -17,6 +17,7 @@ related_files:
   - "[[08_World_Generation/Hub/02_Hub_Services_Interaction|Hub_Services_Interaction]]"
   - "[[08_World_Generation/Hub/03_Hub_Map_Interaction|Hub_Map_Interaction]]"
   - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server_Lifecycle]]"
+  - "[[08_World_Generation/Generation/21_Location_Revision_Lifecycle|Location_Revision_Lifecycle]]"
   - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Подход и вход в рейд]]"
   - "[[06_Economy_Loot/Barter_System|Barter_System]]"
   - "[[03_Factions_Societies/Quest_Engine|Quest_Engine]]"
@@ -67,28 +68,29 @@ related_files:
 
 ### 3.2 Опубликованная WorldRevision
 
-Карта читает опубликованную `world_revision` из CityState, а не итог одной рейдовой сессии. Внутри неё находится общий снимок генерации:
+Карта читает опубликованную [[08_World_Generation/Generation/21_Location_Revision_Lifecycle|WorldRevision]] и CityState, а не итог одной рейдовой сессии. `WorldRevision` приходит из общей прегенерации и Stable-постгенерации:
 
 ```text
 WorldRevision
-  city_state_id
-  city_revision
-  world_revision
-  merchant_catalog_revision
-  civic_events[]
-  GenerationSnapshot
-    sector_id
-    cycle_id
-    seed
-    placed_modules[]
-    generated_assets[]
-    route_links[]
-    generated_pois[]
-    discovered_poi_types[]
-    stable_address_candidates[]
+  world_revision_id
+  published_against_city_revision
+  location_bundles[]
+    LocationRevision
+      location_revision_id
+      seed
+      placed_assets[]
+      route_links[]
+      poi_candidates[]
+      asset_tags[]
+    StableProjection
+      low_poly_assets[]
+      low_poly_routes[]
+    StablePOISelection
+      selected_address_pins[]
+      available_poi_types[]
 ```
 
-Внешний пин появляется только из фактически размещённого и сохранившего функцию ассета общей ревизии. Отсутствующий станок, разрушенный маршрут или неподдерживаемая экология не создают сервис из таблицы вероятностей. Локально открытая дверь или убитое существо другой сессии не меняют эту проекцию.
+Внешний пин появляется только из фактически размещённого ассета общей ревизии, прошедшего `StablePOISelection`. Больница, мастерская или склад могут оставаться видимыми в low-poly диораме, но только часть из них получает активный адресный пин в текущем цикле. Локально открытая дверь или убитое существо другой сессии не меняют эту проекцию. `discovered_poi_types[]` не находится в WorldRevision: это личное знание аккаунта.
 
 ### 3.3 Карточка внешнего адреса
 
@@ -149,7 +151,8 @@ WorldRevision
 MapTableState
   city_state_id
   city_revision
-  world_revision
+  world_revision_id
+  location_revision_id
   merchant_catalog_revision
   central_pins[]
   stable_sector_petals[]

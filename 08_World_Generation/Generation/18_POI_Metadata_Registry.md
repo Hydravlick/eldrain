@@ -4,6 +4,7 @@ status: active
 system: generation
 tags: [metadata, prefabs, address_pins]
 related_files:
+  - "[[08_World_Generation/Generation/21_Location_Revision_Lifecycle|Location_Revision_Lifecycle]]"
   - "[[08_World_Generation/_Registries/Registry_POIs|Registry_POIs]]"
   - "[[08_World_Generation/Generation/17_Dual_State_POIs|Dual_State_POIs]]"
   - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
@@ -45,6 +46,7 @@ WorldMetadata
 - требования к уцелевшему ассету и маршруту;
 - central fallback;
 - доступность `stable_cycle`, без короткого таймера.
+- `stable_eligibility`: допустимость участия в `StablePOISelection`; она не выбирает слот и не зависит от локальной рейдовой сессии.
 
 ## 3. Пример
 
@@ -70,14 +72,15 @@ WorldMetadata
     "address_id": "stable_herbalist_service",
     "accepted_families": ["organic", "filter_medium"],
     "service_roles": ["sidegrade", "sanitation"],
+    "stable_eligibility": "eligible",
     "requires_asset_state": "serviceable",
     "requires_route_state": "confirmed_delivery",
     "central_fallback_id": "central_medical_service",
     "availability": "stable_cycle"
   },
-  "discovery": {
-    "poi_type_persists": true,
-    "current_instance_persists": false
+  "account_knowledge_policy": {
+    "type_discovery_persists_per_account": true,
+    "current_instance_does_not_persist": true
   }
 }
 ```
@@ -85,15 +88,16 @@ WorldMetadata
 ## 4. Resolver
 
 ```text
-if asset is absent:
+if asset is absent from LocationRevision:
   no projection pin
 else if projection_role == address
-     and asset_state is serviceable
      and route_state is confirmed:
-  publish stable_external address pin
+  submit eligible candidate to StablePOISelection
 else:
   publish declared closed / quarantine / civic state
 ```
+
+Только `StablePOISelection` выбирает `N` активных адресов из eligible-кандидатов. Не выбранный кандидат остаётся диорамой без активного пина; локальное `SessionRuntime` не является входом resolver.
 
 Metadata не содержит торговый коэффициент, глобальный бонус дохода или случайный ассортимент. `recipe_ids` разрешаются адресным слоем из канонического реестра сделок.
 

@@ -23,6 +23,7 @@ related_files:
   - "[[04_Player_Entities/Recovery_Lifecycle|Recovery Lifecycle]]"
   - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub Map Table]]"
   - "[[08_World_Generation/City_State/Civic_Event_Lifecycle|Civic Event Lifecycle]]"
+  - "[[08_World_Generation/Generation/21_Location_Revision_Lifecycle|Location Revision Lifecycle]]"
 ---
 # Жизненный цикл сервера
 
@@ -30,7 +31,7 @@ related_files:
 
 `SERVER_LIFECYCLE` — единственный владелец `SessionID`, elapsed session clock, производной phase band, монотонного `PhaseRevision`, phase barriers и полного порядка решений на одном ключе. Один `SessionID` живёт шесть часов; это непрерывная жизнь одной карты, а не длительность личного рейда или отдельная очередь.
 
-При создании `SessionID` Lifecycle читает опубликованный [[08_World_Generation/City_State/Civic_Event_Lifecycle|CityState]]: `city_state_id`, `city_revision` и `world_revision`. Он не выбирает эту ревизию и не меняет её. Сессии, начатые на одной `world_revision`, получают одинаковую базовую генерацию; их живые локальные изменения по-прежнему не синхронизируются.
+При создании `SessionID` Lifecycle читает опубликованную [[08_World_Generation/Generation/21_Location_Revision_Lifecycle|WorldRevision]] и текущий [[08_World_Generation/City_State/Civic_Event_Lifecycle|CityState]]. Он не выбирает и не меняет ни один из них. Сессии, начатые на одной `location_revision_id`, получают одинаковые геометрию, здания, маршруты и базовые POI; их живые локальные изменения по-прежнему не синхронизируются.
 
 `T1`, `T2`, `T3` и `T4` — только производные состояния возраста мира. Они никогда не являются билетом, уровнем снаряжения, продуктом доступа или matchmaking bucket. Вход, materialization, target binding, egress и per-Presence исходы принадлежат профильным владельцам; Server Lifecycle поставляет им только время, revision и order.
 
@@ -38,7 +39,8 @@ related_files:
 SessionClock:
   owner: SERVER_LIFECYCLE
   source: SessionID
-  city_state_input: city_state_id + city_revision + world_revision (read-only)
+  city_state_input: city_state_id + city_revision (read-only)
+  world_revision_input: world_revision_id + location_revision_id (read-only)
   elapsed_session_clock: monotonic
   phase_revision: monotonic_committed_session_phase_revision
   lifecycle: created_once_per_session; never_reset_or_merged
@@ -80,7 +82,7 @@ SessionClock:
 
 Seal и Dawn не создают второй рейдовый инстанс. После terminal settlement Lifecycle фиксирует локальный итог `SessionID`; переносимый предмет не становится личной наградой от итоговой карты.
 
-Публичный `world_revision` приходит из `CityState`, а не складывается из исхода одной сессии. Он содержит seed/идентификатор ревизии, размещённые assets, связи маршрутов, порождённые POI, подтверждённые типы POI и кандидатов во внешние адреса. [[08_World_Generation/Hub/01_Hub_Map_Table|Hub Map Table]] читает опубликованную ревизию как мирную проекцию, а не как свободно посещаемую карту. Следующий `SessionID` читает актуальную опубликованную ревизию; старые clocks не reset, не merge и не перепривязываются.
+Публичный `WorldRevision` приходит от [[08_World_Generation/Generation/21_Location_Revision_Lifecycle|WORLD_REVISION_PUBLISHER]], а не складывается из исхода одной сессии. Он ссылается на одну общую `LocationRevision`, её Stable-проекцию и выбранные внешние адреса. [[08_World_Generation/Hub/01_Hub_Map_Table|Hub Map Table]] читает опубликованную ревизию как мирную проекцию, а не как свободно посещаемую карту. Следующий `SessionID` читает актуальную опубликованную ревизию; старые clocks не reset, не merge и не перепривязываются.
 
 ## 5. Граница с regional service
 

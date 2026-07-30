@@ -12,6 +12,7 @@ tags: [ui_map, prefabs, pois, dungeons]
 related_systems:
   - "[[08_World_Generation/Anomaly/Anomaly_System|Anomaly_System]]"
   - "[[08_World_Generation/City_State/Civic_Event_Lifecycle|Civic_Event_Lifecycle]]"
+  - "[[08_World_Generation/Generation/21_Location_Revision_Lifecycle|Location_Revision_Lifecycle]]"
   - "[[08_World_Generation/Generation/12_Generation_Strategies|Generation_Strategies]]"
   - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
 ---
@@ -45,9 +46,21 @@ central_fallback
 
 ### Общий POI и отношение аккаунта
 
-`poi_id`, размещение, базовое правило, доступная форма и рейдовый тип POI принадлежат опубликованной `world_revision` общего CityState. Параллельные сессии на одной ревизии получают один и тот же POI-контракт, хотя живые действия внутри сессии остаются локальными.
+`poi_id`, размещение, базовое правило, доступная форма и рейдовый тип POI принадлежат `LocationRevision` опубликованной [[08_World_Generation/Generation/21_Location_Revision_Lifecycle|WorldRevision]]. Параллельные сессии на одной `location_revision_id` получают один и тот же POI-контракт, хотя живые действия внутри сессии остаются локальными.
 
-Аккаунт отдельно хранит открытие типа POI, связь с контрактом, личную награду и след знания. Эти поля не создают персональный POI, не меняют его геометрию и не переписывают правило для других игроков.
+В содержимом опубликованной `WorldRevision` есть только `available_poi_types[]`: что физически присутствует и может быть доступно городу в этом цикле. Аккаунт отдельно хранит знание:
+
+```text
+AccountPOIKnowledge
+  account_id
+  discovered_poi_types[]
+  discovered_poi_ids[]
+  contract_relations[]
+  personal_rewards[]
+  knowledge_traces[]
+```
+
+Открытие типа POI, связь с контрактом, личная награда и след знания не создают персональный POI, не меняют его геометрию и не переписывают правило для других игроков.
 
 ## Контракт рейдового Реквиема
 
@@ -65,13 +78,12 @@ entry_tell: observable boundary signal
 exit_condition: declared completion or withdrawal condition
 refusal_path: visible bypass or cost
 precedent: short disputed civic rule
-t1_tell: observable early sign
 human_cost: whom the rule protects, burdens, or excludes
-counterplay_or_refusal: visible route
+counterplay: readable response to the rule
 evidence_payload: extractable proof | none
 ```
 
-`constant_ref` и `relic_trace_family_ref` связывают POI с канонической записью Константы и её семейством следа, а не с экипируемым персонажем или баффом. Носителей у одного семейства может быть несколько: материальных, пространственных, устных или процедурных. Запись обязана дать игроку читаемое условие, цену и путь отказа; T3 не вправе отменять раскрытое правило без нового сигнала. Метафизический источник этого наложения определяет [[02_World_Lore/The_Entity#Реквиемы Констант|Сущность]].
+`constant_ref` и `relic_trace_family_ref` связывают POI с канонической записью Константы и её семейством следа, а не с экипируемым персонажем или баффом. Носителей у одного семейства может быть несколько: материальных, пространственных, устных или процедурных. `entry_tell` одновременно является T1-предвестником; `counterplay` отвечает на правило, а `refusal_path` описывает обход или объявленную цену отказа. Запись обязана дать игроку читаемое условие, цену и путь отказа; T3 не вправе отменять раскрытое правило без нового сигнала. Метафизический источник этого наложения определяет [[02_World_Lore/The_Entity#Реквиемы Констант|Сущность]].
 
 # 0. Центральные Пины
 

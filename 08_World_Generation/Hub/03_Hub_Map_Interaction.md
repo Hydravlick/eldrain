@@ -13,6 +13,7 @@ tags:
   - remote_presence
 related_files:
   - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
+  - "[[08_World_Generation/Generation/21_Location_Revision_Lifecycle|Location_Revision_Lifecycle]]"
   - "[[08_World_Generation/City_State/Civic_Event_Lifecycle|Civic_Event_Lifecycle]]"
   - "[[08_World_Generation/Generation/17_Dual_State_POIs|Dual_State_POIs]]"
   - "[[08_World_Generation/Generation/18_POI_Metadata_Registry|POI_Metadata]]"
@@ -25,15 +26,14 @@ related_files:
 
 ## 2. Появление пинов
 
-Опубликованная `WorldRevision` передаёт фактически размещённые и сохранившиеся POI. Metadata resolver создаёт пин только если:
+Опубликованная `WorldRevision` передаёт общую `LocationRevision`, low-poly `StableProjection` и `StablePOISelection`. Metadata resolver создаёт пин только если:
 
-1. ассет присутствует в Stable-конфигурации;
-2. его сервисная функция не уничтожена;
-3. маршрут связи или доставки подтверждён;
-4. опасное наследие допускает удалённую работу;
-5. запись имеет валидный `address_id` и принимаемые семейства.
+1. ассет присутствует в общей `LocationRevision`;
+2. metadata допускает сервисную функцию и содержит валидный `address_id` и принимаемые семейства;
+3. маршрут связи или доставки подтверждён общей постгенерацией;
+4. `StablePOISelection` выбрал его в один из `N` публичных адресных слотов.
 
-Полезный POI может остаться закрытым, а вредная экология — появиться как контракт или предупреждение вместо магазина.
+Полезный POI может остаться видимой, но непинованной частью диорамы; вредная экология — появиться как контракт или предупреждение вместо магазина. Локальные состояния отдельной рейдовой сессии не участвуют в этом выборе.
 
 ## 3. Удалённое присутствие
 
