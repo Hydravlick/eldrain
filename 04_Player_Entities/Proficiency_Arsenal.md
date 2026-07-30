@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: player_entities
+index_order: 90
+index_summary: "Задаёт правила и последствия системы «Адаптивный арсенал и профильные ёмкости»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Адаптивный арсенал и профильные ёмкости»."
 system: player_core
 tags: [weapons, proficiency, arsenal, modules, hero_kit]
 related_files:
@@ -42,9 +47,10 @@ BaseFrameProf(PawnID, FrameID) =
   or 0 if Frame is absent but physically compatible
 
 MasteryContribution(PawnID, FrameID) =
-  count(active Personal Tags where
+  count(revealed active Personal Tags where
         tag_kind = mastery
-        and mastery_frame = FrameID)
+        and mastery_frame = FrameID
+        and mastery_step = 1)
 
 EffectiveFrameProf =
   min(3, BaseFrameProf + MasteryContribution)
@@ -69,15 +75,15 @@ Mastery не является XP-шкалой и не открывает дер�
 
 Mastery-tag:
 
-- называет ровно один `mastery_frame` и даёт ему `mastery_step:: 1`;
-- при `BaseFrameProf = 0` открывает полевое владение `1`, если тело физически совместимо;
-- считается combat-facing: два тега того же Frame могут довести чужое владение `0` до нормального `2`, а исходное владение `1` — до мастерства `3`;
+- называет ровно один `mastery_frame`;
+- при создании lifetime slot выбирает **XOR**: либо `mastery_step:: 1`, либо одну named `mastery_expression`; один тег никогда не даёт оба;
+- только step-вариант при `BaseFrameProf = 0` открывает полевое владение `1`, если тело физически совместимо;
+- считается combat-facing: два step-тега того же Frame могут довести чужое владение `0` до нормального `2`, а исходное владение `1` — до мастерства `3`;
 - не меняет базовые урон, автоматический RPM, полёт импульса или точность;
-- всегда имеет собственную `mastery_expression`: лёгкий локальный сдвиг либо ситуационную трансформацию одной Frame-фазы с явным сайдгрейдом;
 - не добавляет P/Q/E или отдельную персонажную кнопку; новые оружейные действия появляются только как опубликованный moveset уровня `prof` самого Frame;
 - не может вместе с другим тегом переписывать ту же короткую фазу; вклад в уровень суммируется, но владельцы выражений не пересекаются.
 
-Если итог уже равен `3`, следующий mastery-тег не создаёт `prof 4`, однако его собственная `mastery_expression` продолжает работать. Поэтому тег полезен и Пешке с базовым мастерством, но не превращается в ещё один общий множитель.
+Если итог уже равен `3`, новый mastery lifetime slot не создаёт `prof 4`: допустима только named expression, если она не пересекает уже занятую фазу. Для `BaseFrameProf = 3` `mastery_step` — dead step и не является допустимой наградой.
 
 Пример гибкого сдвига:
 
@@ -120,20 +126,9 @@ Frame публикует локальные поля `activates_on`, `exposure_c
 
 Это свойства действий Frame, а не универсальные статы Пешки.
 
-## 5. Профильные ёмкости Термоса
+## 5. Базовая способность обслуживать Термос
 
-Hero-kit задаёт стабильный предел обслуживания шести семейств. Конкретный Термос задаёт физические слоты и посадку; установленный модуль резервирует и слот, и ёмкость.
-
-```text
-AvailableCapacity(family) =
-  HeroKitCapacity(family)
-  + ExplicitGearCapacity(family)
-
-UsedCapacity(family) =
-  sum(InstalledModuleCost(family))
-
-valid when UsedCapacity <= AvailableCapacity
-```
+Hero-kit единолично публикует authored `BaseServiceCapacity` по шести семействам. Эта страница не рассчитывает итоговую законность сборки: topology, support eligibility, `FinalServiceCapacity`, `UsedServiceCapacity` и все причины отказа принадлежат [[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly Resolver]].
 
 | Семейство | Что обслуживает |
 |---|---|
@@ -141,23 +136,22 @@ valid when UsedCapacity <= AvailableCapacity
 | `optic` | сенсоры, прицелы и информационные выводы |
 | `seal` | герметизацию, фильтрацию и защиту среды |
 | `conduit` | энергетические ветви, Heat и Backlash |
-| `rig` | обвязку, инструменты и специализированный Ready Access |
+| `rig` | обвязку, инструменты и физическую работу с грузом; Ready Access остаётся отдельным доменом инвентаря |
 | `weave` | мягкие слои мобильности, скрытности и кантрипа |
 
 ```markdown
-[module_capacity:: plate 2, optic 1, rig 1]
-[module_cost:: plate 2, conduit 1]
+[base_service_capacity:: plate 2, optic 1, rig 1]
 ```
 
-- Chronicle не меняет `module_capacity`.
+- Chronicle и Personal Tags не меняют `BaseServiceCapacity`.
 - Временный эффект рейда не позволяет установить модуль.
-- Гибридный модуль оплачивает каждое семейство отдельно.
+- Модуль публикует `service_load`; гибрид платит каждое реально работающее семейство отдельно.
 - Ёмкость не создаёт физический слот, не отменяет вес, Диссонанс или Gate Check.
-- Gear capacity допустима только на конкретном предмете и исчезает вместе с ним; это не развитие Пешки.
+- `ServiceSupportDelta` допустим только у модели Термоса либо физически установленного support-модуля. Совокупный `SupportLoad` всех support-модулей обязан поместиться в authored-базу до применения любого delta.
 
 ## 6. Монтаж и смена доктрины
 
-Мастер в Хабе либо подтверждает всю сборку, либо показывает конкретный дефицит семейства, слота, положения или посадки. После монтажа сборка получает `stitched_locked`; в Аномалии модули не переставляются, а найденные экземпляры остаются Cargo.
+Мастер в Хабе либо атомарно подтверждает всю сборку, либо одним проходом показывает дефицит service family, конфликт узлов/pattern, посадку, effect/debt-конфликт и недоступный ItemID. После монтажа состояние `stitched_locked` принадлежит экземпляру сборки; в Аномалии модули не переставляются, а найденные экземпляры остаются Cargo.
 
 Так смена модуля остаётся осмысленным выбором loadout, а не способом перекрутить личность Пешки. Полный физический контракт принадлежит [[07_Gear_Inventory/Thermos_System|Термосу]].
 

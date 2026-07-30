@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: combat_survival
+index_order: 40
+index_summary: "Задаёт правила и последствия системы «Система: Баллистика и Броня»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Система: Баллистика и Броня»."
 system: action_combat
 tags:
   - armor
@@ -12,6 +17,7 @@ related_files:
   - "[[05_Combat_Survival/Movement_Physics|Movement_Physics]]"
   - "[[05_Combat_Survival/Hunt_Frontier_Loop|Hunt_Frontier_Loop]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
+  - "[[07_Gear_Inventory/Thermos_Assembly|Thermos_Assembly]]"
   - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
 ---
 # Система: Баллистика и Броня
@@ -54,18 +60,24 @@ related_files:
 
 ### Контракт читаемого покрытия
 
-Каждая устанавливаемая пластина обязана до рейда назвать:
+`BALLISTICS_ARMOR` единолично владеет collider/soft-layer/seam resolution и исходом попадания. Module Definition не объявляет общий coverage сам по себе: каждый допустимый mount pattern ссылается на отдельный `CoverageContractID`, а committed [[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly]] передаёт `ItemID`, выбранный pattern, занятые nodes и condition revision как `PatternCoverageBinding`.
+
+Из этих binding Ballistics строит версионированный `ResolvedCoverageSnapshot`. Этот же snapshot читают pre-raid preview, Paper Doll и hit resolver; монтажная законность не читает результат попадания обратно.
+
+Каждый устанавливаемый plate-pattern обязан до рейда назвать:
 
 - видимый силуэт и коллайдеры покрытия;
 - границы мягкой ткани и видимые `seam_exposure`;
-- физические позиции на Термосе;
-- вес, `module_cost` и открываемую уязвимость;
+- связанные body region, mount claims и coverage contract;
+- физическую массу, `service_load` и открываемую уязвимость;
 - звук, реакцию тела и визуальный результат попадания в пластину, стык и мягкий слой.
 
 Пластина не получает скрытое пробитие, случайную микро-щель или невидимое расширение коллайдера. Если попадание произошло вне видимого обещания, это ошибка реализации, а не часть хардкорности.
 
+Повреждение обновляет condition revision и может изменить либо отключить конкретный coverage binding по правилам Ballistics. Оно не освобождает mount node, не разрешает полевой демонтаж и не пересчитывает service-legality сборки в рейде.
+
 ## 4. Аудит коллизий MVP
 
-До допуска броневого модуля к `install_state:: installable` прототип проверяет projectile и мили-sweep против трёх состояний цели: движение, присед и разворот. Проверка фиксирует силуэт пластины, стык, мягкую зону, реакцию попадания и объяснение смерти игроком после эпизода.
+До `publication_status:: approved` броневого модуля прототип проверяет projectile и мили-sweep против трёх состояний цели: движение, присед и разворот. Проверка фиксирует один pattern-bound CoverageContract, силуэт пластины, стык, мягкую зону, реакцию попадания и объяснение смерти игроком после эпизода.
 
 MVP не проходит, если игрок не отличает «я правильно подставил пластину» от «игра засчитала невидимый хитбокс», либо если одна пластина закрывает все направления без пространственной цены.

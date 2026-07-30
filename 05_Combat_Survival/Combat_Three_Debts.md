@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: combat_survival
+index_order: 70
+index_summary: "Задаёт правила и последствия системы «Боевое ядро: Закон трёх долгов»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Боевое ядро: Закон трёх долгов»."
 system: action_combat
 tags: [combat, windows, commitment, three_debts, archetypes]
 related_files:

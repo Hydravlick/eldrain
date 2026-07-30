@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: economy_loot
+index_order: 20
+index_summary: "Задаёт правила и последствия системы «Ограниченные Чертежи»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Ограниченные Чертежи»."
 system: trade_craft
 tags: [blueprints, limited, permission, recipe_transaction]
 related_files:

@@ -2,7 +2,7 @@
 type: architecture
 status: active
 system: project_management
-version: 3.6
+version: 3.7
 tags:
   - structure
   - pipeline
@@ -24,12 +24,12 @@ tags:
 |:---|:---|:---|
 | `01_Core_Vision` | Концепция, тон, основной цикл | [[01_Core_Vision/GDD_Main]], [[01_Core_Vision/02_Core_Loop]], [[01_Core_Vision/Glossary]] |
 | `02_World_Lore` | Ковчег, Коллапс, Якорь, Сущность, магипанк и культуры | [[02_World_Lore/The_Ark]], [[02_World_Lore/The_Collapse]], [[02_World_Lore/The_Anchor]], [[02_World_Lore/Protocol_Resonance]], [[02_World_Lore/Culture_Language]] |
-| `03_Factions_Societies` | Фракции, репутация, поручения, допуски, контракты и становление города | [[03_Factions_Societies/_Registries/Registry_Factions]], [[03_Factions_Societies/Reputation_Rules]], [[03_Factions_Societies/Pledge_Contracts]], [[03_Factions_Societies/Quest_Engine]], [[03_Factions_Societies/Lore/City_Genesis]], [[03_Factions_Societies/Lore/Civic_Ethos_Under_Lamps]], [[03_Factions_Societies/Lore/Faction_Address_System]] |
+| `03_Factions_Societies` | Фракции, репутация, поручения, допуски, контракты и становление города | [[03_Factions_Societies/_Registries/Registry_Factions]], [[03_Factions_Societies/_Registries/Registry_Faction_Interfaces]], [[03_Factions_Societies/Reputation_Rules]], [[03_Factions_Societies/Pledge_Contracts]], [[03_Factions_Societies/Quest_Engine]], [[03_Factions_Societies/Lore/City_Genesis]], [[03_Factions_Societies/Lore/Civic_Ethos_Under_Lamps]], [[03_Factions_Societies/Lore/Civic_Order]], [[03_Factions_Societies/Lore/Hearth_Anatomy]], [[03_Factions_Societies/Lore/City_District_Social_Grammar]] |
 | `04_Player_Entities` | смертные Пешки, hero-kit `Race × Spec`, ростер и Chronicle | [[04_Player_Entities/Lifecycle_Roster]], [[04_Player_Entities/MVP_3x3_Design_Contract]], [[04_Player_Entities/Combat_Profile_Pipeline]], [[04_Player_Entities/Trait_Development]], [[04_Player_Entities/_Registries/Registry_Races]], [[04_Player_Entities/_Registries/Registry_Specs]], [[04_Player_Entities/_Registries/Registry_Combos]] |
 | `05_Combat_Survival` | Бой, магострелы, батареи, статусы, выживание | [[05_Combat_Survival/Combat_Three_Debts]], [[05_Combat_Survival/Weapon_Core]], [[05_Combat_Survival/Magic_Batteries]], [[05_Combat_Survival/Status_Effects]], [[05_Combat_Survival/Dissonance_System]] |
 | `06_Economy_Loot` | Рез, бартер, чертежи, экстракция и стабилизация лута | [[06_Economy_Loot/Extraction_Stabilization_Loop]], [[06_Economy_Loot/Economy_Core]], [[06_Economy_Loot/Currency_Rez]], [[06_Economy_Loot/Loot_Distribution]], [[06_Economy_Loot/Barter_System]], [[06_Economy_Loot/Blueprints]], [[06_Economy_Loot/Craft_Modifiers]] |
-| `07_Gear_Inventory` | Инвентарь, экипировка, предметы, крафт-реестры | [[07_Gear_Inventory/Inventory_Architecture]], [[07_Gear_Inventory/Thermos_System]], [[07_Gear_Inventory/_Registries/Registry_Thermoses]], [[07_Gear_Inventory/_Registries/Registry_Thermos_Modules]], [[07_Gear_Inventory/Gear_Progression]], [[07_Gear_Inventory/Equipment_PaperDoll]], [[07_Gear_Inventory/_Registries/Registry_Items]] |
-| `08_World_Generation` | Сервер, таймеры, аномалии, вход, выход, атлас | [[08_World_Generation/Generation/07_Server_Lifecycle]], [[08_World_Generation/Generation/08_Gate_Check]], [[08_World_Generation/Generation/19_Access_Contracts]], [[08_World_Generation/Anomaly/00_Anomaly_Core_Loop]], [[08_World_Generation/Anomaly/Anomaly_System]] |
+| `07_Gear_Inventory` | Инвентарь, экипировка, предметы, крафт-реестры | [[07_Gear_Inventory/Inventory_Architecture]], [[07_Gear_Inventory/Thermos_System]], [[07_Gear_Inventory/Thermos_Assembly]], [[07_Gear_Inventory/_Registries/Registry_Thermoses]], [[07_Gear_Inventory/_Registries/Registry_Thermos_Modules]], [[07_Gear_Inventory/_Registries/Registry_Thermos_Interfaces]], [[07_Gear_Inventory/Gear_Progression]], [[07_Gear_Inventory/Equipment_PaperDoll]], [[07_Gear_Inventory/_Registries/Registry_Items]] |
+| `08_World_Generation` | Сервер, таймеры, аномалии, вход, выход, атлас | [[08_World_Generation/Generation/07_Server_Lifecycle]], [[08_World_Generation/Generation/19_Raid_Approach_and_Entry]], [[08_World_Generation/Generation/20_Egress_Solvency]], [[08_World_Generation/Anomaly/17_Apex_Last_Hour]], [[08_World_Generation/Anomaly/00_Anomaly_Core_Loop]] |
 | `09_Project_Management` | Канбан, риски, планы, техническая кухня | [[09_Project_Management/TODO]], [[09_Project_Management/Risk_Register]], [[09_Project_Management/Architecture_MVP]] |
 
 ---
@@ -66,10 +66,10 @@ related_mechanics:
 Минимальный вертикальный срез должен проходить через одну связную цепочку:
 
 1. Игрок выбирает один полный hero-kit `Race × Spec`, затем физический loadout и конкретную Пешку через [[04_Player_Entities/MVP_3x3_Design_Contract|контракт матрицы 3×3]], [[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile Pipeline]] и [[04_Player_Entities/Lifecycle_Roster|жизненный цикл ростера]]. Остальные ячейки расширяют уже доказанный срез.
-2. Карта Хаба показывает доступные T1/T2/T3 локации, цену маршрута и живые слоты через [[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]].
-3. Перед входом игрок выбирает [[08_World_Generation/Generation/19_Access_Contracts|Access Contract]], а сборка проходит [[08_World_Generation/Generation/08_Gate_Check|Gate_Check]] и проверку Диссонанса через [[05_Combat_Survival/Dissonance_System|Dissonance_System]] / [[05_Combat_Survival/Threat_Thresholds|Threat_Thresholds]].
-4. В рейде темп задают [[08_World_Generation/Generation/07_Server_Lifecycle|Server_Lifecycle]], [[08_World_Generation/Anomaly/Anomaly_System|Anomaly_System]] и [[05_Combat_Survival/Magic_Batteries|Magic_Batteries]].
-5. После эвакуации лут проходит единый контракт [[06_Economy_Loot/Extraction_Stabilization_Loop|экстракции и стабилизации]]: обыск и перенос -> защищённый манифест -> Stable/Volatile/Trace/Living Cargo -> использование, разбор, Напоминание, адрес Очагу или ростер.
+2. Карта Хаба показывает ранний `0–2`, средний `2–4` и поздний `4–6` live age-envelope, прогноз до Печати и готовность Пешки. Поздний envelope joinable как T3 только `04:00–05:00`, а `05:00–06:00` остаётся live sealed Apex без ingress; joinable T3 может временно отсутствовать. Точная цена и окно появляются только в карточке конкретного раскрытого входа: [[08_World_Generation/Hub/01_Hub_Map_Table|Hub Map Table]].
+3. Игрок выбирает подход, читает точную `EntryQuote`, подтверждает её и проходит физический `Breach` в живой сектор по [[08_World_Generation/Generation/19_Raid_Approach_and_Entry|подходу и входу]]. Сборка проходит Gate Check и проверку Диссонанса через [[08_World_Generation/Generation/08_Gate_Check|Gate Check]], [[05_Combat_Survival/Dissonance_System|Dissonance System]] и [[05_Combat_Survival/Threat_Thresholds|Threat Thresholds]].
+4. До 05:00 игрок может найти Нестабильный Порог или выбрать body-only Breakline. В 05:00 Печать закрывает обычный вход и выход; оставшиеся переживают T4 Apex до Рассвета. Темп задают [[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]], [[08_World_Generation/Anomaly/17_Apex_Last_Hour|Apex Last Hour]], [[08_World_Generation/Anomaly/Anomaly_System|Anomaly System]] и [[05_Combat_Survival/Magic_Batteries|Magic Batteries]].
+5. После обычного Порога или применимого стандартного исхода Рассвета груз проходит единый [[06_Economy_Loot/Return_Manifest_Contract|контракт возвратного манифеста]]: обыск и перенос -> защищённый манифест -> Stable/Volatile/Trace/Living Cargo -> использование, разбор, Напоминание, адрес Очагу или ростер. Recovery никогда не является тайной доставкой лута.
 
 ---
 
@@ -172,7 +172,11 @@ related_mechanics:
 
 Каждая запись с устойчивым `faction_id` является самостоятельной сущностью, а не блочной строкой реестра. Это относится и к крупным Очагам, и к малым городским сетям: они существуют независимо, имеют собственную функцию и могут получать новые связи без наследования от другой страницы.
 
-Канонические фракционные страницы находятся в `03_Factions_Societies/Lore/` и определяются полем `type: faction`. Десять существующих подробных страниц переиспользуются и получают YAML-поля сущности; для десяти записей без страницы создаются недостающие заметки. [[03_Factions_Societies/Lore/The_Cartographers|Картографы Палаты Контуров]] остаются внутренним профессиональным слоем Палаты и не получают отдельный `faction_id`, пока не станут самостоятельной стороной отношений.
+[[03_Factions_Societies/Lore/Hearth_Anatomy|Hearth_Anatomy]] определяет, чем Очаг отличается от дома, района, сети, Стола, мастера и надфракционной силы. [[03_Factions_Societies/Lore/Civic_Order|Civic_Order]] определяет распределённое признание городского решения. Эти страницы владеют институциональной грамматикой, но не игровыми состояниями, услугами или последствиями.
+
+[[03_Factions_Societies/Lore/City_District_Social_Grammar|City_District_Social_Grammar]] владеет социальными зависимостями района, его дневной, ночной и кризисной властью. Физическая география, маршруты и генерация остаются в `08_World_Generation`.
+
+Канонические фракционные страницы находятся в `03_Factions_Societies/Lore/` и определяются полем `type: faction`. Они владеют идентичностью, происхождением, людьми, внутренней властью, имуществом, отношениями, общественным обещанием и ценой ошибки. Они не владеют услугами, наградами, состояниями доступа, runtime-проверками или системными переходами. Десять существующих подробных страниц переиспользуются и получают YAML-поля сущности; для десяти записей без страницы создаются недостающие заметки. [[03_Factions_Societies/Lore/The_Cartographers|Картографы Палаты Контуров]] остаются внутренним профессиональным слоем Палаты и не получают отдельный `faction_id`, пока не станут самостоятельной стороной отношений.
 
 Минимальный YAML-контракт фракции:
 
@@ -184,11 +188,11 @@ faction_id: first_reception
 display_name: Круг Первого Приёма
 faction_role: major
 sort_order: 10
-player_label: живой приём, карантин, найденыши
 promise: никто не остаётся один перед неизвестным состоянием
-access_model: открытый первичный приём; ограничения начинаются при спорном происхождении
 tags: [faction, hearth]
 ```
+
+Игровые взаимодействия фракций хранятся отдельно в [[03_Factions_Societies/_Registries/Registry_Faction_Interfaces|Registry_Faction_Interfaces]]. Одна строка реестра соответствует одному самостоятельному взаимодействию и содержит `interface_id`, `faction_id`, роль сущности, игроковый глагол и результат, один `mechanic_owner_ref`, зависимости и явную границу `does_not_own`. Один Очаг может иметь любое число интерфейсов; каждая строка имеет ровно одного механического владельца. Если владелец отсутствует, строка получает `MISSING_OWNER`, а лорная страница не становится временным resolver.
 
 Отношения хранятся в теле фракционной страницы как повторяемые inline Dataview-поля с причиной на той же строке:
 
@@ -205,6 +209,6 @@ tags: [faction, hearth]
 - Одна и та же связь не хранится одновременно в YAML страницы и в `Registry_Factions`.
 - Неизвестный target, дублирующий `faction_id`, неизвестный тип и пустая причина должны быть видны как ошибка данных.
 
-[[03_Factions_Societies/_Registries/Registry_Factions|Registry_Factions]] после миграции является семейным обзором: краткий контракт, список страниц и native Dataview-таблица. [[03_Factions_Societies/_Matrices/00_Faction_Reputation|00_Faction_Reputation]] является единственной графовой визуализацией: page-level YAML даёт сущности, а DataviewJS читает их inline `rel_*` поля из тела страниц. Карта не хранит собственные отношения, подписи или причины.
+[[03_Factions_Societies/_Registries/Registry_Factions|Registry_Factions]] после миграции является семейным обзором идентичности: краткий контракт, список страниц и native Dataview-таблица. Он не хранит ассортимент услуг. [[03_Factions_Societies/_Matrices/00_Faction_Reputation|00_Faction_Reputation]] является единственной графовой визуализацией: page-level YAML даёт сущности, а DataviewJS читает их inline `rel_*` поля из тела страниц. Карта не хранит собственные отношения, подписи или причины.
 
 Миграция считается завершённой, когда существуют ровно 20 уникальных `faction_id`, сохранены все 58 направленных записей отношений текущего реестра, глубокие ссылки на его старые заголовки заменены ссылками на страницы, а карта показывает отсутствующие источники вместо молчаливого пропуска.

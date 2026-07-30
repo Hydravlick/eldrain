@@ -1,6 +1,11 @@
 ---
 type: architecture
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 250
+index_summary: "Задаёт правила и последствия системы «Асинхронная Архитектура Мира»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Асинхронная Архитектура Мира»."
 system: server_core
 tags: [optimization, threading, networking]
 ---

@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 170
+index_summary: "Задаёт правила и последствия системы «Слоты Сложности (Tier Spread)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Слоты Сложности (Tier Spread)»."
 system: difficulty
 tags: [balance, matchmaking, progression]
 ---

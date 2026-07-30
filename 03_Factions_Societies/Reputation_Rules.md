@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: factions_societies
+index_order: 80
+index_summary: "Задаёт правила и последствия системы «Правила доверия и репутации»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Правила доверия и репутации»."
 system: faction
 tags:
   - reputation

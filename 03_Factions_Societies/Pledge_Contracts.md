@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: factions_societies
+index_order: 70
+index_summary: "Задаёт правила и последствия системы «Поручения, адрес вклада и допуски»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Поручения, адрес вклада и допуски»."
 system: faction_contracts
 tags:
   - contracts
@@ -15,7 +20,7 @@ related_files:
 related_mechanics:
   - "[[03_Factions_Societies/Reputation_Rules|Reputation_Rules]]"
   - "[[03_Factions_Societies/Quest_Engine|Quest_Engine]]"
-  - "[[08_World_Generation/Generation/19_Access_Contracts|Access_Contracts]]"
+  - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
   - "[[06_Economy_Loot/Vendor_Logic|Vendor_Logic]]"
 ---
 # Поручения, адрес вклада и допуски
@@ -88,7 +93,7 @@ related_mechanics:
 | Карты и улики: Палата Контуров | датированная карта, свидетельская бирка, маршрутный лист |
 | Ремонт и проходы: Артели Подпорки | ключ лифта, пропуск бригады, отметка безопасной нагрузки |
 | Вход и забота: Круг Первого Приёма | санитарный контейнер, карантинная бирка, сопровождающий |
-| Цена и право: Весовые Дома | залоговая запись, страховой талон, подтверждение права |
+| Цена и право: Весовые Дома | залоговая запись, подтверждение права |
 | Память и обеты: Собор Всех Вер | обет, реликвенная ленточка, имя на бдении |
 | Крафт и пробы: Дома Пробы | журнал пробы, допуск к Столу, аварийная инструкция |
 | Слухи и доставка: Лига Менестрелей | пароль, слух, имя проводника, место встречи |

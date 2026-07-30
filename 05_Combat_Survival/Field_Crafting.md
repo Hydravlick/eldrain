@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: combat_survival
+index_order: 100
+index_summary: "Задаёт правила и последствия системы «Полевые Операции с Лутом»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Полевые Операции с Лутом»."
 system: field_operations
 tags: [anomaly_interaction, workbench, risk, loot]
 related_files:

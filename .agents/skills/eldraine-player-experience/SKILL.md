@@ -9,9 +9,12 @@ description: "Use when translating or evaluating an already bounded Eldraine fea
 
 Describe the game from outside the system. Every important rule must become something the player can perceive, interpret, decide about, and remember.
 
-## Local Vault Only
 
-Work only with ordinary files inside the current Eldraine vault. Do not inspect or use Git state, history, diffs, branches, worktrees, staging, commits, remotes, pushes, or pull requests. If another workflow requests a Git step, skip it and continue with local file reads or edits. This changes no authorization boundary: read-only requests stay read-only, and files are edited only when the user explicitly asks.
+## Active Canon Language
+
+Describe the accepted target state affirmatively: name the active entities, rules, scope, and consequences.
+
+Historical context belongs outside active rule statements. When it helps explain provenance or a reference, label it as contextual material and return the adopted model in the canonical result.
 
 ## Responsibility Boundary
 

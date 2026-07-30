@@ -1,11 +1,18 @@
 ---
 type: system
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 160
+index_summary: "Задаёт правила и последствия системы «Ротация Активных и Stable-Секторов»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Ротация Активных и Stable-Секторов»."
 system: world_map
 tags: [rotation, server_state, exploration, stable_addresses]
 related_files:
+  - "[[08_World_Generation/Generation/21_Location_Revision_Lifecycle|Location_Revision_Lifecycle]]"
   - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server_Lifecycle]]"
   - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
+  - "[[08_World_Generation/City_State/Civic_Event_Lifecycle|Civic_Event_Lifecycle]]"
 ---
 # Ротация Активных и Stable-Секторов
 
@@ -16,21 +23,22 @@ related_files:
 ## 2. Рабочий цикл
 
 ```text
-Active Anomaly
-  -> final Stabilization
-  -> GenerationSnapshot
-  -> Stable peaceful projection + external address pins
-  -> next anomalous replacement
+common pre-generation
+  -> one LocationRevision
+  -> parallel SessionRuntime instances consume identical base
+  -> common Stable barrier
+  -> StableProjection + weighted StablePOISelection
+  -> published WorldRevision
 ```
 
-Игрок видит рядом активные рейдовые сектора и внешние Stable-лепестки. Закреплённый адрес связывает план добычи с активным сектором, а следующий цикл заменяет набор внешних возможностей.
+Игрок видит рядом активные рейдовые сектора и внешние Stable-лепестки. Закреплённый адрес связывает план добычи с активным сектором, а следующая опубликованная `WorldRevision` заменяет набор внешних возможностей. Общая постгенерация читает `LocationRevision`, не исход одной рейдовой сессии.
 
 ## 3. Состояния сектора
 
 | Состояние | Физический смысл | Представление на Столе | Доступ игрока |
 |:---|:---|:---|:---|
-| **Active / Anomaly** | рейдовый инстанс перестраивается T1–T3 | туман, фазовый прогноз, точки входа | физический Deploy через Access Contract |
-| **Stable** | одна связная конфигурация временно удерживается городом | мирная проекция и внешние пины фактических POI | только карточки, диорамы, связь и караваны |
+| **Active / Anomaly** | `SessionRuntime` перестраивает T1–T3 копию одной `LocationRevision` и закрывается в Apex | туман, фазовый прогноз, доступные способы подхода | Quote и физический Breach только до Seal |
+| **Stable** | postgenerator строит low-poly проекцию общей `LocationRevision` и выбирает адреса из её POI-кандидатов | мирная проекция и ограниченные внешние пины | только карточки, диорамы, связь и караваны |
 | **Replacement** | новый цикл замещает конфигурацию | лепесток гаснет и перестраивается | preview отменяется без расхода входов |
 
 ## 4. Активный пул
@@ -42,7 +50,9 @@ Active Anomaly
 ## 5. Правила замещения
 
 - Стабилизация не выдаёт оставленный переносимый лут.
-- Пины создаются только из фактических ассетов GenerationSnapshot.
+- Пины создаются только из фактических ассетов `LocationRevision`, прошедших `StablePOISelection` опубликованной WorldRevision.
+- Не выбранный для адреса ассет остаётся частью диорамы, но не получает сервисный пин.
+- Локальные двери, враги, предметы и разрушения SessionRuntime не входят в постгенерацию.
 - Новый цикл заменяет доступность POI, но не стирает знание открытого типа сервиса.
 - Закрытие лепестка не расходует неподтверждённую сделку и не уничтожает предметы в Схроне.
 - Центральный минимум не участвует в ротации.

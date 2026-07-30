@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: player_entities
+index_order: 50
+index_summary: "Задаёт правила и последствия системы «Реестр: грамматика и границы навыков»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр: грамматика и границы навыков»."
 system: player_entities_registry
 registry_type: skill_grammar
 tags: [database, mechanics, skill_grammar, capability_boundaries]

@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: economy_loot
+index_order: 70
+index_summary: "Задаёт правила и последствия системы «Распределение Лута»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Распределение Лута»."
 system: loot_generation
 tags: [spawn, containers, biomes, mutation_lines, semantic_loot]
 related_files:
@@ -79,7 +84,7 @@ related_files:
 Модель Термоса и свободный модуль являются разными физическими предметами.
 
 - модель определяет посадку, вес и топологию;
-- модуль несёт функцию, позицию, `slot_size` и `module_cost`;
+- Module Definition несёт allowed mount patterns, `service_load` и EffectContracts; конкретный ItemID получает selected pattern и occupied nodes только в committed assembly;
 - найденный модуль остаётся Cargo до работы Мастера в Хабе;
 - готовая сборка может быть трофеем, но не обходит повторную проверку fit и ёмкостей новой Пешки;
 - `blocked_calibration` не появляется в активном лут-пуле.

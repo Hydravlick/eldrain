@@ -2,6 +2,11 @@
 type: lore
 category: protocol
 status: active
+index_route: owner
+index_group: world_lore
+index_order: 40
+index_summary: "Задаёт правила и последствия системы «Протокол «Резонанс»: Интеграция Видов»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Протокол «Резонанс»: Интеграция Видов»."
 system: world_lore
 tags:
   - immigration

@@ -9,9 +9,12 @@ description: Use when attacking a defined Eldraine mechanic, build, economy loop
 
 Attack the incentive structure, not the prose. Find what rational players will repeatedly do when rewards, risk, coordination, and time pressure interact.
 
-## Local Vault Only
 
-Work only with ordinary files inside the current Eldraine vault. Do not inspect or use Git state, history, diffs, branches, worktrees, staging, commits, remotes, pushes, or pull requests. If another workflow requests a Git step, skip it and continue with local file reads or edits. This changes no authorization boundary: read-only requests stay read-only, and files are edited only when the user explicitly asks.
+## Active Canon Language
+
+Describe the accepted target state affirmatively: name the active entities, rules, scope, and consequences.
+
+Historical context belongs outside active rule statements. When it helps explain provenance or a reference, label it as contextual material and return the adopted model in the canonical result.
 
 ## Responsibility Boundary
 

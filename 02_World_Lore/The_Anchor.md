@@ -2,6 +2,11 @@
 type: lore
 category: foundation
 status: active
+index_route: owner
+index_group: world_lore
+index_order: 50
+index_summary: "Задаёт правила и последствия системы «Якорный Архив (The Anchor Archive)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Якорный Архив (The Anchor Archive)»."
 system: world_lore
 tags:
   - world_boundary

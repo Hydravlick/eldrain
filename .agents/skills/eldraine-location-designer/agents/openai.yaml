@@ -1,0 +1,6 @@
+interface:
+  display_name: "Eldraine Location Designer"
+  short_description: "Проектирует реализуемые секторы Элдрейна"
+  default_prompt: "Use $eldraine-location-designer to review this sector spatial flow, phase evolution, and production feasibility."
+policy:
+  allow_implicit_invocation: false

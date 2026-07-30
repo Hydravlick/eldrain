@@ -30,7 +30,7 @@ tags:
 
 ### 1.1. Вердикт
 
-Текущий канон — **CONTRADICTORY**. [[08_World_Generation/Generation/19_Access_Contracts|Access Contracts]] смешивает фазу, маршрут, цену, место и readiness; Tier превращён в билет. Старое описание входа использует Саркофаг, Wake Up и invulnerability; Blackout отбирает управление и переносит Пешку в укрытие. Safe Door Frame/комнаты, универсальная транспортная причинность и [[08_World_Generation/Anomaly/15_Frequency_Tuner|Trace redeploy]] конфликтуют с живой асинхронной сессией.
+Этот proposal-аудит фиксирует, что прежний совмещённый контракт входа смешивал фазу, маршрут, цену, место и readiness; Tier превращался в билет. В действующем каноне эти обязанности разделены между [[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid Approach and Entry]] и [[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion Logic]]. Старое описание входа использует Саркофаг, Wake Up и invulnerability; Blackout отбирает управление и переносит Пешку в укрытие. Safe Door Frame/комнаты, универсальная транспортная причинность и [[08_World_Generation/Anomaly/15_Frequency_Tuner|Trace redeploy]] конфликтуют с живой асинхронной сессией.
 
 После hardening целевая архитектура — **COHERENT** и implementation-neutral **REALIZABLE**. Её контракты допускают co-located transaction либо durable coordinator с идемпотентными проекциями, но не зависят от конкретной базы данных, сетевого стека или engine API.
 
@@ -50,7 +50,7 @@ tags:
 
 **Причина:** closed-round matchmaking уничтожает четыре обещания системы: direct entry в текущую фазу; same-Pawn survival через фазовый сдвиг; public Recovery внутри обычного PvPvE-мира; шестичасовую причинность living world. Сложность rolling pool оправдывается этими авторскими обещаниями, а не сравнением с конкурентами.
 
-**Следствие:** SessionID живёт непрерывно до Final Stabilization; player entry, phase mutation, Recovery и egress подчиняются одному server total order. Нельзя возвращать Access Contract/ticket authority, safe spawn, invulnerability, отдельные комнаты, universal transport prop, relocation, partial manifest или survivor time buff.
+**Следствие:** SessionID живёт непрерывно через joinable T1/T2/T3, sealed T4 Apex и Dawn settlement; player entry, phase mutation, Recovery и egress подчиняются одному server total order. Игровой/content-контракт Apex задан в [[T4_APEX_ENDGAME_LOOP_AND_PRODUCT_MODEL_PROPOSAL|T4 Apex proposal]]; эта страница не дублирует его дизайн. Нельзя возвращать Access Contract/ticket authority, safe spawn, invulnerability, отдельные комнаты, universal transport prop, relocation, partial manifest или survivor time buff.
 
 ## 2. Player promise и фазовая идентичность
 
@@ -64,18 +64,30 @@ Concrete economic commitment принадлежит [[07_Gear_Inventory/Inventor
 |---|---|---|
 | Manifestation | 00:00–02:00 | Learn/read/prepare; не tutorial и не easy queue. |
 | Memory | 02:00–04:00 | Exploit and contest remembered catastrophe/prepared infrastructure. |
-| Reassembly | 04:00–06:00 | Combine/cash out under terminal clock. |
-| Final Stabilization | 06:00 | Terminal event; следующей playable phase нет. |
+| T3 Reassembly/Choice | 04:00–05:00 | Последняя joinable фаза: objective→risk→Threshold, выбор подготовки к Apex или normal egress. |
+| T4 Apex | 05:00–06:00 | Sealed continuation, не access/gear tier и не joinable queue. |
+| Dawn | 06:00 | Per-Presence settlement: return, Recovery resolution либо lethal terminal result. |
 
-[[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]] derives phase band from elapsed session clock и владеет monotonic `PhaseRevision` конкретного committed world state. Scheduler не хранит ни phase band, ни PhaseRevision. T1/T2/T3 — derived age/world states, а не buckets, доступ, рейтинг или товар. В 06:00 вся Пешка без завершённого выхода получает KIA; награды «дожил» нет.
+[[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]] derives phase band from elapsed session clock и владеет monotonic `PhaseRevision` конкретного committed world state. Scheduler не хранит ни phase band, ни PhaseRevision. T1/T2/T3/T4 — derived age/world states, а не buckets, доступ, рейтинг или товар. `APEX_LAST_FORETELL=04:45`, `APEX_SEAL=05:00`, `DAWN=06:00`; Dawn не является supply, slot или продлением admission. Полная objective→risk→Threshold петля доступна только в joinable T1/T2/T3; T4 — sealed continuation.
 
-Direct entrant имеет полноценную objective→risk→Threshold→aftermath петлю в каждом phase band. Mandatory objective, main reward и exit не требуют previous Knowledge, World mutation, pre-shift item или survived gate.
+```yaml
+RaidTerminalWindow:
+  owner: ServerLifecycle
+  source: session_clock
+  state: T3_OPEN|APEX_FORETOLD|APEX_SEALED|DAWN_RESOLVING|TERMINAL
+  apex_last_foretell_key: 04:45
+  apex_seal_key: 05:00
+  dawn_key: 06:00
+  lifecycle: monotonic; T3 ingress closes no later than ApexSeal
+```
+
+Direct entrant имеет полноценную objective→risk→Threshold→aftermath петлю в каждом **joinable** T1/T2/T3 band. Mandatory objective, main reward и exit не требуют previous Knowledge, World mutation, pre-shift item или survived gate. В `SEALED_APEX` direct entrant отсутствует.
 
 ## 3. Владельцы и запрет параллельной authority
 
 | Owner | Authority |
 |---|---|
-| ServerLifecycle | SessionID, elapsed clock, PhaseRevision, barriers, Final Stabilization, arbitration key |
+| ServerLifecycle | SessionID, elapsed clock, PhaseRevision, Foretell/Seal/Dawn keys, barriers и event priority |
 | Regional scheduler | service set, hosting, capacity/latency policy, LowPopulationPolicy |
 | Session Boundary Graph | hidden IngressOpportunity и public-search ThresholdOpportunity |
 | ApproachOfferResolver | target-independent offer terms, OfferTermsHash и StickyTargetScopeID |
@@ -86,7 +98,8 @@ Direct entrant имеет полноценную objective→risk→Threshold→
 | InsertionAdmissionResolver | AdmissionHold facts и admission fence |
 | InsertionBreachCoordinator | candidate revalidation, IngressPressureField и один durable BreachTransaction decision |
 | StaticRevisionValidator | StaticRevisionVariantCertificate и matching static bundle |
-| ExtractionSolvencyValidator | StaticEgressSupplyEnvelopeCertificate, EgressSolvencyBundle и global witness |
+| ExtractionSolvencyValidator | StaticEgressSupplyEnvelopeCertificate, pre-seal EgressSolvencyBundle и global witness |
+| ApexDirector | Apex pressure/cohort profile; gameplay/content contract only by [[T4_APEX_ENDGAME_LOOP_AND_PRODUCT_MODEL_PROPOSAL|T4 Apex proposal]] |
 | Gate Check | envelope/current environment forecast и phase pulse |
 | Dissonance | self Dissonance result и собственный budget |
 | Account Lifecycle | `UNIQUE_ACTIVE_RAID_CONTROLLER(AccountID)` через AccountDeploymentLease |
@@ -98,9 +111,11 @@ Direct entrant имеет полноценную objective→risk→Threshold→
 | SessionWorldState/entity | public world mutation |
 | Inventory/Custody | ItemID/LivingCargo, custody и concrete inventory commitment |
 | Mission/Pledge | objective/reward и pledge commitment; не continuity mint |
-| Extraction resolver | SyncLease decision и ProtectedManifest transaction |
-| Lifecycle/Recovery | RecoveryCase и existing AccountLifecycle.account_last_thread_slot |
-| RecoveryResolutionResolver | один durable RecoveryResolutionTransaction decision |
+| Extraction/Return resolver | SyncLease decision и ReturnManifest item transaction; не contract settlement |
+| LifecycleResolver | per-STANDARD-Presence DawnSettlementDecision и Pawn CARE/HUB projection |
+| LifecycleRecovery | RecoveryCase и existing AccountLifecycle.account_last_thread_slot |
+| RecoveryResolutionResolver | один durable RecoveryResolutionTransaction decision, включая Recovery at Dawn |
+| BreaklineResolver | pre-Seal STANDARD-only body return outcome; детали ставки принадлежат профильному контракту |
 | Operations/anti-cheat | association policy, federation eligibility, residual abuse audit |
 | UI projection | human state/reason/deadline/loss/action; backend authority отсутствует |
 
@@ -112,7 +127,7 @@ Direct entrant имеет полноценную objective→risk→Threshold→
 
 `public standard session` означает обычный globally joinable standard pool. Это не обещание, что в конкретный момент рядом существует противник. `populated` — наблюдаемое server-side состояние активности, не product promise и не UI-поле.
 
-Минимальный regional service set сохраняет один serviceable SessionID каждого envelope: 0–2, 2–4 и 4–6. Duplicates создаются только по demand/capacity. Suppression, отказ кандидатов или Recovery никогда не создают shard.
+Минимальный regional service set сохраняет три LIVE age envelopes: 0–2, 2–4 и 4–6. Поздний envelope joinable только как `JOINABLE_T3` в 04:00–05:00; в 05:00–06:00 он остаётся live как `SEALED_APEX`. Это не обещание одновременных joinable T1/T2/T3+T4: joinable high-end может отсутствовать до часа, а Hub показывает прогноз следующего staging. Always-on T3 требует дополнительной concurrency; OPS-коридор неизвестен. Duplicates создаются только по demand/capacity. Suppression, отказ кандидатов или Recovery никогда не создают shard.
 
 ```yaml
 SessionServiceSnapshot:
@@ -125,21 +140,22 @@ SessionServiceSnapshot:
   health_ref: required
   capacity_ref: required
   matching_static_revision_variant_certificate_ref: required
-  current_egress_solvency_bundle_ref: required
+  runtime_profile: JOINABLE_EXTRACTION|SEALED_APEX
+  current_egress_solvency_bundle_ref: required_pre_seal_only
   can_publish_ingress_ref: derived_output_only
   observed_at: timestamp
-  lifecycle: replaced_by_newer_snapshot_until_FinalStabilization_then_CLOSED
+  lifecycle: replaced_by_newer_snapshot_until_ApexSeal_then_CLOSED_for_ingress; session remains live through Dawn
 ```
 
 `activity_state` и `admission_state` orthogonal. `SEEDING` — ordinary standard session, способная принять первого normal player; Recovery её не seed. `CONTESTABLE` означает server-confirmed ordinary activity, но не обещает nearby enemy. Admission state имеет total transitions:
 
 | Trigger | From → To | Rule |
 |---|---|---|
-| Healthy live lifecycle + capacity + matching publication bundle | CLOSED/SATURATED → OPEN | Только до Final Stabilization и при valid dynamic solvency. |
+| Healthy joinable lifecycle + capacity + matching publication bundle | CLOSED/SATURATED → OPEN | Только до ApexSeal и при valid dynamic solvency. |
 | Capacity exhausted | OPEN → SATURATED | Existing bodies и clock не меняются. |
 | Capacity returns and policy still serves session | SATURATED → OPEN | Новый snapshot; target stickiness rules сохраняются. |
 | Low-pop collapse selects duplicate for drain | OPEN/SATURATED → DRAINING | Новые Binding/Quote запрещены. |
-| Final Stabilization, terminal failure or service removal with no further intake | any → CLOSED | Existing terminal processing follows ServerLifecycle. |
+| ApexSeal, terminal failure or service removal with no further intake | any → CLOSED | Sealed Apex session остаётся live; Dawn processing follows ServerLifecycle. |
 | Ordinary first activity | SEEDING → CONTESTABLE | Recovery не может вызвать transition. |
 
 ```text
@@ -147,8 +163,9 @@ BaseAdmissionServiceable(session, composition)
 = LifecycleLive(session)
 AND HealthOK(session)
 AND AdmissionState(session) == OPEN
+AND RuntimeProfile(session) == JOINABLE_EXTRACTION
 AND CapacityAllows(session, composition)
-AND MatchingStaticPublicationBundleValid(session, candidate_revision, composition)
+AND MatchingJOINABLE_EXTRACTIONPublicationBundleValid(session, candidate_revision, composition)
 ```
 
 `BaseAdmissionServiceable` не читает `CanPublishIngress`. `CanPublishIngress` ниже добавляет dynamic objective/path/search/time/solvency facts к этой базе; cycle отсутствует. `can_publish_ingress_ref` — только derived output snapshot, не input.
@@ -345,7 +362,7 @@ EntryQuote:
   concrete_route_commitment_ref: optional
   exact_loss_state: required
   time_to_shift: required
-  time_to_final: required
+  time_to_dawn: required
   expires_at: timestamp
   commit_cutoff_at: timestamp
   state: ISSUED|PLAYER_CONFIRMED|CLOSING|CONSUMED_BY_BREACH|EXPIRED|ROLLED_BACK
@@ -390,14 +407,14 @@ CanPublishIngress(session, composition, now)
 = BaseAdmissionServiceable(session, composition)
 AND unexhausted baseline objective/reward family exists
 AND ordinary reachable route and Threshold search path exist
-AND matching StaticRevisionVariantCertificate exists
-AND current global EgressSolvencyBundle covers ActiveCommitted + ProspectiveBreachGroup
+AND matching StaticRevisionVariantCertificate.runtime_profile == JOINABLE_EXTRACTION
+AND current global EgressSolvencyBundle covers CoveredActiveCommitted + ProspectiveBreachGroup
 AND now + p95_offer_binding_commit
         + minimum_field_agency_window
         + minimum_threshold_search_budget
         + required_sync_duration
         + server_margin
-    < FinalStabilization
+    < ApexSeal
 ```
 
 Правило вычисляется per selected supported party composition. Все durations — calibrated empirical inputs; само неравенство нормативно. Рядом с 02:00/04:00 offer показывает envelope current+next forecast и conservative cutoff, а exact quote — target current+next Environment и exact cutoff. Вход до boundary допустим, но не создаёт automatic continuity.
@@ -444,8 +461,8 @@ AdministrativeResolution:
   reason: NO_VALID_CANDIDATE_AFTER_DISCLOSURE|TRANSIENT_TARGET_FAILURE|TRANSIENT_SERVER_FAILURE|STALE_OPPORTUNITY|LOST_CAPACITY|DISCONNECT
   opened_at: timestamp
   original_resolution_deadline: timestamp
-  effective_deadline: min(original_resolution_deadline,sticky_expiry,phase_cutoff,FinalStabilization)
-  phase_and_final_cutoff_ref: required
+  effective_deadline: min(original_resolution_deadline,sticky_expiry,phase_cutoff,ApexSeal)
+  phase_and_terminal_cutoff_ref: required
   resource_release_transaction_ref: required
   state: OPEN|RESOLVING|RESUME_SAME_TARGET|WITHDRAWN_STICKY|FAIL_REFUND|SYSTEM_TERMINAL_FAILURE
   global_target_unusable_certificate_ref: optional
@@ -456,7 +473,7 @@ AdministrativeResolution:
 
 При открытии resolution seat/admission/candidate освобождаются немедленно; commitment не consumed. Gear/commitment lock releasable при withdrawal; DisclosureReceipt остаётся ACTIVE. `RESUME_SAME_TARGET` supersedes old Quote и выпускает новый immutable Quote того же BindingID+TargetEpoch. `WITHDRAWN_STICKY/FAIL_REFUND` releases Binding и возвращает игрока в Hub UI, но receipt/scope остаются sticky. `SYSTEM_TERMINAL_FAILURE` exact-once refunds и разрешает retarget только по durable `GlobalTargetUnusableCertificate`.
 
-Effective deadline — минимум original resolution deadline, sticky expiry, phase cutoff и Final Stabilization; он никогда не resets при retry/Resume. Phase/final cutoff всегда побеждает SLA. SLA эмпирический, finite deadline обязательный. Admin failure не является KIA и не consumption ParticipationLedger. Игрок может покинуть modal UI; серверный resolution продолжается независимо от открытого экрана.
+Effective deadline — минимум original resolution deadline, sticky expiry, phase cutoff и ApexSeal; он никогда не resets при retry/Resume. После Seal `RESUME_SAME_TARGET` невозможен. Phase/seal cutoff всегда побеждает SLA. SLA эмпирический, finite deadline обязательный. Admin failure не является KIA и не consumption ParticipationLedger. Игрок может покинуть modal UI; серверный resolution продолжается независимо от открытого экрана.
 
 ## 9. Durable BreachTransaction
 
@@ -486,8 +503,8 @@ BreachTransaction:
   entry_quote_refs: required_for_entire_squad
   admission_hold_refs: required_for_entire_squad
   candidate_assignment_ref: required
-  static_revision_variant_certificate_ref: required
-  final_egress_solvency_bundle_ref: required
+  static_revision_variant_certificate_ref: required_runtime_profile_JOINABLE_EXTRACTION
+  pre_seal_egress_solvency_bundle_ref: required
   conditional_fence_refs:
     binding_idempotent_consume: required
     account_controller_unique: required_for_each_member
@@ -513,13 +530,13 @@ BreachTransaction:
   lifecycle: one_transaction_and_one_decision_for_whole_squad
 ```
 
-До immutable `decision=COMMIT` не существует visible body/hitbox/tell, active Presence/Claim, consumed commitment или logically occupied seat. Prepared tokens — только conditional fences; они не body, active seat, claim или tell. Любой member failure, rejected fence, stale certificate, phase/final cutoff либо client readiness loss до decision делает whole-party `ABORT` и exact-once refund.
+До immutable `decision=COMMIT` не существует visible body/hitbox/tell, active Presence/Claim, consumed commitment или logically occupied seat. Prepared tokens — только conditional fences; они не body, active seat, claim или tell. Любой member failure, rejected fence, stale certificate, phase/Seal cutoff либо client readiness loss до decision делает whole-party `ABORT` и exact-once refund.
 
 `PREPARED_DURABLE` фиксирует deterministic IDs, footprints и valid conditional fence refs, но не делает projections видимыми. `COMMIT` допустим только если все fences принимаются одной authoritative decision transaction. Prepared watchdog не может пересечь commit fence `UNDECIDED`: coordinator пишет `ABORT` до fence либо `COMMIT` меньшим полным arbitration key.
 
 При `decision=COMMIT` logical body, Presence, ParticipationClaim, AccountDeploymentLease, consumed stake, occupied seat и tell существуют в server total order на `logical_effective_at`, даже если projections ещё `APPLYING`. Pending commit footprints входят в phase occupancy snapshot. После COMMIT projections не могут reject или rollback: replay/reconciliation converges к тому же decision.
 
-Replay применяет все later-key phase pulse, KIA и FinalStabilization к logical Presence. После 06:00 ACTIVE materialization запрещена: reconciliation материализует terminal outcome, а не живое тело. Disconnect после COMMIT всё равно materializes vulnerable logical body; reconnect возвращает control к той же Presence, если она не terminal. Первый exposed frame даёт full control. Squad имеет один decision; partial commit и replacement запрещены.
+Replay применяет все later-key phase pulse, Seal и Dawn решения к logical Presence. Lower-key pending footprint at Seal материализуется только `APEX_ACTIVE`; после Dawn reconciliation материализует только terminal result. Disconnect после COMMIT всё равно materializes vulnerable logical body; reconnect возвращает control к той же Presence, если она не terminal. Первый exposed frame даёт full control. Squad имеет один decision; partial commit и replacement запрещены.
 
 ### 9.2. Presence, deployment и participation
 
@@ -578,7 +595,7 @@ Staggering достаточно далеко разрешено, потому ч
 
 ### 10.2. StaticRevisionVariantCertificate
 
-Static certificate создаётся per candidate `PhaseSpatialVariant + topology_hash + supported composition` до публикации. Bounds берутся из versioned `ControlProfileRegistry`, принадлежащего Combat, а не из invented weapon ranges этой системы.
+Static certificate создаётся per candidate `PhaseSpatialVariant + topology_hash + supported composition + runtime profile` до публикации. `runtime_profile` — discriminated union: joinable revision доказывает полный ingress→objective→Threshold loop, sealed Apex revision доказывает безопасную публикацию уже существующего cohort без admission/egress authority. Bounds берутся из versioned `ControlProfileRegistry`, принадлежащего Combat, а не из invented weapon ranges этой системы.
 
 ```yaml
 IngressCoverageSubproof:
@@ -599,25 +616,31 @@ StaticRevisionVariantCertificate:
   candidate_phase_revision: required
   phase_spatial_variant_id: required
   topology_hash: required
-  supported_composition_ref: required
-  ingress_candidate_graph_ref: required
-  threshold_family_graph_ref: required
+  runtime_profile: JOINABLE_EXTRACTION|SEALED_APEX
+  supported_composition_ref: required; admission_semantics_only_if_JOINABLE_EXTRACTION
+  ingress_candidate_graph_ref: required_if_JOINABLE_EXTRACTION; forbidden_if_SEALED_APEX
+  threshold_family_graph_ref: required_if_JOINABLE_EXTRACTION; forbidden_if_SEALED_APEX
   ControlProfileRegistry_version: required
   control_horizon_ref: required
   movement_and_intercept_bounds_ref: required
   persistent_device_and_channel_budget_ref: required
-  JIT_activation_policy_ref: required
-  ingress_coverage_subproof_ref: required
-  static_egress_supply_envelope_certificate_ref: required
+  JIT_activation_policy_ref: required_if_JOINABLE_EXTRACTION; forbidden_if_SEALED_APEX
+  ingress_coverage_subproof_ref: required_if_JOINABLE_EXTRACTION; forbidden_if_SEALED_APEX
+  static_egress_supply_envelope_certificate_ref: required_if_JOINABLE_EXTRACTION; forbidden_if_SEALED_APEX
+  sealed_apex_family_contract_ref: required_if_SEALED_APEX; forbidden_if_JOINABLE_EXTRACTION
+  sealed_apex_survival_route_family_refs: min_two_if_SEALED_APEX; forbidden_if_JOINABLE_EXTRACTION
+  sealed_apex_pressure_contract_ref: required_if_SEALED_APEX; forbidden_if_JOINABLE_EXTRACTION
+  dawn_settlement_compatibility_proof_ref: required_if_SEALED_APEX; forbidden_if_JOINABLE_EXTRACTION
   continuity_axis_proof_ref: required
-  min_bodies_to_control_all_threshold_families: derived
-  controller_admission_cap: frozen_prepublication
+  min_bodies_to_control_all_threshold_families: derived_if_JOINABLE_EXTRACTION
+  controller_admission_cap: frozen_prepublication_if_JOINABLE_EXTRACTION
+  reachable_sealed_cohort_capability_ref: required_if_SEALED_APEX; not_admission_authority
   bundle_hash: required
   validation_result: VALID|INVALID
-  lifecycle: immutable_for_candidate_revision_variant_and_topology_hash
+  lifecycle: immutable_for_candidate_revision_variant_topology_hash_and_runtime_profile
 ```
 
-`EffectiveControllerTokens` учитывает hostile body, remote observer, persistent trap/device и maintained control channel в пределах registry-defined control horizon. Account identity и declared party не меняют token count.
+`EffectiveControllerTokens` учитывает hostile body, remote observer, persistent trap/device и maintained control channel в пределах registry-defined control horizon. Account identity и declared party не меняют token count. Следующие admission-cap и Threshold-family proofs применяются только к `JOINABLE_EXTRACTION`.
 
 Сначала вычисляется suppression cut, затем frozen cap:
 
@@ -630,7 +653,7 @@ controller_admission_cap
 
 Population-wide invariant требует `MinCrediblePassiveSuppressionCut > controller_admission_cap`. Если текущие EffectiveControllerTokens превышают cap candidate variant, phase selection выбирает следующий matching fallback; existing bodies никогда не удаляются. Если ни один variant не проходит, применяется valid `NO_SPATIAL_DELTA` bundle либо candidate revision rejected до publication.
 
-Runtime всё равно revalidates nav, hostile LoS/firing line, traps, projectiles, observers, aim/dwell/kill heat, active combat, objective/boss/vault/Foundling/apex skip, capacity и две independent cover-egress. `suppressed` означает aggregate failure хотя бы одного hard veto. Veto не ослабляется. Если все cells suppressed, commit невозможен и shard не создаётся: pre-disclosure допускается один silent equivalent opaque rebind; post-disclosure — finite same-target AdministrativeResolution.
+Для `JOINABLE_EXTRACTION` runtime всё равно revalidates nav, hostile LoS/firing line, traps, projectiles, observers, aim/dwell/kill heat, active combat, objective/boss/vault/Foundling/apex skip, capacity и две independent cover-egress. `suppressed` означает aggregate failure хотя бы одного hard veto. Veto не ослабляется. Если все cells suppressed, commit невозможен и shard не создаётся: pre-disclosure допускается один silent equivalent opaque rebind; post-disclosure — finite same-target AdministrativeResolution.
 
 Threshold subproof требует:
 
@@ -639,6 +662,8 @@ MinBodiesToControlAll(ThresholdFamilies) > MaxSupportedSquad
 ```
 
 Есть минимум две independent search families/routes; single key, edge, observer, device или channel не закрывает все. Минимум одна family сохраняет multiple latent anchors до server-confirmed evidence. Runtime exact anchor назначается durable JIT decision и не enumerable at phase start.
+
+`SEALED_APEX` certificate, напротив, не содержит ingress cells, Threshold families, static egress supply или controller admission cap. `supported_composition_ref` здесь проверяет capability для каждого достижимого cohort at Seal, а не разрешает новый вход. Certificate обязан доказать occupancy-safe geometry, минимум две materially different survival route families, pressure contract для фактического `cohort_at_seal`, continuity T3→Apex и совместимость с per-Presence Dawn settlement.
 
 ## 11. Phase boundary и geometry realizability
 
@@ -649,18 +674,21 @@ PHASE_WARNING
 → REVISION_CLOSING
 → COMMIT_FENCE
 → PHASE_BARRIER_DECISION_KEY occupancy snapshot
-→ choose matching prevalidated variant bundle + global dynamic solvency
-→ atomic PhaseRevision + variant + bundle
-→ boundary/search sets → SessionServiceSnapshot → ApproachOffers
+→ choose matching prevalidated runtime-profile variant
+→ JOINABLE_PHASE_COMMIT or APEX_SEAL_COMMIT
 ```
 
 `PHASE_WARNING` — physical precursor + nonmodal UI forecast. `REVISION_CLOSING` прекращает выдачу quotes/SyncLeases, которые не помещаются до barrier. На fence BreachTransaction принимает decision меньшим key либо ABORT. Snapshot снимается на exact `PHASE_BARRIER_DECISION_KEY` после всех lower-key movement/world events и включает active Presence и COMMIT-but-unprojected spatial footprints.
 
-Arbitration key — `(server_tick,event_priority,sequence)`; равных order нет. При одном server tick FinalStabilization/KIA имеют priority раньше ExtractionCommitted. Extraction succeeds только с меньшим полным key.
+Arbitration key — `(server_tick,event_priority,sequence)`; равных order нет. Seal имеет priority в свой tick; at Dawn KIA/unresolved lethal collapse имеют priority над return settlement.
+
+`JOINABLE_PHASE_COMMIT` используется для joinable T1/T2/T3 revisions: matching `JOINABLE_EXTRACTION` certificate + current global EgressSolvencyBundle → atomic PhaseRevision/variant/bundle → boundary/search sets → SessionServiceSnapshot → ApproachOffers.
+
+`APEX_SEAL_COMMIT` — отдельная ветка. До occupancy snapshot применяются lower-key Breach, completed exit, Recovery expiry и KIA. Same/higher-key ingress, Sync и Breakline abort; связанные admission/Sync/Breakline resources освобождаются. Затем выбирается matching `SEALED_APEX` certificate и одним decision key commits: PhaseRevision, sealed variant, `AdmissionState=CLOSED`, EgressSolvencyBundle retirement, remaining living Presence `→APEX_ACTIVE`, их obligations `→APEX_BOUND`. Публикуется только sealed SessionServiceSnapshot; ingress boundary, Threshold search sets и ApproachOffers не публикуются.
 
 ### 11.2. PhaseSpatialMutationSet
 
-Каждый переход использует finite preauthored set: primary variant, occupancy-safe fallbacks и mandatory `NO_SPATIAL_DELTA` fallback.
+Каждый spatial phase transition использует finite preauthored set: primary variant, occupancy-safe fallbacks и mandatory `NO_SPATIAL_DELTA` fallback. Dawn — settlement barrier, не spatial transition.
 
 ```yaml
 PhaseSpatialMutationSet:
@@ -692,23 +720,25 @@ ProtectedVolumeSnapshot:
 
 Transaction:
 
-1. Prevalidate matching static bundle for every variant/topology hash.
+1. Prevalidate matching static bundle for every variant/topology hash/runtime profile.
 2. Warning/fence.
-3. Capture barrier-key occupancy including pending COMMIT footprints.
-4. Choose first variant whose exact bundle hash matches occupancy/topology/controller cap.
-5. Check one global dynamic EgressSolvencyBundle.
-6. In one bounded server decision perform final clearance, collision activation and atomic PhaseRevision+variant+bundle; mismatch chooses next variant/NO_SPATIAL without async gap.
-7. Publish boundary/search sets, then SessionServiceSnapshot, then offers.
+3. Apply all lower-key decisions, then capture barrier-key occupancy including pending COMMIT footprints.
+4. Choose first variant whose exact bundle hash and runtime profile match occupancy/topology; `controller_admission_cap` применяется только к joinable branch.
+5. For `JOINABLE_PHASE_COMMIT`, check one global dynamic EgressSolvencyBundle. For `APEX_SEAL_COMMIT`, execute bundle retirement and obligation transition instead.
+6. In one bounded server decision perform final clearance, collision activation and atomic PhaseRevision+variant+matching branch effects; mismatch chooses next same-profile variant/NO_SPATIAL without async gap.
+7. Joinable branch publishes boundary/search sets, SessionServiceSnapshot, then offers. Sealed branch publishes only `SEALED_APEX` snapshot.
 
-Valid variant preserves transform and velocity, support surface, ProtectedVolume clearance и минимум одну reachable Threshold search family с remaining-time corridor. Он не создаёт overlap, wall/prop под телом или disconnected occupied component.
+Valid variant preserves transform and velocity, support surface, ProtectedVolume clearance и не создаёт overlap, wall/prop под телом или disconnected occupied component. `JOINABLE_EXTRACTION` дополнительно сохраняет минимум одну reachable Threshold search family с remaining-time corridor; `SEALED_APEX` вместо неё сохраняет доказанные Apex survival route families.
 
-Нет player-specific geometry, push, micro-teleport, collision disabling или runtime deformation. Если все spatial variants invalid, `NO_SPATIAL_DELTA` сохраняет geometry, но новая phase hazard/light/rules commits. Equivalence proof покрывает topology uncertainty, LoS, traversal, objectives/rewards и все cost axes по materiality policy; unique shortcut не сохраняется. Если forced fallback может дать material collusion advantage и collusion-bound invariant не выполнен, content invalid.
+Нет player-specific geometry, push, micro-teleport, collision disabling или runtime deformation. Если все spatial variants invalid, `NO_SPATIAL_DELTA` сохраняет geometry, но новая phase hazard/light/rules commits. Equivalence proof покрывает topology uncertainty, LoS, traversal, objectives/rewards и все cost axes по materiality policy **между fallback variants одного target runtime profile**; он не требует равенства T3 и Apex gameplay/rewards. Unique shortcut не сохраняется. Если forced fallback может дать material collusion advantage и collusion-bound invariant не выполнен, content invalid.
 
 Player occupancy не задерживает phase и не покупает advantage: ordered fallback выбирается глобально, а не по желанию игрока.
 
 ## 12. EgressSolvencyInvariant
 
-Server MUST NOT admit или phase-shift игроков в mathematically insolvent exit envelope.
+EgressSolvency действует только до `APEX_SEAL`. Здесь существуют два разных ledger-смысла. Любой Breach `COMMIT` с ключом до Seal остаётся **normal-egress obligation** до Threshold return, terminal removal или Seal: stay, foretell и quote не снимают obligation. Формула capacity считает только **covered demand** в `TIMELY|ALLOCATED_SYNC`; объективно пропущенный latest-start переводит obligation в `BEST_EFFORT_AFTER_LATEST_START`, который остаётся в ledger, но использует только surplus и больше не резервирует witness capacity. Если conservative objective, agency, search и sync corridor не помещаются до Seal, ingress закрывается раньше. Dawn не supply, slot и не может сделать insolvent admission solvent.
+
+Server MUST NOT admit игрока или commit **joinable pre-Seal revision** в mathematically insolvent normal-egress envelope. T3→Apex не является joinable exit envelope: это отдельный `APEX_SEAL_COMMIT`, который атомарно прекращает normal-egress obligation по заранее раскрытому правилу.
 
 ```yaml
 StaticEgressSupplyEnvelopeCertificate:
@@ -721,7 +751,7 @@ StaticEgressSupplyEnvelopeCertificate:
   static_time_expanded_supply_graph_ref: required
   static_supply_lower_bound: derived
   state: VALID|INVALID
-  lifecycle: immutable_part_of_StaticRevisionVariantCertificate
+  lifecycle: immutable_part_of_JOINABLE_EXTRACTION_StaticRevisionVariantCertificate
 
 EgressSolvencyBundle:
   owner: ExtractionSolvencyValidator
@@ -736,33 +766,38 @@ EgressSolvencyBundle:
   global_time_expanded_graph_witness_ref: required
   globally_unique_future_threshold_slot_refs: required
   sync_reservation_refs: required
-  active_committed_demand_refs: required
+  covered_active_committed_demand_refs: required_states_TIMELY_or_ALLOCATED_SYNC
+  surplus_only_best_effort_refs: excluded_from_witness_capacity
   prospective_breach_group_refs: required
   per_component_views: disjoint_projections_of_one_global_witness
-  final_stabilization_at: required
+  apex_seal_key: required
+  state: ACTIVE|RETIRED_AT_APEX_SEAL
   validation_result: SOLVENT|INSOLVENT
-  lifecycle: versioned_recompute_on_every_supply_demand_or_time_event
+  lifecycle: recompute_pre_seal_on_every_supply_demand_or_time_event_then_retire
 
 EgressCoverageObligation:
   owner: ExtractionSolvencyValidator
   source: committed_presence_in_global_witness
   obligation_id: opaque
   presence_ref: required
-  latest_start_key: required
-  state: TIMELY|ALLOCATED_SYNC|REMOVED|WINDOW_FORFEITED_BY_INACTION
-  lifecycle: terminal_on_REMOVED_or_WINDOW_FORFEITED_BY_INACTION
+  normal_egress_close_key: required
+  terminal_resolution_ref: optional_until_RETURNED_THRESHOLD_or_TERMINAL_REMOVED_or_DAWN_RESOLVED
+  state: TIMELY|ALLOCATED_SYNC|BEST_EFFORT_AFTER_LATEST_START|RETURNED_THRESHOLD|TERMINAL_REMOVED|APEX_BOUND|DAWN_RESOLVED
+  lifecycle: covered_only_while_TIMELY_or_ALLOCATED; APEX_BOUND_resolves_only_to_DAWN_RESOLVED_or_TERMINAL_REMOVED
 ```
 
 ```text
-GlobalConservativeReachableUniqueThresholdThroughputBefore06
->= AllActiveCommittedPresences + ProspectiveBreachGroup
+GlobalConservativeReachableUniqueThresholdThroughputBeforeApexSeal
+>= AllCoveredActiveStandardAndRecoveryDemand + ProspectiveBreachGroup
 ```
 
-Один global time-expanded graph охватывает demands всех component sources; два components не могут посчитать один future slot дважды. Per-component views — только disjoint projections одного witness, не отдельные solvers. Witness не reservation/entitlement.
+Один global time-expanded graph охватывает **covered demands** всех component sources; `BEST_EFFORT_AFTER_LATEST_START` хранится отдельно и не потребляет witness capacity. Два components не могут посчитать один future slot дважды. Per-component views — только disjoint projections одного witness, не отдельные solvers. Witness не reservation/entitlement.
 
-Bundle проверяется при publication, phase commit, admission и Breach COMMIT. Recompute triggers: latest-start clock, Threshold birth/TTL/fade/reset, Sync reserve/release, topology/components, JIT anchor assignment, SearchGraph, terminal removal и population change. Threshold use/Extraction уменьшает supply и demand на один. World mutation не может ломать solvency: выбирает fallback/equivalent supply либо rejects. Hostile action или inaction могут сделать runtime outcome insolvent.
+Bundle проверяется при publication, joinable phase commit, admission и Breach COMMIT. Один global witness не допускает double count; component views — лишь disjoint projections. Recompute triggers: latest-start clock, Threshold birth/TTL/fade/reset, Sync reserve/release, topology/components, JIT anchor assignment, SearchGraph, terminal removal и population change. Threshold use уменьшает supply и demand на один. World mutation не может ломать pre-seal solvency: выбирает fallback/equivalent supply либо rejects.
 
-Own missed latest-start переводит obligation в `WINDOW_FORFEITED_BY_INACTION`, может закрыть intake и не создаёт pity exit. Acceptance проверяет solvency в decision points, не eternal solvency. Bundle не personal reservation, protected route, success guarantee или защита от PvP, greed, interruption и failure to act.
+Missed latest start переводит obligation в `BEST_EFFORT_AFTER_LATEST_START`: он выходит только из formula-counted covered demand, остаётся в normal-egress obligation ledger, может использовать только surplus, никогда covered slot, и не создаёт pity exit. Этот переход вызывается server-proven missed latest-start, не stay/quote/foretell. До Seal успешный Threshold даёт `RETURNED_THRESHOLD`, а KIA, successful Breakline или иной terminal removal — `TERMINAL_REMOVED`.
+
+At Seal сначала применяются lower-key exit/Recovery-expiry/KIA decisions. Затем bundle становится `RETIRED_AT_APEX_SEAL`; same/higher-key ingress, Threshold и Breakline abort, SyncLease slots и иные branch resources освобождаются. Lower-key committed exits succeed. Каждая remaining living Presence становится `APEX_ACTIVE`, а её obligation из `TIMELY|ALLOCATED_SYNC|BEST_EFFORT_AFTER_LATEST_START` — `APEX_BOUND`; это не success и не entitlement. После Seal `APEX_ACTIVE` исключена из Threshold throughput. At Dawn ExtractionSolvencyValidator consumes the immutable per-Presence Lifecycle/Recovery terminal decision ref and projects `APEX_BOUND→DAWN_RESOLVED` для successful STANDARD/RECOVERY settlement либо `→TERMINAL_REMOVED` для lethal/expiry outcome; он не пересчитывает fate. Dawn отсутствует в supply и demand.
 
 ## 13. Threshold, SearchEvidence и manifest
 
@@ -820,7 +855,7 @@ AND now + conservative_edge_duration
         + server_margin
     < min(edge_valid_until,
           next_phase_barrier unless edge is authored TRANSFORMABLE,
-          FinalStabilization)
+          ApexSeal)
 ```
 
 Player-facing reason ровно различает: **другой путь ещё помещается** или **повтор уже не помещается**.
@@ -851,7 +886,7 @@ ThresholdAnchorAssignment:
   eligible_anchor_set_hash: required
   selected_anchor_ref: required
   decision_key: arbitration_key
-  static_revision_variant_certificate_ref: required
+  static_revision_variant_certificate_ref: required_runtime_profile_JOINABLE_EXTRACTION
   current_egress_solvency_bundle_ref: required
   state: PREPARING|ASSIGNED|FORETOLD|INVALIDATED
   lifecycle: one_server_decision_no_client_reroll
@@ -893,14 +928,14 @@ Every eligible anchor проходит static validation. Перед `FORETOLD` 
 ```text
 CanStartSync
 = now + required_sync_duration + server_margin
-   < min(Threshold.valid_until, next_phase_barrier, FinalStabilization)
+   < min(Threshold.valid_until, next_phase_barrier, ApexSeal)
 ```
 
 SyncLease CAS-creates и reserves ровно один slot в тот же момент, когда living body входит в full-vulnerability `SYNCING`. Nonvulnerable capacity hold отсутствует. Interrupt/disconnect releases slot, sync progress becomes zero, TTL continues и same Presence должна закончить local reset перед retry.
 
 Interrupt меняет только SyncLease/Threshold. Он не transfers/erases private evidence, не создаёт reward/claim, не продлевает TTL, не выдаёт new anchor и не rerolls graph. Уже earned evidence остаётся в своём state. `RESET/OPEN` допустим только если TTL и `CanStartSync` ещё позволяют; иначе `FADE`.
 
-### 13.3. ExtractionCommitted и ProtectedManifest
+### 13.3. ExtractionCommitted и ReturnManifest
 
 ```yaml
 ExtractionEligibilityPolicy:
@@ -916,28 +951,84 @@ ExtractionEligibilityPolicy:
   living_cargo_requires: explicit_normal_eligibility_and_no_active_player_presence
   lifecycle: immutable_for_manifest_transaction
 
-ProtectedManifest:
-  owner: ExtractionResolver
-  source: ExtractionCommitted_decision
-  transaction_id: idempotency_key
-  participation_claim_ref: required
+DawnSettlementDecision:
+  owner: LifecycleResolver
+  source: ServerLifecycle_Dawn_key_plus_STANDARD_presence_after_lethal_precedence
+  settlement_id: idempotency_key
+  session_id: required
+  participation_claim_ref: required_kind_STANDARD
   presence_ref: required
-  sync_lease_ref: required
+  dawn_key: arbitration_key
+  lethal_precedence_witness_ref: required
+  decision: UNDECIDED|STANDARD_RETURN|LETHAL_TERMINAL
+  prepared_return_manifest_ref: required_if_STANDARD_RETURN_and_state_PREPARED_DURABLE
+  pawn_lifecycle_projection_ref: required_if_STANDARD_RETURN
+  projection_state: NONE|APPLYING|MATERIALIZED|QUARANTINED
+  reconciliation_deadline: required
+  lifecycle: one_immutable_per_STANDARD_presence_decision; technical_failure_replays_never_converts_committed_return_to_loss
+
+ReturnManifest:
+  owner: Extraction/ReturnResolver
+  source: NORMAL_THRESHOLD_or_DAWN_settlement
+  transaction_id: idempotency_key
+  participation_claim_ref: required_kind_STANDARD
+  presence_ref: required
+  trigger_kind: NORMAL_THRESHOLD|DAWN
+  trigger_proof: exactly_one_committed_SyncLeaseRef_or_DawnSettlementDecisionRef; required_before_logical_commit
+  sync_lease_ref: required_if_NORMAL_THRESHOLD
+  expected_dawn_settlement_decision_id: required_if_DAWN_during_preparation
+  dawn_settlement_decision_ref: absent_while_DAWN_preparing; required_committed_STANDARD_RETURN_before_derived_commit
   eligibility_policy_ref: required
-  custody_graph_refs: required
+  custody_graph_refs: entire_eligible_carried_graph_required
+  eligibility_result_hash: required
   world_tombstone_refs: required
-  logical_extraction_key: arbitration_key
-  decision: UNDECIDED|COMMIT|ABORT
+  preparation_state: PREPARING|PREPARED_DURABLE
+  logical_return_key: arbitration_key
+  normal_threshold_decision: UNDECIDED|COMMIT|ABORT|required_if_NORMAL_THRESHOLD
+  dawn_derived_outcome: PENDING_SETTLEMENT|COMMIT_DERIVED_FROM_STANDARD_RETURN|DISCARDED_NO_RETURN|required_if_DAWN
+  decision_authority: ExtractionReturnResolver_if_NORMAL_THRESHOLD|DawnSettlementDecision_if_DAWN
   projection_state: NONE|APPLYING|MATERIALIZED|ROLLED_BACK|QUARANTINED
   reconciliation_deadline: required
-  lifecycle: one_atomic_manifest_or_no_manifest
+  lifecycle: NORMAL_THRESHOLD_has_one_item_transaction_decision; DAWN_has_no_independent_COMMIT_or_ABORT
 ```
 
-At immutable manifest `decision=COMMIT`, custody lock, Sync slot consumption, raid Presence removal, terminal claim и lease release становятся logically effective на `logical_extraction_key`; projections replay toward that decision. Final total order всегда применяется: extraction с меньшим полным key succeeds; Final/KIA с тем же или меньшим key делает ABORT/KIA. Crash после COMMIT не отменяет manifest; reconciliation имеет finite deadline.
+ReturnManifest не решает survival Пешки и hard-fence принимает только `ParticipationClaim.kind=STANDARD`: normal trigger consumes Sync slot, Dawn trigger не использует slot. Для `NORMAL_THRESHOLD` Extraction/ReturnResolver владеет `normal_threshold_decision=COMMIT|ABORT`; at COMMIT custody lock, slot consumption, world tombstone и return projection становятся logically effective на `logical_return_key`.
 
-COMMIT CAS-locks entire carried graph, создаёт один ProtectedManifest, tombstones world copies и удаляет raid body/presence. Затем `RAID→CARE`, если aftermath требует лечения, иначе `RAID→HUB`; states взаимоисключающи. Seat освобождается после logical removal.
+Для `DAWN` порядок обратной зависимости запрещён. Return resolver сначала создаёт `PREPARED_DURABLE` с полным eligible custody graph и deterministic tombstone/projection IDs, но без logical item transfer. Только затем LifecycleResolver может commit `DawnSettlementDecision=STANDARD_RETURN`, ссылающийся на этот prepared record. `dawn_derived_outcome` после этого может стать только `COMMIT_DERIVED_FROM_STANDARD_RETURN`; собственный ABORT/UNDECIDED decision у Dawn manifest отсутствует. Если lethal terminal event выигрывает до settlement, prepared record получает `DISCARDED_NO_RETURN`. После `STANDARD_RETURN` технический сбой допускает только replay/quarantine и никогда не превращает победу в loss.
 
-Каждый squad member выходит собственной transaction. Partial manifest запрещён. Живая Пешка выходит только своей Presence transaction; чужое тело обрабатывает отдельный lifecycle resolver и никогда не становится manifest cargo.
+`DawnSettlementDecision=LETHAL_TERMINAL` не mint'ит KIA и не подменяет Pawn Lifecycle/Presence: он обязан ссылаться на уже authoritative lethal precedence witness и означает только «STANDARD return не создаётся».
+
+NORMAL_THRESHOLD COMMIT CAS-locks entire carried graph, создаёт один ReturnManifest, tombstones world copies и удаляет raid body/presence. Dawn STANDARD survivor получает LifecycleResolver return `CARE|HUB` и полный eligible carried ReturnManifest; KIA/unresolved lethal collapse того же tick имеет приоритет. RECOVERY survivor получает `RecoveryResolution=RECOVERED` без ReturnManifest, cargo, loot или standard Dawn reward; expiry/KIA priority сохраняется.
+
+Каждый squad member получает собственную transaction. Partial manifest запрещён. Живая Пешка выходит только своей Presence transaction; чужое тело обрабатывает отдельный lifecycle resolver и никогда не становится manifest cargo.
+
+Для `STANDARD_RETURN` deterministic IDs `DawnSettlementDecision` и ReturnManifest подготавливаются одним coordinator graph и получают один logical key. Lifecycle decision не может стать `STANDARD_RETURN` без matching `PREPARED_DURABLE` manifest; manifest commit является derived projection этого единственного решения. CARE/HUB projection не публикуется, пока оба durable records не доказывают committed outcome. После этого сбой может только задержать replay либо отправить projection в quarantine; он не меняет return на loss и не создаёт второй decision owner.
+
+### 13.4. Breakline integration boundary
+
+Детальная цена, Catastrophe predicate, погоня и `ForfeitBeneficiarySet` принадлежат [[06_Economy_Loot/Extraction_Stabilization_Loop#4.5 Breakline и необратимая ставка|профильному Breakline-контракту]]. Эта architecture владеет только стыком с total order, solvency и lifecycle.
+
+```yaml
+BreaklineResolution:
+  owner: BreaklineResolver
+  source: server_confirmed_Catastrophe_plus_profile_Breakline_contract
+  resolution_id: idempotency_key
+  session_id: required
+  participation_claim_ref: required_kind_STANDARD
+  presence_ref: required
+  forfeit_snapshot_ref: required_before_player_declaration
+  logical_decision_key: arbitration_key
+  apex_seal_key: required
+  decision: UNDECIDED|BODY_RETURN|FAILED_LETHAL|ABORTED_AT_APEX_SEAL
+  lethal_terminal_event_ref: required_if_FAILED_LETHAL; decided_by_PawnLifecycle_not_BreaklineResolver
+  return_manifest_ref: forbidden
+  egress_supply_credit: forbidden
+  recovery_participation: forbidden
+  projection_state: NONE|APPLYING|MATERIALIZED|QUARANTINED
+  lifecycle: pre_Seal_only; lower_key_terminal_decision_wins; same_or_higher_key_attempt_aborts_without_relocation
+```
+
+Breakline не является Threshold supply, не делает ingress solvent и не вычитает Presence из normal-egress obligation до terminal `BODY_RETURN` либо отдельного PawnLifecycle terminal event. `FAILED_LETHAL` только ссылается на этот event и не принимает второе KIA-решение. `BODY_RETURN` возвращает STANDARD Person/Chronicle и terminally removes obligation; cargo/contract settlement отсутствуют. Для `ParticipationClaim.kind=RECOVERY` Breakline запрещён: Recovery разрешается только собственным RecoveryResolution path, Dawn либо terminal fate. `ABORTED_AT_APEX_SEAL` оставляет живую Presence и custody в поле; Seal переводит Presence в `APEX_ACTIVE`, а её EgressCoverageObligation — в `APEX_BOUND`.
 
 ## 14. Earned Phase Continuity: K/W/C и semantic root
 
@@ -958,7 +1049,7 @@ Eligibility: тот же SessionID, последовательные revisions, 
 | World | Конкретная public world entity mutation | PERSIST/TRANSFORM_WITH_LINK/CONSUME/INVALIDATE; finite per SessionID/Revision, no respawn/reset farm. |
 | Custody | Тот же physical ItemID/LivingCargo в continuous custody | Weight/slot/Dissonance/damage сохраняются; dropped item следует world resolver; marker не заменяет custody. |
 
-K/W refs session-local и истекают с SessionID/claim. Extracted ItemID покидает raid только обычным manifest и не превращается в account Continuity buff. Mission может читать K/W/C refs и переносить собственное состояние, но не является четвёртым continuity/access channel.
+K/W refs session-local и истекают с SessionID/claim. Extracted ItemID покидает raid только committed ReturnManifest с `NORMAL_THRESHOLD|DAWN` trigger и не превращается в account Continuity buff. Mission может читать K/W/C refs и переносить собственное состояние, но не является четвёртым continuity/access channel.
 
 ### 14.2. ContinuityBudgetRootID
 
@@ -992,9 +1083,9 @@ ObjectiveCommitmentContext:
 - secondary spillover остаётся sub-material;
 - минимум две material debts остаются live;
 - carryover даёт materially different nonexclusive cost vector, который нельзя купить credential/loadout;
-- baseline objective/reward/exit остаются доступны fresh entrant.
+- для joinable target profile baseline objective/reward/exit остаются доступны fresh entrant; sealed Apex вместо этого сохраняет complete survival route для каждого reachable cohort.
 
-Runtime никогда не cancels earned physical state ради cap. Invalid content/revision не публикуется. Каждый 0→2 и 2→4 переход предоставляет минимум две spatially/temporally competing continuity opportunities из K/W/C, встроенные в observe/prepare physical object/carry. Checklist отсутствует. 4→6 playable continuity payoff нет: value надо реализовать и выйти до 06:00.
+Runtime никогда не cancels earned physical state ради cap. Invalid content/revision не публикуется. Каждый 0→2, 2→4 и T3→Apex переход предоставляет минимум две spatially/temporally competing continuity opportunities из K/W/C. T3 раскрывает Apex signature; custody, world и knowledge могут пересечь Seal с непогашенными debts без buff/checklist.
 
 После shift protected incumbent window/priority отсутствует. Новые opportunities публикуются сразу; incumbent сохраняет только natural position, knowledge, prepared public state, custody и оплаченный риск.
 
@@ -1049,7 +1140,7 @@ PublicActivityCertificate:
   issued_before_recovery_binding: true
   independent_standard_activity_set_ref: required
   admission_state: OPEN
-  static_revision_variant_certificate_ref: required
+  static_revision_variant_certificate_ref: required_runtime_profile_JOINABLE_EXTRACTION
   recovery_egress_solvency_bundle_ref: required
   input_hash: required
   independence_threshold_policy_ref: required
@@ -1074,7 +1165,7 @@ Insufficient independence/entropy либо no certificate оставляет Cas
 
 Stale activity/certificate запускает same-target AdministrativeResolution; Resume требует новый independently minted same-target certificate. Если target globally unusable, durable GlobalTargetUnusableCertificate разрешает new unbound search до case expiry. Exact SessionID хранится только TargetBinding, не RecoveryCase.
 
-Recovery entry использует standard seat, обычный BreachTransaction и `ParticipationClaim.kind=RECOVERY`. Recovery exit — только `RecoveryThresholdSync/BodyRecoverySync→CARE`, без ProtectedManifest. Operation-local/Recovery items не проходят normal extractor. Breakline остаётся отдельным body-only emergency flow.
+Recovery entry использует standard seat, обычный BreachTransaction и `ParticipationClaim.kind=RECOVERY`. Recovery ingress/corridor заканчивается at Seal. Lower-key Recovery expiry/KIA применяется до Seal occupancy snapshot; для remaining active body Presence входит в Apex cohort как `APEX_ACTIVE`, а соответствующая EgressCoverageObligation становится `APEX_BOUND`. Absolute case expiry продолжает идти внутри Apex. At Dawn KIA/unresolved collapse и case expiry имеют priority над recovery success; living unexpired survivor получает `RECOVERED` без ReturnManifest, cargo, loot или standard reward. Operation-local/Recovery items не проходят normal extractor. Breakline для RECOVERY запрещён; Case разрешается только RecoveryResolution path, Dawn либо terminal fate.
 
 ### 15.3. RecoveryResolutionTransaction
 
@@ -1092,11 +1183,11 @@ RecoveryResolutionTransaction:
   decision: UNDECIDED|RECOVERED|FAILED|EXPIRED
   projection_state: NONE|APPLYING|MATERIALIZED|QUARANTINED
   reconciliation_deadline: required
-  protected_manifest_ref: forbidden
+  return_manifest_ref: forbidden
   lifecycle: one_immutable_decision_and_exactly_once_CARE_or_terminal_projections
 ```
 
-Case expiry participates even `IN_RECOVERY`. При одном tick world/case expiry имеет priority раньше Recovery success; success succeeds только с меньшим полным key. Pending/SEARCHING/BOUND expiry resolves без body; active expiry terminally removes recovery body. Transaction atomically resolves Case, Presence, Claim, AccountDeploymentLease и account_last_thread_slot в CARE либо terminal state; ProtectedManifest никогда не создаётся.
+Case expiry participates even `IN_RECOVERY` и не pauses at Seal. При одном tick world/case expiry имеет priority раньше Recovery success; success succeeds только с меньшим полным key. Pending/SEARCHING/BOUND expiry resolves без body; active expiry terminally removes recovery body. Dawn survivor resolution uses the same full-key transaction and writes `RECOVERED`; no parallel DawnSettlementDecision is created for `ParticipationClaim.kind=RECOVERY`. Transaction atomically resolves Case, Presence, Claim, AccountDeploymentLease и account_last_thread_slot в CARE либо terminal state; ExtractionSolvencyValidator idempotently projects matching `APEX_BOUND` from this immutable resolution ref. ReturnManifest никогда не создаётся.
 
 ## 16. Player projection и lived failure flows
 
@@ -1152,12 +1243,34 @@ Nonmodal first layer показывает максимум три приорит
 
 Interrupt даёт читаемые physical interruption, slot release и sync reset. Затем ровно один reason: «другой путь ещё помещается» либо «повтор уже не помещается». Earned evidence остаётся; new anchor и pity progress не выдаются. Late denial может завершиться KIA и остаётся healthy PvP consequence.
 
-### 16.7. Minimum feel pass
+### 16.7. Apex/Dawn lived transition
+
+```yaml
+RaidPhasePlayerProjection:
+  owner: UIProjection
+  source: ServerLifecycle_plus_Presence_or_Recovery_resolution
+  presence_ref: required
+  state: T3_CHOICE|APEX_FORETOLD|APEX_ACTIVE|DAWN_RESOLVING|SETTLED
+  phase_clock_or_deadline: required_until_SETTLED
+  primary_rule: exactly_one_human_phrase
+  exit_state: OPEN_WITH_CUTOFF|SEALED
+  settlement_kind: absent_until_SETTLED_then_STANDARD_RETURN|RECOVERY_RESOLVED|LETHAL_TERMINAL
+  backend_ids_or_certificate_state: forbidden
+  lifecycle: monotonic_projection_of_authoritative_decisions
+```
+
+- С 04:00 слой T3 показывает Apex family/signature, clock 05:00/06:00 и два честных действия: завершить normal exit до своего cutoff либо готовиться остаться. Это не modal vote и не declaration, исключающая Presence из demand.
+- В 04:45 каждый active player получает обязательный nonmodal+physical foretell: «Пороги и Breakline закроются через 15 минут; оставшиеся войдут в Apex». Индивидуальный Threshold cutoff может наступить раньше, если полный corridor уже не помещается.
+- На 05:00 lower-key exits уже settled; remaining Presence видит: «Выход закрыт — выжить до Рассвета», Dawn countdown и читаемую PrimaryApexFamily. Safe disconnect/action отсутствует.
+- At Dawn STANDARD survivor видит возврат Пешки и полный eligible custody manifest; RECOVERY survivor — «Нить удержана: Пешка восстановлена», явно без cargo/loot/standard reward; lethal/expired outcome показывает собственную terminal cause. Backend `APEX_BOUND`/certificate names не показываются.
+
+### 16.8. Minimum feel pass
 
 - local ingress tell и first-frame full control;
 - physical phase precursor/pulse и visible spatial/non-spatial fallback result;
 - visible world transform либо stale evidence reason;
 - Threshold birth/reset/fade и interrupt feedback;
+- обязательный 04:45 foretell, 05:00 смена цели на survival и различимые STANDARD/RECOVERY Dawn outcomes;
 - distinct human reasons для offer changed, window closed, no valid crossing, connection, technical delay и system refund;
 - three outcomes: success, deliberate retreat/withdrawal, failure/KIA.
 
@@ -1173,18 +1286,18 @@ Owners: ServerLifecycle, TargetBindingResolver, EntryQuoteResolver, InsertionAdm
 - one durable squad Breach `decision=COMMIT|ABORT`, conditional fences и exactly-once projections/refunds;
 - unique Account controller/Pawn Presence/Participation;
 - hard candidate veto, pressure physics, finite AdministrativeResolution;
-- SyncLease/manifest/finality/Recovery-no-manifest rules.
+- SyncLease/ReturnManifest/Breakline/Dawn/Recovery-no-manifest rules.
 
 ### 17.2. Load-bearing authoring and validator obligations
 
 Owners: StaticRevisionValidator, ExtractionSolvencyValidator, ContinuityRootRegistry/ContinuityAxisValidator и authored content owners.
 
-- matching StaticRevisionVariantCertificate/IngressCoverageSubproof, StaticEgressSupplyEnvelopeCertificate, PhaseSpatialMutationSet и continuity proofs;
+- discriminated StaticRevisionVariantCertificate: joinable ingress/Threshold/egress proofs либо sealed Apex cohort/pressure/Dawn proofs, PhaseSpatialMutationSet и continuity proofs;
 - threshold-family independence and latent anchors;
 - `NO_SPATIAL_DELTA` plus objective/reward/cost equivalence;
 - ContinuityBudgetRoot inheritance and ContinuityAxisValidator;
 - finite acyclic SearchResolutionGraph;
-- baseline objective/path/search/reward for every supported composition.
+- baseline objective/path/search/reward for every supported joinable composition; survival-route capability for every reachable sealed cohort.
 - predicate dependency graph acyclic: static facts → BaseAdmissionServiceable → dynamic EgressSolvencyBundle → CanPublishIngress.
 
 Конкретные sector instances остаются content work, но архитектура уже задаёт owner, certificate и acceptance test.
@@ -1225,7 +1338,7 @@ Owner: regional operations/anti-cheat.
 | Crash before PREPARED | Critical | partial locks | decision ABORT/refund projections | Retry same transaction ID. |
 | Prepared fence reject | Critical | one uniqueness/capacity fence fails | whole roster ABORT before logical effects | Durable preparation itself. |
 | Crash after PREPARED | Critical | UNDECIDED crosses fence | watchdog writes ABORT or lower-key COMMIT | Prepared token itself. |
-| COMMIT pending across phase/final | Critical | logical body not projected | pending footprint in occupancy; replay pulse/KIA/Final; no ACTIVE after 06:00 | Brief reconcile latency. |
+| COMMIT pending across phase/Seal/Dawn | Critical | logical body not projected | pending footprint in occupancy; replay phase/Seal/Dawn by full key; no ACTIVE after 06:00 | Brief reconcile latency. |
 | Crash during materialization | Critical | duplicate body/claim/tell | deterministic IDs/idempotent projections | Replayed projection. |
 | Population-wide ingress suppression | Critical | controllers cover all cells | suppression-cut certificate/cap reduction/reject revision | One camped ingress region. |
 | Pressure epsilon exploit | High | micro-delay exits binary window | continuous monotone decay field | Paid staggering far enough. |
@@ -1240,16 +1353,18 @@ Owner: regional operations/anti-cheat.
 | Barrier occupancy race | Critical | movement/COMMIT footprint omitted | exact barrier-key snapshot includes both | Lower-key movement counts. |
 | Forced fallback collusion | High | bodies force profitable NO_SPATIAL | collusion bound or materially nonbeneficial proof | Legitimate fallback. |
 | Variant/hash mismatch | Critical | geometry uses wrong static bundle | bounded decision chooses matching bundle or next fallback | Valid next variant. |
+| Runtime-profile confusion | Critical | sealed revision demands ingress/Threshold or republishes offers | discriminated JOINABLE_EXTRACTION/SEALED_APEX certificate + branch-specific commit | Sealed snapshot remains live but nonjoinable. |
 | Threshold family lock | Critical | squad controls all exits | family coverage certificate/JIT latent anchors | One camped Threshold. |
 | Late evidence pity | High | interrupt→free anchor/progress | evidence unchanged, sync zero, TTL continues | Late interrupt can be lethal. |
 | SyncLease cycling | High | reserve/abort stalls TTL | vulnerable create, immediate release, TTL never extends | Legitimate retry after reset. |
-| Manifest laundering | Critical | Recovery/body/item enters normal manifest | node eligibility/CAS/no Recovery manifest | Eligible LivingCargo. |
+| Manifest laundering | Critical | Recovery/body/ineligible item enters ReturnManifest | STANDARD hard fence + node eligibility/CAS/no Recovery manifest | Eligible LivingCargo. |
 | Manifest crash before/after COMMIT | Critical | custody/slot/removal diverge | immutable manifest decision + replay by logical key | Earlier extraction key succeeds. |
+| Dawn decision outruns manifest | Critical | STANDARD_RETURN commits while manifest can still ABORT | manifest PREPARED_DURABLE first; Dawn is sole decision; derived COMMIT only | Dawn remains RESOLVING during preparation. |
 | Recovery multiple-Pawn custody | Critical | two unresolved cases/account | existing account_last_thread_slot CAS | One active case. |
 | Recovery certificate mule/entropy | High | alt manufactures activity confidence | independent activity+entropy policy; residual measured | Sparse genuine public session. |
 | Recovery commit/expiry/success race | Critical | last-second entry pauses fate | absolute expiry; full-key RecoveryResolution decision | Earlier success wins. |
-| Time-forfeit | High | missed latest-start demands pity supply | WINDOW_FORFEITED_BY_INACTION; close intake if needed | Late denial/no pity exit. |
-| Final race | Critical | extraction and KIA at 06:00 | full arbitration key; Final/KIA priority same tick | Extraction with smaller full key. |
+| Time-forfeit | High | missed latest-start demands pity supply | BEST_EFFORT_AFTER_LATEST_START; use surplus only; close intake if needed | Late denial/no pity exit. |
+| Dawn race | Critical | Dawn return races KIA/lethal collapse/Recovery expiry | full arbitration key; lethal/expiry priority on Dawn key | Earlier lower-key terminal decision already settled. |
 | Low-pop collapse | High | silent phase substitute/moved bodies | fixed collapse order, unavailable state | Sparse standard public session. |
 
 Deterministic exploit chain «alt fingerprints target→party reshuffles→waits T3→blocks all ingress/egress→farms empty world» не работает: tainted-output receipt, durable per-account scope, suppression-cut/Threshold certificates, no idle value, fresh baseline и solvency checks разрывают её. Probabilistic co-binding low-pop остаётся residual operations risk и измеряется, а не объявляется закрытым.
@@ -1273,7 +1388,7 @@ Deterministic exploit chain «alt fingerprints target→party reshuffles→waits
 | Crash after PREPARED before decision | Watchdog decides abort before fence | technical delay/window closed |
 | Conditional fence rejected | Whole roster decision ABORT | blocker/refund |
 | Crash after decision COMMIT | Reconcile toward same logical effects | ENTERING; logical body remains vulnerable |
-| COMMIT projection crosses barrier/final | Pending footprint receives later-key pulse/KIA/Final; no ACTIVE after 06:00 | ACTIVE or terminal result by total order |
+| COMMIT projection crosses phase/Seal/Dawn | Pending footprint receives later-key phase/Seal/Dawn decisions; no ACTIVE after 06:00 | ACTIVE, APEX_ACTIVE or terminal result by total order |
 | Crash during materialization | Idempotent deterministic replay | ENTERING then ACTIVE_IN_SECTOR |
 | All ingress cells suppressed before disclosure | One allowed opaque rebind or generic fail | ENTRY_CANCELLED |
 | All ingress cells suppressed after disclosure | Same-target finite resolution | SECTOR_DELAYED |
@@ -1281,21 +1396,24 @@ Deterministic exploit chain «alt fingerprints target→party reshuffles→waits
 | Phase barrier after breach decision | Body materializes and receives pulse | ACTIVE_IN_SECTOR |
 | No valid phase spatial variant | Commit NO_SPATIAL_DELTA plus new hazards/rules | phase changed, geometry unchanged |
 | Variant/bundle hash mismatch | Try next matching variant/NO_SPATIAL in same bounded decision | phase fallback result |
+| Apex Seal | Lower-key exits/expiry/KIA settle; same/higher ingress/Sync/Breakline abort; SEALED_APEX variant and bundle retirement commit atomically; remaining Presence→APEX_ACTIVE, obligations→APEX_BOUND | exit closed — survive until Dawn |
 | Egress solvency invalid before admission | No publish/commit | no crossing available |
 | Global future slot collision | Bundle INSOLVENT; no double-count | no crossing available |
-| Egress latest-start missed | Obligation WINDOW_FORFEITED_BY_INACTION; no pity supply | retry no longer fits |
+| Egress latest-start missed | Obligation BEST_EFFORT_AFTER_LATEST_START; surplus only, no pity supply | retry no longer fits |
 | JIT anchor fails global bundle | Assignment not FORETOLD; no reroll | another path fits / unavailable |
 | Sync interrupted | Slot released, sync zero, TTL continues, evidence unchanged | retry fits / no longer fits |
 | Barrier during sync | Abort; slot release; new revision set | Threshold fades/resets |
 | Duplicate ItemID | Manifest abort/reconcile; no duplicate projection | extraction failed, item state unchanged |
 | Manifest crash after COMMIT | Replay custody/slot/removal by same logical key | extraction resolving then settled |
+| Dawn manifest crash before settlement | Replay PREPARED_DURABLE; STANDARD_RETURN cannot commit yet | Dawn resolving; no loss projection |
+| Crash after STANDARD_RETURN | Derived manifest COMMIT and CARE/HUB replay; ABORT forbidden | return resolving then settled |
 | KIA and Extraction same tick | Event priority puts KIA first | failure/KIA |
 | Recovery certificate absent | Case SEARCHING, no shard | waiting for public expedition |
 | Account last-thread slot occupied | New Case blocked; existing Case unchanged | BLOCKED_BY_ACCOUNT_CUSTODY |
 | Recovery target terminal before case expiry | Server authorizes unbound search if globally unusable | searching; same absolute deadline |
 | RecoveryCase expiry | RecoveryResolution decision EXPIRED; slot/Presence/Claim/lease resolve once | EXPIRED/terminal fate reason |
 | Recovery success and expiry same tick | Expiry wins; earlier full-key success wins | CARE or terminal outcome |
-| Final Stabilization | All remaining raid bodies KIA | failure; no survivor reward |
+| Dawn | STANDARD living active Presence: CARE/HUB + full ReturnManifest; RECOVERY: RECOVERED без manifest; KIA/collapse/Recovery expiry wins by key | «Вы выжили: Пешка и груз возвращены» / «Нить удержана: без груза» / exact terminal cause |
 
 ## 20. Metrics and empirical unknowns
 
@@ -1317,7 +1435,7 @@ Collect without invented corridors:
 - continuity root combinations, validator rejection and carryover use by axis;
 - SearchEvidence CONFIRMED/TRANSFORMED/STALE/EXPIRED outcomes;
 - Threshold camp/interruption/reset/fade/success and late KIA;
-- manifest decision/reconcile latency, duplicate projections and KIA–Extraction–Stabilization arbitration;
+- manifest decision/reconcile latency, duplicate projections and KIA–Extraction–Dawn arbitration;
 - player comprehension of one-line reason, exact loss, allowed action and deadline;
 - stay/direct/exit rates, fresh entrant objective/extraction success, deaths/damage after breach, AFK dwell and private-knowledge PvP effect.
 
@@ -1328,11 +1446,11 @@ Durations, capacity/controller bounds and UX corridors require balance/load/play
 | MVP | Included | Validates | Explicit non-claim |
 |---|---|---|---|
 | A. Boundary Kernel | NON-PUBLIC/NON-SHIPPABLE static harness; one sector/revision; Offer→shared Scope/Receipt→Quote→Breach; minimal valid static coverage+global egress; **two** Threshold families; manifest/finality; no live shift | Privacy boundary, conditional fences, durable Breach/manifest decisions and unique-slot witness | Does not validate rolling pool or continuity vision. |
-| B. Living Pool vertical slice | Three envelopes; LowPopulationPolicy; real 0→2 and 2→4; variants/barrier-key occupancy; static bundles/global solvency; minimum valid competing K/W/C roots/axis proofs | Living clocks, collapse, realizable phase shifts, egress and first continuity invariant | Not broad build/continuity comprehension. |
+| B. Living Pool + Seal vertical slice | Three live envelopes; LowPopulationPolicy; real 0→2, 2→4 and T3→Seal→Apex→Dawn; discriminated JOINABLE_EXTRACTION/SEALED_APEX variants; barrier-key occupancy; bundle retirement; STANDARD Dawn settlement; minimum valid competing K/W/C roots/axis proofs | Living clocks, collapse, realizable phase shifts, pre-Seal egress, sealed continuation and first continuity invariant | Uses no live RecoveryCase; an isolated synthetic RECOVERY fixture may test only the shared Dawn arbitration interface. Not broad build/continuity comprehension or final Apex content balance. |
 | C. Continuity and build breadth | Additional authored K/W/C, route/build choices and comprehension pass over already-valid roots | Choice breadth, readability and resistance to cross-party/subscene laundering | Does not establish the first continuity invariant. |
-| D. Public Recovery Overlay | RecoveryCase; prior public-health certificate; standard target/seat; no special shard/manifest | Public population dependency, deadline/fate, normal-world recovery | Does not replace ordinary extraction or settlement. |
+| D. Public Recovery Overlay | RecoveryCase; prior public-health certificate; standard target/seat; no special shard/manifest; live Recovery crossing Seal and Dawn/expiry/KIA arbitration | Public population dependency, deadline/fate, normal-world recovery and exact Recovery terminal settlement | Does not replace ordinary extraction or STANDARD settlement. |
 
-Federation, events и complex search graphs deferred. Every exercised transition retains total states, matching certificates, deadlines, reconciliation and Final Stabilization.
+Federation, events и complex search graphs deferred. Every exercised transition retains total states, matching certificates, deadlines, reconciliation and Dawn settlement.
 
 ## 22. Migration map
 
@@ -1341,15 +1459,15 @@ Authority переносится одновременно; старый Access C
 | Canonical page | Required migration after approval |
 |---|---|
 | [[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]] | Clock, PhaseRevision, barriers, arbitration, ProtectedVolume snapshot. |
-| [[08_World_Generation/Generation/06_Async_Timers|Async Timers]] | Rolling service set, Final Stabilization, deadlines. |
+| [[08_World_Generation/Generation/06_Async_Timers|Async Timers]] | Rolling service set, Seal/Dawn ordering and deadlines. |
 | [[08_World_Generation/Generation/05_Difficulty_Slots|Difficulty Slots]] | Remove matchmaking/access authority; keep only derived world-age semantics where needed. |
-| [[08_World_Generation/Generation/19_Access_Contracts|Access Contracts]] | Deprecate/replace with focused Offer, Binding and Ingress opportunity owners. |
+| [[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid Approach and Entry]] + [[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion Logic]] | Current focused owners for Offer/Binding and physical ingress. |
 | [[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion Logic]] | Conditional fences, durable Breach decision/projections, candidate veto and pressure field. |
-| [[08_World_Generation/Anomaly/14_Extraction_System|Extraction System]] | Static supply envelope, global EgressSolvencyBundle, JIT assignment, SyncLease and durable ProtectedManifest. |
+| [[08_World_Generation/Anomaly/14_Extraction_System|Extraction System]] | Pre-seal static supply/global EgressSolvencyBundle, JIT assignment, SyncLease and durable ReturnManifest. |
 | [[08_World_Generation/Generation/08_Gate_Check|Gate Check]] | Envelope/exact forecast and phase pulse; no offer/binding ownership. |
 | [[08_World_Generation/Generation/10_World_Topology|World Topology]] | Static variant bundles, barrier-key occupancy, PhaseSpatialMutationSet and global supply graph. |
 | [[08_World_Generation/Anomaly/15_Frequency_Tuner|Frequency Tuner]] | Remove Trace rejoin/redeploy path. |
-| [[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction Stabilization Loop]] | Manifest settlement and exact 06:00 finality. |
+| [[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction Stabilization Loop]] | ReturnManifest, Breakline integration and exact STANDARD/RECOVERY/lethal Dawn settlement. |
 | [[08_World_Generation/Hub/01_Hub_Map_Table|Hub Map Table]] | ApproachOffer and IngressPlayerProjection. |
 | [[04_Player_Entities/Lifecycle_Roster|Lifecycle Roster]] | Account/Pawn leases, existing account_last_thread_slot, RecoveryCase/Resolution and terminal fate. |
 | [[08_World_Generation/Persistence_Ledger|Persistence Ledger]] | Participation, K/W refs, SearchEvidence and durable decisions. |
@@ -1380,40 +1498,44 @@ Shadow migration logs old/new decision parity, switches authority atomically, th
 
 ### 23.2. Runtime acceptance
 
-- [ ] Exact 06:00 KIA/finality and arbitration are preserved.
+- [ ] Exact Seal/Dawn order is preserved: lower-key decisions settle; Seal aborts same/higher ingress/Sync/Breakline; Dawn resolves KIA/collapse/Recovery expiry before return.
 - [ ] No logical body, claim, commitment consumption, tell or occupied seat exists before Breach decision COMMIT.
-- [ ] COMMIT-but-unprojected footprints participate in barrier occupancy and later-key phase/Final events; no ACTIVE materialization occurs after 06:00.
+- [ ] COMMIT-but-unprojected footprints participate in barrier occupancy and later-key phase/Seal/Dawn events; no ACTIVE materialization occurs after 06:00.
 - [ ] Every pre-decision party failure aborts/refunds all; every post-decision retry converges on the same materialization.
 - [ ] SyncLease begins only with vulnerable SYNCING, and interrupt never pauses TTL or changes evidence.
-- [ ] ProtectedManifest is atomic, eligibility-checked and never partial.
-- [ ] ProtectedManifest uses immutable decision, separate projection state and full-key Final arbitration.
-- [ ] Recovery never creates ProtectedManifest, special shard, room or first standard population.
+- [ ] Every pre-Seal Breach COMMIT remains in the normal-egress obligation ledger until Threshold return, terminal removal or Seal; stay/quote/foretell never remove it. Only server-proven missed latest-start moves it from formula-counted `TIMELY|ALLOCATED_SYNC` covered demand to surplus-only `BEST_EFFORT_AFTER_LATEST_START`.
+- [ ] Dawn is never Threshold supply; EgressSolvencyBundle retires only at Seal, and `APEX_ACTIVE` leaves throughput only through the atomic RAID-owned transition.
+- [ ] ReturnManifest hard-fences `ParticipationClaim.kind=STANDARD`, is atomic over the full eligible carried graph and never partial; its trigger is exactly one SyncLeaseRef or DawnSettlementDecisionRef.
+- [ ] NORMAL_THRESHOLD ReturnManifest owns one immutable item decision; DAWN ReturnManifest must be PREPARED_DURABLE before STANDARD_RETURN and then COMMIT only as a derived projection of LifecycleResolver's single DawnSettlementDecision.
+- [ ] Breakline is pre-Seal STANDARD-only body return, never ReturnManifest/supply, and is forbidden for RECOVERY.
+- [ ] Recovery never creates ReturnManifest, special shard, room or first standard population.
 - [ ] Finite AdministrativeResolution always has deadline, released resources and terminal outcome.
 
 ### 23.3. Load-bearing authoring acceptance
 
-- [ ] Every generated variant/revision has matching topology-hash StaticRevisionVariantCertificate, IngressCoverageSubproof, StaticEgressSupplyEnvelopeCertificate, PhaseSpatialMutation and ContinuityAxis proof.
+- [ ] Every generated variant/revision has a matching topology-hash/runtime-profile StaticRevisionVariantCertificate and PhaseSpatialMutation/Continuity proof.
+- [ ] `JOINABLE_EXTRACTION` requires ingress coverage, independent Threshold families, static egress supply and dynamic solvency; `SEALED_APEX` forbids those authorities and requires cohort/pressure/survival-route/Dawn compatibility proofs.
 - [ ] Ingress suppression cut exceeds max admissible hostile controllers; runtime veto is never weakened.
 - [ ] Thresholds have two independent families/routes, no universal key/observer and at least one family with latent JIT anchors.
 - [ ] Every PhaseSpatialMutationSet has equivalent occupancy-safe fallbacks and mandatory NO_SPATIAL_DELTA.
-- [ ] One global unique-slot EgressSolvencyBundle covers all component-source demand at publication, phase decision, admission and Breach; component views are disjoint projections.
-- [ ] Egress obligations support TIMELY→ALLOCATED_SYNC→REMOVED or WINDOW_FORFEITED_BY_INACTION without pity exit.
-- [ ] Every 0→2 and 2→4 transition has at least two competing K/W/C opportunities and a fresh-entry baseline without checklist.
+- [ ] One global unique-slot EgressSolvencyBundle covers all **covered** component-source demand at publication, joinable phase decision, admission and Breach; BEST_EFFORT refs are surplus-only and component views are disjoint projections.
+- [ ] Egress obligations support `TIMELY→ALLOCATED_SYNC→RETURNED_THRESHOLD`, `BEST_EFFORT_AFTER_LATEST_START` without pity capacity, terminal removal, and `APEX_BOUND→DAWN_RESOLVED|TERMINAL_REMOVED`.
+- [ ] Every 0→2, 2→4 and T3→Apex transition has at least two competing K/W/C opportunities; joinable revisions also have a fresh-entry baseline without checklist.
 - [ ] Every semantic root retires at most one primary axis and leaves two material debts for all reachable party-ref combinations.
 - [ ] Every SearchResolutionGraph is finite, acyclic and uses costly authored evidence actions.
 - [ ] ThresholdAnchorAssignment is durable, no-reroll and checks matching static bundle plus current global solvency before FORETOLD.
 - [ ] Barrier occupancy snapshot is taken at exact decision key and includes lower-key movement plus pending COMMIT footprints.
-- [ ] Forced fallback equivalence covers topology uncertainty, LoS, traversal, objective/reward and all material cost axes.
+- [ ] Forced fallback equivalence covers topology uncertainty, LoS, traversal, objective/reward and all material cost axes within one target runtime profile, without requiring T3/Apex equivalence.
 
 ### 23.4. Low-population and Recovery acceptance
 
-- [ ] Minimal regional service set preserves all three envelopes or explicitly marks one unavailable after fixed collapse order.
+- [ ] Minimal regional service set preserves three live age envelopes or explicitly marks one unavailable after fixed collapse order; late envelope is nonjoinable `SEALED_APEX` from 05:00–06:00.
 - [ ] Existing bodies never move; clocks never reset or merge.
 - [ ] SEEDING accepts only first normal standard participation, never Recovery seeding.
 - [ ] Recovery certificate is independently prior to binding, target remains ordinary-intake open and active unaffiliated STANDARD participation exists at commit.
 - [ ] One existing account_last_thread_slot permits only one unresolved RecoveryCase; no duplicate Recovery owner exists.
 - [ ] Recovery certificate includes independence/entropy, matching static bundle and recovery global solvency; sparse activity is not claimed immune to alts.
-- [ ] RecoveryCase absolute expiry participates in PREPARED/COMMIT/success arbitration and RecoveryResolution releases Case/Presence/Claim/lease/slot exactly once without manifest.
+- [ ] RecoveryCase absolute expiry participates in PREPARED/COMMIT/Seal/Dawn arbitration; active Recovery Presence crosses Seal as APEX_ACTIVE, its obligation as APEX_BOUND, and Case/Presence/Claim/lease/slot resolve exactly once without manifest.
 - [ ] Globally terminal target requires GlobalTargetUnusableCertificate before server-authorized unbound search.
 
 ### 23.5. Player-facing acceptance
@@ -1423,6 +1545,7 @@ Shadow migration logs old/new decision parity, switches authority atomically, th
 - [ ] Party blocker reveals only who/what.
 - [ ] Players distinguish terms changed, window closed, no valid crossing, connection, technical delay and system refund.
 - [ ] Phase no-spatial fallback, Threshold reset/fade and late lethal denial remain causally readable.
+- [ ] Every active player receives the 04:45 physical+nonmodal foretell; at 05:00 UI changes the goal to survival until Dawn and distinguishes STANDARD return, RECOVERY resolution and lethal/expired outcome.
 
 ### 23.6. Legacy removal acceptance
 
@@ -1432,4 +1555,4 @@ Shadow migration logs old/new decision parity, switches authority atomically, th
 
 ## 24. Итоговое решение
 
-Eldraine raid — rolling public living pool, чей target service set стремится сохранять три одновременно serviceable phase envelopes; degraded region явно помечает envelope unavailable и никогда не подменяет его. Игрок выбирает target-independent Подход, получает shared-scope sticky target и затем подтверждает immutable quote. Один durable Breach decision, matching static variant bundle и global unique-slot solvency witness связывают вход, phase и egress. Phase survival сохраняет только earned K/W/C; Recovery использует existing account slot и ordinary public session без собственного мира. Final Stabilization в 06:00 остаётся абсолютным terminal event.
+Eldraine raid — rolling public living pool с тремя live age envelopes; поздний envelope joinable в T3 и остаётся live, но sealed/nonjoinable в Apex. Degraded region явно помечает unavailable envelope и никогда не подменяет его. Игрок выбирает target-independent Подход, получает shared-scope sticky target и затем подтверждает immutable quote. Один durable Breach decision, discriminated runtime-profile certificate и pre-Seal global unique-slot solvency witness связывают вход, phase и normal egress. At Seal witness retires, remaining Presence переходят в `APEX_ACTIVE`, а их EgressCoverageObligation — в `APEX_BOUND`; Dawn даёт per-Presence STANDARD return, RECOVERY resolution либо lethal terminal outcome. Phase survival сохраняет только earned K/W/C; Recovery использует existing account slot и ordinary public session без собственного мира.

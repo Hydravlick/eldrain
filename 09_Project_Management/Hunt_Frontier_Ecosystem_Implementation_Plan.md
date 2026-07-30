@@ -152,23 +152,23 @@ related_files:
   Пластина не прибавляет общую жизнь. Она даёт телу конкретную поверхность, которую игрок может развернуть под удар. Контригра живёт в покрытии, стыке, боковой линии, спине, высоте и движении, а не в скрытом пробитии.
   ```
 
-- [ ] **Step 2: Define the mandatory fields for an installable plate.**
+- [ ] **Step 2: Define the mandatory fields for an approved plate definition.**
 
-  Every `install_state:: installable` plate record must contain `armor_plates`, `soft_coverage`, `seam_exposure`, `slot_size`, `module_positions`, `module_cost`, `weight`, `vulnerability`, and a non-`unknown` balance state. Add the same fields to the registry template and master UI card.
+  Every `publication_status:: approved` plate definition must contain separate OR mount patterns with complete AND node claims, `service_load`, physical mass, EffectContracts, pattern-bound `CoverageContractID` for silhouette/collider/soft layer/seams, vulnerability, atomicity proof and a non-`unknown` balance state. Add the same completeness gate to the registry template and make the master UI consume the resolved assembly/Ballistics snapshots.
 
 - [ ] **Step 3: Keep uncalibrated multi-zone packages blocked.**
 
-  Preserve `blocked_calibration` for existing packages until they are split into legal modules. Do not convert an `UNKNOWN` plate package into an installable item merely to make the roster look complete.
+  Preserve `publication_status:: blocked_calibration` for existing packages until they are split into legal definitions or pass atomicity proof. Do not convert an `UNKNOWN` plate package into an approved item merely to make the roster look complete.
 
 - [ ] **Step 4: Verify no plate lies to the player.**
 
   Run:
 
   ```powershell
-  rg -n "\[install_state:: installable\]|\[armor_plates::|\[seam_exposure::|\[soft_coverage::" C:\eldrain\07_Gear_Inventory\_Registries\Registry_Thermos_Modules.md
+  rg -n "\[publication_status:: approved\]|\[allowed_mount_patterns::|\[coverage_contract_ids::|\[service_load::" C:\eldrain\07_Gear_Inventory\_Registries\Registry_Thermos_Modules.md
   ```
 
-  Expected: every installable plate exposes coverage and seams; blocked packages remain visibly blocked. Then run projectile and melee-sweep checks on moving, crouching and turning targets; the acceptance report records visible silhouette, hit feedback and post-death cause recognition.
+  Expected: every approved plate has complete patterns, service load and pattern-bound coverage contracts; blocked packages remain visibly blocked. Then run projectile and melee-sweep checks on moving, crouching and turning targets; the acceptance report records visible silhouette, hit feedback and post-death cause recognition.
 
 ### Task 4: Put Heat-POI and route counterplay in world generation
 
@@ -220,11 +220,12 @@ related_files:
 **Files:**
 - Modify: `08_World_Generation/Anomaly/14_Extraction_System.md`
 - Modify: `08_World_Generation/Generation/07_Server_Lifecycle.md`
-- Modify: `08_World_Generation/Generation/19_Access_Contracts.md`
+- Modify: `08_World_Generation/Generation/19_Raid_Approach_and_Entry.md`
+- Modify: `08_World_Generation/Anomaly/13_Insertion_Logic.md`
 - Modify: `06_Economy_Loot/Extraction_Stabilization_Loop.md`
 - Modify: `08_World_Generation/Generation/14_Sector_Content_Rules.md`
 
-**Consumes:** six-hour cycle, Phase Shift, confirmed cargo manifest, Access Contract and sector route topology.
+**Consumes:** six-hour cycle, Phase Shift, confirmed cargo manifest, Approach/Entry Quote/Breach facts and sector route topology.
 
 **Produces:** one ordinary evacuation system: rare temporary Thresholds that can be found, contested and used in every phase, while 06:00 remains fatal.
 

@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: player_entities
+index_order: 20
+index_summary: "Задаёт правила и последствия системы «Реестр: семейства взаимодействий»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр: семейства взаимодействий»."
 system: player_entities_registry
 registry_type: interaction_families
 tags: [owners, loops, operations, debt, information, validation]
@@ -121,6 +126,6 @@ carry_committed   # объект несётся с объявленным обя
 2. назвать игроковое решение и контригру, доступную в текущей сцене;
 3. определить неизменяемую границу риска;
 4. не быть переименованием общего power, speed, precision, resist, доступа, энергии или Recovery;
-5. заменить либо объединить прежнее свободное правило.
+5. закреплять самостоятельный конечный параметр, отличный от общего power, speed, precision, resist, доступа, энергии или Recovery.
 
 Коэффициенты, пороги и экономическая ценность остаются `UNKNOWN` до прототипа.

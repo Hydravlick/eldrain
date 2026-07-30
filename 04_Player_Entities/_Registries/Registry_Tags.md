@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: player_entities
+index_order: 70
+index_summary: "Задаёт правила и последствия системы «Реестр личных тегов»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр личных тегов»."
 system: player_entities_registry
 registry_type: personal_tags
 tags: [database, personal_tags, mastery, mutations, relics]
@@ -18,14 +23,14 @@ related_files:
 
 ## Правила реестра
 
-- У одной Пешки не более трёх Personal Tags; Origin занимает одно обычное место.
+- `reserved_lifetime_slot_count`, `revealed_manifestation_count` и `active_effect_count` у одной Пешки не превышают трёх; Origin занимает одно обычное пожизненное место, а inactive его не освобождает.
 - Каждый тег имеет `tag_form:: light | situational`.
 - `light` меняет один параметр одного действия или состояния и публикует точное число.
 - `situational` использует `trigger -> rule_shift -> tell -> counter/debt` и не даёт отдельную кнопку.
 - Тег читает только зарегистрированный сигнал каналов `body`, `action`, `craft` или `environment`.
 - `rarity` описывает частоту источника, а не потенциал человека.
 - Постоянный скрытый коэффициент не меняет базовый урон, автоматический RPM, полёт импульса или точность.
-- Frame-вариант `tag_kind:: mastery` дополнительно публикует один `mastery_frame`, `mastery_step:: 1` и собственную `mastery_expression`. Он всегда combat-facing: два таких тега могут провести базу `0` до нормального `prof 2`, а базу `1` — до `prof 3`. Освоение обычного действия вроде перевязки остаётся action-mastery и не участвует в FrameProf.
+- Frame-вариант `tag_kind:: mastery` публикует один `mastery_frame` и ровно одно из двух: `mastery_step:: 1` **или** `mastery_expression`. Он всегда combat-facing: два step-тега могут провести базу `0` до нормального `prof 2`, а базу `1` — до `prof 3`; у базы `3` step запрещён как dead step. Освоение обычного действия вроде перевязки остаётся action-mastery и не участвует в FrameProf.
 - `design_status:: concept` и `prototype` не означают финальную калибровку.
 
 ## Шаблон лёгкого тега
@@ -55,16 +60,16 @@ related_files:
 [design_status:: prototype]
 ```
 
-Для Frame-варианта `tag_kind:: mastery` к любому шаблону обязательны дополнительные поля:
+Для Frame-варианта `tag_kind:: mastery` обязательны `mastery_frame` и один XOR-вариант:
 
 ```markdown
 [mastery_frame:: frame_id]
-[mastery_step:: 1]
-[mastery_expression:: named_sidegrade_of_one_frame_phase]
-[mastery_expression_phase:: draw|windup|contact|recovery|guard|manual_cycle]
+[mastery_step:: 1 | none]
+[mastery_expression:: named_sidegrade_of_one_frame_phase | none]
+[mastery_expression_phase:: draw|windup|contact|recovery|guard|manual_cycle|none]
 ```
 
-`mastery_step` собирается открытой формулой proficiency и не считается вторым ситуационным эффектом. `mastery_expression` остаётся единственным собственным механическим правилом тега и продолжает работать при достижении потолка `prof 3`.
+Ровно один из `mastery_step` и `mastery_expression` существует. Step собирается открытой формулой proficiency; expression остаётся единственным собственным механическим правилом и допустима при потолке `prof 3`.
 
 ## Шаблон ситуационного тега
 
@@ -97,7 +102,7 @@ related_files:
 
 ### Обратная ножевая хватка
 
-**Тултип:** `Короткий рез: мастерство +1. При занятой второй руке Frame можно извлечь обратным хватом. До завершения первого Recovery нельзя поставить блок или сменить предмет.`
+**Тултип:** `Короткий рез: при занятой второй руке Frame можно извлечь обратным хватом. До завершения первого Recovery нельзя поставить блок или сменить предмет.`
 
 [id:: reverse_knife_grip]
 [tag:: reverse_knife_grip]
@@ -111,7 +116,7 @@ related_files:
 [signal_ref:: short_cut_1h.draw_with_offhand_occupied]
 [physical_or_action_owner:: short_cut_1h.draw]
 [mastery_frame:: short_cut_1h]
-[mastery_step:: 1]
+[mastery_step:: none]
 [mastery_expression:: allow_reverse_grip_draw_while_offhand_occupied_then_lock_guard_and_item_swap_until_first_recovery]
 [mastery_expression_phase:: draw]
 [trigger:: draw_short_cut_1h_while_offhand_is_occupied]
@@ -126,7 +131,7 @@ related_files:
 [exclusive_with:: other_short_cut_1h_draw_rewrites]
 [design_status:: prototype]
 
-* **Как работает накопление:** для hero-kit с `BaseFrameProf 0` тег открывает полевое владение `1`; второй mastery-тег `short_cut_1h` с другой expression доведёт его до нормального `2`. При базовом `2` этот тег даст мастерство `3`. При базовом `3` уровень не изменится, но обратная хватка останется доступна.
+* **Как работает накопление:** это expression-вариант и он не меняет proficiency. Отдельный step-вариант может открыть поле владения или повысить prof, но никогда не несёт эту обратную хватку. При базовом `3` обратная хватка остаётся допустимой, если её фаза свободна.
 * **Почему это не скрытый бонус:** карточка показывает `база + mastery = итог`, стойка видна в руках, а цена существует в том же коротком обмене.
 
 ## Prototype: ситуационная телесная мутация

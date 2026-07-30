@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: gear_inventory
+index_order: 20
+index_summary: "Задаёт правила и последствия системы «Реестр: необходимые расходники и экспедиционные предметы»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр: необходимые расходники и экспедиционные предметы»."
 system: gear_inventory_registry
 registry_type: necessary_consumables
 tags: [database, medicine, access, expedition]

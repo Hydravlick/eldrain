@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: player_entities
+index_order: 130
+index_summary: "Задаёт правила и последствия системы «Личные теги: свойства прожитой Пешки»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Личные теги: свойства прожитой Пешки»."
 system: player_core
 tags: [personal_tags, chronicle, mastery, mutations, relics, extraction]
 related_files:
@@ -20,13 +25,15 @@ related_files:
 
 `personal_tag` — устойчивое свойство конкретной Пешки: телесное, освоенное либо закреплённое физическим носителем. Оно не является общей характеристикой, отдельной кнопкой, предметом, квестом или строкой биографии.
 
-У живой Пешки может быть не более **трёх механических тегов**:
+У живой Пешки имеет не более трёх пожизненно зарезервированных механических мест:
 
 ```text
-PersonalTagCount(PawnID) <= 3
+reserved_lifetime_slot_count(PawnID) <= 3
+revealed_manifestation_count(PawnID) <= 3
+active_effect_count(PawnID) <= 3
 ```
 
-Origin Foundling занимает одно обычное место. Имена, отношения, Chronicle, последствия решений и косметические следы не являются механическими тегами и не занимают этот предел.
+Origin Foundling занимает одно обычное место. Назначенный, но ещё не раскрытый тег уже резервирует пожизненное место; `inactive` не освобождает его для нового roll или reroll. Имена, отношения, Chronicle, последствия решений и косметические следы не являются механическими тегами и не занимают этот предел.
 
 Три места являются пределом причин, которые игрок должен удерживать вместе с hero-kit, оружием, модулями, состоянием тела и средой. У трёх тегов остаются три попарных пересечения; четвёртый увеличил бы их число до шести ещё до участия loadout и Аномалии.
 
@@ -92,17 +99,17 @@ visible trigger
   -> действует до KIA либо физического прекращения носителя
 ```
 
-Если лечение, ампутация, утрата импланта или разрушение реликтового носителя прекращают правило, Chronicle сохраняет исторический факт, но механический тег становится `inactive`. Это физический исход, а не respec.
+Если лечение, ампутация, утрата импланта или разрушение реликтового носителя прекращают правило, Chronicle сохраняет исторический факт, но механический тег становится `inactive`. Это физический исход, а не respec: его reserved lifetime slot остаётся занят.
 
-Когда `PersonalTagCount = 3`, новый источник проверяет совместимость до необратимой процедуры. Он может остаться Cargo, дать острое временное состояние либо оказаться неприменимым; скрытого четвёртого тега не возникает.
+Когда `reserved_lifetime_slot_count = 3`, новый источник проверяет совместимость до необратимой процедуры. Он может остаться Cargo, дать острое временное состояние либо оказаться неприменимым; скрытого четвёртого тега не возникает.
 
 ## 4. Источники
 
 | Источник | Что закрепляется | Чего источник не гарантирует |
 |---|---|---|
-| `first_return` | первый проявившийся лёгкий либо ситуационный факт Ward после успешной вылазки | выбранный перк, моральную награду или идеальную синергию |
+| `first_return` | заранее закреплённый `FirstReturnTagID`, раскрытый через ManifestationOpportunity после отдельно подтверждённого First Return condition | выбранный перк, тег, выведенный из поведения, или решение Dawn |
 | `origin` | одно уже существующее свойство спасённого Foundling | отдельный силовой пул или дополнительное место |
-| `mastery` | освоенная фаза действия либо Frame-mastery с `mastery_step:: 1` и собственной sidegrade-expression | общий стат мастерства, обход анатомии или дерево оружия |
+| `mastery` | освоенная фаза действия либо Frame-mastery, который даёт строго одно: `mastery_step:: 1` **или** named sidegrade-expression | общий стат мастерства, оба результата сразу, обход анатомии или дерево оружия |
 | `mutation` / `scar` | последствие конкретного телесного воздействия | обязательную обоюдоострость или равную полезность |
 | `relic_imprint` | правило, оставленное известной процедурой или физическим носителем | бесплатную способность либо извлекаемый товар |
 
@@ -151,7 +158,7 @@ Frame-mastery использует отдельный открытый resolver,
 Ограничения одной Пешки:
 
 ```text
-PersonalTagCount(PawnID) <= 3
+reserved_lifetime_slot_count(PawnID) <= 3
 CombatFacingTags(PawnID) <= 2
 TagsAffectingOneShortEvent <= 2
 SituationalRewritesOfOneEvent <= 1
@@ -215,12 +222,17 @@ Welfare не отменяет личный тег и не собирает оп�
 [counterplay:: named_current_response | none]
 [stack_group:: stable_group_id]
 [exclusive_with:: tag_id | none]
-[does_not_affect:: base_damage, automatic_rpm, projectile_physics, base_accuracy, p_q_e, module_capacity, sector_access]
-[frame_mastery_exception:: only_tag_kind_mastery_with_one_mastery_frame_and_mastery_step_1_may_change_effective_frame_prof]
+[lifetime_slot_state:: reserved_dormant | revealed_active | revealed_inactive]
+[manifestation_gate:: first_return_condition | eligible_ordinary_return | immediate_other_source]
+[assignment_moment:: pawn_creation | pre_rescue_input | named_source_event]
+[does_not_affect:: base_damage, automatic_rpm, projectile_physics, base_accuracy, p_q_e, base_service_capacity, sector_access]
+[frame_mastery_exception:: tag_kind_mastery_has_exactly_one_of_mastery_step_1_or_named_mastery_expression]
 [design_status:: concept | prototype | approved]
 ```
 
 `modifier` обязателен для `light`; `rule_shift` — для `situational`. Значения прототипа помечаются как тестовые и не становятся каноном только потому, что записаны в карточке.
+
+`Tags System` единолично назначает и резервирует lifetime slot в разрешённый момент, затем раскрывает его по подтверждённому `manifestation_gate`. Он не решает First Return condition, Recovery, Dawn settlement или Life Closure; их результаты приходят как факты от профильных owners.
 
 ## 11. Synergy Map и проверки
 

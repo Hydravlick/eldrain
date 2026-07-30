@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 30
+index_summary: "Задаёт правила и последствия системы «Реестр: локальные средовые состояния»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр: локальные средовые состояния»."
 system: world_generation_registry
 registry_type: environment_states
 tags: [database, environment, anomaly, local_states, traces]

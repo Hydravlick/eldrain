@@ -1,523 +1,452 @@
 ---
 type: registry
 status: active
-system: gear_inventory_registry
+index_route: owner
+index_group: gear_inventory
+index_order: 70
+index_summary: "Задаёт правила и последствия системы «Реестр модулей Термоса»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр модулей Термоса»."
+system: gear_inventory
 registry_type: thermos_modules
-tags:
-  - thermos
-  - modules
-  - protection
-  - utility
-  - dataview
+tags: [thermos, modules, registry, topology, service]
 related_files:
-  - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_Thermoses|Registry_Thermoses]]"
-  - "[[07_Gear_Inventory/Gear_Progression|Gear_Progression]]"
-  - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
+  - "[[07_Gear_Inventory/Thermos_System|Thermos System]]"
+  - "[[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly]]"
+  - "[[07_Gear_Inventory/_Registries/Registry_Thermoses|Thermos Models]]"
+  - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Interfaces|Thermos Interfaces]]"
+  - "[[04_Player_Entities/_Registries/Registry_Parameter_Contracts|Parameter Contracts]]"
 ---
-> [!TODO] Калибровка модулей
-> - [ ] Разложить существующие многозонные пакеты со статусом `blocked_calibration` на отдельные устанавливаемые модули с подтверждёнными `slot_size` и физическими позициями.
-> - [ ] Назначить `module_cost` только после проверки Welfare, Balanced, Armor Rat и гибридных сборок.
-> - [ ] Добавить оптические, герметизирующие и чисто утилитарные модули; текущий набор унаследован от броневого реестра.
-> - [ ] Для линий Чужой воды добавить проверяемые взаимодействия без комплекта полной иммунности.
-
 # Реестр модулей Термоса
 
-Реестр хранит устанавливаемые функции. Модуль может быть пластиной, оптикой, герметизацией, проводящей ветвью, обвязкой, плетением или гибридом нескольких семейств.
+> [!important] Definition, не assembly
+> Definition хранит только модель модуля. Selected pattern, occupied nodes, damage, active body interface и stitched state принадлежат assembly instance. Все записи ниже `blocked_calibration`: нет законченных patterns, ParameterContracts и pattern-bound plate coverage.
 
-## Поля
+## Контракт
 
-- `[module:: ...]` и `[module_id:: ...]` — стабильный ID для лута и реестра;
-- `[module_families:: ...]` — семейства через `|`;
-- `[module_cost:: family value, ...]` — раздельная цена по каждому семейству;
-- `[slot_size:: ...]` — занятые физические слоты;
-- `[module_positions:: ...]` — допустимые позиции через `|`;
-- `[tier:: ...]` — класс конструкции, не автоматическая стоимость;
-- `[rarity:: ...]` — настройки экземпляра, не автоматическая стоимость;
-- `[module_axes:: ...]` — фактические игровые оси;
-- `[module_type:: ...]` — особая физическая форма модуля либо `none`; тип не создаёт новое семейство;
-- `[active_cell_capacity_delta:: ...]` — сколько дополнительных подготовленных батарей может держать активная очередь; допустимо только для `module_type:: battery_rack`;
-- `[body_interface:: ...]` — тип Опорного контура либо `none`; это не семейство;
-- `[interface_output:: ...]` — локальный обмен `до → после` только активного Опорного контура;
-- `[doctrine_exchange:: ...]` — ситуативное устройство меняет один названный конечный результат и показывает цену;
-- `[vulnerability:: ...]` — наблюдаемая цена усиления;
-- `[interface_state:: inactive|active]` — работает ли `interface_output` на текущей сборке;
-- `[armor_plates:: ...]` — защищаемые зоны либо `none`;
-- `[soft_coverage:: ...]` — мягкий слой, остающийся между пластинами либо `none`;
-- `[seam_exposure:: ...]` — видимые стыки и открытые направления либо `none`;
-- `[collision_silhouette:: ...]` — читаемое обещание формы коллайдера либо `none`;
-- `[install_state:: installable|blocked_calibration]` — допущен ли модуль к сборке;
-- `[install_location:: hub_professional]` — единственный обычный монтаж;
-- `[field_state:: stitched_locked]` — в Аномалии сборка заблокирована.
-
-Функциональный модуль обязан иметь положительный `module_cost` хотя бы в одном семействе. Гибрид платит каждую цену отдельно.
-
-Мастер показывает только записи с `install_state:: installable`. Любой `UNKNOWN` в `slot_size`, `module_cost` или физических позициях автоматически блокирует монтаж. Устанавливаемая пластина также требует непустые `armor_plates`, `soft_coverage`, `seam_exposure`, `collision_silhouette`, вес, уязвимость и не-`unknown` состояние калибровки. Многозонный пакет со статусом `blocked_calibration` остаётся источником визуальной и лутовой концепции, но не считается одной устанавливаемой навеской и не участвует в расчёте сборки.
-
-## Dataview: сводка модулей
-
-```dataviewjs
-const registryPath = dv.current().file.path;
-const content = await dv.io.load(registryPath);
-const blocks = content.split(/^### /m).slice(1);
-
-function field(block, key) {
-    const match = block.match(new RegExp("\\[" + key + "::\\s*([^\\]]+)\\]", "i"));
-    return match ? match[1].trim() : "";
-}
-
-const rows = blocks.map(block => {
-    const header = block.split("\n")[0].trim();
-    const id = field(block, "module_id");
-    if (!id || id === "template_thermos_module") return null;
-    return [
-        "[[" + registryPath + "#" + header + "|" + header + "]]",
-        (field(block, "module_families") || "UNKNOWN").replaceAll("|", ", "),
-        field(block, "module_cost") || "UNKNOWN",
-        field(block, "slot_size") || "UNKNOWN",
-        (field(block, "module_positions") || "UNKNOWN").replaceAll("|", ", "),
-        field(block, "tier") || "UNKNOWN",
-        field(block, "module_type") || "none",
-        (field(block, "module_axes") || "UNKNOWN").replaceAll(",", ", "),
-        field(block, "active_cell_capacity_delta") || "0",
-        field(block, "body_interface") || "none",
-        field(block, "interface_output") || "none",
-        field(block, "vulnerability") || "none",
-        (field(block, "armor_plates") || "none").replaceAll(",", ", "),
-        field(block, "weight") || "UNKNOWN",
-        field(block, "install_state") || "blocked_calibration",
-        field(block, "balance_state") || "unknown"
-    ];
-}).filter(Boolean)
-  .sort((a, b) => a[1].localeCompare(b[1]) || a[0].localeCompare(b[0]));
-
-if (rows.length) {
-    dv.table(["Модуль", "Семейства", "Стоимость", "Слоты", "Позиции", "Tier", "Тип", "Оси", "Активные ячейки", "Контур", "Локальный выход", "Уязвимость", "Покрытие", "Вес", "Допуск", "Баланс"], rows);
-} else {
-    dv.paragraph("⚠️ В Registry_Thermos_Modules нет активных модулей.");
-}
+```markdown
+[module_def_id:: stable_module_id]
+[allowed_mount_patterns:: UNKNOWN | pattern_id: required_claims(body_region/mount_class/capacity_units)]
+[service_load:: UNKNOWN | plate 0, optic 0, seal 0, conduit 0, rig 0, weave 0]
+[service_support_delta:: none | plate 0, optic 0, seal 0, conduit 0, rig 0, weave 0]
+[effect_contract_ids:: MISSING_PARAMETER_CONTRACT | effect_id]
+[coverage_contract_ids:: none | UNKNOWN | pattern_id:CoverageContractID]
+[concept_effects:: non-authoritative migration note]
+[physical_mass:: value | UNKNOWN]
+[persistent_dissonance_signature:: UNKNOWN | signature_id]
+[dissonance_contributor_rules:: concept_note | registered_rule_id]
+[body_interface_kind:: none | InterfaceKind]
+[selectable_interface_effect_id:: none | MISSING_PARAMETER_CONTRACT | EffectID]
+[ui_search_aliases:: aliases]
+[module_type:: functional | battery_rack | template]
+[active_cell_capacity_delta:: none | value]
+[install_policy:: hub_stitch_only]
+[atomicity_status:: atomicity_review_required | split_required | proven_atomic]
+[publication_status:: blocked_calibration | approved]
+[balance_state:: concept | prototype | unknown]
 ```
 
----
+OR placement uses separate pattern IDs; AND uses one pattern with all required claims. `service_families` derives from nonzero service load; effect axes are search only. `coverage_contract_ids` are bound to individual patterns, never to the module globally. A nonzero `service_support_delta` makes the module a support-source; aggregate SupportLoad всех таких sources проверяется против BaseServiceCapacity до применения любого delta. Dissonance contributor records and `concept_effects` are nonauthoritative discovery fields; declared ParameterContracts and domain owners resolve any runtime effect. Atomicity requires one mechanism, trigger, failure state and vulnerability; otherwise split.
 
-## Пластинчатые модули
+## Candidate records
 
 ### Навеска «Базальт»
-[module:: basalt_shell]
-[module_id:: basalt_shell]
-[module_families:: plate]
-[module_cost:: plate UNKNOWN]
-[slot_size:: UNKNOWN]
-[module_positions:: chest|arms|shoulders|shins]
-[tier:: 2]
-[rarity:: UNKNOWN]
-[module_axes:: coverage, cargo]
-[armor_plates:: chest, arm_guards, shoulder_pads, shin_guards]
-[environment_resistance:: 55]
-[conduit_layout:: segmented_fuses]
-[weight:: 22kg]
-[install_state:: blocked_calibration]
-[install_location:: hub_professional]
-[field_state:: stitched_locked]
+[module_def_id:: basalt_shell]
+[allowed_mount_patterns:: UNKNOWN]
+[service_load:: UNKNOWN]
+[service_support_delta:: none]
+[effect_contract_ids:: MISSING_PARAMETER_CONTRACT]
+[coverage_contract_ids:: UNKNOWN]
+[concept_effects:: coverage chest/arm_guards/shoulder_pads/shin_guards; environment resistance 55; segmented conduit fuses; cargo interaction]
+[physical_mass:: 22kg]
+[persistent_dissonance_signature:: UNKNOWN]
+[dissonance_contributor_rules:: armor-shell concept]
+[body_interface_kind:: none]
+[selectable_interface_effect_id:: none]
+[ui_search_aliases:: basalt, shell, armor]
+[module_type:: functional]
+[active_cell_capacity_delta:: none]
+[install_policy:: hub_stitch_only]
+[atomicity_status:: atomicity_review_required]
+[publication_status:: blocked_calibration]
 [balance_state:: unknown]
-
-Грубые керамические сегменты распределяются по нескольким узлам Термоса. Точная цена слотов и пластинчатой ёмкости требует разложения пакета на физические части.
+Тяжёлая навеска; plate coverage contracts отсутствуют.
 
 ### Сборка «Хранитель Очага»
-[module:: hearth_keeper]
-[module_id:: hearth_keeper]
-[module_families:: plate|seal|conduit]
-[module_cost:: plate UNKNOWN, seal UNKNOWN, conduit UNKNOWN]
-[slot_size:: UNKNOWN]
-[module_positions:: chest|shoulders|thighs]
-[tier:: 3]
-[rarity:: UNKNOWN]
-[module_axes:: coverage, environment, energy]
-[armor_plates:: l_shoulder, r_shoulder, thighs, chest_center]
-[environment_resistance:: 70]
-[conduit_layout:: frontal_manifold]
-[weight:: 18kg]
-[install_state:: blocked_calibration]
-[install_location:: hub_professional]
-[field_state:: stitched_locked]
+[module_def_id:: hearth_keeper]
+[allowed_mount_patterns:: UNKNOWN]
+[service_load:: UNKNOWN]
+[service_support_delta:: none]
+[effect_contract_ids:: MISSING_PARAMETER_CONTRACT]
+[coverage_contract_ids:: UNKNOWN]
+[concept_effects:: coverage l_shoulder/r_shoulder/thighs/chest_center; environment resistance 70; frontal energy manifold]
+[physical_mass:: 18kg]
+[persistent_dissonance_signature:: UNKNOWN]
+[dissonance_contributor_rules:: hearth protection concept]
+[body_interface_kind:: none]
+[selectable_interface_effect_id:: none]
+[ui_search_aliases:: hearth, keeper, protection]
+[module_type:: functional]
+[active_cell_capacity_delta:: none]
+[install_policy:: hub_stitch_only]
+[atomicity_status:: split_required]
+[publication_status:: blocked_calibration]
 [balance_state:: unknown]
-
-Фронтальная гибридная навеска соединяет плиты, герметизацию и распределитель. Она не считается одной бесплатной функцией только потому, что собрана в один узнаваемый пакет.
-
-## Обвязки
+Трёхсемейная assembly требует split или доказательства атомарности.
 
 ### Сбруя «Наёмник»
-[module:: mercenary_rig]
-[module_id:: mercenary_rig]
-[module_families:: plate|rig]
-[module_cost:: plate UNKNOWN, rig UNKNOWN]
-[slot_size:: UNKNOWN]
-[module_positions:: chest|forearms|waist]
-[tier:: 2]
-[rarity:: UNKNOWN]
-[module_axes:: mobility, support]
-[armor_plates:: upper_chest, stomach, forearms]
-[environment_resistance:: 35]
-[conduit_layout:: bracer_branch]
-[weight:: 12kg]
-[install_state:: blocked_calibration]
-[install_location:: hub_professional]
-[field_state:: stitched_locked]
+[module_def_id:: mercenary_rig]
+[allowed_mount_patterns:: UNKNOWN]
+[service_load:: UNKNOWN]
+[service_support_delta:: none]
+[effect_contract_ids:: MISSING_PARAMETER_CONTRACT]
+[coverage_contract_ids:: UNKNOWN]
+[concept_effects:: coverage upper_chest/stomach/forearms; environment resistance 35; bracer conduit branch; mobility/support exchange]
+[physical_mass:: 12kg]
+[persistent_dissonance_signature:: UNKNOWN]
+[dissonance_contributor_rules:: mercenary rig concept]
+[body_interface_kind:: none]
+[selectable_interface_effect_id:: none]
+[ui_search_aliases:: mercenary, rig]
+[module_type:: functional]
+[active_cell_capacity_delta:: none]
+[install_policy:: hub_stitch_only]
+[atomicity_status:: atomicity_review_required]
+[publication_status:: blocked_calibration]
 [balance_state:: unknown]
-
-Кожаная обвязка с керамическими чешуйками соединяет защиту корпуса и рабочие наручи.
+Сбруя наёмника.
 
 ### Обвязка «Собиратель»
-[module:: scavenger_wrap]
-[module_id:: scavenger_wrap]
-[module_families:: plate|rig]
-[module_cost:: plate UNKNOWN, rig UNKNOWN]
-[slot_size:: UNKNOWN]
-[module_positions:: chest|waist|back]
-[tier:: 1]
-[rarity:: UNKNOWN]
-[module_axes:: mobility, cargo]
-[armor_plates:: chest_heart]
-[environment_resistance:: 15]
-[conduit_layout:: single_heart_loop]
-[weight:: 6kg]
-[install_state:: blocked_calibration]
-[install_location:: hub_professional]
-[field_state:: stitched_locked]
+[module_def_id:: scavenger_wrap]
+[allowed_mount_patterns:: UNKNOWN]
+[service_load:: UNKNOWN]
+[service_support_delta:: none]
+[effect_contract_ids:: MISSING_PARAMETER_CONTRACT]
+[coverage_contract_ids:: UNKNOWN]
+[concept_effects:: single chest-heart plate; environment resistance 15; cargo/load distribution without Ready Access slots]
+[physical_mass:: 6kg]
+[persistent_dissonance_signature:: UNKNOWN]
+[dissonance_contributor_rules:: scavenger cargo concept]
+[body_interface_kind:: none]
+[selectable_interface_effect_id:: none]
+[ui_search_aliases:: scavenger, wrap, cargo]
+[module_type:: functional]
+[active_cell_capacity_delta:: none]
+[install_policy:: hub_stitch_only]
+[atomicity_status:: atomicity_review_required]
+[publication_status:: blocked_calibration]
 [balance_state:: unknown]
-
-Единственная плита прикрывает сердце, а остальная конструкция распределяет переносимый груз. Обвязка не создаёт универсальные карманы: её Cargo-функция обязана быть описана отдельно.
-
-## Проводники и плетение
+Обвязка добытчика.
 
 ### Кассета активных ячеек «Долгая нить»
-[module:: long_thread_battery_rack]
-[module_id:: long_thread_battery_rack]
+[module_def_id:: long_thread_battery_rack]
+[allowed_mount_patterns:: UNKNOWN]
+[service_load:: UNKNOWN]
+[service_support_delta:: none]
+[effect_contract_ids:: MISSING_PARAMETER_CONTRACT]
+[coverage_contract_ids:: none]
+[concept_effects:: prepared battery queue capacity +1 for one assigned circuit; no damage/range/Heat/Recovery/Bloom bonus]
+[physical_mass:: UNKNOWN]
+[persistent_dissonance_signature:: UNKNOWN]
+[dissonance_contributor_rules:: battery queue concept]
+[body_interface_kind:: none]
+[selectable_interface_effect_id:: none]
+[ui_search_aliases:: long thread, battery rack, cells]
 [module_type:: battery_rack]
-[module_families:: conduit|rig]
-[module_cost:: conduit UNKNOWN, rig UNKNOWN]
-[slot_size:: UNKNOWN]
-[module_positions:: back|waist]
-[tier:: UNKNOWN]
-[rarity:: UNKNOWN]
-[module_axes:: energy, battery_reserve]
 [active_cell_capacity_delta:: +1]
-[armor_plates:: none]
-[weight:: UNKNOWN]
-[body_interface:: none]
-[interface_output:: none]
-[vulnerability:: none]
-[interface_state:: inactive]
-[install_state:: blocked_calibration]
-[install_location:: hub_professional]
-[field_state:: stitched_locked]
+[install_policy:: hub_stitch_only]
+[atomicity_status:: atomicity_review_required]
+[publication_status:: blocked_calibration]
 [balance_state:: prototype]
-
-Кассета держит ещё одну целую батарею в заранее объявленной очереди выбранного контура. Она не делает импульс сильнее, не снижает Heat, Recovery, Bloom или Dissonance и не даёт вторую ману: батарея всё так же становится `Drained Cell` при маршрутизации. Цена кассеты — физический узел, профильная ёмкость, вес и риск вынести в рейд больше дорогих источников; отдельной простреливаемой уязвимости у неё нет.
+Увеличивает только подготовленную очередь батарей назначенного контура.
 
 ### Эфирная ветвь «Проводник»
-[module:: conduit_robe]
-[module_id:: conduit_robe]
-[module_families:: conduit|weave]
-[module_cost:: conduit UNKNOWN, weave UNKNOWN]
-[slot_size:: UNKNOWN]
-[module_positions:: spine|shoulder|collar]
-[tier:: 2]
-[rarity:: UNKNOWN]
-[module_axes:: energy, cantrip]
-[armor_plates:: r_shoulder, back_spine]
-[environment_resistance:: 40]
-[conduit_layout:: spine_branch]
-[weight:: 3kg]
-[install_state:: blocked_calibration]
-[install_location:: hub_professional]
-[field_state:: stitched_locked]
+[module_def_id:: conduit_robe]
+[allowed_mount_patterns:: UNKNOWN]
+[service_load:: UNKNOWN]
+[service_support_delta:: none]
+[effect_contract_ids:: MISSING_PARAMETER_CONTRACT]
+[coverage_contract_ids:: UNKNOWN]
+[concept_effects:: coverage r_shoulder/back_spine; environment resistance 40; spine conduit branch; energy/cantrip function]
+[physical_mass:: 3kg]
+[persistent_dissonance_signature:: UNKNOWN]
+[dissonance_contributor_rules:: conduit/cantrip concept]
+[body_interface_kind:: none]
+[selectable_interface_effect_id:: none]
+[ui_search_aliases:: conduit, robe]
+[module_type:: functional]
+[active_cell_capacity_delta:: none]
+[install_policy:: hub_stitch_only]
+[atomicity_status:: atomicity_review_required]
+[publication_status:: blocked_calibration]
 [balance_state:: unknown]
-
-Эфирное полотно подключается вдоль позвоночной ветви, а сменный воротник принимает кристаллы и аварийный разрыв.
+Эфирная ветвь.
 
 ### Вуали «Призрак»
-[module:: wraith_veils]
-[module_id:: wraith_veils]
-[module_families:: weave]
-[module_cost:: weave UNKNOWN]
-[slot_size:: UNKNOWN]
-[module_positions:: shoulders|back|waist]
-[tier:: 1]
-[rarity:: UNKNOWN]
-[module_axes:: mobility, stealth]
-[armor_plates:: none]
-[environment_resistance:: 20]
-[conduit_layout:: diffused_threads]
-[weight:: 2kg]
-[install_state:: blocked_calibration]
-[install_location:: hub_professional]
-[field_state:: stitched_locked]
+[module_def_id:: wraith_veils]
+[allowed_mount_patterns:: UNKNOWN]
+[service_load:: UNKNOWN]
+[service_support_delta:: none]
+[effect_contract_ids:: MISSING_PARAMETER_CONTRACT]
+[coverage_contract_ids:: none]
+[concept_effects:: mobility/stealth silhouette exchange; environment resistance 20; no false plate silhouette]
+[physical_mass:: 2kg]
+[persistent_dissonance_signature:: UNKNOWN]
+[dissonance_contributor_rules:: stealth/mobility concept]
+[body_interface_kind:: none]
+[selectable_interface_effect_id:: none]
+[ui_search_aliases:: wraith, veils, stealth]
+[module_type:: functional]
+[active_cell_capacity_delta:: none]
+[install_policy:: hub_stitch_only]
+[atomicity_status:: atomicity_review_required]
+[publication_status:: blocked_calibration]
 [balance_state:: unknown]
-
-Дымчатые слои меняют движение и силуэт Термоса, но не изображают отсутствующую пластину.
-
-## Prototype: Опорные контуры
-
-Эти десять модулей фиксируют разные локальные обмены переноса, ручной работы, устойчивости, Heat и чтения сигнала. Они заблокированы для монтажа до калибровки полных комплектов; числа являются проверяемыми prototype anchors, а не активным лутовым пулом.
+Вуали Призрака.
 
 ### Противовесное ярмо
-[module:: counterweight_yoke]
-[module_id:: counterweight_yoke]
-[module_families:: rig]
-[module_cost:: rig 2]
-[slot_size:: 2]
-[module_positions:: back|shoulders]
-[tier:: 1]
-[rarity:: common]
-[module_axes:: mobility, cargo]
-[armor_plates:: none]
-[weight:: 8kg]
-[body_interface:: load_bearing]
-[interface_output:: sustained_carry_limit normal -> higher]
-[vulnerability:: weight +8kg, turn_speed -10%]
-[interface_state:: inactive]
-[install_state:: blocked_calibration]
-[install_location:: hub_professional]
-[field_state:: stitched_locked]
+[module_def_id:: counterweight_yoke]
+[allowed_mount_patterns:: UNKNOWN]
+[service_load:: UNKNOWN]
+[service_support_delta:: none]
+[effect_contract_ids:: MISSING_PARAMETER_CONTRACT]
+[coverage_contract_ids:: none]
+[concept_effects:: sustained_carry_limit: increased; physical mass 8kg]
+[physical_mass:: 8kg]
+[persistent_dissonance_signature:: UNKNOWN]
+[dissonance_contributor_rules:: discovery record: turn commitment parameter; any runtime effect requires a declared ParameterContract]
+[body_interface_kind:: load_bearing]
+[selectable_interface_effect_id:: MISSING_PARAMETER_CONTRACT]
+[ui_search_aliases:: counterweight, yoke, carry]
+[module_type:: functional]
+[active_cell_capacity_delta:: none]
+[install_policy:: hub_stitch_only]
+[atomicity_status:: atomicity_review_required]
+[publication_status:: blocked_calibration]
 [balance_state:: prototype]
-
-Груз уходит за плечи и делает Пешку устойчивее, но каждый разворот приходится начинать всем корпусом.
+Опорный контур переноски.
 
 ### Пневматическая распорка
-[module:: pneumatic_brace]
-[module_id:: pneumatic_brace]
-[module_families:: rig|conduit]
-[module_cost:: rig 1, conduit 1]
-[slot_size:: 1]
-[module_positions:: chest|forearms]
-[tier:: 2]
-[rarity:: uncommon]
-[module_axes:: mobility, energy]
-[armor_plates:: none]
-[weight:: 4kg]
-[body_interface:: none]
-[interface_output:: none]
-[doctrine_exchange:: brace_hold_limit normal -> extended; activation_heat 0 -> +10; movement_noise 0 -> +8]
-[vulnerability:: heat_per_activation +10, movement_noise +8]
-[interface_state:: inactive]
-[install_state:: blocked_calibration]
-[install_location:: hub_professional]
-[field_state:: stitched_locked]
+[module_def_id:: pneumatic_brace]
+[allowed_mount_patterns:: UNKNOWN]
+[service_load:: UNKNOWN]
+[service_support_delta:: none]
+[effect_contract_ids:: MISSING_PARAMETER_CONTRACT]
+[coverage_contract_ids:: none]
+[concept_effects:: brace_hold_limit: extended; activation Heat +10; movement noise +8]
+[physical_mass:: 4kg]
+[persistent_dissonance_signature:: UNKNOWN]
+[dissonance_contributor_rules:: discovery record: activation Heat and movement-noise parameters; any runtime effect requires a declared ParameterContract]
+[body_interface_kind:: none]
+[selectable_interface_effect_id:: none]
+[ui_search_aliases:: pneumatic, brace]
+[module_type:: functional]
+[active_cell_capacity_delta:: none]
+[install_policy:: hub_stitch_only]
+[atomicity_status:: atomicity_review_required]
+[publication_status:: blocked_calibration]
 [balance_state:: prototype]
-
-Поршни коротко запирают грудь и руки в несущую раму; шипение и жар выдают каждое включение.
+Пневматическая распорка.
 
 ### Тонкомоторная сбруя
-[module:: fine_motor_harness]
-[module_id:: fine_motor_harness]
-[module_families:: rig|weave]
-[module_cost:: rig 1, weave 1]
-[slot_size:: 1]
-[module_positions:: forearms|waist]
-[tier:: 1]
-[rarity:: common]
-[module_axes:: support, mobility]
-[armor_plates:: none]
-[weight:: 2kg]
-[body_interface:: motor_control]
-[interface_output:: powered_tool_precision normal -> higher; heavy_tool_hold normal -> lower]
-[vulnerability:: heavy_tool_hold lower]
-[interface_state:: inactive]
-[install_state:: blocked_calibration]
-[install_location:: hub_professional]
-[field_state:: stitched_locked]
+[module_def_id:: fine_motor_harness]
+[allowed_mount_patterns:: UNKNOWN]
+[service_load:: UNKNOWN]
+[service_support_delta:: none]
+[effect_contract_ids:: MISSING_PARAMETER_CONTRACT]
+[coverage_contract_ids:: none]
+[concept_effects:: powered_tool_precision: increased; heavy_tool_hold: reduced]
+[physical_mass:: 2kg]
+[persistent_dissonance_signature:: UNKNOWN]
+[dissonance_contributor_rules:: motor concept]
+[body_interface_kind:: motor_control]
+[selectable_interface_effect_id:: MISSING_PARAMETER_CONTRACT]
+[ui_search_aliases:: fine motor, harness]
+[module_type:: functional]
+[active_cell_capacity_delta:: none]
+[install_policy:: hub_stitch_only]
+[atomicity_status:: atomicity_review_required]
+[publication_status:: blocked_calibration]
 [balance_state:: prototype]
-
-Натяжные нити держат кисть в точном рабочем диапазоне, отнимая часть силового хвата.
+Тонкомоторная сбруя.
 
 ### Сервосухожилие
-[module:: servo_tendon]
-[module_id:: servo_tendon]
-[module_families:: rig|conduit]
-[module_cost:: rig 1, conduit 1]
-[slot_size:: 1]
-[module_positions:: forearms]
-[tier:: 2]
-[rarity:: uncommon]
-[module_axes:: support, energy]
-[armor_plates:: none]
-[weight:: 3kg]
-[body_interface:: none]
-[interface_output:: none]
-[doctrine_exchange:: device_interaction_time normal -> shorter; heat_per_interaction 0 -> +8; rigid_handwear compatible -> incompatible]
-[vulnerability:: heat_per_interaction +8, rigid_handwear_incompatible]
-[interface_state:: inactive]
-[install_state:: blocked_calibration]
-[install_location:: hub_professional]
-[field_state:: stitched_locked]
+[module_def_id:: servo_tendon]
+[allowed_mount_patterns:: UNKNOWN]
+[service_load:: UNKNOWN]
+[service_support_delta:: none]
+[effect_contract_ids:: MISSING_PARAMETER_CONTRACT]
+[coverage_contract_ids:: none]
+[concept_effects:: device_interaction_time: reduced; Heat +8 per interaction; rigid handwear incompatible]
+[physical_mass:: 3kg]
+[persistent_dissonance_signature:: UNKNOWN]
+[dissonance_contributor_rules:: discovery record: interaction Heat and rigid-handwear parameters; any runtime effect requires a declared ParameterContract]
+[body_interface_kind:: none]
+[selectable_interface_effect_id:: none]
+[ui_search_aliases:: servo, tendon]
+[module_type:: functional]
+[active_cell_capacity_delta:: none]
+[install_policy:: hub_stitch_only]
+[atomicity_status:: atomicity_review_required]
+[publication_status:: blocked_calibration]
 [balance_state:: prototype]
-
-Тонкие тяги ускоряют пальцы, пока контур питается, но не терпят жёстких перчаток и копят жар на повторе.
+Сервосухожилие.
 
 ### Компрессионное плетение
-[module:: compression_weave]
-[module_id:: compression_weave]
-[module_families:: weave]
-[module_cost:: weave 2]
-[slot_size:: 1]
-[module_positions:: chest|waist]
-[tier:: 1]
-[rarity:: common]
-[module_axes:: coverage, support]
-[armor_plates:: none]
-[weight:: 2kg]
-[body_interface:: layer_support]
-[interface_output:: post_impact_stability normal -> extended]
-[vulnerability:: stamina_recovery -10%]
-[interface_state:: inactive]
-[install_state:: blocked_calibration]
-[install_location:: hub_professional]
-[field_state:: stitched_locked]
+[module_def_id:: compression_weave]
+[allowed_mount_patterns:: UNKNOWN]
+[service_load:: UNKNOWN]
+[service_support_delta:: none]
+[effect_contract_ids:: MISSING_PARAMETER_CONTRACT]
+[coverage_contract_ids:: none]
+[concept_effects:: post_impact_stability: extended]
+[physical_mass:: 2kg]
+[persistent_dissonance_signature:: UNKNOWN]
+[dissonance_contributor_rules:: post-impact/stamina concept]
+[body_interface_kind:: layer_support]
+[selectable_interface_effect_id:: MISSING_PARAMETER_CONTRACT]
+[ui_search_aliases:: compression, weave]
+[module_type:: functional]
+[active_cell_capacity_delta:: none]
+[install_policy:: hub_stitch_only]
+[atomicity_status:: atomicity_review_required]
+[publication_status:: blocked_calibration]
 [balance_state:: prototype]
-
-Тугие слои удерживают тело собранным после удара, но мешают свободно дышать после рывка.
+Компрессионное плетение.
 
 ### Решётка рубцовых пластин
-[module:: scar_plate_lattice]
-[module_id:: scar_plate_lattice]
-[module_families:: plate|weave]
-[module_cost:: plate 1, weave 1]
-[slot_size:: 2]
-[module_positions:: chest|back]
-[tier:: 2]
-[rarity:: uncommon]
-[module_axes:: coverage, mobility]
-[armor_plates:: chest, back]
-[weight:: 6kg]
-[body_interface:: layer_support]
-[interface_output:: soft_layer_impact_tolerance normal -> higher]
-[vulnerability:: weight +6kg, move_speed -8%]
-[interface_state:: inactive]
-[install_state:: blocked_calibration]
-[install_location:: hub_professional]
-[field_state:: stitched_locked]
+[module_def_id:: scar_plate_lattice]
+[allowed_mount_patterns:: UNKNOWN]
+[service_load:: UNKNOWN]
+[service_support_delta:: none]
+[effect_contract_ids:: MISSING_PARAMETER_CONTRACT]
+[coverage_contract_ids:: UNKNOWN]
+[concept_effects:: chest/back plate lattice; soft_layer_impact_tolerance: increased; physical mass 6kg]
+[physical_mass:: 6kg]
+[persistent_dissonance_signature:: UNKNOWN]
+[dissonance_contributor_rules:: discovery record: mass and movement parameters; coverage UNKNOWN; any runtime effect requires a declared ParameterContract]
+[body_interface_kind:: layer_support]
+[selectable_interface_effect_id:: MISSING_PARAMETER_CONTRACT]
+[ui_search_aliases:: scar, plate, lattice]
+[module_type:: functional]
+[active_cell_capacity_delta:: none]
+[install_policy:: hub_stitch_only]
+[atomicity_status:: atomicity_review_required]
+[publication_status:: blocked_calibration]
 [balance_state:: prototype]
-
-Пластины тянут мягкие слои друг к другу и спасают целостность ценой тяжёлого шага.
+Coverage contract ids are UNKNOWN.
 
 ### Проводящая коса
-[module:: conductor_braid]
-[module_id:: conductor_braid]
-[module_families:: conduit|weave]
-[module_cost:: conduit 1, weave 1]
-[slot_size:: 1]
-[module_positions:: spine|collar]
-[tier:: 1]
-[rarity:: common]
-[module_axes:: energy, cantrip]
-[armor_plates:: none]
-[weight:: 1kg]
-[body_interface:: thermal_conduction]
-[interface_output:: body_to_thermos_heat_transfer normal -> earlier]
-[vulnerability:: dissonance_load +4]
-[interface_state:: inactive]
-[install_state:: blocked_calibration]
-[install_location:: hub_professional]
-[field_state:: stitched_locked]
+[module_def_id:: conductor_braid]
+[allowed_mount_patterns:: UNKNOWN]
+[service_load:: UNKNOWN]
+[service_support_delta:: none]
+[effect_contract_ids:: MISSING_PARAMETER_CONTRACT]
+[coverage_contract_ids:: none]
+[concept_effects:: body_to_thermos_heat_transfer: earlier]
+[physical_mass:: 1kg]
+[persistent_dissonance_signature:: UNKNOWN]
+[dissonance_contributor_rules:: discovery record: Dissonance load parameter; any runtime effect requires a declared ParameterContract]
+[body_interface_kind:: thermal_conduction]
+[selectable_interface_effect_id:: MISSING_PARAMETER_CONTRACT]
+[ui_search_aliases:: conductor, braid, thermal]
+[module_type:: functional]
+[active_cell_capacity_delta:: none]
+[install_policy:: hub_stitch_only]
+[atomicity_status:: atomicity_review_required]
+[publication_status:: blocked_calibration]
 [balance_state:: prototype]
-
-Коса принимает часть внутреннего жара, но её ровный фон легче слышит Аномалия.
+Проводящая коса.
 
 ### Шунт перегрева
-[module:: overheat_shunt]
-[module_id:: overheat_shunt]
-[module_families:: conduit]
-[module_cost:: conduit 2]
-[slot_size:: 1]
-[module_positions:: spine|shoulder]
-[tier:: 2]
-[rarity:: uncommon]
-[module_axes:: energy]
-[armor_plates:: none]
-[weight:: 2kg]
-[body_interface:: none]
-[interface_output:: none]
-[doctrine_exchange:: overload_threshold normal -> higher; cantrip_backlash_outcome normal -> +1 step; dissonance_pulse 0 -> +3]
-[vulnerability:: cantrip_backlash_outcome +1 step, dissonance_pulse +3]
-[interface_state:: inactive]
-[install_state:: blocked_calibration]
-[install_location:: hub_professional]
-[field_state:: stitched_locked]
+[module_def_id:: overheat_shunt]
+[allowed_mount_patterns:: UNKNOWN]
+[service_load:: UNKNOWN]
+[service_support_delta:: none]
+[effect_contract_ids:: MISSING_PARAMETER_CONTRACT]
+[coverage_contract_ids:: none]
+[concept_effects:: overload_threshold: increased; cantrip_backlash_outcome +1 step]
+[physical_mass:: 2kg]
+[persistent_dissonance_signature:: UNKNOWN]
+[dissonance_contributor_rules:: discovery record: backlash and pulse parameters; any runtime effect requires a declared ParameterContract]
+[body_interface_kind:: none]
+[selectable_interface_effect_id:: none]
+[ui_search_aliases:: overheat, shunt]
+[module_type:: functional]
+[active_cell_capacity_delta:: none]
+[install_policy:: hub_stitch_only]
+[atomicity_status:: atomicity_review_required]
+[publication_status:: blocked_calibration]
 [balance_state:: prototype]
-
-Шунт даёт телу больший рабочий накал, но каждый импульс становится больнее и заметнее.
+Шунт перегрева.
 
 ### Усатая антенна
-[module:: whisker_array]
-[module_id:: whisker_array]
-[module_families:: optic|weave]
-[module_cost:: optic 1, weave 1]
-[slot_size:: 1]
-[module_positions:: collar|shoulder]
-[tier:: 1]
-[rarity:: common]
-[module_axes:: detection, stealth]
-[armor_plates:: none]
-[weight:: 1kg]
-[body_interface:: sensory_gain]
-[interface_output:: local_environment_cue_lead normal -> earlier]
-[vulnerability:: dissonance_load +3]
-[interface_state:: inactive]
-[install_state:: blocked_calibration]
-[install_location:: hub_professional]
-[field_state:: stitched_locked]
+[module_def_id:: whisker_array]
+[allowed_mount_patterns:: UNKNOWN]
+[service_load:: UNKNOWN]
+[service_support_delta:: none]
+[effect_contract_ids:: MISSING_PARAMETER_CONTRACT]
+[coverage_contract_ids:: none]
+[concept_effects:: local_environment_cue_lead: earlier]
+[physical_mass:: 1kg]
+[persistent_dissonance_signature:: UNKNOWN]
+[dissonance_contributor_rules:: discovery record: Dissonance load parameter; any runtime effect requires a declared ParameterContract]
+[body_interface_kind:: sensory_gain]
+[selectable_interface_effect_id:: MISSING_PARAMETER_CONTRACT]
+[ui_search_aliases:: whisker, antenna, sensory]
+[module_type:: functional]
+[active_cell_capacity_delta:: none]
+[install_policy:: hub_stitch_only]
+[atomicity_status:: atomicity_review_required]
+[publication_status:: blocked_calibration]
 [balance_state:: prototype]
-
-Тонкие жилы ловят дрожь среды раньше кожи, но сами оставляют ровный сенсорный след.
+Усатая антенна.
 
 ### Сетка эхо-линз
-[module:: echo_lens_mesh]
-[module_id:: echo_lens_mesh]
-[module_families:: optic|conduit]
-[module_cost:: optic 1, conduit 1]
-[slot_size:: 1]
-[module_positions:: collar|chest]
-[tier:: 2]
-[rarity:: uncommon]
-[module_axes:: detection, energy]
-[armor_plates:: none]
-[weight:: 2kg]
-[body_interface:: none]
-[interface_output:: none]
-[doctrine_exchange:: cue_lead normal -> earlier; injury_threshold normal -> lower; heat_warning false_positives none -> enabled]
-[vulnerability:: injury_threshold lower, heat_warning false_positives]
-[interface_state:: inactive]
-[install_state:: blocked_calibration]
-[install_location:: hub_professional]
-[field_state:: stitched_locked]
+[module_def_id:: echo_lens_mesh]
+[allowed_mount_patterns:: UNKNOWN]
+[service_load:: UNKNOWN]
+[service_support_delta:: none]
+[effect_contract_ids:: MISSING_PARAMETER_CONTRACT]
+[coverage_contract_ids:: none]
+[concept_effects:: cue_lead: earlier; injury_threshold: reduced; Heat-warning false positives enabled]
+[physical_mass:: 2kg]
+[persistent_dissonance_signature:: UNKNOWN]
+[dissonance_contributor_rules:: discovery record: cue, injury, and Heat-warning false-positive parameters; any runtime effect requires a declared ParameterContract]
+[body_interface_kind:: none]
+[selectable_interface_effect_id:: none]
+[ui_search_aliases:: echo, lens, detection]
+[module_type:: functional]
+[active_cell_capacity_delta:: none]
+[install_policy:: hub_stitch_only]
+[atomicity_status:: atomicity_review_required]
+[publication_status:: blocked_calibration]
 [balance_state:: prototype]
-
-Сетка усиливает слабые эхо-сигналы вместе с ложными тревогами и делает тело менее цельным под нагрузкой.
-
----
+Сетка эхо-линз.
 
 ### Шаблон модуля Термоса
-[module:: template_thermos_module]
-[module_id:: template_thermos_module]
-[module_families:: plate|conduit]
-[module_cost:: plate 2, conduit 1]
-[slot_size:: 1]
-[module_positions:: chest]
-[tier:: 1]
-[rarity:: common]
-[module_axes:: coverage, energy]
-[body_interface:: none]
-[interface_output:: none]
-[vulnerability:: none]
-[interface_state:: inactive]
-[armor_plates:: chest]
-[environment_resistance:: UNKNOWN]
-[conduit_layout:: none]
-[weight:: UNKNOWN]
-[install_state:: blocked_calibration]
-[install_location:: hub_professional]
-[field_state:: stitched_locked]
+[module_def_id:: template_thermos_module]
+[allowed_mount_patterns:: UNKNOWN]
+[service_load:: UNKNOWN]
+[service_support_delta:: none]
+[effect_contract_ids:: MISSING_PARAMETER_CONTRACT]
+[coverage_contract_ids:: UNKNOWN]
+[concept_effects:: format only]
+[physical_mass:: UNKNOWN]
+[persistent_dissonance_signature:: UNKNOWN]
+[dissonance_contributor_rules:: none]
+[body_interface_kind:: none]
+[selectable_interface_effect_id:: none]
+[ui_search_aliases:: template]
+[module_type:: template]
+[active_cell_capacity_delta:: none]
+[install_policy:: hub_stitch_only]
+[atomicity_status:: atomicity_review_required]
+[publication_status:: blocked_calibration]
 [balance_state:: unknown]
+Форматная запись, не игровой предмет.
 
-Форматная запись, а не игровой предмет. Она остаётся `blocked_calibration`, пока `UNKNOWN` не заменены измеренными значениями и отдельный authored-модуль не пройдёт контракт установки.
+```dataview
+TABLE module_def_id, physical_mass, body_interface_kind, publication_status, balance_state
+FROM "07_Gear_Inventory/_Registries/Registry_Thermos_Modules"
+WHERE module_def_id
+```

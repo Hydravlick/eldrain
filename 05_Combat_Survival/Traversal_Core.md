@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: combat_survival
+index_order: 170
+index_summary: "Задаёт правила и последствия системы «Система Перемещения: Вертикальность и Укрытия»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Система Перемещения: Вертикальность и Укрытия»."
 system: traversal
 tags: [movement, parkour, verticality, cover, tactics]
 related_files:

@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: gear_inventory
+index_order: 130
+index_summary: "Задаёт правила и последствия системы «Визуальный язык Термоса»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Визуальный язык Термоса»."
 system: gear_inventory
 tags: [visuals, armor, identification, thermos, readability]
 related_mechanics:
@@ -57,4 +62,4 @@ related_mechanics:
 
 ## 4. Отложенные системы
 
-Отдельная мирская одежда и `Civic Attire` не входят в MVP. Их возможная роль хранится только в [[07_Gear_Inventory/Civic_Attire|отложенном предложении]] и не влияет на текущую куклу, лут, схрон или торговлю.
+Отдельная мирская одежда и `Civic Attire` не входят в MVP. Их возможная роль остаётся отложенным вопросом этой страницы и не влияет на текущую куклу, лут, схрон или торговлю.

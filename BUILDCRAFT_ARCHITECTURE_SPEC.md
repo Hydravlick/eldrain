@@ -166,7 +166,7 @@ tags:
 | Latent/active/inactive Personal Tag               | [[04_Player_Entities/Tags_System\|Tags_System]]                          | Combat Profile, UI после reveal         | Chronicle не выбирает TagID                               |
 | Факты прожитого                                   | [[04_Player_Entities/Trait_Development\|Trait_Development]] / Chronicle  | Tags reveal, closure grammar, narrative | Факты не переписывают заранее назначенный First Return    |
 | Forecast и revision                               | Raid/Contract generation                                                 | Roster UI, Access, player               | Выбранный build не меняет seed                            |
-| ParticipationClaim                                | [[08_World_Generation/Generation/19_Access_Contracts\|Access Contracts]] | Lifecycle, extraction, reconnect        | Reserve не заменяет DeployedPawn                          |
+| ParticipationClaim                                | [[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion Logic]] | Lifecycle, extraction, reconnect        | Reserve не заменяет DeployedPawn                          |
 | Физический ItemID и manifest                      | Inventory / extraction                                                   | preparation, raid, recovery             | Preset не создаёт второй экземпляр                        |
 | Fit и topology Термоса                            | Thermos assembly                                                         | Master UI, resolver                     | Hero-kit не задаёт физическую позицию                     |
 | Service capacity                                  | authored hero-kit + derived assembly                                     | Thermos resolver                        | Race/Spec-арифметика не заменяет authored hero-kit        |
@@ -1457,7 +1457,7 @@ ManifestationOpportunity:
    - использовать единый `ContinuityAdmissionAllowed` с Recoverable/LivingCare/Pending counts;
    - удалить возможность продвигать механический профиль смертью.
 
-3. **[[08_World_Generation/Generation/19_Access_Contracts|Access Contracts]]**
+3. **[[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion Logic]]**
    - оставить выбор любой `ReadySelectable` Пешки;
    - не читать Prepared Cases;
    - добавить `ForecastRevisionID` и атомарный LoadoutSnapshot;

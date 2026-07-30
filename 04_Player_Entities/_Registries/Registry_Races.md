@@ -1,12 +1,18 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: player_entities
+index_order: 40
+index_summary: "Задаёт правила и последствия системы «Реестр: Расы»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр: Расы»."
 registry_type: races
 system: player_entities_registry
 tags: [database, races, dataview]
 related_files:
   - "[[04_Player_Entities/MVP_3x3_Design_Contract|Контракт MVP-матрицы 3×3]]"
   - "[[04_Player_Entities/_Registries/Registry_Combos|Registry Combos]]"
+  - "[[09_Project_Management/People_Design_Framework|Исторический контракт народов]]"
 ---
 # Реестр: Расы
 
@@ -32,7 +38,7 @@ TABLE WITHOUT ID
   file.link AS "Раса",
   content_scope AS "Контур",
   base_vector AS "Вектор ДП",
-  culture AS "Культура"
+  culture_reference AS "Культура"
 FROM "04_Player_Entities/Races"
 WHERE type = "race"
 SORT sort_order ASC

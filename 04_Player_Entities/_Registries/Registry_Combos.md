@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: player_entities
+index_order: 10
+index_summary: "Задаёт правила и последствия системы «Реестр: ячейки Race × Spec»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр: ячейки Race × Spec»."
 system: player_entities_registry
 registry_type: combos
 tags: [database, builds, proficiency, mvp]
@@ -123,17 +128,17 @@ if (authoredRows.length) {
 }
 ```
 
-Жаба, Ящерица, Страж и Догмат остаются expansion-направлениями. Для них не создаются фиктивные готовые комбо до отдельного прохода.
+Жаба, Ящерица, Заступник и Догмат остаются expansion-направлениями. Для них не создаются фиктивные готовые комбо до отдельного прохода.
 
 ## Статическая карта MVP
 
 Эта таблица — навигация для чтения вне Obsidian. Единственный источник статуса, **базового** арсенала, `BaseFrameProf` и будущих P/Q/E — записи ячеек ниже; таблица не повторяет их поля. Личный `MasteryContribution` хранится у Пешки и не переписывает эти authored-записи.
 
-| Раса \ Практика | Авангард | Технократ | Странник |
+| Раса \ Практика | Застрельщик | Ладчик | Странник |
 |:---|:---|:---|:---|
-| Ёж | [[04_Player_Entities/_Registries/Registry_Combos#Ёж × Авангард|Ёж × Авангард]] | [[04_Player_Entities/_Registries/Registry_Combos#Ёж × Технократ|Ёж × Технократ]] | [[04_Player_Entities/_Registries/Registry_Combos#Ёж × Странник|Ёж × Странник]] |
-| Крыса | [[04_Player_Entities/_Registries/Registry_Combos#Крыса × Авангард|Крыса × Авангард]] | [[04_Player_Entities/_Registries/Registry_Combos#Крыса × Технократ|Крыса × Технократ]] | [[04_Player_Entities/_Registries/Registry_Combos#Крыса × Странник|Крыса × Странник]] |
-| Белка | [[04_Player_Entities/_Registries/Registry_Combos#Белка × Авангард|Белка × Авангард]] | [[04_Player_Entities/_Registries/Registry_Combos#Белка × Технократ|Белка × Технократ]] | [[04_Player_Entities/_Registries/Registry_Combos#Белка × Странник|Белка × Странник]] |
+| Ёж | [[04_Player_Entities/_Registries/Registry_Combos#Ёж × Застрельщик|Ёж × Застрельщик]] | [[04_Player_Entities/_Registries/Registry_Combos#Ёж × Ладчик|Ёж × Ладчик]] | [[04_Player_Entities/_Registries/Registry_Combos#Ёж × Странник|Ёж × Странник]] |
+| Крыса | [[04_Player_Entities/_Registries/Registry_Combos#Крыса × Застрельщик|Крыса × Застрельщик]] | [[04_Player_Entities/_Registries/Registry_Combos#Крыса × Ладчик|Крыса × Ладчик]] | [[04_Player_Entities/_Registries/Registry_Combos#Крыса × Странник|Крыса × Странник]] |
+| Белка | [[04_Player_Entities/_Registries/Registry_Combos#Белка × Застрельщик|Белка × Застрельщик]] | [[04_Player_Entities/_Registries/Registry_Combos#Белка × Ладчик|Белка × Ладчик]] | [[04_Player_Entities/_Registries/Registry_Combos#Белка × Странник|Белка × Странник]] |
 
 ## Контракт записи
 
@@ -162,7 +167,7 @@ if (authoredRows.length) {
 [weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: stagger_opener]
 [weapon_frame:: short_cut_1h] | [prof:: 2] | [combat_role:: window_finish]
 [named_module:: servo_tendon] | [module_role:: hands_busy_shortcut] | [module_debt:: heat_and_exposed_hands]
-[module_capacity:: plate 1, optic 1, seal 1, conduit 1, rig 2, weave 2]
+[base_service_capacity:: plate 1, optic 1, seal 1, conduit 1, rig 2, weave 2]
 ```
 
 После полей идут фантазия, повторяемый цикл, смешанные `P/Q/E`, 2–4 доктрины, результаты успеха/отхода/провала и заметки прототипа. `decision_signature` называет повторяемую цепь решений, а `named_module` продолжает её конкретным локальным обменом. Каждая P/Q/E в теле блока использует полный контракт из [[04_Player_Entities/Skill_Build_Philosophy|философии навыков]] и [[04_Player_Entities/_Registries/Registry_Skill_Types|грамматики навыков]]; реестр не дублирует его в заголовочных полях Combo. Числа шаблона показывают формат; каждая ячейка получает собственные значения только после отдельного прохода.
@@ -175,7 +180,7 @@ if (authoredRows.length) {
 
 ---
 
-## Ёж × Авангард
+## Ёж × Застрельщик
 
 [id:: hedgehog_assault]
 [req_race:: hedgehog]
@@ -183,7 +188,7 @@ if (authoredRows.length) {
 [design_status:: pending]
 [decision_signature:: UNKNOWN]
 [named_module:: UNKNOWN]
-[module_capacity:: UNKNOWN]
+[base_service_capacity:: UNKNOWN]
 [weapon_frame:: breach_impact_2h] | [prof:: 2] | [combat_role:: breach]
 [weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: stagger_opener]
 [weapon_frame:: reach_line_2h] | [prof:: 1] | [combat_role:: distance_control]
@@ -192,7 +197,7 @@ if (authoredRows.length) {
 
 ---
 
-## Ёж × Технократ
+## Ёж × Ладчик
 
 [id:: hedgehog_support]
 [req_race:: hedgehog]
@@ -200,7 +205,7 @@ if (authoredRows.length) {
 [design_status:: pending]
 [decision_signature:: UNKNOWN]
 [named_module:: UNKNOWN]
-[module_capacity:: UNKNOWN]
+[base_service_capacity:: UNKNOWN]
 [weapon_frame:: compact_impact_1h] | [prof:: 1] | [combat_role:: concussion_window]
 [weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: interrupt]
 
@@ -216,7 +221,7 @@ if (authoredRows.length) {
 [design_status:: pending]
 [decision_signature:: UNKNOWN]
 [named_module:: UNKNOWN]
-[module_capacity:: UNKNOWN]
+[base_service_capacity:: UNKNOWN]
 [weapon_frame:: reach_line_2h] | [prof:: 2] | [combat_role:: route_hold]
 [weapon_frame:: needle_thrower_2h] | [prof:: 1] | [combat_role:: quiet_pick]
 [weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: emergency_stop]
@@ -225,7 +230,7 @@ if (authoredRows.length) {
 
 ---
 
-## Крыса × Авангард
+## Крыса × Застрельщик
 
 [id:: rat_assault]
 [req_race:: rat]
@@ -233,7 +238,7 @@ if (authoredRows.length) {
 [design_status:: pending]
 [decision_signature:: UNKNOWN]
 [named_module:: UNKNOWN]
-[module_capacity:: UNKNOWN]
+[base_service_capacity:: UNKNOWN]
 [weapon_frame:: pulse_tool_1h] | [prof:: 2] | [combat_role:: third_grip_pressure]
 [weapon_frame:: short_cut_1h] | [prof:: 2] | [combat_role:: clinch_finish]
 
@@ -241,7 +246,7 @@ if (authoredRows.length) {
 
 ---
 
-## Крыса × Технократ
+## Крыса × Ладчик
 
 [id:: rat_support]
 [req_race:: rat]
@@ -249,7 +254,7 @@ if (authoredRows.length) {
 [design_status:: pending]
 [decision_signature:: UNKNOWN]
 [named_module:: UNKNOWN]
-[module_capacity:: UNKNOWN]
+[base_service_capacity:: UNKNOWN]
 [weapon_frame:: needle_thrower_2h] | [prof:: 2] | [combat_role:: quiet_tool]
 [weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: interrupt]
 
@@ -265,7 +270,7 @@ if (authoredRows.length) {
 [design_status:: pending]
 [decision_signature:: UNKNOWN]
 [named_module:: UNKNOWN]
-[module_capacity:: UNKNOWN]
+[base_service_capacity:: UNKNOWN]
 [weapon_frame:: short_cut_1h] | [prof:: 2] | [combat_role:: route_finish]
 [weapon_frame:: needle_thrower_2h] | [prof:: 2] | [combat_role:: quiet_pick]
 [weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: panic_stop]
@@ -275,7 +280,7 @@ if (authoredRows.length) {
 
 ---
 
-## Белка × Авангард
+## Белка × Застрельщик
 
 [id:: squirrel_assault]
 [req_race:: squirrel]
@@ -283,7 +288,7 @@ if (authoredRows.length) {
 [design_status:: pending]
 [decision_signature:: UNKNOWN]
 [named_module:: UNKNOWN]
-[module_capacity:: UNKNOWN]
+[base_service_capacity:: UNKNOWN]
 [weapon_frame:: pulse_tool_1h] | [prof:: 2] | [combat_role:: recoil_to_motion]
 [weapon_frame:: short_cut_1h] | [prof:: 1] | [combat_role:: momentum_finish]
 [weapon_frame:: reach_line_2h] | [prof:: 1] | [combat_role:: moving_reach]
@@ -293,7 +298,7 @@ if (authoredRows.length) {
 
 ---
 
-## Белка × Технократ
+## Белка × Ладчик
 
 [id:: squirrel_support]
 [req_race:: squirrel]
@@ -301,7 +306,7 @@ if (authoredRows.length) {
 [design_status:: pending]
 [decision_signature:: UNKNOWN]
 [named_module:: UNKNOWN]
-[module_capacity:: UNKNOWN]
+[base_service_capacity:: UNKNOWN]
 [weapon_frame:: scatter_valve_2h] | [prof:: 2] | [combat_role:: overload_cone]
 [weapon_frame:: condenser_rig_2h] | [prof:: 1] | [combat_role:: held_line]
 
@@ -317,7 +322,7 @@ if (authoredRows.length) {
 [design_status:: pending]
 [decision_signature:: UNKNOWN]
 [named_module:: UNKNOWN]
-[module_capacity:: UNKNOWN]
+[base_service_capacity:: UNKNOWN]
 [weapon_frame:: short_cut_1h] | [prof:: 2] | [combat_role:: vertical_ambush]
 [weapon_frame:: needle_thrower_2h] | [prof:: 2] | [combat_role:: quiet_route]
 [weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: emergency_stagger]

@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 140
+index_summary: "Задаёт правила и последствия системы «Ночные Верстаки»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Ночные Верстаки»."
 system: anomaly_interaction
 tags: [risk_reward, anomaly, stations, provenance]
 related_files:

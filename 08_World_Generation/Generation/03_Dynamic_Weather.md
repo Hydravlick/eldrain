@@ -1,6 +1,11 @@
 ---
 type: system
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 150
+index_summary: "Задаёт правила и последствия системы «Динамическая Погода»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Динамическая Погода»."
 system: environment
 tags: [weather, modifiers, combat_physics]
 ---

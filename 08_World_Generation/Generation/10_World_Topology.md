@@ -1,6 +1,11 @@
 ---
 type: system
 status: active
+index_route: owner
+index_group: world_generation
+index_order: 220
+index_summary: "Задаёт правила и последствия системы «Топология Мира: Паттерн \"Цветок\"»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Топология Мира: Паттерн \"Цветок\"»."
 system: world_map
 tags: [topology, graph, hierarchy]
 ---

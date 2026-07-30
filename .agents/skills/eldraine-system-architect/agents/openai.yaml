@@ -1,0 +1,6 @@
+interface:
+  display_name: "Eldraine System Architect"
+  short_description: "Проверяет архитектуру и границы систем Eldraine"
+  default_prompt: "Use $eldraine-system-architect to audit this Eldraine framework for cross-system coherence, player confidence, and scaling."
+policy:
+  allow_implicit_invocation: false

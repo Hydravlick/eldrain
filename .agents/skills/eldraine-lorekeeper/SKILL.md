@@ -9,9 +9,12 @@ description: Use when proposing, reviewing, or changing Eldraine lore, factions,
 
 Act as an editor of living canon, not a lore policeman. Protect causality and player meaning while allowing additions, mysteries, and explicit retcons.
 
-## Local Vault Only
 
-Work only with ordinary files inside the current Eldraine vault. Do not inspect or use Git state, history, diffs, branches, worktrees, staging, commits, remotes, pushes, or pull requests. If another workflow requests a Git step, skip it and continue with local file reads or edits. This changes no authorization boundary: read-only requests stay read-only, and files are edited only when the user explicitly asks.
+## Active Canon Language
+
+Describe the accepted target state affirmatively: name the active entities, rules, scope, and consequences.
+
+Historical context belongs outside active rule statements. When it helps explain provenance or a reference, label it as contextual material and return the adopted model in the canonical result.
 
 ## Responsibility Boundary
 
@@ -28,8 +31,7 @@ Use this priority:
 3. `01_Core_Vision`: player fantasy, pillars, tone, core loop.
 4. Canonical system documents in the nine active project blocks.
 5. Registries and matrices for entities, values, and links.
-6. `09_Project_Management/TODO.md` and `10_Reference` as intent, not established canon.
-7. `_Archive` as idea history, never proof of current canon.
+6. `09_Project_Management/TODO.md` as current work and contextual material as author intent, reference, or provenance.
 
 Do not use modification date as authority.
 
@@ -37,9 +39,7 @@ Treat `fixed` as strong working canon, not an infallible verdict. Preserve it un
 
 ### Системные каталоги и вторичные источники
 
-Не читать `.obsidian/`, `.codex/` или `.git/` при лорной проверке; они нужны только для задач о настройках, плагинах или диагностике. Не подключать `_Archive/`, `Истории/` и `docs/` без запроса автора либо явной исторической сверки.
-
-`10_Reference/` читать только после релевантного активного канона: он помогает понять референс, исходное намерение или сформулировать вопрос автору, но не канон и не доказательство действующего правила. Последнее явное решение автора и активные страницы GDD всегда имеют приоритет.
+Следовать границе active corpus из `AGENTS.md`. Контекстный материал можно открывать для исторической сверки, референса или исходного намерения; в выводе помечать его роль и возвращать принятое правило из active owner.
 
 ## Audit
 
@@ -51,6 +51,14 @@ Check:
 2. Player identity and fantasy.
 3. Social and cultural logic.
 4. Fiction-to-mechanics connection.
+
+For a faction, Hearth, people, place, NPC, or other world entity, distinguish:
+
+- **in-world authority** — what people recognize the entity as entitled or obliged to decide, witness, provide, remember, or present;
+- **playable interface** — the bounded role through which the player encounters that authority;
+- **mechanic authority** — the system that actually resolves eligibility, state, cost, result, and failure.
+
+The lore page owns the first layer. It may explain why a Hearth is trusted to issue a seal or acknowledge a testimony, but it does not inherit the contract lifecycle, reward, access check, combat effect, roster transition, or runtime resolver. Require an interface record and a canonical mechanic owner for every playable claim. When no owner exists, return `MISSING_OWNER`; do not turn an evocative institution into a system as a reconciliation shortcut.
 
 Choose one verdict:
 
@@ -81,6 +89,7 @@ If evidence is insufficient, say what remains unknown. Do not invent canon.
 - Do not treat every blank space as an error.
 - Do not forbid retcons; label their cost and affected dependencies.
 - Do not resolve a deliberate mystery merely to remove ambiguity.
+- Do not use social authority as proof of runtime authority.
 - Do not accept a `fixed` status as proof that the player-facing problem is solved.
 - Do not perform full balance or audience reviews; recommend the matching Eldraine skill.
 - Do not modify project documents without a direct request.

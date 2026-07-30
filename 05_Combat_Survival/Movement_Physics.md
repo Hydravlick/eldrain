@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: combat_survival
+index_order: 140
+index_summary: "Задаёт правила и последствия системы «Механика: Физика Движения»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Механика: Физика Движения»."
 system: action_combat
 tags:
   - movement

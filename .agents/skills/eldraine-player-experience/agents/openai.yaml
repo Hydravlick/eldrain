@@ -2,3 +2,5 @@ interface:
   display_name: "Eldraine Player Experience"
   short_description: "Проверяет поминутный опыт и боевую тактильность"
   default_prompt: "Use $eldraine-player-experience to audit this bounded Eldraine sequence through player perception, decisions, feedback, and failure comprehension."
+policy:
+  allow_implicit_invocation: false

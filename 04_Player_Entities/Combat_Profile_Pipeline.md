@@ -9,6 +9,7 @@ related_files:
   - "[[04_Player_Entities/_Registries/Registry_Combos|Реестр hero-kit]]"
   - "[[04_Player_Entities/Skill_Build_Philosophy|Философия навыков]]"
   - "[[04_Player_Entities/Ability_Synergy|Связность P/Q/E]]"
+  - "[[04_Player_Entities/_Registries/Registry_Parameter_Contracts|Реестр параметрических контрактов]]"
   - "[[04_Player_Entities/Proficiency_Arsenal|Арсенал и владение]]"
   - "[[04_Player_Entities/Trait_Development|Chronicle]]"
   - "[[07_Gear_Inventory/Thermos_System|Термос и модули]]"
@@ -18,6 +19,8 @@ related_files:
 > Канон сборки Пешки: `Race × Spec -> структурный профиль Двойного Парадокса + отдельный authored hero-kit -> физический loadout -> личные теги -> условия вылазки -> читаемый Combat Profile`.
 
 Combat Profile не вычисляет качество человека. Он собирает уже существующие решения и показывает игроку, что эта Пешка умеет сделать сейчас, какой ценой и где её можно остановить.
+
+Он является **resolver сборки**, а не владельцем параметров: применяет identity/base → gear → state → уже авторизованные modifier contracts. Policy домена — допустимые операции, cap/floor, порядок конфликтов — остаётся у [[04_Player_Entities/_Registries/Registry_Parameter_Contracts|доменного контракта]] и его владельца.
 
 ## 1. Пересечение Race × Spec
 
@@ -29,7 +32,7 @@ Combat Profile не вычисляет качество человека. Он �
 
 Одновременно [[04_Player_Entities/Two_Paradox_Vector_Matrix|Двойной Парадокс]] автоматически складывает **не силу**, а координату: `Race.base_vector + Spec.base_vector`, производную общую слабость и формальные рёбра давления. Этот аналитический профиль помогает видеть карту целиком и не создаёт ни одного игрового параметра hero-kit.
 
-Игровой MVP использует Ежа, Крысу, Белку и практики Авангард, Технократ, Странник. Девять ячеек MVP живут в [[04_Player_Entities/_Registries/Registry_Combos|Registry_Combos]]; сетка расширения не считается готовым контентом, пока каждая новая ячейка не пройдёт тот же контракт.
+Игровой MVP использует Ежа, Крысу, Белку и практики Застрельщик, Ладчик, Странник. Девять ячеек MVP живут в [[04_Player_Entities/_Registries/Registry_Combos|Registry_Combos]]; сетка расширения не считается готовым контентом, пока каждая новая ячейка не пройдёт тот же контракт.
 
 ## 2. Контракт полного hero-kit
 
@@ -70,6 +73,8 @@ Combat Profile не вычисляет качество человека. Он �
 | инвентарь | вес, Ready Access, Back Slot, переносимый объект |
 
 Локальное свойство не обязано существовать у каждого hero-kit и не превращается в универсальную валюту. Одно изменение не может повторно оплатить тело, оружие и P/Q/E одного цикла.
+
+Источник не правит значение напрямую: он публикует `modifier_request` для одного named parameter и собственный `intrinsic_debt`. Только доменный resolver может принять запрос по зарегистрированной policy. Локальная страница источника не объявляет свой priority, floor или cap.
 
 ## 4. P/Q/E и сигнатура решений
 
@@ -124,17 +129,15 @@ Current Commitment =
 
 ## 6. Термос и модули
 
-Hero-kit задаёт стабильные профильные ёмкости и перечень именованных модульных решений. Выбранный Термос остаётся сменным физическим предметом со своими слотами и посадкой.
+Hero-kit публикует authored `BaseServiceCapacity`, но не решает законность физической сборки. Pipeline принимает только подтверждённый `ThermosAssemblySnapshot` конкретной ревизии: выбранную модель, фактически занятые nodes, состояние установленных ItemID, разрешённые доменными владельцами эффекты, активный Опорный контур и derived результаты массы, покрытия и Диссонанса.
 
-```text
-installed_module_cost <= hero_kit.module_capacity + explicit_gear_capacity
-```
+`ThermosAssemblySnapshot` создаёт [[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly Resolver]]. Pipeline не повторяет его fit/topology/service-формулу и не может «дочинить» нелегальную сборку во время Deploy.
 
-Chronicle и personal tags не увеличивают `module_capacity` и не открывают второй модульный слой. Модуль может:
+Chronicle и personal tags не увеличивают `BaseServiceCapacity` и не открывают второй модульный слой. Модуль может:
 
 - изменить один названный локальный результат;
-- изменить процедуру, floor/cap или Exposure в той же сцене;
-- добавить физическую функцию, если она оплачена семейством, слотом, весом и уязвимостью.
+- отправить узкий `modifier_request` на процедуру, Exposure либо заранее зарегистрированную domain-owner операцию; floor/cap остаются policy владельца домена;
+- добавить физическую функцию, если её definition, mount pattern, `service_load`, ItemID и effect/debt contracts прошли единый assembly-resolver.
 
 Модуль не переписывает `kernel`, доставку, цель, контригру, цену энергии или fixed debt hero-kit. Карточка всегда показывает обмен `до → после`, а не сумму общих статов.
 
@@ -156,6 +159,18 @@ Chronicle находится рядом, но хранит причину и п�
 Подробный контракт принадлежит [[04_Player_Entities/Tags_System|Personal Tags]].
 
 ## 8. Итоговый Combat Profile
+
+### Порядок разрешения
+
+```text
+identity/base
+  -> equipped gear
+  -> current state
+  -> authorized modifier contracts
+  -> read-only Combat Profile projection
+```
+
+На каждом шаге применяется policy владельца конкретного домена; Combat Profile не повторяет эту policy и не сводит результаты в общий Power Score. `ImpulsePacket`, status application и Dissonance occurrence сохраняют собственные источники и не становятся безличным общим бонусом.
 
 Профиль вылазки содержит:
 

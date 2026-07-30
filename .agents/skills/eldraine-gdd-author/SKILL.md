@@ -9,9 +9,12 @@ description: Use when turning Eldraine notes, references, dictated ideas, decisi
 
 Integrate decisions into the living vault instead of producing isolated design prose. Find the canonical home before creating a file.
 
-## Local Vault Only
 
-Work only with ordinary files inside the current Eldraine vault. Do not inspect or use Git state, history, diffs, branches, worktrees, staging, commits, remotes, pushes, or pull requests. If another workflow requests a Git step, skip it and continue with local file reads or edits. This changes no authorization boundary: read-only requests stay read-only, and files are edited only when the user explicitly asks.
+## Active Canon Language
+
+Describe the accepted target state affirmatively: name the active entities, rules, scope, and consequences.
+
+Historical context belongs outside active rule statements. When it helps explain provenance or a reference, label it as contextual material and return the adopted model in the canonical result.
 
 ## Responsibility Boundary
 
@@ -28,7 +31,7 @@ Choose among:
 3. Create a new focused document inside one of the nine active blocks.
 4. Keep the material as a proposal when core decisions remain unresolved.
 
-Prefer extension over duplication. Never revive legacy namespaces or use `_Archive` as the target for active design.
+Prefer extension over duplication. Place active design in an active owner, registry, or new focused document; contextual material retains provenance while the adopted rule lives in its active owner.
 
 ## Resolve Before Writing
 
@@ -64,9 +67,9 @@ Validate target paths and headings before adding links.
 
 ## Навигация и контекст
 
-Для обычной GDD-задачи читать `00_Index.md`, `09_Project_Management/Architecture_MVP.md`, целевую каноническую страницу и её прямые зависимости. Не загружать `.obsidian/`, `.codex/`, `.git/`, `_Archive/`, `Истории/` или `docs/`, пока задача не требует именно этих материалов.
+Для обычной GDD-задачи читать `00_Index.md`, `09_Project_Management/Architecture_MVP.md`, целевую каноническую страницу и её прямые зависимости. Следовать границе active corpus из `AGENTS.md`.
 
-`10_Reference/` использовать для референса, исходного намерения или вопроса автору. Он не является источником канона и не отменяет последнее явное решение автора либо активную страницу GDD.
+Контекстный материал можно открывать для референса, исходного намерения или вопроса автору. Помечать его роль в результате; принятое правило и его доказательство брать из active owner.
 
 ## Ответственность, навигация и Dataview
 
@@ -74,9 +77,21 @@ Before writing, assign one responsibility to each affected file:
 
 - semantic index — статические wikilinks с кратким назначением и условием чтения;
 - universal system — shared rules and state transitions;
-- content instance — one sector, anomaly, faction, or other concrete realization;
-- registry or matrix — stable IDs and structured source data;
+- entity page — identity, in-world context, relations, and the entity's own lived or institutional reality;
+- content instance — one sector, anomaly, encounter, or other concrete realization of an existing grammar;
+- interface registry — one normalized relation between an entity and a mechanic;
+- registry or matrix — stable atomic IDs, records, and structured source data;
 - Dataview view — optional filtered presentation of already canonical data.
+
+Use **entity page + interface registry + system owner** for a faction, Hearth, place, culture, NPC, or other entity that participates in several mechanics:
+
+1. The entity page answers what the entity is. It does not own rewards, state transitions, formulas, validators, runtime IDs, or service resolution merely because the mechanic is presented through that entity.
+2. Each distinct playable interaction gets one interface record. The record names the entity, player-facing verb/result, the entity's role, one canonical mechanic owner, and an explicit boundary; it links to rules instead of copying them.
+3. The system page remains the only normative owner of rules and failure handling.
+4. The entity page may render a short linked list of interfaces. This is a projection, not a second contract.
+5. Create a separate player-experience page only when the entity has a unique multi-step lived loop. Do not create one file per semantic layer by default.
+
+An entity may be an `ADDRESS`, `ISSUER`, `PROVIDER`, `WITNESS`, `PRESENTER`, or `CONSUMER` of a mechanic. These roles describe participation, not authority. A missing mechanic owner is `MISSING_OWNER`; do not hide it in prose or assign it to the entity as a writing convenience.
 
 `00_Index.md` и другие обзорные страницы используют только статические wikilinks: каждая ссылка объясняет, что открывает страница и когда её читать. Индекс не является полным каталогом и не использует Dataview для навигации.
 

@@ -1,6 +1,11 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: gear_inventory
+index_order: 160
+index_summary: "Задаёт правила и последствия системы «Система: Удобство и Сортировка (QoL)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Система: Удобство и Сортировка (QoL)»."
 system: inventory
 tags:
   - qol

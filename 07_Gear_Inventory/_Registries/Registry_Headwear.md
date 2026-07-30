@@ -1,6 +1,11 @@
 ---
 type: registry
 status: active
+index_route: owner
+index_group: gear_inventory
+index_order: 40
+index_summary: "Задаёт правила и последствия системы «Реестр: Маски и Шлемы (Protective Gear)»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Реестр: Маски и Шлемы (Protective Gear)»."
 system: gear_inventory_registry
 registry_type: headwear
 tags:

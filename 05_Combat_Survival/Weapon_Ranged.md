@@ -1,12 +1,18 @@
 ---
 type: mechanic
 status: active
+index_route: owner
+index_group: combat_survival
+index_order: 200
+index_summary: "Задаёт правила и последствия системы «Оружие: дальний бой»."
+read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Оружие: дальний бой»."
 system: action_combat
 tags: [ranged, arcanegun, battery_cycle, mechanical]
 related_files:
   - "[[05_Combat_Survival/Combat_Three_Debts|Combat_Three_Debts]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
   - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
+  - "[[04_Player_Entities/_Registries/Registry_Parameter_Contracts|Реестр параметрических контрактов]]"
 ---
 # Оружие: дальний бой
 
@@ -19,7 +25,7 @@ Full Battery -> Weapon Reserve -> action impulse_cost
 -> Heat + Bloom + Pulse + Recovery -> следующий разрешённый цикл
 ```
 
-Трёхзарядная батарея даёт три допустимых действия из одного резерва. Она не отменяет `cadence_gate`, не позволяет заменить батарею до пустого резерва и не превращает смену оружия в сброс Recovery.
+Трёхзарядная батарея даёт три допустимых действия из одного source-bound резерва. Она не отменяет `cadence_gate`, не позволяет заменить батарею до пустого резерва и не превращает смену оружия в сброс Recovery. Батарея может запросить изменение одного локального параметра NativeAction с собственным долгом, но не задаёт policy этого домена и не создаёт отдельный Pulse поверх физического выстрела.
 
 Экземпляр задаёт `emission_profile`: один импульс, удержанную линию, связанную очередь или механическую иглу. У `scatter_valve_2h` один заряд оплачивает три слабых импульса одной связанной очереди: игрок фиксирует конус, не доводит каждый выпуск отдельно и затем обязан вентилировать контур. Частичное попадание создаёт угрозу попадания; сильный результат требует полного близкого контакта.
 
