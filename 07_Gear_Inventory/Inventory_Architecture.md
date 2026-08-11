@@ -14,6 +14,7 @@ tags:
   - items
   - physics
 related_files:
+  - "[[07_Gear_Inventory/Containers_Slots|Containers and Slots]]"
   - "[[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction_Stabilization_Loop]]"
   - "[[08_World_Generation/Anomaly/14_Extraction_System|Extraction_System]]"
   - "[[04_Player_Entities/_Registries/Registry_Interaction_Families|Семейства взаимодействий]]"
@@ -102,5 +103,6 @@ Preset хранит DefinitionID, желаемые patterns и предпочт�
 - Inventory владеет `ItemID`, custody, condition revision, Ready Access и Back Slot.
 - Thermos Assembly владеет fit/topology/service-legality и атомарным составом сборки.
 - [[07_Gear_Inventory/Physical_Weight|Physical Weight]] владеет итоговой массой и load stages.
+- [[07_Gear_Inventory/Containers_Slots|Containers and Slots]] владеет поведением физического контейнера как предмета: содержимым, выпадением, сбросом и потерей доступа.
 - Экономика владеет получением, ценой и заменой, но не монтажной законностью.
 - Повреждённый support-модуль не запускает полевой демонтаж или каскадный пересчёт legality. Его runtime-эффект может отключиться; повторная полная валидация выполняется только у мастера.

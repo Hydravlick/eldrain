@@ -15,9 +15,6 @@ related_files:
   - "[[08_World_Generation/Content/World_Atlas/Sectors/Port/01_Foreign_Water_Mutation_Lines|Foreign_Water_Mutation_Lines]]"
   - "[[08_World_Generation/_Registries/Registry_Anomaly_Mutations|Registry_Anomaly_Mutations]]"
 ---
-> 		[!TODO] План доработки: Экосистема
-> - [x] **Фракции Мобов:** Прописать локальные союзы (напр., Гули не трогают Крыс).
-> - [x] **Авторское владение:** Тело и действия каждого моба имеют собственные контракты; совместимость статуса объявляется явно, а не получается конверсией из параметров игрока.
 # Реестр: Глобальный бестиарий
 
 > **Логика:** Здесь описаны мобы всех локаций, их варианты, поведение и таблицы лута. Конкретный сектор получает пул через `location_tags`, `ecology_layer` и условные теги линии.

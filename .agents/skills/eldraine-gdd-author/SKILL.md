@@ -102,6 +102,10 @@ Do not run the Voice pass before the rule is stable. Do not make a lore page sou
 
 Before writing, assign one responsibility to each affected file:
 
+`ONE FILE = ONE PRIMARY RESPONSIBILITY`
+
+This invariant does not mean `ONE CONCEPT = THREE FILES`. Keep a concept in one `SYSTEM` owner when its secondary lore or player-facing explanation is brief. Split only when a responsibility has enough independent substance to deserve its own reading surface; never create a separate file for every semantic layer by default.
+
 - semantic index — статические wikilinks с кратким назначением и условием чтения;
 - universal system — shared rules and state transitions;
 - entity page — identity, in-world context, relations, and the entity's own lived or institutional reality;
@@ -154,9 +158,15 @@ When adapting a reference, transfer the produced effect and design question. Rew
 
 **REQUIRED SUB-SKILL:** Use `eldraine-player-experience` when the mechanic is complete but the lived sequence is absent.
 
+## Structural Refactor Handoff
+
+When invoked by `eldraine-vault-curator` during an authorized corpus structural refactor, do not stop for the normal pre-edit report or separate approval. The curator's scope authorization carries through the handoff.
+
+Integrate the established material, preserve its meaning, return the changed canonical owner and any genuine design conflict, then let the curator continue the current owner transaction.
+
 ## Answer Contract
 
-Before editing, report:
+For ordinary GDD work outside a Structural Refactor Handoff, before editing, report:
 
 - proposed canonical location;
 - extend versus create decision;
