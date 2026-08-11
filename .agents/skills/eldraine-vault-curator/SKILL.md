@@ -113,9 +113,25 @@ Use search tools only to locate owners, references, duplicated claims, incoming 
 - verifying links and ownership boundaries;
 - verifying that no factual or canonical claim disappeared.
 
-For structural refactor mode, semantic validation is manual. Do not run Python scanners, validators, route builders, or `vault_guard` unless the user explicitly requests mechanical validation.
+For structural refactor mode, semantic validation is manual. Do not run Python scanners, validators, route builders, or `vault_guard` during owner-by-owner work or use their output to decide what content moves, survives, splits, or is deleted. After the full named scope is complete, run `vault_guard` once as a mechanical integrity check. Its output is not semantic evidence and must not override manual editorial judgment.
 
 When generated projections become stale, record them for regeneration after the semantic refactor. Do not interrupt owner-by-owner structural work to regenerate them.
+
+### Structured Duplication Check
+
+When the current owner contains a structured list, table, registry-like
+summary, or repeated set of named IDs, search those exact IDs in the active
+corpus before deciding that the block is unique or safely duplicated.
+
+If the same structured set occurs in multiple active pages, identify which
+page owns:
+
+- the normative records;
+- the player-facing explanation;
+- any legitimate overview.
+
+Resolve the duplication while processing the current owner and its direct
+destinations. Do not defer it to a later domain-wide cleanup pass.
 
 ### Responsibility Model
 
@@ -147,6 +163,29 @@ navigation as its primary responsibility.
 Do not turn an `OVERVIEW`, `DESIGN_RATIONALE`, `PRESENTATION`,
 `PLAYER_EXPERIENCE`, `LORE`, or `MECHANIC` page into a bare list of owner
 links as a substitute for structural refactoring.
+
+### Normative Leakage
+
+In `LORE`, `ENTITY`, `OVERVIEW`, `PRESENTATION`, and
+`PLAYER_EXPERIENCE` pages, treat exact runtime resolution as mixed authority
+unless the page is the explicit `SYSTEM` owner.
+
+Strong signals include:
+
+- exact eligibility predicates;
+- boolean conditions;
+- formulas and numeric thresholds;
+- ordered state transitions;
+- exact costs;
+- exact reward or failure resolution;
+- authoritative parameter values.
+
+A non-system page may name or summarize such a rule for comprehension, but
+must not reproduce enough of the resolver contract to become an alternative
+authority.
+
+A disclaimer elsewhere in the file does not legalize normative leakage in a
+different semantic block.
 
 ### Structural Freedom
 
@@ -184,6 +223,25 @@ responsibility is substantial enough to deserve independent reading. Small
 mechanic explanations may remain in a system page; small lore context may
 remain as one short non-normative paragraph. Do not create one file for every
 conceptual layer.
+
+### Split Trigger
+
+Treat a semantic block as a `SPLIT_TO_NEW_OWNER` candidate when all are true:
+
+1. it has a different primary semantic responsibility from the current
+   page's primary responsibility;
+2. it contains substantial unique meaning;
+3. it forms a coherent independently readable unit;
+4. keeping it in place would leave the page with mixed authority or mixed
+   reader purpose;
+5. no existing owner can absorb it without losing that function.
+
+A self-contained mechanic with its own steps, states, decision loop, or
+resolution contract is a strong split candidate even when it is thematically
+related to the surrounding page.
+
+Frontmatter `type` is evidence only. Do not infer responsibility mechanically
+from metadata.
 
 ### Ownership-Safe Summaries
 
@@ -262,6 +320,25 @@ Continue only after:
 - no accepted or otherwise valuable meaning was lost.
 
 Then proceed immediately to the next owner.
+
+### Early Refactor Calibration
+
+After the first three owners that receive substantial structural changes,
+compare their pre-edit versions against the resulting source and
+destinations.
+
+This is not a user-approval checkpoint and does not stop the corpus pass when
+clean.
+
+Specifically test whether:
+
+- unique semantic blocks survived;
+- `ALREADY_OWNED` destinations actually preserve equivalent meaning;
+- overview/presentation/rationale pages still perform their reader function;
+- no summary changed ownership semantics.
+
+If semantic loss is found, repair those owners and correct the working
+interpretation before continuing through the remaining corpus.
 
 ## Audit Mode
 

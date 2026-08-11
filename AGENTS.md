@@ -129,4 +129,18 @@ The normal result of structural refactoring is changed canonical Markdown, not a
 
 For ordinary project work, run `python3 tools/vault_guard.py` before completion.
 
-Exception: corpus structural refactor mode uses manual semantic verification owner by owner. Do not run Python validation or regenerate projections unless the user explicitly requests it. Report pending generated projections at the end.
+Corpus structural refactoring remains manual and semantic owner by owner.
+
+Do not use Python scanners, validators, or scripts to decide what content
+moves, survives, splits, or is deleted.
+
+After the full named structural-refactor scope is complete, run
+`python3 tools/vault_guard.py` once as a mechanical integrity check for
+broken links, frontmatter drift, duplicate ownership declarations, and
+structural errors.
+
+Its output is not semantic evidence and must not override manual editorial
+judgment. Report failures; repair only genuine mechanical defects.
+
+Do not regenerate projections unless the user explicitly requests it. Report
+pending generated projections at the end.
