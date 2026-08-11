@@ -10,7 +10,7 @@ This project folder contains the active Eldrain corpus and contextual material.
 4. Exclusion clauses narrow source selection and do not add sources.
 5. Use corpus-wide search within `00_Index.md` and `01_` through `09_` only after owner selection, for dependency and consistency checks.
 
-The route pages and `00_Index.md` are generated projections. Do not edit them manually; update owner metadata and run `python tools/build_routes.py --write`.
+The route pages and `00_Index.md` are generated projections. Do not edit them manually. Outside corpus structural refactor mode, update owner metadata and run `python tools/build_routes.py --write`. During structural refactoring, record stale projections for later regeneration and do not run the route builder unless the user explicitly requests it.
 
 ## Canonical Corpus
 
@@ -86,13 +86,17 @@ Skills remain explicit-only in their metadata. The root agent performs the expli
 
 When the user requests repository cleanup, responsibility separation, AI-slop removal, lore/mechanic/system separation, or canonical corpus refactoring, select `eldraine-vault-curator` in structural refactor mode.
 
+The Corpus Structural Refactor rule overrides the general broad/cross-owner routing rule above. Do not start `eldraine-system-architect` merely because the refactor spans many owners.
+
 The request itself authorizes sequential edits throughout the named scope. Work owner by owner and finish each owner before advancing:
 
 `read -> classify responsibility -> move/integrate -> rewrite -> remove duplication -> manually verify -> next owner`
 
 Do not replace this workflow with a corpus-wide preliminary audit, scanner-generated candidate lists, migration manifests, a plan-only response, one-line cosmetic repairs, or per-file approval requests.
 
-Use `eldraine-gdd-author` only when a moved block requires integration into an existing canonical owner or creation of a genuinely new focused canonical page. Make the handoff during the current owner's repair; do not postpone the edit into a later project phase.
+The curator directly relocates and integrates established material during structural refactoring.
+
+Use `eldraine-gdd-author` only when the destination requires substantial new canonical writing rather than relocation or editing of established meaning, or when a genuinely new page must be authored beyond the curator's structural repair. Do not invoke `eldraine-gdd-author` for ordinary `MOVE`, `MERGE`, `LINK`, or `DELETE_DUPLICATE` operations. Make any necessary handoff during the current owner's repair; do not postpone it into a later project phase.
 
 Use `eldraine-system-architect` only when the documentation exposes a real design contradiction or missing runtime owner. Poor placement by itself is an editorial problem.
 
@@ -100,4 +104,6 @@ The normal result of structural refactoring is changed canonical Markdown, not a
 
 ## Verification
 
-Run `python3 tools/vault_guard.py` before completing project work.
+For ordinary project work, run `python3 tools/vault_guard.py` before completion.
+
+Exception: corpus structural refactor mode uses manual semantic verification owner by owner. Do not run Python validation or regenerate projections unless the user explicitly requests it. Report pending generated projections at the end.

@@ -158,9 +158,15 @@ When adapting a reference, transfer the produced effect and design question. Rew
 
 **REQUIRED SUB-SKILL:** Use `eldraine-player-experience` when the mechanic is complete but the lived sequence is absent.
 
+## Structural Refactor Handoff
+
+When invoked by `eldraine-vault-curator` during an authorized corpus structural refactor, do not stop for the normal pre-edit report or separate approval. The curator's scope authorization carries through the handoff.
+
+Integrate the established material, preserve its meaning, return the changed canonical owner and any genuine design conflict, then let the curator continue the current owner transaction.
+
 ## Answer Contract
 
-Before editing, report:
+For ordinary GDD work outside a Structural Refactor Handoff, before editing, report:
 
 - proposed canonical location;
 - extend versus create decision;

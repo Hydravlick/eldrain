@@ -56,7 +56,9 @@ Use search tools only to locate owners, references, duplicated claims, incoming 
 - verifying links and ownership boundaries;
 - verifying that no factual or canonical claim disappeared.
 
-Run mechanical project validation only when explicitly requested or after the semantic refactor is complete. It does not replace manual editorial judgment.
+For structural refactor mode, semantic validation is manual. Do not run Python scanners, validators, route builders, or `vault_guard` unless the user explicitly requests mechanical validation.
+
+When generated projections become stale, record them for regeneration after the semantic refactor. Do not interrupt owner-by-owner structural work to regenerate them.
 
 ### Responsibility Model
 
@@ -233,4 +235,4 @@ A validator failure blocks the rewrite until the protected difference is explici
 
 In audit mode, lead with `CLEAN`, `REPAIRABLE`, `AUTHORITY_BLOCKED`, or `APPROVAL_REQUIRED`. Separate authority findings from prose findings. Rank at most five repairs by impact, then name the first owner-scoped edit worth making. Do not turn a finding list into another essay.
 
-In structural refactor mode, the normal result is changed canonical Markdown. Summarize owners repaired, destinations changed, decisions blocked by genuine source conflict, manual checks performed, and final mechanical validation. Do not substitute a findings report for the edits.
+In structural refactor mode, the normal result is changed canonical Markdown. Summarize owners repaired, destinations changed, decisions blocked by genuine source conflict, manual checks performed, and generated projections pending regeneration. Mention mechanical validation only when the user explicitly requested it. Do not substitute a findings report for the edits.
