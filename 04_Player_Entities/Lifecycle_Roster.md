@@ -30,7 +30,7 @@ Each Pawn keeps independent identity axes: origin, civic status, hero-kit, perso
 PawnLifecycle:
   pawn_id: PawnID
   account_id: AccountID
-  readiness: READY | IN_RAID | MIA | CARE | CLOSED | KIA | LOST_CLOSED
+  readiness: READY | ERRAND | IN_RAID | MIA | CARE | CLOSED | KIA | LOST_CLOSED
   presence_lease:
     state: HUB | RAID | RECOVERY_TRANSIT | CARE | TERMINAL
     session_id: null | SessionID
@@ -58,7 +58,7 @@ RecoverablePawnCount = count(Pawns referenced by an unresolved Case)
 LivingCareCount = count(Pawns where readiness = CARE)
 ```
 
-`ReadySelectable` covers the full roster. A player may deliberately maintain a broad library of known specialists; no hidden three-slot cap or UI grouping can turn living members into non-members. A prepared loadout, an unavailable item, or the occupied account Last Thread slot does not change this count. The occupied slot merely makes Last Thread unavailable for another Pawn until its Case resolves.
+`ReadySelectable` covers the full roster. A player may deliberately maintain a broad library of known specialists; no hidden three-slot cap or UI grouping can turn living members into non-members. A prepared loadout, an unavailable item, an active [[04_Player_Entities/Pawn_Errands|Pawn Errand]] or the occupied account Last Thread slot does not change roster membership. Поручение делает Пешку временно недоступной для рейда, пока lease не разрешён. The occupied slot merely makes Last Thread unavailable for another Pawn until its Case resolves.
 
 ## State projection
 
@@ -102,3 +102,4 @@ It cannot use deliberate death, Closure, a Recovery transition, or temporary pre
 - [[04_Player_Entities/Recovery_Lifecycle|Recovery Lifecycle]] supplies deterministic `CaseID` for the final atomic CAS and emits one immutable terminal result; it never owns the slot.
 - [[04_Player_Entities/Life_Closure|Life Closure]] emits an irreversible living closure result; it never writes roster membership or Chronicle.
 - [[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion Logic]] owns `PhysicalRaidEntity` materialization and publishes ordinary Breach `COMMIT`. `LIFECYCLE_ROSTER` consumes that fact and alone projects the corresponding `PawnPresenceLease`. These are distinct records. [[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid Approach and Entry]] owns only Approach/Binding/Quote and cannot create either.
+- [[04_Player_Entities/Pawn_Errands|Pawn Errands]] may request the bounded `READY → ERRAND → READY` projection while Presence remains `HUB`; it cannot change roster membership, terminal outcomes or raid admission.

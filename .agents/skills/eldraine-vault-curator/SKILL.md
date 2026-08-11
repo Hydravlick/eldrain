@@ -32,6 +32,32 @@ Audit four layers separately:
 3. **Readability:** the first screen states the adopted rule, player action, and consequence.
 4. **Prose health:** structure and repetition first; lexical mannerisms second.
 
+## Render-Safe Tables
+
+Treat an Obsidian table as a narrow reading surface. Keep it to short, scannable cells and no more columns than the decision needs.
+
+### Required Markdown contract
+
+1. Treat every unescaped `|` as a column separator. This includes an Obsidian link's alias separator.
+2. A table cell may contain one short Obsidian link only when its alias separator is written as `\|`. The visible label must be sufficient without the path.
+3. Put root-relative paths, raw URLs, multi-item owner lists, and Markdown line breaks outside the table. If a cell needs more than one link, use a titled owner/reference list immediately below it.
+4. Escape every literal pipe in a table cell as `\|`. Never use unescaped `|` inside a cell.
+5. Before handoff, verify the affected table has its declared number of columns in rendered view; inspect every table wiki-link for the `\|` alias separator.
+
+Use this shape:
+
+```markdown
+| Слой | Владелец | Передаёт |
+|---|---|---|
+| Доступность | [[04_Player_Entities/Lifecycle_Roster\|Lifecycle Roster]] | readiness |
+
+### Владельцы
+
+- Несколько владельцев или длинное объяснение — вынести из таблицы в этот список.
+```
+
+If a row still wraps enough to stop a player from scanning it, replace the table with headings or a list and inspect the rendered note before handoff.
+
 ## Register Profiles
 
 Choose one profile before judging prose:

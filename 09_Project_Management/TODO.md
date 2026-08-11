@@ -8,14 +8,11 @@ tags:
   - mvp
   - project_management
 sources:
-  - "[[_Archive/_MERGED_SOURCES#Legacy TODO Digest]]"
-  - "[[_Archive/_MERGED_SOURCES#Weak Sides Digest]]"
   - "[[10_Reference/Reference Notes New]]"
-  - "[[Claude]]"
 ---
 # Единая доска задач
 
-> Здесь остаются только открытые действия. Доска ведёт к одному проверяемому игровому срезу, а не к одновременной полировке всех систем. Завершённые решения уходят в [[_Archive/_MERGED_SOURCES|merge log]], подтверждённые риски — в [[09_Project_Management/Risk_Register|Risk Register]].
+> Здесь остаются только открытые действия. Доска ведёт к одному проверяемому игровому срезу, а не к одновременной полировке всех систем. Завершённые решения удаляются из доски; подтверждённые риски ведёт [[09_Project_Management/Risk_Register|Risk Register]].
 
 ## Отложенные границы
 
@@ -192,9 +189,6 @@ sources:
 
 ## Reference sources
 
-- [[Claude]] — критический разбор расхождений между заявленным опытом и действующими системами.
 - `Foodchain` — авторская тревожная проверка происхождения пищи, границ личности и уязвимости распределённого города; исходная заметка пока не подключена к vault.
-- [[_Archive/_MERGED_SOURCES#Legacy TODO Digest]] — разобранный старый backlog.
-- [[_Archive/_MERGED_SOURCES#Weak Sides Digest]] — разобранные системные конфликты.
 - [[10_Reference/Reference Notes New]] — narrative seeds из legacy TODO.
 - [[09_Project_Management/Architecture_MVP]] — текущий контракт структуры и ссылок.

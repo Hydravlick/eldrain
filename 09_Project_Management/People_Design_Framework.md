@@ -9,7 +9,6 @@ tags:
   - source_of_truth
 related_files:
   - "[[10_Reference/Source Note — Переосмысление пяти древнейших народов Eldrain — 2026-07-20|Авторская исходная заметка]]"
-  - "[[09_Project_Management/Culture_Revision_Audit|Culture Revision Audit]]"
   - "[[04_Player_Entities/_Registries/Registry_Races|Registry Races]]"
   - "[[03_Factions_Societies/Lore/City_Genesis|City Genesis]]"
 ---

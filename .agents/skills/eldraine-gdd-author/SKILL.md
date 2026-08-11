@@ -65,6 +65,8 @@ Use current root-relative Obsidian links, for example:
 
 Validate target paths and headings before adding links.
 
+For every Markdown table, apply `eldraine-vault-curator`'s **Render-Safe Tables** contract: one short Obsidian link is permitted only with an escaped `\|` alias separator; place multiple links outside the table.
+
 ## Executable Mechanic Contract
 
 Use this section set only when the page owns a mechanic that must be implemented or tested:

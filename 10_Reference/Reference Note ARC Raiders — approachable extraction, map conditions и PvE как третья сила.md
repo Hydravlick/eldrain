@@ -18,7 +18,6 @@ related_files:
   - "[[07_Gear_Inventory/Inventory_Architecture|Inventory Architecture]]"
   - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]]"
 source_dialogues:
-  - "[[Gemini 2.2]]"
 web_sources:
   - https://arcraiders.com/
   - https://store.steampowered.com/app/1808500/ARC_Raiders/
