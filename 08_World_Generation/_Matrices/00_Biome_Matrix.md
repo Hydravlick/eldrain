@@ -131,7 +131,7 @@ for (const biomeBlock of biomeBlocks) {
             ? parts[1].trim() 
             : lvlHeader.replace(/(?:level|lvl)\s*\d+/i, "").trim();
             
-        // 3. Формируем единую ссылку: [[File#Header | (N) Name]]
+        // 3. Формируем единую ссылку формата `File#Header | (N) Name`.
         // Результат: (1) Сборочный Цех
         const label = `(${num}) ${name}`;
         const levelLink = `[[${files.biomes}#${lvlHeader}|${label}]]`;

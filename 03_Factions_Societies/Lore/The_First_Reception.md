@@ -130,20 +130,9 @@ related_mechanics:
 
 ## Протокол нулевого ростера
 
-Круг не отправляет лишившегося людей игрока в отдельный «пруд», квалификационный рейд или низкоприоритетную очередь. Он действует только после решения владельца жизненного цикла, что в ростере нет ни готового человека, ни спасаемой, находящейся в уходе или ожидающей разрешения судьбы (`ContinuityAdmissionAllowed`):
+Круг представляет одного живого подопечного как городской жест заботы после уже подтверждённого допуска непрерывности. Само создание Ward, его готовность, фиксированный Welfare loan, теги и обычный вход в рейд разрешает [[04_Player_Entities/Spawn_Logic#2. Первый Приём при ContinuityAdmissionAllowed|Spawn Logic]] по предикату [[04_Player_Entities/Lifecycle_Roster#Continuity admission boundary|Lifecycle Roster]].
 
-1. представляет одного конкретного живого подопечного с заранее объявленным hero-kit;
-2. передаёт его [[04_Player_Entities/Spawn_Logic|Spawn Logic]] для atomic Continuity Admission и записи в roster с `readiness = Ready`;
-3. фиксирует создание так, чтобы reconnect и параллельные запросы не дали второго Ward;
-4. только после появления Ready-Пешки Общие Кладовые вычисляют `WelfareEligible(AccountID, PawnID)` и закрепляют loan, лишь если отсутствуют и active overlay, и доступный совместимый viable loadout;
-5. человек может пройти следующий обычный shared-raid поток `Approach → EntryQuote → Breach` независимо от того, понадобился ли loan.
-
-Здесь нет карусели тел, trait-preview, reroll, таймера ожидания или обязательной экстракции для восстановления нормального доступа. Ward начинает без проявленного Personal Tag; его заранее закреплённый FirstReturnTagID раскрывается только владельцем тегов после отдельно подтверждённого First Return condition. Приём не определяет это условие и не решает судьбу Dawn.
-
-> [!note] Граница
-> Круг — `PROVIDER` и `PRESENTER` заботы: он представляет человека, объясняет городской жест и показывает уже разрешённый результат. Он не владеет `ReadyCount`, Continuity Admission, `PawnID`, `FirstReturnTagID`, recovery, Life Closure или правилами раскрытия тега.
-
-Если Ready-Пешка уже существует, но аккаунт лишился жизнеспособного loadout, Круг не создаёт нового человека и не требует KIA: Общие Кладовые накладывают тот же единственный loan на выбранную Пешку по [[04_Player_Entities/Spawn_Logic#3. Фиксированный Welfare loan|общему правилу Welfare]].
+Запись участия `first_reception.continuity_admission_presentation` в [[03_Factions_Societies/_Registries/Registry_Faction_Interfaces|реестре интерфейсов]] фиксирует роль Приёма как `PROVIDER`; она не передаёт ему lifecycle authority.
 
 ## Квестовые глаголы
 

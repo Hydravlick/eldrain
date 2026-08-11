@@ -11,14 +11,13 @@ tags:
   - source_of_truth
 related_files:
   - "[[09_Project_Management/Worldbuilding_Refactor_Roadmap_2026-07-23|Общая дорожная карта]]"
-  - "[[09_Project_Management/Civic_World_and_Hearths_Refactor_Plan_2026-07-23|Городской мир и Очаги]]"
   - "[[09_Project_Management/Architecture_MVP|Архитектура MVP]]"
   - "[[03_Factions_Societies/Lore/Faction_Address_System|Текущая система адресов]]"
   - "[[03_Factions_Societies/_Registries/Registry_Factions|Реестр фракций]]"
 ---
 # Лор и игровая механика города: план разделения источников
 
-> **Для агентного исполнения:** использовать `superpowers:executing-plans`. Сначала применить `eldraine-system-architect` для владельцев правил, затем `eldraine-lorekeeper` для сохранения причинности и `eldraine-gdd-author` для миграции страниц.
+> **Для агентного исполнения:** работать напрямую по этому GDD-плану. Сначала применить `eldraine-system-architect` для владельцев правил, затем `eldraine-lorekeeper` для сохранения причинности и `eldraine-gdd-author` для миграции страниц.
 
 **Цель:** Разделить институциональный лор, стабильную идентичность фракций и игровые интерфейсы так, чтобы каждый факт имел одного владельца и не требовал читать художественную страницу как техническую спецификацию.
 

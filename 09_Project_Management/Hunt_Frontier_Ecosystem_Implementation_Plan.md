@@ -29,7 +29,7 @@ related_files:
 - Every ordinary active-sector evacuation uses an Unstable Threshold: rare, temporary, locally foreshadowed, contestable and available in T1, T2 and T3.
 - Every valid active insertion retains at least one world-readable search path toward a possible Threshold; exact spawn time and anchor remain unknown.
 - Threshold synchronization reserves no permanent ownership: successful departure consumes capacity, interruption returns an open readable reset state, and only physically carried cargo can leave with each body.
-- Do not use Git, worktrees, archives, old namespaces or `docs/` as an active design target.
+- Do not use Git ceremony, archives, old namespaces or `docs/` as an active design target.
 
 ---
 

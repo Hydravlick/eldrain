@@ -4,8 +4,6 @@ status: active
 system: reference_notes
 tags: [reference, seeds, narrative, legacy_todo]
 source:
-  - "[[_Archive/_MERGED_SOURCES#Legacy TODO Digest]]"
-  - "[[_Archive/_MERGED_SOURCES#Weak Sides Digest]]"
 ---
 # Reference Notes New
 

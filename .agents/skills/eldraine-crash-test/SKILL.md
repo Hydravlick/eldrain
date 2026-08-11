@@ -49,6 +49,23 @@ Test at least the relevant surfaces:
 
 Use adversarial personas when useful: optimizer, coordinated squad, solo rat, wealthy veteran, fresh account, griefer.
 
+## Lifecycle and Concurrency Edge Cases
+
+For background tasks, hub services, assignments, crafting, recovery, travel, or other multi-step processes, test the relevant cases explicitly:
+
+- **Simultaneous events:** two triggers complete on the same tick or transition.
+- **Cancellation mid-process:** the player cancels after cost, reservation, travel, or partial reward.
+- **Invalid or lost target:** the target changes, disappears, dies, or stops qualifying during resolution.
+- **Unavailable POI:** the destination is blocked, removed, occupied, or invalid for the current hub state.
+- **Conflicting reservation:** two tasks reserve the same Pawn, item, slot, currency, or capacity.
+- **Save/load:** persistence occurs before departure, during transit, during resolution, or after reward creation.
+- **Offline time skip:** elapsed time completes several dependent tasks without intermediate player decisions.
+- **Pawn unavailable:** death, injury, deployment, dismissal, or another assignment interrupts the contract.
+- **Capacity and overflow:** output inventory, roster, queue, or destination capacity is full.
+- **State transition:** raid start, hub phase change, account migration, or world-state change occurs mid-process.
+
+For each case name the current rule, the abuse or deadlock, the exact expected resolution, and whether the player receives enough feedback to understand it.
+
 ## Distinguish Strength from Exploit
 
 A strategy is not broken merely because it is strong. Flag it when one or more apply:

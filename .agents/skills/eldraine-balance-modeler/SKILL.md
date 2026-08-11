@@ -33,6 +33,26 @@ Read the relevant mechanic, registries, item values, and economy files. Separate
 
 Define variables with units. Write the smallest formula that captures the decision. State exclusions rather than silently ignoring them.
 
+## Formula Contract
+
+For every formula record:
+
+| Field | Required content |
+|---|---|
+| Canonical owner | The one active page or registry that owns the value |
+| Evidence status | `CANON VALUE`, `DERIVED VALUE`, `TEST VALUE`, or `UNKNOWN` |
+| Expression | The complete equation and operation order |
+| Variables | Symbol, meaning, type, and unit |
+| Valid range | Minimum, maximum, and excluded values for each input |
+| Normal output | Expected output corridor under intended play |
+| Extreme behavior | Output at minimum, maximum, zero, overflow, and out-of-range inputs |
+| Worked example | At least one calculation with real numbers |
+| Tuning knobs | Designer-adjustable inputs and what breaks when each is too high or low |
+| Dependencies | Upstream values and downstream consumers |
+| Breakpoints | Values where the rational decision or system state changes |
+
+Do not describe a formula only in prose. If a required input is unknown, keep the equation symbolic and label the missing evidence instead of inventing a plausible number.
+
 ## Scenarios
 
 Always model:

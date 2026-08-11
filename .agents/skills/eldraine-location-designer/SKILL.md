@@ -45,6 +45,21 @@ Produce these units in order:
 6. **Tier deltas:** Give each Tier one leading spatial verb. T1 teaches it safely, T2 demands rerouting, T3 combines known rules under a timed or positional commitment.
 7. **Stable representation:** Separate the physical Stable-sector from its Generation Snapshot and Peaceful Projection. The player uses Stable POIs through the lobby table, not free traversal.
 
+## Environmental Storytelling Brief
+
+Use this brief only for a **narratively significant POI**; ordinary traversal and service spaces do not need a miniature lore essay.
+
+| Field | Required answer |
+|---|---|
+| What happened here | The event or condition supported by canon |
+| What the player should infer | The intended conclusion available from spatial evidence |
+| What remains mysterious | The question intentionally left unresolved |
+| Evidence | Props, damage, occupation, routes, light, sound, behavior, or absence |
+| Gameplay effect | The decision, warning, opportunity, or route expectation created |
+| Delivery tier | `SURFACE`, `ENGAGED`, or `DEEP` from lorekeeper |
+
+Every prop must support the inference or the usable spatial state. Do not add decorative clues whose only function is to make the location sound ancient, tragic, or important.
+
 ## Map Effects to Production
 
 Classify every proposed effect:

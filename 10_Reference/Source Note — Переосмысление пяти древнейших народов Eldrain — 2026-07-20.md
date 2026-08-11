@@ -11,7 +11,6 @@ tags:
   - author_notes
 related_files:
   - "[[09_Project_Management/Worldbuilding_Refactor_Roadmap_2026-07-23|Дорожная карта рефактора мира]]"
-  - "[[09_Project_Management/Five_Ancient_Peoples_Refactor_Plan_2026-07-23|План рефактора пяти древнейших народов]]"
 ---
 
 # Источник: переосмысление пяти древнейших народов Eldrain

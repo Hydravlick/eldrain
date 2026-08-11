@@ -50,6 +50,11 @@ Contextual materials may be opened without a separate user request when useful f
 
 The root agent is the Eldrain orchestrator. It explicitly selects skills from `.agents/skills/` when their condition matches; this is intentional orchestration, not passive description matching.
 
+For GDD, lore, vault, prose, and other documentation work, operate in the
+current checkout while preserving unrelated user changes. Use owner-scoped
+review and after-edit structural validation; do not require a secondary
+repository checkout or a code-oriented test-first cycle.
+
 1. For a broad, cross-owner, ownership, lifecycle, uncertainty, or architecture question, start with `eldraine-system-architect`.
 2. For a bounded question, select the matching specialist directly:
    - spatial flow, topology, sectors, routes, or production feasibility → `eldraine-location-designer`;
@@ -61,6 +66,7 @@ The root agent is the Eldrain orchestrator. It explicitly selects skills from `.
    - lived sequence, feedback, readability, or failure comprehension → `eldraine-player-experience`;
    - motivation, adaptation, churn, or profile conflict → `eldraine-player-lens`;
    - story consequence, world-state change, reveal, or chronology → `eldraine-narrative-impact`.
+   - note administration, duplicated authority, AI-shaped prose, owner-page readability, stale proposals, or structural vault cleanup → `eldraine-vault-curator`.
 3. A selected skill may request one bounded specialist handoff when that evidence can change its verdict. The request must name the target skill, active owner paths, exact question, and expected return artifact.
 4. The orchestrator invokes the requested specialist, returns its evidence to the caller, and does not fan out to unrelated skills. A handoff never transfers final ownership of the original verdict.
 5. If the request has no subject, owner, or approved decision, ask for the missing input or return `MISSING_OWNER`, `SOURCE_CONFLICT`, or `APPROVAL_REQUIRED`; do not manufacture scope.

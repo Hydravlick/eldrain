@@ -20,7 +20,7 @@ class CanonicalGuidanceTests(unittest.TestCase):
         self.assertIn("Current-canon claims cite active owners", agents)
 
     def test_every_eldraine_skill_has_affirmative_canon_language(self) -> None:
-        self.assertEqual(len(SKILLS), 10)
+        self.assertEqual(len(SKILLS), 11)
         for skill in SKILLS:
             text = skill.read_text(encoding="utf-8")
             self.assertIn("## Active Canon Language", text, skill.as_posix())

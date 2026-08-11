@@ -45,6 +45,20 @@ For each beat capture:
 
 Flag beats with no decision, invisible causality, weak feedback, fake choice, excessive cognitive load, or no payoff.
 
+## Feel Pass
+
+Evaluate these axes separately; do not average them into a health score:
+
+- **Responsiveness:** delay between input or trigger and readable system reaction.
+- **Impact:** sensory and state evidence that the action changed something.
+- **Rhythm:** alternation of anticipation, commitment, consequence, and recovery.
+- **Clarity:** whether the player can identify the cause, target, state change, and available response.
+- **Payoff:** whether the result repays the time, risk, attention, and emotional stake.
+
+## Observable playtest
+
+Turn each remaining experience claim into an observation: what the tester should notice, say, choose, misread, repeat, or fail to explain. Record the moment and evidence. Do not substitute invented retention percentages, persona certainty, or a numerical feel score for observation.
+
 ## Answer Contract
 
 Start with the intended emotional arc in one sentence. Then write a chronological slice using concrete seconds or minutes where useful.

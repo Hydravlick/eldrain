@@ -45,6 +45,26 @@ An `EMPIRICAL UNKNOWN` or `CONTENT GAP` does not erase a structural finding. Do 
 
 The author's latest explicit constraint outranks an older active GDD implementation when evaluating the intended future architecture. Label the mismatch as `CANON DRIFT`; do not quietly revert to the older rule. If two current author constraints conflict, expose the decision instead of selecting the more familiar genre solution.
 
+## Executable Mechanic Contract
+
+When the subject is a bounded mechanic, require a compact specification before discussing content volume:
+
+1. **Player promise:** what competence, pressure, or feeling the mechanic serves.
+2. **Player loop:** player action -> system response -> new information -> next decision.
+3. **Rule state machine:** `PRECONDITION -> TRIGGER -> RESOLUTION -> POSTCONDITION`.
+4. **Interfaces:** data or state entering and leaving the mechanic, direction, and one canonical owner for each value.
+5. **Edge cases:** exact condition, exact resolution, and the principle established by that resolution.
+6. **Validation hypothesis:** one remaining empirical question, the smallest prototype that tests it, and the observation that would reject the design.
+
+For the rule dependency graph, flag each relevant failure explicitly:
+
+- **Orphan rule:** nothing consumes or exposes the rule.
+- **Circular dependency:** two rules require each other without an order or foundation owner.
+- **Deep chain:** the player or implementation must resolve too many dependent rules before an outcome.
+- **Bottleneck rule:** many systems depend on one unstable or ownerless contract.
+
+Do not force this structure onto a pure lore or registry page. Use it when a programmer, QA tester, or designer must be able to resolve the mechanic without author interpretation.
+
 ## Architecture Pass
 
 ### 1. State the player promise

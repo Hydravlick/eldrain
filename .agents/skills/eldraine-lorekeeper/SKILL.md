@@ -60,6 +60,30 @@ For a faction, Hearth, people, place, NPC, or other world entity, distinguish:
 
 The lore page owns the first layer. It may explain why a Hearth is trusted to issue a seal or acknowledge a testimony, but it does not inherit the contract lifecycle, reward, access check, combat effect, roster transition, or runtime resolver. Require an interface record and a canonical mechanic owner for every playable claim. When no owner exists, return `MISSING_OWNER`; do not turn an evocative institution into a system as a reconciliation shortcut.
 
+## Voice Pillars
+
+For a recurring speaking character or institution, record only voice constraints that can judge new lines:
+
+- vocabulary and register;
+- sentence rhythm;
+- topics avoided or approached indirectly;
+- verbal habits used deliberately rather than on every line;
+- default subtext under neutral and pressured conditions;
+- **What They Would Never Say**, with the reason;
+- two or three approved reference lines.
+
+Test dialogue for dramatic function and character knowledge. Remove exposition that characters tell each other only for the player's benefit.
+
+## Lore Delivery
+
+Classify delivery without creating a second world bible:
+
+- `SURFACE`: encountered on the critical path or through unavoidable play feedback.
+- `ENGAGED`: found by players who investigate, talk, compare, or revisit.
+- `DEEP`: optional material that rewards sustained lore analysis.
+
+Every **causal rule required for play** belongs on `SURFACE`: the player must be able to understand what can happen, what signal predicts it, and why the consequence followed. `ENGAGED` and `DEEP` may explain origin, culture, ambiguity, and competing interpretation, but may not silently change the operative rule.
+
 Choose one verdict:
 
 | Verdict | Meaning |

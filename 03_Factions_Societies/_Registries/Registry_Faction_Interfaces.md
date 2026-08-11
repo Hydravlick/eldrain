@@ -83,13 +83,13 @@ related_files:
 [faction_id:: first_reception]
 [interface_status:: active]
 [role:: PROVIDER]
-[input_family:: person_presented_for_zero_roster_care]
+[input_family:: named living candidate after ContinuityAdmissionAllowed]
 [player_verb:: accept the offered person]
-[result_family:: civic presentation of a newly admitted Ward]
+[result_family:: civic presentation after Spawn Logic creates one Ready Ward]
 [mechanic_owner_ref:: [[04_Player_Entities/Spawn_Logic|Spawn Logic]]]
 [dependency_refs:: [[04_Player_Entities/Lifecycle_Roster|Lifecycle Roster]]]
 [presentation_ref:: [[03_Factions_Societies/Lore/The_First_Reception|The First Reception]]]
-[minimum_boundary:: a named living candidate and the roster's admission predicate]
+[minimum_boundary:: a named living candidate, the roster's admission predicate and one already resolved Ready Ward]
 [does_not_own:: PawnID creation, continuity epoch, readiness resolution, welfare eligibility, tag assignment or lifecycle settlement]
 
 ### first_reception.first_return_presentation

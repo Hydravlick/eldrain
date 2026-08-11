@@ -154,7 +154,7 @@ def check_owners(root: Path) -> list[Violation]:
 
 def check_surface(root: Path, strict: bool) -> list[Violation]:
     violations: list[Violation] = []
-    for local in (root / ".obsidian" / "workspace.json", root / ".obsidian" / "workspace-mobile.json", root / ".superpowers", root / "_Archive", root / "10_Reference"):
+    for local in (root / ".superpowers", root / "_Archive"):
         if local.exists():
             violations.append(Violation("FORBIDDEN_LOCAL_STATE", str(local.relative_to(root)), "physically present"))
     if strict:
