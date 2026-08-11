@@ -37,12 +37,67 @@ Process the corpus **owner by owner**. Complete the current owner's analysis and
 2. Read only its direct dependencies, obvious destination owners, and relevant incoming consumers required to understand misplaced material.
 3. State internally what the current file is supposed to own.
 4. Divide its content into semantic responsibility blocks.
-5. Classify each block as `KEEP`, `MOVE`, `LINK`, `MERGE`, `DELETE_DUPLICATE`, or `SPLIT_TO_NEW_OWNER`.
+5. Classify each block as `KEEP`, `MOVE`, `ALREADY_OWNED`, `LINK`, `MERGE`,
+   `STALE_SUPERSEDED`, `DELETE_TRUE_DUPLICATE`, or `SPLIT_TO_NEW_OWNER`.
 6. Apply the source and destination edits immediately.
 7. Re-read every changed file and verify ownership manually.
 8. Continue to the next owner.
 
 Do not create an audit manifest, migration plan, scanner report, prose-candidate inventory, or temporary rewrite document unless the user explicitly asks for one. Do not perform a corpus-wide audit before editing.
+
+### Semantic Coverage Invariant
+
+Structural refactoring preserves the useful meaning of the corpus even when
+file boundaries, headings, and authority placement change.
+
+For every semantic block that is removed, compressed, or replaced, exactly
+one disposition must be true:
+
+- `MOVE` — the block contains unique accepted meaning and is integrated into
+  an exact destination owner or supporting page before source deletion;
+- `ALREADY_OWNED` — an exact destination already preserves the same meaning
+  at sufficient detail, so the source may reduce its duplicate statement to
+  context plus a link;
+- `STALE_SUPERSEDED` — an active owner clearly replaced or contradicted the
+  old statement, so retaining it would preserve obsolete meaning rather than
+  canon;
+- `DELETE_TRUE_DUPLICATE` — the block adds no unique rule, canon,
+  explanation, example, player-facing sequence, sensory information,
+  design rationale, uncertainty, or intentional voice beyond material that
+  remains.
+
+A block may not disappear merely because another page owns a related rule.
+Related authority is not equivalent semantic coverage.
+
+For `MOVE` and `ALREADY_OWNED`, identify internally the exact destination
+path and section or semantic block that preserves the meaning.
+
+If no destination actually preserves it, use `MOVE`, `KEEP`, or
+`SPLIT_TO_NEW_OWNER`; do not delete it.
+
+Do not use brevity, DRY, one-rule-one-owner, an `overview` label, or the
+existence of links as sufficient justification for deletion.
+
+### Per-Owner Semantic Ledger
+
+Before changing the current owner, maintain a compact internal ledger for
+every block that may be moved, compressed, rewritten substantially, or
+deleted:
+
+SOURCE BLOCK: <heading or recognizable fragment>
+PRIMARY FUNCTION: <LORE | MECHANIC | SYSTEM | ENTITY | CONTENT | REGISTRY |
+  OVERVIEW | DESIGN_RATIONALE | PRESENTATION | PLAYER_EXPERIENCE | MANAGEMENT>
+UNIQUE MEANING: <claims, causal explanation, example, sequence, feedback,
+  uncertainty, voice, or boundary that would be lost>
+DISPOSITION: <KEEP | MOVE | ALREADY_OWNED | LINK | MERGE |
+  STALE_SUPERSEDED | DELETE_TRUE_DUPLICATE | SPLIT_TO_NEW_OWNER>
+DESTINATION: <exact path + section, or NONE when KEEP>
+COVERAGE PROOF: <what in the post-edit corpus preserves the useful meaning>
+
+Do not write this ledger into the vault unless the user explicitly requests
+it. It is an internal per-owner reasoning aid.
+
+If `UNIQUE MEANING` is non-empty, `DELETE_TRUE_DUPLICATE` is invalid.
 
 ### Manual Review
 
@@ -71,6 +126,25 @@ Every active page has one primary responsibility.
 - **CONTENT** owns one realization of an existing grammar: an encounter, sector, anomaly, quest, location, enemy instance, or authored event. Content consumes rules; it does not redefine them.
 - **REGISTRY** owns stable structured records and IDs. It does not become a prose owner because many systems consume it.
 - **MANAGEMENT** owns project decisions, risks, unresolved work, and process. It never owns a game rule.
+- **OVERVIEW** owns useful synthesis for orientation. It may connect several
+  owners, explain the reader-facing model, sequence, trade-offs, or
+  conceptual map, but does not become a second normative specification.
+- **DESIGN_RATIONALE** owns why an accepted design constraint exists, which
+  failure mode it prevents, and which trade-off it protects. It does not
+  resolve runtime state unless it is also the explicit system owner.
+- **PRESENTATION** owns how accepted facts or mechanics are communicated
+  through UI, camera, animation, sound, material state, spatial staging, or
+  world feedback. It may consume mechanics without owning their resolution.
+- **PLAYER_EXPERIENCE** owns the intended lived sequence, comprehension,
+  tension, learning order, failure readability, and emotional consequence
+  across accepted rules. It synthesizes owners without redefining them.
+
+Only a genuine route, index, or generated navigation page should have pure
+navigation as its primary responsibility.
+
+Do not turn an `OVERVIEW`, `DESIGN_RATIONALE`, `PRESENTATION`,
+`PLAYER_EXPERIENCE`, `LORE`, or `MECHANIC` page into a bare list of owner
+links as a substitute for structural refactoring.
 
 ### Structural Freedom
 
@@ -83,11 +157,53 @@ Unless the user explicitly requests a design change, preserve accepted canon fac
 When material belongs elsewhere:
 
 1. Find the existing canonical owner when one exists.
-2. Move and integrate the information there.
-3. Remove the duplicated normative version from the source.
-4. Leave only the minimum contextual sentence and link needed for readability.
+2. Compare the source block with the exact destination; do not assume a
+   related page already covers it.
+3. If the source contains unique accepted meaning, move and integrate that
+   meaning into the destination before source deletion.
+4. Re-read the destination and verify that the moved meaning survived
+   integration without ownership drift.
+5. Remove the duplicated normative version from the source only after
+   coverage is proven.
+6. Leave the amount of contextual explanation needed for the source page to
+   fulfill its own primary responsibility, plus links to normative owners.
 
-Do not copy a rule into both files. Create a new focused owner only when no destination exists and the responsibility is substantial enough to deserve independent reading. Small mechanic explanations may remain in a system page; small lore context may remain as one short non-normative paragraph. Do not create one file for every conceptual layer.
+Do not copy a normative rule into both files.
+
+Do not remove non-normative synthesis merely because the normative rule
+lives elsewhere.
+
+If a mixed page contains several substantial unique responsibilities,
+migrate or split those unique blocks first. Shrink or retire the source only
+after each block has a proven destination or is proven stale/duplicated.
+
+Create a new focused owner only when no destination exists and the
+responsibility is substantial enough to deserve independent reading. Small
+mechanic explanations may remain in a system page; small lore context may
+remain as one short non-normative paragraph. Do not create one file for every
+conceptual layer.
+
+### Ownership-Safe Summaries
+
+A contextual summary may simplify detail but must preserve ownership
+semantics and concept boundaries.
+
+Before writing a summary of another owner, verify the destination's actual
+contract. Do not fuse two adjacent responsibilities into one convenient
+sentence.
+
+For example, if Chronicle records lived facts while `Tags_System` owns
+Personal Tags, a summary may say:
+
+"Chronicle records lived facts; Tags System owns Personal Tags."
+
+It must not compress this into:
+
+"Chronicle stores lived experience and personal tags."
+
+A summary that changes who owns a state, rule, tag, result, or lifecycle
+decision is a semantic regression even when every individual noun already
+exists elsewhere in the corpus.
 
 ### Decision Boundary
 
@@ -100,6 +216,31 @@ Stop only when active sources contain genuinely incompatible game rules or canon
 Do not hunt individual words. While repairing each owner, remove repeated conclusions, abstract announcement paragraphs, fake contrasts, redundant summaries, inflated significance, generic design-language filler, paragraphs about the document rather than the game, and atmosphere with no lore, mechanic, player-experience, or causal function.
 
 Prefer direct statements of actor, condition, action, consequence, and meaning. Preserve useful lore voice, examples, sensory information, and emotional context.
+
+### Post-Edit Semantic Coverage Check
+
+Before leaving the current owner, compare the pre-edit meaning against the
+changed source and destinations.
+
+Answer internally:
+
+1. What unique information, explanation, example, sequence, feedback,
+   uncertainty, or voice existed before this edit?
+2. Where does each valuable element exist now?
+3. Did any useful block disappear only because another page owns a related
+   rule?
+4. Did any summary change an ownership boundary, causal relationship, or
+   distinction between concepts?
+5. Does the source still perform its own primary responsibility, or was it
+   accidentally reduced to navigation?
+6. If the source became much shorter, can every removed block be justified
+   by `ALREADY_OWNED`, `STALE_SUPERSEDED`, `DELETE_TRUE_DUPLICATE`, or a
+   completed `MOVE`?
+
+If any answer is uncertain, restore the material or move it properly before
+advancing.
+
+Do not defer semantic-loss repair to a later corpus pass.
 
 ### Completion Condition Per Owner
 

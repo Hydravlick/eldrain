@@ -92,6 +92,29 @@ The request itself authorizes sequential edits throughout the named scope. Work 
 
 `read -> classify responsibility -> move/integrate -> rewrite -> remove duplication -> manually verify -> next owner`
 
+Structural refactoring must conserve semantic coverage, not only canonical
+rule authority.
+
+Before removing or substantially compressing a semantic block, the curator
+must prove one of:
+
+- the unique meaning was moved;
+- an exact active destination already preserves it;
+- it is explicitly superseded;
+- it is a true duplicate with no independent explanatory, experiential,
+  presentation, rationale, lore, example, or uncertainty value.
+
+Overview, design rationale, presentation, player-experience synthesis and
+lore synthesis are valid responsibilities. Do not collapse them into link
+hubs merely because their underlying systems have separate normative owners.
+
+Destination edits happen before source deletion. The current owner is not
+complete until the curator can account for the post-edit location of every
+valuable semantic block.
+
+A large deletion count or shorter file is not evidence of successful
+refactoring.
+
 Do not replace this workflow with a corpus-wide preliminary audit, scanner-generated candidate lists, migration manifests, a plan-only response, one-line cosmetic repairs, or per-file approval requests.
 
 The curator directly relocates and integrates established material during structural refactoring.
