@@ -4,7 +4,7 @@
 
 **Goal:** Remove AI-shaped structure, duplicated normative prose, stale management residue, and unreadable owner-page openings from Eldrain's active corpus without changing canon, numbers, ownership, links, or intentional lore voice.
 
-**Architecture:** Refactor the corpus as a sequence of owner-scoped batches, never as one corpus-wide rewrite. Every batch starts from the route-selected owner, includes only its direct dependencies and proven incoming consumers, and passes structure-preservation plus project validation before the next batch begins. Registries are reviewed for authority and schema duplication, not rewritten merely to vary repeated record language.
+**Architecture:** Run two deliberately separate passes. Pass A is an owner-scoped prose-health rewrite across `01_` through `08_`; it removes structural and lexical AI-shaped prose without moving authority. Pass B starts at `03_Factions_Societies` and continues through `08_World_Generation`; it separates entity/lore, playable mechanic, universal system, and interface-registry responsibilities, then migrates only approved normative text to one canonical owner. `02_World_Lore` receives Pass A only. Every batch includes only the route-selected owner, its direct dependencies, and proven incoming consumers, and passes structure-preservation plus project validation before the next batch begins.
 
 **Tech Stack:** Markdown and Obsidian links/frontmatter, Python standard-library tests, `rg`, `tools/build_routes.py`, `tools/vault_guard.py`, and the local `eldraine-vault-curator` audit and rewrite-validation scripts.
 
@@ -12,13 +12,13 @@
 
 ## Approved Strategy
 
-**Decision: APPROVED WITH OWNER-SCOPED GATES.** Use staged owner batches.
+**Decision: APPROVED WITH OWNER-SCOPED GATES.** Use staged owner batches followed by a distinct responsibility-normalization pass from `03_` onward.
 
 Rejected alternatives:
 
 - **One-shot corpus rewrite:** fastest in prompts, but cannot preserve authority, direct dependencies, and authorial lore voice reliably.
 - **Replace only scanner hits:** safe-looking but incomplete. The scanner finds lexical candidates and exact repetition; it does not prove duplicated authority or detect every structural mannerism.
-- **Staged owner batches:** chosen because every edit has a bounded source of truth, a preserved-meaning record, and a reversible validation boundary.
+- **Staged prose pass plus responsibility pass:** chosen because style and authority have different evidence, skills, approval gates, and validation requirements.
 
 ## Baseline Evidence
 
@@ -32,6 +32,8 @@ Rejected alternatives:
 ## Global Constraints
 
 - Start with `00_Index.md`, select the relevant route page, then read the owner and only its direct dependencies.
+- Keep the two passes separate. Pass A may rewrite prose but cannot move authority. Pass B may migrate authority only from `03_` through `08_` after an approved responsibility map.
+- `02_World_Lore` is explicitly excluded from Pass B. Culture and metaphysics pages may receive lore-preserving prose cleanup, but this plan does not split or redistribute their responsibilities.
 - Do not edit `00_Index.md` or generated `00_Routes.md` pages manually. If owner metadata changes, run `python tools/build_routes.py --write` and inspect generated diffs.
 - Never rewrite more than three owner pages in one batch. A lore culture page longer than 3,000 words is a batch by itself.
 - Before any edit, freeze the exact file list in the audit manifest. An unlisted file is read-only until the manifest is reviewed and updated.
@@ -44,6 +46,59 @@ Rejected alternatives:
 - Contextual materials (`10_Reference`, `Истории`, root proposals, and media) are out of scope. They may be read for provenance but need a separate approved plan before editing.
 - Do not begin execution from the current dirty worktree. First establish a user-approved baseline commit containing the intended skill and gameplay changes; never discard, reset, or silently absorb unrelated changes.
 
+## Required Skill Routing
+
+The executor must read each selected `SKILL.md` completely before acting, announce the selection, and add it to the active working plan. Do not run every specialist automatically; use conditional specialists only when their evidence can change the verdict.
+
+| Stage | Required skills | Purpose |
+|---|---|---|
+| Plan execution and isolation | `superpowers:executing-plans`, then `superpowers:using-git-worktrees` | Execute task-by-task from a clean isolated baseline |
+| Audit manifest and every prose batch | `eldraine-vault-curator` | Detect authority/prose findings, bound edits, preserve invariants, validate rewrites |
+| Responsibility Pass B (`03_`–`08_`) | `eldraine-system-architect` | Decide entity/interface/mechanic/system boundaries and one source of truth |
+| Approved placement and migration | `eldraine-gdd-author` | Extend or create the canonical home, migrate text, update consumers and links |
+| Lore and faction meaning | `eldraine-lorekeeper` | Protect canon, terminology, in-world authority, causality, and fiction-to-mechanics compatibility |
+| Final completion claim | `superpowers:verification-before-completion` | Re-run complete evidence before reporting success |
+
+Conditional routing:
+
+- `eldraine-player-experience` — required when a mechanic contract exists but its lived player sequence, feedback, or failure comprehension is absent.
+- `eldraine-crash-test` — use when a moved boundary exposes safe farming, bypass, dominance, or incentive abuse.
+- `eldraine-balance-modeler` — use when the dispute concerns a number, formula, threshold, probability, cost, or reward corridor.
+- `eldraine-gear-progression` — use when the boundary concerns equipment, loadouts, replacement, or progression dominance.
+- `eldraine-location-designer` — use for topology, sectors, routes, extraction feasibility, sockets, or spatial production guarantees.
+- `eldraine-narrative-impact` — use when a migration changes chronology, reveal order, story consequence, or world-state propagation.
+- `eldraine-player-lens` — use when the architectural verdict depends on motivation, adaptation, churn, or profile conflict rather than on prose placement.
+
+Every specialist request must use the project handoff contract:
+
+```text
+HANDOFF: <skill-name>
+Affected owners: <exact active paths>
+Question: <one bounded question>
+Expected return: <evidence, table, constraint, or verdict>
+```
+
+## Responsibility Model for Pass B
+
+Assign every affected heading or paragraph under `03_` through `08_` exactly one primary responsibility before moving text:
+
+| Responsibility | Owns | Must not own |
+|---|---|---|
+| `LORE / ENTITY` | Identity, history, culture, relationships, in-world authority, resident belief, fiction and emotional meaning | Runtime eligibility, costs, formulas, state transitions, rewards, validators, or failure resolution |
+| `MECHANIC` | The bounded player interaction: player action, system response, feedback, next decision, local preconditions and outcomes | Cross-content global state or a second copy of universal formulas and lifecycle rules |
+| `SYSTEM` | Reusable rule grammar, authoritative state, lifecycle, inputs/outputs, shared eligibility, costs, formulas by reference, edge cases and failure handling | Entity identity, faction history, or decorative content-instance prose |
+| `INTERFACE REGISTRY` | One normalized relation between an entity and a mechanic: entity, player-facing verb/result, role, one mechanic owner, and `does_not_own` boundary | Narrative exposition or resolution logic |
+| `CONTENT INSTANCE` | One concrete faction service, sector, anomaly, encounter, item, or other realization of an existing grammar | A new universal rule hidden inside the example |
+| `PRESENTATION` | UI, map, sensory tell, diegetic framing, and projection of already-owned state | Authoritative state or settlement logic |
+
+`MECHANIC` and `SYSTEM` are distinct responsibilities, not a requirement to create two files. They may occupy separate headings in one focused owner when the bounded player interaction and its authoritative lifecycle have the same scope. Create or select a separate universal system owner only when several mechanics consume the same state, lifecycle, eligibility rule, or value. Do not create one file per semantic layer merely to satisfy this taxonomy.
+
+For a faction, Hearth, place, NPC, culture, or item family, require the chain:
+
+`entity page -> interface record -> mechanic/system owner`; when shared state exists, add `mechanic owner -> universal system owner`.
+
+The entity may participate as `ADDRESS`, `ISSUER`, `PROVIDER`, `WITNESS`, `PRESENTER`, or `CONSUMER`; that role never grants runtime authority. If no canonical mechanic/system owner exists, record `MISSING_OWNER` and stop migration. Do not solve it by leaving the rule on a lore page or by making the interface registry normative.
+
 ---
 
 ### Task 0: Establish the execution baseline
@@ -51,7 +106,9 @@ Rejected alternatives:
 **Files:**
 
 - Read: `.agents/skills/eldraine-vault-curator/SKILL.md`
+- Read: `.agents/skills/eldraine-system-architect/SKILL.md`
 - Read: `.agents/skills/eldraine-gdd-author/SKILL.md`
+- Read: `.agents/skills/eldraine-lorekeeper/SKILL.md`
 - Read: `AGENTS.md`
 - Verify: `tools/test_eldraine_skill_contracts.py`
 - Verify: `tools/test_vault_curator.py`
@@ -113,18 +170,18 @@ Expected: the refactor is isolated from unrelated work.
 **Interfaces:**
 
 - Consumes: route ownership, frontmatter dependencies, scanner candidates, and current incoming links.
-- Produces: the only approved list of editable batches for Tasks 3–7.
+- Produces: the only approved list of Pass A editable batches for Tasks 3–6 and the source inventory consumed by the Pass B audit in Task 7.
 
 - [ ] **Step 1: Record the manifest header and fixed columns**
 
-Use exactly these columns:
+Use exactly these short index columns:
 
 ```markdown
-| Batch | Register | Owner | Direct dependencies | Candidate evidence | Curator finding | Decision | Preserved meaning | Approval | Validation |
-|---|---|---|---|---|---|---|---|---|---|
+| Batch | Pass | Register | Owner | Decision | Status |
+|---|---|---|---|---|---|
 ```
 
-In tables, escape every Obsidian alias separator as `\|`; place multi-link dependency lists below the table under a batch heading.
+For every batch, put direct dependencies, exact evidence, curator finding, smallest repair, preserved meaning, approval, and validation in a titled list below the table. In tables, escape every Obsidian alias separator as `\|`; never put multi-link dependency lists or long paths in table cells.
 
 - [ ] **Step 2: Enumerate route owners deterministically**
 
@@ -161,6 +218,8 @@ Apply these hard limits:
 - no more than 1,500 editable non-table lines per batch;
 - one register profile per batch;
 - no mixed domain batch unless one page is a direct consumer of the selected owner.
+
+Mark every `02_World_Lore` row `Pass A only`. Mark every approved `03_` through `08_` owner row `Pass A + Pass B`; this means style is reviewed first and responsibility is reviewed only after the prose batch closes.
 
 - [ ] **Step 6: Review the manifest before edits**
 
@@ -212,7 +271,7 @@ git add 09_Project_Management/Risk_Register.md 09_Project_Management/Worldbuildi
 git commit -m "docs: remove completed management residue"
 ```
 
-### Task 3: Refactor core promise and economy owners
+### Task 3: Pass A — refactor core promise and economy owners
 
 **Files:**
 
@@ -264,7 +323,7 @@ Expected: only approved prose and proven duplicate-consumer removal changed. Com
 
 Each repetition is a separate review and commit. Do not combine batches for speed.
 
-### Task 4: Refactor player, combat, and gear owners
+### Task 4: Pass A — refactor player, combat, and gear owners
 
 **Files:**
 
@@ -297,7 +356,7 @@ At minimum run `python tools/test_canonical_guidance.py` plus any test file that
 
 Expected: all relevant tests pass before commit.
 
-### Task 5: Refactor world-generation owners without changing topology
+### Task 5: Pass A — refactor world-generation owners without changing topology
 
 **Files:**
 
@@ -330,45 +389,178 @@ If cleanup exposes a disputed route, socket, sector, extraction, or production-f
 
 Run changed-owner tests, `git diff --check`, and the exact batch diff before each commit.
 
-### Task 6: Refactor lore and faction prose with voice protection
+### Task 6: Pass A — refactor world-lore and faction pages with register protection
 
 **Files:**
 
-- Modify only manifest-approved `LORE` batches under `02_World_Lore` and `03_Factions_Societies/Lore`.
+- Modify only manifest-approved `LORE` batches under `02_World_Lore`.
+- Modify manifest-approved `LORE`, `MECHANIC`, and `SYSTEM` batches under `03_Factions_Societies`; keep its registries schema-first.
 - Start with owner: `02_World_Lore/Culture_Language.md`.
 - Direct culture dependencies, one batch each: `02_World_Lore/Rat_Culture.md`, `02_World_Lore/Toad_Culture.md`, `02_World_Lore/Squirrel_Culture.md`, `02_World_Lore/Lizard_Culture.md`, and `02_World_Lore/Hedgehog_Culture.md` when approved by the manifest.
 - Update faction consumers only when an exact duplicated or stale statement is proven.
 
 **Interfaces:**
 
-- Consumes: active culture owner, its direct culture dependencies, and their proven faction/race consumers.
-- Produces: distinctive lore voice with less repeated scaffolding, while preserving chronology, institutions, metaphysics, cultural tensions, quotes, and every canon claim.
+- Consumes: active culture owner, its direct culture dependencies, faction/entity pages, faction mechanic owners, interface registries, and proven consumers.
+- Produces: distinctive lore voice and readable faction mechanics with less repeated scaffolding, while preserving chronology, institutions, metaphysics, cultural tensions, runtime rules, quotes, and every canon claim. Mixed responsibility is recorded for Pass B, not migrated here.
 
-- [ ] **Step 1: Review `Culture_Language.md` as the cluster owner**
+- [ ] **Step 1: Invoke the required lore review skills**
+
+Use `eldraine-vault-curator` for every prose surface. Use `eldraine-lorekeeper` for `02_World_Lore` and every faction/entity/narrative page. Select `LORE`, `MECHANIC`, or `SYSTEM` per page before judging a candidate; do not apply lore cadence to mechanic/system owners.
+
+- [ ] **Step 2: Review `Culture_Language.md` as the cluster owner**
 
 Record which statements are cluster-wide rules and which details remain owned by each culture dependency. Do not move details merely to shorten a page.
 
-- [ ] **Step 2: Rewrite one culture page per batch**
+- [ ] **Step 3: Rewrite one culture page per batch**
 
 Run structure first: remove repeated thesis restatement, same-shaped cultural section openings, mechanical triplets, and redundant cross-culture comparisons. Then run language review while retaining approved epigraphs, in-world terms, mystery, and characterful cadence.
 
-- [ ] **Step 3: Require lorekeeper review for meaning-sensitive cuts**
+- [ ] **Step 4: Rewrite `03_Factions_Societies` by register without moving responsibility**
+
+For entity/lore pages, preserve identity, in-world authority, relationships, history, and resident belief. For mechanic/system owners, expose player action, response, state, cost, result, feedback, and failure. For registries, retain repeated field-contract language unless it is a proven authority or schema defect. Record mixed placement for Task 7 instead of relocating text during Pass A.
+
+- [ ] **Step 5: Keep `02_World_Lore` outside responsibility migration**
+
+Do not split, relocate, or reclassify `02_World_Lore` content during this plan. If a runtime-looking statement is discovered there, record it as a finding for author review but leave its placement unchanged. Responsibility Pass B begins at `03_Factions_Societies`.
+
+- [ ] **Step 6: Require lorekeeper verdict for meaning-sensitive cuts**
 
 If a proposed deletion changes chronology, faction motive, metaphysical implication, terminology, or fiction-to-mechanics compatibility, do not edit it. Use the exact `HANDOFF` contract from `AGENTS.md` with `eldraine-lorekeeper` and keep final ownership with the curator batch.
 
-- [ ] **Step 4: Validate protected content and factual parity**
+- [ ] **Step 7: Validate protected content and factual parity**
 
 Run `validate_rewrite.py`, then compare every paragraph-level deletion against the manifest's `Preserved meaning` field. Validator success alone is insufficient because the tool cannot prove semantic parity.
 
-- [ ] **Step 5: Check direct consumers after each accepted culture batch**
+- [ ] **Step 8: Check direct consumers after each accepted lore or faction batch**
 
 Search for the exact culture path across `01_` through `09_`. Update a consumer only when it repeats the changed owner statement or points to a removed heading. Otherwise leave it unchanged.
 
-- [ ] **Step 6: Commit each culture page and its proven consumers separately**
+- [ ] **Step 9: Commit each lore/faction page and its proven consumers separately**
 
-Use `docs: refine <culture> prose` and include only the named batch paths.
+Use `docs: refine <subject> prose` and include only the named batch paths.
 
-### Task 7: Repair direct consumers and navigation drift
+### Task 7: Pass B — build the responsibility migration map for `03_` through `08_`
+
+**Files:**
+
+- Create: `docs/audits/2026-08-11-responsibility-migration-map.md`
+- Read: `01_Core_Vision/01_Vision.md`
+- Read: `01_Core_Vision/02_Core_Loop.md`
+- Read: `09_Project_Management/Architecture_MVP.md`
+- Read: `03_Factions_Societies/00_Routes.md` through `08_World_Generation/00_Routes.md`
+- Read first for faction boundaries: `03_Factions_Societies/_Registries/Registry_Faction_Interfaces.md`, `03_Factions_Societies/_Registries/Registry_Factions.md`, `03_Factions_Societies/Pledge_Contracts.md`, `03_Factions_Societies/Reputation_Rules.md`, and the selected faction/entity page.
+
+**Interfaces:**
+
+- Consumes: closed Pass A prose batches, active architecture constraints, route owners, direct dependencies, interface registries, and incoming consumers.
+- Produces: an audit-only migration map assigning each mixed or duplicated responsibility to one exact owner without editing canon.
+
+- [ ] **Step 1: Invoke the architecture skills**
+
+Use `eldraine-system-architect` as the mandatory lead and `eldraine-vault-curator` for evidence and lifecycle safety. Use `eldraine-lorekeeper` whenever the selected source is a faction, Hearth, character, institution, place, culture, or narrative explanation.
+
+- [ ] **Step 2: Extract the architectural evidence classes**
+
+For each selected owner cluster, label relevant statements as `AUTHOR CONSTRAINT`, `GDD FACT`, `STRUCTURAL INFERENCE`, `EMPIRICAL UNKNOWN`, or `CONTENT GAP`. A style impression is not sufficient evidence for migration.
+
+- [ ] **Step 3: Classify each affected heading or paragraph**
+
+Assign exactly one primary responsibility from `LORE / ENTITY`, `MECHANIC`, `SYSTEM`, `INTERFACE REGISTRY`, `CONTENT INSTANCE`, or `PRESENTATION`. Also record whether the current placement is `KEEP`, `DUPLICATE_RULE`, `MIXED_AUTHORITY`, `ORPHAN_CONTEXT`, or `MISSING_OWNER`.
+
+- [ ] **Step 4: Use a render-safe migration index**
+
+Use exactly these short columns:
+
+```markdown
+| Migration | Source | Current role | Decision | Status |
+|---|---|---|---|---|
+```
+
+Below each row, record exact source heading/line, target owner, entity role, mechanic owner, universal system owner when applicable, `does_not_own` boundary, direct consumers, preserved meaning, required skill/handoff, approval, and validation. Do not place multi-link lists in the table.
+
+- [ ] **Step 5: Audit `03_Factions_Societies` first**
+
+For each faction or institution, require this resolution:
+
+1. entity/lore page owns identity, relationships, in-world authority, belief, and history;
+2. `Registry_Faction_Interfaces.md` owns normalized participation records only;
+3. one mechanic/system owner resolves the player interaction, eligibility, state, cost, result, feedback, and failure;
+4. a separate universal system owner exists only for shared lifecycle, state, or values used by multiple mechanics;
+5. every source and interface record states what it does not own.
+
+If any link in the chain is absent, record `MISSING_OWNER` and do not invent a target.
+
+- [ ] **Step 6: Audit `04_` through `08_` by domain order**
+
+Use this order: player lifecycle/entities → combat/survival → economy/loot → gear/inventory → world generation. Keep each migration stream within one owner plus direct dependencies; split circular streams around the smallest shared foundation owner.
+
+- [ ] **Step 7: Route bounded specialist questions**
+
+Use only the matching conditional skill from Required Skill Routing. Record its verdict or evidence in the migration entry; the specialist does not take ownership of the architecture verdict.
+
+- [ ] **Step 8: Stop for approval before migration**
+
+Expected: every actionable row names exact source and target paths and has status `APPROVED_FOR_MIGRATION`. `MISSING_OWNER`, `SOURCE_CONFLICT`, `CANON DRIFT`, or disputed design rows remain unedited.
+
+- [ ] **Step 9: Commit the audit-only migration map**
+
+```powershell
+git add docs/audits/2026-08-11-responsibility-migration-map.md
+git commit -m "docs: map canonical responsibility migrations"
+```
+
+Expected: no canonical page changes in this commit.
+
+### Task 8: Pass B — migrate approved responsibilities
+
+**Files:**
+
+- Modify: only exact source, target owner, interface registry, and direct consumer paths in an `APPROVED_FOR_MIGRATION` entry from `docs/audits/2026-08-11-responsibility-migration-map.md`.
+- Never modify: `02_World_Lore/**` during this task.
+
+**Interfaces:**
+
+- Consumes: one approved migration entry with a complete responsibility chain.
+- Produces: one canonical owner for each rule, a bounded interface relation, a concise negative-authority boundary at the source, and updated direct consumers.
+
+- [ ] **Step 1: Invoke the mandatory migration skills**
+
+Use `eldraine-system-architect` to confirm the approved boundary, `eldraine-gdd-author` for canonical placement and integration, and `eldraine-vault-curator` for the smallest safe repair. Also use `eldraine-lorekeeper` when the source or target contains lore/entity meaning.
+
+- [ ] **Step 2: Report the edit contract before writing**
+
+Name the proposed canonical location, `extend` versus `create` decision, unresolved assumptions, exact affected files, source responsibility, target responsibility, and `does_not_own` boundary.
+
+- [ ] **Step 3: Snapshot every source and target file**
+
+Create a task-specific absolute temporary directory with `New-Item -ItemType Directory` and copy each file with `Copy-Item -LiteralPath` before editing.
+
+- [ ] **Step 4: Move, link, and retire in one bounded migration**
+
+Place the normative rule in the approved mechanic/system owner. Replace the source copy with the smallest entity-facing, mechanic-facing, or presentation-facing statement plus a direct link and negative-authority boundary. Add or update one interface record when an entity participates in the mechanic. Do not leave two normative copies.
+
+- [ ] **Step 5: Preserve the full executable contract**
+
+When the target owns a mechanic, preserve or establish player promise, player loop, state machine, interfaces, edge cases, feedback, and acceptance criteria. Link numeric owners instead of copying values. Do not create missing values during migration.
+
+- [ ] **Step 6: Update direct consumers and incoming links**
+
+Search for the source heading and migrated rule only after owner selection. Update consumers to the new owner; retain entity links where the consumer needs identity or in-world authority rather than runtime resolution.
+
+- [ ] **Step 7: Validate source, target, interface, and consumers**
+
+Run `validate_rewrite.py` for prose-rewritten files, domain-relevant tests, `python tools/test_canonical_guidance.py`, `git diff --check`, and an exact-path diff. A protected difference caused by the approved migration must be named explicitly in the migration entry; unrelated differences block the batch.
+
+- [ ] **Step 8: Commit one migration stream**
+
+Commit as `docs: separate <entity/mechanic/system responsibility>` with only the exact approved paths.
+
+- [ ] **Step 9: Repeat from Step 1 for the next approved entry**
+
+Do not combine unrelated migrations and do not reopen Pass A style cleanup unless the moved text becomes unreadable in its new register.
+
+### Task 9: Repair direct consumers and navigation drift
 
 **Files:**
 
@@ -377,7 +569,7 @@ Use `docs: refine <culture> prose` and include only the named batch paths.
 
 **Interfaces:**
 
-- Consumes: accepted owner rewrites from Tasks 3–6.
+- Consumes: accepted Pass A rewrites from Tasks 3–6 and Pass B migrations from Task 8.
 - Produces: no stale heading links, no duplicate normative summaries, and generated routes consistent with owner metadata.
 
 - [ ] **Step 1: Search incoming links only after selecting the accepted owner**
@@ -398,17 +590,18 @@ Expected: generated diffs correspond only to approved metadata changes. If no me
 
 Run `git diff --check`, inspect exact paths, and commit as `docs: align prose consumers`.
 
-### Task 8: Prove corpus integrity and close the manifest
+### Task 10: Prove corpus integrity and close both manifests
 
 **Files:**
 
 - Modify: `docs/audits/2026-08-11-canonical-prose-refactor-manifest.md`
-- Verify: every canonical file changed by Tasks 2–7.
+- Modify: `docs/audits/2026-08-11-responsibility-migration-map.md`
+- Verify: every canonical file changed by Tasks 2–9.
 
 **Interfaces:**
 
 - Consumes: all accepted batch commits.
-- Produces: a closed audit trail where every candidate is `KEEP`, `REWRITE COMPLETE`, `ROUTED`, or `APPROVAL_REQUIRED`.
+- Produces: a closed audit trail where every prose candidate is `KEEP`, `REWRITE COMPLETE`, `ROUTED`, or `APPROVAL_REQUIRED`, and every responsibility row is `KEEP`, `MIGRATED`, `MISSING_OWNER`, `SOURCE_CONFLICT`, `CANON DRIFT`, or `APPROVAL_REQUIRED`.
 
 - [ ] **Step 1: Re-run all contract tests**
 
@@ -443,7 +636,7 @@ git log --oneline --decorate -12
 
 Expected: no unstaged refactor changes, no generated-file drift, and one reviewable commit per batch.
 
-- [ ] **Step 5: Perform the final curator review**
+- [ ] **Step 5: Perform the final curator and architecture review**
 
 For each changed owner, confirm:
 
@@ -452,12 +645,15 @@ For each changed owner, confirm:
 - removed text carried no unique fact or intentional voice;
 - direct consumers and incoming links remain valid;
 - every `APPROVAL_REQUIRED` row is still unedited.
+- no responsibility migration occurred inside `02_World_Lore`;
+- every migrated `03_` through `08_` rule has one entity/lore placement, at most one interface record per distinct interaction, one mechanic/system owner, and a separate universal system owner only when shared state requires it;
+- every interface role has an explicit `does_not_own` boundary.
 
 - [ ] **Step 6: Commit the closed manifest**
 
 ```powershell
-git add docs/audits/2026-08-11-canonical-prose-refactor-manifest.md
-git commit -m "docs: close canonical prose refactor audit"
+git add docs/audits/2026-08-11-canonical-prose-refactor-manifest.md docs/audits/2026-08-11-responsibility-migration-map.md
+git commit -m "docs: close prose and responsibility refactor audits"
 ```
 
 ## Review Checkpoints
@@ -465,8 +661,10 @@ git commit -m "docs: close canonical prose refactor audit"
 1. **After Task 1:** approve the manifest and exact first batches. No prose edit starts before this gate.
 2. **After Task 3:** review Core Vision and Economy as the vocabulary baseline for all downstream work.
 3. **After Task 5:** inspect topology and table diffs in rendered Obsidian view.
-4. **After every culture batch in Task 6:** review voice and semantic parity; validator output is supporting evidence, not the verdict.
-5. **After Task 8:** approve any unresolved rows as a separate design task; do not hide them in cleanup commits.
+4. **After every culture batch in Task 6:** review voice and semantic parity; validator output is supporting evidence, not the verdict. Confirm that `02_World_Lore` placement did not change.
+5. **After Task 7:** approve the exact responsibility migration map. No Pass B canonical edit starts before this gate.
+6. **After every Task 8 migration:** review entity/interface/mechanic/system ownership and the negative-authority boundary.
+7. **After Task 10:** approve unresolved rows as separate design work; do not hide them in cleanup commits.
 
 ## Definition of Done
 
@@ -474,6 +672,9 @@ git commit -m "docs: close canonical prose refactor audit"
 - No owner, rule, number, formula, link target, heading, table contract, or negative boundary changed without explicit design approval.
 - All supported findings are resolved, routed, or explicitly retained with evidence.
 - Registry repetition is preserved where it encodes stable schema.
+- `02_World_Lore` received prose cleanup only and no responsibility redistribution.
+- Every approved mixed-responsibility finding from `03_` through `08_` was either migrated to one canonical owner or left visibly blocked as `MISSING_OWNER`, `SOURCE_CONFLICT`, `CANON DRIFT`, or `APPROVAL_REQUIRED`.
+- Entity/lore pages, interface records, mechanic responsibilities, and shared system responsibilities have explicit non-overlapping boundaries even when mechanic and system headings share one focused owner page.
 - All tests and `vault_guard.py` pass.
 - The final history is reviewable one owner batch at a time.
 - Contextual materials remain untouched and are not silently treated as canon.
