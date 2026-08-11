@@ -4,8 +4,8 @@ status: active
 index_route: owner
 index_group: core_vision
 index_order: 10
-index_summary: "Задаёт правила и последствия системы «Видение Проекта (Vision & Atmosphere)»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Видение Проекта (Vision & Atmosphere)»."
+index_summary: "Фиксирует тон Элдрейна: уютная безысходность, ответственность за последствия и надежда без обещания безопасного исхода."
+read_when: "Читайте, когда новая система, сцена или награда может изменить тон игры, её обещание компетентности или цену надежды."
 system: core_vision
 tags: [vision, atmosphere, magipunk, aesthetics]
 related_files:

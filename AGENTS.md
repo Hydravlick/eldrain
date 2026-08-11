@@ -50,6 +50,11 @@ Contextual materials may be opened without a separate user request when useful f
 
 The root agent is the Eldrain orchestrator. It explicitly selects skills from `.agents/skills/` when their condition matches; this is intentional orchestration, not passive description matching.
 
+For GDD, lore, vault, prose, and other documentation work, operate in the
+current checkout while preserving unrelated user changes. Use owner-scoped
+review and after-edit structural validation; do not require a secondary
+repository checkout or a code-oriented test-first cycle.
+
 1. For a broad, cross-owner, ownership, lifecycle, uncertainty, or architecture question, start with `eldraine-system-architect`.
 2. For a bounded question, select the matching specialist directly:
    - spatial flow, topology, sectors, routes, or production feasibility → `eldraine-location-designer`;
