@@ -102,6 +102,10 @@ Do not run the Voice pass before the rule is stable. Do not make a lore page sou
 
 Before writing, assign one responsibility to each affected file:
 
+`ONE FILE = ONE PRIMARY RESPONSIBILITY`
+
+This invariant does not mean `ONE CONCEPT = THREE FILES`. Keep a concept in one `SYSTEM` owner when its secondary lore or player-facing explanation is brief. Split only when a responsibility has enough independent substance to deserve its own reading surface; never create a separate file for every semantic layer by default.
+
 - semantic index — статические wikilinks с кратким назначением и условием чтения;
 - universal system — shared rules and state transitions;
 - entity page — identity, in-world context, relations, and the entity's own lived or institutional reality;

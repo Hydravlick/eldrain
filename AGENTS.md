@@ -82,6 +82,22 @@ Expected return: <evidence, table, constraint, or verdict>
 
 Skills remain explicit-only in their metadata. The root agent performs the explicit selection described above; users may also invoke a skill directly with `$skill-name`.
 
+### Corpus Structural Refactor
+
+When the user requests repository cleanup, responsibility separation, AI-slop removal, lore/mechanic/system separation, or canonical corpus refactoring, select `eldraine-vault-curator` in structural refactor mode.
+
+The request itself authorizes sequential edits throughout the named scope. Work owner by owner and finish each owner before advancing:
+
+`read -> classify responsibility -> move/integrate -> rewrite -> remove duplication -> manually verify -> next owner`
+
+Do not replace this workflow with a corpus-wide preliminary audit, scanner-generated candidate lists, migration manifests, a plan-only response, one-line cosmetic repairs, or per-file approval requests.
+
+Use `eldraine-gdd-author` only when a moved block requires integration into an existing canonical owner or creation of a genuinely new focused canonical page. Make the handoff during the current owner's repair; do not postpone the edit into a later project phase.
+
+Use `eldraine-system-architect` only when the documentation exposes a real design contradiction or missing runtime owner. Poor placement by itself is an editorial problem.
+
+The normal result of structural refactoring is changed canonical Markdown, not an audit document.
+
 ## Verification
 
 Run `python3 tools/vault_guard.py` before completing project work.

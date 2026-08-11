@@ -1,7 +1,6 @@
 interface:
   display_name: "Eldraine Vault Curator"
-  short_description: "Audits Eldraine authority, structure, and prose"
-  default_prompt: "Use $eldraine-vault-curator to audit this Eldraine owner page for authority, structure, and prose health."
+  short_description: "Audits and refactors Eldraine corpus structure"
+  default_prompt: "Use $eldraine-vault-curator to repair this Eldraine scope owner by owner without changing accepted canon."
 policy:
   allow_implicit_invocation: false
-
