@@ -32,6 +32,23 @@ Separate:
 - inferred dependency;
 - missing documentation.
 
+## Story-Gameplay Visibility Map
+
+For each changed or major beat, use:
+
+| Story beat | World-state change | Gameplay surface | Observation point | Player interpretation | Intended feeling | Visibility delay | Canonical owner |
+|---|---|---|---|---|---|---|---|
+
+- **Story beat:** the event, choice, reveal, or loss.
+- **World-state change:** the fact that becomes true afterward.
+- **Gameplay surface:** access, service, encounter, route, economy, roster, dialogue, or feedback that changes.
+- **Observation point:** where and through which signal the player notices it.
+- **Player interpretation:** the causal conclusion the game enables.
+- **Visibility delay:** immediate, next hub visit, next raid, later arc, or hidden until a named reveal.
+- **Canonical owner:** the one active page that owns the changed rule or state.
+
+Do not require every story beat to create a new mechanic. Require a gameplay consequence only when the story claims that the world, available action, cost, relationship, or player knowledge has changed.
+
 ## Time Horizons
 
 Check:

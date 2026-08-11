@@ -65,6 +65,31 @@ Use current root-relative Obsidian links, for example:
 
 Validate target paths and headings before adding links.
 
+## Executable Mechanic Contract
+
+Use this section set only when the page owns a mechanic that must be implemented or tested:
+
+- **Player promise:** the concrete experience or competence the mechanic exists to create.
+- **Player loop:** player action -> system response -> feedback -> next decision.
+- **Rule state machine:** precondition, trigger, ordered resolution, and postcondition.
+- **Interfaces:** inputs, outputs, canonical owners, and direct consumers.
+- **Formulas and tuning:** link the owning numeric source; do not duplicate values.
+- **Edge cases:** exact condition and exact outcome.
+- **Acceptance criteria:** observable `GIVEN / WHEN / THEN` results for core rules.
+
+### Behavior versus implementation
+
+The GDD owns observable behavior, player decisions, state transitions, interfaces, feedback, and failure resolution. Code architecture, engine nodes, storage layout, signal buses, and other technical choices belong in implementation documentation or an ADR. Do not remove a design interface merely because its implementation is not yet chosen.
+
+## Four-Pass Drafting
+
+1. **Function pass:** state what decision, rule, or canon claim the section must carry.
+2. **Rule pass:** replace atmosphere that hides actors, conditions, order, values, or outcomes with explicit terms.
+3. **Voice pass:** restore only the approved atmosphere or character voice that carries experience, inference, mystery, or identity.
+4. **Brevity pass:** cut repeated conclusions, decorative contrasts, and examples that add no new case.
+
+Do not run the Voice pass before the rule is stable. Do not make a lore page sound like a system spec or a system page sound like promotional lore.
+
 ## Навигация и контекст
 
 Для обычной GDD-задачи читать `00_Index.md`, `09_Project_Management/Architecture_MVP.md`, целевую каноническую страницу и её прямые зависимости. Следовать границе active corpus из `AGENTS.md`.
