@@ -119,7 +119,7 @@ Do not replace this workflow with a corpus-wide preliminary audit, scanner-gener
 
 The curator directly relocates and integrates established material during structural refactoring.
 
-Use `eldraine-gdd-author` only when the destination requires substantial new canonical writing rather than relocation or editing of established meaning, or when a genuinely new page must be authored beyond the curator's structural repair. Do not invoke `eldraine-gdd-author` for ordinary `MOVE`, `MERGE`, `LINK`, or `DELETE_DUPLICATE` operations. Make any necessary handoff during the current owner's repair; do not postpone it into a later project phase.
+Use `eldraine-gdd-author` only when the destination requires substantial new canonical writing rather than relocation or editing of established meaning, or when a genuinely new page must be authored beyond the curator's structural repair. Do not invoke `eldraine-gdd-author` for ordinary `MOVE`, `MERGE`, `LINK`, or `DELETE_TRUE_DUPLICATE` operations. Make any necessary handoff during the current owner's repair; do not postpone it into a later project phase.
 
 Use `eldraine-system-architect` only when the documentation exposes a real design contradiction or missing runtime owner. Poor placement by itself is an editorial problem.
 

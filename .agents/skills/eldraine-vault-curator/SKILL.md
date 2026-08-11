@@ -39,9 +39,11 @@ Process the corpus **owner by owner**. Complete the current owner's analysis and
 4. Divide its content into semantic responsibility blocks.
 5. Classify each block as `KEEP`, `MOVE`, `ALREADY_OWNED`, `LINK`, `MERGE`,
    `STALE_SUPERSEDED`, `DELETE_TRUE_DUPLICATE`, or `SPLIT_TO_NEW_OWNER`.
-6. Apply the source and destination edits immediately.
-7. Re-read every changed file and verify ownership manually.
-8. Continue to the next owner.
+6. Apply destination edits first for every `MOVE` or split.
+7. Verify destination semantic coverage.
+8. Only then remove, compress, or rewrite the source block.
+9. Re-read every changed file and complete the semantic coverage check.
+10. Continue to the next owner.
 
 Do not create an audit manifest, migration plan, scanner report, prose-candidate inventory, or temporary rewrite document unless the user explicitly asks for one. Do not perform a corpus-wide audit before editing.
 
@@ -213,7 +215,7 @@ Stop only when active sources contain genuinely incompatible game rules or canon
 
 ### AI-Shaped Prose
 
-Do not hunt individual words. While repairing each owner, remove repeated conclusions, abstract announcement paragraphs, fake contrasts, redundant summaries, inflated significance, generic design-language filler, paragraphs about the document rather than the game, and atmosphere with no lore, mechanic, player-experience, or causal function.
+Do not hunt individual words. While repairing each owner, remove repeated conclusions, abstract announcement paragraphs, fake contrasts, redundant summaries, inflated significance, generic design-language filler, paragraphs about the document rather than the game, and atmosphere with no lore, mechanic, player-experience, presentation, design-rationale, or causal function.
 
 Prefer direct statements of actor, condition, action, consequence, and meaning. Preserve useful lore voice, examples, sensory information, and emotional context.
 
@@ -247,11 +249,17 @@ Do not defer semantic-loss repair to a later corpus pass.
 Continue only after:
 
 - the primary responsibility is obvious from the first screen;
-- foreign responsibility has moved or become a contextual link;
+- foreign normative responsibility has moved or become a contextual link;
 - the owner does not duplicate another owner's normative rule;
-- every moved claim exists in its destination;
+- every `MOVE` is already integrated into its destination;
+- every removed or substantially compressed block has a valid semantic-ledger disposition;
+- every `ALREADY_OWNED` and `STALE_SUPERSEDED` entry names an exact active destination;
+- every non-empty `UNIQUE MEANING` still exists in the post-edit corpus;
+- overview, rationale, presentation, player-experience, lore voice, examples and sensory feedback survive when they perform a distinct function;
+- contextual summaries preserve the actual ownership boundaries of their source owners;
+- the source still performs its own primary responsibility instead of becoming accidental navigation;
 - affected links are valid;
-- no accepted meaning was lost.
+- no accepted or otherwise valuable meaning was lost.
 
 Then proceed immediately to the next owner.
 
