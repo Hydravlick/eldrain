@@ -1,6 +1,6 @@
 ---
-type: migration_map
-status: active
+type: migration_record
+status: superseded_contextual
 system: project_management
 date: 2026-07-23
 tags:
@@ -10,20 +10,25 @@ tags:
   - four_layers
 related_files:
   - "[[09_Project_Management/Worldbuilding_Refactor_Roadmap_2026-07-23|Worldbuilding refactor roadmap]]"
-  - "[[RAID_INGRESS_EGRESS_ARCHITECTURE_SPEC|Raid ingress/egress source proposal]]"
-  - "[[BUILDCRAFT_ARCHITECTURE_SPEC|Buildcraft source proposal]]"
-  - "[[T4_APEX_ENDGAME_LOOP_AND_PRODUCT_MODEL_PROPOSAL|T4 Apex source proposal]]"
   - "[[09_Project_Management/Refactor_Unresolved_Registry_2026-07-23|Unresolved registry]]"
 ---
-# Карта миграции канонического рефактора
+# Историческая карта миграции канонического рефактора
 
-> Эта страница владеет только порядком переноса, картой источников и редакторскими ограничениями. Она не владеет runtime-правилами, состояниями, IDs, валидаторами или транзакциями: после миграции их единственными владельцами остаются профильные страницы систем.
+> [!warning] Историческая запись
+> Эта карта не является активным планом исполнения. 2026-08-24 три корневых proposal-документа были проверены по owner-страницам и удалены. Действующие правила принадлежат профильным страницам систем; неутверждённые варианты не становятся каноном только из-за этой записи.
 
 ## Цель и граница
 
-Перенести принятый материал из дорожной карты миростроения, предложений Buildcraft, Raid ingress/egress, supplement и T4 Apex в активные канонические страницы. Перенос не меняет принятые решения и инварианты, не создаёт новые правила и не устраняет противоречия без явного авторского решения.
+Эта запись фиксирует прежний порядок переноса материалов из дорожной карты миростроения и retired Buildcraft, Raid ingress/egress и T4 Apex proposals. Она не владеет runtime-правилами, состояниями, IDs, валидаторами или транзакциями: их единственными владельцами остаются профильные страницы систем.
 
-После полной и проверенной миграции каждый proposal-источник получает `status: superseded` и перестаёт быть источником истины. Неизменяемая [[10_Reference/Source Note — Переосмысление пяти древнейших народов Eldrain — 2026-07-20|исходная авторская заметка]] сохраняется как provenance; она не становится вторым каноническим владельцем правила.
+Неизменяемая [[10_Reference/Source Note — Переосмысление пяти древнейших народов Eldrain — 2026-07-20|исходная авторская заметка]] сохраняется как provenance; она не становится вторым каноническим владельцем правила.
+
+## Итоговая диспозиция удалённых proposal
+
+- **Buildcraft:** актуальные lifecycle, First Return, Tags, Foundlings, Thermos, Double Paradox и Life Closure живут у профильных owners. Упразднённый слой личной истории и спорный Recovery clock не возвращаются.
+- **Raid ingress/egress:** current ingress, egress, Threshold, ReturnManifest, Recovery и Apex contracts живут у focused owners и Raid Interfaces registry. Совместимые правила physical ingress pressure и phase-variant fallbacks перенесены в `Insertion Logic` и `World Topology`.
+- **T4 Apex:** same-Session Apex, Seal/Dawn, full STANDARD return и RECOVERY без manifest живут у Server Lifecycle, Apex, lifecycle и ReturnManifest owners. Buy-to-play и каталог cosmetic — продуктовая гипотеза, не активное правило; Stash уже исключает premium expansion из MVP.
+- **MISSING_OWNER: phase continuity K/W/C.** Отдельная proposal-модель Knowledge/World/Custody continuity не имела active owner или consumer. Она не переносится и не создаёт runtime-правило; для её возможного возвращения нужен отдельный author decision и owner.
 
 ## Семантические слои и порядок чтения
 
@@ -60,8 +65,8 @@ related_files:
 
 | Поток | Исходники | Порядок | Граница переноса |
 |---|---|---:|---|
-| Raid и Apex | `RAID_INGRESS_EGRESS_ARCHITECTURE_SPEC.md`, supplement, `T4_APEX_ENDGAME_LOOP_AND_PRODUCT_MODEL_PROPOSAL.md` | 1 | Сначала общий lifecycle boundary, затем ingress/egress, Seal/Dawn, Apex, extraction, economy и player projection; спорные нормы не мигрируются |
-| Buildcraft | `BUILDCRAFT_ARCHITECTURE_SPEC.md` | 2 | Потребляет уже назначенные Raid/Recovery/Return owners; затем переносит player lifecycle, First Return, roster, tags, Thermos и Double Paradox |
+| Raid и Apex | retired raid/Apex proposals and supplement | 1 | Сначала общий lifecycle boundary, затем ingress/egress, Seal/Dawn, Apex, extraction, economy и player projection; спорные нормы не мигрируются |
+| Buildcraft | retired Buildcraft proposal | 2 | Потребляет уже назначенные Raid/Recovery/Return owners; затем переносит player lifecycle, First Return, roster, tags, Thermos и Double Paradox |
 | Миростроение | Исходная заметка, общая дорожная карта и четыре профильных плана | 3 | Source Note остаётся provenance; внутри потока обязательный порядок: Порог → культурная грамматика → пять культур → город и Очаги → граница лора и механики |
 | Интеграция | Все затронутые владельцы | 4 | Ссылки, registry coverage, `Architecture_MVP`, navigation и audits без создания новой runtime-authority |
 
@@ -114,7 +119,7 @@ related_files:
 - возвращает нарушение писателю; не исправляет его собственной альтернативной архитектурой;
 - запрещает `superseded`, пока активный consumer всё ещё читает proposal или старый owner.
 
-## Очередь исполнительных агентов
+## Историческая очередь исполнения
 
 ### Статус исполнения
 
@@ -122,12 +127,12 @@ related_files:
 |---|---|---|
 | Raid/T4: proposed focused-owner foundation | `complete` | 6 файлов, 21 направленный интерфейс; independent review `APPROVED`; active authority ещё не переключена |
 | Raid/T4: Server Lifecycle и regional service | `complete` | 2 active owner pages; independent review `APPROVED`; legacy claims удалены в bounded scope |
-| Raid/T4: topology, solvency, Threshold и return consumers | `pending` | следующий bounded пакет |
-| Остальные этапы | `pending` | запуск только после приёмки предыдущего владельца |
+| Raid/T4: topology, solvency, Threshold и return consumers | `historical pending` | owner-audit 2026-08-24; эта запись не создаёт нового work item |
+| Остальные этапы | `historical pending` | запуск только по новому авторскому решению |
 
 ### Агент 1 — Raid ingress/egress и T4 Apex
 
-**Источники:** `RAID_INGRESS_EGRESS_ARCHITECTURE_SPEC.md`, `T4_APEX_ENDGAME_LOOP_AND_PRODUCT_MODEL_PROPOSAL.md`.
+**Бывшие источники:** retired raid/Apex proposals.
 
 **Сначала создаёт границы:**
 
@@ -162,7 +167,7 @@ related_files:
 
 ### Агент 2 — Buildcraft
 
-**Источник:** `BUILDCRAFT_ARCHITECTURE_SPEC.md`.
+**Бывший источник:** retired Buildcraft proposal.
 
 **Потребляет без переопределения:** владельцев Presence, RecoveryCase, Raid ingress, Seal/Dawn и ReturnManifest из этапа 1.
 
@@ -178,7 +183,7 @@ related_files:
 - `04_Player_Entities/_Registries/Registry_Double_Paradox_Vectors.md`;
 - `04_Player_Entities/_Matrices/Registry_Double_Paradox_Reviews.md`.
 
-**Расширяет без дублирования Raid owners:** `Lifecycle_Roster`, `Spawn_Logic`, `Tags_System`, `Registry_Tags`, `Trait_Development`, `Shell_Foundlings`, `Combat_Profile_Pipeline`, `Dissonance_System`, `Thermos_System`, Thermos registries, `Two_Paradox_Vector_Matrix`, `00_Synergy_Map`, `MVP_3x3_Design_Contract` и player-facing Core Vision pages.
+**Историческая запись:** данный перечень относится к прошлой миграции; прежний owner личной истории упразднён stable Hub baseline refactor. Актуальные владельцы последствий — lifecycle, Quest, Trace, custody и CityState.
 
 ### Агент 3 — Конвергентный технологический порог
 
@@ -224,11 +229,11 @@ related_files:
 - видимость `MISSING_OWNER`, unresolved decisions и пустого registry coverage;
 - два маршрута чтения: человек понимает сущность без backend, исполнитель реализует механику без толкования лора.
 
-## Принятое решение, ожидающее миграции
+## Исторически принятое решение
 
 | Решение | Статус | Будущие профильные owners | Граница |
 |---|---|---|---|
-| Dawn full return для живого `STANDARD` Presence | `APPROVED / PENDING_MIGRATION` | Pawn lifecycle / LifecycleResolver; Extraction/Return; Inventory/Custody; player-facing extraction flow | На Dawn стандартная Пешка возвращается с полным eligible физически удерживаемым custody через единственный ReturnManifest. `RECOVERY` получает только `RECOVERED`, без cargo, лута и стандартной награды. |
+| Dawn full return для живого `STANDARD` Presence | `active` | Pawn lifecycle / LifecycleResolver; Extraction/Return; Inventory/Custody; player-facing extraction flow | На Dawn стандартная Пешка возвращается с полным eligible физически удерживаемым custody через единственный ReturnManifest. `RECOVERY` получает только `RECOVERED`, без cargo, лута и стандартной награды. |
 
 Это решение не является конфликтом. Его player-facing проекция объясняет переживание рассвета и итог возвращения простыми словами; точные owners, доказательства, порядок арбитража и failure handling живут только у профильных систем.
 
@@ -236,7 +241,7 @@ related_files:
 
 - Каждый принятый фрагмент из источников живёт ровно у одного канонического owner.
 - Порядок чтения и терминологические границы выдержаны во всех затронутых страницах.
-- Proposal-источники имеют `status: superseded` только после проверки их карты переноса.
+- Retired proposal-источники удалены только после owner-scoped проверки их карты переноса.
 - Неизменяемая авторская заметка сохранена как provenance.
 - Все найденные противоречия перечислены отдельно и не замаскированы редактурой.
 - Навигация и ссылки ведут в действующий канон, а не в superseded proposal.

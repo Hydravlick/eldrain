@@ -102,7 +102,7 @@ related_files:
 [player_verb:: learn what the Ward has manifested]
 [result_family:: civic acknowledgement of an already revealed personal property]
 [mechanic_owner_ref:: [[04_Player_Entities/Tags_System|Personal Tags]]]
-[dependency_refs:: [[04_Player_Entities/Trait_Development|Chronicle]]]
+[dependency_refs:: [[04_Player_Entities/Lifecycle_Roster|Lifecycle Roster]]]
 [presentation_ref:: [[03_Factions_Societies/Lore/The_First_Reception|The First Reception]]]
 [minimum_boundary:: immutable revealed TagID and readable player-facing result]
 [does_not_own:: First Return predicate, TagID assignment, Dawn settlement, tag slot accounting or combat resolution]

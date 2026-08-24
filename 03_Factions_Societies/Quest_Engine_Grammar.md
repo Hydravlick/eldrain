@@ -9,13 +9,12 @@ tags:
   - recursion
   - ui
   - qol
-  - chronicle
   - foundling
 related_files:
   - "[[03_Factions_Societies/Quest_Engine|Quest_Engine]]"
   - "[[03_Factions_Societies/Reputation_Rules|Reputation_Rules]]"
   - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
-  - "[[04_Player_Entities/Trait_Development|Trait_Development]]"
+  - "[[04_Player_Entities/Tags_System|Tags_System]]"
   - "[[04_Player_Entities/Shell_Foundlings|Shell_Foundlings]]"
   - "[[04_Player_Entities/Lifecycle_Roster|Lifecycle_Roster]]"
   - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
@@ -32,6 +31,24 @@ related_files:
 3. **Адрес:** результат должен попасть к Очагу, Столу, мастеру или внешнему пину текущего Stable-цикла.
 
 Движок не выдаёт абстрактную награду “за активность”. Он показывает, кто попросил, какой метод допустим, куда уйдёт добыча и кто будет задет.
+
+## 1.1 Запись и scope контракта
+
+Каждая запись контракта содержит:
+
+```text
+contract_id
+scope: hub_only | field
+issuer_ref
+question
+permitted_methods[]
+affected_party_ref
+state
+reward_budget
+post_resolution_owner_ref
+```
+
+`hub_only` исполняется в Хабе: Facility или улица могут показать вход в него, но запись, переходы и награда остаются у Quest Engine. `field` дополнительно меняет минимум два решения из route, cargo, method, conflict party и exit timing. Обычная адресная сделка не получает `contract_id`, цели или reward budget; она остаётся `RecipeTransaction` своего материального владельца.
 
 ## 2. Слой А: лента контрактов
 
@@ -58,7 +75,7 @@ related_files:
 
 ### Origin Continuation в ленте
 
-Грамматика **потребляет**, но не создаёт Origin Continuation. Источник — reveal и послерейдовый исход в [[04_Player_Entities/Shell_Foundlings|Shell_Foundlings]]; правила Origin tag принадлежат [[04_Player_Entities/Tags_System|Tags_System]], а память о нём — [[04_Player_Entities/Trait_Development|Chronicle]]. Quest-система не выдаёт roster access, не определяет собственность на человека и не меняет общий предел трёх Personal Tags.
+Грамматика **потребляет**, но не создаёт Origin Continuation. Источник — reveal и послерейдовый исход в [[04_Player_Entities/Shell_Foundlings|Shell_Foundlings]]; правила Origin tag принадлежат [[04_Player_Entities/Tags_System|Tags_System]]. Quest-система не выдаёт roster access, не определяет собственность на человека и не меняет общий предел трёх Personal Tags.
 
 Минимальная входная запись:
 
@@ -80,7 +97,7 @@ participant_rule: authored_person | any_roster_pawn
 3. Награда выбирается внутри обычного contract budget; имя и авторская уникальность не дают второй пакет ценности.
 4. Цепочка не завершается от хранения карты, хода времени в Хабе или пассивной работы города.
 5. Safe handoff может перевести запись в `redirected` или `closed`, но не продаёт человека и не создаёт новый roll.
-6. Исход может оставить Residue в Origin, отношении, адресе или обязательстве. Он не добавляет и не развивает личный тег, stat, hero-kit output, arsenal, slot или module capacity.
+6. Исход может оставить Residue в Origin, отношении, адресе или обязательстве. Он не добавляет и не развивает личный тег, stat, output полевого профиля, arsenal, slot или module capacity.
 7. `Story` становится `Emergency` только из отдельного наблюдаемого аварийного события; личная важность сама по себе не создаёт короткий timer.
 
 ## 3. Слой Б: грамматика расследований

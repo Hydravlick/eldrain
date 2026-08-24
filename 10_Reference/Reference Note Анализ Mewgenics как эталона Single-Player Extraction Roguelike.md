@@ -5,7 +5,6 @@ system: reference_notes
 tags: [reference, mewgenics, tags, traits, roster, inheritance, roguelike, extraction]
 related_files:
   - "[[04_Player_Entities/Tags_System|Tags_System]]"
-  - "[[04_Player_Entities/Trait_Development|Trait_Development]]"
   - "[[04_Player_Entities/_Registries/Registry_Tags|Registry_Tags]]"
   - "[[04_Player_Entities/Shell_Foundlings|Shell_Foundlings]]"
   - "[[04_Player_Entities/Lifecycle_Roster|Lifecycle_Roster]]"

@@ -86,7 +86,7 @@ Assembly публикует revisioned `PatternCoverageBinding`; [[05_Combat_Sur
 ## 4. Invariants and acceptance fixtures
 
 - OR patterns and AND claims are distinct: wrists are alternatives; a yoke with shoulders+spine is one all-required pattern.
-- A support module pays its load before its delta helps; tags/Chronicle/status/consumables/self or mutual loops fail eligibility.
+- A support module pays its load before its delta helps; tags/status/consumables/self or mutual loops fail eligibility.
 - A hybrid may share physical mass but cannot erase separate service or same-raid effect debt.
 - Unknown topology, effect owner/tell/failure, ItemID reservation or installability blocks commit.
 - Raid PaperDoll is read-only; disabled module never opens field respec.

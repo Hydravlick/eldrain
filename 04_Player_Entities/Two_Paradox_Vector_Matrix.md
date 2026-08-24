@@ -7,7 +7,7 @@ related_files:
   - "[[04_Player_Entities/_Matrices/00_Synergy_Map|Карта Двойного Парадокса и authored-взаимодействий]]"
   - "[[04_Player_Entities/_Registries/Registry_Races|Реестр рас]]"
   - "[[04_Player_Entities/_Registries/Registry_Specs|Реестр практик]]"
-  - "[[04_Player_Entities/_Registries/Registry_Combos|Реестр hero-kit]]"
+  - "[[04_Player_Entities/_Registries/Registry_Combos|Реестр полевых профилей]]"
   - "[[04_Player_Entities/MVP_3x3_Design_Contract|Контракт MVP-матрицы 3×3]]"
 ---
 # Матрица Двойного Парадокса
@@ -73,7 +73,7 @@ RawPressure(A, B) = число directed dominance A.vectors -> B.vectors
 NetPressure(A, B) = max(0, RawPressure(A, B) - RawPressure(B, A))
 ```
 
-Если оба родителя имеют один вектор, пересечение получает `mono_vector_fusion`: один активный вектор и полный набор входящих слабостей этого вектора. Это диагностирует концентрацию, но не усиливает итоговый hero-kit автоматически.
+Если оба родителя имеют один вектор, пересечение получает `mono_vector_fusion`: один активный вектор и полный набор входящих слабостей этого вектора. Это диагностирует концентрацию, но не усиливает итоговый полевой профиль автоматически.
 
 ## 3. Что карта имеет право утверждать
 
@@ -89,7 +89,7 @@ NetPressure(A, B) = max(0, RawPressure(A, B) - RawPressure(B, A))
 
 ## 4. Authored-подтверждение
 
-Полный hero-kit всё ещё проектируется отдельно и владеет P/Q/E, арсеналом, модулями, decision signature, Exposure и `counterplay_now`. Второй слой [[04_Player_Entities/_Matrices/00_Synergy_Map|Synergy Map]] проверяет, как формальная связь реализована или опровергнута в фактической сцене.
+Полный полевой профиль всё ещё проектируется отдельно и владеет P/Q/E, арсеналом, модулями, decision signature, Exposure и `counterplay_now`. Второй слой [[04_Player_Entities/_Matrices/00_Synergy_Map|Synergy Map]] проверяет, как формальная связь реализована или опровергнута в фактической сцене.
 
 ```text
 структурное ребро Двойного Парадокса

@@ -21,7 +21,7 @@ related_files:
 | Interface ID | Provider | Role | Consumer | Owner | Result / failure | Does not own |
 |---|---|---|---|---|---|---|
 | `THR-IF-001-BODY-ENVELOPE` | [[04_Player_Entities/Body_Morphology_Contract|Body Morphology]] | PROVIDER | Assembly Resolver | `BODY_MORPHOLOGY` | immutable `MorphologySnapshot@revision`; absent → no FitQuote, blocked | refit/topology/service |
-| `THR-IF-002-BASE-SERVICE` | [[04_Player_Entities/_Registries/Registry_Combos|full hero-kit]] | PROVIDER | Assembly Resolver | Registry_Combos authored hero-kit | BaseServiceCapacity; absent family → declared unavailable | support delta/final legality |
+| `THR-IF-002-BASE-SERVICE` | [[04_Player_Entities/_Registries/Registry_Combos|full field profile]] | PROVIDER | Assembly Resolver | Registry_Combos authored field profile | BaseServiceCapacity; absent family → declared unavailable | support delta/final legality |
 | `THR-IF-003-MODEL-DEFINITION` | [[07_Gear_Inventory/_Registries/Registry_Thermoses|Thermos Model Registry]] | PROVIDER | Assembly Resolver | `THERMOS_MODEL_REGISTRY` | envelope/nodes/model delta; incomplete → blocked_topology | instance state/effects |
 | `THR-IF-004-MODULE-DEFINITION` | [[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Thermos Module Registry]] | PROVIDER | Assembly Resolver | `THERMOS_MODULE_REGISTRY` | patterns/load/effects; missing field → blocked_calibration | ItemID/active state |
 | `THR-IF-005-ITEMID-RESERVATION` | [[07_Gear_Inventory/Inventory_Architecture|Inventory Custody]] | PROVIDER | Assembly Resolver | `INVENTORY_CUSTODY` | unique prepare/atomic swap; duplicate → commit fails untouched | draft ownership/effect legality |

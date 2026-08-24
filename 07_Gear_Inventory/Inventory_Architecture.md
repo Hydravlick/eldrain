@@ -24,7 +24,7 @@ related_files:
 # Механика: Архитектура Инвентаря (Mass & Access)
 
 ## 1. Базовый Принцип
-Инвентарь строится на гибридной системе, где баланс задают **Вес (Weight)**, **Доступность (Access)** и занятый **Back Slot**. Вес сравнивается с локальным телесным `SustainedCarryLimit` конкретного hero-kit и обвязки; Ready Access и Back Slot принадлежат инвентарю и не выводятся из общего рейтинга Пешки.
+Инвентарь строится на гибридной системе, где баланс задают **Вес (Weight)**, **Доступность (Access)** и занятый **Back Slot**. Вес сравнивается с локальным телесным `SustainedCarryLimit` конкретного полевого профиля и обвязки; Ready Access и Back Slot принадлежат инвентарю и не выводятся из общего рейтинга Пешки.
 
 * **Единица измерения:** Килограмм (kg).
 * **Визуализация:** Список (List View) с иконками.
@@ -61,12 +61,16 @@ related_files:
 
 `INVENTORY_CUSTODY` единолично владеет существованием, текущим владельцем/контейнером и reservation-state каждого физического `ItemID`. [[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly]] решает законность монтажа, но не может клонировать, самовольно перемещать либо считать свободным предмет, которого нет в подтверждённом custody snapshot.
 
+### Обычная account custody
+
+Каждый извлечённый не-Welfare `ItemID` возвращается через [[06_Economy_Loot/Return_Manifest_Contract|Return Manifest]] в общий account путь custody. У обычного предмета нет состояния «у Пешки до будущего адреса», личной находки, release-to-bank или скрытой очереди применимости. Фитинг может временно ограничивать использование совместимостью, но не создаёт личную собственность: после законного снятия ItemID снова доступен совместимой Ready-Пешке из общего Схрона.
+
 ```yaml
 ItemCustodySnapshot:
   item_id: ItemID
   item_definition_id: DefinitionID
   custody_revision: Revision
-  current_container: StashID | AssemblyID | RaidEntityID | WorldEntityID
+  current_container: SharedStashID | AssemblyID | RaidEntityID | WorldEntityID
   condition_revision: Revision
   reservation_state: FREE | PREPARED(ReservationID) | COMMITTED(AssemblyID)
 ```
@@ -86,7 +90,7 @@ ItemCustodySnapshot:
    - завершает reservation.
 6. Любой отказ до commit оставляет прежнюю сборку и custody без частичного монтажа. После подтверждённого commit восстановление после сбоя читает durable journal, а не откатывает предметы в два места.
 
-Один `ItemID` не может одновременно находиться в двух reservations, сборках либо контейнерах. Повреждение меняет `condition_revision`, но не создаёт новый предмет.
+Один `ItemID` не может одновременно находиться в двух reservations, сборках либо контейнерах. Повреждение меняет `condition_revision`, но не создаёт новый предмет. `AssemblyID` фиксирует физическую сборку, а не личный кошелёк Пешки.
 
 ### Preset и ghost plan
 
