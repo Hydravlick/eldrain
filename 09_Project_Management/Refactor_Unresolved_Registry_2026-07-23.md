@@ -9,8 +9,6 @@ tags:
   - decision_registry
 related_files:
   - "[[09_Project_Management/Canonical_Refactor_Migration_Map_2026-07-23|Migration map]]"
-  - "[[BUILDCRAFT_ARCHITECTURE_SPEC|Buildcraft source proposal]]"
-  - "[[T4_APEX_ENDGAME_LOOP_AND_PRODUCT_MODEL_PROPOSAL|T4 Apex source proposal]]"
 ---
 # Реестр неразрешённых расхождений рефактора
 
@@ -27,12 +25,12 @@ related_files:
 
 | ID | Статус | Конкурирующие утверждения | Затронутые owners | Требуется решение |
 |---|---|---|---|---|
-| `UR-001` | `unresolved derived decision` | Buildcraft §5.3: First Return раскрывается только после самостоятельного обычного выхода через `NormalThreshold`; T4 Apex §«Смысл за пределами добычи»: `FIRST_FULL_RETURN_COMPLETED` раскрывается через `NORMAL_THRESHOLD` **или** `DAWN`. | Player lifecycle, Tags, Trait Development, Chronicle, player-facing return flow | Должен ли Dawn раскрывать заранее назначенный First Return / TagID, или Dawn считается только return outcome без раскрытия? |
-| `UR-002` | `unresolved lifecycle conflict` | Buildcraft §10.2/§10.5: offline pending timer отсутствует, а активный Recovery clock начинается после валидного `BreachCommitted`; Raid §15: `RecoveryCase.expires_at` абсолютен с момента создания Case, действует в `PENDING/SEARCHING/BOUND/IN_RECOVERY` и не паузится. | Last Thread, Lifecycle Roster, Recovery Lifecycle, Raid ingress, UI projection | Истекает ли право Recovery, пока система ищет публичный сектор, либо смертельный clock начинается только после появления физической Recovery Presence? |
-| `UR-003` | `unresolved closure trigger` | Buildcraft §11: closure arc разрешается через обычный `NormalThreshold`; T4 Apex §«Смысл за пределами добычи»: authored `LifeClosure` может принять `DAWN_RETURN`. | Life Closure, Pawn lifecycle, Tags, Chronicle, Dawn settlement | Может ли Dawn завершать authored closure arc, либо Closure требует отдельного обычного возвращения? |
+| `UR-001` | `unresolved derived decision` | First Return раскрывается только после самостоятельного обычного выхода через `NormalThreshold`; альтернативная T4-гипотеза допускала `DAWN`. | Player lifecycle, Tags, player-facing return flow | Должен ли Dawn раскрывать заранее назначенный First Return / TagID, или Dawn считается только return outcome без раскрытия? |
+| `UR-002` | `unresolved lifecycle conflict` | Одна retired personal-lifecycle proposal не запускала offline pending timer до валидного `BreachCommitted`; другая retired raid proposal делала `RecoveryCase.expires_at` абсолютным с момента создания Case, включая `PENDING/SEARCHING/BOUND/IN_RECOVERY`. | Last Thread, Lifecycle Roster, Recovery Lifecycle, Raid ingress, UI projection | Истекает ли право Recovery, пока система ищет публичный сектор, либо смертельный clock начинается только после появления физической Recovery Presence? |
+| `UR-003` | `unresolved closure trigger` | Одна гипотеза разрешала closure arc только через обычный `NormalThreshold`; другая допускала `DAWN_RETURN`. | Life Closure, Pawn lifecycle, Tags, Dawn settlement | Может ли Dawn завершать authored closure arc, либо Closure требует отдельного обычного возвращения? |
 
 ## Решения вне реестра
 
-`Dawn full return` имеет статус `APPROVED / PENDING_MIGRATION` в [[09_Project_Management/Canonical_Refactor_Migration_Map_2026-07-23|migration map]]. Это не открытое расхождение и не должно добавляться в данный реестр.
+`Dawn full return` уже живёт у [[04_Player_Entities/Lifecycle_Resolver|Lifecycle Resolver]] и [[06_Economy_Loot/Return_Manifest_Contract|Return Manifest Contract]]. Это не открытое расхождение и не должно добавляться в данный реестр.
 
 Recovery, которая имеет живую неистёкшую Presence на Dawn, разрешается как `RECOVERED` без cargo, manifest и стандартной награды; KIA, lethal collapse и истечение Case имеют приоритет. Это принятое правило Raid/T4, а не право враждебного игрока или отдельный вариант Buildcraft. Открытым в `UR-002` остаётся только начало и течение самого Case clock.

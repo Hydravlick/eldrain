@@ -34,9 +34,9 @@ Definition описывает тип вещи; instance — реальную в�
 
 | Вопрос | Единственный owner | Термос передаёт | Не делает |
 |---|---|---|---|
-| Fit | [[07_Gear_Inventory/Thermos_Assembly|Assembly Resolver]] | body/model/refit inputs | не меняет Body, hero-kit или tag |
+| Fit | [[07_Gear_Inventory/Thermos_Assembly|Assembly Resolver]] | body/model/refit inputs | не меняет Body, полевой профиль или Personal Tag |
 | Topology | Assembly Resolver | mount patterns и node claims | не выводит effect из позиции |
-| Service legality | Assembly Resolver | authored BaseServiceCapacity и service load | не создаёт capacity из tag/Chronicle/status/consumable |
+| Service legality | Assembly Resolver | authored BaseServiceCapacity и service load | не создаёт capacity из tag/status/consumable |
 | Effect policy | [[04_Player_Entities/_Registries/Registry_Parameter_Contracts|Parameter Contract owner]] | modifier request + intrinsic debt | не задаёт priority/floor/cap |
 | Physical mass | [[07_Gear_Inventory/Physical_Weight|Physical Weight]] | instances и base mass | не решает fit/topology/service |
 | Dissonance | [[05_Combat_Survival/Dissonance_System|Dissonance System]] | persistent signature/contributor rule | не создаёт второй Pulse |
@@ -46,10 +46,10 @@ Definition описывает тип вещи; instance — реальную в�
 
 ## 3. Шесть service families
 
-`plate`, `optic`, `seal`, `conduit`, `rig`, `weave` называют обслуживание, а не эффект. `BaseServiceCapacity(hero-kit, family)` — authored поле полного hero-kit; оно не выводится из Race/Spec и не является XP.
+`plate`, `optic`, `seal`, `conduit`, `rig`, `weave` называют обслуживание, а не эффект. `BaseServiceCapacity(HeroKitID, family)` — authored поле полного полевого профиля; оно не выводится из Race/Spec и не является XP.
 
 ```text
-Base(family) = BaseServiceCapacity(hero-kit, family)
+Base(family) = BaseServiceCapacity(HeroKitID, family)
 SupportLoad(family) = sum(service_load всех support-source modules по family)
 SupportSourcesEligible iff SupportLoad(family) <= Base(family) для каждого family
 FinalServiceCapacity = Base + ThermosModel.base_service_support_delta
@@ -58,7 +58,7 @@ UsedServiceCapacity = sum(service_load ВСЕХ installed modules, включа�
 AssemblyValid iff SupportSourcesEligible AND UsedServiceCapacity <= FinalServiceCapacity
 ```
 
-Support-source сначала должен поместиться в authored Base; его delta не финансирует его установку. Personal Tags, Chronicle, временный status, расходник, self-funding module и взаимно включающаяся support-цепочка не добавляют capacity. Hybrid занимает topology один раз, но платит `service_load` каждому работающему family.
+Support-source сначала должен поместиться в authored Base; его delta не финансирует его установку. Personal Tags, временный status, расходник, self-funding module и взаимно включающаяся support-цепочка не добавляют capacity. Hybrid занимает topology один раз, но платит `service_load` каждому работающему family.
 
 ## 4. Effect contract и hybrid atomicity
 
@@ -78,7 +78,7 @@ failure_state: declared_failure
 
 ## 5. Fit, lock и disclosure
 
-Fit возвращает только `compatible`, `refit_required` или `incompatible`. Refit выполняет Hub professional и создаёт `fit_revision`; он не меняет Body, hero-kit, Personal Tags или BaseServiceCapacity.
+Fit возвращает только `compatible`, `refit_required` или `incompatible`. Refit выполняет Hub professional и создаёт `fit_revision`; он не меняет Body, полевой профиль, Personal Tags или BaseServiceCapacity.
 
 До commit игрок видит: (1) silhouette/patterns/service/exchanges; (2) один resolver-pass со всеми ошибками; (3) snapshot покрытия, массы, Диссонанса, функций и ближайшей уязвимости. В рейде остаётся consequence-only reading: установлено/повреждено/отключено и действующие последствия. Remount, refit и interface switch запрещены после Deploy.
 

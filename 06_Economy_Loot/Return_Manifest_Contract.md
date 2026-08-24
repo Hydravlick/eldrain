@@ -29,7 +29,7 @@ related_files:
 
 ## Responsibility
 
-`EXTRACTION_RETURN_RESOLVER` owns one `ReturnManifest` over the full eligible carried custody graph, including durable preparation, the item-transfer decision/projection, world tombstones, and reconciliation.
+`EXTRACTION_RETURN_RESOLVER` owns one `ReturnManifest` over the full eligible carried custody graph, including durable preparation, the item-transfer decision/projection, world tombstones, and reconciliation. Every extracted non-Welfare `ItemID` settles atomically into the shared account custody path defined by [[07_Gear_Inventory/Inventory_Architecture|Inventory Architecture]] and [[07_Gear_Inventory/Stash_Architecture|Stash Architecture]].
 
 It does **not** decide whether a Pawn survives, whether a Threshold is reached, whether a Sync is successful, which items are eligible in the global custody graph, Seal/Dawn order, recovery resolution, personal contract settlement, or loot generation. It consumes those facts from their owners.
 
@@ -41,7 +41,7 @@ Every node of the carried graph must pass the immutable eligibility policy. The 
 
 ## Normal Threshold
 
-For `NORMAL_THRESHOLD`, the resolver consumes exactly one committed `SyncLease` proof and owns the single `COMMIT|ABORT` item decision. A commit makes the custody transfer and tombstones logically effective together under the resolver's transaction key. This is physical return only; personal contracts remain a separate consumer of their declared trigger policy.
+For `NORMAL_THRESHOLD`, the resolver consumes exactly one committed `SyncLease` proof and owns the single `COMMIT|ABORT` item decision. A commit makes the custody transfer and tombstones logically effective together under the resolver's transaction key. This is physical return only; Quest Engine remains a separate consumer of its declared trigger policy. The resolver creates no Pawn-held ordinary cargo, personal-find state, future Facility match or Bank conversion step.
 
 ## STANDARD Dawn
 
@@ -55,3 +55,4 @@ After that decision, the manifest may only project `COMMIT_DERIVED_FROM_STANDARD
 - Egress solvency admits a pre-Seal envelope; it is not manifest proof.
 - Recovery resolution and Apex victory are distinct lifecycle outcomes and cannot deliver items.
 - [[04_Player_Entities/Lifecycle_Resolver|Lifecycle Resolver]] owns the survival/settlement decision; this contract owns only its derived physical delivery.
+- Welfare loan is the sole explicit non-common exception: it is recalled by its Spawn/Welfare lifecycle and never becomes returnable ordinary loot.

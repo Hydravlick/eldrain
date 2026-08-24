@@ -56,7 +56,7 @@ refit_required
 incompatible
 ```
 
-Подгонка создаёт либо заменяет `FitRecord` конкретного экземпляра Термоса. Она не меняет `MorphologySnapshot`, Race, hero-kit, Personal Tags, Chronicle, P/Q/E или `BaseServiceCapacity`.
+Подгонка создаёт либо заменяет `FitRecord` конкретного экземпляра Термоса. Она не меняет `MorphologySnapshot`, Race, полевой профиль, Personal Tags, P/Q/E или `BaseServiceCapacity`.
 
 ## 3. Изменение тела
 

@@ -8,6 +8,9 @@ index_summary: "Задаёт правила и последствия систе
 read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Топология Мира: Паттерн \"Цветок\"»."
 system: world_map
 tags: [topology, graph, hierarchy]
+related_files:
+  - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]]"
+  - "[[08_World_Generation/Generation/20_Egress_Solvency|Egress Solvency]]"
 ---
 # Топология Мира: Паттерн "Цветок"
 
@@ -27,3 +30,11 @@ tags: [topology, graph, hierarchy]
 * **Ядро (Kernel):** Внутреннее наполнение (здания, лут). Генерируется часто и хаотично (WFC).
 
 > *Логика:* Порт — это два фиксированных корня и контролируемые граничные сокеты, между которыми строится процедурное Ядро. Физическая Дверь находится за границей этого Ядра.
+
+## 3. Runtime-варианты фаз
+
+Каждая фазовая перестройка использует конечный заранее authored набор совместимых вариантов, а не произвольную runtime-деформацию. Для каждого варианта до публикации существует `StaticRevisionVariantCertificate`: он связывает `PhaseRevision`, topology hash и допустимый runtime profile. `JOINABLE_EXTRACTION` подтверждает пригодную для обычного входа и выхода геометрию; `SEALED_APEX` подтверждает только выживание уже присутствующего cohort и не открывает ingress или обычный egress.
+
+`SERVER_LIFECYCLE` выбирает вариант только на phase barrier после снимка текущей occupancy. Набор обязан содержать primary-вариант, безопасные для занятой геометрии fallback-варианты и обязательный `NO_SPATIAL_DELTA`: если ни одна перестройка не сохраняет тела, collision и достижимость, геометрия остаётся прежней, а новая фаза применяет лишь свои authored rules.
+
+Фаза не создаёт player-specific geometry, принудительный push, micro-teleport, отключение collision или безопасную relocation. Fallback сравнивается только с вариантами того же runtime profile по материальным маршрутам, угрозе, целям, наградам и цене; он не обещает равенства между T3 и Apex.

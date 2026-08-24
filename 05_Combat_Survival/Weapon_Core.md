@@ -110,12 +110,12 @@ related_files:
 
 | Владелец | `owned_parameters` | Граница владения |
 |:---|:---|:---|
-| `FrameID.NativeAction` | геометрия атаки, `charge_time`, базовая отдача, Bloom, Heat, Commitment и Recovery | это базовый gunfeel Frame; P/Q/E, trait и биография его не переписывают |
+| `FrameID.NativeAction` | геометрия атаки, `charge_time`, базовая отдача, Bloom, Heat, Commitment и Recovery | это базовый gunfeel Frame; P/Q/E, Personal Tag и биография его не переписывают |
 | `BatteryID` | `charge_count`, стабильность пакета, доступный режим импульса и собственный Pulse | батарея не владеет попаданием, точностью или реакцией цели |
 | `BodyID` | конкретная capability/vulnerability, текущая травма и возможность исполнить названный хват или стойку | тело не даёт общий множитель урона, точности или защиты |
 | `PawnID.PersonalTagID` | один `mastery_step` названного Frame и одна видимая mastery-expression | не обходит несовместимость тела, не влияет на другие Frame и не создаёт `prof 4` |
 | `InventoryOwner` | вес, занятые слоты, Ready Access и физическая доступность батареи | переносимость не меняет параметры выстрела |
-| `HeroKitID.ActionID` | собственные параметры authored-P/Q/E комбинации `Race × Spec` | hero-kit может создать окно для оружия, но не становится вторым владельцем gunfeel Frame |
+| `HeroKitID.ActionID` | собственные параметры authored-P/Q/E комбинации `Race × Spec` | полевой профиль может создать окно для оружия, но не становится вторым владельцем gunfeel Frame |
 
 Локальная связь записывается только как `source.property -> owner.parameter` в `downstream_edges`. Один edge меняет один наблюдаемый результат, не передаёт владение источнику и называет встречную цену в той же сцене: дополнительный Heat, более длинный Commitment, занятые руки, Pulse, потерю угла или Recovery. Нельзя одним edge одновременно улучшить результат, частоту и безопасность.
 

@@ -11,7 +11,6 @@ registry_type: personal_tags
 tags: [database, personal_tags, mastery, mutations, relics]
 related_files:
   - "[[04_Player_Entities/Tags_System|Personal Tags]]"
-  - "[[04_Player_Entities/Trait_Development|Chronicle]]"
   - "[[04_Player_Entities/Proficiency_Arsenal|Arsenal and Proficiency]]"
   - "[[04_Player_Entities/Shell_Foundlings|Найдёныши]]"
   - "[[05_Combat_Survival/_Registries/Registry_StatusEffects|Registry Status Effects]]"
@@ -19,7 +18,7 @@ related_files:
 ---
 # Реестр личных тегов
 
-> Реестр хранит механические свойства конкретных Пешек. Биография, Chronicle и Origin Continuation живут рядом, но не маскируются под perks.
+> Реестр хранит механические свойства конкретных Пешек. Биография не образует отдельного runtime-слоя, а Origin Continuation остаётся контрактом Quest Engine; ни то ни другое не маскируется под perks.
 
 ## Правила реестра
 
@@ -224,7 +223,7 @@ related_files:
 
 ## Исключённый старый шаблон
 
-`Trouble -> Leverage -> Residue`, личная цель, адрес, свидетель, спорный груз и Origin Continuation не являются механическими тегами. Они остаются Chronicle/Quest-содержанием. Прототипы, в которых тег фактически создавал квест или цельную активную способность, удалены из этого реестра.
+`Trouble -> Leverage -> Residue`, личная цель, адрес, свидетель, спорный груз и Origin Continuation не являются механическими тегами. Они остаются Quest-, Trace-, custody- или lifecycle-содержанием у своих владельцев. Прототипы, в которых тег фактически создавал квест или цельную активную способность, удалены из этого реестра.
 
 ## Проверка записи
 

@@ -153,7 +153,7 @@ Q и E имеют самостоятельную ситуативную ценн
 - устройство перенаправляет, глушит или стабилизирует только названный импульс;
 - считанный сигнал превращает конкретный скрытый подход в наблюдаемую угрозу.
 
-Hero-kit публикует `creates_window`, `exploits_window`, `mitigates_window`, `exposure_channels` и `counterplay_now`. Их общий язык хранится в [[04_Player_Entities/Ability_Synergy|Ability Synergy]] и [[04_Player_Entities/_Matrices/00_Synergy_Map|карте решений]].
+Полевой профиль публикует `creates_window`, `exploits_window`, `mitigates_window`, `exposure_channels` и `counterplay_now`. Их общий язык хранится в [[04_Player_Entities/Ability_Synergy|Ability Synergy]] и [[04_Player_Entities/_Matrices/00_Synergy_Map|карте решений]].
 
 ## 7. Восемь предохранителей
 

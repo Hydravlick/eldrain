@@ -1,6 +1,6 @@
 ---
-type: design_proposal
-status: proposal
+type: contextual_design_proposal
+status: superseded_contextual
 system: project_management
 tags:
   - hub
@@ -15,18 +15,16 @@ related_files:
   - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub Map Table]]"
   - "[[08_World_Generation/Hub/02_Hub_Services_Interaction|Hub Services Interaction]]"
   - "[[08_World_Generation/Hub/03_Hub_Map_Interaction|Hub Map Interaction]]"
-  - "[[04_Player_Entities/Pawn_Errands|Pawn Errands]]"
   - "[[04_Player_Entities/Lifecycle_Roster|Lifecycle Roster]]"
-  - "[[04_Player_Entities/Trait_Development|Chronicle]]"
+  - "[[04_Player_Entities/Tags_System|Tags System]]"
   - "[[04_Player_Entities/Grimoire_Truth_Triangulation|Grimoire Truth Triangulation]]"
   - "[[03_Factions_Societies/Quest_Engine|Quest Engine]]"
-  - "[[09_Project_Management/Pawn_Gameplay_Silhouette_Framework|Pawn Gameplay Silhouette Framework]]"
 ---
 
 # Hub, Dispatch and Investigation — design proposal
 
 > [!warning] Не канон
-> Этот документ фиксирует архитектурное направление для обсуждения. Он не меняет активные владельцы, не создаёт новые runtime-контракты и не отменяет существующие правила `Pawn Errands`, Карты, Ростера, Quest Engine или Grimoire до отдельного утверждения.
+> Это сохранённое контекстное предложение. Оно вытеснено [[docs/superpowers/plans/2026-08-23-eldrain-stable-hub-baseline-refactor|stable Hub baseline refactor]]: активный корпус не содержит личных находок, Pawn Hook, Facility Need, Hub Case, отдельного слоя личной истории или routine Pawn dispatch. Не использовать этот документ как план реализации.
 
 ## 1. Авторское намерение
 
@@ -96,7 +94,7 @@ RETURN
 
 ### NOTICE
 
-Живая Миниатюра, адрес, NPC, предмет, слух, Chronicle или Grimoire показывают **наблюдаемый след**, а не всплывающую абстрактную задачу.
+Живая Миниатюра, адрес, NPC, предмет, слух, запись личной истории или Grimoire показывают **наблюдаемый след**, а не всплывающую абстрактную задачу.
 
 ### INTERPRET
 
@@ -141,9 +139,9 @@ RETURN
 
 Награды Hub Exploration преимущественно информационные, пространственные, социальные и контекстные.
 
-### 5.2 Dispatch / Pawn Errands
+### 5.2 Бывший Dispatch / pawn errand proposal
 
-Активный `Pawn Errands` уже задаёт здоровую основу: конкретная Пешка идёт к конкретному POI ради опубликованной услуги, временно становится недоступной и **не создаёт награду только потому, что прошло время**.
+Упразднённый proposal предполагал, что конкретная Пешка идёт к конкретному POI ради опубликованной услуги, временно становится недоступной и **не создаёт награду только потому, что прошло время**.
 
 Dispatch следует расширять как интерфейс **делегированного присутствия**, а не как производство.
 
@@ -200,7 +198,7 @@ TRACE
 
 Хорошие формы влияния:
 
-- `Chronicle`: Пешка действительно участвовала в прошлом событии;
+- `personal history`: Пешка действительно участвовала в прошлом событии;
 - `relationship`: конкретный человек или институт знает её;
 - `witness`: она видела или пережила нужный факт;
 - `body`: физическая особенность меняет доступный способ взаимодействия;
@@ -216,17 +214,17 @@ TRACE
 - бинарный `TagID -> success` без физической причинности;
 - подбор Пешки только ради процента награды.
 
-## 7. Chronicle, Grimoire и свидетель
+## 7. Личная история, Grimoire и свидетель
 
-Chronicle и Grimoire должны остаться разными слоями.
+Личная история Пешки и Grimoire должны остаться разными слоями.
 
 ```text
-Chronicle: что произошло с конкретной Пешкой.
+Personal history: что произошло с конкретной Пешкой.
 Grimoire: что аккаунт считает известным об объекте мира и насколько это подтверждено.
 Witness relation: почему конкретная Пешка может дать или уточнить конкретное свидетельство сейчас.
 ```
 
-Пешка может быть источником Grimoire-записи без превращения Chronicle в базу глобальных бонусов.
+Пешка может быть источником Grimoire-записи без превращения личной истории в базу глобальных бонусов.
 
 Смерть свидетеля не обязана стирать уже записанный факт, но может убрать возможность:
 
@@ -336,18 +334,18 @@ Personal Tag не получает новую роль «проверки нав
 6. Что изменилось после действия?
 7. Как это влияет на моё следующее намерение?
 
-Если ответ требует открыть скрытые проценты, traits-score или таблицу эффективности, сцена ушла в неправильную сторону.
+Если ответ требует открыть скрытые проценты, skill-score или таблицу эффективности, сцена ушла в неправильную сторону.
 
 ## 13. Интерфейс с текущими владельцами
 
 | Слой | Текущий владелец | Proposal использует, но не присваивает |
 |---|---|---|
 | roster availability | `Lifecycle_Roster` | факт доступности конкретной Пешки |
-| routine delegation | `Pawn_Errands` | видимое делегированное присутствие |
+| routine delegation | отсутствует: routine dispatch удалён | только историческая гипотеза документа |
 | Hub geometry / addresses | Hub Map owners | место и опубликованный адрес |
 | service resolution | Hub Services | стоимость, входы и settlement услуги |
 | contracts | Quest Engine | принятые обязательства и их исход |
-| personal history | Chronicle | прожитый факт конкретного человека |
+| personal history | отдельный runtime-owner отсутствует | историческая гипотеза о прожитом факте конкретного человека |
 | world knowledge | Grimoire | свидетельства, конфликт и confidence |
 | personal mechanical changes | Tags System | только существующую причинность тега |
 
@@ -357,7 +355,7 @@ Personal Tag не получает новую роль «проверки нав
 
 Перед переводом идеи в active GDD нужно решить минимум:
 
-1. Какой именно объект считается `witness relation`: отдельная запись, Chronicle fact, ссылка Grimoire или только производная проекция?
+1. Какой именно объект считается `witness relation`: отдельная запись личной истории, ссылка Grimoire или только производная проекция?
 2. Может ли один Dispatch длиться без реального ожидания игрока, или маршрут является только presentation процесса?
 3. Какие Hub-изменения персональны аккаунту, а какие принадлежат общему CityState?
 4. Где проходит граница между routine errand и полноценным Quest Engine contract?
@@ -374,6 +372,6 @@ Personal Tag не получает новую роль «проверки нав
 - у Dispatch есть причина использовать конкретного человека, не сводимая к проценту;
 - Hub не становится обязательной daily-рутиной;
 - Investigation создаёт новый вопрос/знание/адрес, а не только валюту;
-- Chronicle, Grimoire, Tags и roster ownership не смешиваются;
+- личная история, Grimoire, Tags и roster ownership не смешиваются;
 - после любой сильной Hub-награды можно назвать исходный риск, отношение или материальный источник;
 - следующий рейд остаётся желанным, а не устаревшим способом добычи.

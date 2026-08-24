@@ -19,7 +19,6 @@ tags:
 related_files:
   - "[[04_Player_Entities/Lifecycle_Roster|Lifecycle_Roster]]"
   - "[[04_Player_Entities/Tags_System|Tags_System]]"
-  - "[[04_Player_Entities/Trait_Development|Trait_Development]]"
   - "[[06_Economy_Loot/Economy_Core|Economy_Core]]"
   - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
   - "[[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion_Logic]]"
@@ -43,7 +42,7 @@ related_files:
 2. **Энергия:** обслуживание вынесенных батарей разрешает [[05_Combat_Survival/Magic_Batteries#4. Зарядка после экстракции|Magic Batteries]]; редкие режимы не обязаны получать тот же бесплатный сервис, что обычные источники.
 3. **Инвентарь:** судьбу физически возвращённого груза и манифеста задают [[08_World_Generation/Anomaly/14_Extraction_System|Extraction System]] и [[06_Economy_Loot/Return_Manifest_Contract|Return Manifest Contract]].
 
-Эти операции обслуживают пережившего человека и физически возвращённые вещи. Они не создают новый `ApproachOffer` или право входа и не меняют `origin`, `civic_status`, `hero_kit` или Chronicle.
+Эти операции обслуживают пережившего человека и физически возвращённые вещи. Они не создают новый `ApproachOffer` или право входа и не меняют `origin`, `civic_status` или полевой профиль.
 
 ---
 
@@ -53,12 +52,12 @@ related_files:
 
 1. ставит короткий lock на ростер аккаунта и внутри commit повторно проверяет `ContinuityAdmissionAllowed` вместе с version текущего `ContinuityEpoch`;
 2. если predicate всё ещё истинный, выбирает **одного конкретного живого жителя** Первого Приёма;
-3. создаёт новую Пешку из неизменного профиля текущей epoch и записывает её как Ward с `readiness = Ready` и заранее объявленным `hero_kit`;
+3. создаёт новую Пешку из неизменного профиля текущей epoch и записывает её как Ward с `readiness = Ready` и заранее объявленным полевым профилем;
 4. вычисляет `WelfareEligible(AccountID, PawnID)` уже для созданной Ready-Пешки;
 5. только если predicate истинный, резервирует за ней ровно один фиксированный Welfare loan; иначе оставляет Пешку без нового overlay;
 6. фиксирует Ward и необязательный loan так, чтобы повторный запрос, reconnect или параллельное окно не могли создать второго Ward либо второй overlay.
 
-Ward сразу считается Ready. Здесь нет карусели кандидатов, reroll, случайного скрытого усиления, ожидания, обязательной квалификационной экстракции или выбора «лучшего тела». Новый Ward приходит с уже зафиксированным, но `DORMANT` `FirstReturnTagID`; вылазка не выбирает и не меняет этот ID. Chronicle может записать First Return, а [[04_Player_Entities/Tags_System|Tags System]] раскрывает предписанный тег только через `ManifestationOpportunity` после отдельно подтверждённого условия First Return. Нормальный Threshold или Dawn не выбираются здесь: это `UR-001`.
+Ward сразу считается Ready. Здесь нет карусели кандидатов, reroll, случайного скрытого усиления, ожидания, обязательной квалификационной экстракции или выбора «лучшего тела». Новый Ward приходит с уже зафиксированным, но `DORMANT` `FirstReturnTagID`; вылазка не выбирает и не меняет этот ID. [[04_Player_Entities/Tags_System|Tags System]] раскрывает предписанный тег только через `ManifestationOpportunity` после отдельно подтверждённого условия First Return. Нормальный Threshold или Dawn не выбираются здесь: это `UR-001`.
 
 Это конкретный новый человек, а не восстановление погибшей Пешки. Следующий Ward возможен только когда после всех разрешений `LIFECYCLE_ROSTER` снова публикует `ContinuityAdmissionAllowed=true`; одного нулевого `ReadyCount` недостаточно.
 
@@ -77,7 +76,7 @@ ContinuityProfile:
   continuity_tag_seed: TagSeed
 ```
 
-Новый Ward внутри той же epoch получает другого `PawnID`, имя, внешность, биографию и Chronicle, но тот же `RaceID × SpecID`, hero-kit и тот же заранее назначенный `FirstReturnTagID`, детерминированный `continuity_tag_seed`. KIA, suicide, handoff, отказ, Life Closure, reconnect, Recovery или Breakline не меняют профиль, seed и epoch и не продвигают Recruitment Opportunity.
+Новый Ward внутри той же epoch получает другого `PawnID`, имя, внешность и биографию, но тот же `RaceID × SpecID`, полевой профиль и тот же заранее назначенный `FirstReturnTagID`, детерминированный `continuity_tag_seed`. KIA, suicide, handoff, отказ, Life Closure, reconnect, Recovery или Breakline не меняют профиль, seed и epoch и не продвигают Recruitment Opportunity.
 
 Epoch может сменить только отдельный необратимый внешний milestone с уникальным сохранённым `continuity_epoch_advance_source_id`. Первый Приём не создаёт этот milestone и не может ускорить его потерей ростера. Поэтому смерть неудобного Ward не является новым mechanical roll.
 
@@ -110,7 +109,7 @@ WelfareEligible(AccountID, PawnID) =
 - **Soulbound loan:** предметы нельзя продать, передать, положить в схрон, разобрать или превратить в salvage. При выбрасывании, смерти либо отзыве loan они исчезают без материального выхода.
 - **Достаточная дееспособность:** набор сохраняет базовую летальность, позволяет победить, поднять физический лут и достичь Normal Threshold. Он не ставит отдельный запрет на маршрут или награду; точная цена подхода, средовые требования, Dissonance и текущая допустимость Breach применяются ко всем одинаково.
 - **Нет бесплатного swing:** baseline не содержит гранату, мину, высокоразбросный боевой расходник, бесплатный сильный контроль, генератор ресурсов, не закреплённый батарейным устройством persistent/post-death эффект или крепление для Living Cargo. Полная версия такого эффекта требует оплаченного физического payload.
-- **Нет скрытой ценности Пешки:** Welfare не даёт дополнительные профильные ёмкости, trait, Chronicle-запись или особое `hero_kit`.
+- **Нет скрытой ценности Пешки:** Welfare не даёт дополнительные профильные ёмкости, Personal Tag или особый полевой профиль.
 
 Personal Tag не перестраивает шаблон Welfare под оптимальную синергию. Если tag требует общеизвестного базового ответа, этот ответ обязан уже входить в общий baseline либо быть обычным действием тела; карточка только подсвечивает соответствующий предмет/режим и оставшийся долг. Тег, который делает fixed Welfare нежизнеспособным без редкого отдельного counter-item, не проходит контракт.
 
@@ -137,10 +136,10 @@ Personal Tag не перестраивает шаблон Welfare под опт�
 
 Интерфейс не выводит из Origin tag «подходящее оружие» или скрытый коэффициент эффективности.
 
-- карточка hero-kit отдельно показывает базовый authored-арсенал, P/Q/E, именованные модули и их физические цены; карточка Пешки рядом показывает `BaseFrameProf + mastery steps = EffectiveFrameProf` и expression каждого contributing-тега;
+- карточка полевого профиля отдельно показывает базовый authored-арсенал, P/Q/E, именованные модули и их физические цены; карточка Пешки рядом показывает `BaseFrameProf + mastery steps = EffectiveFrameProf` и expression каждого contributing-тега;
 - карточка Personal Tag отдельно показывает `light`-modifier либо `situational` trigger/rule/tell/counter;
-- карточка Chronicle отдельно показывает прожитые факты, отношения и возможные Quest-situations;
-- если Chronicle-ситуации нужен предмет, адрес или маршрут, UI называет его как условие конкретной истории, а не как усилитель gunfeel;
+- послерейдовый причинный отчёт отдельно показывает текущие lifecycle-, Quest-, Trace-, custody- и CityState-последствия;
+- если конкретному последствию нужен предмет, адрес или маршрут, UI называет его условием этой записи, а не усилителем gunfeel;
 - отсутствие «идеального» предмета не делает Найдёныша бракованным roll и не блокирует его обычную боеспособность.
 
 Найдёныш открывает новую личную ставку и roster-опцию, но материальную сборку всё равно нужно вынести, купить либо собрать из обычных рейдовых входов.

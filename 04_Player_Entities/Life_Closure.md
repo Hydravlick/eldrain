@@ -2,10 +2,9 @@
 type: system_contract
 status: active
 system: life_closure
-tags: [lifecycle, chronicle, permanent_choice, civic_outcome]
+tags: [lifecycle, permanent_choice, civic_outcome]
 related_files:
   - "[[04_Player_Entities/Lifecycle_Roster|Lifecycle Roster]]"
-  - "[[04_Player_Entities/Trait_Development|Trait Development]]"
 ---
 # Life Closure
 
@@ -13,9 +12,9 @@ related_files:
 
 ## Responsibility
 
-`LIFE_CLOSURE` owns closure eligibility, the closure arc instance, the immediate irreversible choice, and its `LifeClosureResolution`. It does **not** write Chronicle facts, assign or reveal tags, recruit a replacement, transfer gear, grant discounts or services, or project roster membership.
+`LIFE_CLOSURE` owns closure eligibility, the closure arc instance, the immediate irreversible choice, and its `LifeClosureResolution`. It does **not** write a separate personal-history record, assign or reveal tags, recruit a replacement, transfer gear, grant discounts or services, or project roster membership.
 
-Chronicle and Trait Development provide eligible lived facts; they do not decide closure. [[04_Player_Entities/Lifecycle_Roster|Lifecycle Roster]] consumes the resulting terminal fact and projects the Pawn as `CLOSED_CIVIC` / `readiness=CLOSED`.
+Authored closure conditions may consume their named lifecycle, Quest, body or material facts; they do not decide closure themselves. [[04_Player_Entities/Lifecycle_Roster|Lifecycle Roster]] consumes the resulting terminal fact and projects the Pawn as `CLOSED_CIVIC` / `readiness=CLOSED`.
 
 ## Eligibility and one decision
 

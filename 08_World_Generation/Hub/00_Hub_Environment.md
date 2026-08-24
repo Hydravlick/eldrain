@@ -26,7 +26,7 @@ Foundling = происхождение; Origin tag и Origin Continuation ост
 Welfare = источник минимального снаряжения по Spawn Logic, а не тип Пешки или access lane
 ```
 
-Стол показывает эти слои рядом, не разрешая их сам. Readiness и нулевой ростер принадлежат [[04_Player_Entities/Lifecycle_Roster|Lifecycle Roster]], создание Ward и Welfare — [[04_Player_Entities/Spawn_Logic|Spawn Logic]], Chronicle — [[04_Player_Entities/Trait_Development|Trait Development]], а Personal Tags — [[04_Player_Entities/Tags_System|Tags System]]. Экстракция не является скрытым открытием «нормального доступа».
+Стол показывает эти слои рядом, не разрешая их сам. Readiness и нулевой ростер принадлежат [[04_Player_Entities/Lifecycle_Roster|Lifecycle Roster]], создание Ward и Welfare — [[04_Player_Entities/Spawn_Logic|Spawn Logic]], а Personal Tags — [[04_Player_Entities/Tags_System|Tags System]]. Экстракция не является скрытым открытием «нормального доступа».
 
 Осколок впервые приходит в город внутри стартовой Пешки и проходит обучение вместе с ней. После открытия ростера он способен проживать вылазки через других связанных жителей. Эта способность принадлежит самому Осколку; Хранители, карта и Якорь не создают её.
 
