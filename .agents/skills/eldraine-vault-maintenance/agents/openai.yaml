@@ -1,0 +1,6 @@
+interface:
+  display_name: "Eldraine Vault Maintenance"
+  short_description: "Vault moves, links, properties and derived views"
+  default_prompt: "Use $eldraine-vault-maintenance for this Eldrain request."
+policy:
+  allow_implicit_invocation: true

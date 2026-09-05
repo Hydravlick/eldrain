@@ -1,91 +1,16 @@
 ---
 name: eldraine-balance-modeler
-description: Use when the truth of an Eldraine rule or claimed balance corridor depends on numbers, formulas, thresholds, probabilities, costs, rewards, time, numerical scaling, or breakpoints and must be demonstrated with examples.
+description: Check Eldrain formulas, tuning ranges, breakpoints, economy and quantitative consequences with sensitivity analysis.
 ---
 
 # Eldraine Balance Modeler
 
-## Principle
+Use when a verdict depends on costs, rewards, probability, timing, scaling, replacement or tuning. Input: numeric claim, owning rule/registry and scenario. Read sources through [canon-ownership](../../policies/canon-ownership.md).
 
-Turn design language into a falsifiable model. Prefer a rough honest model over precise-looking invented balance.
+Separate canonical inputs, derived results, test assumptions and unknowns. Give units, valid ranges, expression/order and sources. Keep missing inputs symbolic; test values are not recommendations. Calculate relevant underprepared, baseline and optimized/boundary scenarios, a worked example and excluded conditions.
 
+Find decision breakpoints, sensitive inputs, dead zones, cliffs and feedback loops. Check zero/extrema/invalid inputs where relevant. Probability needs bad tails as well as expectation; economy needs time, loss, replacement and capital. Preserve correlations when assuming independence would distort results.
 
-## Active Canon Language
+Return calculations or a reproducible small model, provenance/assumptions, supported tuning corridor, sensitivity and the measurement that could change the verdict. Missing data limits the specific numeric claim, not all architectural findings.
 
-Describe the accepted target state affirmatively: name the active entities, rules, scope, and consequences.
-
-Historical context belongs outside active rule statements. When it helps explain provenance or a reference, label it as contextual material and return the adopted model in the canonical result.
-
-## Responsibility Boundary
-
-Own numeric truth only. Do not decide the intended player promise, responsibility boundaries, acceptable uncertainty, genre contract, or whether missing content invalidates a framework. Use `eldraine-system-architect` for those questions and model only the parameter whose value can change its verdict.
-
-`INSUFFICIENT DATA` is local to the numeric claim. It must not be expanded into a verdict on the whole architecture.
-
-## Build the Model
-
-Read the relevant mechanic, registries, item values, and economy files. Separate inputs into:
-
-- `CANON VALUE` — explicitly present in GDD;
-- `DERIVED VALUE` — calculated from canon values;
-- `TEST VALUE` — invented solely to explore behavior;
-- `UNKNOWN` — required but absent.
-
-Define variables with units. Write the smallest formula that captures the decision. State exclusions rather than silently ignoring them.
-
-## Formula Contract
-
-For every formula record:
-
-| Field | Required content |
-|---|---|
-| Canonical owner | The one active page or registry that owns the value |
-| Evidence status | `CANON VALUE`, `DERIVED VALUE`, `TEST VALUE`, or `UNKNOWN` |
-| Expression | The complete equation and operation order |
-| Variables | Symbol, meaning, type, and unit |
-| Valid range | Minimum, maximum, and excluded values for each input |
-| Normal output | Expected output corridor under intended play |
-| Extreme behavior | Output at minimum, maximum, zero, overflow, and out-of-range inputs |
-| Worked example | At least one calculation with real numbers |
-| Tuning knobs | Designer-adjustable inputs and what breaks when each is too high or low |
-| Dependencies | Upstream values and downstream consumers |
-| Breakpoints | Values where the rational decision or system state changes |
-
-Do not describe a formula only in prose. If a required input is unknown, keep the equation symbolic and label the missing evidence instead of inventing a plausible number.
-
-## Scenarios
-
-Always model:
-
-1. **Weak case:** underprepared, unlucky, or low-resource.
-2. **Baseline case:** intended common play.
-3. **Extreme case:** optimized build, stacked party, or boundary value.
-
-Add level or tier snapshots only when scaling exists. Show calculations in a Markdown table.
-
-## Diagnose
-
-Identify:
-
-- breakpoints where the correct decision flips;
-- parameters with the greatest sensitivity;
-- dead zones where upgrades do not matter;
-- cliffs where tiny changes cause disproportionate outcomes;
-- loops where reward growth outpaces cost or risk;
-- whether the advertised corridor actually contains practical builds.
-
-For probability, include expected value and at least one bad-tail case. For economy, include time and loss rate, not just sale price.
-
-## Answer Contract
-
-1. **Question being tested**
-2. **Inputs and provenance**
-3. **Formula**
-4. **Scenario table**
-5. **Breakpoints and sensitivity**
-6. **Verdict**
-7. **Unknowns to measure in prototype**
-
-Use verdicts: `SUPPORTED`, `FRAGILE`, `NO CORRIDOR`, or `INSUFFICIENT DATA`.
-
-Never present `TEST VALUE` as a recommendation. Explain which result would change if an unknown input changes. Recommend `eldraine-crash-test` for incentive abuse and `eldraine-player-experience` for feel. Do not edit GDD unless asked.
+For equipment load [gear-progression](../../references/gear-progression.md); for uncertain causality read [design-research](../../policies/design-research.md). Adopt values only within authorized scope under [editing](../../policies/editing.md); explain using [editorial-quality](../../policies/editorial-quality.md).

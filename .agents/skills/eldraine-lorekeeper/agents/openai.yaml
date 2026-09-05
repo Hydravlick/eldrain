@@ -1,6 +1,6 @@
 interface:
   display_name: "Eldraine Lorekeeper"
-  short_description: "Проверяет идеи на совместимость с каноном"
-  default_prompt: "Use $eldraine-lorekeeper to check this idea against the current Eldraine canon."
+  short_description: "Fiction truth, voice and narrative causality"
+  default_prompt: "Use $eldraine-lorekeeper for this Eldrain request."
 policy:
-  allow_implicit_invocation: false
+  allow_implicit_invocation: true

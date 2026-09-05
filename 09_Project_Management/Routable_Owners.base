@@ -1,0 +1,30 @@
+filters:
+  and:
+    - status == "active"
+    - index_route == "owner"
+    - or:
+        - file.inFolder("01_Core_Vision")
+        - file.inFolder("02_World_Lore")
+        - file.inFolder("03_Factions_Societies")
+        - file.inFolder("04_Player_Entities")
+        - file.inFolder("05_Combat_Survival")
+        - file.inFolder("06_Economy_Loot")
+        - file.inFolder("07_Gear_Inventory")
+        - file.inFolder("08_World_Generation")
+properties:
+  file.name:
+    displayName: Owner
+  type:
+    displayName: Type
+  system:
+    displayName: System
+  read_when:
+    displayName: Read when
+views:
+  - type: table
+    name: Owners
+    order:
+      - file.name
+      - type
+      - system
+      - read_when

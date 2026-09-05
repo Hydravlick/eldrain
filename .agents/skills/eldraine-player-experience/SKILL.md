@@ -1,75 +1,18 @@
 ---
 name: eldraine-player-experience
-description: "Use when translating or evaluating an already bounded Eldraine feature as a lived sequence: onboarding, first-hour flow, combat feel, encounter pacing, readability, feedback, failure comprehension, or hub-to-raid flow."
+description: Evaluate Eldrain lived flow, feedback, clarity, feel, use cases and behavior across relevant player lenses.
 ---
 
 # Eldraine Player Experience
 
-## Principle
+Use for lived sequence, UX states, first hour, combat feel, hub/raid journey, failure comprehension, adaptation, motivation or churn hypotheses. Input: rule/feature, scenario and relevant player situation. Read owners under [canon-ownership](../../policies/canon-ownership.md); label proposed feedback as proposed.
 
-Describe the game from outside the system. Every important rule must become something the player can perceive, interpret, decide about, and remember.
+Walk perception -> interpretation -> decision -> commitment -> feedback -> consequence. Include success, retreat/failure, unavailable/empty states and recovery where relevant. Examine responsiveness, impact, rhythm, clarity, friction and payoff separately. Identify false causal interpretations of success or loss.
 
+Choose lenses that change the answer: newcomer, cautious survivor, optimizer, PvP hunter, explorer, collector, solo, team, post-loss player or tired veteran. Explain attraction, learned repetition/avoidance, reward value, accidental frustration and return/churn reasons. These are behavioral hypotheses, not demographic facts. Preserve intentional audience tradeoffs.
 
-## Active Canon Language
+Trace experience after mastery/social learning. Read [design-research](../../policies/design-research.md) when causal claims need evidence; do not invent observations or retention percentages.
 
-Describe the accepted target state affirmatively: name the active entities, rules, scope, and consequences.
+Return a chronological slice, consequential misreads/friction, lens conflicts, candidate improvements and observable playtest questions. Name the moment/cohort and what the tester should notice, choose or explain. For navigation load [spatial-design](../../references/spatial-design.md).
 
-Historical context belongs outside active rule statements. When it helps explain provenance or a reference, label it as contextual material and return the adopted model in the canonical result.
-
-## Responsibility Boundary
-
-Own the chronological evidence of what the player perceives, believes, decides, commits, and learns in a bounded flow. Do not define cross-system ownership, the total certainty budget, the genre contract, or scaling invariants. When the question spans several system layers or asks whether the framework itself is sound, use `eldraine-system-architect` first and answer only its bounded experience question.
-
-Do not convert an architectural uncertainty into a prototype checklist. Prototype questions here may measure perception, timing, feel, or comprehension only after the intended rule and decision are defined.
-
-## Choose a Mode
-
-- **First 15 minutes / first hour:** arrival, first promise, first confusion, first risk, first earned memory.
-- **Encounter slice:** approach, detection, commitment, exchange, recovery, outcomes.
-- **Combat feel:** anticipation, sound, animation commitment, impact, enemy reaction, recovery cadence.
-- **Failure readability:** warning, causal signal, death or loss, lesson, next decision.
-- **Hub-to-raid journey:** preparation, readiness judgment, deployment, extraction, aftermath.
-
-Read the relevant mechanics and content. Do not invent feedback as if it already exists; mark additions as proposals.
-
-## Experience Frame
-
-For each beat capture:
-
-1. **Perception:** what is seen, heard, felt, or noticed.
-2. **Interpretation:** what the player is likely to believe.
-3. **Decision:** meaningful options and information available.
-4. **Commitment:** time, exposure, resource, or emotional stake.
-5. **Feedback:** immediate response proving what happened.
-6. **Consequence:** tactical and emotional result.
-
-Flag beats with no decision, invisible causality, weak feedback, fake choice, excessive cognitive load, or no payoff.
-
-## Feel Pass
-
-Evaluate these axes separately; do not average them into a health score:
-
-- **Responsiveness:** delay between input or trigger and readable system reaction.
-- **Impact:** sensory and state evidence that the action changed something.
-- **Rhythm:** alternation of anticipation, commitment, consequence, and recovery.
-- **Clarity:** whether the player can identify the cause, target, state change, and available response.
-- **Payoff:** whether the result repays the time, risk, attention, and emotional stake.
-
-## Observable playtest
-
-Turn each remaining experience claim into an observation: what the tester should notice, say, choose, misread, repeat, or fail to explain. Record the moment and evidence. Do not substitute invented retention percentages, persona certainty, or a numerical feel score for observation.
-
-## Answer Contract
-
-Start with the intended emotional arc in one sentence. Then write a chronological slice using concrete seconds or minutes where useful.
-
-After the slice provide:
-
-- **Strong beats**
-- **Experience gaps**
-- **Misread risks:** what players may wrongly infer
-- **Minimum feel pass:** smallest audio, visual, animation, camera, or timing additions
-- **Three outcomes:** success, retreat, and failure when relevant
-- **Prototype questions:** observations about perception, timing, feel, or comprehension to collect from playtests
-
-Do not solve weak feel by adding UI alone. Do not confuse mechanical complexity with meaningful tension. Recommend `eldraine-player-lens` for audience differences and `eldraine-balance-modeler` for numerical tuning. Do not edit GDD unless asked.
+For authorized writing use [editing](../../policies/editing.md) and [editorial-quality](../../policies/editorial-quality.md). Feature coverage: [feature-contract](../../policies/feature-contract.md). This skill does not choose universal ownership or automatically repair discomfort with rerolls or more UI.

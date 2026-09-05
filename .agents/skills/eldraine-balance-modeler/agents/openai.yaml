@@ -1,6 +1,6 @@
 interface:
   display_name: "Eldraine Balance Modeler"
-  short_description: "Проверяет числа, пороги и коридоры баланса"
-  default_prompt: "Use $eldraine-balance-modeler to turn this Eldraine rule into a testable numeric model."
+  short_description: "Quantitative balance, tuning and sensitivity"
+  default_prompt: "Use $eldraine-balance-modeler for this Eldrain request."
 policy:
-  allow_implicit_invocation: false
+  allow_implicit_invocation: true

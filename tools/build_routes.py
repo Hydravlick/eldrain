@@ -5,12 +5,12 @@ from dataclasses import dataclass
 from pathlib import Path
 
 try:
-    from tools.vault_guard import parse_frontmatter
+    from tools.document_model import ACTIVE, MetadataError, parse_frontmatter, route_metadata
 except ModuleNotFoundError:
-    from vault_guard import parse_frontmatter
+    from document_model import ACTIVE, MetadataError, parse_frontmatter, route_metadata
 
 
-SYSTEMS = {
+DOMAINS = {
     "01_Core_Vision": ("Ядро и видение", "Когда вопрос касается обещания игры, core loop или материальной грамматики."),
     "02_World_Lore": ("Мир и лор", "Когда нужны законы мира, метафизика, культуры или причинность."),
     "03_Factions_Societies": ("Фракции и институты", "Когда вопрос касается Очагов, доверия, контрактов или социальных ролей."),
@@ -22,10 +22,6 @@ SYSTEMS = {
 }
 
 
-class MetadataError(ValueError):
-    pass
-
-
 @dataclass(frozen=True)
 class Route:
     path: Path
@@ -35,37 +31,33 @@ class Route:
     read_when: str
 
 
-def routes_for(root: Path, system: str) -> list[Route]:
+def routes_for(root: Path, domain: str) -> list[Route]:
     routes: list[Route] = []
-    base = root / system
+    base = root / domain
     if not base.exists():
         return routes
     for path in base.rglob("*.md"):
         if path.name == "00_Routes.md":
             continue
         data = parse_frontmatter(path)
-        if data.get("status") != "active" or data.get("index_route") != "owner":
+        if data.get("status") != ACTIVE or data.get("index_route") != "owner":
             continue
-        required = ("index_group", "index_order", "index_summary", "read_when")
-        missing = [key for key in required if not data.get(key)]
-        if missing:
-            raise MetadataError(f"{path.relative_to(root)}: missing {', '.join(missing)}")
-        try:
-            order = int(data["index_order"])
-        except ValueError as exc:
-            raise MetadataError(f"{path.relative_to(root)}: index_order must be an integer") from exc
+        errors = route_metadata(data)
+        if errors:
+            raise MetadataError(f"{path.relative_to(root)}: {'; '.join(errors)}")
+        order = data["index_order"]
         routes.append(Route(path, str(data["index_group"]), order, str(data["index_summary"]), str(data["read_when"])))
     return sorted(routes, key=lambda route: (route.order, route.group, route.path.as_posix()))
 
 
-def render_system(root: Path, system: str) -> str:
-    title = SYSTEMS[system][0]
+def render_domain(root: Path, domain: str) -> str:
+    title = DOMAINS[domain][0]
     lines = [
         "---", "type: index", "system: navigation", "status: active", "generated: true", "---", "",
         f"# {title}: маршруты", "",
         "> Эта страница строится `python tools/build_routes.py --write`. Не редактируйте блоки маршрутов вручную.", "",
     ]
-    routes = routes_for(root, system)
+    routes = routes_for(root, domain)
     current_group: str | None = None
     for route in routes:
         if route.group != current_group:
@@ -82,30 +74,35 @@ def render_root(root: Path) -> str:
     lines = [
         "---", "type: index", "system: navigation", "status: active", "generated: true", "---", "",
         "# Элдрейн — маршрутизатор канона", "",
-        "> Выберите домен, затем откройте только маршрутного owner и его прямые зависимости.", "",
+        "**Локальная правка (Bounded):** маршрут → owner → необходимые прямые зависимости. Для правки конкретного правила или страницы не нужно читать весь vault.", "",
+        "**Синтез и архитектура (Synthesis / architecture):** для Feature design, межсистемной архитектуры, причинного исследования, карты зависимостей, рефакторинга ownership или корпуса и разделения Lore ↔ Gameplay можно сначала изучить несколько доменов по задаче. Такой обзор не ограничен прямыми зависимостями и предшествует решениям о владении правилами.", "",
         "## Домены", "",
     ]
-    for system, (title, read_when) in SYSTEMS.items():
-        if routes_for(root, system):
-            lines.append(f"- [[{system}/00_Routes|{title}]] — {read_when}")
+    for domain, (title, read_when) in DOMAINS.items():
+        if routes_for(root, domain):
+            lines.append(f"- [[{domain}/00_Routes|{title}]] — {read_when}")
     lines.extend(["", "## Текущая работа", "", "- [[09_Project_Management/Architecture_MVP|Архитектура MVP]] — когда меняются границы активных систем.", "- [[09_Project_Management/TODO|Открытая работа]] — когда нужна текущая задача или acceptance evidence.", "- [[09_Project_Management/Risk_Register|Реестр рисков]] — когда решение зависит от активного риска."])
     return "\n".join(lines) + "\n"
 
 
 def build(root: Path) -> None:
     root = root.resolve()
-    for system in SYSTEMS:
-        if (root / system).exists():
-            (root / system / "00_Routes.md").write_text(render_system(root, system), encoding="utf-8")
-    (root / "00_Index.md").write_text(render_root(root), encoding="utf-8")
+    rendered = {}
+    for domain in DOMAINS:
+        if (root / domain).exists():
+            rendered[root / domain / "00_Routes.md"] = render_domain(root, domain)
+    rendered[root / "00_Index.md"] = render_root(root)
+    for path, text in rendered.items():
+        if not path.exists() or path.read_text(encoding="utf-8") != text:
+            path.write_text(text, encoding="utf-8")
 
 
 def check(root: Path) -> list[Path]:
     root = root.resolve()
     stale: list[Path] = []
-    for system in SYSTEMS:
-        path = root / system / "00_Routes.md"
-        if path.exists() and path.read_text(encoding="utf-8") != render_system(root, system):
+    for domain in DOMAINS:
+        path = root / domain / "00_Routes.md"
+        if (root / domain).exists() and (not path.exists() or path.read_text(encoding="utf-8") != render_domain(root, domain)):
             stale.append(path)
     root_index = root / "00_Index.md"
     if not root_index.exists() or root_index.read_text(encoding="utf-8") != render_root(root):
@@ -120,10 +117,14 @@ def main() -> int:
     mode.add_argument("--check", action="store_true")
     parser.add_argument("--root", type=Path, default=Path("."))
     args = parser.parse_args()
-    if args.write:
-        build(args.root)
-        return 0
-    stale = check(args.root)
+    try:
+        if args.write:
+            build(args.root)
+            return 0
+        stale = check(args.root)
+    except MetadataError as exc:
+        print(f"INVALID_ROUTE_METADATA: {exc}")
+        return 1
     for path in stale:
         print(path)
     return 1 if stale else 0

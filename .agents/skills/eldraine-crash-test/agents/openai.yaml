@@ -1,6 +1,6 @@
 interface:
   display_name: "Eldraine Crash Test"
-  short_description: "Ищет эксплойты и скучные оптимумы систем"
-  default_prompt: "Use $eldraine-crash-test to attack this defined Eldraine decision or invariant for exploits and dominant strategies."
+  short_description: "Adversarial review of incentives and lifecycle"
+  default_prompt: "Use $eldraine-crash-test for this Eldrain request."
 policy:
-  allow_implicit_invocation: false
+  allow_implicit_invocation: true

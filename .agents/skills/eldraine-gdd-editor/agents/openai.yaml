@@ -1,0 +1,6 @@
+interface:
+  display_name: "Eldraine GDD Editor"
+  short_description: "Canonical integration and human GDD prose"
+  default_prompt: "Use $eldraine-gdd-editor for this Eldrain request."
+policy:
+  allow_implicit_invocation: true

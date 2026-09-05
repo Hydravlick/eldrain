@@ -1,0 +1,20 @@
+{
+  "gameplay_roots": ["01_Core_Vision", "02_World_Lore", "03_Factions_Societies", "04_Player_Entities", "05_Combat_Survival", "06_Economy_Loot", "07_Gear_Inventory", "08_World_Generation"],
+  "management_root": "09_Project_Management",
+  "statuses": {
+    "active": "Current within the document's responsibility; only gameplay owners establish game rules.",
+    "draft": "Unaccepted work in progress; excluded from active routes and rule dependencies.",
+    "deferred": "Postponed proposal; excluded from active routes and rule dependencies.",
+    "deprecated": "Retired or rejected design retained for provenance; not current authority.",
+    "superseded_contextual": "Historical record replaced by current owners; contextual use only."
+  },
+  "active_status": "active",
+  "system_types": ["system", "system_contract", "mechanic", "design_rule"],
+  "view": {
+    "sources_field": "upstream_sources",
+    "forbidden_owner_fields": ["owns", "canonical_id"]
+  },
+  "route_fields": ["index_group", "index_order", "index_summary", "read_when"],
+  "feature_required": ["feature_id", "system_owners"],
+  "feature_link_lists": ["system_owners", "data_sources", "ux_surfaces", "validation"]
+}

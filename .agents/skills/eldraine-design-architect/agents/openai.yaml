@@ -1,0 +1,6 @@
+interface:
+  display_name: "Eldraine Design Architect"
+  short_description: "Feature completeness, systems and ownership"
+  default_prompt: "Use $eldraine-design-architect for this Eldrain request."
+policy:
+  allow_implicit_invocation: true

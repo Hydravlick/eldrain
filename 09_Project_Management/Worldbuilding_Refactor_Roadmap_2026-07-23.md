@@ -153,7 +153,7 @@ related_files:
 
 ### Задача 4: Провести навигационную проверку
 
-**Навык:** `eldraine-gdd-author`.
+**Навык:** `eldraine-gdd-editor`.
 
 - [ ] Проверить существование всех root-relative wikilinks в изменённых файлах.
 - [ ] Проверить `type`, `status`, `system` и `tags` новых страниц.
