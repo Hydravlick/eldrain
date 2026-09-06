@@ -14,8 +14,8 @@ tags:
   - dissonance
 related_files:
   - "[[05_Combat_Survival/Dissonance_System|Dissonance_System]]"
-  - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
-  - "[[08_World_Generation/Generation/08_Gate_Check|Gate_Check]]"
+  - "[[08_World_Generation/Generation/Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
+  - "[[08_World_Generation/Generation/Gate_Check|Gate_Check]]"
 ---
 # Механика: Пороги Давления Аномалии (Dissonance Thresholds)
 
@@ -27,7 +27,7 @@ related_files:
 AnomalyPressure = DissonanceLoad + RecentDissonancePulse
 ```
 
-Это не проверка силы снаряжения для выживания в новом Tier. За физический результат фазового импульса отвечает [[08_World_Generation/Generation/08_Gate_Check|Gate Check]]. Способ подхода и точные условия выбранной вылазки принадлежат [[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid Approach and Entry]], а физический вход — отдельному ingress owner.
+Это не проверка силы снаряжения для выживания в новом Tier. За физический результат фазового импульса отвечает [[08_World_Generation/Generation/Gate_Check|Gate Check]]. Способ подхода и точные условия выбранной вылазки принадлежат [[08_World_Generation/Generation/Raid_Approach_and_Entry|Raid Approach and Entry]], а физический вход — отдельному ingress owner.
 
 - **Gate Check:** слишком слабый комплект получает травму или погибает при Phase Shift.
 - **Dissonance Threshold:** слишком дорогой/чужеродный комплект привлекает Аномалию или не допускается на вход.

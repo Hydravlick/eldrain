@@ -1,28 +1,50 @@
 ---
-type: weapon_frame
 status: active
 system: combat_survival
 frame_id: condenser_rig_2h
 display_name: Конденсаторная рама, две руки
 weapon_family: arcanegun
 grip: two_hand
-skill_interfaces: [conduit, brace, reach]
-activates_on: [aim_hold, charge, emission, charge_recovery]
+skill_interfaces:
+  - conduit
+  - brace
+  - reach
+activates_on:
+  - aim_hold
+  - charge
+  - emission
+  - charge_recovery
 commitment: held_open_line_until_charge_recovery
 primary_window_function: create
-creates_window: [weakspot_open]
+creates_window:
+  - weakspot_open
 implicit_keyword: held_line
 implicit_rule: Двуручный контур удерживает и стабилизирует сильный импульс по одной линии, но заранее показывает намерение и плохо переживает давление вблизи.
-exploits_window: [none]
-mitigates_window: [prepared_cast]
-exposure_channels: [telegraph, open_line, heat, weight, interrupt]
-mastery_unlock: [charge_recover, brace_hold]
+exploits_window:
+  - none
+mitigates_window:
+  - prepared_cast
+exposure_channels:
+  - telegraph
+  - open_line
+  - heat
+  - weight
+  - interrupt
+mastery_unlock:
+  - charge_recover
+  - brace_hold
 sort_order: 420
-tags: [weapon_frame, ranged, arcanegun, two_hand]
+tags:
+  - weapon_frame
+  - ranged
+  - arcanegun
+  - two_hand
 related_files:
   - "[[05_Combat_Survival/Weapon_Ranged|Weapon_Ranged]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/Registries/Registry_Weapons|Registry_Weapons]]"
+type: entity
+entity_kind: weapon_frame
 ---
 # Конденсаторная рама, две руки
 

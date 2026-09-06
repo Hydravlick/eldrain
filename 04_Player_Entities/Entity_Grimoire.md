@@ -1,5 +1,4 @@
 ---
-type: overview
 status: active
 system: player_core
 tags:
@@ -9,10 +8,11 @@ tags:
   - entity
 related_files:
   - "[[02_World_Lore/The_Entity|The_Entity]]"
-  - "[[08_World_Generation/Hub/00_Hub_Environment|City_Structure]]"
+  - "[[08_World_Generation/Hub/Hub_Environment|City_Structure]]"
   - "[[04_Player_Entities/Lifecycle_Roster|Lifecycle_Roster]]"
   - "[[04_Player_Entities/Spawn_Logic|Spawn_Logic]]"
   - "[[04_Player_Entities/Grimoire_Truth_Triangulation|Grimoire Truth Triangulation]]"
+type: core_concept
 ---
 # Ядро игрока: Осколок и ростер
 

@@ -1,17 +1,21 @@
 ---
-type: mechanic
 status: active
+system: trade_craft
+tags:
+  - blueprints
+  - limited
+  - permission
+  - recipe_transaction
+related_files:
+  - "[[06_Economy_Loot/Barter_System|Barter_System]]"
+  - "[[07_Gear_Inventory/Registries/Registry_Blueprints|Registry_Blueprints]]"
+  - "[[07_Gear_Inventory/Registries/Registry_CraftingRecipes|Registry_CraftingRecipes]]"
+type: system
 index_route: owner
 index_group: economy_loot
 index_order: 20
-index_summary: "Задаёт правила и последствия системы «Ограниченные Чертежи»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Ограниченные Чертежи»."
-system: trade_craft
-tags: [blueprints, limited, permission, recipe_transaction]
-related_files:
-  - "[[06_Economy_Loot/Barter_System|Barter_System]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_Blueprints|Registry_Blueprints]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_CraftingRecipes|Registry_CraftingRecipes]]"
+index_summary: "Определяет состояния, разрешение и связи: Ограниченные Чертежи."
+read_when: Когда нужен контракт «Ограниченные Чертежи» и его границы с соседними владельцами.
 ---
 # Ограниченные Чертежи
 
@@ -24,7 +28,7 @@ related_files:
 ## 2. Рабочий цикл
 
 1. Игрок находит физическую инструкцию в Аномалии и эвакуирует её как груз.
-2. После опознания карта показывает связанную схему, совместимые адреса и оставшиеся применения.
+2. Мирный адрес идентификации раскрывает схему и число применений. После опознания карта показывает связанную схему, совместимые адреса и оставшиеся применения.
 3. Игрок собирает требуемый извлечённый состав.
 4. В карточке мирного адреса он видит точный результат и цену одного применения.
 5. Применение списывается только после подтверждённого результата.

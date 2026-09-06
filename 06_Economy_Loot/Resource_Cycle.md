@@ -1,17 +1,18 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: economy_loot
-index_order: 100
-index_summary: "Задаёт правила и последствия системы «Цикл Ресурсов: Состав и Адрес»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Цикл Ресурсов: Состав и Адрес»."
 system: economy_loop
 tags: [salvage, scrap, barter, materials, addresses]
 related_files:
   - "[[06_Economy_Loot/Barter_System|Barter_System]]"
   - "[[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction_Stabilization_Loop]]"
   - "[[06_Economy_Loot/Vendor_Logic|Vendor_Logic]]"
+
+type: "system"
+index_route: "owner"
+index_group: "economy_loot"
+index_order: 100
+index_summary: "Определяет состояния, разрешение и связи: Цикл Ресурсов: Состав и Адрес."
+read_when: "Когда нужен контракт «Цикл Ресурсов: Состав и Адрес» и его границы с соседними владельцами."
 ---
 # Цикл Ресурсов: Состав и Адрес
 
@@ -88,3 +89,7 @@ ResourceAddressProfile
 ```
 
 Конкретные ID и количества принадлежат предметным реестрам и реестру RecipeTransaction, а не этой системной странице.
+
+## Число адресов и сложность находки
+
+стандартный предмет имеет основной адрес и максимум одну альтернативу; два-три адреса нужны активному бартерному ингредиенту, а четыре и больше резервируются для редких, спорных, Trace/Disputed или сюжетных вещей.

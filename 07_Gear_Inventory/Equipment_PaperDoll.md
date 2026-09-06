@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: gear_inventory
-index_order: 120
-index_summary: "Задаёт правила и последствия системы «Кукла Персонажа (Equipment Slots)»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Кукла Персонажа (Equipment Slots)»."
 system: inventory_ui
 tags:
   - slots
@@ -18,11 +12,17 @@ related_files:
   - "[[07_Gear_Inventory/Inventory_Architecture|Inventory_Architecture]]"
   - "[[07_Gear_Inventory/Fashion_Gear|Fashion_Gear]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/Registries/Registry_Weapons|Registry_Weapons]]"
   - "[[07_Gear_Inventory/Gear_Progression|Gear_Progression]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_Thermoses|Registry_Thermoses]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
+  - "[[07_Gear_Inventory/Registries/Registry_Thermoses|Registry_Thermoses]]"
+  - "[[07_Gear_Inventory/Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
   - "[[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly]]"
+type: system
+index_route: owner
+index_group: gear_inventory
+index_order: 120
+index_summary: "Определяет состояния, разрешение и связи: Кукла Персонажа (Equipment Slots)."
+read_when: Когда нужен контракт «Кукла Персонажа (Equipment Slots)» и его границы с соседними владельцами.
 ---
 # Кукла Персонажа (Equipment Slots)
 

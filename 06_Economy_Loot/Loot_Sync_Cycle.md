@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: economy_loot
-index_order: 80
-index_summary: "Задаёт правила и последствия системы «Происхождение Лута и Цикл Синхронизации»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Происхождение Лута и Цикл Синхронизации»."
 system: inventory
 tags:
   - provenance
@@ -16,7 +10,13 @@ related_files:
   - "[[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction_Stabilization_Loop]]"
   - "[[06_Economy_Loot/Barter_System|Barter_System]]"
   - "[[06_Economy_Loot/P2P_Interaction|P2P_Interaction]]"
-  - "[[08_World_Generation/Generation/02_Mechanic_Night_Benches|Night_Benches]]"
+  - "[[08_World_Generation/Generation/Mechanic_Night_Benches|Night_Benches]]"
+type: system
+index_route: owner
+index_group: economy_loot
+index_order: 80
+index_summary: "Определяет состояния, разрешение и связи: Происхождение Лута и Цикл Синхронизации."
+read_when: Когда нужен контракт «Происхождение Лута и Цикл Синхронизации» и его границы с соседними владельцами.
 ---
 # Происхождение Лута и Цикл Синхронизации
 

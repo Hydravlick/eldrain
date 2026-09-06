@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: combat_survival
-index_order: 90
-index_summary: "Задаёт правила и последствия системы «Механика: Диссонанс (Dissonance)»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Механика: Диссонанс (Dissonance)»."
 system: world_systems
 tags:
   - dissonance
@@ -17,10 +11,16 @@ related_files:
   - "[[05_Combat_Survival/Hunt_Frontier_Loop|Hunt_Frontier_Loop]]"
   - "[[05_Combat_Survival/Acoustic_Stealth|Acoustic_Stealth]]"
   - "[[07_Gear_Inventory/Dissonance_Value|Dissonance_Value]]"
-  - "[[04_Player_Entities/_Registries/Registry_Tags|Registry_Tags]]"
+  - "[[04_Player_Entities/Registries/Registry_Tags|Registry_Tags]]"
   - "[[05_Combat_Survival/Threat_Thresholds|Threat_Thresholds]]"
-  - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
-  - "[[04_Player_Entities/_Registries/Registry_Parameter_Contracts|Реестр параметрических контрактов]]"
+  - "[[08_World_Generation/Generation/Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
+  - "[[04_Player_Entities/Registries/Registry_Parameter_Contracts|Реестр параметрических контрактов]]"
+type: system
+index_route: owner
+index_group: combat_survival
+index_order: 90
+index_summary: "Определяет состояния, разрешение и связи: Механика: Диссонанс (Dissonance)."
+read_when: "Когда нужен контракт «Механика: Диссонанс (Dissonance)» и его границы с соседними владельцами."
 ---
 # Механика: Диссонанс (Dissonance)
 
@@ -89,7 +89,7 @@ Foreign-предметы создают полный фон. Native-лут си�
 - активация эфирного устройства;
 - отдельные погодные и статусные реакции.
 
-Каждый **physical occurrence** создаёт один `DissonanceEvent`; он может добавить не более одного Pulse-вклада. Действие, Backlash или среда публикуют request с физическим источником, а этот resolver принимает его по [[04_Player_Entities/_Registries/Registry_Parameter_Contracts#dissonance_occurrence|контракту Dissonance occurrence]]. Нельзя добавить отдельный Pulse за батарею, модуль и само действие, если это одна физическая вспышка.
+Каждый **physical occurrence** создаёт один `DissonanceEvent`; он может добавить не более одного Pulse-вклада. Действие, Backlash или среда публикуют request с физическим источником, а этот resolver принимает его по [[04_Player_Entities/Registries/Registry_Parameter_Contracts#`dissonance_occurrence`|контракту Dissonance occurrence]]. Нельзя добавить отдельный Pulse за батарею, модуль и само действие, если это одна физическая вспышка.
 
 Committed [[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly]] передаёт только список установленных persistent-signature sources и contributor rules конкретных ItemID. `DISSONANCE_SYSTEM` единолично разрешает их итоговый постоянный вклад и occurrence events. Ни Module Definition, ни Assembly не складывают локальный `dissonance_load/pulse`, а итог Диссонанса не возвращается в монтажный resolver как право разрешить или запретить сам модуль.
 
@@ -137,4 +137,4 @@ GroupPressure = GroupLoad + GroupPulse
 - физический шум шагов;
 - gear score для матчмейкинга.
 
-Это отдельная верхняя граница риска, проецируемая рядом с [[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Entry Quote]], но не заменяющая Gate Check, цену подхода или правила группы.
+Это отдельная верхняя граница риска, проецируемая рядом с [[08_World_Generation/Generation/Raid_Approach_and_Entry|Entry Quote]], но не заменяющая Gate Check, цену подхода или правила группы.

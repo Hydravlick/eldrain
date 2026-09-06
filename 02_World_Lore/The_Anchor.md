@@ -5,8 +5,8 @@ status: active
 index_route: owner
 index_group: world_lore
 index_order: 50
-index_summary: "Задаёт правила и последствия системы «Якорный Архив (The Anchor Archive)»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Якорный Архив (The Anchor Archive)»."
+index_summary: Задаёт правила и последствия системы «Якорный Архив (The Anchor Archive)».
+read_when: Читайте при изменении входов, состояний, стоимости или последствий системы «Якорный Архив (The Anchor Archive)».
 system: world_lore
 tags:
   - world_boundary
@@ -16,7 +16,7 @@ tags:
   - underground
 related_mechanics:
   - "[[03_Factions_Societies/Lore/The_Keepers|Хранители]]"
-  - "[[08_World_Generation/Anomaly/14_Extraction_System]]"
+  - "[[08_World_Generation/Anomaly/Extraction_System]]"
 related_files:
   - "[[02_World_Lore/The_Ark|The_Ark]]"
 ---

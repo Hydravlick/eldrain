@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: economy_loot
-index_order: 120
-index_summary: "Задаёт действующие выводы валюты и фиксирует страхование как TBD."
-read_when: "Читайте при изменении действующих выводов валюты или границы TBD страхования."
 system: economy
 tags:
   - sinks
@@ -16,6 +10,13 @@ tags:
 related_files:
   - "[[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction_Stabilization_Loop]]"
   - "[[07_Gear_Inventory/Inventory_QoL|Inventory_QoL]]"
+
+type: "system"
+index_route: "owner"
+index_group: "economy_loot"
+index_order: 120
+index_summary: "Задаёт действующие выводы валюты и фиксирует страхование как TBD."
+read_when: "Читайте при изменении действующих выводов валюты или границы TBD страхования."
 ---
 # Расходы и Вывод Валюты (Money Sinks)
 

@@ -1,5 +1,4 @@
 ---
-type: system_contract
 status: active
 system: player_recovery
 tags:
@@ -11,10 +10,16 @@ related_files:
   - "[[04_Player_Entities/Last_Thread_Recovery|Last Thread Recovery]]"
   - "[[04_Player_Entities/Lifecycle_Resolver|Lifecycle Resolver]]"
   - "[[04_Player_Entities/Lifecycle_Roster|Lifecycle Roster]]"
-  - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid Approach and Entry]]"
-  - "[[08_World_Generation/Generation/20_Egress_Solvency|Egress Solvency]]"
-  - "[[08_World_Generation/Anomaly/17_Apex_Last_Hour|Apex Last Hour]]"
-  - "[[08_World_Generation/_Registries/Registry_Raid_Interfaces|Raid interfaces]]"
+  - "[[08_World_Generation/Generation/Raid_Approach_and_Entry|Raid Approach and Entry]]"
+  - "[[08_World_Generation/Generation/Egress_Solvency|Egress Solvency]]"
+  - "[[08_World_Generation/Anomaly/Apex_Last_Hour|Apex Last Hour]]"
+  - "[[08_World_Generation/Registries/Registry_Raid_Interfaces|Raid interfaces]]"
+type: system
+index_route: owner
+index_group: player_entities
+index_order: 200
+index_summary: "Определяет состояния, разрешение и связи: Recovery Lifecycle."
+read_when: Когда нужен контракт «Recovery Lifecycle» и его границы с соседними владельцами.
 ---
 # Recovery Lifecycle
 

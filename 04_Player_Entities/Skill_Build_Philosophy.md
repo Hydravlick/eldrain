@@ -1,23 +1,28 @@
 ---
-type: system
 status: active
-index_route: owner
-index_group: player_entities
-index_order: 110
-index_summary: "Задаёт правила и последствия системы «Философия навыков и билдостроения»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Философия навыков и билдостроения»."
 system: player_core
-tags: [skills, builds, hero_kit, passive, action_contract]
+tags:
+  - skills
+  - builds
+  - hero_kit
+  - passive
+  - action_contract
 related_files:
   - "[[04_Player_Entities/Ability_Synergy|Ability Synergy]]"
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat Profile Pipeline]]"
-  - "[[04_Player_Entities/_Registries/Registry_Interaction_Families|Семейства взаимодействий]]"
+  - "[[04_Player_Entities/Registries/Registry_Interaction_Families|Семейства взаимодействий]]"
   - "[[04_Player_Entities/MVP_3x3_Design_Contract|Контракт MVP-матрицы 3×3]]"
-  - "[[04_Player_Entities/_Registries/Registry_Skill_Types|Registry Skill Types]]"
+  - "[[04_Player_Entities/Registries/Registry_Skill_Types|Registry Skill Types]]"
   - "[[05_Combat_Survival/Combat_Three_Debts|Закон трёх долгов]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic Batteries]]"
-  - "[[05_Combat_Survival/_Registries/Registry_StatusEffects|Реестр статус-эффектов]]"
-  - "[[04_Player_Entities/_Registries/Registry_Parameter_Contracts|Реестр параметрических контрактов]]"
+  - "[[05_Combat_Survival/Registries/Registry_StatusEffects|Реестр статус-эффектов]]"
+  - "[[04_Player_Entities/Registries/Registry_Parameter_Contracts|Реестр параметрических контрактов]]"
+type: system
+index_route: owner
+index_group: player_entities
+index_order: 110
+index_summary: "Определяет состояния, разрешение и связи: Философия навыков и билдостроения."
+read_when: Когда нужен контракт «Философия навыков и билдостроения» и его границы с соседними владельцами.
 ---
 # Философия навыков и билдостроения
 
@@ -79,7 +84,7 @@ energy variant: [energy_contract:: body | hybrid | device]
 
 `owned_parameters` публикует конечные величины самого действия: длительность удержания, ширину сектора, число импульсов, время процедуры, дальность tether. Эти значения не выводятся из универсальных характеристик Пешки.
 
-`owned_parameters` не разрешает любому соседнему источнику записывать эти величины. Источник публикует узкий `modifier_request` и свой `intrinsic_debt`; его принимает или отклоняет владелец домена из [[04_Player_Entities/_Registries/Registry_Parameter_Contracts|реестра параметрических контрактов]]. Локальная способность не задаёт priority, floor или cap общего домена.
+`owned_parameters` не разрешает любому соседнему источнику записывать эти величины. Источник публикует узкий `modifier_request` и свой `intrinsic_debt`; его принимает или отклоняет владелец домена из [[04_Player_Entities/Registries/Registry_Parameter_Contracts|реестра параметрических контрактов]]. Локальная способность не задаёт priority, floor или cap общего домена.
 
 ## 2. Два независимых контура
 
@@ -116,7 +121,7 @@ named consequence -> lifecycle / Quest / Trace / custody evidence, not a mechani
 - перенос груза, освобождение рук и ускорение движения;
 - обнаружение угрозы, точный маркер и гарантированное поражение.
 
-Если связь проходит через несколько действий, [[04_Player_Entities/_Registries/Registry_Interaction_Families|семейство взаимодействий]] собирает всю причинную цепь и проверяет, что выгода не посчитана несколько раз. Оно не получает право менять domain policy или хранить значения объектов.
+Если связь проходит через несколько действий, [[04_Player_Entities/Registries/Registry_Interaction_Families|семейство взаимодействий]] собирает всю причинную цепь и проверяет, что выгода не посчитана несколько раз. Оно не получает право менять domain policy или хранить значения объектов.
 
 ### Боевой терминал
 
@@ -246,3 +251,12 @@ named consequence -> lifecycle / Quest / Trace / custody evidence, not a mechani
 - модуль одновременно расширяет возможность и снимает её fixed debt;
 - случайный Personal Tag скрыто меняет баллистику, базовый урон, автоматический RPM или точность, либо исправляет слабый полевой профиль без локального условия и цены;
 - игрок не может назвать результат, цену и доступный сейчас ответ без чтения формулы.
+
+## Авторизация запроса параметра
+
+`effect_axes` и `ui_search_aliases` служат поиску; они не участвуют в legality, stack policy или выборе domain owner.
+
+`domain_owner` задаёт только policy: допустимые операции, порядок, floor/cap/replace rule и конфликт источников **внутри одного домена**. Он не владеет каталогом чисел и не может выдать источнику право менять соседний домен. Если такого владельца ещё нет, пишется `MISSING_OWNER`; локальная страница не подменяет пробел собственным приоритетом, floor или cap.
+
+Каждый source публикует `modifier_request` и свой `intrinsic_debt`. Запрос становится результатом только после разрешения доменным владельцем. Нельзя одним запросом одновременно повысить величину, частоту и безопасность, а затем назвать один долг оплатой всех трёх.
+

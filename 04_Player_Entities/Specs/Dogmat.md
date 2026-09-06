@@ -1,5 +1,4 @@
 ---
-type: spec
 status: active
 system: player_entities
 id: specialist
@@ -11,6 +10,8 @@ content_scope: post_mvp
 base_vector: aether
 weak_to: [shadow, tech, ballistics]
 tags: [spec, practice, player_entity]
+type: "entity"
+entity_kind: "spec"
 ---
 # Догмат (The Scholar)
 

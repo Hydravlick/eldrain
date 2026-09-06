@@ -1,20 +1,25 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: player_entities
-index_order: 130
-index_summary: "Задаёт правила и последствия системы «Личные теги: свойства прожитой Пешки»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Личные теги: свойства прожитой Пешки»."
 system: player_core
-tags: [personal_tags, mastery, mutations, relics, extraction]
+tags:
+  - personal_tags
+  - mastery
+  - mutations
+  - relics
+  - extraction
 related_files:
-  - "[[04_Player_Entities/_Registries/Registry_Tags|Registry Personal Tags]]"
+  - "[[04_Player_Entities/Registries/Registry_Tags|Registry Personal Tags]]"
   - "[[04_Player_Entities/Proficiency_Arsenal|Arsenal and Proficiency]]"
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat Profile Pipeline]]"
   - "[[04_Player_Entities/Shell_Foundlings|Foundlings]]"
   - "[[05_Combat_Survival/Status_Effects|Status Effects]]"
-  - "[[08_World_Generation/_Registries/Registry_Environment_States|Environment States]]"
+  - "[[08_World_Generation/Registries/Registry_Environment_States|Environment States]]"
+type: system
+index_route: owner
+index_group: player_entities
+index_order: 130
+index_summary: "Определяет состояния, разрешение и связи: Личные теги: свойства прожитой Пешки."
+read_when: "Когда нужен контракт «Личные теги: свойства прожитой Пешки» и его границы с соседними владельцами."
 ---
 # Личные теги: свойства прожитой Пешки
 
@@ -120,10 +125,10 @@ First Return передаёт подтверждённое lifecycle-основ�
 
 | Канал | Допустимые сигналы | Канонический владелец |
 |---|---|---|
-| `body` | зарегистрированная травма, condition, exposure, анатомическая capability или физическая vulnerability | тело и [[05_Combat_Survival/_Registries/Registry_StatusEffects|Registry Status Effects]] |
+| `body` | зарегистрированная травма, condition, exposure, анатомическая capability или физическая vulnerability | тело и [[05_Combat_Survival/Registries/Registry_StatusEffects|Registry Status Effects]] |
 | `action` | named phase Commitment/Recovery, занятые руки, удержание, движение, остановка, лечение, обыск, переноска | выполняемое действие |
 | `craft` | Heat, Bloom, battery cycle, заряд, состояние конкретной пластины, шва, Термоса, устройства или реликтового носителя | Frame, батарея, материал или предмет |
-| `environment` | конкретный зарегистрированный локальный след, погода, поверхность, префаб или правило линии мутации | [[08_World_Generation/_Registries/Registry_Environment_States|средовой инстанс]] либо линия Аномалии |
+| `environment` | конкретный зарегистрированный локальный след, погода, поверхность, префаб или правило линии мутации | [[08_World_Generation/Registries/Registry_Environment_States|средовой инстанс]] либо линия Аномалии |
 
 Из этого следуют границы:
 
@@ -235,7 +240,7 @@ Welfare не отменяет личный тег и не собирает оп�
 
 ## 11. Synergy Map и проверки
 
-[[04_Player_Entities/_Matrices/00_Synergy_Map|Synergy Map]], Двойной Парадокс и автоматические векторы сохраняются как аналитическая карта проекта. Они показывают структурные контрнаправления, общие слабости, владельцев, state-edges и возможные коллизии. Карта не авторит конкретный tag, P/Q/E или числовой модификатор автоматически.
+[[04_Player_Entities/Views/Synergy_Map|Synergy Map]], Двойной Парадокс и автоматические векторы сохраняются как аналитическая карта проекта. Они показывают структурные контрнаправления, общие слабости, владельцев, state-edges и возможные коллизии. Карта не авторит конкретный tag, P/Q/E или числовой модификатор автоматически.
 
 Тег отклоняется, если:
 
@@ -248,3 +253,7 @@ Welfare не отменяет личный тег и не собирает оп�
 - использует rarity вместо читаемой причины и цены;
 - делает KIA, handoff или suicide-reset самым дешёвым способом получить конфигурацию;
 - превращает Foundling в заранее сканируемый товарный каталог.
+
+## Чтение локального средового инстанса
+
+Personal Tag может читать `state_id` только если конкретная запись тега прямо называет этот локальный инстанс в `signal_ref`. Environment-tag не работает за пределами своего владельца мира, не превращает состояние в глобальную стихию и не запускает другой tag напрямую.

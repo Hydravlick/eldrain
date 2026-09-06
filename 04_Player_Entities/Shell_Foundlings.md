@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: player_entities
-index_order: 100
-index_summary: "Задаёт правила и последствия системы «Найдёныши: спасение, custody и Origin»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Найдёныши: спасение, custody и Origin»."
 system: player_core
 tags:
   - shell
@@ -20,6 +14,13 @@ related_files:
   - "[[03_Factions_Societies/Quest_Engine|Quest_Engine]]"
   - "[[03_Factions_Societies/Quest_Engine_Grammar|Quest_Engine_Grammar]]"
   - "[[03_Factions_Societies/Lore/The_First_Reception|The_First_Reception]]"
+
+type: "system"
+index_route: "owner"
+index_group: "player_entities"
+index_order: 100
+index_summary: "Определяет состояния, разрешение и связи: Найдёныши: спасение, custody и Origin."
+read_when: "Когда нужен контракт «Найдёныши: спасение, custody и Origin» и его границы с соседними владельцами."
 ---
 # Найдёныши: спасение, custody и Origin
 

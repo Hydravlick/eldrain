@@ -1,17 +1,23 @@
 ---
-type: system
 status: active
+system: thermos_assembly
+tags:
+  - thermos
+  - assembly_resolver
+  - fit
+  - topology
+  - service
+  - instances
+related_files:
+  - "[[07_Gear_Inventory/Thermos_System|Термос]]"
+  - "[[07_Gear_Inventory/Registries/Registry_Thermos_Interfaces|Интерфейсы Термоса]]"
+  - "[[04_Player_Entities/Registries/Registry_Parameter_Contracts|Параметрические контракты]]"
+type: system
 index_route: owner
 index_group: gear_inventory
 index_order: 210
-index_summary: "Задаёт правила и последствия системы «Сборка Термоса»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Сборка Термоса»."
-system: thermos_assembly
-tags: [thermos, assembly_resolver, fit, topology, service, instances]
-related_files:
-  - "[[07_Gear_Inventory/Thermos_System|Термос]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Interfaces|Интерфейсы Термоса]]"
-  - "[[04_Player_Entities/_Registries/Registry_Parameter_Contracts|Параметрические контракты]]"
+index_summary: "Определяет состояния, разрешение и связи: Сборка Термоса."
+read_when: Когда нужен контракт «Сборка Термоса» и его границы с соседними владельцами.
 ---
 # Сборка Термоса
 
@@ -63,7 +69,7 @@ InstalledModule:
 
 Один pass возвращает все errors с owner и actionable reason. `refit_required` завершает pass до ItemID prepare: лишь Hub professional создаёт следующий `fit_revision`. Любой отказ после prepare освобождает reservation либо безопасно восстанавливается из durable transaction journal; живая сборка до commit не меняется.
 
-Assembly Resolver проверяет существование и совместимость EffectContract, но не читает обратно applied/final effect, итоговую массу, Dissonance, readiness, Tier, Rarity или цену. Эти downstream-результаты не могут повысить capacity и разрешить собственный источник.
+Assembly Resolver проверяет существование и совместимость EffectContract, но не читает обратно applied/final effect, итоговую массу, Dissonance, readiness, Tier, Rarity или цену. Эти downstream-результаты не могут повысить capacity и разрешить собственный источник. `BaseServiceCapacity`, `service_load`, `ServiceSupportDelta`, fit, node claims и `AssemblyValid` не являются допустимыми targets EffectContract: модуль не может разрешить сам себя.
 
 ## 3. Revisioned projection
 
@@ -99,3 +105,8 @@ Assembly validation records the assembly revision, domain revisions, and mismatc
 4. Damaged plate updates one PatternCoverageBinding revision; Ballistics выпускает один ResolvedCoverageSnapshot, одинаково читаемый hit resolver и PaperDoll.
 5. Missing ParameterContract либо undeclared required Dissonance source semantics остаются `blocked_calibration`; явно объявленное `none` допустимо.
 6. Deployed assembly refuses refit, pattern change and interface switch.
+
+## Правила definition binding
+
+OR placement uses separate pattern IDs; AND uses one pattern with all required claims. `service_families` derives from nonzero service load; effect axes are search only. `coverage_contract_ids` are bound to individual patterns, never to the module globally. A nonzero `service_support_delta` makes the module a support-source; aggregate SupportLoad всех таких sources проверяется против BaseServiceCapacity до применения любого delta. Dissonance contributor records and `concept_effects` are nonauthoritative discovery fields; declared ParameterContracts and domain owners resolve any runtime effect. Atomicity requires one mechanism, trigger, failure state and vulnerability; otherwise split.
+

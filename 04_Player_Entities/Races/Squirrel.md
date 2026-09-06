@@ -1,5 +1,4 @@
 ---
-type: race
 status: active
 system: player_entities
 id: squirrel
@@ -11,6 +10,8 @@ content_scope: mvp
 base_vector: aether
 culture_reference: "[[02_World_Lore/Squirrel_Culture|Белки: Культура Распределённой Весны]]"
 tags: [race, player_entity]
+type: "entity"
+entity_kind: "race"
 ---
 # Белка (Sciurus)
 

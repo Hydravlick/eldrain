@@ -7,10 +7,14 @@ index_order: 190
 index_summary: "Задаёт правила и последствия системы «Оружие: ближний бой»."
 read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Оружие: ближний бой»."
 system: action_combat
-tags: [melee, frames, movesets, collision]
+tags:
+  - melee
+  - frames
+  - movesets
+  - collision
 related_files:
   - "[[05_Combat_Survival/Combat_Three_Debts|Combat_Three_Debts]]"
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/Registries/Registry_Weapons|Registry_Weapons]]"
 ---
 # Оружие: ближний бой
 

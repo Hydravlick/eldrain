@@ -1,5 +1,4 @@
 ---
-type: spec
 status: active
 system: player_entities
 id: assault
@@ -11,6 +10,8 @@ content_scope: mvp
 base_vector: ballistics
 weak_to: [hazard, kinetics, tech]
 tags: [spec, practice, player_entity]
+type: "entity"
+entity_kind: "spec"
 ---
 # Застрельщик (The Skirmisher)
 

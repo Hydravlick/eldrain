@@ -76,8 +76,20 @@ def render_root(root: Path) -> str:
         "# Элдрейн — маршрутизатор канона", "",
         "**Локальная правка (Bounded):** маршрут → owner → необходимые прямые зависимости. Для правки конкретного правила или страницы не нужно читать весь vault.", "",
         "**Синтез и архитектура (Synthesis / architecture):** для Feature design, межсистемной архитектуры, причинного исследования, карты зависимостей, рефакторинга ownership или корпуса и разделения Lore ↔ Gameplay можно сначала изучить несколько доменов по задаче. Такой обзор не ограничен прямыми зависимостями и предшествует решениям о владении правилами.", "",
-        "## Домены", "",
     ]
+    introductions = []
+    for path in (root / "01_Core_Vision").rglob("*.md"):
+        data = parse_frontmatter(path)
+        if data.get("status") == ACTIVE and data.get("navigation_role"):
+            introductions.append((data.get("navigation_order", 0), path, data))
+    if introductions:
+        lines.extend(["## Путь игрока", ""])
+        for _, path, data in sorted(introductions, key=lambda item: (item[0], item[1].as_posix())):
+            target = path.relative_to(root).with_suffix("").as_posix()
+            label = data.get("navigation_label", path.stem)
+            lines.append(f"- [[{target}|{label}]]")
+        lines.append("")
+    lines.extend(["## Домены: где живёт правило", ""])
     for domain, (title, read_when) in DOMAINS.items():
         if routes_for(root, domain):
             lines.append(f"- [[{domain}/00_Routes|{title}]] — {read_when}")

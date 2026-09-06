@@ -1,27 +1,48 @@
 ---
-type: weapon_frame
 status: active
 system: combat_survival
 frame_id: reach_line_2h
 display_name: Дистанционная линия, две руки
 weapon_family: polearm
 grip: two_hand
-skill_interfaces: [impact_surface, contact_surface, brace, reach]
-activates_on: [brace, poke, reach_recovery]
+skill_interfaces:
+  - impact_surface
+  - contact_surface
+  - brace
+  - reach
+activates_on:
+  - brace
+  - poke
+  - reach_recovery
 commitment: two_hand_outer_line_with_close_dead_zone
 primary_window_function: create
-creates_window: [distance_control]
+creates_window:
+  - distance_control
 implicit_keyword: outer_line
 implicit_rule: Рабочая часть удерживает внешний радиус и коридор, но теряет силу в упоре, у стены и при обходе с боковой линии.
-exploits_window: [none]
-mitigates_window: [melee_entry]
-exposure_channels: [dead_zone, flank, wall_contact, weight]
-mastery_unlock: [line_recover, measured_push]
+exploits_window:
+  - none
+mitigates_window:
+  - melee_entry
+exposure_channels:
+  - dead_zone
+  - flank
+  - wall_contact
+  - weight
+mastery_unlock:
+  - line_recover
+  - measured_push
 sort_order: 310
-tags: [weapon_frame, melee, polearm, two_hand]
+tags:
+  - weapon_frame
+  - melee
+  - polearm
+  - two_hand
 related_files:
   - "[[05_Combat_Survival/Weapon_Melee|Weapon_Melee]]"
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/Registries/Registry_Weapons|Registry_Weapons]]"
+type: entity
+entity_kind: weapon_frame
 ---
 # Дистанционная линия, две руки
 

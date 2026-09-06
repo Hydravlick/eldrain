@@ -1,5 +1,4 @@
 ---
-type: system
 status: active
 system: player_core
 tags:
@@ -11,19 +10,25 @@ tags:
   - validation
 related_files:
   - "[[04_Player_Entities/Skill_Build_Philosophy|Философия навыков и билдостроения]]"
-  - "[[04_Player_Entities/_Registries/Registry_Skill_Types|Грамматика навыков]]"
+  - "[[04_Player_Entities/Registries/Registry_Skill_Types|Грамматика навыков]]"
   - "[[09_Project_Management/Risk_Register|Реестр рисков]]"
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat Profile Pipeline]]"
   - "[[04_Player_Entities/Ability_Synergy|Ability Synergy]]"
-  - "[[04_Player_Entities/_Matrices/00_Synergy_Map|Карта решений полевых профилей]]"
+  - "[[04_Player_Entities/Views/Synergy_Map|Карта решений полевых профилей]]"
   - "[[04_Player_Entities/Proficiency_Arsenal|Адаптивный Арсенал]]"
-  - "[[04_Player_Entities/_Registries/Registry_Races|Registry Races]]"
-  - "[[04_Player_Entities/_Registries/Registry_Specs|Registry Specs]]"
-  - "[[04_Player_Entities/_Registries/Registry_Combos|Registry Combos]]"
+  - "[[04_Player_Entities/Registries/Registry_Races|Registry Races]]"
+  - "[[04_Player_Entities/Registries/Registry_Specs|Registry Specs]]"
+  - "[[04_Player_Entities/Registries/Registry_Combos|Registry Combos]]"
   - "[[05_Combat_Survival/Status_Effects|Status Effects]]"
   - "[[07_Gear_Inventory/Gear_Progression|Gear Progression]]"
   - "[[10_Reference/Reference Note Dark and Darker — вес способностей и темп боя|Dark and Darker: вес способностей]]"
   - "[[10_Reference/Reference Note Darkest Dungeon — командостроение, соло и повторяющиеся составы|Darkest Dungeon: командостроение]]"
+type: system
+index_route: owner
+index_group: player_entities
+index_order: 200
+index_summary: "Определяет состояния, разрешение и связи: Контракт проектирования MVP-матрицы 3×3."
+read_when: Когда нужен контракт «Контракт проектирования MVP-матрицы 3×3» и его границы с соседними владельцами.
 ---
 # Контракт проектирования MVP-матрицы 3×3
 
@@ -128,7 +133,7 @@ authored Race × Practice field profile
 
 Фактическая контра между двумя kit подтверждается только тогда, когда действие одного оставляет наблюдаемое состояние мира, а второй действительно умеет его реализовать или наказать. Совпадение векторов `tech`, `shadow`, `kinetics` и подобных создаёт структурное ребро карты, но не заменяет эту сцену и не даёт числового бонуса.
 
-[[04_Player_Entities/_Matrices/00_Synergy_Map|Общая карта]] показывает оба слоя рядом: автоматическую топологию всех координат и authored-поля фактического исполнения. Пустая ячейка получает положение в Двойном Парадоксе, но остаётся `pending` как игровой полевой профиль.
+[[04_Player_Entities/Views/Synergy_Map|Общая карта]] показывает оба слоя рядом: автоматическую топологию всех координат и authored-поля фактического исполнения. Пустая ячейка получает положение в Двойном Парадоксе, но остаётся `pending` как игровой полевой профиль.
 
 ## 5. Арсенал и доктрины
 

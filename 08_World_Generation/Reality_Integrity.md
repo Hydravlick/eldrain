@@ -1,13 +1,13 @@
 ---
-type: system_contract
 status: active
-index_route: owner
-index_group: world_generation
+system: anticheat
+tags: [security, validation, reports]
+type: "system"
+index_route: "owner"
+index_group: "world_generation"
 index_order: 380
 index_summary: "Определяет границы серверной авторитетности, проверки невозможного состояния и расследования репортов."
 read_when: "Читайте при изменении доверия к клиенту, серверной валидации, античит-сигналов или обработки репортов."
-system: anticheat
-tags: [security, validation, reports]
 ---
 # Целостность реальности: серверная валидация
 

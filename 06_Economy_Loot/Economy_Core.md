@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: economy_loot
-index_order: 50
-index_summary: "Задаёт правила и последствия системы «Экономика: От Риска к Адресу»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Экономика: От Риска к Адресу»."
 system: economy
 tags:
   - core
@@ -17,7 +11,13 @@ related_files:
   - "[[06_Economy_Loot/Barter_System|Barter_System]]"
   - "[[06_Economy_Loot/Resource_Cycle|Resource_Cycle]]"
   - "[[06_Economy_Loot/Vendor_Logic|Vendor_Logic]]"
-  - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
+  - "[[08_World_Generation/Hub/Hub_Map_Table|Hub_Map_Table]]"
+type: system
+index_route: owner
+index_group: economy_loot
+index_order: 50
+index_summary: "Определяет состояния, разрешение и связи: Экономика: От Риска к Адресу."
+read_when: "Когда нужен контракт «Экономика: От Риска к Адресу» и его границы с соседними владельцами."
 ---
 # Экономика: От Риска к Адресу
 

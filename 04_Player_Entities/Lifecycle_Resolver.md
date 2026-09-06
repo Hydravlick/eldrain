@@ -1,5 +1,4 @@
 ---
-type: system_contract
 status: active
 system: lifecycle_resolution
 tags:
@@ -12,8 +11,14 @@ related_files:
   - "[[04_Player_Entities/Last_Thread_Recovery|Last Thread Recovery]]"
   - "[[04_Player_Entities/Recovery_Lifecycle|Recovery Lifecycle]]"
   - "[[06_Economy_Loot/Return_Manifest_Contract|Return Manifest Contract]]"
-  - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]]"
-  - "[[08_World_Generation/_Registries/Registry_Raid_Interfaces|Raid Interfaces]]"
+  - "[[08_World_Generation/Generation/Server_Lifecycle|Server Lifecycle]]"
+  - "[[08_World_Generation/Registries/Registry_Raid_Interfaces|Raid Interfaces]]"
+type: system
+index_route: owner
+index_group: player_entities
+index_order: 200
+index_summary: "Определяет состояния, разрешение и связи: Lifecycle Resolver."
+read_when: Когда нужен контракт «Lifecycle Resolver» и его границы с соседними владельцами.
 ---
 # Lifecycle Resolver
 
@@ -61,7 +66,11 @@ Neither branch may be inferred from `DawnSettlementDecision`.
 
 ## Handoffs
 
-- [[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]] supplies ordered barriers, never personal outcomes.
+- [[08_World_Generation/Generation/Server_Lifecycle|Server Lifecycle]] supplies ordered barriers, never personal outcomes.
 - [[04_Player_Entities/Last_Thread_Recovery|Last Thread Recovery]] consumes only `FIELD_RECOVERABLE`.
 - [[04_Player_Entities/Lifecycle_Roster|Lifecycle Roster]] projects supplied terminal outcomes and cannot reclassify them.
 - [[04_Player_Entities/Recovery_Lifecycle|Recovery Lifecycle]] may consume `cause_ref` for its own terminal record but remains its sole Recovery-result owner.
+
+## Объяснение личного исхода
+
+После потери игрок получает читаемую реконструкцию `предупреждение → обязательство → причина → следующий контрход`, а не только надпись KIA и таблицу урона. Экран объясняет уже принятое решение resolver и доступный следующий шаг; он не меняет судьбу человека.

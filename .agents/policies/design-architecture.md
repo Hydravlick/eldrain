@@ -1,6 +1,6 @@
 # Design vocabulary
 
-This is harness guidance, not Eldrain game canon. Read it when decomposing a design or choosing a page's responsibility. Physical placement of the future Feature layer is intentionally undecided.
+This is harness guidance, not Eldrain game canon. Read it when decomposing a design or choosing a page's responsibility. Feature descriptions live in `01_Core_Vision/Features`; the generated root index links their Feature Map. Current placement decisions are recorded in `09_Project_Management/Architecture_MVP.md`.
 
 | Concept | Responsibility |
 |---|---|
@@ -27,6 +27,8 @@ Matrix, Table, Map, Graph and Dashboard describe representation shape, not autho
 A Registry must not hide universal runtime behavior, lifecycle, predicates, state transitions, resolver order, general gameplay formulas, capability law or shared gameplay prohibitions inside its records. During an authorized refactor, preserve structured records, identify the correct System/Mechanic owner, move the normative rule there and link to it from the Registry. This is a classification contract, not permission to migrate current registries now.
 
 A View can use Dataview, DataviewJS, an Obsidian Base, JSON Canvas, generated Markdown or another projection. Show its upstream canonical sources to the reader; a calculated comparison is not the owner of the formula it applies. For newly classified Markdown views use `type: view` and `upstream_sources`, a list of quoted source wikilinks; active views require a nonempty list. Optional `view_kind` and explicit semantic parameters describe the projection. View notes never declare `owns` or `canonical_id`. Source validity and authority still require reading, not merely a successful query or validator. Existing documents are not reclassified by filename or renderer. See [obsidian-workflow.md](obsidian-workflow.md) for reusable interactive views.
+
+Owner Routes navigate authority entrypoints, not every useful reading surface. A View must not declare `index_route: owner` at any status. Discover Views through Feature references, System/Mechanic related links, `upstream_sources`, Obsidian links/backlinks and Bases/diagnostic views. Do not introduce `index_route: view`; a future need for dedicated View navigation belongs to a separate derived surface, not owner Routes.
 
 For architecture work, trace the player promise to use cases, owning states, transitions, interfaces and content/configuration. Find absent responsibility, copied rules, circular state authority and features with no playable completion or failure path. A dependency cycle is not automatically a design error; competing writers to the same state are.
 

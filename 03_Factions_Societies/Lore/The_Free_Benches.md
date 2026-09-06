@@ -1,5 +1,4 @@
 ---
-type: faction
 status: active
 system: factions
 faction_id: free_benches
@@ -8,6 +7,8 @@ sort_order: 170
 faction_role: grey_crafting
 promise: craft_without_permission
 tags: [faction, grey_crafting]
+type: "entity"
+entity_kind: "faction"
 ---
 # Свободные Верстаки
 

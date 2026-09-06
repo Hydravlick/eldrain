@@ -1,5 +1,4 @@
 ---
-type: mechanic
 status: active
 system: quest_engine
 tags:
@@ -13,12 +12,18 @@ tags:
 related_files:
   - "[[03_Factions_Societies/Quest_Engine|Quest_Engine]]"
   - "[[03_Factions_Societies/Reputation_Rules|Reputation_Rules]]"
-  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Faction_Address_System|Faction_Address_System]]"
   - "[[04_Player_Entities/Tags_System|Tags_System]]"
   - "[[04_Player_Entities/Shell_Foundlings|Shell_Foundlings]]"
   - "[[04_Player_Entities/Lifecycle_Roster|Lifecycle_Roster]]"
-  - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
-  - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server_Lifecycle]]"
+  - "[[08_World_Generation/Hub/Hub_Map_Table|Hub_Map_Table]]"
+  - "[[08_World_Generation/Generation/Server_Lifecycle|Server_Lifecycle]]"
+type: system
+index_route: owner
+index_group: factions_societies
+index_order: 200
+index_summary: "Определяет состояния, разрешение и связи: Движок квестов: грамматика расследований и UX."
+read_when: "Когда нужен контракт «Движок квестов: грамматика расследований и UX» и его границы с соседними владельцами."
 ---
 # Движок квестов: грамматика расследований и UX
 

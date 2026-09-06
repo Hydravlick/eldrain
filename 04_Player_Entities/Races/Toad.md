@@ -1,5 +1,4 @@
 ---
-type: race
 status: active
 system: player_entities
 id: toad
@@ -15,6 +14,8 @@ culture_reference: "[[02_World_Lore/Toad_Culture|Жабы: Культура Уд
 tags:
   - race
   - player_entity
+type: "entity"
+entity_kind: "race"
 ---
 # Жаба (Bufo)
 

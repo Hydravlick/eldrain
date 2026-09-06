@@ -1,5 +1,4 @@
 ---
-type: faction
 status: active
 system: factions
 faction_id: funeral_circles
@@ -8,6 +7,8 @@ sort_order: 160
 faction_role: civic_texture
 promise: no_nameless_death
 tags: [faction, civic_texture]
+type: "entity"
+entity_kind: "faction"
 ---
 # Похоронные Кружки
 

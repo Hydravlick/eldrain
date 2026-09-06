@@ -1,13 +1,13 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: combat_survival
-index_order: 110
-index_summary: "Задаёт правила и последствия системы «Охота на фронтире Аномалии»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Охота на фронтире Аномалии»."
 system: hunt_frontier
-tags: [combat, stealth, routes, poi, extraction, frontier]
+tags:
+  - combat
+  - stealth
+  - routes
+  - poi
+  - extraction
+  - frontier
 related_files:
   - "[[05_Combat_Survival/Combat_Three_Debts|Combat_Three_Debts]]"
   - "[[05_Combat_Survival/Acoustic_Stealth|Acoustic_Stealth]]"
@@ -15,9 +15,15 @@ related_files:
   - "[[05_Combat_Survival/Movement_Physics|Movement_Physics]]"
   - "[[05_Combat_Survival/Weapon_Core|Weapon_Core]]"
   - "[[05_Combat_Survival/Ballistics_Armor|Ballistics_Armor]]"
-  - "[[08_World_Generation/Generation/14_Sector_Content_Rules|Sector_Content_Rules]]"
-  - "[[08_World_Generation/Anomaly/14_Extraction_System|Extraction_System]]"
+  - "[[08_World_Generation/Generation/Sector_Content_Rules|Sector_Content_Rules]]"
+  - "[[08_World_Generation/Anomaly/Extraction_System|Extraction_System]]"
   - "[[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction_Stabilization_Loop]]"
+type: system
+index_route: owner
+index_group: combat_survival
+index_order: 110
+index_summary: "Определяет состояния, разрешение и связи: Охота на фронтире Аномалии."
+read_when: Когда нужен контракт «Охота на фронтире Аномалии» и его границы с соседними владельцами.
 ---
 # Охота на фронтире Аномалии
 

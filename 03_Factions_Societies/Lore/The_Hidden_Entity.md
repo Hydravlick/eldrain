@@ -1,5 +1,4 @@
 ---
-type: faction
 status: active
 system: factions
 faction_id: hidden_entity
@@ -7,8 +6,9 @@ display_name: Сущность
 sort_order: 200
 faction_role: hidden
 promise: none
-access_model: none
 tags: [faction, hidden]
+type: "entity"
+entity_kind: "faction"
 ---
 # Сущность
 

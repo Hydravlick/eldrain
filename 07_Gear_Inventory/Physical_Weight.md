@@ -1,16 +1,17 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: gear_inventory
-index_order: 190
-index_summary: "Задаёт правила и последствия системы «Механика: Физический Вес (Physical Weight)»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Механика: Физический Вес (Physical Weight)»."
 system: inventory
 tags:
   - physics
   - movement
   - stamina
+
+type: "system"
+index_route: "owner"
+index_group: "gear_inventory"
+index_order: 190
+index_summary: "Определяет состояния, разрешение и связи: Механика: Физический Вес (Physical Weight)."
+read_when: "Когда нужен контракт «Механика: Физический Вес (Physical Weight)» и его границы с соседними владельцами."
 ---
 # Механика: Физический Вес (Physical Weight)
 

@@ -15,8 +15,8 @@ related_files:
   - "[[03_Factions_Societies/Reputation_Rules|Reputation Rules]]"
   - "[[04_Player_Entities/MVP_3x3_Design_Contract|MVP 3x3 Design Contract]]"
   - "[[07_Gear_Inventory/Inventory_Architecture|Inventory Architecture]]"
-  - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]]"
-  - "[[08_World_Generation/Generation/08_Gate_Check|Gate Check]]"
+  - "[[08_World_Generation/Generation/Server_Lifecycle|Server Lifecycle]]"
+  - "[[08_World_Generation/Generation/Gate_Check|Gate Check]]"
 source_dialogues:
 web_sources:
   - https://www.marathonthegame.com/

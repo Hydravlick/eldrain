@@ -1,27 +1,48 @@
 ---
-type: weapon_frame
 status: active
 system: combat_survival
 frame_id: needle_thrower_2h
 display_name: Игольный метатель, две руки
 weapon_family: arcanegun
 grip: two_hand
-skill_interfaces: [projectile, reach]
-activates_on: [wind, aim_hold, release, wind_recovery]
+skill_interfaces:
+  - projectile
+  - reach
+activates_on:
+  - wind
+  - aim_hold
+  - release
+  - wind_recovery
 commitment: full_wind_and_fixed_rewind_between_shots
 primary_window_function: exploit
-creates_window: [none]
+creates_window:
+  - none
 implicit_keyword: quiet_puncture
 implicit_rule: Механический метатель выпускает тихую узкую иглу по мягкой зоне, но платит долгим взводом, малым контролем тяжёлой цели и зависимостью от чистой линии.
-exploits_window: [soft_zone_exposed, concealment]
-mitigates_window: [none]
-exposure_channels: [slow_wind, armor_check, low_stagger]
-mastery_unlock: [quiet_rewind, measured_release]
+exploits_window:
+  - soft_zone_exposed
+  - concealment
+mitigates_window:
+  - none
+exposure_channels:
+  - slow_wind
+  - armor_check
+  - low_stagger
+mastery_unlock:
+  - quiet_rewind
+  - measured_release
 sort_order: 450
-tags: [weapon_frame, ranged, arcanegun, two_hand, mechanical]
+tags:
+  - weapon_frame
+  - ranged
+  - arcanegun
+  - two_hand
+  - mechanical
 related_files:
   - "[[05_Combat_Survival/Weapon_Ranged|Weapon_Ranged]]"
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/Registries/Registry_Weapons|Registry_Weapons]]"
+type: entity
+entity_kind: weapon_frame
 ---
 # Игольный метатель, две руки
 

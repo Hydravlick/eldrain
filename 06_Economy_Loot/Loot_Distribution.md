@@ -1,20 +1,25 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: economy_loot
-index_order: 70
-index_summary: "Задаёт правила и последствия системы «Распределение Лута»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Распределение Лута»."
 system: loot_generation
-tags: [spawn, containers, biomes, mutation_lines, semantic_loot]
+tags:
+  - spawn
+  - containers
+  - biomes
+  - mutation_lines
+  - semantic_loot
 related_files:
   - "[[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction_Stabilization_Loop]]"
   - "[[07_Gear_Inventory/Containers_Slots|Containers_Slots]]"
-  - "[[08_World_Generation/_Registries/Registry_Biomes|Registry_Biomes]]"
-  - "[[08_World_Generation/_Registries/Registry_Anomaly_Mutations|Registry_Anomaly_Mutations]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_Items|Registry_Items]]"
+  - "[[08_World_Generation/Registries/Registry_Biomes|Registry_Biomes]]"
+  - "[[08_World_Generation/Registries/Registry_Anomaly_Mutations|Registry_Anomaly_Mutations]]"
+  - "[[07_Gear_Inventory/Registries/Registry_Items|Registry_Items]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
+type: system
+index_route: owner
+index_group: economy_loot
+index_order: 70
+index_summary: "Определяет состояния, разрешение и связи: Распределение Лута."
+read_when: Когда нужен контракт «Распределение Лута» и его границы с соседними владельцами.
 ---
 # Распределение Лута
 
@@ -124,3 +129,13 @@ Sector source
 - доля базовой, профильной и джекпот-ценности на один успешный маршрут.
 
 Эти значения принадлежат таблицам и прототипным отчётам, а не канонической прозе этого документа.
+
+## Лут и Tier Аномалии
+
+`anomaly_phase` не повышает качество всего лута. Генератор сначала выбирает источник мира, POI и фазовое состояние, затем Pattern из его `spawn_profile` и допустимую `rarity_band`.
+
+- T1 держит цельную местную базу и городской след.
+- T2 открывает профильные комнаты, владельцев, Trace и рабочие запасы катастрофы.
+- T3 разрешает редкий `stitched_trace` из другого слепка только в читаемом сшитом POI; Common-база сектора остаётся.
+
+Иностранный серый предмет может быть редок в Порту по вероятности появления, не становясь Rare по качеству. Редкий местный Pattern не обязан ждать T3.

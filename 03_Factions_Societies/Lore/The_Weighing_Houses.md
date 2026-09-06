@@ -1,5 +1,4 @@
 ---
-type: faction
 category: faction
 status: active
 system: factions
@@ -7,9 +6,7 @@ faction_id: weighing_houses
 display_name: Весовые Дома
 sort_order: 50
 faction_role: hearth
-player_label: price_and_right
 promise: provenance_and_debt
-access_model: provenance_collateral_transfer
 tags:
   - hearth
   - property
@@ -17,16 +14,18 @@ tags:
   - collateral
   - provenance
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Faction_Address_System|Faction_Address_System]]"
   - "[[03_Factions_Societies/Lore/Hearth_Anatomy|Hearth_Anatomy]]"
   - "[[03_Factions_Societies/Lore/Civic_Order|Civic_Order]]"
-  - "[[03_Factions_Societies/_Registries/Registry_Faction_Interfaces|Registry_Faction_Interfaces]]"
+  - "[[03_Factions_Societies/Registries/Registry_Faction_Interfaces|Registry_Faction_Interfaces]]"
   - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
   - "[[02_World_Lore/Rat_Culture|Rat_Culture]]"
 related_mechanics:
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
   - "[[06_Economy_Loot/Barter_System|Barter_System]]"
+type: entity
+entity_kind: faction
 ---
 # Цена и право: Весовые Дома
 
@@ -105,29 +104,6 @@ related_mechanics:
 
 Весовые Дома могут доказать, кто передал партию и имел ли право ею распоряжаться. Они не определяют разумность, жизнеспособность, мутацию или физиологическую безопасность содержимого — этот вывод принадлежит Первому Приёму.
 
-## Что получает игрок
-
-> [!warning] Downstream interface drift
-> Этот и следующие игровые разделы сохраняют прежнюю проекцию до миграции отдельных взаимодействий в `Registry_Faction_Interfaces`. Они не являются владельцем eligibility, состояния, цены или результата.
-
-- оценку и очистку происхождения лута;
-- оформление и легализацию конкретной передачи после встречи названных сторон;
-- доказуемую запись для будущего страхового решения, если оно будет утверждено; сама страховка не является услугой Дома;
-- ремонт права владения для спорной вещи;
-- раздел добычи между группой;
-- долговые контракты;
-- серые обходы через Ночных Поручителей, если официальный путь закрыт.
-
-## Квестовые глаголы
-
-| Глагол | Пример |
-|---|---|
-| оценить | вынести вещь так, чтобы она не потеряла доказуемую ценность |
-| закрепить | найти свидетеля, подтверждающего право на предмет |
-| выкупить | вернуть тело или снаряжение до передачи серому поручителю |
-| разделить | провести спорную добычу через открытую процедуру |
-| взыскать | выполнить долг пропавшего подрядчика без убийства должника |
-
 ## Постоянные и внешние адреса
 
 Главные конторы Весовых Домов являются постоянными центральными адресами. Внешний адрес возникает только из фактического POI текущего Stable-лепестка, существует весь Stable-цикл и не даёт автоматическую скидку:
@@ -153,3 +129,7 @@ related_mechanics:
 Весовые Дома умеют помнить долг лучше, чем человека.
 
 Их худшая версия не забирает силой. Она просто доказывает, что у тебя никогда не было права на то, чем ты спасся.
+
+## Игровые связи
+
+Принятые роли и границы: [[03_Factions_Societies/Registries/Registry_Faction_Interfaces]]. Заготовки сцен и поручений: [[08_World_Generation/Content/Faction_Encounter_Seeds#weighing_houses|Цена и право: Весовые Дома]].

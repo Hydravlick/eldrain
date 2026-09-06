@@ -1,11 +1,5 @@
 ---
-type: lore_framework
 status: active
-index_route: owner
-index_group: factions_societies
-index_order: 50
-index_summary: "Задаёт правила и последствия системы «Гражданский порядок Элдрейна»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Гражданский порядок Элдрейна»."
 system: factions_lore
 tags:
   - civic_order
@@ -18,6 +12,12 @@ related_files:
   - "[[03_Factions_Societies/Lore/City_Genesis|City Genesis]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|Circle of Interposition]]"
   - "[[03_Factions_Societies/Lore/The_Keepers|Keepers]]"
+type: "lore"
+index_route: "owner"
+index_group: "factions_societies"
+index_order: 50
+read_when: "Когда нужен контракт «Гражданский порядок Элдрейна» и его границы с соседними владельцами."
+index_summary: "Описывает мир и общественные причины: Гражданский порядок Элдрейна."
 ---
 # Гражданский порядок Элдрейна
 

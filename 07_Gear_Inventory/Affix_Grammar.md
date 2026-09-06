@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: gear_inventory
-index_order: 90
-index_summary: "Задаёт правила и последствия системы «Грамматика Аффиксов»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Грамматика Аффиксов»."
 system: gear_progression
 tags:
   - affixes
@@ -17,10 +11,16 @@ tags:
 related_files:
   - "[[07_Gear_Inventory/Gear_Progression|Gear_Progression]]"
   - "[[06_Economy_Loot/Craft_Modifiers|Craft_Modifiers]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_CraftingRecipes|Registry_CraftingRecipes]]"
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
+  - "[[07_Gear_Inventory/Registries/Registry_CraftingRecipes|Registry_CraftingRecipes]]"
+  - "[[05_Combat_Survival/Registries/Registry_Weapons|Registry_Weapons]]"
+  - "[[07_Gear_Inventory/Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
+type: system
+index_route: owner
+index_group: gear_inventory
+index_order: 90
+index_summary: "Определяет состояния, разрешение и связи: Грамматика Аффиксов."
+read_when: Когда нужен контракт «Грамматика Аффиксов» и его границы с соседними владельцами.
 ---
 # Грамматика Аффиксов
 

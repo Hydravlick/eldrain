@@ -1,19 +1,24 @@
 ---
-type: mechanic
 status: active
+system: player_core
+tags:
+  - weapons
+  - proficiency
+  - arsenal
+  - modules
+  - hero_kit
+related_files:
+  - "[[05_Combat_Survival/Registries/Registry_Weapons|Registry Weapons]]"
+  - "[[04_Player_Entities/Registries/Registry_Combos|Registry Combos]]"
+  - "[[04_Player_Entities/MVP_3x3_Design_Contract|Контракт MVP-матрицы 3×3]]"
+  - "[[07_Gear_Inventory/Thermos_System|Thermos System]]"
+  - "[[07_Gear_Inventory/Registries/Registry_Thermos_Modules|Registry Thermos Modules]]"
+type: system
 index_route: owner
 index_group: player_entities
 index_order: 90
-index_summary: "Задаёт правила и последствия системы «Адаптивный арсенал и профильные ёмкости»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Адаптивный арсенал и профильные ёмкости»."
-system: player_core
-tags: [weapons, proficiency, arsenal, modules, hero_kit]
-related_files:
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry Weapons]]"
-  - "[[04_Player_Entities/_Registries/Registry_Combos|Registry Combos]]"
-  - "[[04_Player_Entities/MVP_3x3_Design_Contract|Контракт MVP-матрицы 3×3]]"
-  - "[[07_Gear_Inventory/Thermos_System|Thermos System]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Registry Thermos Modules]]"
+index_summary: "Определяет состояния, разрешение и связи: Адаптивный арсенал и профильные ёмкости."
+read_when: Когда нужен контракт «Адаптивный арсенал и профильные ёмкости» и его границы с соседними владельцами.
 ---
 # Адаптивный арсенал и профильные ёмкости
 
@@ -166,3 +171,19 @@ Frame публикует локальные поля `activates_on`, `exposure_c
 - одна ёмкость обслуживает несколько семейств без отдельной цены;
 - модуль чинит слабость полевого профиля без собственного веса, Exposure или потери другой доктрины;
 - два экземпляра одного полевого профиля получают разные скрытые базовые параметры; допустимо только локальное явное изменение одной фазы или ситуационный rewrite по общему контракту тегов.
+
+## Контракт доступа
+
+```text
+BaseAllowedFrames(hero_kit_id) = Registry_Combos[hero_kit_id].weapon_frame
+BaseFrameProf(hero_kit_id, frame_id) = Registry_Combos[hero_kit_id].prof or 0
+MasteryContribution(pawn_id, frame_id) = count(active frame-mastery tags for frame_id where mastery_step = 1)
+EffectiveFrameProf = min(3, BaseFrameProf + MasteryContribution)
+AllowedFrames(pawn_id) = physically compatible frames where EffectiveFrameProf >= 1
+EligibleInstance = registered Frame + matching grip + load tier + rarity band + spawn profile
+```
+
+- `Registry_Combos` хранит законченный authored-перечень `[weapon_frame:: ...] | [prof:: ...] | [combat_role:: ...]` каждого полевого профиля `Race × Spec`; списки родителей не складываются формулой.
+- Биография, Origin без Frame-mastery, редкость Пешки и простая история использования не добавляют и не блокируют Frame. Frame-mastery tag даёт одному физически совместимому Frame строго один результат: либо `mastery_step:: 1`, либо собственную named sidegrade-expression одной фазы. Expression не увеличивает `MasteryContribution`. Ни один Personal Tag не меняет баллистику, базовый урон, автоматический RPM или точность скрытым постоянным коэффициентом.
+- Экземпляр не может менять `grip`, `activates_on`, `commitment`, `exposure_channels`, `implicit_keyword` или основную функцию окна своего Frame.
+- `load_tier` говорит о допустимой энергетической нагрузке; `rarity_band` говорит, в каких цветах может существовать Pattern. Это разные оси.

@@ -1,5 +1,4 @@
 ---
-type: faction
 status: active
 system: factions
 faction_id: garden_chains
@@ -8,6 +7,8 @@ sort_order: 120
 faction_role: civic_texture
 promise: edible_green_city
 tags: [faction, civic_texture]
+type: "entity"
+entity_kind: "faction"
 ---
 # Садовые Цепи
 

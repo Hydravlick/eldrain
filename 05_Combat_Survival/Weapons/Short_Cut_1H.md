@@ -1,27 +1,47 @@
 ---
-type: weapon_frame
 status: active
 system: combat_survival
 frame_id: short_cut_1h
 display_name: Короткий рез, одна рука
 weapon_family: blade
 grip: one_hand
-skill_interfaces: [edge, contact_surface, free_hand]
-activates_on: [draw, cut, close_recovery]
+skill_interfaces:
+  - edge
+  - contact_surface
+  - free_hand
+activates_on:
+  - draw
+  - cut
+  - close_recovery
 commitment: front_line_draw_until_close_recovery
 primary_window_function: exploit
-creates_window: [none]
+creates_window:
+  - none
 implicit_keyword: draw_cut
 implicit_rule: Рабочая кромка держится в тесной геометрии и использует уже открытую мягкую зону, но не выигрывает честный фронтальный обмен.
-exploits_window: [soft_zone_exposed, stagger_entry]
-mitigates_window: [none]
-exposure_channels: [front_exchange, armor_check, close_commit]
-mastery_unlock: [quiet_draw, cut_recover]
+exploits_window:
+  - soft_zone_exposed
+  - stagger_entry
+mitigates_window:
+  - none
+exposure_channels:
+  - front_exchange
+  - armor_check
+  - close_commit
+mastery_unlock:
+  - quiet_draw
+  - cut_recover
 sort_order: 110
-tags: [weapon_frame, melee, blade, one_hand]
+tags:
+  - weapon_frame
+  - melee
+  - blade
+  - one_hand
 related_files:
   - "[[05_Combat_Survival/Weapon_Melee|Weapon_Melee]]"
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/Registries/Registry_Weapons|Registry_Weapons]]"
+type: entity
+entity_kind: weapon_frame
 ---
 # Короткий рез, одна рука
 

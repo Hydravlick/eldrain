@@ -1,5 +1,4 @@
 ---
-type: mechanic
 status: active
 system: quest_engine
 tags:
@@ -10,8 +9,8 @@ tags:
   - map_markers
   - foundling
 related_files:
-  - "[[03_Factions_Societies/_Registries/Registry_Factions|Registry_Factions]]"
-  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Registries/Registry_Factions|Registry_Factions]]"
+  - "[[03_Factions_Societies/Faction_Address_System|Faction_Address_System]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
   - "[[03_Factions_Societies/Quest_Engine_Grammar|Quest_Engine_Grammar]]"
   - "[[04_Player_Entities/Tags_System|Tags_System]]"
@@ -20,8 +19,14 @@ related_files:
 related_mechanics:
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
   - "[[03_Factions_Societies/Reputation_Rules|Reputation_Rules]]"
-  - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
-  - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server_Lifecycle]]"
+  - "[[08_World_Generation/Hub/Hub_Map_Table|Hub_Map_Table]]"
+  - "[[08_World_Generation/Generation/Server_Lifecycle|Server_Lifecycle]]"
+type: system
+index_route: owner
+index_group: factions_societies
+index_order: 200
+index_summary: "Определяет состояния, разрешение и связи: Движок квестов: система контрактов."
+read_when: "Когда нужен контракт «Движок квестов: система контрактов» и его границы с соседними владельцами."
 ---
 # Движок квестов: система контрактов
 

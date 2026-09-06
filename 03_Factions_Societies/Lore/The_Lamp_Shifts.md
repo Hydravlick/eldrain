@@ -1,5 +1,4 @@
 ---
-type: faction
 status: active
 system: factions
 faction_id: lamp_shifts
@@ -8,6 +7,8 @@ sort_order: 130
 faction_role: civic_texture
 promise: light_under_feet
 tags: [faction, civic_texture]
+type: "entity"
+entity_kind: "faction"
 ---
 # Фонарные Смены
 

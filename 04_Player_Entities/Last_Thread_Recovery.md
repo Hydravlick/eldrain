@@ -1,15 +1,24 @@
 ---
-type: system_contract
 status: active
 system: last_thread_recovery
-tags: [lifecycle, recovery, permadeath, lethal_intercept]
+tags:
+  - lifecycle
+  - recovery
+  - permadeath
+  - lethal_intercept
 related_files:
   - "[[04_Player_Entities/Lifecycle_Roster|Lifecycle Roster]]"
   - "[[04_Player_Entities/Lifecycle_Resolver|Lifecycle Resolver]]"
   - "[[04_Player_Entities/Recovery_Lifecycle|Recovery Lifecycle]]"
-  - "[[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion Logic]]"
+  - "[[08_World_Generation/Anomaly/Insertion_Logic|Insertion Logic]]"
   - "[[07_Gear_Inventory/Inventory_Architecture|Inventory Architecture]]"
-  - "[[08_World_Generation/_Registries/Registry_Raid_Interfaces|Raid Interfaces]]"
+  - "[[08_World_Generation/Registries/Registry_Raid_Interfaces|Raid Interfaces]]"
+type: system
+index_route: owner
+index_group: player_entities
+index_order: 200
+index_summary: "Определяет состояния, разрешение и связи: Last Thread Recovery."
+read_when: Когда нужен контракт «Last Thread Recovery» и его границы с соседними владельцами.
 ---
 # Last Thread Recovery
 

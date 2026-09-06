@@ -1,5 +1,4 @@
 ---
-type: faction
 category: faction
 status: active
 system: factions
@@ -7,9 +6,7 @@ faction_id: cathedral_all_faiths
 display_name: Собор Всех Вер
 sort_order: 70
 faction_role: hearth
-player_label: memory_and_vows
 promise: meaning_and_memory
-access_model: rites_relics_vows_memory_contracts
 tags:
   - religion
   - philosophy
@@ -17,16 +14,16 @@ tags:
   - temporal_constants
   - relics
 related_mechanics:
-  - "[[08_World_Generation/Anomaly/14_Extraction_System]]"
+  - "[[08_World_Generation/Anomaly/Extraction_System]]"
   - "[[05_Combat_Survival/Status_Effects]]"
   - "[[03_Factions_Societies/Reputation_Rules]]"
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
 related_files:
   - "[[02_World_Lore/The_Entity|The_Entity]]"
-  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Faction_Address_System|Faction_Address_System]]"
   - "[[03_Factions_Societies/Lore/Hearth_Anatomy|Hearth_Anatomy]]"
   - "[[03_Factions_Societies/Lore/Civic_Order|Civic_Order]]"
-  - "[[03_Factions_Societies/_Registries/Registry_Faction_Interfaces|Registry_Faction_Interfaces]]"
+  - "[[03_Factions_Societies/Registries/Registry_Faction_Interfaces|Registry_Faction_Interfaces]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
   - "[[02_World_Lore/Rat_Culture|Rat_Culture]]"
   - "[[02_World_Lore/Toad_Culture|Toad_Culture]]"
@@ -35,6 +32,8 @@ related_files:
   - "[[02_World_Lore/Hedgehog_Culture|Hedgehog_Culture]]"
   - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[04_Player_Entities/Races/Toad|Жаба]]"
+type: entity
+entity_kind: faction
 ---
 # Память и обеты: Собор Всех Вер
 
@@ -56,7 +55,7 @@ related_files:
 
 Собор Всех Вер держит смысл, память и способность жителей возвращаться к жизни после ужаса.
 
-В новой фракционной экосистеме Собор остаётся полноценным [[03_Factions_Societies/Lore/Faction_Address_System|Очагом]], но его сила не в продаже "баффов". Он принимает то, что нельзя просто продать, взвесить или записать: имя погибшего, личную вещь, обет, признание, реликвию, вину выжившего, страх перед следующим выходом.
+В новой фракционной экосистеме Собор остаётся полноценным [[03_Factions_Societies/Faction_Address_System|Очагом]], но его сила не в продаже "баффов". Он принимает то, что нельзя просто продать, взвесить или записать: имя погибшего, личную вещь, обет, признание, реликвию, вину выжившего, страх перед следующим выходом.
 
 **Общее дыхание** - не новое имя фракции, а соборная практика. Это ритуал, в котором разные веры, неверующие практики и травмированные рейдеры синхронизируют дыхание, позу, голос и память, чтобы снова стать частью города.
 
@@ -81,20 +80,6 @@ related_files:
 Если две традиции считают один объект несовместимо священным, его помещают в нейтральное закрытое хранение. Каждая сторона публично называет требуемую границу, а независимый хранитель памяти фиксирует происхождение. До соглашения объект нельзя вскрывать, передавать или использовать в общем обряде; Собор не выбирает «истинную» теологию.
 
 Внутри спорят **защитники автономии Масок**, **сторонники общей литургии** и **неверующие практики памяти**.
-
-Игрок получает в Соборе:
-
-> [!warning] Downstream interface drift
-> Перечень ниже сохраняет прежнюю игровую проекцию до миграции отдельных взаимодействий в `Registry_Faction_Interfaces`. Он не является владельцем eligibility, состояния, цены или результата.
-
-- ритуалы концентрации перед рейдом;
-- снятие или смягчение стрессовых эффектов;
-- работу с происхождением, хранением и спорным обращением реликвий Констант;
-- квесты памяти, примирения и возвращения имени;
-- моральные поручения, где награда не обязана быть денежной;
-- способ вернуть оборванное поручение как человеческую историю, а не как мусорный лут.
-
-Квестовые глаголы Собора: **помнить, примирить, освятить, вынести имя, принять вес**.
 
 ### Почему Собор терпят в городе
 
@@ -283,3 +268,7 @@ related_files:
 > *И знаете что? Я всё равно молюсь. Каждое утро. Не потому, что могу доказать свою веру, а потому, что она помогает живым не рассыпаться.*
 > *Пусть Хранители считают меня трусом. Я выбираю веру не потому, что она истинна. Я выбираю её, потому что она **работает**.»*
 > — *старший служитель одной из соборных общин.*
+
+## Игровые связи
+
+Принятые роли и границы: [[03_Factions_Societies/Registries/Registry_Faction_Interfaces]]. Заготовки сцен и поручений: [[08_World_Generation/Content/Faction_Encounter_Seeds#cathedral_all_faiths|Память и обеты: Собор Всех Вер]].

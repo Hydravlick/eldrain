@@ -1,14 +1,24 @@
 ---
-type: system
 status: active
 system: player_core
-tags: [two_paradox, vectors, topology, analysis, synergy]
+tags:
+  - two_paradox
+  - vectors
+  - topology
+  - analysis
+  - synergy
 related_files:
-  - "[[04_Player_Entities/_Matrices/00_Synergy_Map|Карта Двойного Парадокса и authored-взаимодействий]]"
-  - "[[04_Player_Entities/_Registries/Registry_Races|Реестр рас]]"
-  - "[[04_Player_Entities/_Registries/Registry_Specs|Реестр практик]]"
-  - "[[04_Player_Entities/_Registries/Registry_Combos|Реестр полевых профилей]]"
+  - "[[04_Player_Entities/Views/Synergy_Map|Карта Двойного Парадокса и authored-взаимодействий]]"
+  - "[[04_Player_Entities/Registries/Registry_Races|Реестр рас]]"
+  - "[[04_Player_Entities/Registries/Registry_Specs|Реестр практик]]"
+  - "[[04_Player_Entities/Registries/Registry_Combos|Реестр полевых профилей]]"
   - "[[04_Player_Entities/MVP_3x3_Design_Contract|Контракт MVP-матрицы 3×3]]"
+type: system
+index_route: owner
+index_group: player_entities
+index_order: 200
+index_summary: "Определяет состояния, разрешение и связи: Матрица Двойного Парадокса."
+read_when: Когда нужен контракт «Матрица Двойного Парадокса» и его границы с соседними владельцами.
 ---
 # Матрица Двойного Парадокса
 
@@ -89,7 +99,7 @@ NetPressure(A, B) = max(0, RawPressure(A, B) - RawPressure(B, A))
 
 ## 4. Authored-подтверждение
 
-Полный полевой профиль всё ещё проектируется отдельно и владеет P/Q/E, арсеналом, модулями, decision signature, Exposure и `counterplay_now`. Второй слой [[04_Player_Entities/_Matrices/00_Synergy_Map|Synergy Map]] проверяет, как формальная связь реализована или опровергнута в фактической сцене.
+Полный полевой профиль всё ещё проектируется отдельно и владеет P/Q/E, арсеналом, модулями, decision signature, Exposure и `counterplay_now`. Второй слой [[04_Player_Entities/Views/Synergy_Map|Synergy Map]] проверяет, как формальная связь реализована или опровергнута в фактической сцене.
 
 ```text
 структурное ребро Двойного Парадокса

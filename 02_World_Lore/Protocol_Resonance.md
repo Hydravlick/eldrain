@@ -21,7 +21,7 @@ related_files:
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
 related_mechanics:
   - "[[08_World_Generation/Anomaly/Anomaly_System|Anomaly_System]]"
-  - "[[04_Player_Entities/_Registries/Registry_Races|Registry_Races]]"
+  - "[[04_Player_Entities/Registries/Registry_Races|Registry_Races]]"
 ---
 # Протокол «Резонанс»: Интеграция Видов
 

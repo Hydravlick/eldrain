@@ -1,5 +1,4 @@
 ---
-type: faction
 status: active
 system: factions
 faction_id: lift_families
@@ -8,6 +7,8 @@ sort_order: 140
 faction_role: civic_texture
 promise: vertical_return
 tags: [faction, civic_texture]
+type: "entity"
+entity_kind: "faction"
 ---
 # Лифтовые Семьи
 

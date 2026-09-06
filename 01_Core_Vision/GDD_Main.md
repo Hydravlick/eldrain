@@ -1,8 +1,11 @@
 ---
-type: overview
 status: active
 system: core_vision
 tags: [gdd, overview, pitch]
+type: "core_concept"
+navigation_role: "GDD_Main"
+navigation_order: 0
+navigation_label: "Что такое Eldrain"
 ---
 # ELDRAIN — краткий паспорт
 
@@ -28,3 +31,5 @@ tags: [gdd, overview, pitch]
 3. **Полезность и происхождение.** Игрок выносит не абстрактное сокровище, а предмет с функцией, владельцем, историей и будущим применением. Ценность возникает из того, что удалось физически вернуть и встроить в жизнь города.
 
 Подробное обещание тона закреплено в [[01_Core_Vision/01_Vision|Видении]], материальный язык — в [[01_Core_Vision/Art_Direction_Material_Grammar|Материальной грамматике]], а проживаемая последовательность вылазки — в [[01_Core_Vision/02_Core_Loop|Игровом цикле]].
+
+Связанные возможности игрока: [[01_Core_Vision/Feature_Map|Feature Map]].

@@ -10,6 +10,9 @@ system: core_vision
 tags: [vision, atmosphere, magipunk, aesthetics]
 related_files:
   - "[[01_Core_Vision/Art_Direction_Material_Grammar|Art_Direction_Material_Grammar]]"
+navigation_role: "01_Vision"
+navigation_order: 1
+navigation_label: "Обещание игры"
 ---
 # Видение Проекта (Vision & Atmosphere)
 
@@ -45,3 +48,5 @@ related_files:
 
 * **Геймплей:** Escape from Tarkov, Dark and Darker, Hunt: Showdown.
 * **Тон и визуал:** Dishonored, Bloodborne, индустриальный магипанк, уютная безысходность.
+
+Связанные возможности игрока: [[01_Core_Vision/Feature_Map|Feature Map]].

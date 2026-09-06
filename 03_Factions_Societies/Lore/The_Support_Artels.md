@@ -1,5 +1,4 @@
 ---
-type: faction
 category: faction
 status: active
 system: factions
@@ -7,9 +6,7 @@ faction_id: support_artels
 display_name: Артели Подпорки
 sort_order: 60
 faction_role: hearth
-player_label: repair_and_passages
 promise: city_must_stand
-access_model: lifts_bridges_reinforcement_heavy_repair
 tags:
   - hearth
   - engineering
@@ -17,16 +14,18 @@ tags:
   - armor
   - infrastructure
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Faction_Address_System|Faction_Address_System]]"
   - "[[03_Factions_Societies/Lore/Hearth_Anatomy|Hearth_Anatomy]]"
   - "[[03_Factions_Societies/Lore/Civic_Order|Civic_Order]]"
-  - "[[03_Factions_Societies/_Registries/Registry_Faction_Interfaces|Registry_Faction_Interfaces]]"
+  - "[[03_Factions_Societies/Registries/Registry_Faction_Interfaces|Registry_Faction_Interfaces]]"
   - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[02_World_Lore/Hedgehog_Culture|Hedgehog_Culture]]"
 related_mechanics:
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
   - "[[07_Gear_Inventory/Gear_Progression|Gear_Progression]]"
-  - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
+  - "[[08_World_Generation/Hub/Hub_Map_Table|Hub_Map_Table]]"
+type: entity
+entity_kind: faction
 ---
 # Ремонт и проходы: Артели Подпорки
 
@@ -100,40 +99,6 @@ related_mechanics:
 - отсечение районов перед обрушением;
 - физическую сторону маршрутов допуска.
 
-## Что получает игрок
-
-> [!warning] Downstream interface drift
-> Этот и следующие игровые разделы сохраняют прежнюю проекцию до миграции отдельных взаимодействий в `Registry_Faction_Interfaces`. Они не являются владельцем eligibility, состояния, цены или результата.
-
-- тяжёлую броню, пластины, крепёж и ремонт;
-- инженерные проходы и лифтовые допуски;
-- укрепления для временного выхода;
-- контракты удержания, подъёма, отсечения и эвакуации;
-- доступ к Горячему Столу, Рунному Столу и лифтовым семьям;
-- временные маршруты через опасные районы.
-
-## Квестовые глаголы
-
-| Глагол | Пример |
-|---|---|
-| укрепить | доставить крепёж до моста под фазовым шумом |
-| поднять | запустить лифт с перегоревшей батареей |
-| отсечь | закрыть район до того, как заражение войдет в жилые слои |
-| удержать | стоять в проёме, пока бригада выводит людей |
-| разобрать | снять ценный узел без обрушения здания |
-
-## Мастера и временные POI
-
-Временные точки:
-
-- аварийный мост, который держится меньше часа;
-- лифт с дешёвым T2-маршрутом;
-- кузница, открытая пока Фонарная Смена держит район;
-- бригада перед отсечением квартала;
-- убежище, где можно переждать фазовый удар.
-
-Подпорка часто работает рядом с Горячим Столом, Рунным Столом, Лифтовыми Семьями и Фонарными Сменами.
-
 ## Напряжения
 
 - **С Садовыми Цепями:** корни, вода и грибы питают город, но ломают стены.
@@ -147,3 +112,7 @@ related_mechanics:
 Подпорка принимает решения, от которых в соларном городе хочется отворачиваться: какой мост держать, какой дом опустить, какую дверь закрыть с людьми по другую сторону.
 
 Их жестокость рождается не из власти, а из веса.
+
+## Игровые связи
+
+Принятые роли и границы: [[03_Factions_Societies/Registries/Registry_Faction_Interfaces]]. Заготовки сцен и поручений: [[08_World_Generation/Content/Faction_Encounter_Seeds#support_artels|Ремонт и проходы: Артели Подпорки]].

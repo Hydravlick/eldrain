@@ -1,27 +1,47 @@
 ---
-type: weapon_frame
 status: active
 system: combat_survival
 frame_id: point_tool_1h
 display_name: Линейный пробойник, одна рука
 weapon_family: blade
 grip: one_hand
-skill_interfaces: [point, contact_surface, free_hand]
-activates_on: [thrust, line_hold, precision_recovery]
+skill_interfaces:
+  - point
+  - contact_surface
+  - free_hand
+activates_on:
+  - thrust
+  - line_hold
+  - precision_recovery
 commitment: fixed_thrust_line_until_withdrawal
 primary_window_function: exploit
-creates_window: [none]
+creates_window:
+  - none
 implicit_keyword: seam_point
 implicit_rule: Узкая рабочая точка требует видимой линии к стыку, щели или мягкой зоне; пластина и боковой обход сохраняют контригру.
-exploits_window: [joint_exposed, soft_zone_exposed]
-mitigates_window: [none]
-exposure_channels: [line_commit, shield_angle, armor_check]
-mastery_unlock: [seam_followup, measured_withdraw]
+exploits_window:
+  - joint_exposed
+  - soft_zone_exposed
+mitigates_window:
+  - none
+exposure_channels:
+  - line_commit
+  - shield_angle
+  - armor_check
+mastery_unlock:
+  - seam_followup
+  - measured_withdraw
 sort_order: 120
-tags: [weapon_frame, melee, blade, one_hand]
+tags:
+  - weapon_frame
+  - melee
+  - blade
+  - one_hand
 related_files:
   - "[[05_Combat_Survival/Weapon_Melee|Weapon_Melee]]"
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/Registries/Registry_Weapons|Registry_Weapons]]"
+type: entity
+entity_kind: weapon_frame
 ---
 # Линейный пробойник, одна рука
 

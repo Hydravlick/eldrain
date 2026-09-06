@@ -1,12 +1,11 @@
 ---
-type: mechanic
 system: core_loop
 status: active
 index_route: owner
 index_group: core_vision
 index_order: 20
 index_summary: "Описывает полный игровой цикл: подготовка, вход в рейд, рискованная работа, экстракция и последствия, возвращающиеся в следующий выбор."
-read_when: "Читайте при изменении этапов цикла, переходов между Хабом и рейдом, условий провала, возвращения или последствий вылазки."
+read_when: Читайте при изменении этапов цикла, переходов между Хабом и рейдом, условий провала, возвращения или последствий вылазки.
 tags:
   - loop
   - flow
@@ -18,14 +17,18 @@ related_files:
   - "[[10_Reference/Reference Note Анализ Mewgenics как эталона Single-Player Extraction Roguelike]]"
   - "[[10_Reference/Reference Note Анализ геймплея по системе Micro Meso Macro]]"
   - "[[10_Reference/Reference Note Darkest Dungeon — командостроение, соло и повторяющиеся составы]]"
-  - "[[08_World_Generation/Generation/07_Server_Lifecycle]]"
-  - "[[08_World_Generation/Generation/08_Gate_Check]]"
-  - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Подход и вход в рейд]]"
-  - "[[08_World_Generation/Generation/20_Egress_Solvency|Обычный выход до Печати]]"
-  - "[[08_World_Generation/Anomaly/17_Apex_Last_Hour|Последний час Apex]]"
+  - "[[08_World_Generation/Generation/Server_Lifecycle]]"
+  - "[[08_World_Generation/Generation/Gate_Check]]"
+  - "[[08_World_Generation/Generation/Raid_Approach_and_Entry|Подход и вход в рейд]]"
+  - "[[08_World_Generation/Generation/Egress_Solvency|Обычный выход до Печати]]"
+  - "[[08_World_Generation/Anomaly/Apex_Last_Hour|Последний час Apex]]"
   - "[[06_Economy_Loot/Economy_Core]]"
   - "[[06_Economy_Loot/Extraction_Stabilization_Loop]]"
   - "[[08_World_Generation/Anomaly/Anomaly_System]]"
+type: core_concept
+navigation_role: "02_Core_Loop"
+navigation_order: 2
+navigation_label: "Игровой цикл"
 ---
 # Игровой Цикл (The Core Loop)
 ## Первый playable vertical slice
@@ -41,11 +44,11 @@ related_files:
 
 ### Владельцы шагов
 
-1. **Выбор работы:** [[04_Player_Entities/Lifecycle_Roster|Lifecycle Roster]], [[08_World_Generation/Hub/01_Hub_Map_Table|Карта Хаба]], [[03_Factions_Societies/Quest_Engine|Quest Engine]].
-2. **Подготовка:** [[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Подход и вход]], [[08_World_Generation/Generation/08_Gate_Check|Gate Check]].
-3. **Подтверждение:** [[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Подход и вход]].
+1. **Выбор работы:** [[04_Player_Entities/Lifecycle_Roster|Lifecycle Roster]], [[08_World_Generation/Hub/Hub_Map_Table|Карта Хаба]], [[03_Factions_Societies/Quest_Engine|Quest Engine]].
+2. **Подготовка:** [[08_World_Generation/Generation/Raid_Approach_and_Entry|Подход и вход]], [[08_World_Generation/Generation/Gate_Check|Gate Check]].
+3. **Подтверждение:** [[08_World_Generation/Generation/Raid_Approach_and_Entry|Подход и вход]].
 4. **Рейд:** [[08_World_Generation/Anomaly/Anomaly_System|Anomaly System]].
-5. **Выход:** [[08_World_Generation/Anomaly/14_Extraction_System|Extraction System]], [[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction and Stabilization]].
+5. **Выход:** [[08_World_Generation/Anomaly/Extraction_System|Extraction System]], [[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction and Stabilization]].
 6. **Последствие:** [[04_Player_Entities/Lifecycle_Roster|Lifecycle Roster]], [[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction and Stabilization]], [[03_Factions_Societies/Quest_Engine|Quest Engine]].
 
 Этот документ связывает путь игрока, но не владеет readiness, EntryQuote, состоянием POI, custody, контрактным исходом или балансными числами. Детальные правила остаются у владельцев выше.
@@ -191,3 +194,5 @@ related_files:
   -> Решение: продать / разобрать / изучить / экипировать / вложить
   -> Новый рейд с изменившимися возможностями
 ```
+
+Связанные возможности игрока: [[01_Core_Vision/Feature_Map|Feature Map]].

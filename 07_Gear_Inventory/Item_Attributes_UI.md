@@ -4,8 +4,8 @@ status: active
 index_route: owner
 index_group: gear_inventory
 index_order: 170
-index_summary: "Задаёт правила и последствия системы «Атрибуты Предмета и UI (Item Passport)»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Атрибуты Предмета и UI (Item Passport)»."
+index_summary: Задаёт правила и последствия системы «Атрибуты Предмета и UI (Item Passport)».
+read_when: Читайте при изменении входов, состояний, стоимости или последствий системы «Атрибуты Предмета и UI (Item Passport)».
 system: ui_ux
 tags:
   - tooltip
@@ -18,10 +18,10 @@ tags:
 related_files:
   - "[[07_Gear_Inventory/Dissonance_Value|Dissonance_Value]]"
   - "[[07_Gear_Inventory/Gear_Progression|Gear_Progression]]"
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/Registries/Registry_Weapons|Registry_Weapons]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_Thermoses|Registry_Thermoses]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
+  - "[[07_Gear_Inventory/Registries/Registry_Thermoses|Registry_Thermoses]]"
+  - "[[07_Gear_Inventory/Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
 ---
 # Атрибуты Предмета и UI (Item Passport)
 

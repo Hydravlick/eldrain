@@ -13,7 +13,7 @@ related_files:
   - "[[01_Core_Vision/02_Core_Loop|Core Loop]]"
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat Profile Pipeline]]"
   - "[[04_Player_Entities/Two_Paradox_Vector_Matrix|Двойной Парадокс]]"
-  - "[[04_Player_Entities/_Registries/Registry_Combos|Registry Combos]]"
+  - "[[04_Player_Entities/Registries/Registry_Combos|Registry Combos]]"
   - "[[05_Combat_Survival/Status_Effects|Status Effects]]"
   - "[[07_Gear_Inventory/Gear_Progression|Gear Progression]]"
 ---

@@ -14,7 +14,7 @@ tags:
   - grey_morality
   - view_layer
 related_mechanics:
-  - "[[03_Factions_Societies/_Registries/Registry_Factions|Registry_Factions]]"
+  - "[[03_Factions_Societies/Registries/Registry_Factions|Registry_Factions]]"
   - "[[03_Factions_Societies/Reputation_Rules|Reputation_Rules]]"
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
   - "[[06_Economy_Loot/Economy_Core|Economy_Core]]"

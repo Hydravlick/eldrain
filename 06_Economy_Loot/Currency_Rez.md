@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: economy_loot
-index_order: 40
-index_summary: "Задаёт правила и последствия системы «Валюта: Рез (Rez)»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Валюта: Рез (Rez)»."
 system: currency
 tags:
   - rez
@@ -17,6 +11,13 @@ related_files:
   - "[[07_Gear_Inventory/Containers_Slots|Containers_Slots]]"
   - "[[06_Economy_Loot/Economy_Core|Economy_Core]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
+
+type: "system"
+index_route: "owner"
+index_group: "economy_loot"
+index_order: 40
+index_summary: "Определяет состояния, разрешение и связи: Валюта: Рез (Rez)."
+read_when: "Когда нужен контракт «Валюта: Рез (Rez)» и его границы с соседними владельцами."
 ---
 # Валюта: Рез (Rez)
 

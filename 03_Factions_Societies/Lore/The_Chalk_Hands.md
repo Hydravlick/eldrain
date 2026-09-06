@@ -1,5 +1,4 @@
 ---
-type: faction
 status: active
 system: factions
 faction_id: chalk_hands
@@ -8,6 +7,8 @@ sort_order: 150
 faction_role: civic_texture
 promise: warning_before_proof
 tags: [faction, civic_texture]
+type: "entity"
+entity_kind: "faction"
 ---
 # Меловые Руки
 

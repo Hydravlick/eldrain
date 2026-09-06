@@ -16,7 +16,7 @@ related_files:
   - "[[05_Combat_Survival/Threat_Thresholds|Threat Thresholds]]"
   - "[[06_Economy_Loot/Economy_Core|Economy Core]]"
   - "[[07_Gear_Inventory/Inventory_Architecture|Inventory Architecture]]"
-  - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]]"
+  - "[[08_World_Generation/Generation/Server_Lifecycle|Server Lifecycle]]"
 source_dialogues:
 web_sources:
   - https://arcraiders.com/

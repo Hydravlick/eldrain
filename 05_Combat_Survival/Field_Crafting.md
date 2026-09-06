@@ -4,12 +4,16 @@ status: active
 index_route: owner
 index_group: combat_survival
 index_order: 100
-index_summary: "Задаёт правила и последствия системы «Полевые Операции с Лутом»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Полевые Операции с Лутом»."
+index_summary: Задаёт правила и последствия системы «Полевые Операции с Лутом».
+read_when: Читайте при изменении входов, состояний, стоимости или последствий системы «Полевые Операции с Лутом».
 system: field_operations
-tags: [anomaly_interaction, workbench, risk, loot]
+tags:
+  - anomaly_interaction
+  - workbench
+  - risk
+  - loot
 related_files:
-  - "[[08_World_Generation/Generation/02_Mechanic_Night_Benches|Night_Benches]]"
+  - "[[08_World_Generation/Generation/Mechanic_Night_Benches|Night_Benches]]"
   - "[[06_Economy_Loot/Loot_Sync_Cycle|Loot_Sync_Cycle]]"
   - "[[06_Economy_Loot/Barter_System|Barter_System]]"
 ---

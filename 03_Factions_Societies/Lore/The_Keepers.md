@@ -1,5 +1,4 @@
 ---
-type: faction
 category: faction
 status: active
 system: factions
@@ -8,7 +7,6 @@ display_name: Хранители
 sort_order: 190
 faction_role: supra_faction
 promise: anchor_stability
-access_model: emergency_protocols_anchor_routes_red_line
 tags:
   - secret_service
   - high_tech
@@ -16,13 +14,15 @@ tags:
   - administration
 related_mechanics:
   - "[[03_Factions_Societies/Quest_Engine]]"
-  - "[[03_Factions_Societies/_Registries/Registry_Factions|Registry_Factions]]"
+  - "[[03_Factions_Societies/Registries/Registry_Factions|Registry_Factions]]"
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Faction_Address_System|Faction_Address_System]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
   - "[[02_World_Lore/Protocol_Resonance|Protocol_Resonance]]"
   - "[[02_World_Lore/The_Ark|The_Ark]]"
+type: entity
+entity_kind: faction
 ---
 # Хранители (The Keepers)
 

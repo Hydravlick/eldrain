@@ -1,8 +1,15 @@
 ---
-type: overview
 status: active
 system: core_vision
-tags: [builds, pawns, skills, frames, thermos, extraction, newcomer_guide, mvp]
+tags:
+  - builds
+  - pawns
+  - skills
+  - frames
+  - thermos
+  - extraction
+  - newcomer_guide
+  - mvp
 related_files:
   - "[[01_Core_Vision/02_Core_Loop|Игровой цикл]]"
   - "[[04_Player_Entities/MVP_3x3_Design_Contract|Контракт MVP-матрицы 3×3]]"
@@ -10,12 +17,13 @@ related_files:
   - "[[04_Player_Entities/Skill_Build_Philosophy|Философия навыков и билдостроения]]"
   - "[[04_Player_Entities/Tags_System|Система тегов]]"
   - "[[05_Combat_Survival/Combat_Three_Debts|Закон трёх долгов]]"
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Реестр оружейных фреймов]]"
+  - "[[05_Combat_Survival/Registries/Registry_Weapons|Реестр оружейных фреймов]]"
   - "[[07_Gear_Inventory/Gear_Progression|Прогрессия снаряжения]]"
-  - "[[08_World_Generation/_Registries/Registry_Environment_States|Локальные средовые состояния]]"
-  - "[[08_World_Generation/Anomaly/00_Anomaly_Core_Loop|Ядро Аномалии]]"
-  - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Подход и вход в рейд]]"
+  - "[[08_World_Generation/Registries/Registry_Environment_States|Локальные средовые состояния]]"
+  - "[[08_World_Generation/Anomaly/Anomaly_Core_Loop|Ядро Аномалии]]"
+  - "[[08_World_Generation/Generation/Raid_Approach_and_Entry|Подход и вход в рейд]]"
   - "[[06_Economy_Loot/Extraction_Stabilization_Loop|Экстракция, стабилизация и наследие]]"
+type: core_concept
 ---
 # Срез концепта: пешки, билды и экстракция
 
@@ -107,7 +115,7 @@ P/Q/E меняют ситуацию через тело, устройство и
 
 Дождь слышен по металлу, оседает на маске и делает открытые крыши, навесы, раны и фильтр частью одного решения. Игрок может переждать, быстро пересечь участок, потратить фильтр, загерметизировать рану или сменить маршрут. Кровотечение имеет особый смысл только внутри этой сцены; оно не превращается в универсальный способ наложить споры из любой точки карты.
 
-Такой пример показывает назначение среды, не дублируя её resolver. Нормативная запись состояния и допустимые реакции находятся в [[08_World_Generation/_Registries/Registry_Environment_States|Registry Environment States]].
+Такой пример показывает назначение среды, не дублируя её resolver. Нормативная запись состояния и допустимые реакции находятся в [[08_World_Generation/Registries/Registry_Environment_States|Registry Environment States]].
 
 ## Один рейд глазами игрока
 
@@ -150,7 +158,7 @@ P/Q/E меняют ситуацию через тело, устройство и
 - [[01_Core_Vision/02_Core_Loop|Игровой цикл]] — последовательность и ставка вылазки.
 - [[04_Player_Entities/MVP_3x3_Design_Contract|Контракт MVP 3×3]], [[04_Player_Entities/Skill_Build_Philosophy|Skill Build Philosophy]] и [[04_Player_Entities/Combat_Profile_Pipeline|Combat Profile Pipeline]] — полевой профиль, P/Q/E и сборка профиля.
 - [[04_Player_Entities/Tags_System|Tags System]] — механические свойства; Quest, lifecycle, Trace, custody и CityState владеют своими последствиями.
-- [[05_Combat_Survival/Combat_Three_Debts|Combat Three Debts]] и [[05_Combat_Survival/_Registries/Registry_Weapons|Registry Weapons]] — язык обязательства и оружейные записи.
+- [[05_Combat_Survival/Combat_Three_Debts|Combat Three Debts]] и [[05_Combat_Survival/Registries/Registry_Weapons|Registry Weapons]] — язык обязательства и оружейные записи.
 - [[07_Gear_Inventory/Gear_Progression|Gear Progression]] — надёжность, замена и полно-комплектное сравнение.
-- [[08_World_Generation/_Registries/Registry_Environment_States|Registry Environment States]] и [[08_World_Generation/Anomaly/00_Anomaly_Core_Loop|Anomaly Core Loop]] — локальные состояния и развитие рейдовой среды.
-- [[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid Approach and Entry]] и [[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction and Stabilization]] — подтверждение ставки и судьба возвращённого результата.
+- [[08_World_Generation/Registries/Registry_Environment_States|Registry Environment States]] и [[08_World_Generation/Anomaly/Anomaly_Core_Loop|Anomaly Core Loop]] — локальные состояния и развитие рейдовой среды.
+- [[08_World_Generation/Generation/Raid_Approach_and_Entry|Raid Approach and Entry]] и [[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction and Stabilization]] — подтверждение ставки и судьба возвращённого результата.

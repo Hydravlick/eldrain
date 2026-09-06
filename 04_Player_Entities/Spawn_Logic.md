@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: player_entities
-index_order: 120
-index_summary: "Задаёт правила и последствия системы «Логика Спавна и Снаряжения Оболочек»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Логика Спавна и Снаряжения Оболочек»."
 system: player_core
 tags:
   - shell
@@ -20,8 +14,14 @@ related_files:
   - "[[04_Player_Entities/Lifecycle_Roster|Lifecycle_Roster]]"
   - "[[04_Player_Entities/Tags_System|Tags_System]]"
   - "[[06_Economy_Loot/Economy_Core|Economy_Core]]"
-  - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
-  - "[[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion_Logic]]"
+  - "[[08_World_Generation/Generation/Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
+  - "[[08_World_Generation/Anomaly/Insertion_Logic|Insertion_Logic]]"
+type: system
+index_route: owner
+index_group: player_entities
+index_order: 120
+index_summary: "Определяет состояния, разрешение и связи: Логика Спавна и Снаряжения Оболочек."
+read_when: Когда нужен контракт «Логика Спавна и Снаряжения Оболочек» и его границы с соседними владельцами.
 ---
 # Логика Спавна и Снаряжения Оболочек
 
@@ -40,7 +40,7 @@ related_files:
 
 1. **Здоровье и травма:** базовое восстановление и сохраняющиеся последствия разрешает [[05_Combat_Survival/Combat_Consumables#6. Восстановление в Хабе|Combat Consumables]].
 2. **Энергия:** обслуживание вынесенных батарей разрешает [[05_Combat_Survival/Magic_Batteries#4. Зарядка после экстракции|Magic Batteries]]; редкие режимы не обязаны получать тот же бесплатный сервис, что обычные источники.
-3. **Инвентарь:** судьбу физически возвращённого груза и манифеста задают [[08_World_Generation/Anomaly/14_Extraction_System|Extraction System]] и [[06_Economy_Loot/Return_Manifest_Contract|Return Manifest Contract]].
+3. **Инвентарь:** судьбу физически возвращённого груза и манифеста задают [[08_World_Generation/Anomaly/Extraction_System|Extraction System]] и [[06_Economy_Loot/Return_Manifest_Contract|Return Manifest Contract]].
 
 Эти операции обслуживают пережившего человека и физически возвращённые вещи. Они не создают новый `ApproachOffer` или право входа и не меняют `origin`, `civic_status` или полевой профиль.
 

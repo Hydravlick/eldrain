@@ -1,28 +1,49 @@
 ---
-type: weapon_frame
 status: active
 system: combat_survival
 frame_id: scatter_valve_2h
 display_name: Веерный клапан, две руки
 weapon_family: arcanegun
 grip: two_hand
-skill_interfaces: [conduit, brace]
-activates_on: [brace, valve_open, volley_lock, vent_recovery]
+skill_interfaces:
+  - conduit
+  - brace
+activates_on:
+  - brace
+  - valve_open
+  - volley_lock
+  - vent_recovery
 commitment: locked_cone_through_volley_and_vent
 primary_window_function: create
-creates_window: [entry_denied]
+creates_window:
+  - entry_denied
 implicit_keyword: linked_scatter
 implicit_rule: Один открытый клапан выпускает связанную гроздь слабых импульсов по закреплённому конусу; частичный контакт давит на вход, но не даёт бесплатного тяжёлого контроля.
-exploits_window: [none]
-mitigates_window: [melee_entry]
-exposure_channels: [heat, short_range, noise, open_line, vent_recovery]
-mastery_unlock: [valve_recover, cone_hold]
+exploits_window:
+  - none
+mitigates_window:
+  - melee_entry
+exposure_channels:
+  - heat
+  - short_range
+  - noise
+  - open_line
+  - vent_recovery
+mastery_unlock:
+  - valve_recover
+  - cone_hold
 sort_order: 430
-tags: [weapon_frame, ranged, arcanegun, two_hand]
+tags:
+  - weapon_frame
+  - ranged
+  - arcanegun
+  - two_hand
 related_files:
   - "[[05_Combat_Survival/Weapon_Ranged|Weapon_Ranged]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/Registries/Registry_Weapons|Registry_Weapons]]"
+type: entity
+entity_kind: weapon_frame
 ---
 # Веерный клапан, две руки
 

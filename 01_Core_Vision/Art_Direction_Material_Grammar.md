@@ -4,8 +4,8 @@ status: active
 index_route: owner
 index_group: core_vision
 index_order: 30
-index_summary: "Задаёт визуальный язык материалов, износа, ремонта и energy tells, чтобы состояние мира и предметов читалось до объяснения интерфейса."
-read_when: "Читайте при изменении визуального языка объектов, повреждений, ремонта, следов энергии или читаемости материального состояния."
+index_summary: Задаёт визуальный язык материалов, износа, ремонта и energy tells, чтобы состояние мира и предметов читалось до объяснения интерфейса.
+read_when: Читайте при изменении визуального языка объектов, повреждений, ремонта, следов энергии или читаемости материального состояния.
 system: core_vision
 tags:
   - art_direction
@@ -19,7 +19,7 @@ related_files:
   - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[03_Factions_Societies/Lore/The_Proving_Houses|The_Proving_Houses]]"
   - "[[02_World_Lore/Lizard_Culture|Lizard_Culture]]"
-  - "[[08_World_Generation/Generation/01_World_Concept_Palimpsest|World_Concept_Palimpsest]]"
+  - "[[08_World_Generation/Generation/World_Concept_Palimpsest|World_Concept_Palimpsest]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
 ---
 # Материальная грамматика Элдрейна

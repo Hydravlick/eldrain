@@ -282,6 +282,8 @@ def check_views(root: Path) -> list[Violation]:
         if data.get("type") != "view":
             continue
         rel = str(path.relative_to(root))
+        if data.get("index_route") == "owner":
+            violations.append(Violation("VIEW_ROUTE_OWNERSHIP", rel, "derived views cannot enter owner routes"))
         for field in MODEL["view"]["forbidden_owner_fields"]:
             if field in data:
                 violations.append(Violation("VIEW_RULE_OWNERSHIP", rel, field))

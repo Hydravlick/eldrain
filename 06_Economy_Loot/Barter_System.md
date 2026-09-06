@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: economy_loot
-index_order: 10
-index_summary: "Задаёт правила и последствия системы «Адресный Бартер»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Адресный Бартер»."
 system: trade_craft
 tags:
   - barter
@@ -18,9 +12,15 @@ related_files:
   - "[[06_Economy_Loot/Craft_Modifiers|Craft_Modifiers]]"
   - "[[06_Economy_Loot/Blueprints|Blueprints]]"
   - "[[06_Economy_Loot/Loot_Sync_Cycle|Loot_Sync_Cycle]]"
-  - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
+  - "[[08_World_Generation/Hub/Hub_Map_Table|Hub_Map_Table]]"
   - "[[08_World_Generation/City_State/Civic_Event_Lifecycle|Civic_Event_Lifecycle]]"
-  - "[[08_World_Generation/Generation/21_Location_Revision_Lifecycle|Location_Revision_Lifecycle]]"
+  - "[[08_World_Generation/Generation/Location_Revision_Lifecycle|Location_Revision_Lifecycle]]"
+type: system
+index_route: owner
+index_group: economy_loot
+index_order: 10
+index_summary: "Определяет состояния, разрешение и связи: Адресный Бартер."
+read_when: Когда нужен контракт «Адресный Бартер» и его границы с соседними владельцами.
 ---
 # Адресный Бартер
 
@@ -121,7 +121,7 @@ RecipeTransaction
 
 ### Ночные Верстаки
 
-[[08_World_Generation/Generation/02_Mechanic_Night_Benches|Ночной Верстак]] не является удалённым адресом, лавкой или обычным крафтом. Это опасное рейдовое взаимодействие для перенастройки, извлечения или временной стабилизации конкретного объекта. Оно не подключается к Схрону и не подменяет послерейдовый выбор адреса.
+[[08_World_Generation/Generation/Mechanic_Night_Benches|Ночной Верстак]] не является удалённым адресом, лавкой или обычным крафтом. Это опасное рейдовое взаимодействие для перенастройки, извлечения или временной стабилизации конкретного объекта. Оно не подключается к Схрону и не подменяет послерейдовый выбор адреса.
 
 ### Закрытие внешнего адреса
 
@@ -156,3 +156,24 @@ AddressCard
 ```
 
 Первый экран показывает не полный каталог, а совпадения с текущим Схроном и закреплёнными целями. Полная схема открывается по запросу.
+
+## 2. Рабочий цикл записи
+
+```text
+available address
+  + matching extracted multiset
+  + zero or one fixed variant
+  + limited blueprint when required
+  -> exact preview
+  -> atomic confirmation
+  -> provenance-preserving result
+```
+
+## 6. Исключения
+
+- обычный крафт через полевую станцию не является активной RecipeTransaction;
+- Ночной Верстак использует отдельный контракт опасной рейдовой операции;
+- публичный рецепт боеприпасов внутри рейда удалён;
+- случайные исходы Defect/Corruption не добавляются к мирной сделке;
+- один адрес не принимает собственный выход в более выгодную петлю;
+- числовой курс не публикуется до проверки safe-profit и доминирования адресов.

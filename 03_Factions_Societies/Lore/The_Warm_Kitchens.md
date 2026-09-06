@@ -1,5 +1,4 @@
 ---
-type: faction
 status: active
 system: factions
 faction_id: warm_kitchens
@@ -8,6 +7,8 @@ sort_order: 110
 faction_role: civic_texture
 promise: fed_enough_to_continue
 tags: [faction, civic_texture]
+type: "entity"
+entity_kind: "faction"
 ---
 # Тёплые Кухни
 

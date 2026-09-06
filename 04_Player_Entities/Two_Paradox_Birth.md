@@ -1,12 +1,16 @@
 ---
-type: design_rationale
 status: active
 system: player_core
-tags: [design_rationale, two_paradox, vectors, topology]
+tags:
+  - design_rationale
+  - two_paradox
+  - vectors
+  - topology
 related_files:
   - "[[04_Player_Entities/Two_Paradox_Vector_Matrix|Матрица Двойного Парадокса]]"
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat Profile Pipeline]]"
-  - "[[04_Player_Entities/_Matrices/00_Synergy_Map|Synergy Map]]"
+  - "[[04_Player_Entities/Views/Synergy_Map|Synergy Map]]"
+type: core_concept
 ---
 # Рождение Двойного Парадокса
 

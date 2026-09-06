@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: combat_survival
-index_order: 180
-index_summary: "Задаёт правила и последствия системы «Оружие: Магострельный Канон и Тиры»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Оружие: Магострельный Канон и Тиры»."
 system: action_combat
 tags:
   - weapons
@@ -16,9 +10,15 @@ related_files:
   - "[[05_Combat_Survival/Combat_Three_Debts|Combat_Three_Debts]]"
   - "[[05_Combat_Survival/Weapon_Ranged|Weapon_Ranged]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/Registries/Registry_Weapons|Registry_Weapons]]"
   - "[[04_Player_Entities/Skill_Build_Philosophy|Skill_Build_Philosophy]]"
   - "[[07_Gear_Inventory/Gear_Progression|Gear_Progression]]"
+type: system
+index_route: owner
+index_group: combat_survival
+index_order: 180
+index_summary: "Определяет состояния, разрешение и связи: Оружие: Магострельный Канон и Тиры."
+read_when: "Когда нужен контракт «Оружие: Магострельный Канон и Тиры» и его границы с соседними владельцами."
 ---
 # Оружие: Магострельный Канон и Тиры
 

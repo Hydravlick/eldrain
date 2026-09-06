@@ -1,17 +1,22 @@
 ---
-type: system
 status: active
+system: thermos_wearable_equipment
+tags:
+  - thermos
+  - wearable_equipment
+  - assembly
+  - service_capacity
+  - hub
+related_files:
+  - "[[07_Gear_Inventory/Thermos_Assembly|Сборка Термоса]]"
+  - "[[07_Gear_Inventory/Registries/Registry_Thermos_Interfaces|Интерфейсы Термоса]]"
+  - "[[04_Player_Entities/Registries/Registry_Parameter_Contracts|Параметрические контракты]]"
+type: system
 index_route: owner
 index_group: gear_inventory
 index_order: 220
-index_summary: "Задаёт правила и последствия системы «Термос: носимая система экипировки»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Термос: носимая система экипировки»."
-system: thermos_wearable_equipment
-tags: [thermos, wearable_equipment, assembly, service_capacity, hub]
-related_files:
-  - "[[07_Gear_Inventory/Thermos_Assembly|Сборка Термоса]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Interfaces|Интерфейсы Термоса]]"
-  - "[[04_Player_Entities/_Registries/Registry_Parameter_Contracts|Параметрические контракты]]"
+index_summary: "Определяет состояния, разрешение и связи: Термос: носимая система экипировки."
+read_when: "Когда нужен контракт «Термос: носимая система экипировки» и его границы с соседними владельцами."
 ---
 # Термос: носимая система экипировки
 
@@ -37,7 +42,7 @@ Definition описывает тип вещи; instance — реальную в�
 | Fit | [[07_Gear_Inventory/Thermos_Assembly|Assembly Resolver]] | body/model/refit inputs | не меняет Body, полевой профиль или Personal Tag |
 | Topology | Assembly Resolver | mount patterns и node claims | не выводит effect из позиции |
 | Service legality | Assembly Resolver | authored BaseServiceCapacity и service load | не создаёт capacity из tag/status/consumable |
-| Effect policy | [[04_Player_Entities/_Registries/Registry_Parameter_Contracts|Parameter Contract owner]] | modifier request + intrinsic debt | не задаёт priority/floor/cap |
+| Effect policy | [[04_Player_Entities/Registries/Registry_Parameter_Contracts|Parameter Contract owner]] | modifier request + intrinsic debt | не задаёт priority/floor/cap |
 | Physical mass | [[07_Gear_Inventory/Physical_Weight|Physical Weight]] | instances и base mass | не решает fit/topology/service |
 | Dissonance | [[05_Combat_Survival/Dissonance_System|Dissonance System]] | persistent signature/contributor rule | не создаёт второй Pulse |
 | Economy | [[06_Economy_Loot/Economy_Core|Economy]] | acquisition/refit/replacement request | не определяет legality |
@@ -96,3 +101,10 @@ Assembly validation закрепляет одного domain owner для каж
 - Damage не освобождает node; loss реален; ghost plan не клонирует вещь.
 - Один committed `PatternCoverageBinding` читает Ballistics и выпускает единственный `ResolvedCoverageSnapshot`, который затем одинаково показывает PaperDoll; mass/Dissonance выводят свои owners.
 - Source не содержит local priority/floor/cap; protected-floor tooltip показывает requested/applied/floor/final/reason/revision.
+
+## Invariants
+
+1. Provider publishes only named input; no interface duplicates owner result.
+2. Failed input returns readable blocked/reason, never guessed fallback.
+3. Assembly revision is the sole cross-consumer projection; consumers never rebuild legality.
+4. Economy can deny acquisition without rewriting a legally owned assembly; disabled effect never frees nodes or refunds service.

@@ -1,28 +1,48 @@
 ---
-type: weapon_frame
 status: active
 system: combat_survival
 frame_id: pulse_tool_1h
 display_name: Импульсный инструмент, одна рука
 weapon_family: arcanegun
 grip: one_hand
-skill_interfaces: [conduit, impact_surface, free_hand]
-activates_on: [aim_snap, emission, pulse_recovery]
+skill_interfaces:
+  - conduit
+  - impact_surface
+  - free_hand
+activates_on:
+  - aim_snap
+  - emission
+  - pulse_recovery
 commitment: exposed_line_until_hand_settle
 primary_window_function: create
-creates_window: [stagger_entry]
+creates_window:
+  - stagger_entry
 implicit_keyword: stopping_pulse
 implicit_rule: Короткий направленный импульс сбивает готовность на линии, но раскрывает стрелка светом, звуком, Heat и восстановлением руки.
-exploits_window: [none]
-mitigates_window: [melee_entry]
-exposure_channels: [noise, heat, open_line, reload_timing]
-mastery_unlock: [pulse_recover, angle_settle]
+exploits_window:
+  - none
+mitigates_window:
+  - melee_entry
+exposure_channels:
+  - noise
+  - heat
+  - open_line
+  - reload_timing
+mastery_unlock:
+  - pulse_recover
+  - angle_settle
 sort_order: 410
-tags: [weapon_frame, ranged, arcanegun, one_hand]
+tags:
+  - weapon_frame
+  - ranged
+  - arcanegun
+  - one_hand
 related_files:
   - "[[05_Combat_Survival/Weapon_Ranged|Weapon_Ranged]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/Registries/Registry_Weapons|Registry_Weapons]]"
+type: entity
+entity_kind: weapon_frame
 ---
 # Импульсный инструмент, одна рука
 

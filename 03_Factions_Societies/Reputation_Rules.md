@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: factions_societies
-index_order: 80
-index_summary: "Задаёт правила и последствия системы «Правила доверия и репутации»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Правила доверия и репутации»."
 system: faction
 tags:
   - reputation
@@ -13,12 +7,18 @@ tags:
   - progression
   - contracts
 related_files:
-  - "[[03_Factions_Societies/_Registries/Registry_Factions|Registry_Factions]]"
-  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Registries/Registry_Factions|Registry_Factions]]"
+  - "[[03_Factions_Societies/Faction_Address_System|Faction_Address_System]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
 related_mechanics:
   - "[[06_Economy_Loot/Vendor_Logic|Vendor_Logic]]"
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
+type: system
+index_route: owner
+index_group: factions_societies
+index_order: 80
+index_summary: "Определяет состояния, разрешение и связи: Правила доверия и репутации."
+read_when: Когда нужен контракт «Правила доверия и репутации» и его границы с соседними владельцами.
 ---
 # Правила доверия и репутации
 

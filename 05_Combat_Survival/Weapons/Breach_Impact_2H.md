@@ -1,27 +1,48 @@
 ---
-type: weapon_frame
 status: active
 system: combat_survival
 frame_id: breach_impact_2h
 display_name: Проломный ударник, две руки
 weapon_family: blunt
 grip: two_hand
-skill_interfaces: [impact_surface, contact_surface, brace]
-activates_on: [brace, windup, impact, heavy_recovery]
+skill_interfaces:
+  - impact_surface
+  - contact_surface
+  - brace
+activates_on:
+  - brace
+  - windup
+  - impact
+  - heavy_recovery
 commitment: both_hands_below_guard_after_committed_impact
 primary_window_function: create
-creates_window: [breach_open]
+creates_window:
+  - breach_open
 implicit_keyword: structural_breach
 implicit_rule: Двуручная масса переносит силу в дверь, крепление или стойку, но заранее раскрывает намерение и оставляет владельца без быстрого ответа.
-exploits_window: [none]
-mitigates_window: [none]
-exposure_channels: [windup_interrupt, noise, weight, whiff_recovery]
-mastery_unlock: [brace_retarget, measured_breach]
+exploits_window:
+  - none
+mitigates_window:
+  - none
+exposure_channels:
+  - windup_interrupt
+  - noise
+  - weight
+  - whiff_recovery
+mastery_unlock:
+  - brace_retarget
+  - measured_breach
 sort_order: 220
-tags: [weapon_frame, melee, blunt, two_hand]
+tags:
+  - weapon_frame
+  - melee
+  - blunt
+  - two_hand
 related_files:
   - "[[05_Combat_Survival/Weapon_Melee|Weapon_Melee]]"
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/Registries/Registry_Weapons|Registry_Weapons]]"
+type: entity
+entity_kind: weapon_frame
 ---
 # Проломный ударник, две руки
 

@@ -1,17 +1,27 @@
 ---
-type: system
 status: active
 system: combat_profile
-tags: [combat_profile, hero_kit, abilities, arsenal, modules]
+tags:
+  - combat_profile
+  - hero_kit
+  - abilities
+  - arsenal
+  - modules
 related_files:
   - "[[04_Player_Entities/Two_Paradox_Vector_Matrix|Двойной Парадокс]]"
   - "[[04_Player_Entities/MVP_3x3_Design_Contract|Контракт MVP-матрицы 3×3]]"
-  - "[[04_Player_Entities/_Registries/Registry_Combos|Реестр полевых профилей]]"
+  - "[[04_Player_Entities/Registries/Registry_Combos|Реестр полевых профилей]]"
   - "[[04_Player_Entities/Skill_Build_Philosophy|Философия навыков]]"
   - "[[04_Player_Entities/Ability_Synergy|Связность P/Q/E]]"
-  - "[[04_Player_Entities/_Registries/Registry_Parameter_Contracts|Реестр параметрических контрактов]]"
+  - "[[04_Player_Entities/Registries/Registry_Parameter_Contracts|Реестр параметрических контрактов]]"
   - "[[04_Player_Entities/Proficiency_Arsenal|Арсенал и владение]]"
   - "[[07_Gear_Inventory/Thermos_System|Термос и модули]]"
+type: system
+index_route: owner
+index_group: player_entities
+index_order: 200
+index_summary: "Определяет состояния, разрешение и связи: Combat Profile Pipeline."
+read_when: Когда нужен контракт «Combat Profile Pipeline» и его границы с соседними владельцами.
 ---
 # Combat Profile Pipeline
 
@@ -19,7 +29,7 @@ related_files:
 
 Combat Profile не вычисляет качество человека. Он собирает уже существующие решения и показывает игроку, что эта Пешка умеет сделать сейчас, какой ценой и где её можно остановить.
 
-Он является **resolver сборки**, а не владельцем параметров: применяет identity/base → gear → state → уже авторизованные modifier contracts. Policy домена — допустимые операции, cap/floor, порядок конфликтов — остаётся у [[04_Player_Entities/_Registries/Registry_Parameter_Contracts|доменного контракта]] и его владельца.
+Он является **resolver сборки**, а не владельцем параметров: применяет identity/base → gear → state → уже авторизованные modifier contracts. Policy домена — допустимые операции, cap/floor, порядок конфликтов — остаётся у [[04_Player_Entities/Registries/Registry_Parameter_Contracts|доменного контракта]] и его владельца.
 
 ## 1. Пересечение Race × Spec
 
@@ -31,7 +41,7 @@ Combat Profile не вычисляет качество человека. Он �
 
 Одновременно [[04_Player_Entities/Two_Paradox_Vector_Matrix|Двойной Парадокс]] автоматически складывает **не силу**, а координату: `Race.base_vector + Spec.base_vector`, производную общую слабость и формальные рёбра давления. Этот аналитический профиль помогает видеть карту целиком и не создаёт ни одного игрового параметра полевого профиля.
 
-Игровой MVP использует Ежа, Крысу, Белку и практики Застрельщик, Ладчик, Странник. Девять ячеек MVP живут в [[04_Player_Entities/_Registries/Registry_Combos|Registry_Combos]]; сетка расширения не считается готовым контентом, пока каждая новая ячейка не пройдёт тот же контракт.
+Игровой MVP использует Ежа, Крысу, Белку и практики Застрельщик, Ладчик, Странник. Девять ячеек MVP живут в [[04_Player_Entities/Registries/Registry_Combos|Registry_Combos]]; сетка расширения не считается готовым контентом, пока каждая новая ячейка не пройдёт тот же контракт.
 
 ## 2. Контракт полного полевого профиля
 
@@ -196,3 +206,9 @@ identity/base
 - личный тег исправляет слабое пересечение общим parent-stat без локального сигнала и цены;
 - из двух экземпляров одного полевого профиля один имеет скрыто изменённые баллистику, базовый урон, автоматический RPM или точность из-за скрытого roll Personal Tag;
 - UI не способен объяснить конкретный результат, цену и ближайшую контригру без общего Power Score.
+
+## Инварианты
+
+Resolver Combat Profile применяет уже разрешённые контракты в явном порядке, но не переписывает policy домена и не дублирует его cap/floor/priority. Связность P/Q/E читает физические сигналы мира и состояния, а не tag ID, race/spec label или архетип как триггер результата.
+
+Единственность occurrence и вклад батареи проверяет [[05_Combat_Survival/Dissonance_System]]. Жизнь и identity `ImpulsePacket` принадлежат [[05_Combat_Survival/Magic_Batteries]]. Запрет самофинансирования сборки задаёт [[07_Gear_Inventory/Thermos_Assembly]], авторизацию target и поисковые метки — [[04_Player_Entities/Skill_Build_Philosophy]].

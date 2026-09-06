@@ -7,10 +7,15 @@ index_order: 170
 index_summary: "Задаёт правила и последствия системы «Система Перемещения: Вертикальность и Укрытия»."
 read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Система Перемещения: Вертикальность и Укрытия»."
 system: traversal
-tags: [movement, parkour, verticality, cover, tactics]
+tags:
+  - movement
+  - parkour
+  - verticality
+  - cover
+  - tactics
 related_files:
   - "[[05_Combat_Survival/Movement_Physics|Movement_Physics]]"
-  - "[[08_World_Generation/Generation/10_World_Topology|World_Structure]]"
+  - "[[08_World_Generation/Generation/World_Topology|World_Structure]]"
 ---
 # Система Перемещения: Вертикальность и Укрытия
 

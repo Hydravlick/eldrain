@@ -1,5 +1,4 @@
 ---
-type: location
 region: safe_zone
 status: active
 system: districts
@@ -11,11 +10,13 @@ tags:
 related_mechanics:
   - "[[07_Gear_Inventory/Stash_Architecture|Stash Architecture]]"
   - "[[06_Economy_Loot/Economy_Core|Economy Core]]"
-  - "[[08_World_Generation/Hub/02_Hub_Services_Interaction|Hub Services]]"
+  - "[[08_World_Generation/Hub/Hub_Services_Interaction|Hub Services]]"
 related_files:
   - "[[02_World_Lore/The_Anchor|The Anchor]]"
   - "[[03_Factions_Societies/Lore/City_Genesis|City Genesis]]"
   - "[[03_Factions_Societies/Lore/City_District_Social_Grammar|City District Social Grammar]]"
+type: entity
+entity_kind: location
 ---
 # Городской Центр: Глаз Бури
 
@@ -38,7 +39,7 @@ related_files:
 
 Внутри поддерживают стабильную среду для вещей, публичные журналы custody и защищённые рабочие ячейки. Право на минимальную кладку остаётся гражданским минимумом; платными могут быть расширение, сложное обслуживание и дополнительная ответственность, но не само право нового жителя хранить базовый комплект.
 
-В MVP игрок не гуляет по Центру и не приходит к стойке физическим аватаром. Хранилище представлено на Столе через сервисный адрес по [[08_World_Generation/Hub/02_Hub_Services_Interaction|Hub Services]], а его точные вместимость, custody и организацию ведёт [[07_Gear_Inventory/Stash_Architecture|Stash Architecture]].
+В MVP игрок не гуляет по Центру и не приходит к стойке физическим аватаром. Хранилище представлено на Столе через сервисный адрес по [[08_World_Generation/Hub/Hub_Services_Interaction|Hub Services]], а его точные вместимость, custody и организацию ведёт [[07_Gear_Inventory/Stash_Architecture|Stash Architecture]].
 
 ## Зал Весовых Домов
 

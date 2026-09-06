@@ -2,10 +2,18 @@
 type: reference
 status: active
 system: reference_notes
-tags: [reference, mewgenics, tags, traits, roster, inheritance, roguelike, extraction]
+tags:
+  - reference
+  - mewgenics
+  - tags
+  - traits
+  - roster
+  - inheritance
+  - roguelike
+  - extraction
 related_files:
   - "[[04_Player_Entities/Tags_System|Tags_System]]"
-  - "[[04_Player_Entities/_Registries/Registry_Tags|Registry_Tags]]"
+  - "[[04_Player_Entities/Registries/Registry_Tags|Registry_Tags]]"
   - "[[04_Player_Entities/Shell_Foundlings|Shell_Foundlings]]"
   - "[[04_Player_Entities/Lifecycle_Roster|Lifecycle_Roster]]"
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile_Pipeline]]"
@@ -130,7 +138,7 @@ run risk
 ## 9. Конкретные правила для Eldraine
 
 1. В документах и UI: “тег/трейт” допустимо, но в данных только `[tag:: ...]`.
-2. Любой новый трейт должен быть добавлен как тег в [[04_Player_Entities/_Registries/Registry_Tags|Registry_Tags]].
+2. Любой новый трейт должен быть добавлен как тег в [[04_Player_Entities/Registries/Registry_Tags|Registry_Tags]].
 3. `Trait Fusion` — это fusion тегов, а не отдельная подсистема.
 4. Травмы и мутации должны быть долгими состояниями с возможной билдовой ценой, а не временными дебаффами без памяти.
 5. Найдёныш ценен не только стартовыми числами, но историей проявленных тегов.

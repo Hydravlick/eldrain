@@ -7,9 +7,13 @@ index_order: 370
 index_summary: "Задаёт правила и последствия системы «Гроссбух: Архитектура Сохранений»."
 read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Гроссбух: Архитектура Сохранений»."
 system: backend_save
-tags: [database, transaction, wipe, safety]
+tags:
+  - database
+  - transaction
+  - wipe
+  - safety
 related_files:
-  - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server_Lifecycle]]"
+  - "[[08_World_Generation/Generation/Server_Lifecycle|Server_Lifecycle]]"
   - "[[07_Gear_Inventory/Stash_Architecture|Stash_Architecture]]"
 ---
 # Гроссбух: Архитектура Сохранений
@@ -27,7 +31,7 @@ related_files:
     * *Краш после физического входа:* После durable Breach система восстанавливает те же Presence, участие, commitments и custody из журнала решений. Автоматический rollback к стартовому loadout или бесплатный возврат в Хаб запрещён без отдельного утверждённого incident contract.
 
 ## 2. Глобальная Персистентность (Рассвет)
-После Рассвета, момент и фазовые условия которого задаёт [[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]], завершённый рейдовый runtime уступает место следующему циклу.
+После Рассвета, момент и фазовые условия которого задаёт [[08_World_Generation/Generation/Server_Lifecycle|Server Lifecycle]], завершённый рейдовый runtime уступает место следующему циклу.
 * **Что исчезает:** рейдовые состояния открытых дверей и контейнеров, трупы, выброшенный переносимый лут, незакреплённые тайники и временные события.
 * **Что остается:**
     1.  **Stash:** Содержимое схрона (Account Bound).
@@ -38,4 +42,4 @@ related_files:
     6.  **Generation Snapshot:** seed, размещённые модули и ассеты, связи маршрутов и POI завершённой генерации для мирной проекции на столе.
     7.  **Known POI Types:** открытые игроком типы POI; сохраняются между циклами независимо от нового расположения.
 
-`Civic Legacy Manifest` не хранит частный неэвакуированный инвентарь. Массовая Стабилизация переводит связные структуры в состояние города, а личный груз сохраняется только через успешный манифест экстракции: [[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction_Stabilization_Loop]]. Игрок не загружается в Stable-сектор: [[08_World_Generation/Hub/01_Hub_Map_Table|Живая Миниатюра]] строит его мирную проекцию по `Generation Snapshot`. Новый цикл заменяет снимок геометрии, но не стирает `Known POI Types`.
+`Civic Legacy Manifest` не хранит частный неэвакуированный инвентарь. Массовая Стабилизация переводит связные структуры в состояние города, а личный груз сохраняется только через успешный манифест экстракции: [[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction_Stabilization_Loop]]. Игрок не загружается в Stable-сектор: [[08_World_Generation/Hub/Hub_Map_Table|Живая Миниатюра]] строит его мирную проекцию по `Generation Snapshot`. Новый цикл заменяет снимок геометрии, но не стирает `Known POI Types`.

@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: gear_inventory
-index_order: 200
-index_summary: "Задаёт правила и последствия системы «Архитектура Схрона и Менеджмент (Stash & Organization)»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Архитектура Схрона и Менеджмент (Stash & Organization)»."
 system: economy_storage
 tags:
   - stash
@@ -20,6 +14,13 @@ related_files:
   - "[[07_Gear_Inventory/Inventory_Architecture|Inventory_Architecture]]"
   - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
+
+type: "system"
+index_route: "owner"
+index_group: "gear_inventory"
+index_order: 200
+index_summary: "Определяет состояния, разрешение и связи: Архитектура Схрона и Менеджмент (Stash & Organization)."
+read_when: "Когда нужен контракт «Архитектура Схрона и Менеджмент (Stash & Organization)» и его границы с соседними владельцами."
 ---
 # Архитектура Схрона и Менеджмент (Stash & Organization)
 

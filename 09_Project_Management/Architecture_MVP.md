@@ -1,212 +1,73 @@
 ---
-type: architecture
+type: project_management
 status: active
 system: project_management
-version: 3.7
-tags:
-  - structure
-  - pipeline
-  - vertical_slice
-  - roadmap
----
-# Архитектура Проекта: Элдрейн (MVP)
-
-> **Статус:** актуальная структура после рефакторинга.
-> **Цель:** держать вертикальный срез в 9 смысловых блоках и не возвращаться к старым пространствам имен.
-
+version: 4
 ---
 
-## 1. Канонические Блоки
+# Архитектура GDD и границы MVP
 
-Текущий корпус организован в девять рабочих блоков. Игровые владельцы находятся в `01_`–`08_`, управление проектом — в `09_Project_Management`. Референсы и исторические материалы могут храниться вне корпуса, в том числе в `10_Reference`; их расположение и статус не дают им права определять игровые правила.
+Локальный vault — рабочая поверхность, Git — история и восстановление. Архитектура отвечает за размещение и связность документов; игровые решения принимают активные владельцы в доменах `01_`–`08_`.
+
+## Два пути чтения
+
+Новому дизайнеру: [[01_Core_Vision/GDD_Main]] → [[01_Core_Vision/01_Vision]] → [[01_Core_Vision/02_Core_Loop]] → [[01_Core_Vision/Feature_Map]] → Feature. Feature объясняет цель, сценарии, ожидаемую динамику, UX, зависимости и проверку.
+
+Для правки правила: [[00_Index]] → доменный Route → System/Mechanic → Registry или authored Entity/Content. Lore объясняет людей, историю и причинность мира. View, Base и граф показывают связи источников и не принимают игровое решение.
+
+Feature-страницы находятся в `01_Core_Vision/Features`: это общий путь игрока поверх доменов. Системы поддерживают несколько Features; создавать копию владельца внутри каждой Feature нельзя. Обратные связи и пропуски видны в [[01_Core_Vision/Views/Feature_Owner_Coverage]].
+
+## Домены
 
 | Блок | Роль | Якорные файлы |
 |:---|:---|:---|
 | `01_Core_Vision` | Концепция, тон, основной цикл | [[01_Core_Vision/GDD_Main]], [[01_Core_Vision/02_Core_Loop]], [[01_Core_Vision/Glossary]] |
 | `02_World_Lore` | Ковчег, Коллапс, Якорь, Сущность, магипанк и культуры | [[02_World_Lore/The_Ark]], [[02_World_Lore/The_Collapse]], [[02_World_Lore/The_Anchor]], [[02_World_Lore/Protocol_Resonance]], [[02_World_Lore/Culture_Language]] |
-| `03_Factions_Societies` | Фракции, репутация, поручения, допуски, контракты и становление города | [[03_Factions_Societies/_Registries/Registry_Factions]], [[03_Factions_Societies/_Registries/Registry_Faction_Interfaces]], [[03_Factions_Societies/Reputation_Rules]], [[03_Factions_Societies/Pledge_Contracts]], [[03_Factions_Societies/Quest_Engine]], [[03_Factions_Societies/Lore/City_Genesis]], [[03_Factions_Societies/Lore/Civic_Ethos_Under_Lamps]], [[03_Factions_Societies/Lore/Civic_Order]], [[03_Factions_Societies/Lore/Hearth_Anatomy]], [[03_Factions_Societies/Lore/City_District_Social_Grammar]] |
-| `04_Player_Entities` | смертные Пешки, полевой профиль `Race × Spec`, ростер, теги и жизненные последствия | [[04_Player_Entities/Lifecycle_Roster]], [[04_Player_Entities/MVP_3x3_Design_Contract]], [[04_Player_Entities/Combat_Profile_Pipeline]], [[04_Player_Entities/Tags_System]], [[04_Player_Entities/Life_Closure]], [[04_Player_Entities/_Registries/Registry_Races]], [[04_Player_Entities/_Registries/Registry_Specs]], [[04_Player_Entities/_Registries/Registry_Combos]] |
+| `03_Factions_Societies` | Фракции, репутация, поручения, допуски, контракты и становление города | [[03_Factions_Societies/Registries/Registry_Factions]], [[03_Factions_Societies/Registries/Registry_Faction_Interfaces]], [[03_Factions_Societies/Reputation_Rules]], [[03_Factions_Societies/Pledge_Contracts]], [[03_Factions_Societies/Quest_Engine]], [[03_Factions_Societies/Lore/City_Genesis]], [[03_Factions_Societies/Lore/Civic_Ethos_Under_Lamps]], [[03_Factions_Societies/Lore/Civic_Order]], [[03_Factions_Societies/Lore/Hearth_Anatomy]], [[03_Factions_Societies/Lore/City_District_Social_Grammar]] |
+| `04_Player_Entities` | смертные Пешки, полевой профиль `Race × Spec`, ростер, теги и жизненные последствия | [[04_Player_Entities/Lifecycle_Roster]], [[04_Player_Entities/MVP_3x3_Design_Contract]], [[04_Player_Entities/Combat_Profile_Pipeline]], [[04_Player_Entities/Tags_System]], [[04_Player_Entities/Life_Closure]], [[04_Player_Entities/Registries/Registry_Races]], [[04_Player_Entities/Registries/Registry_Specs]], [[04_Player_Entities/Registries/Registry_Combos]] |
 | `05_Combat_Survival` | Бой, магострелы, батареи, статусы, выживание | [[05_Combat_Survival/Combat_Three_Debts]], [[05_Combat_Survival/Weapon_Core]], [[05_Combat_Survival/Magic_Batteries]], [[05_Combat_Survival/Status_Effects]], [[05_Combat_Survival/Dissonance_System]] |
 | `06_Economy_Loot` | Рез, бартер, чертежи, экстракция и стабилизация лута | [[06_Economy_Loot/Extraction_Stabilization_Loop]], [[06_Economy_Loot/Economy_Core]], [[06_Economy_Loot/Currency_Rez]], [[06_Economy_Loot/Loot_Distribution]], [[06_Economy_Loot/Barter_System]], [[06_Economy_Loot/Blueprints]], [[06_Economy_Loot/Craft_Modifiers]] |
-| `07_Gear_Inventory` | Инвентарь, экипировка, предметы, крафт-реестры | [[07_Gear_Inventory/Inventory_Architecture]], [[07_Gear_Inventory/Thermos_System]], [[07_Gear_Inventory/Thermos_Assembly]], [[07_Gear_Inventory/_Registries/Registry_Thermoses]], [[07_Gear_Inventory/_Registries/Registry_Thermos_Modules]], [[07_Gear_Inventory/_Registries/Registry_Thermos_Interfaces]], [[07_Gear_Inventory/Gear_Progression]], [[07_Gear_Inventory/Equipment_PaperDoll]], [[07_Gear_Inventory/_Registries/Registry_Items]] |
-| `08_World_Generation` | Сервер, таймеры, аномалии, вход, выход, атлас | [[08_World_Generation/Generation/07_Server_Lifecycle]], [[08_World_Generation/Generation/19_Raid_Approach_and_Entry]], [[08_World_Generation/Generation/20_Egress_Solvency]], [[08_World_Generation/Anomaly/17_Apex_Last_Hour]], [[08_World_Generation/Anomaly/00_Anomaly_Core_Loop]] |
+| `07_Gear_Inventory` | Инвентарь, экипировка, предметы, крафт-реестры | [[07_Gear_Inventory/Inventory_Architecture]], [[07_Gear_Inventory/Thermos_System]], [[07_Gear_Inventory/Thermos_Assembly]], [[07_Gear_Inventory/Registries/Registry_Thermoses]], [[07_Gear_Inventory/Registries/Registry_Thermos_Modules]], [[07_Gear_Inventory/Registries/Registry_Thermos_Interfaces]], [[07_Gear_Inventory/Gear_Progression]], [[07_Gear_Inventory/Equipment_PaperDoll]], [[07_Gear_Inventory/Registries/Registry_Items]] |
+| `08_World_Generation` | Сервер, таймеры, аномалии, вход, выход, атлас | [[08_World_Generation/Generation/Server_Lifecycle]], [[08_World_Generation/Generation/Raid_Approach_and_Entry]], [[08_World_Generation/Generation/Egress_Solvency]], [[08_World_Generation/Anomaly/Apex_Last_Hour]], [[08_World_Generation/Anomaly/Anomaly_Core_Loop]] |
 | `09_Project_Management` | Канбан, риски, планы, техническая кухня | [[09_Project_Management/TODO]], [[09_Project_Management/Risk_Register]], [[09_Project_Management/Architecture_MVP]] |
 
----
 
-## 2. Правило Ссылок
+## Типы и источник значения
 
-Все YAML-поля связей должны ссылаться на существующие Obsidian-цели:
+| Тип | Ответственность |
+|---|---|
+| `core_concept` | Vision, обещание, основной цикл и замысел |
+| `feature` | законченная возможность, её сценарии и полнота интеграции |
+| `system` | связная модель состояний, переходов и разрешения |
+| `mechanic` | локальное действие или правило |
+| `content` | авторская конфигурация правил или сценарий; `content_kind` уточняет семейство |
+| `entity` | самостоятельная идентичность; `entity_kind` различает race, spec, faction, weapon_frame и location |
+| `registry` | схема, стабильные записи и bounded interfaces; для каталога сущностей сами значения остаются на сущностях |
+| `lore` | факты мира, культура, вера и историческая причинность |
+| `view` | производное представление с `upstream_sources` |
+| `index` | навигация |
+| `project_management` | открытая работа, риск, решение о размещении |
 
-```yaml
-related_files:
-  - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
-related_mechanics:
-  - "[[08_World_Generation/Anomaly/Anomaly_System|Anomaly_System]]"
-```
+Race/Spec и оружейный Frame имеют самостоятельные страницы. Их YAML — источник стабильных полей; семейные реестры читают их. Предметы, рецепты, теги и ячейки Combo остаются блоками реестра, пока им не нужен самостоятельный контекст. Вариант оружия остаётся внутри Frame. Большой реестр можно разделить по семейству без изменения ID и формата записи; отдельный файл на каждый ID не обязателен.
 
-Правила:
+Контракт фракционной идентичности и направленных отношений — [[03_Factions_Societies/Registries/Registry_Factions]]; участие институтов в игре — [[03_Factions_Societies/Registries/Registry_Faction_Interfaces]]. Lore не разрешает награду, услугу или право на выход. Лорную синтезирующую прозу сохраняют, даже когда игровое правило переезжает.
 
-- Использовать текущий путь от корня vault: `[[08_World_Generation/Anomaly/Anomaly_System]]`.
-- Не использовать старые пространства имен `10_Mechanics`, `20_Lore`, `30_Content`, `00_Variables`.
-- Если нужен короткий видимый текст, писать алиас: `[[08_World_Generation/Anomaly/14_Extraction_System|Extraction_System]]`.
-- Если документ переехал или был смержен, ссылка должна вести в текущий канонический файл, а не в старое имя.
-- Для семейств сущностей ссылаться прямо на страницу объекта, например [[03_Factions_Societies/Lore/The_Keepers|Хранители]]. Реестр остаётся обзором семейства, а не адресом отдельной записи.
+## Имена и представления
 
-Статус описывает жизненный цикл документа, отдельно от готовности контента, задач и рисков. Единая модель статусов и область механических проверок находятся в [validation policy](../.agents/policies/validation.md), значения и их смысл — в [document model](../.agents/policies/document-model.json). `active` подтверждает актуальность в пределах ответственности страницы: активный референс или план не становится владельцем игровой механики. Отложенные и исторические страницы допустимы для контекста, но исключены из активных маршрутов и нормативных зависимостей.
+Домены сохраняют числовой порядок; `00_Index` и `00_Routes` обозначают входы навигации. `01_Vision` → `02_Core_Loop` остаётся короткой последовательностью знакомства. В таблицах Порта `01`–`03` означают реальную сложность, также указанную в properties. Независимые системы Generation, Anomaly и Hub имеют семантические имена; их номера не образовывали pipeline.
 
-Термины Feature, System, Mechanic, Content, Entity, Registry и Lore для следующего архитектурного этапа определены в [design vocabulary](../.agents/policies/design-architecture.md). [Feature contract](../.agents/policies/feature-contract.md) описывает полноту игрокового опыта без повторного владения системными правилами. Физическое размещение Feature Layer пока не выбрано; текущие игровые страницы этот этап harness не переносит.
+`Registries`, `Views`, `Lore` и семейства контента обозначают ответственность. `_Matrices` больше нет. Матрица Двойного Парадокса остаётся System, потому что определяет топологию; Synergy Map читает её. Item Calibration Matrix — View, а состав испытаний задаёт [[07_Gear_Inventory/Calibration_Contract]].
 
----
+DataviewJS сохраняется. Три таблицы сложности Порта вызывают один `tools/dataview/sector_difficulty/view.js`, передавая свойства wrapper. Ссылки на источники находятся в свойствах; путь custom view — техническая зависимость. Тестовые fixtures находятся в `tools/tests/fixtures`.
 
-## 3. MVP Pipeline
+## MVP, зрелость и доказательства
 
-Минимальный вертикальный срез должен проходить через одну связную цепочку:
+[[01_Core_Vision/Build_Extraction_Concept_Slice]] и [[08_World_Generation/Content/Hunt_Frontier_Slice]] задают связный срез; [[09_Project_Management/TODO]] хранит незавершённые работы, [[09_Project_Management/Risk_Register]] — риски и необходимые свидетельства. Не весь объём каждой major Feature входит в первый прототип.
 
-1. Игрок выбирает один полный полевой профиль `Race × Spec`, затем физический loadout и конкретную Пешку через [[04_Player_Entities/MVP_3x3_Design_Contract|контракт матрицы 3×3]], [[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile Pipeline]] и [[04_Player_Entities/Lifecycle_Roster|жизненный цикл ростера]]. Остальные ячейки расширяют уже доказанный срез.
-2. Карта Хаба показывает ранний `0–2`, средний `2–4` и поздний `4–6` live age-envelope, прогноз до Печати и готовность Пешки. Поздний envelope joinable как T3 только `04:00–05:00`, а `05:00–06:00` остаётся live sealed Apex без ingress; joinable T3 может временно отсутствовать. Точная цена и окно появляются только в карточке конкретного раскрытого входа: [[08_World_Generation/Hub/01_Hub_Map_Table|Hub Map Table]].
-3. Игрок выбирает подход, читает точную `EntryQuote`, подтверждает её и проходит физический `Breach` в живой сектор по [[08_World_Generation/Generation/19_Raid_Approach_and_Entry|подходу и входу]]. Сборка проходит Gate Check и проверку Диссонанса через [[08_World_Generation/Generation/08_Gate_Check|Gate Check]], [[05_Combat_Survival/Dissonance_System|Dissonance System]] и [[05_Combat_Survival/Threat_Thresholds|Threat Thresholds]].
-4. До 05:00 игрок может найти Нестабильный Порог или выбрать body-only Breakline. В 05:00 Печать закрывает обычный вход и выход; оставшиеся переживают T4 Apex до Рассвета. Темп задают [[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]], [[08_World_Generation/Anomaly/17_Apex_Last_Hour|Apex Last Hour]], [[08_World_Generation/Anomaly/Anomaly_System|Anomaly System]] и [[05_Combat_Survival/Magic_Batteries|Magic Batteries]].
-5. После обычного Порога или применимого стандартного исхода Рассвета груз проходит единый [[06_Economy_Loot/Return_Manifest_Contract|контракт возвратного манифеста]]: обыск и перенос -> защищённый манифест -> Stable/Volatile/Trace/Living Cargo -> использование, разбор, Напоминание, адрес Очагу или ростер. Recovery никогда не является тайной доставкой лута.
+`status: active` означает актуальное описание, а не реализованную систему. `maturity: specified` означает описанные связи; `validation_state: untested` означает отсутствие подтверждённого результата испытаний. Значения `prototype_ready` и `validated` допустимы только после соответствующего свидетельства, а не после проверки Markdown.
 
----
+## Читаемость и обслуживание
 
-## 4. Контроль Долга
+Первый экран объясняет ситуацию до схемы. Схема должна позволять исполнить правило без толкования метафоры. Обещание, цикл, условия и исключения раскрываются по сложности страницы; маленькой Mechanic не нужны пустые разделы. Машинный ключ отделён от имени, а атмосферная фраза сохраняется, когда объясняет цену, последствие или взгляд жителя.
 
-Если появляется заметка с неочевидным местом:
-
-- сначала привязать ее к одному из 9 блоков;
-- затем добавить `type`, `status`, `system`, `tags`;
-- после этого прописать валидные `related_files` или `related_mechanics`;
-- если это старый источник, удалить его из рабочего корпуса и сохранить ссылку на канонический файл в текущем owner-документе.
-
-Принятое автором решение должно быть встроено в активные локальные заметки своего канонического блока. Отдельная спецификация, план или текст в чате может служить промежуточным материалом, но не считается итогом, пока решение не появилось в живом vault и не связано с зависимыми страницами.
-
----
-
-## 5. Контракт Читаемости
-
-Упрощение GDD означает не сокращение правил, а порядок их раскрытия. Крупная системная страница по возможности строится слоями:
-
-1. **Обещание** — что игрок чувствует и зачем система существует.
-2. **Рабочий цикл** — что игрок видит, решает, делает и получает.
-3. **Правила** — состояния, переходы и обязательные ограничения.
-4. **Исключения и риски** — где правило не действует, чем можно злоупотребить и как это читается.
-5. **Схема** — ID, поля, формулы, таблицы и связи для реализации.
-
-Дополнительные правила:
-
-- Одно игроковое понятие получает одно отображаемое имя. Машинный ключ указывается отдельно и не выдаётся за название роли или предмета.
-- Универсальное правило живёт в системной странице, конкретный пример — в контентной, стабильные поля — в реестре. Dataview только показывает источник и не становится вторым каноном.
-- Первый экран страницы должен позволять понять решение без чтения схемы. Схема должна позволять реализовать его без толкования художественного абзаца.
-- Атмосферная фраза остаётся, если одновременно объясняет правило, предвещает последствие, передаёт взгляд жителей или связывает победу со следующим состоянием.
-- Термины другого жанра допустимы как явно отрицательный дизайнерский пример, но не как позитивное игроковое название.
-
----
-
-## 6. Контракт Реестров И Сущностей
-
-Формат источника определяется не количеством записей, а природой семейства.
-
-### 6.1. Сущности с собственным контекстом
-
-Раса, специализация, реестровая фракция и оружейный фрейм получают отдельную заметку, если их нужно читать как самостоятельный объект с лором, функцией, ограничениями и зависимостями.
-
-- YAML заметки является единым источником её стабильных полей.
-- Тело заметки хранит биологическую, профессиональную или общественную основу, правила и читаемое объяснение.
-- Семейный `Registry_*` остаётся обзором: краткий контракт семейства, прямые ссылки и Dataview-представление.
-- Для page-level YAML используется native Dataview. Dataview не копирует значения и не становится вторым источником.
-- Целевые каталоги для миграции: `04_Player_Entities/Races/` и `04_Player_Entities/Specs/`.
-- YAML Properties используют только типы, которые Obsidian умеет редактировать нативно: текст, число, checkbox, дата, список скаляров и ссылка. Вложенные словари и списки объектов не используются.
-- Страницы рас и практик не хранят общий числовой пакет, скрытый power budget или RPG-атрибуты. Они описывают физиологическую и методологическую причинность, из которой автор проектирует конкретный полевой профиль.
-- Локальный параметр хранится только у своего владельца: тела, Frame, батареи, способности, инвентаря, защиты или модуля. Бинарные физические возможности раскрываются через явные `capability`/`vulnerability`.
-
-Канонические источники персонажных сущностей находятся в `04_Player_Entities/Races/` и `04_Player_Entities/Specs/`. [[04_Player_Entities/_Registries/Registry_Races|Registry_Races]] и [[04_Player_Entities/_Registries/Registry_Specs|Registry_Specs]] являются семейными представлениями и не содержат копий полей сущностей.
-
-Канонические источники оружейных фреймов находятся в `05_Combat_Survival/Weapons/` и определяются полем `type: weapon_frame`. [[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]] является семейным представлением: хранит контракт, Dataview-таблицы и проверки, но не копирует поля самих фреймов. Варианты оружия остаются внутри страницы своего фрейма как inline Dataview-поля, потому что вариант является исполнением фрейма, а не отдельной архетипной сущностью.
-
-### 6.2. Реестры атомарных и реляционных записей
-
-Предметы, расходники, рецепты, теги и комбинации `Race × Spec` по умолчанию остаются блоками общего реестра. Для них отдельный файл не создаётся только ради ID или связи с двумя другими сущностями. Оружейные фреймы являются исключением из-за фаз Commitment, окон, `exposure_channels` и связи с proficiency; конкретные варианты оружия этим исключением не становятся.
-
-[[04_Player_Entities/_Registries/Registry_Combos|Registry_Combos]] хранит собственный полный контракт полевого профиля:
-
-- `id`, `req_race`, `req_spec`, `design_status`;
-- уникальные `P/Q/E`, decision signature, состояния и долги;
-- именованные арсенал и модули, proficiency, ёмкости и доктрины;
-- цену, ресурсное давление, условия, ограничения и провалы.
-
-Комбинация не копирует прозу биологической основы или методологии родителей и не выводит готовый профиль арифметикой. `req_race` и `req_spec` задают причинные источники, а сама запись владеет P/Q/E, арсеналом, модулями и decision signature. Отдельно Двойной Парадокс автоматически читает `base_vector` родителей и вычисляет структурную координату, не записывая её как силу полевого профиля. Obsidian-эмбед служит только отображением текста и не используется как механизм наследования.
-
-Если общий реестр перестанет быть читаемым после расширения, его можно разделить на реестры по расам. Формат блока и ID при этом не меняются; отдельный файл на каждую комбинацию не является целевой архитектурой.
-
-### 6.3. Представления и матрицы
-
-Визуализация сохраняется только тогда, когда отвечает на отдельный рабочий вопрос:
-
-| Представление | Единственный вопрос | Решение |
-|:---|:---|:---|
-| [[04_Player_Entities/_Registries/Registry_Combos|Registry_Combos]] | Какие ячейки существуют и какие обязательства полного полевого профиля заполнены? | Обзорная сетка и проверка authored-полей без наследуемой силы. |
-| [[04_Player_Entities/Two_Paradox_Vector_Matrix|Двойной Парадокс]] | Где каждая координата находится относительно целой карты до написания контента? | Канонические векторы, доминация, производные слабости и NetPressure. |
-| [[04_Player_Entities/_Matrices/00_Synergy_Map|00_Synergy_Map]] | Что структурная карта предсказывает и какими наблюдаемыми окнами готовый полевой профиль это реализует? | Автоматический и authored-слои рядом. |
-| Автоматические тесты | Согласованы ли vector rules и есть ли у каждой утверждённой ячейки собственные P/Q/E, арсенал, модули, Exposure и доступная сейчас контригра? | Отдельные проверки структурной целостности и игрового исполнения. |
-
-Старые обзорная, персонажная и балансная матрицы сохранены только как архивные источники и не участвуют в активной навигации или pipeline.
-
-[[03_Factions_Societies/_Matrices/00_Faction_Reputation|00_Faction_Reputation]] сохраняет отдельную ответственность и не входит в деблоат матриц персонажей.
-
-### 6.4. Проверка миграции
-
-Контракт миграции и последующих изменений:
-
-1. каждая раса и специализация существует ровно в одном page-level YAML-источнике;
-2. семейные реестры не содержат копий полей сущностей;
-3. `Registry_Combos` содержит только собственные поля комбинаций;
-4. ссылка на родителя подтверждает причинность и даёт `base_vector` аналитической карте, но не вычисляет игровую силу, P/Q/E или допуск ячейки;
-5. отсутствующий родитель, дублирующий ID и пустой результат видны в представлении;
-6. `00_Synergy_Map` читает и автоматический профиль Двойного Парадокса, и authored-поля полевого профиля; незаполненная ячейка видна в структурной карте, но остаётся `pending` как контент.
-
-### 6.5. Фракции и отношения
-
-Каждая запись с устойчивым `faction_id` является самостоятельной сущностью, а не блочной строкой реестра. Это относится и к крупным Очагам, и к малым городским сетям: они существуют независимо, имеют собственную функцию и могут получать новые связи без наследования от другой страницы.
-
-[[03_Factions_Societies/Lore/Hearth_Anatomy|Hearth_Anatomy]] определяет, чем Очаг отличается от дома, района, сети, Стола, мастера и надфракционной силы. [[03_Factions_Societies/Lore/Civic_Order|Civic_Order]] определяет распределённое признание городского решения. Эти страницы владеют институциональной грамматикой, но не игровыми состояниями, услугами или последствиями.
-
-[[03_Factions_Societies/Lore/City_District_Social_Grammar|City_District_Social_Grammar]] владеет социальными зависимостями района, его дневной, ночной и кризисной властью. Физическая география, маршруты и генерация остаются в `08_World_Generation`.
-
-Канонические фракционные страницы находятся в `03_Factions_Societies/Lore/` и определяются полем `type: faction`. Они владеют идентичностью, происхождением, людьми, внутренней властью, имуществом, отношениями, общественным обещанием и ценой ошибки. Они не владеют услугами, наградами, состояниями доступа, runtime-проверками или системными переходами. Десять существующих подробных страниц переиспользуются и получают YAML-поля сущности; для десяти записей без страницы создаются недостающие заметки. [[03_Factions_Societies/Lore/The_Cartographers|Картографы Палаты Контуров]] остаются внутренним профессиональным слоем Палаты и не получают отдельный `faction_id`, пока не станут самостоятельной стороной отношений.
-
-Минимальный YAML-контракт фракции:
-
-```yaml
-type: faction
-status: active
-system: factions
-faction_id: first_reception
-display_name: Круг Первого Приёма
-faction_role: major
-sort_order: 10
-promise: никто не остаётся один перед неизвестным состоянием
-tags: [faction, hearth]
-```
-
-Игровые взаимодействия фракций хранятся отдельно в [[03_Factions_Societies/_Registries/Registry_Faction_Interfaces|Registry_Faction_Interfaces]]. Одна строка реестра соответствует одному самостоятельному взаимодействию и содержит `interface_id`, `faction_id`, роль сущности, игроковый глагол и результат, один `mechanic_owner_ref`, зависимости и явную границу `does_not_own`. Один Очаг может иметь любое число интерфейсов; каждая строка имеет ровно одного механического владельца. Если владелец отсутствует, строка получает `MISSING_OWNER`, а лорная страница не становится временным resolver.
-
-Отношения хранятся в теле фракционной страницы как повторяемые inline Dataview-поля с причиной на той же строке:
-
-```markdown
-[rel_union:: common_storehouses] (первичный уход требует еды, тепла и базовых наборов)
-```
-
-Правила отношений:
-
-- Допустимые типы: `conflict`, `hunt`, `monitor`, `spy`, `trade`, `union`.
-- `target` содержит `faction_id`, а не заголовок, путь или отображаемое имя.
-- `target: all` является явным системным указателем на все остальные фракции и допустим только для надфракционной либо скрытой силы.
-- Направление и причина принадлежат странице-источнику. Обратная запись создаётся только тогда, когда у второй стороны действительно есть собственная формулировка отношения.
-- Одна и та же связь не хранится одновременно в YAML страницы и в `Registry_Factions`.
-- Неизвестный target, дублирующий `faction_id`, неизвестный тип и пустая причина должны быть видны как ошибка данных.
-
-[[03_Factions_Societies/_Registries/Registry_Factions|Registry_Factions]] после миграции является семейным обзором идентичности: краткий контракт, список страниц и native Dataview-таблица. Он не хранит ассортимент услуг. [[03_Factions_Societies/_Matrices/00_Faction_Reputation|00_Faction_Reputation]] является единственной графовой визуализацией: page-level YAML даёт сущности, а DataviewJS читает их inline `rel_*` поля из тела страниц. Карта не хранит собственные отношения, подписи или причины.
-
-Миграция считается завершённой, когда существуют ровно 20 уникальных `faction_id`, сохранены все 58 направленных записей отношений текущего реестра, глубокие ссылки на его старые заголовки заменены ссылками на страницы, а карта показывает отсутствующие источники вместо молчаливого пропуска.
+Routes строятся из свойств источников и не редактируются вручную. Для переименования используется установленный Obsidian CLI, затем проверяются ссылки и arbitrary literals в скриптах, запросах и конфигурации. Валидаторы проверяют структуру, но не заменяют чтение и design review.

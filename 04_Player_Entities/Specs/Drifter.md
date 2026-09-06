@@ -1,5 +1,4 @@
 ---
-type: spec
 status: active
 system: player_entities
 id: scout
@@ -11,6 +10,8 @@ content_scope: mvp
 base_vector: shadow
 weak_to: [hazard, ballistics, detection]
 tags: [spec, practice, player_entity]
+type: "entity"
+entity_kind: "spec"
 ---
 # Странник (The Drifter)
 

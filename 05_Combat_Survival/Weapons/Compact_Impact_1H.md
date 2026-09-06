@@ -1,27 +1,45 @@
 ---
-type: weapon_frame
 status: active
 system: combat_survival
 frame_id: compact_impact_1h
 display_name: Компактный ударник, одна рука
 weapon_family: blunt
 grip: one_hand
-skill_interfaces: [impact_surface, contact_surface, free_hand]
-activates_on: [swing, impact, close_recovery]
+skill_interfaces:
+  - impact_surface
+  - contact_surface
+  - free_hand
+activates_on:
+  - swing
+  - impact
+  - close_recovery
 commitment: close_range_followthrough_before_ready
 primary_window_function: create
-creates_window: [disorientation]
+creates_window:
+  - disorientation
 implicit_keyword: local_concussion
 implicit_rule: Короткая масса создаёт краткое окно дезориентации только после близкого чистого контакта; она не удерживает дальний вход и не ломает строй сама.
-exploits_window: [none]
-mitigates_window: [none]
-exposure_channels: [close_commit, shield_angle]
-mastery_unlock: [concussion_followup, close_reset]
+exploits_window:
+  - none
+mitigates_window:
+  - none
+exposure_channels:
+  - close_commit
+  - shield_angle
+mastery_unlock:
+  - concussion_followup
+  - close_reset
 sort_order: 210
-tags: [weapon_frame, melee, blunt, one_hand]
+tags:
+  - weapon_frame
+  - melee
+  - blunt
+  - one_hand
 related_files:
   - "[[05_Combat_Survival/Weapon_Melee|Weapon_Melee]]"
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/Registries/Registry_Weapons|Registry_Weapons]]"
+type: entity
+entity_kind: weapon_frame
 ---
 # Компактный ударник, одна рука
 

@@ -12,7 +12,7 @@ tags:
   - gating
   - environment
 related_files:
-  - "[[07_Gear_Inventory/_Registries/Registry_Headwear|Registry_Headwear]]"
+  - "[[07_Gear_Inventory/Registries/Registry_Headwear|Registry_Headwear]]"
   - "[[02_World_Lore/Anomaly_Weather_Systems|Anomaly_Weather_Systems]]"
 ---
 # Маски: Ключ от Мира
@@ -30,7 +30,7 @@ related_files:
 | **Замкнутый**           | Получение DoT (урон временем) в фазе T3.                          |
 | **Именная Реликвия**    | Закрывает один объявленный путь воздействия, но сохраняет целостность, питание, маршрутную цену или иную контригру |
 
-`filter_rating` маски входит в [[08_World_Generation/Generation/08_Gate_Check|Gate Check]]. Хорошая маска не заменяет броню и батареи, но часто решает, переживет ли Оболочка переход T1 -> T2 или T2 -> T3.
+`filter_rating` маски входит в [[08_World_Generation/Generation/Gate_Check|Gate Check]]. Хорошая маска не заменяет броню и батареи, но часто решает, переживет ли Оболочка переход T1 -> T2 или T2 -> T3.
 
 | Tier зоны | Минимальный комфорт | Безопасное чтение |
 |:---|:---|:---|

@@ -7,12 +7,16 @@ index_order: 200
 index_summary: "Задаёт правила и последствия системы «Оружие: дальний бой»."
 read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Оружие: дальний бой»."
 system: action_combat
-tags: [ranged, arcanegun, battery_cycle, mechanical]
+tags:
+  - ranged
+  - arcanegun
+  - battery_cycle
+  - mechanical
 related_files:
   - "[[05_Combat_Survival/Combat_Three_Debts|Combat_Three_Debts]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
-  - "[[04_Player_Entities/_Registries/Registry_Parameter_Contracts|Реестр параметрических контрактов]]"
+  - "[[05_Combat_Survival/Registries/Registry_Weapons|Registry_Weapons]]"
+  - "[[04_Player_Entities/Registries/Registry_Parameter_Contracts|Реестр параметрических контрактов]]"
 ---
 # Оружие: дальний бой
 

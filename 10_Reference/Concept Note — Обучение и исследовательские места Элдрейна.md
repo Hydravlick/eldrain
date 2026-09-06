@@ -15,7 +15,7 @@ related_files:
   - "[[03_Factions_Societies/Lore/The_Proving_Houses|Дома Пробы]]"
   - "[[03_Factions_Societies/Lore/The_Contour_Chamber|Палата Контуров]]"
   - "[[03_Factions_Societies/Lore/The_First_Reception|Круг Первого Приёма]]"
-  - "[[08_World_Generation/_Registries/Registry_Mobs|Глобальный бестиарий]]"
+  - "[[08_World_Generation/Registries/Registry_Mobs|Глобальный бестиарий]]"
 ---
 # Концепт: обучение и исследовательские места Элдрейна
 

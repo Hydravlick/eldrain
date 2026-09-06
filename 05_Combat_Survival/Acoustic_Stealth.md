@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: combat_survival
-index_order: 30
-index_summary: "Задаёт правила и последствия системы «Механика: Акустический Шум»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Механика: Акустический Шум»."
 system: action_combat
 tags: [stealth, sound, detection, ai, attention_debt]
 related_files:
@@ -14,6 +8,13 @@ related_files:
   - "[[05_Combat_Survival/Dissonance_System|Dissonance_System]]"
   - "[[05_Combat_Survival/Movement_Physics|Movement_Physics]]"
   - "[[07_Gear_Inventory/Physical_Weight|Physical_Weight]]"
+
+type: "system"
+index_route: "owner"
+index_group: "combat_survival"
+index_order: 30
+index_summary: "Определяет состояния, разрешение и связи: Механика: Акустический Шум."
+read_when: "Когда нужен контракт «Механика: Акустический Шум» и его границы с соседними владельцами."
 ---
 # Механика: Акустический Шум
 

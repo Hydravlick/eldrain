@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: gear_inventory
-index_order: 150
-index_summary: "Задаёт правила и последствия системы «Механика: Архитектура Инвентаря (Mass & Access)»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Механика: Архитектура Инвентаря (Mass & Access)»."
 system: inventory
 tags:
   - weight
@@ -16,10 +10,16 @@ tags:
 related_files:
   - "[[07_Gear_Inventory/Containers_Slots|Containers and Slots]]"
   - "[[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction_Stabilization_Loop]]"
-  - "[[08_World_Generation/Anomaly/14_Extraction_System|Extraction_System]]"
-  - "[[04_Player_Entities/_Registries/Registry_Interaction_Families|Семейства взаимодействий]]"
+  - "[[08_World_Generation/Anomaly/Extraction_System|Extraction_System]]"
+  - "[[04_Player_Entities/Registries/Registry_Interaction_Families|Семейства взаимодействий]]"
   - "[[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Interfaces|Thermos Interfaces]]"
+  - "[[07_Gear_Inventory/Registries/Registry_Thermos_Interfaces|Thermos Interfaces]]"
+type: system
+index_route: owner
+index_group: gear_inventory
+index_order: 150
+index_summary: "Определяет состояния, разрешение и связи: Механика: Архитектура Инвентаря (Mass & Access)."
+read_when: "Когда нужен контракт «Механика: Архитектура Инвентаря (Mass & Access)» и его границы с соседними владельцами."
 ---
 # Механика: Архитектура Инвентаря (Mass & Access)
 

@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: player_entities
-index_order: 150
-index_summary: "Определяет источники, конфликт свидетельств и границы подтверждённого знания в Гримуаре."
-read_when: "Читайте при изменении ненадёжных источников, триангуляции, уверенности факта или представления спорного знания."
 system: information_integrity
 tags:
   - grimoire
@@ -18,6 +12,13 @@ related_files:
   - "[[03_Factions_Societies/Quest_Engine_Grammar|Грамматика расследований]]"
   - "[[03_Factions_Societies/Lore/The_Contour_Chamber|Палата Контуров]]"
   - "[[03_Factions_Societies/Lore/The_Cathedral|Собор Всех Вер]]"
+
+type: "system"
+index_route: "owner"
+index_group: "player_entities"
+index_order: 150
+index_summary: "Определяет источники, конфликт свидетельств и границы подтверждённого знания в Гримуаре."
+read_when: "Читайте при изменении ненадёжных источников, триангуляции, уверенности факта или представления спорного знания."
 ---
 # Гримуар: источники и триангуляция истины
 

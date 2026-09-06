@@ -1,20 +1,24 @@
 ---
-type: overview
 status: active
 system: player_core
-tags: [shell, entity, structure, slots]
+tags:
+  - shell
+  - entity
+  - structure
+  - slots
 related_files:
   - "[[04_Player_Entities/Tags_System|Tags_Modification]]"
   - "[[04_Player_Entities/Skill_Build_Philosophy|Skill_Build_Philosophy]]"
   - "[[04_Player_Entities/Lifecycle_Roster|Lifecycle_Roster]]"
-  - "[[04_Player_Entities/_Registries/Registry_Races|Registry_Races]]"
-  - "[[04_Player_Entities/_Registries/Registry_Specs|Registry_Specs]]"
+  - "[[04_Player_Entities/Registries/Registry_Races|Registry_Races]]"
+  - "[[04_Player_Entities/Registries/Registry_Specs|Registry_Specs]]"
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile_Pipeline]]"
   - "[[04_Player_Entities/MVP_3x3_Design_Contract|Контракт MVP-матрицы 3×3]]"
+type: core_concept
 ---
 # Конструкция боевого профиля Пешки
 
-Эта страница даёт короткую карту сущностей. Полный порядок разрешения принадлежит [[04_Player_Entities/Combat_Profile_Pipeline|Combat Profile Pipeline]], а данные конкретных полевых профилей — [[04_Player_Entities/_Registries/Registry_Combos|Registry Combos]].
+Эта страница даёт короткую карту сущностей. Полный порядок разрешения принадлежит [[04_Player_Entities/Combat_Profile_Pipeline|Combat Profile Pipeline]], а данные конкретных полевых профилей — [[04_Player_Entities/Registries/Registry_Combos|Registry Combos]].
 
 ## Человек не вычисляется из билда
 

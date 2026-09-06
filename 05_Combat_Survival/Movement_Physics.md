@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: combat_survival
-index_order: 140
-index_summary: "Задаёт правила и последствия системы «Механика: Физика Движения»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Механика: Физика Движения»."
 system: action_combat
 tags:
   - movement
@@ -15,6 +9,13 @@ tags:
 related_files:
   - "[[05_Combat_Survival/Combat_Three_Debts|Combat_Three_Debts]]"
   - "[[07_Gear_Inventory/Physical_Weight|Physical_Weight]]"
+
+type: "system"
+index_route: "owner"
+index_group: "combat_survival"
+index_order: 140
+index_summary: "Определяет состояния, разрешение и связи: Механика: Физика Движения."
+read_when: "Когда нужен контракт «Механика: Физика Движения» и его границы с соседними владельцами."
 ---
 # Механика: Физика Движения
 

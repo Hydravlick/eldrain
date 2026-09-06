@@ -1,11 +1,5 @@
 ---
-type: lore_framework
 status: active
-index_route: owner
-index_group: factions_societies
-index_order: 40
-index_summary: "Задаёт правила и последствия системы «Социальная грамматика районов Элдрейна»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Социальная грамматика районов Элдрейна»."
 system: factions_lore
 tags:
   - city_districts
@@ -21,6 +15,12 @@ related_files:
   - "[[08_World_Generation/Anomaly/Anomaly_System|Anomaly_System]]"
   - "[[08_World_Generation/City_State/Civic_Event_Lifecycle|Civic_Event_Lifecycle]]"
   - "[[08_World_Generation/Districts/City_Center|City_Center]]"
+type: "lore"
+index_route: "owner"
+index_group: "factions_societies"
+index_order: 40
+read_when: "Когда нужен контракт «Социальная грамматика районов Элдрейна» и его границы с соседними владельцами."
+index_summary: "Описывает мир и общественные причины: Социальная грамматика районов Элдрейна."
 ---
 # Социальная грамматика районов Элдрейна
 

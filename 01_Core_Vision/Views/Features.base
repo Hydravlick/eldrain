@@ -1,0 +1,44 @@
+filters:
+  and:
+    - 'type == "feature"'
+    - 'status == "active"'
+properties:
+  player_promise:
+    displayName: Обещание игроку
+  expected_dynamics:
+    displayName: Гипотеза динамики
+  system_owners:
+    displayName: Владельцы правил
+  ux_surfaces:
+    displayName: UX
+  maturity:
+    displayName: Зрелость описания
+  validation_state:
+    displayName: Проверка
+views:
+  - type: table
+    name: Возможности и владельцы
+    order:
+      - file.name
+      - player_promise
+      - expected_dynamics
+      - system_owners
+      - ux_surfaces
+      - data_sources
+      - maturity
+      - mvp_scope
+      - validation_state
+  - type: table
+    name: Нет UX
+    filters: '!ux_surfaces'
+    order:
+      - file.name
+      - system_owners
+      - ux_surfaces
+  - type: table
+    name: Нет проверки
+    filters: '!validation'
+    order:
+      - file.name
+      - validation_state
+      - validation

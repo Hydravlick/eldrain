@@ -1,11 +1,5 @@
 ---
-type: system_contract
 status: active
-index_route: owner
-index_group: economy_loot
-index_order: 110
-index_summary: "Задаёт правила и последствия системы «Return Manifest Contract»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Return Manifest Contract»."
 system: extraction_return
 tags:
   - extraction
@@ -19,9 +13,15 @@ related_files:
   - "[[04_Player_Entities/Recovery_Lifecycle|Recovery Lifecycle]]"
   - "[[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction Stabilization Loop]]"
   - "[[07_Gear_Inventory/Inventory_Architecture|Inventory Architecture]]"
-  - "[[08_World_Generation/Generation/20_Egress_Solvency|Egress Solvency]]"
-  - "[[08_World_Generation/Anomaly/14_Extraction_System|Extraction System]]"
-  - "[[08_World_Generation/_Registries/Registry_Raid_Interfaces|Raid interfaces]]"
+  - "[[08_World_Generation/Generation/Egress_Solvency|Egress Solvency]]"
+  - "[[08_World_Generation/Anomaly/Extraction_System|Extraction System]]"
+  - "[[08_World_Generation/Registries/Registry_Raid_Interfaces|Raid interfaces]]"
+type: system
+index_route: owner
+index_group: economy_loot
+index_order: 110
+index_summary: "Определяет состояния, разрешение и связи: Return Manifest Contract."
+read_when: Когда нужен контракт «Return Manifest Contract» и его границы с соседними владельцами.
 ---
 # Return Manifest Contract
 

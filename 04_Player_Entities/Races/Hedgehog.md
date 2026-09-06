@@ -1,5 +1,4 @@
 ---
-type: race
 status: active
 system: player_entities
 id: hedgehog
@@ -15,6 +14,8 @@ culture_reference: "[[02_World_Lore/Hedgehog_Culture|Ежи: Культура У
 tags:
   - race
   - player_entity
+type: "entity"
+entity_kind: "race"
 ---
 # Ёж (Erinaceus)
 

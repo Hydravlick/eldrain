@@ -1,5 +1,4 @@
 ---
-type: race
 status: active
 system: player_entities
 id: rat
@@ -15,6 +14,8 @@ culture_reference: "[[02_World_Lore/Rat_Culture|Крысы: Культура П�
 tags:
   - race
   - player_entity
+type: "entity"
+entity_kind: "race"
 ---
 # Крыса (Rattus)
 

@@ -1,5 +1,4 @@
 ---
-type: faction
 status: active
 system: factions
 faction_id: night_guarantors
@@ -19,6 +18,8 @@ related_files:
   - "[[03_Factions_Societies/Lore/The_Weighing_Houses|The_Weighing_Houses]]"
   - "[[03_Factions_Societies/Lore/The_Minstrels|The_Minstrels]]"
   - "[[03_Factions_Societies/Lore/The_First_Reception|The_First_Reception]]"
+type: "entity"
+entity_kind: "faction"
 ---
 # Ночные Поручители
 

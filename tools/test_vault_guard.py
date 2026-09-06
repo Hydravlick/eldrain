@@ -238,13 +238,22 @@ class VaultGuardTests(unittest.TestCase):
         self.view(location="09_Project_Management/Analysis.md")
         self.assertEqual(run(self.root), [])
 
-    def test_routable_view_is_not_a_feature_system_owner(self):
+    def test_view_cannot_enter_owner_routes_at_any_status(self):
         self.page()
-        self.view("upstream_sources: ['[[01_Core_Vision/Rule]]']\nindex_route: owner\n"
-                  "index_group: test\nindex_order: 1\nindex_summary: Analysis\nread_when: Compare rules\n")
-        self.assertEqual(run(self.root), [])
+        for status in MODEL["statuses"]:
+            with self.subTest(status=status):
+                self.view("upstream_sources: ['[[01_Core_Vision/Rule]]']\nindex_route: owner\n"
+                          "index_group: test\nindex_order: 1\nindex_summary: Analysis\nread_when: Compare rules\n",
+                          status=status)
+                self.assertEqual(self.codes(run), {"VIEW_ROUTE_OWNERSHIP"})
+
+    def test_view_is_not_a_feature_system_owner_even_with_route_metadata(self):
+        self.page()
         self.feature("feature_id: test\nsystem_owners: ['[[01_Core_Vision/Analysis]]']\n")
-        self.assertIn("FEATURE_INVALID_SYSTEM_OWNER", self.codes(check_features))
+        for route in ("", "index_route: owner\n"):
+            with self.subTest(route=route):
+                self.view("upstream_sources: ['[[01_Core_Vision/Rule]]']\n" + route)
+                self.assertIn("FEATURE_INVALID_SYSTEM_OWNER", self.codes(check_features))
 
     def test_view_source_check_does_not_infer_authority_from_metadata(self):
         self.write("01_Core_Vision/History.md", "---\ntype: lore\nsystem: test\nstatus: deprecated\n---\n")

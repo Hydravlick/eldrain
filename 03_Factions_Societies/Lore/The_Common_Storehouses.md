@@ -1,5 +1,4 @@
 ---
-type: faction
 category: faction
 status: active
 system: factions
@@ -7,9 +6,7 @@ faction_id: common_storehouses
 display_name: Общие Кладовые
 sort_order: 20
 faction_role: hearth
-player_label: food_and_stock
 promise: no_empty_hands
-access_model: basic_stock_conditional_welfare_shared_cells
 tags:
   - hearth
   - mutual_aid
@@ -17,10 +14,10 @@ tags:
   - welfare
   - stock
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Faction_Address_System|Faction_Address_System]]"
   - "[[03_Factions_Societies/Lore/Hearth_Anatomy|Hearth_Anatomy]]"
   - "[[03_Factions_Societies/Lore/Civic_Order|Civic_Order]]"
-  - "[[03_Factions_Societies/_Registries/Registry_Faction_Interfaces|Registry_Faction_Interfaces]]"
+  - "[[03_Factions_Societies/Registries/Registry_Faction_Interfaces|Registry_Faction_Interfaces]]"
   - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[03_Factions_Societies/Lore/The_First_Reception|The_First_Reception]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
@@ -30,6 +27,8 @@ related_mechanics:
   - "[[06_Economy_Loot/Vendor_Logic|Vendor_Logic]]"
   - "[[06_Economy_Loot/Barter_System|Barter_System]]"
   - "[[04_Player_Entities/Spawn_Logic|Spawn_Logic]]"
+type: entity
+entity_kind: faction
 ---
 # Еда и запас: Общие Кладовые
 
@@ -54,7 +53,7 @@ related_mechanics:
 
 Кладовые не обещают достатка. Они обещают старт: суп, сухую тряпку, заряд лампы, место для вещи, дешёвый фильтр, адрес мастера и шанс снова выйти на работу.
 
-Бытовой минимум и боевой Welfare — не одно и то же. Еда, вода, кров и экстренная помощь остаются гражданским правом. Welfare — один фиксированный непередаваемый комплект-ссуда для выбранной готовой Пешки, если у аккаунта нет пригодного loadout; статус Ward сам по себе его не гарантирует, а живому gearless-ростеру не нужно умирать ради помощи.
+Еда, вода, кров и экстренная помощь остаются гражданским правом. Боевой комплект — отдельная материальная поддержка; условия её получения определяет [[04_Player_Entities/Spawn_Logic#3. Фиксированный Welfare loan|Spawn Logic]].
 
 Кладовые являются адресом выдачи и культурным лицом этой поддержки. Они не вычисляют eligibility, не создают Пешку и не решают допуск в сектор. Полный predicate, единственность overlay, отзыв и границы baseline принадлежат [[04_Player_Entities/Spawn_Logic#3. Фиксированный Welfare loan|Spawn Logic]].
 
@@ -110,50 +109,7 @@ related_mechanics:
 
 Их власть держится на видимости. Если полка пуста, район видит не абстрактный дефицит, а конкретный провал обещания.
 
-## Что получает игрок
-
-> [!warning] Downstream interface drift
-> Этот и следующие игровые разделы сохраняют прежнюю проекцию до миграции отдельных взаимодействий в `Registry_Faction_Interfaces`. Они не являются владельцем eligibility, состояния, цены или результата.
-
-- базовый схрон и расширение ячеек через доверие;
-- пайки, дешёвые батареи, простые фильтры;
-- понятную выдачу и возврат непередаваемого Welfare-комплекта после системного подтверждения;
-- заказы доставки, возврата и распределения;
-- доступ к Тёплым Кухням, Фонарным Сменам и базовым мастерам;
-- предупреждения о дефиците, который скоро ударит по ценам.
-
-Кладовые не должны продавать лучшую экипировку. Их роль - сохранить материальный пол следующей вылазки, не превращая помощь в тир Пешки, наградную полосу или наказание за серию смертей.
-
 Минимум нельзя использовать как рычаг признания, молчания или послушания. Даже житель под заслоном получает простую пищу, воду и экстренную помощь; ограничение касается конкретного маршрута, груза или доступа к пострадавшему, а не права продолжать жить.
-
-## Квестовые глаголы
-
-| Глагол | Пример |
-|---|---|
-| доставить | провести батареи к кухне до ночного отключения |
-| распределить | решить, какой район получит последние фильтры |
-| вернуть | найти пропавшие ящики после фазового сдвига |
-| удержать минимум | защитить полку обмена во время паники |
-| восполнить | вынести дешёвое сырьё, которое сейчас важнее редкого лута |
-
-## Мастера и временные POI
-
-Кладовые постоянно связаны с малыми городскими силами:
-
-- Тёплые Кухни;
-- Садовые Цепи;
-- Фонарные Смены;
-- Мягкий Стол;
-- простые ремонтные лавки;
-- районные смотрители ячеек.
-
-Временные точки:
-
-- передвижная кухня у безопасного моста;
-- открытая зарядная стойка;
-- ночная полка обмена;
-- кладовая, доступная до фазового сдвига;
-- мастер, чинящий дешёвые фильтры за долю добычи.
 
 ## Напряжения
 
@@ -170,3 +126,7 @@ related_mechanics:
 Самая опасная фраза Кладовых:
 
 > *"Ты уже получил достаточно."*
+
+## Игровые связи
+
+Принятые роли и границы: [[03_Factions_Societies/Registries/Registry_Faction_Interfaces]]. Заготовки сцен и поручений: [[08_World_Generation/Content/Faction_Encounter_Seeds#common_storehouses|Еда и запас: Общие Кладовые]].

@@ -1,19 +1,23 @@
 ---
-type: mechanic
 status: active
+system: action_combat
+tags:
+  - medicine
+  - health
+  - field_capacity
+  - action_commitment
+related_files:
+  - "[[07_Gear_Inventory/Registries/Registry_Consumables|Registry_Consumables]]"
+  - "[[05_Combat_Survival/Registries/Registry_StatusEffects|Registry_StatusEffects]]"
+  - "[[04_Player_Entities/Skill_Build_Philosophy|Skill_Build_Philosophy]]"
+  - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
+  - "[[08_World_Generation/Hub/Hub_Services_Interaction|Hub_Services_Interaction]]"
+type: system
 index_route: owner
 index_group: combat_survival
 index_order: 60
-index_summary: "Задаёт правила и последствия системы «Медицина, здоровье и необходимые расходники»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Медицина, здоровье и необходимые расходники»."
-system: action_combat
-tags: [medicine, health, field_capacity, action_commitment]
-related_files:
-  - "[[07_Gear_Inventory/_Registries/Registry_Consumables|Registry_Consumables]]"
-  - "[[05_Combat_Survival/_Registries/Registry_StatusEffects|Registry_StatusEffects]]"
-  - "[[04_Player_Entities/Skill_Build_Philosophy|Skill_Build_Philosophy]]"
-  - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
-  - "[[08_World_Generation/Hub/02_Hub_Services_Interaction|Hub_Services_Interaction]]"
+index_summary: "Определяет состояния, разрешение и связи: Медицина, здоровье и необходимые расходники."
+read_when: Когда нужен контракт «Медицина, здоровье и необходимые расходники» и его границы с соседними владельцами.
 ---
 # Медицина, здоровье и необходимые расходники
 
@@ -45,7 +49,7 @@ related_files:
 | `FieldCapacity` | доступная в текущей вылазке телесная ёмкость | объявленная тяжёлая травма, среда, Gate Check и профильная полевая медицина |
 | `CurrentHP` | немедленная боевая жизнь | обычный урон, лечебные навыки и часть медицины |
 
-Обычный урон уменьшает `CurrentHP`. `FieldCapacity` уменьшается **только** от явно телеграфируемого источника: тяжёлой травмы, названного статусного эффекта, опасной среды, критического последствия либо [[08_World_Generation/Generation/08_Gate_Check|Gate Check]]. Это не процент от каждого попадания и не скрытый chip-штраф.
+Обычный урон уменьшает `CurrentHP`. `FieldCapacity` уменьшается **только** от явно телеграфируемого источника: тяжёлой травмы, названного статусного эффекта, опасной среды, критического последствия либо [[08_World_Generation/Generation/Gate_Check|Gate Check]]. Это не процент от каждого попадания и не скрытый chip-штраф.
 
 ```text
 FieldCapacity' = max(0, FieldCapacity - declared_capacity_loss)
@@ -120,3 +124,10 @@ FieldCapacity = BaseCapacity
 - UI отдельно показывает `CurrentHP`, `FieldCapacity`, источник потери предела и ближайшую контрмеру.
 
 Точные объёмы восстановления, длительности, токсичность, радиусы и пороги остаются `prototype` до проверки слабого, обычного и оптимизированного сценариев.
+
+## 4. Запреты
+
+- колбы, гранаты, ловушки, химические зоны, световые шары и барьеры не существуют как обычные боевые расходники;
+- боевой навык не требует медицинский предмет как второй платёж;
+- расходник не создаёт новый P/Q/E или бесконечное восстановление по cooldown;
+- доступ, карта и след не заменяют [[08_World_Generation/Generation/Gate_Check|Gate Check]], бой или обязательную экстракцию.

@@ -1,25 +1,24 @@
 ---
-type: faction
 status: active
 system: factions
 faction_id: ash_commission
 display_name: Комиссия Пепла
 sort_order: 180
 faction_role: incident_review
-player_label: аварии, запреты, журналы ошибок
 promise: error_must_be_remembered
-access_model: incident_review_seals_recall_witnesses
 tags:
   - faction
   - incident_review
   - proving
   - safety
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Faction_Address_System|Faction_Address_System]]"
   - "[[03_Factions_Societies/Lore/Civic_Ethos_Under_Lamps|Civic_Ethos_Under_Lamps]]"
   - "[[03_Factions_Societies/Lore/The_Proving_Houses|The_Proving_Houses]]"
   - "[[03_Factions_Societies/Lore/The_Support_Artels|The_Support_Artels]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
+type: entity
+entity_kind: faction
 ---
 # Комиссия Пепла
 
@@ -72,16 +71,12 @@ related_files:
 
 Минимум не становится наказанием. Комиссия может закрыть мастерскую, маршрут, рецепт или партию. Она не может объявить человека недостойным супа, крова или санитарной помощи.
 
-## Что получает игрок
-
-- контракты на извлечение журналов, обломков и образцов после аварии;
-- сопровождение свидетеля до безопасного разбора;
-- удержание пломбы, пока богатый мастер пытается открыть цех;
-- выбор: отдать опасную находку Комиссии, Дому Пробы, Менестрелям или серому заказчику;
-- восстановление доверия через честное признание ошибки, а не через абстрактный штраф.
-
 ## Тень
 
 Комиссия Пепла может стать оружием против неудобного мастера. Достаточно назвать риск "неповторяемым", задержать журнал или разнести слух до вывода.
 
 Ее худшая версия не боится ошибки. Она боится, что кто-то докажет: ошибалась сама Комиссия.
+
+## Игровые связи
+
+Принятые роли и границы: [[03_Factions_Societies/Registries/Registry_Faction_Interfaces]]. Заготовки сцен и поручений: [[08_World_Generation/Content/Faction_Encounter_Seeds#ash_commission|Комиссия Пепла]].

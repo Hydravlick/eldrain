@@ -1,5 +1,4 @@
 ---
-type: faction
 category: faction
 status: active
 system: factions
@@ -7,9 +6,7 @@ faction_id: proving_houses
 display_name: Дома Пробы
 sort_order: 80
 faction_role: hearth
-player_label: crafting_and_trials
 promise: useful_trial
-access_model: tables_blueprints_prototypes_error_logs
 tags:
   - hearth
   - crafting
@@ -17,16 +14,18 @@ tags:
   - laboratories
   - workshops
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Faction_Address_System|Faction_Address_System]]"
   - "[[03_Factions_Societies/Lore/Hearth_Anatomy|Hearth_Anatomy]]"
   - "[[03_Factions_Societies/Lore/Civic_Order|Civic_Order]]"
-  - "[[03_Factions_Societies/_Registries/Registry_Faction_Interfaces|Registry_Faction_Interfaces]]"
+  - "[[03_Factions_Societies/Registries/Registry_Faction_Interfaces|Registry_Faction_Interfaces]]"
   - "[[01_Core_Vision/Art_Direction_Material_Grammar|Art_Direction_Material_Grammar]]"
 related_mechanics:
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
   - "[[06_Economy_Loot/Barter_System|Barter_System]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_CraftingRecipes|Registry_CraftingRecipes]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_Blueprints|Registry_Blueprints]]"
+  - "[[07_Gear_Inventory/Registries/Registry_CraftingRecipes|Registry_CraftingRecipes]]"
+  - "[[07_Gear_Inventory/Registries/Registry_Blueprints|Registry_Blueprints]]"
+type: entity
+entity_kind: faction
 ---
 # Крафт и пробы: Дома Пробы
 
@@ -117,41 +116,6 @@ related_mechanics:
 
 Ритуал не является украшением машины: он контролирует условия, которые нельзя полностью закрепить металлом и измерением. Индустрия не разоблачает ритуал как суеверие, а делает часть его условий повторяемой. Общий визуальный договор задан в [[01_Core_Vision/Art_Direction_Material_Grammar|Материальной грамматике Элдрейна]].
 
-## Что получает игрок
-
-> [!warning] Downstream interface drift
-> Этот и следующие игровые разделы сохраняют прежнюю проекцию до миграции отдельных взаимодействий в `Registry_Faction_Interfaces`. Они не являются владельцем eligibility, состояния, цены или результата.
-
-- распознавание свойств и открытие тегов предметов;
-- чертежи, модификации, прототипы;
-- калибровку батарей и стабилизаторов;
-- экспериментальные рецепты;
-- доступ к редким мастерам;
-- контракты испытаний, разбора ошибок и сбора образцов;
-- право принести опасную пробу без немедленной конфискации.
-
-## Квестовые глаголы
-
-| Глагол | Пример |
-|---|---|
-| проверить | вынести образец и повторить реакцию при контролируемой температуре |
-| собрать | собрать прототип из несовместимых деталей до закрытия окна |
-| испытать | применить устройство в рейде и вернуть журнал данных |
-| разобрать ошибку | найти, почему прошлый рецепт убил бригаду |
-| откалибровать | настроить батарею под конкретный маршрут |
-
-## Мастера и временные POI
-
-Дома Пробы естественно поддерживают временные точки:
-
-- безопасный верстак;
-- временная лаборатория;
-- полевая кузня у лифта;
-- Мокрый Стол до подъёма воды;
-- Полевой Стол перед Gate Check;
-- Комиссия Пепла после аварии;
-- свободный мастер, которого Дома считают угрозой, а район - спасением.
-
 ## Напряжения
 
 - **С Кругом Первого Приёма:** проба может быть лекарством или живым страдающим существом.
@@ -167,3 +131,7 @@ related_mechanics:
 > *"Мы проверили."*
 
 Дома Пробы опасны не любопытством, а привычкой считать чужой страх недостаточно доказательным.
+
+## Игровые связи
+
+Принятые роли и границы: [[03_Factions_Societies/Registries/Registry_Faction_Interfaces]]. Заготовки сцен и поручений: [[08_World_Generation/Content/Faction_Encounter_Seeds#proving_houses|Крафт и пробы: Дома Пробы]].

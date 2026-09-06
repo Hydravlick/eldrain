@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: economy_loot
-index_order: 60
-index_summary: "Задаёт правила и последствия системы «Экстракция, стабилизация и наследие сектора»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Экстракция, стабилизация и наследие сектора»."
 system: extraction_economy
 tags:
   - extraction
@@ -26,11 +20,17 @@ related_files:
   - "[[06_Economy_Loot/Sinks_Insurance|Sinks_Insurance]]"
   - "[[07_Gear_Inventory/Inventory_Architecture|Inventory_Architecture]]"
   - "[[07_Gear_Inventory/Looting_Process|Looting_Process]]"
-  - "[[08_World_Generation/Anomaly/14_Extraction_System|Extraction_System]]"
-  - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server_Lifecycle]]"
-  - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
-  - "[[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion_Logic]]"
-  - "[[08_World_Generation/Generation/17_Dual_State_POIs|Dual_State_POIs]]"
+  - "[[08_World_Generation/Anomaly/Extraction_System|Extraction_System]]"
+  - "[[08_World_Generation/Generation/Server_Lifecycle|Server_Lifecycle]]"
+  - "[[08_World_Generation/Generation/Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
+  - "[[08_World_Generation/Anomaly/Insertion_Logic|Insertion_Logic]]"
+  - "[[08_World_Generation/Generation/Dual_State_POIs|Dual_State_POIs]]"
+type: system
+index_route: owner
+index_group: economy_loot
+index_order: 60
+index_summary: "Определяет состояния, разрешение и связи: Экстракция, стабилизация и наследие сектора."
+read_when: Когда нужен контракт «Экстракция, стабилизация и наследие сектора» и его границы с соседними владельцами.
 ---
 # Экстракция, стабилизация и наследие сектора
 
@@ -42,7 +42,7 @@ related_files:
 
 Игрок входит в Аномалию не потому, что после неё ничего не останется. Он входит потому, что **массовая Стабилизация не сохраняет переносимый предмет как его личную добычу**, а полный результат вылазки закрепляет только Normal Threshold.
 
-- Успешная экстракция через [[08_World_Generation/Anomaly/14_Extraction_System|Нестабильный Порог]] сохраняет человека, физически вынесенный защищённый манифест и расчёт объявленного контракта.
+- Успешная экстракция через [[08_World_Generation/Anomaly/Extraction_System|Нестабильный Порог]] сохраняет человека, физически вынесенный защищённый манифест и расчёт объявленного контракта.
 - `Breakline` сохраняет только ещё живого человека, без манифеста и контрактного расчёта; это необратимый отказ от текущей ставки, а не второй вид бесплатной экстракции.
 - Каждый извлечённый не-Welfare ItemID атомарно входит в общий account custody через [[06_Economy_Loot/Return_Manifest_Contract|Return Manifest]]. После этого стабильный предмет можно сразу использовать, разобрать, продать или направить мастеру.
 - `Volatile`-предмет после экстракции остаётся физически полезным, но требует индивидуального Напоминания через Рез, Якорь или фракционный сервис.
@@ -137,7 +137,7 @@ related_files:
 
 ### 4.4 Normal Threshold (обычный выход)
 
-[[08_World_Generation/Anomaly/14_Extraction_System|Выход]] требует маршрута, времени синхронизации и физического присутствия каждого участника. Успешная экстракция:
+[[08_World_Generation/Anomaly/Extraction_System|Выход]] требует маршрута, времени синхронизации и физического присутствия каждого участника. Успешная экстракция:
 
 1. подтверждает ту же выжившую Пешку;
 2. фиксирует только реально вынесенный груз;
@@ -176,7 +176,7 @@ SortieStakeSnapshot =
 - локальный Breakline wake сообщает ближайшим участникам о беглеце, не очищает накопленную угрозу и не раскрывает противнику точные позиции всех seam;
 - достижение seam возвращает в Хаб `Person` и ничего больше; перехват до seam заканчивается обычным KIA;
 - успешный Breakline сам по себе не создаёт Personal Tag, награду, право нового входа, контрактный прогресс или экономическую компенсацию;
-- [[08_World_Generation/Anomaly/13_Insertion_Logic#Breach transaction|Participation Claim]] остаётся consumed: этот AccountID не входит повторно в тот же SessionID даже другой Пешкой.
+- [[08_World_Generation/Anomaly/Insertion_Logic#Breach transaction|Participation Claim]] остаётся consumed: этот AccountID не входит повторно в тот же SessionID даже другой Пешкой.
 
 #### Материальный Severed Wreck
 
@@ -241,7 +241,7 @@ Forfeit-ledger имеет приоритет над обычной переда�
 
 ## 7. Финал цикла
 
-На отметке финальной [[08_World_Generation/Generation/07_Server_Lifecycle|Стабилизации]]:
+На отметке финальной [[08_World_Generation/Generation/Server_Lifecycle|Стабилизации]]:
 
 | Объект | Итог |
 |---|---|
@@ -268,7 +268,7 @@ Forfeit-ledger имеет приоритет над обычной переда�
 
 Перед следующей Аномалией переносимое наследие эвакуируют в другие безопасные районы: стада, культуры, инструменты, части станков, архивы и санитарные образцы. Неэвакуированное может быть замещено или изменено новым циклом.
 
-Городские бригады получают из Stable-сектора общественную инфраструктуру и массовые запасы. Это влияет на ассортимент, временные сервисы, контракты и состояние районов, но не выдаёт игрокам личный T3-лут без рейда. Для игрока результаты представлены через мирную проекцию и POI-интерфейсы [[08_World_Generation/Hub/01_Hub_Map_Table|Живой Миниатюры]]; свободного перемещения по Stable-сектору нет.
+Городские бригады получают из Stable-сектора общественную инфраструктуру и массовые запасы. Это влияет на ассортимент, временные сервисы, контракты и состояние районов, но не выдаёт игрокам личный T3-лут без рейда. Для игрока результаты представлены через мирную проекцию и POI-интерфейсы [[08_World_Generation/Hub/Hub_Map_Table|Живой Миниатюры]]; свободного перемещения по Stable-сектору нет.
 
 ## 9. Защита extraction-ставки
 

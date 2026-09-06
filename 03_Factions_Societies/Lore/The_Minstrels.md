@@ -1,5 +1,4 @@
 ---
-type: faction
 category: faction
 status: active
 system: factions
@@ -16,9 +15,11 @@ tags:
   - external_addresses
 related_files:
   - "[[03_Factions_Societies/Lore/Civic_Order|Civic_Order]]"
-  - "[[03_Factions_Societies/_Registries/Registry_Factions|Registry_Factions]]"
+  - "[[03_Factions_Societies/Registries/Registry_Factions|Registry_Factions]]"
   - "[[03_Factions_Societies/Lore/The_Contour_Chamber|The_Contour_Chamber]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
+type: entity
+entity_kind: faction
 ---
 # Лига Менестрелей
 

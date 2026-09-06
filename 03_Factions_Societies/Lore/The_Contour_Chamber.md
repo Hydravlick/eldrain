@@ -1,5 +1,4 @@
 ---
-type: faction
 category: faction
 status: active
 system: factions
@@ -7,9 +6,7 @@ faction_id: contour_chamber
 display_name: Палата Контуров
 sort_order: 40
 faction_role: hearth
-player_label: maps_and_evidence
 promise: proof_and_route
-access_model: maps_witness_records_route_sheets
 tags:
   - hearth
   - maps
@@ -17,18 +14,20 @@ tags:
   - investigation
   - routes
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Faction_Address_System|Faction_Address_System]]"
   - "[[03_Factions_Societies/Lore/Hearth_Anatomy|Hearth_Anatomy]]"
   - "[[03_Factions_Societies/Lore/Civic_Order|Civic_Order]]"
-  - "[[03_Factions_Societies/_Registries/Registry_Faction_Interfaces|Registry_Faction_Interfaces]]"
+  - "[[03_Factions_Societies/Registries/Registry_Faction_Interfaces|Registry_Faction_Interfaces]]"
   - "[[03_Factions_Societies/Lore/The_Cartographers|The_Cartographers]]"
   - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
   - "[[02_World_Lore/Lizard_Culture|Lizard_Culture]]"
 related_mechanics:
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
-  - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
-  - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
+  - "[[08_World_Generation/Hub/Hub_Map_Table|Hub_Map_Table]]"
+  - "[[08_World_Generation/Generation/Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
+type: entity
+entity_kind: faction
 ---
 # Карты и улики: Палата Контуров
 
@@ -109,28 +108,6 @@ related_mechanics:
 - спор между "я видел" и "это можно проверить";
 - маршрут спорной партии, свидетеля или опечатанного груза между городскими адресами.
 
-## Что получает игрок
-
-> [!warning] Downstream interface drift
-> Этот и следующие игровые разделы сохраняют прежнюю проекцию до миграции отдельных взаимодействий в `Registry_Faction_Interfaces`. Они не являются владельцем eligibility, состояния, цены или результата.
-
-- фрагменты карты и временное снятие тумана войны;
-- разведданные, POI-маркеры, прогнозы фаз;
-- дальномеры, линзы, маячки и метки;
-- маршрутные листы и допуски;
-- контракты измерения, отметки, доказательства и вскрытия лжи;
-- возможность превратить найденный след в доступ, а не только в деньги.
-
-## Квестовые глаголы
-
-| Глагол | Пример |
-|---|---|
-| измерить | поставить маяк в комнате, которая появляется только при низкой воде |
-| отметить | оставить физическую метку до закрытия маршрута |
-| доказать | принести показание, что мост был взорван, а не упал сам |
-| вскрыть ложь | сравнить слух Менестрелей с тепловым следом |
-| сопоставить | связать найденную вещь с исчезнувшей группой |
-
 ## Ветви Палаты
 
 - **Картографы:** ходят ногами туда, где карта ещё не имеет права существовать. Подробнее: [[03_Factions_Societies/Lore/The_Cartographers|Картографы]].
@@ -161,3 +138,7 @@ related_mechanics:
 Что не записано, будто не существовало. А то, что записано, можно продать, скрыть или использовать как оружие.
 
 Палата опасна не ложью, а соблазном считать незаписанную боль несущественной.
+
+## Игровые связи
+
+Принятые роли и границы: [[03_Factions_Societies/Registries/Registry_Faction_Interfaces]]. Заготовки сцен и поручений: [[08_World_Generation/Content/Faction_Encounter_Seeds#contour_chamber|Карты и улики: Палата Контуров]].

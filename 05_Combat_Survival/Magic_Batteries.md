@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: combat_survival
-index_order: 120
-index_summary: "Задаёт правила и последствия системы «Система: Магия и Батареи»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Система: Магия и Батареи»."
 system: action_combat
 tags:
   - magic
@@ -22,8 +16,14 @@ related_files:
   - "[[07_Gear_Inventory/Inventory_QoL|Inventory_QoL]]"
   - "[[07_Gear_Inventory/Gear_Progression|Gear_Progression]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
-  - "[[04_Player_Entities/_Registries/Registry_Interaction_Families|Семейства взаимодействий]]"
-  - "[[04_Player_Entities/_Registries/Registry_Parameter_Contracts|Реестр параметрических контрактов]]"
+  - "[[04_Player_Entities/Registries/Registry_Interaction_Families|Семейства взаимодействий]]"
+  - "[[04_Player_Entities/Registries/Registry_Parameter_Contracts|Реестр параметрических контрактов]]"
+type: system
+index_route: owner
+index_group: combat_survival
+index_order: 120
+index_summary: "Определяет состояния, разрешение и связи: Система: Магия и Батареи."
+read_when: "Когда нужен контракт «Система: Магия и Батареи» и его границы с соседними владельцами."
 ---
 # Система: Магия и Батареи
 
@@ -175,7 +175,7 @@ Full Battery
 - `BodyID.CantripState` владеет переходами `Clear / Strained / Scarred / Broken` и конкретной поставленной под риск функцией;
 - `InventoryOwner` владеет размером активной очереди, размещением целых и пустых ячеек и Ready Access; физическая переносимость не добавляет импульсы.
 
-Heat, Overload, Vent и Recovery одного источника проходят `thermal_cycle` из [[04_Player_Entities/_Registries/Registry_Interaction_Families|реестра семейств взаимодействий]]. Допустимый `downstream_edges` имеет вид `source.property -> owner.parameter`: одна причина меняет один конечный результат и получает одну читаемую цену в той же сцене. Например, стабильность конкретной батареи может уменьшить `FrameID.NativeAction.heat_spike`, но тем же edge не сокращает Recovery, не добавляет заряд и не глушит Pulse. Батарея — contributor: её packet request проходит policy владельца параметра; он не создаёт второй Pulse поверх Dissonance occurrence действия. Модуль или authored-P может объявить другую локальную связь, но не становится совладельцем результата и не отменяет обязательный долг.
+Heat, Overload, Vent и Recovery одного источника проходят `thermal_cycle` из [[04_Player_Entities/Registries/Registry_Interaction_Families|реестра семейств взаимодействий]]. Допустимый `downstream_edges` имеет вид `source.property -> owner.parameter`: одна причина меняет один конечный результат и получает одну читаемую цену в той же сцене. Например, стабильность конкретной батареи может уменьшить `FrameID.NativeAction.heat_spike`, но тем же edge не сокращает Recovery, не добавляет заряд и не глушит Pulse. Батарея — contributor: её packet request проходит policy владельца параметра; он не создаёт второй Pulse поверх Dissonance occurrence действия. Модуль или authored-P может объявить другую локальную связь, но не становится совладельцем результата и не отменяет обязательный долг.
 
 Ячейка в cargo не входит в Ready Access или ActiveImpulseQueue только потому, что тело способно её нести.
 

@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: factions_societies
-index_order: 70
-index_summary: "Задаёт правила и последствия системы «Поручения, адрес вклада и допуски»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Поручения, адрес вклада и допуски»."
 system: faction_contracts
 tags:
   - contracts
@@ -14,14 +8,20 @@ tags:
   - loot_address
   - factions
 related_files:
-  - "[[03_Factions_Societies/_Registries/Registry_Factions|Registry_Factions]]"
-  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Registries/Registry_Factions|Registry_Factions]]"
+  - "[[03_Factions_Societies/Faction_Address_System|Faction_Address_System]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
 related_mechanics:
   - "[[03_Factions_Societies/Reputation_Rules|Reputation_Rules]]"
   - "[[03_Factions_Societies/Quest_Engine|Quest_Engine]]"
-  - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
+  - "[[08_World_Generation/Generation/Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
   - "[[06_Economy_Loot/Vendor_Logic|Vendor_Logic]]"
+type: system
+index_route: owner
+index_group: factions_societies
+index_order: 70
+index_summary: "Определяет состояния, разрешение и связи: Поручения, адрес вклада и допуски."
+read_when: Когда нужен контракт «Поручения, адрес вклада и допуски» и его границы с соседними владельцами.
 ---
 # Поручения, адрес вклада и допуски
 

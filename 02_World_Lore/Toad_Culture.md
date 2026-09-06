@@ -20,8 +20,8 @@ related_files:
   - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[04_Player_Entities/Races/Toad|Жаба]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
-  - "[[08_World_Generation/Content/World_Atlas/Sectors/Port/00_Port_Manifest|Port_Manifest]]"
-  - "[[08_World_Generation/_Registries/Registry_Mobs|Registry_Mobs]]"
+  - "[[08_World_Generation/Content/World_Atlas/Sectors/Port/Port_Manifest|Port_Manifest]]"
+  - "[[08_World_Generation/Registries/Registry_Mobs|Registry_Mobs]]"
 ---
 # Жабы: Культура Удерживаемой Среды
 

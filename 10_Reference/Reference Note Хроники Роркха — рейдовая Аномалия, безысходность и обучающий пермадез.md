@@ -13,9 +13,9 @@ related_files:
   - "[[01_Core_Vision/01_Vision|Vision]]"
   - "[[02_World_Lore/The_Entity|The Entity]]"
   - "[[04_Player_Entities/Lifecycle_Roster|Lifecycle Roster]]"
-  - "[[08_World_Generation/Anomaly/00_Anomaly_Core_Loop|Anomaly Core Loop]]"
-  - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]]"
-  - "[[08_World_Generation/Hub/00_Hub_Environment|Hub Environment]]"
+  - "[[08_World_Generation/Anomaly/Anomaly_Core_Loop|Anomaly Core Loop]]"
+  - "[[08_World_Generation/Generation/Server_Lifecycle|Server Lifecycle]]"
+  - "[[08_World_Generation/Hub/Hub_Environment|Hub Environment]]"
 web_sources:
   - https://author.today/work/series/7236
   - https://author.today/work/64890
@@ -256,11 +256,11 @@ Frictional Games отдельно подчёркивали ценность аг
 
 - [[01_Core_Vision/01_Vision#1. Атмосфера: "Уютная Безысходность"|Vision]] закрепляет контраст безопасного Хаба и враждебного рейда;
 - [[02_World_Lore/The_Entity#2. Источник Аномалий: «Игровой Процесс»|The Entity]] описывает пересборку миров как любопытство существа, способного легко начать попытку заново;
-- [[08_World_Generation/Generation/07_Server_Lifecycle#2. Три Фазы Эволюции Одной Локации|Server Lifecycle]] уже даёт рост от читаемого Проявления через записанную катастрофу к невозможным сочетаниям Пересборки;
-- [[04_Player_Entities/Lifecycle_Roster#4. Смерть и Неопределенная Судьба|Lifecycle Roster]] фиксирует смерть Пешки как окончательную потерю человека;
-- [[08_World_Generation/Persistence_Ledger#2. Глобальная Персистентность (Final Stabilization)|Persistence Ledger]] сохраняет знание о типах POI, даже когда новая генерация заменяет геометрию.
+- [[08_World_Generation/Generation/Server_Lifecycle|Server Lifecycle]] уже даёт рост от читаемого Проявления через записанную катастрофу к невозможным сочетаниям Пересборки;
+- [[04_Player_Entities/Lifecycle_Resolver|Lifecycle Roster]] фиксирует смерть Пешки как окончательную потерю человека;
+- [[08_World_Generation/Persistence_Ledger|Persistence Ledger]] сохраняет знание о типах POI, даже когда новая генерация заменяет геометрию.
 
-Главное напряжение находится в [[08_World_Generation/Anomaly/00_Anomaly_Core_Loop#3. Режиссер (The Director AI)|Director AI]] и [[08_World_Generation/Anomaly/Anomaly_System#4. Генерация Угроз|генерации угроз]]. Подбрасывание события к активной группе, создание моба возле кемпера или выбор Охотника по ценности отряда могут поддержать ощущение единой воли. Без предварительного сигнала те же правила будут выглядеть как чтение скрытых данных и персональная месть системы.
+Главное напряжение находится в [[08_World_Generation/Anomaly/Anomaly_Core_Loop#Директор как экология следов|Director AI]] и [[08_World_Generation/Anomaly/Anomaly_System#4. Генерация Угроз|генерации угроз]]. Подбрасывание события к активной группе, создание моба возле кемпера или выбор Охотника по ценности отряда могут поддержать ощущение единой воли. Без предварительного сигнала те же правила будут выглядеть как чтение скрытых данных и персональная месть системы.
 
 Это не требует отказаться от Директора. Требуется отделить **дирижирование давлением** от **назначения виновного**: система меняет экологическую ситуацию, но игрок должен видеть, какое его действие оставило след и почему угроза смогла прийти.
 

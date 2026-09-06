@@ -13,7 +13,7 @@ tags:
   - aesthetics
   - lore
 related_mechanics:
-  - "[[04_Player_Entities/_Registries/Registry_Races]]"
+  - "[[04_Player_Entities/Registries/Registry_Races]]"
 related_files:
   - "[[02_World_Lore/Protocol_Resonance|Protocol_Resonance]]"
   - "[[02_World_Lore/Rat_Culture|Rat_Culture]]"

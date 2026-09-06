@@ -1,11 +1,5 @@
 ---
-type: lore_framework
 status: active
-index_route: owner
-index_group: factions_societies
-index_order: 60
-index_summary: "Задаёт правила и последствия системы «Анатомия Очага»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Анатомия Очага»."
 system: factions_lore
 tags:
   - hearths
@@ -14,9 +8,15 @@ tags:
   - source_of_truth
 related_files:
   - "[[03_Factions_Societies/Lore/Civic_Order|Civic Order]]"
-  - "[[03_Factions_Societies/_Registries/Registry_Factions|Registry Factions]]"
-  - "[[03_Factions_Societies/_Registries/Registry_Faction_Interfaces|Registry Faction Interfaces]]"
-  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction Address System — downstream migration]]"
+  - "[[03_Factions_Societies/Registries/Registry_Factions|Registry Factions]]"
+  - "[[03_Factions_Societies/Registries/Registry_Faction_Interfaces|Registry Faction Interfaces]]"
+  - "[[03_Factions_Societies/Faction_Address_System|Faction Address System — downstream migration]]"
+type: lore
+index_route: owner
+index_group: factions_societies
+index_order: 60
+read_when: Когда нужен контракт «Анатомия Очага» и его границы с соседними владельцами.
+index_summary: "Описывает мир и общественные причины: Анатомия Очага."
 ---
 # Анатомия Очага
 
@@ -121,7 +121,7 @@ related_files:
 
 Лорная страница хранит только социальную роль внешнего подрядчика: почему Очаг допускает постороннего и чего боится в этой зависимости.
 
-Игровой глагол, вход, результат и владелец правила записываются отдельно в [[03_Factions_Societies/_Registries/Registry_Faction_Interfaces|реестре интерфейсов]]. Если владелец не найден, интерфейс получает `MISSING_OWNER`; лор не заполняет пробел.
+Игровой глагол, вход, результат и владелец правила записываются отдельно в [[03_Factions_Societies/Registries/Registry_Faction_Interfaces|реестре интерфейсов]]. Если владелец не найден, интерфейс получает `MISSING_OWNER`; лор не заполняет пробел.
 
 ## Появление и утрата статуса
 

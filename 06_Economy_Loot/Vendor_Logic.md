@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: economy_loot
-index_order: 130
-index_summary: "Задаёт правила и последствия системы «Адреса, Поставщики и Мастера»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Адреса, Поставщики и Мастера»."
 system: faction
 tags:
   - vendors
@@ -14,9 +8,15 @@ tags:
   - commissions
 related_files:
   - "[[06_Economy_Loot/Barter_System|Barter_System]]"
-  - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
-  - "[[08_World_Generation/Generation/17_Dual_State_POIs|Dual_State_POIs]]"
-  - "[[03_Factions_Societies/_Registries/Registry_Factions|Registry_Factions]]"
+  - "[[08_World_Generation/Hub/Hub_Map_Table|Hub_Map_Table]]"
+  - "[[08_World_Generation/Generation/Dual_State_POIs|Dual_State_POIs]]"
+  - "[[03_Factions_Societies/Registries/Registry_Factions|Registry_Factions]]"
+type: system
+index_route: owner
+index_group: economy_loot
+index_order: 130
+index_summary: "Определяет состояния, разрешение и связи: Адреса, Поставщики и Мастера."
+read_when: Когда нужен контракт «Адреса, Поставщики и Мастера» и его границы с соседними владельцами.
 ---
 # Адреса, Поставщики и Мастера
 

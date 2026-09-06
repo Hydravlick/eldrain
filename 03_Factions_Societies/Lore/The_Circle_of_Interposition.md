@@ -1,5 +1,4 @@
 ---
-type: faction
 category: faction
 status: active
 system: factions
@@ -7,9 +6,7 @@ faction_id: circle_of_interposition
 display_name: Круг Заслона
 sort_order: 30
 faction_role: hearth
-player_label: shelter_and_pause
 promise: no_one_alone_before_power
-access_model: neutral_shelter_witness_protection_seals_escorts
 hearth_origin: late_inter_hearth
 tags:
   - hearth
@@ -19,10 +16,10 @@ tags:
   - temporary_separation
   - civic_safety
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Faction_Address_System|Faction_Address_System]]"
   - "[[03_Factions_Societies/Lore/Hearth_Anatomy|Hearth_Anatomy]]"
   - "[[03_Factions_Societies/Lore/Civic_Order|Civic_Order]]"
-  - "[[03_Factions_Societies/_Registries/Registry_Faction_Interfaces|Registry_Faction_Interfaces]]"
+  - "[[03_Factions_Societies/Registries/Registry_Faction_Interfaces|Registry_Faction_Interfaces]]"
   - "[[03_Factions_Societies/Lore/Civic_Ethos_Under_Lamps|Civic_Ethos_Under_Lamps]]"
   - "[[03_Factions_Societies/Lore/The_First_Reception|The_First_Reception]]"
   - "[[03_Factions_Societies/Lore/The_Common_Storehouses|The_Common_Storehouses]]"
@@ -32,6 +29,8 @@ related_mechanics:
   - "[[03_Factions_Societies/Pledge_Contracts|Pledge_Contracts]]"
   - "[[03_Factions_Societies/Reputation_Rules|Reputation_Rules]]"
   - "[[03_Factions_Societies/Quest_Engine|Quest_Engine]]"
+type: entity
+entity_kind: faction
 ---
 # Круг Заслона
 
@@ -155,31 +154,6 @@ related_mechanics:
 
 Богатый автономный нарушитель не исчезает от потери одной лавки. Поэтому город защищает жертв, перекрывает только доказанные внутренние маршруты, предупреждает кухни и временные пины, охраняет перебежчиков и нанимает игроков. Система не всесильна: она делает хищничество видимым и дорогим, но не обещает, что сильный не найдёт новую дверь.
 
-## Что получает игрок
-
-> [!warning] Downstream interface drift
-> Этот и следующие игровые разделы сохраняют прежнюю проекцию до миграции отдельных взаимодействий в `Registry_Faction_Interfaces`. Они не являются владельцем eligibility, состояния, цены или результата.
-
-- контракты эвакуации и защиты свидетеля;
-- нейтральные маршруты сопровождения;
-- право переносить опечатанный груз между Очагами без вскрытия;
-- временный доступ к убежищам Заслона;
-- поручения удержать дверь без штурма помещения;
-- задачи доставить вывод компетентного Очага до истечения пломбы;
-- восстановление доверия через защиту конкретного пострадавшего, а не абстрактное покаяние.
-
-## Квестовые глаголы
-
-| Глагол | Пример |
-|---|---|
-| заслонить | встать между толпой и санитарной лодкой до прибытия свидетеля |
-| эвакуировать | вывести кухонного работника в нейтральный кров по открытому маршруту |
-| сопроводить | провести опечатанную партию от Весовых Домов к Первому Приёму |
-| разделить | удержать две стороны в разных помещениях, не превращая паузу в бой |
-| опечатать | сохранить дверь закрытой до датированного вывода Палаты |
-| защитить | не дать нанимателю заставить свидетеля отказаться от показания |
-| исполнить | закрыть конкретный внутренний маршрут на срок, подтверждённый другим Очагом |
-
 ## Как это ощущается
 
 Игрок сначала видит не форму власти, а бытовое изменение: на кухне переставили котёл, спорную дверь обвела светлая нить, у свидетеля появился второй стул и человек, который не задаёт вопросов. Пауза становится ощутимой через сохранённое расстояние, целую пломбу и безопасную замену еды. Победа Круга — не арест, а утро, до которого никто не исчез.
@@ -205,3 +179,7 @@ related_mechanics:
 - Публичный владелец ошибки может оказаться расходным мастером, за которым спрятался настоящий заказчик.
 
 Поэтому Круг не считается добрым по должности. Его обещание проверяется каждый раз одним вопросом: сохранила ли пауза возможность решения или просто дала чужой силе более вежливое имя?
+
+## Игровые связи
+
+Принятые роли и границы: [[03_Factions_Societies/Registries/Registry_Faction_Interfaces]]. Заготовки сцен и поручений: [[08_World_Generation/Content/Faction_Encounter_Seeds#circle_of_interposition|Круг Заслона]].

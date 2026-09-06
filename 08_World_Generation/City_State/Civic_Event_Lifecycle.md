@@ -1,21 +1,26 @@
 ---
-type: system_contract
 status: active
-index_route: owner
-index_group: world_generation
-index_order: 205
-index_summary: "Задаёт правила и последствия системы «CityState, городские явления и публичный вклад»"
-read_when: "Читайте при изменении общего состояния города, публичных событий, CityRevision или вклада аккаунта в исход явления."
 system: city_state
-tags: [city_state, civic_events, shared_world, city_revision, public_contribution]
+tags:
+  - city_state
+  - civic_events
+  - shared_world
+  - city_revision
+  - public_contribution
 related_files:
-  - "[[08_World_Generation/Generation/21_Location_Revision_Lifecycle|Location_Revision_Lifecycle]]"
-  - "[[08_World_Generation/Generation/07_Server_Lifecycle|Server_Lifecycle]]"
-  - "[[08_World_Generation/Hub/01_Hub_Map_Table|Hub_Map_Table]]"
+  - "[[08_World_Generation/Generation/Location_Revision_Lifecycle|Location_Revision_Lifecycle]]"
+  - "[[08_World_Generation/Generation/Server_Lifecycle|Server_Lifecycle]]"
+  - "[[08_World_Generation/Hub/Hub_Map_Table|Hub_Map_Table]]"
   - "[[03_Factions_Societies/Quest_Engine|Quest_Engine]]"
   - "[[03_Factions_Societies/Lore/City_District_Social_Grammar|City_District_Social_Grammar]]"
   - "[[06_Economy_Loot/Barter_System|Barter_System]]"
-  - "[[08_World_Generation/_Registries/Registry_POIs|Registry_POIs]]"
+  - "[[08_World_Generation/Registries/Registry_POIs|Registry_POIs]]"
+type: system
+index_route: owner
+index_group: world_generation
+index_order: 205
+index_summary: "Определяет состояния, разрешение и связи: CityState и жизненный цикл городских явлений."
+read_when: Читайте при изменении общего состояния города, публичных событий, CityRevision или вклада аккаунта в исход явления.
 ---
 # CityState и жизненный цикл городских явлений
 
@@ -25,7 +30,7 @@ related_files:
 
 ## 2. Единственный владелец общего города
 
-`CIVIC_EVENT_LIFECYCLE` владеет одним `CityState` на региональный shard. Он единолично публикует упорядоченные `CityRevision`, публичный каталог торговцев и состояние городских явлений. Общую ревизию локации создаёт отдельный [[08_World_Generation/Generation/21_Location_Revision_Lifecycle|WORLD_REVISION_PUBLISHER]].
+`CIVIC_EVENT_LIFECYCLE` владеет одним `CityState` на региональный shard. Он единолично публикует упорядоченные `CityRevision`, публичный каталог торговцев и состояние городских явлений. Общую ревизию локации создаёт отдельный [[08_World_Generation/Generation/Location_Revision_Lifecycle|WORLD_REVISION_PUBLISHER]].
 
 ```text
 CityState
@@ -39,7 +44,7 @@ CityState
 
 ### Граница рейдовой сессии
 
-При создании `SessionID` [[08_World_Generation/Generation/07_Server_Lifecycle|Server Lifecycle]] читает опубликованную [[08_World_Generation/Generation/21_Location_Revision_Lifecycle|WorldRevision]] вместе с текущим `CityState`. Поэтому параллельные рейдовые сессии одного shard, начатые на одной ревизии, получают одинаковые размещение POI, базовые правила сектора и доступные типы содержимого.
+При создании `SessionID` [[08_World_Generation/Generation/Server_Lifecycle|Server Lifecycle]] читает опубликованную [[08_World_Generation/Generation/Location_Revision_Lifecycle|WorldRevision]] вместе с текущим `CityState`. Поэтому параллельные рейдовые сессии одного shard, начатые на одной ревизии, получают одинаковые размещение POI, базовые правила сектора и доступные типы содержимого.
 
 Внутри конкретной сессии дверь может быть открыта, существо убито, а груз оставлен иначе, чем в другой сессии. Это локальная живая история рейда: она не переписывает `CityState` и не меняет геометрию либо правило POI для остальных. Аккаунт отдельно хранит открытие POI, контрактную связь, личную награду и социальный след.
 

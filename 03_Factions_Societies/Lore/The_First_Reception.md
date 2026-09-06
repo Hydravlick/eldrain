@@ -1,5 +1,4 @@
 ---
-type: faction
 category: faction
 status: active
 system: factions
@@ -7,9 +6,7 @@ faction_id: first_reception
 display_name: Круг Первого Приёма
 sort_order: 10
 faction_role: hearth
-player_label: entry_and_care
 promise: entry_and_care
-access_model: sanitary_passes_foundling_care_quarantine
 tags:
   - hearth
   - medicine
@@ -17,10 +14,10 @@ tags:
   - foundlings
   - social_care
 related_files:
-  - "[[03_Factions_Societies/Lore/Faction_Address_System|Faction_Address_System]]"
+  - "[[03_Factions_Societies/Faction_Address_System|Faction_Address_System]]"
   - "[[03_Factions_Societies/Lore/Hearth_Anatomy|Hearth_Anatomy]]"
   - "[[03_Factions_Societies/Lore/Civic_Order|Civic_Order]]"
-  - "[[03_Factions_Societies/_Registries/Registry_Faction_Interfaces|Registry_Faction_Interfaces]]"
+  - "[[03_Factions_Societies/Registries/Registry_Faction_Interfaces|Registry_Faction_Interfaces]]"
   - "[[03_Factions_Societies/Lore/City_Genesis|City_Genesis]]"
   - "[[03_Factions_Societies/Lore/The_Circle_of_Interposition|The_Circle_of_Interposition]]"
   - "[[02_World_Lore/Toad_Culture|Toad_Culture]]"
@@ -30,6 +27,8 @@ related_mechanics:
   - "[[03_Factions_Societies/Quest_Engine|Quest_Engine]]"
   - "[[04_Player_Entities/Lifecycle_Roster|Lifecycle_Roster]]"
   - "[[04_Player_Entities/Spawn_Logic|Spawn_Logic]]"
+type: entity
+entity_kind: faction
 ---
 # Вход и забота: Круг Первого Приёма
 
@@ -113,48 +112,11 @@ related_mechanics:
 
 Если Круг ошибается в сторону жестокости, город перестаёт быть убежищем. Если ошибается в сторону доверчивости, город получает новую катастрофу.
 
-## Что получает игрок
-
-> [!warning] Downstream interface drift
-> Этот и следующие игровые разделы сохраняют прежнюю проекцию до миграции отдельных взаимодействий в `Registry_Faction_Interfaces`. Они не являются владельцем eligibility, состояния, цены или результата.
-
-- лечение, антидоты, фильтры и санитарные контейнеры;
-- безопасные процедуры для найденышей;
-- временный уход за травмированной Пешкой;
-- карантинный пропуск в спорный район;
-- сопровождение живого груза;
-- доступ к врачебным кухням и Мокрому Столу;
-- контракты спасения, очистки, опознания и сопровождения.
-
-Приём особенно важен после неудачных рейдов: он не делает игрока богаче, но уменьшает шанс, что ошибка станет необратимой.
-
 ## Протокол нулевого ростера
 
 Круг представляет одного живого подопечного как городской жест заботы после уже подтверждённого допуска непрерывности. Само создание Ward, его готовность, фиксированный Welfare loan, теги и обычный вход в рейд разрешает [[04_Player_Entities/Spawn_Logic#2. Первый Приём при ContinuityAdmissionAllowed|Spawn Logic]] по предикату [[04_Player_Entities/Lifecycle_Roster#Continuity admission boundary|Lifecycle Roster]].
 
-Запись участия `first_reception.continuity_admission_presentation` в [[03_Factions_Societies/_Registries/Registry_Faction_Interfaces|реестре интерфейсов]] фиксирует роль Приёма как `PROVIDER`; она не передаёт ему lifecycle authority.
-
-## Квестовые глаголы
-
-| Глагол | Пример |
-|---|---|
-| спасти | вынести раненого мерщика до закрытия окна |
-| очистить | доставить заражённую ткань в баню до расползания |
-| опознать | доказать, что найденыш живой, а не ловушка |
-| сопроводить | провести чужака через район, где его тело пугает жителей |
-| удержать | не дать толпе вытащить пациента из карантина |
-
-## Мастера и временные POI
-
-Круг не владеет всей медициной. Его сила - в цепи мест, которые могут принять опасное тело без паники.
-
-Временные точки:
-
-- сухая палата после спада воды;
-- ночная баня, где ещё горят печи;
-- врачебная кухня с редким антидотом;
-- санитарная лодка у Порта;
-- опекунская комната для найденыша до решения Весовых Домов.
+Запись участия `first_reception.continuity_admission_presentation` в [[03_Factions_Societies/Registries/Registry_Faction_Interfaces|реестре интерфейсов]] фиксирует роль Приёма как `PROVIDER`; она не передаёт ему lifecycle authority.
 
 ## Напряжения
 
@@ -170,3 +132,7 @@ related_mechanics:
 Принятие может стать насилием под мягким именем: чужака разденут, вымоют, измерят, изолируют и будут говорить о нём в третьем лице, пока решают, достаточно ли он живой.
 
 Круг страшен не жестокостью, а правом задержать милосердие ради безопасности.
+
+## Игровые связи
+
+Принятые роли и границы: [[03_Factions_Societies/Registries/Registry_Faction_Interfaces]]. Заготовки сцен и поручений: [[08_World_Generation/Content/Faction_Encounter_Seeds#first_reception|Вход и забота: Круг Первого Приёма]].

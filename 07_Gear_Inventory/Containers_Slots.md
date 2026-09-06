@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: gear_inventory
-index_order: 100
-index_summary: "Определяет поведение физического контейнера, его содержимого, сброса и потери доступа."
-read_when: "Читайте при изменении поведения рюкзаков, содержимого контейнеров, сброса или доступа к предметам внутри."
 system: inventory
 tags:
   - containers
@@ -16,6 +10,13 @@ related_files:
   - "[[07_Gear_Inventory/Inventory_Architecture|Inventory Architecture]]"
   - "[[07_Gear_Inventory/Physical_Weight|Physical Weight]]"
   - "[[04_Player_Entities/Shell_Foundlings|Shell Foundlings]]"
+
+type: "system"
+index_route: "owner"
+index_group: "gear_inventory"
+index_order: 100
+index_summary: "Определяет поведение физического контейнера, его содержимого, сброса и потери доступа."
+read_when: "Читайте при изменении поведения рюкзаков, содержимого контейнеров, сброса или доступа к предметам внутри."
 ---
 # Контейнеры и содержимое
 

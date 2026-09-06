@@ -1,10 +1,15 @@
 ---
-type: system_contract
 status: active
 system: life_closure
 tags: [lifecycle, permanent_choice, civic_outcome]
 related_files:
   - "[[04_Player_Entities/Lifecycle_Roster|Lifecycle Roster]]"
+type: "system"
+index_route: "owner"
+index_group: "player_entities"
+index_order: 200
+index_summary: "Определяет состояния, разрешение и связи: Life Closure."
+read_when: "Когда нужен контракт «Life Closure» и его границы с соседними владельцами."
 ---
 # Life Closure
 

@@ -1,19 +1,23 @@
 ---
-type: overview
 status: active
 system: player_core
-tags: [skills, abilities, synergy, archetypes]
+tags:
+  - skills
+  - abilities
+  - synergy
+  - archetypes
 related_files:
   - "[[04_Player_Entities/Two_Paradox_Vector_Matrix|Двойной Парадокс]]"
   - "[[04_Player_Entities/Skill_Build_Philosophy|Философия навыков и билдостроения]]"
-  - "[[04_Player_Entities/_Registries/Registry_Skill_Types|Грамматика навыков]]"
-  - "[[04_Player_Entities/_Registries/Registry_Combos|Registry_Combos]]"
+  - "[[04_Player_Entities/Registries/Registry_Skill_Types|Грамматика навыков]]"
+  - "[[04_Player_Entities/Registries/Registry_Combos|Registry_Combos]]"
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile_Pipeline]]"
   - "[[04_Player_Entities/MVP_3x3_Design_Contract|Контракт MVP-матрицы 3×3]]"
+type: core_concept
 ---
 # Полевой профиль расы и практики
 
-Эта страница объясняет, почему `Race × Spec` является одной authored-ячейкой, а не суммой расовой пассивки и классовых кнопок. Поля действий, энергия, состояния, числовые параметры и исполнение принадлежат [[04_Player_Entities/Skill_Build_Philosophy|Skill Build Philosophy]], [[04_Player_Entities/_Registries/Registry_Skill_Types|Registry Skill Types]] и записи конкретного Combo.
+Эта страница объясняет, почему `Race × Spec` является одной authored-ячейкой, а не суммой расовой пассивки и классовых кнопок. Поля действий, энергия, состояния, числовые параметры и исполнение принадлежат [[04_Player_Entities/Skill_Build_Philosophy|Skill Build Philosophy]], [[04_Player_Entities/Registries/Registry_Skill_Types|Registry Skill Types]] и записи конкретного Combo.
 
 ## Пересечение, а не сложение
 
@@ -33,7 +37,7 @@ related_files:
 
 P/Q/E принадлежат только конкретной паре. Personal Tags не складываются в скрытую четвёртую способность, биография не вычисляет perk, а Frame остаётся отдельным оружейным контуром.
 
-Нормативный источник текущих ячеек — [[04_Player_Entities/_Registries/Registry_Combos|Registry Combos]]. [[04_Player_Entities/MVP_3x3_Design_Contract|MVP 3×3 Design Contract]] определяет, когда ячейку можно считать готовой.
+Нормативный источник текущих ячеек — [[04_Player_Entities/Registries/Registry_Combos|Registry Combos]]. [[04_Player_Entities/MVP_3x3_Design_Contract|MVP 3×3 Design Contract]] определяет, когда ячейку можно считать готовой.
 
 ## Пассивка
 

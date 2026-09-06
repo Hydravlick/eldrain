@@ -1,5 +1,4 @@
 ---
-type: design_manifest
 status: active
 system: combat_survival
 tags:
@@ -13,13 +12,14 @@ related_files:
   - "[[05_Combat_Survival/Weapon_Melee|Weapon_Melee]]"
   - "[[05_Combat_Survival/Weapon_Ranged|Weapon_Ranged]]"
   - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile_Pipeline]]"
-  - "[[08_World_Generation/Content/World_Atlas/Sectors/Port/00_Port_Manifest|Port_Manifest]]"
+  - "[[08_World_Generation/Content/World_Atlas/Sectors/Port/Port_Manifest|Port_Manifest]]"
+type: core_concept
 ---
 # Манифест оружия Элдрейна
 
 > Оружие Элдрейна - не класс персонажа и не набор цифр урона. Это видимое обязательство: инструмент, которым житель чужого, сломанного города вынужден решить задачу в конкретном месте, открыть одно окно и оставить себя уязвимым для ответа.
 
-Этот документ отвечает на вопрос **«какие фреймы стоит придумывать?»**. Он не заменяет [[05_Combat_Survival/Weapon_Core|оружейное ядро]], страницы фреймов или [[05_Combat_Survival/_Registries/Registry_Weapons|реестр]].
+Этот документ отвечает на вопрос **«какие фреймы стоит придумывать?»**. Он не заменяет [[05_Combat_Survival/Weapon_Core|оружейное ядро]], страницы фреймов или [[05_Combat_Survival/Registries/Registry_Weapons|реестр]].
 
 ## 1. Жанр и обещание
 
@@ -59,7 +59,7 @@ related_files:
 | Механический дальнобой | тихий или независимый от батареи точный эффект | взводом, весом, позицией и долгой готовностью |
 | Магострел | немедленное давление и контроль линии | вниманием, шумом, Heat, батареей и Диссонансом |
 
-Ни один фрейм не получает одновременно надёжное создание окна, его безопасную эксплуатацию и собственную отмену чужого ответа. Это прямое следствие [[05_Combat_Survival/Combat_Three_Debts#Закон окна|закона окна]].
+Ни один фрейм не получает одновременно надёжное создание окна, его безопасную эксплуатацию и собственную отмену чужого ответа. Это прямое следствие [[05_Combat_Survival/Combat_Three_Debts#4. Закон окна|закона окна]].
 
 ### Чего в темпе нет
 

@@ -4,15 +4,20 @@ status: active
 index_route: owner
 index_group: gear_inventory
 index_order: 130
-index_summary: "Задаёт правила и последствия системы «Визуальный язык Термоса»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Визуальный язык Термоса»."
+index_summary: Задаёт правила и последствия системы «Визуальный язык Термоса».
+read_when: Читайте при изменении входов, состояний, стоимости или последствий системы «Визуальный язык Термоса».
 system: gear_inventory
-tags: [visuals, armor, identification, thermos, readability]
+tags:
+  - visuals
+  - armor
+  - identification
+  - thermos
+  - readability
 related_mechanics:
   - "[[07_Gear_Inventory/Equipment_PaperDoll|Equipment_PaperDoll]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_Thermoses|Registry_Thermoses]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
+  - "[[07_Gear_Inventory/Registries/Registry_Thermoses|Registry_Thermoses]]"
+  - "[[07_Gear_Inventory/Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
   - "[[01_Core_Vision/Art_Direction_Material_Grammar|Art_Direction_Material_Grammar]]"
 ---

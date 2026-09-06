@@ -1,16 +1,27 @@
 ---
-type: system_contract
 status: active
 system: player_lifecycle_roster
-tags: [roster, permadeath, readiness, presence, recovery, life_closure]
+tags:
+  - roster
+  - permadeath
+  - readiness
+  - presence
+  - recovery
+  - life_closure
 related_files:
   - "[[04_Player_Entities/Last_Thread_Recovery|Last Thread Recovery]]"
   - "[[04_Player_Entities/Lifecycle_Resolver|Lifecycle Resolver]]"
   - "[[04_Player_Entities/Recovery_Lifecycle|Recovery Lifecycle]]"
   - "[[04_Player_Entities/Life_Closure|Life Closure]]"
   - "[[04_Player_Entities/Spawn_Logic|Spawn Logic]]"
-  - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid Approach and Entry]]"
-  - "[[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion Logic]]"
+  - "[[08_World_Generation/Generation/Raid_Approach_and_Entry|Raid Approach and Entry]]"
+  - "[[08_World_Generation/Anomaly/Insertion_Logic|Insertion Logic]]"
+type: system
+index_route: owner
+index_group: player_entities
+index_order: 200
+index_summary: "Определяет состояния, разрешение и связи: Lifecycle Roster."
+read_when: Когда нужен контракт «Lifecycle Roster» и его границы с соседними владельцами.
 ---
 # Lifecycle Roster
 
@@ -101,4 +112,4 @@ It cannot use deliberate death, Closure, a Recovery transition, or temporary pre
 - [[04_Player_Entities/Last_Thread_Recovery|Last Thread Recovery]] supplies a prepared intercept and source-handoff proofs; it cannot reserve or mutate the slot.
 - [[04_Player_Entities/Recovery_Lifecycle|Recovery Lifecycle]] supplies deterministic `CaseID` for the final atomic CAS and emits one immutable terminal result; it never owns the slot.
 - [[04_Player_Entities/Life_Closure|Life Closure]] emits an irreversible living closure result; it never writes roster membership or a separate personal-history record.
-- [[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion Logic]] owns `PhysicalRaidEntity` materialization and publishes ordinary Breach `COMMIT`. `LIFECYCLE_ROSTER` consumes that fact and alone projects the corresponding `PawnPresenceLease`. These are distinct records. [[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid Approach and Entry]] owns only Approach/Binding/Quote and cannot create either.
+- [[08_World_Generation/Anomaly/Insertion_Logic|Insertion Logic]] owns `PhysicalRaidEntity` materialization and publishes ordinary Breach `COMMIT`. `LIFECYCLE_ROSTER` consumes that fact and alone projects the corresponding `PawnPresenceLease`. These are distinct records. [[08_World_Generation/Generation/Raid_Approach_and_Entry|Raid Approach and Entry]] owns only Approach/Binding/Quote and cannot create either.

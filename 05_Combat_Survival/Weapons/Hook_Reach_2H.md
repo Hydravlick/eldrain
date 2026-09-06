@@ -1,27 +1,48 @@
 ---
-type: weapon_frame
 status: active
 system: combat_survival
 frame_id: hook_reach_2h
 display_name: Зацепная линия, две руки
 weapon_family: polearm
 grip: two_hand
-skill_interfaces: [edge, contact_surface, reach]
-activates_on: [hook_swing, pull, hook_recovery]
+skill_interfaces:
+  - edge
+  - contact_surface
+  - reach
+activates_on:
+  - hook_swing
+  - pull
+  - hook_recovery
 commitment: open_hook_arc_and_pull_recovery
 primary_window_function: create
-creates_window: [angle_displaced]
+creates_window:
+  - angle_displaced
 implicit_keyword: edge_hook
 implicit_rule: Крючковая рабочая часть ищет край защиты, поручень или неверный угол, но не удерживает прямой вход так же надёжно, как дистанционная линия.
-exploits_window: [shield_edge, route_edge]
-mitigates_window: [none]
-exposure_channels: [open_arc, wall_contact, pull_recovery, weight]
-mastery_unlock: [hook_release, angle_recover]
+exploits_window:
+  - shield_edge
+  - route_edge
+mitigates_window:
+  - none
+exposure_channels:
+  - open_arc
+  - wall_contact
+  - pull_recovery
+  - weight
+mastery_unlock:
+  - hook_release
+  - angle_recover
 sort_order: 320
-tags: [weapon_frame, melee, polearm, two_hand]
+tags:
+  - weapon_frame
+  - melee
+  - polearm
+  - two_hand
 related_files:
   - "[[05_Combat_Survival/Weapon_Melee|Weapon_Melee]]"
-  - "[[05_Combat_Survival/_Registries/Registry_Weapons|Registry_Weapons]]"
+  - "[[05_Combat_Survival/Registries/Registry_Weapons|Registry_Weapons]]"
+type: entity
+entity_kind: weapon_frame
 ---
 # Зацепная линия, две руки
 

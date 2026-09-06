@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: combat_survival
-index_order: 40
-index_summary: "Задаёт правила и последствия системы «Система: Баллистика и Броня»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Система: Баллистика и Броня»."
 system: action_combat
 tags:
   - armor
@@ -18,7 +12,13 @@ related_files:
   - "[[05_Combat_Survival/Hunt_Frontier_Loop|Hunt_Frontier_Loop]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
   - "[[07_Gear_Inventory/Thermos_Assembly|Thermos_Assembly]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
+  - "[[07_Gear_Inventory/Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
+type: system
+index_route: owner
+index_group: combat_survival
+index_order: 40
+index_summary: "Определяет состояния, разрешение и связи: Система: Баллистика и Броня."
+read_when: "Когда нужен контракт «Система: Баллистика и Броня» и его границы с соседними владельцами."
 ---
 # Система: Баллистика и Броня
 

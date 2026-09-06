@@ -1,5 +1,4 @@
 ---
-type: spec
 status: active
 system: player_entities
 id: support
@@ -11,6 +10,8 @@ content_scope: mvp
 base_vector: tech
 weak_to: [shadow, kinetics, detection]
 tags: [spec, practice, player_entity]
+type: "entity"
+entity_kind: "spec"
 ---
 # Ладчик (The Tinker)
 

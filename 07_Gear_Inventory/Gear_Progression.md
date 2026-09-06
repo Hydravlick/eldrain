@@ -1,27 +1,34 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: gear_inventory
-index_order: 140
-index_summary: "Задаёт правила и последствия системы «Прогрессия Снаряжения»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Прогрессия Снаряжения»."
 system: gear_progression
-tags: [gear, progression, tiers, rarity, loadouts, extraction, balance]
+tags:
+  - gear
+  - progression
+  - tiers
+  - rarity
+  - loadouts
+  - extraction
+  - balance
 related_files:
   - "[[05_Combat_Survival/Combat_Three_Debts|Combat_Three_Debts]]"
   - "[[05_Combat_Survival/Weapon_Core|Weapon_Core]]"
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
   - "[[07_Gear_Inventory/Item_Attributes_UI|Item_Attributes_UI]]"
-  - "[[07_Gear_Inventory/Item_Calibration_Matrix|Item_Calibration_Matrix]]"
-  - "[[08_World_Generation/Generation/08_Gate_Check|Gate_Check]]"
-  - "[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
-  - "[[08_World_Generation/Anomaly/13_Insertion_Logic|Insertion_Logic]]"
+  - "[[07_Gear_Inventory/Views/Item_Calibration_Matrix|Item_Calibration_Matrix]]"
+  - "[[08_World_Generation/Generation/Gate_Check|Gate_Check]]"
+  - "[[08_World_Generation/Generation/Raid_Approach_and_Entry|Raid_Approach_and_Entry]]"
+  - "[[08_World_Generation/Anomaly/Insertion_Logic|Insertion_Logic]]"
   - "[[05_Combat_Survival/Dissonance_System|Dissonance_System]]"
   - "[[07_Gear_Inventory/Affix_Grammar|Affix_Grammar]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos_System]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_Thermoses|Registry_Thermoses]]"
-  - "[[07_Gear_Inventory/_Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
+  - "[[07_Gear_Inventory/Registries/Registry_Thermoses|Registry_Thermoses]]"
+  - "[[07_Gear_Inventory/Registries/Registry_Thermos_Modules|Registry_Thermos_Modules]]"
+type: system
+index_route: owner
+index_group: gear_inventory
+index_order: 140
+index_summary: "Определяет состояния, разрешение и связи: Прогрессия Снаряжения."
+read_when: Когда нужен контракт «Прогрессия Снаряжения» и его границы с соседними владельцами.
 ---
 # Прогрессия Снаряжения
 
@@ -130,7 +137,7 @@ Gate Check проверяет подготовку тела к фазовому 
 
 `service_load` не равен Tier. Он резервирует обслуживание только внутри своего семейства; гибрид платит каждую цену отдельно. Поэтому дорогой Термос не делает Пешку мастером, высокий Tier не разрешает модуль автоматически, а высокая `BaseServiceCapacity` не создаёт физический node.
 
-[[08_World_Generation/Generation/19_Raid_Approach_and_Entry|Approach и Entry Quote]] принадлежат вылазке и описывают её реальные условия, а не человеческий ранг. Ни quote, ни admission не используют стоимость, редкость, Tier или источник комплекта, `origin` либо `civic_status` как оценку человека. Потеря gear не должна создавать softlock: право на единственный совместимый Welfare loan вычисляет [[04_Player_Entities/Spawn_Logic#3. Фиксированный Welfare loan|Spawn Logic]]. Физические требования среды, Dissonance, цена подхода и текущие Breach-fences применяются ко всем одинаково.
+[[08_World_Generation/Generation/Raid_Approach_and_Entry|Approach и Entry Quote]] принадлежат вылазке и описывают её реальные условия, а не человеческий ранг. Ни quote, ни admission не используют стоимость, редкость, Tier или источник комплекта, `origin` либо `civic_status` как оценку человека. Потеря gear не должна создавать softlock: право на единственный совместимый Welfare loan вычисляет [[04_Player_Entities/Spawn_Logic#3. Фиксированный Welfare loan|Spawn Logic]]. Физические требования среды, Dissonance, цена подхода и текущие Breach-fences применяются ко всем одинаково.
 
 ## 6. Способности и энергия
 

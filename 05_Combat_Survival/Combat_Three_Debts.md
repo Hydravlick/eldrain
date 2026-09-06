@@ -1,11 +1,5 @@
 ---
-type: mechanic
 status: active
-index_route: owner
-index_group: combat_survival
-index_order: 70
-index_summary: "Задаёт правила и последствия системы «Боевое ядро: Закон трёх долгов»."
-read_when: "Читайте при изменении входов, состояний, стоимости или последствий системы «Боевое ядро: Закон трёх долгов»."
 system: action_combat
 tags: [combat, windows, commitment, three_debts, archetypes]
 related_files:
@@ -17,6 +11,13 @@ related_files:
   - "[[05_Combat_Survival/Status_Effects|Status_Effects]]"
   - "[[05_Combat_Survival/Dissonance_System|Dissonance_System]]"
   - "[[04_Player_Entities/Ability_Synergy|Ability_Synergy]]"
+
+type: "system"
+index_route: "owner"
+index_group: "combat_survival"
+index_order: 70
+index_summary: "Определяет состояния, разрешение и связи: Боевое ядро: Закон трёх долгов."
+read_when: "Когда нужен контракт «Боевое ядро: Закон трёх долгов» и его границы с соседними владельцами."
 ---
 # Боевое ядро: Закон трёх долгов
 
@@ -153,7 +154,7 @@ Q и E имеют самостоятельную ситуативную ценн
 - устройство перенаправляет, глушит или стабилизирует только названный импульс;
 - считанный сигнал превращает конкретный скрытый подход в наблюдаемую угрозу.
 
-Полевой профиль публикует `creates_window`, `exploits_window`, `mitigates_window`, `exposure_channels` и `counterplay_now`. Их общий язык хранится в [[04_Player_Entities/Ability_Synergy|Ability Synergy]] и [[04_Player_Entities/_Matrices/00_Synergy_Map|карте решений]].
+Полевой профиль публикует `creates_window`, `exploits_window`, `mitigates_window`, `exposure_channels` и `counterplay_now`. Их общий язык хранится в [[04_Player_Entities/Ability_Synergy|Ability Synergy]] и [[04_Player_Entities/Views/Synergy_Map|карте решений]].
 
 ## 7. Восемь предохранителей
 

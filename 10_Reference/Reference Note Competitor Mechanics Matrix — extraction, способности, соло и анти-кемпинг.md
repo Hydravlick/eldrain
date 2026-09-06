@@ -19,7 +19,7 @@ related_files:
   - "[[01_Core_Vision/02_Core_Loop|Core Loop]]"
   - "[[04_Player_Entities/MVP_3x3_Design_Contract|MVP 3x3 Design Contract]]"
   - "[[05_Combat_Survival/Threat_Thresholds|Threat Thresholds]]"
-  - "[[08_World_Generation/Generation/08_Gate_Check|Gate Check]]"
+  - "[[08_World_Generation/Generation/Gate_Check|Gate Check]]"
 source_dialogues:
 web_sources:
   - https://store.steampowered.com/app/2016590/Dark_and_Darker/
