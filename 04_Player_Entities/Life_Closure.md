@@ -13,7 +13,7 @@ read_when: "Когда нужен контракт «Life Closure» и его г
 ---
 # Life Closure
 
-> Active owner of the irreversible living choice that ends a Pawn's field life without converting that life into account power.
+Пешка с завершённой жизненной аркой может навсегда остаться жить в городе. Когда условия выполнены, игрок сразу выбирает этот исход или окончательно сохраняет её полевую жизнь. Уход не приносит снаряжения, усилений или преимуществ следующему человеку.
 
 ## Responsibility
 

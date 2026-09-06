@@ -17,7 +17,7 @@ type: core_concept
 ---
 # Полевой профиль расы и практики
 
-Эта страница объясняет, почему `Race × Spec` является одной authored-ячейкой, а не суммой расовой пассивки и классовых кнопок. Поля действий, энергия, состояния, числовые параметры и исполнение принадлежат [[04_Player_Entities/Skill_Build_Philosophy|Skill Build Philosophy]], [[04_Player_Entities/Registries/Registry_Skill_Types|Registry Skill Types]] и записи конкретного Combo.
+У каждой пары `Race × Spec` свой способ действовать: пассивное правило, два самостоятельных навыка и оружие, подходящее к повторяющимся решениям этой Пешки. Расовую пассивку и классовые кнопки нельзя просто сложить в готовый профиль. Поля действий и их исполнение описаны в [[04_Player_Entities/Skill_Build_Philosophy|Skill Build Philosophy]], [[04_Player_Entities/Registries/Registry_Skill_Types|Registry Skill Types]] и записи конкретного Combo.
 
 ## Пересечение, а не сложение
 

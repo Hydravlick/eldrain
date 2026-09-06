@@ -22,7 +22,7 @@ read_when: Когда нужен контракт «Last Thread Recovery» и е
 ---
 # Last Thread Recovery
 
-> Active coordinator of the one eligible lethal intercept. Last Thread prevents no loss: it moves the Pawn from a lost source raid into one public Recovery fate, if the atomic handoff can be completed.
+После допустимого смертельного исхода Last Thread может перенести ту же Пешку из проигранной вылазки в публичное Recovery. Тело, снаряжение и груз исходной вылазки переходят в оспоримое владение мира; спасение человека ещё предстоит. Переход происходит только при успешной атомарной передаче всех связанных состояний.
 
 ## Responsibility
 

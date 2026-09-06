@@ -22,17 +22,7 @@ read_when: "Когда нужен контракт «Нестабильные П
 ---
 # Нестабильные Пороги: обычный выход
 
-> Порог не является заранее известной дверью. Это читаемый поисковый граф, назначенный в последний допустимый момент физический шов и уязвимая синхронизация.
-
-## Responsibility
-
-Threshold flow разделён между тремя владельцами:
-
-- `RAID_KNOWLEDGE_LEDGER` владеет `SearchResolutionGraph`, подтверждёнными `SearchEvidence` и тем, что конкретная поисковая ветвь стала известна;
-- `SESSION_BOUNDARY_GRAPH` владеет `ThresholdOpportunity` и durable `ThresholdAnchorAssignment` внутри committed topology revision;
-- `EXTRACTION_RESOLVER` владеет созданием, прерыванием и успешным завершением `SyncLease`.
-
-Ни один из них не владеет достаточностью общего числа выходов, физической доставкой вещей, `ReturnManifest`, Breakline, Seal/Apex/Dawn, судьбой персонажа или Recovery. Knowledge owner не назначает anchor; topology owner не подтверждает знание игрока и не решает Sync; extraction owner не reroll-ит topology или evidence.
+Игрок ищет Порог по признакам среды и локальным предвестникам. Подтверждённая ветвь поиска приводит к физическому шву; его точное место назначается, когда шов должен проявиться. До синхронизации игрок видит вместимость, допустимую массу, ожидаемую длительность и условия прерывания. Во время процедуры тело остаётся уязвимым: урон или уход обнуляет прогресс, а оставшееся время Порога продолжает идти. Успешная синхронизация подтверждает выход для последующей доставки переносимого груза.
 
 ## SearchResolutionGraph
 
@@ -83,6 +73,16 @@ Threshold flow разделён между тремя владельцами:
 Sealed Apex `05:00–06:00` — другой контракт выживания. Dawn не является Порогом, бесплатным slot или поздним `SyncLease`.
 
 ## Handoffs
+
+### Responsibility
+
+Threshold flow разделён между тремя владельцами:
+
+- `RAID_KNOWLEDGE_LEDGER` владеет `SearchResolutionGraph`, подтверждёнными `SearchEvidence` и тем, что конкретная поисковая ветвь стала известна;
+- `SESSION_BOUNDARY_GRAPH` владеет `ThresholdOpportunity` и durable `ThresholdAnchorAssignment` внутри committed topology revision;
+- `EXTRACTION_RESOLVER` владеет созданием, прерыванием и успешным завершением `SyncLease`.
+
+Ни один из них не владеет достаточностью общего числа выходов, физической доставкой вещей, `ReturnManifest`, Breakline, Seal/Apex/Dawn, судьбой персонажа или Recovery. Knowledge owner не назначает anchor; topology owner не подтверждает знание игрока и не решает Sync; extraction owner не reroll-ит topology или evidence.
 
 - [[08_World_Generation/Generation/Egress_Solvency|Egress Solvency]] доказывает, что joinable pre-Seal envelope покрывает обязательства; он не выбирает anchor и не решает Sync.
 - [[06_Economy_Loot/Return_Manifest_Contract|Return Manifest Contract]] получает committed `SyncLease` и атомарно решает физическую доставку carried graph; он не решает успех Sync.

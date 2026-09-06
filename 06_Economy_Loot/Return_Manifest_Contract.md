@@ -25,7 +25,7 @@ read_when: Когда нужен контракт «Return Manifest Contract» �
 ---
 # Return Manifest Contract
 
-> Active focused owner. `RETURN_MANIFEST` is the sole owner of the physical item-return transaction for Normal Threshold and STANDARD Dawn.
+After a Normal Threshold exit or STANDARD Dawn return, eligible carried items reach the shared account inventory together. Items cannot return partially or be duplicated in transit. `RETURN_MANIFEST` is the sole owner of this physical item-return transaction.
 
 ## Responsibility
 

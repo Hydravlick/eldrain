@@ -23,7 +23,7 @@ read_when: Когда нужен контракт «Recovery Lifecycle» и ег
 ---
 # Recovery Lifecycle
 
-> Active focused owner of RecoveryCase lifecycle. This page establishes no new account slot and does not choose the unresolved Recovery clock semantics.
+В Recovery судьба Пешки решается в обычной публичной вылазке. Успех отправляет её на лечение без возвращённого груза и стандартной награды; неудача или истечение срока дают окончательный исход. Момент запуска срока остаётся открытым вопросом `UR-002`.
 
 ## Responsibility
 

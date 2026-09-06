@@ -25,7 +25,7 @@ read_when: Когда нужен контракт «Lifecycle Roster» и его
 ---
 # Lifecycle Roster
 
-> Active owner of roster membership, readiness, Pawn Presence, terminal projection, and the one account-level Last Thread slot. A roster is a population of named people, not an active deck.
+В ростере игрок выбирает любую готовую Пешку, видит людей на вылазке и лечении, а также окончательные исходы их жизней. Занятый Last Thread оставляет других готовых Пешек доступными для выбора, но до завершения Recovery их собственный Last Thread недоступен.
 
 ## Responsibility
 
