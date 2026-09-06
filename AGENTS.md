@@ -25,7 +25,7 @@ Skills live in [.agents/skills](.agents/skills); select the smallest useful set.
 | Attack a defined proposal for exploits and degenerate play | `eldraine-crash-test` |
 | Move/rename notes, repair links/properties/routes or derived views | `eldraine-vault-maintenance` |
 
-A Feature is a complete player-facing capability assembled from systems, UX and content. A System owns a coherent state/rule model; a Mechanic is a local rule or action; Content configures existing rules. Entity, Registry, Lore and full distinctions are in [design vocabulary](.agents/policies/design-architecture.md). Read the [Feature contract](.agents/policies/feature-contract.md) when needed. Feature descriptions live in `01_Core_Vision/Features`; their map is `01_Core_Vision/Feature_Map.md`.
+A Feature is a complete player-facing capability assembled from systems, UX and content. Feature pages explain lived play before integration structure; Systems carry authoritative technical resolution. A System owns a coherent state/rule model; a Mechanic is a local rule or action; Content configures existing rules. Entity, Registry, Lore and full distinctions are in [design vocabulary](.agents/policies/design-architecture.md). Read the [Feature contract](.agents/policies/feature-contract.md) when needed. Feature descriptions live in `01_Core_Vision/Features`; their map is `01_Core_Vision/Feature_Map.md`.
 
 Research distinguishes observed outcomes, implementation, claimed causes and working conditions. Use internal evidence and project references first; obtain external evidence when required. Read [causal research](.agents/policies/design-research.md) for evidence grading, transfer and first-/second-order effects.
 

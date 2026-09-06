@@ -4,7 +4,7 @@ This is harness guidance, not Eldrain game canon. Read it when decomposing a des
 
 | Concept | Responsibility |
 |---|---|
-| Feature | A complete player-facing capability or experience, assembled from systems, UX, authored content and validation surfaces. Owns its promise, use cases and integration completeness; links to the rules below it. |
+| Feature | An experiential design synthesis of a complete player-facing capability: lived situations, actions, choices and consequences first; a supporting integration map of Systems, UX, Content and Data second. Retains its promise, use cases and integration completeness; links to authoritative rules below it. |
 | System | A coherent stateful model of rules, states, transitions and interfaces. Owns authoritative resolution across its instances. |
 | Mechanic | A local or atomic rule, action or interaction primitive. May be owned inside a system page; a separate file is useful only when independently readable. |
 | Content | A specific authored configuration using an existing rule grammar: encounter, sector, quest, variant or event. |
