@@ -49,6 +49,8 @@ After the Design Correctness Pass, perform an Editorial Pass:
 5. Compression: remove repeated architecture boilerplate and sentences that add no meaning. Keep examples, rationale and synthesis that teach something distinct; do not force identical headings across pages.
 6. Technical Precision: place technical detail at the appropriate layer, then reread conditions, negations, quantities, order, interfaces and failure behavior after improving the prose.
 
+Apply the [terminology contract](terminology.md): check for internal terms accidentally presented as fiction, pseudo-scientific explanations replacing observable rules, authorial certainty applied to an in-world theory, needless diegetization of backend processes, and world words no plausible speaker would use. Ask who uses the word and what supports the claim. Scientific vocabulary is allowed; review its level of authority rather than banning its style.
+
 Avoid stock openings such as "Система обеспечивает...", "Данный механизм позволяет..." and "Игрок получает возможность..." when a direct verb says it better. This is editorial judgment, not a banned-word detector. Do not impose a quota of atmosphere or a repeated document template.
 
 On design-facing pages, a reader should understand play before implementation-facing detail. Systems and Registries retain the technical precision their roles require. Keep stable fields at their existing owner and link other owners. Technical implementation choices belong in tooling/implementation material unless they change observable behavior.

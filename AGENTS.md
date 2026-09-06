@@ -33,6 +33,8 @@ Research distinguishes observed outcomes, implementation, claimed causes and wor
 
 One rule/data field has one owner. Features, lore, indexes and derived views must not become competing universal-rule sources. Preserve Glossary names and stable IDs. Report incompatible owners as `SOURCE_CONFLICT` and missing ownership as `MISSING_OWNER`, with exact paths. The latest explicit user decision authorizes its integration.
 
+[World, player-facing and schema vocabulary are distinct](.agents/policies/terminology.md); internal identifiers do not automatically define fiction.
+
 Carry requested edits through the vault and affected consumers. Ask only for a necessary unresolved product decision; ordinary placement, wording and mechanical repair are within scope. For refactoring, integrate unique meaning before source deletion and finish each owner with its destinations. Preserve rationale, examples, experience and lore synthesis. See [editing](.agents/policies/editing.md) and [canon ownership](.agents/policies/canon-ownership.md).
 
 Use a design-correctness pass before the [editorial pass](.agents/policies/editorial-quality.md). Human prose is a shared standard. [Obsidian workflow](.agents/policies/obsidian-workflow.md) covers filesystem moves, properties/wikilinks and user-installed format skills. Bases/Canvas/Dataview stay derived; use the official CLI only if actually available.

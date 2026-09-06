@@ -16,6 +16,8 @@ This is harness guidance, not Eldrain game canon. Read it when decomposing a des
 
 Vision -> Core Experience -> Features -> Systems -> Mechanics -> Content -> Data is a decomposition view, not a mandatory folder tree or a one-parent hierarchy. Systems can support several features. An entity can participate through several interfaces. Data is owned configuration, not necessarily a new page type.
 
+Apply the [terminology contract](terminology.md) within these existing roles: Features primarily use player-facing language; Systems may use developer vocabulary; Lore uses world/institutional language; Registries may store internal IDs. The Glossary should distinguish these vocabulary layers rather than treating every listed term as a word used in the world. Language choice does not change ownership or require schema migration.
+
 Overview, rationale, presentation and player-experience synthesis are valid reading surfaces. Keep their unique explanations, examples and voice. One primary responsibility does not mean one file for every conceptual layer.
 
 Current `type` values include historical labels such as `mechanic` on large systems. Classify from meaning and ownership before proposing a metadata change. Do not bulk relabel the corpus to match this vocabulary.

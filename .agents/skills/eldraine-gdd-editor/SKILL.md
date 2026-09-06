@@ -13,6 +13,8 @@ Follow [editing](../../policies/editing.md). Match coverage and voice to the pag
 
 Establish meaning; check ownership, states/logic, operation order, interfaces, terminology and edge cases. Compare source/destination meaning and remove duplication without deleting unique rationale, experience or examples. Link foreign rules instead of copying their resolution. Separate unresolved assumptions from accepted facts. Ask about a necessary product choice only when it is still undecided.
 
+Use the [terminology contract](../../policies/terminology.md) to classify a term before changing it. Check the world/player/schema layer, observable rule versus explanation, and internal ID leakage into Lore or player-facing prose. Distinguish observed fact, institutional model, resident belief, historical explanation, speculation and accepted world truth; preserve attribution and uncertainty. Keep internal IDs stable by default; a naming pass does not authorize a mechanic/lore redesign.
+
 For features read [feature-contract](../../policies/feature-contract.md); for ambiguous responsibility read [design-architecture](../../policies/design-architecture.md). A genuine architecture conflict may need Design Architect; ordinary placement does not.
 
 ## Editorial Pass
