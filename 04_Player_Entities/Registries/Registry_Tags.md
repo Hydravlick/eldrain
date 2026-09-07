@@ -31,6 +31,8 @@ read_when: Когда нужен контракт «Реестр личных т
 
 Запись публикует `tag_form:: light | situational`, точные поля выбранной формы и ссылку на зарегистрированный сигнал. Frame-mastery называет один `mastery_frame` и ровно одно из полей: `mastery_step:: 1` либо `mastery_expression`. `design_status:: concept` и `prototype` не означают финальную калибровку.
 
+Поле `source_kind` не разрешает выдачу свойства; ограничения, включая `breakline`, задаёт [[04_Player_Entities/Tags_System#3. Не дерево и не валюта|Tags System]].
+
 ## Шаблон лёгкого тега
 
 ```markdown

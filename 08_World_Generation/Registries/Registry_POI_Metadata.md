@@ -56,48 +56,11 @@ WorldMetadata
 - доступность `stable_cycle`, без короткого таймера.
 - `stable_eligibility`: допустимость участия в `StablePOISelection`; она не выбирает слот и не зависит от локальной рейдовой сессии.
 
-## 3. Пример
-
-```json
-{
-  "prefab_id": "HERBALIST_SHOP_04",
-  "world_position": {"x": 1450, "y": 320},
-  "raid_state": {
-    "map_token": "icon_herbalist_silhouette",
-    "source_tags": ["organic", "filter_medium"],
-    "tier_states": ["T1", "T2", "T3"],
-    "field_operation_id": null,
-    "heat_state": "warm",
-    "heat_signal": "вентиляция работает рывками, а свет в стекле идёт против дождя",
-    "heat_work": "sanitation_contract",
-    "approach_contract": [
-      {"approach_id": "service_door", "entry_anchor": "canal_service_door", "route_layer": "wet_low", "world_cue": "запах пара у служебной двери", "approach_cost": "шумный короткий вход", "refusal_path": "вернуться во двор"},
-      {"approach_id": "roof_pipe", "entry_anchor": "roof_condensate_pipe", "route_layer": "dry_crown", "world_cue": "след конденсата на внешней трубе", "approach_cost": "вертикаль и стамина", "refusal_path": "остаться на крыше"}
-    ]
-  },
-  "stable_projection": {
-    "projection_role": "address",
-    "address_id": "stable_herbalist_service",
-    "accepted_families": ["organic", "filter_medium"],
-    "service_roles": ["sidegrade", "sanitation"],
-    "stable_eligibility": "eligible",
-    "requires_asset_state": "serviceable",
-    "requires_route_state": "confirmed_delivery",
-    "central_fallback_id": "central_medical_service",
-    "availability": "stable_cycle"
-  },
-  "account_knowledge_policy": {
-    "type_discovery_persists_per_account": true,
-    "current_instance_does_not_persist": true
-  }
-}
-```
-
-## 4. Resolver
+## 3. Resolver
 
 См. [[08_World_Generation/Generation/Dual_State_POIs#4. Resolver]].
 
-## 5. Проверки
+## 4. Проверки
 
 - отсутствующий ассет не создаёт пин;
 - пустые семейства делают адрес невалидным и показывают диагностическое закрытое состояние;

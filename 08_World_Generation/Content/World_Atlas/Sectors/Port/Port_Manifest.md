@@ -62,7 +62,7 @@ entity_kind: location
 - Между безопасным карманом и рейдом существует контролируемый порог. Генератор получает только рейдовую сторону порога как фиксированный корневой сокет.
 - Дверь не является рейдовым выходом и не используется как способ обойти экстракцию.
 
-Полный контракт объекта: [[08_World_Generation/Registries/Registry_POIs#[PREFAB:: PORT_DOOR] — "Дверь" (The Door)|Дверь]].
+Стабильная запись объекта: [[08_World_Generation/Registries/Registry_POIs#Дверь|Дверь]].
 
 ## Архитектура генерации
 
@@ -234,7 +234,7 @@ UI подтверждает уже видимое изменение, но не 
 Этот манифест определяет пространство и эволюцию, но не дублирует контентные реестры:
 
 - биом, environmental pressure и базовые эффекты: [[08_World_Generation/Registries/Registry_Biomes#Ржавый Порт (Rusty Port)|Ржавый Порт]];
-- префабы, подземелья и POI: [[08_World_Generation/Registries/Registry_POIs#Ржавый Порт (Port Sector)|POI Порта]];
+- подтверждённые POI: [[08_World_Generation/Registries/Registry_POIs|реестр объектов карты]];
 - враги: [[08_World_Generation/Registries/Registry_Mobs|Registry_Mobs]];
 - лут: [[06_Economy_Loot/Loot_Distribution|Loot_Distribution]];
 - фазовый таймер: [[08_World_Generation/Generation/Server_Lifecycle|Server_Lifecycle]];

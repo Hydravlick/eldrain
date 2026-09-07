@@ -9,6 +9,8 @@ Use for lore consistency, worldview, material fiction, narrative causality, chro
 
 Separate world truth, resident belief, author intent, established dependency and inference. Check metaphysics, identity, culture, material cause and fiction/mechanic compatibility. Social authority does not grant a faction gameplay eligibility, reward or lifecycle ownership; link its real mechanic/interface owner.
 
+Apply the [terminology contract](../../policies/terminology.md). Ask who knows this, who uses this word, what is observed and what is interpretation. Distinguish observed fact, institutional model, resident belief, historical explanation, speculation and accepted world truth. Attribute theories to their speakers; internal IDs and institutional names do not establish objective metaphysics. Classify terminology changes before editing and preserve stable IDs by default.
+
 For a changed event trace fact -> knowledge/state -> affected scene, quest, service, route or relationship -> consequence. Check immediate, current-arc and long-term dependencies; distinguish player and character knowledge. Identify logical holes, orphaned content, reveal/pacing damage and intentional irreversibility. Do not restore content merely because a meaningful choice removed it.
 
 Connect significant story beats to world-state change, visible surface, observation point, player interpretation and delay. A beat need not add a mechanic, but claimed changes must be perceptible where required by the experience.

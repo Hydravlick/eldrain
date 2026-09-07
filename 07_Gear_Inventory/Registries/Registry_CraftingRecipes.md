@@ -20,19 +20,13 @@ index_order: 30
 index_summary: "Хранит схему и записи: Реестр: Адресные RecipeTransaction."
 read_when: "Когда нужен контракт «Реестр: Адресные RecipeTransaction» и его границы с соседними владельцами."
 ---
-# Реестр: Адресные RecipeTransaction
+# Реестр адресных RecipeTransaction
 
-## 1. Ответственность и обещание
-
-Этот реестр является единственным источником конкретных мирных сделок. Универсальный цикл принадлежит [[06_Economy_Loot/Barter_System|адресному бартеру]], limited-носители — [[06_Economy_Loot/Blueprints|чертежам]], а правило одного фиксированного варианта — [[06_Economy_Loot/Craft_Modifiers|вариантному ингредиенту]].
+Реестр является единственным источником подтверждённых мирных сделок. Универсальный цикл принадлежит [[06_Economy_Loot/Barter_System|адресному бартеру]], limited-носители — [[06_Economy_Loot/Blueprints|чертежам]], а правило одного фиксированного варианта — [[06_Economy_Loot/Craft_Modifiers|вариантному ингредиенту]].
 
 Игрок видит точный результат до подтверждения. Сделка не перебрасывает найденные Affix, не повышает Rarity универсальным материалом и не превращает полевую станцию в безопасный магазин внутри Аномалии.
 
-## 2. Рабочий цикл записи
-
-См. [[06_Economy_Loot/Barter_System#2. Рабочий цикл записи]].
-
-## 3. Активный контракт
+## Active contract
 
 ```text
 recipe_id
@@ -59,52 +53,11 @@ balance_state
 - `provenance_result` сохраняет источник значимых входов, адрес и Stable-цикл;
 - `balance_state` остаётся `unknown`, пока курс не проверен в полной экономике.
 
-## 4. Центральный публичный пример
+## Confirmed records
 
-### Базовый фильтр из извлечённой среды
+Подтверждённых RecipeTransaction пока нет. Базовый фильтр остаётся действующей категорией центральной услуги, но его конкретные входы, стоимость и `recipe_id` не утверждены; прежний пример не является каноническим рецептом.
 
-[recipe_id:: central_basic_filter_service]
-[address_id:: central_common_stores]
-[address_class:: central]
-[availability:: permanent]
-[inputs:: multiset(filter_medium, cloth)]
-[source_rule:: raid_extracted]
-[optional_variant:: none]
-[blueprint_id:: none]
-[service_cost:: central_basic_service]
-[exact_outcome:: basic_filter]
-[provenance_result:: processed_at(central_common_stores); preserve_input_manifests]
-[balance_state:: unknown]
-
-Публичная сделка поддерживает следующий выход и не требует редкого знания. Точные количества и стоимость не фиксируются до калибровки.
-
-## 5. Внешний sidegrade-шаблон
-
-### Профильная обработка Pattern
-
-[recipe_id:: template_stable_pattern_sidegrade]
-[address_id:: stable_mechanic_service]
-[address_class:: stable_external]
-[availability:: stable_cycle]
-[inputs:: multiset(base_pattern, compatible_raid_material)]
-[source_rule:: raid_extracted]
-[optional_variant:: zero_or_one]
-[blueprint_id:: limited|none]
-[service_cost:: address_specific_service]
-[exact_outcome:: named_pattern_sidegrade]
-[provenance_result:: processed_at(stable_mechanic_service); preserve_input_manifests]
-[balance_state:: unknown]
-
-- **Базовый выход:** фиксированный sidegrade с объявленной сильной ситуацией и tradeoff.
-- **Вариант:** при наличии совместимого ингредиента меняет одно заранее названное свойство результата.
-- **Граница:** не перебрасывает Affix базового экземпляра и не создаёт лучший универсальный Tier.
-- **Player-facing reason:** уцелевший внешний мастер и оборудование способны выполнить именно эту обработку.
-
-## 6. Исключения
-
-См. [[06_Economy_Loot/Barter_System#6. Исключения]].
-
-## 7. Шаблон новой записи
+## Adding a record
 
 ```text
 [recipe_id:: recipe_id]
@@ -121,4 +74,4 @@ balance_state
 [balance_state:: unknown]
 ```
 
-Новая запись допускается только при существующих адресе, входах и результате. Описательный пример без реальных потребителей остаётся вне активного реестра.
+Новая запись допускается только при существующих адресе, входах и результате. Описательный пример без реальных потребителей остаётся вне активного реестра. Исключения принадлежат [[06_Economy_Loot/Barter_System#6. Исключения|адресному бартеру]].

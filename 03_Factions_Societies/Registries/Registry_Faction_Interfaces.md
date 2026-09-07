@@ -186,21 +186,6 @@ read_when: Когда нужен контракт «Реестр игровых 
 [minimum_boundary:: structure, observed load, local testimony, holder of calculation and review time]
 [does_not_own:: district evacuation, player access, item durability, armor repair, route generation or permanent ownership]
 
-### cathedral.ritual_stress_service
-
-[interface_id:: cathedral.ritual_stress_service]
-[faction_id:: cathedral_all_faiths]
-[interface_status:: planned]
-[role:: PROVIDER]
-[input_family:: named participant, consented rite and existing stress state]
-[player_verb:: enter a bounded restorative rite]
-[result_family:: declared attempt to alter a named stress state]
-[mechanic_owner_ref:: MISSING_OWNER]
-[dependency_refs:: [[05_Combat_Survival/Status_Effects|Status Effects]]]
-[presentation_ref:: [[03_Factions_Societies/Lore/The_Cathedral|The Cathedral]]]
-[minimum_boundary:: participant consent, rite, target state, duration, failure and exit]
-[does_not_own:: proof of gods, generic combat buff, status resolver, relic effects, contract reward or raid alliance]
-
 ### proving_houses.repeatability_attestation
 
 [interface_id:: proving_houses.repeatability_attestation]
