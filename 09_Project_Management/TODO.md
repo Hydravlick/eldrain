@@ -16,6 +16,8 @@ type: "project_management"
 
 ## Текущая интеграция
 
+- [ ] **После Prompt 3B:** решить причинность Hot/стабилизированной ценности в Dissonance, спецификацию Reality Burn и VOIP-handoff при recoverable исходе; сохранить открытые gaps. Классификация, точные owners и передача в 3C: [[09_Project_Management/Prompt_3B_Technical_Terminology]].
+
 - [ ] **После Prompt 3A:** решить мировой/UI-статус Pawn, психологию Сущности, имя аварийного выхода и авторство исторических моделей Якоря. Вопросы, выполненные изменения и границы 3B/3C: [[09_Project_Management/Prompt_3A_Reading_and_Vocabulary]].
 
 - [ ] **Stable Hub / Facility / Quest / custody boundary:** проверить сквозным прототипом материальную услугу рядом с отдельным Quest и путь обычного ItemID через общий Схрон. Источники: [[08_World_Generation/Hub/Hub_Services_Interaction]], [[03_Factions_Societies/Quest_Engine]], [[06_Economy_Loot/Return_Manifest_Contract]]. Сохранить запись действий и транзакций; закрыть после подтверждения, что услуга, контракт и возврат не подменяют друг друга. Pawn-card drag-and-drop остаётся отложенным исследованием без runtime-владельца.
