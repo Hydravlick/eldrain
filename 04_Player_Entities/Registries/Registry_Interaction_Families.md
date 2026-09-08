@@ -25,14 +25,16 @@ read_when: "Когда нужен контракт «Реестр: семейс�
 
 | Семейство | Что объединяет | Допустимая ось пользы | Неснимаемая граница |
 |---|---|---|---|
-| `thermal_cycle` | один запас Heat, его порог, Vent и Recovery | `capacity` **или** `cadence` **или** `safety` | объявленный Vent, hard Recovery, Bloom, Dissonance и цена энергии |
-| `manual_operation` | одно непрерывное решение руками до осмысленной отмены | `cadence` | Exposure и итоговое время всей процедуры |
+| `thermal_cycle` | параметры одного источника: Heat, порог, Vent и связанные recovery-ограничения для проверки композиции | `capacity` **или** `cadence` **или** `safety` | объявленный Vent, hard Recovery, Bloom, Dissonance и цена энергии |
+| `manual_operation` | стадии одной ручной процедуры в границах общего учёта времени | `cadence` | Exposure и итоговое время всей процедуры |
 | `self_backlash` | собственный риск процедуры | `safety` | `hard_debt`, правило сброса и последствие отказа |
 | `signal_reading` | существующий сигнал, след или телеграф | `information` | источник, линия доступа и аудитория знания |
 | `load_route` | масса груза, переноска и маршрутная обязанность | `capacity` | bulk, доступность, маршрут и физическое обязательство |
 | `anchored_hold` | названная опора, удержание или предел процедуры | `capacity` | поза, линия, занятые руки или иной Commitment |
 
 Правило объединения параметров и неизменяемые долги: [[04_Player_Entities/Interaction_Constraints]].
+
+Записи классифицируют композицию эффектов и не владеют runtime debt. Независимые ItemID не получают общий Heat pool от имени семейства; `manual_operation` не исполняет и не освобождает Action claims. Владение текущим исполнением и release определяет [[05_Combat_Survival/Combat_Three_Debts#Допуск, claims и release|Action contract]].
 
 ## 2. Проверка активного профиля
 
@@ -61,4 +63,3 @@ read_when: "Когда нужен контракт «Реестр: семейс�
 ## 8. Допуск нового семейства
 
 См. [[04_Player_Entities/Interaction_Constraints#8. Допуск нового семейства]].
-

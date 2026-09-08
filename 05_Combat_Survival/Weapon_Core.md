@@ -110,7 +110,9 @@ read_when: "Когда нужен контракт «Оружие: Магост�
 
 | Владелец | `owned_parameters` | Граница владения |
 |:---|:---|:---|
-| `FrameID.NativeAction` | геометрия атаки, `charge_time`, базовая отдача, Bloom, Heat, Commitment и Recovery | это базовый gunfeel Frame; P/Q/E, Personal Tag и биография его не переписывают |
+| `FrameID.NativeAction` — существующая запись определения | геометрия атаки, `charge_time`, базовая отдача, правила Bloom/Heat, characteristic Commitment и ожидаемое Recovery | описывает операцию и её Natural Debt; не хранит текущий долг исполнения. Прежняя граница gunfeel для P/Q/E, Personal Tag и биографии сохраняется до отдельной миграции Frame/Pattern schema |
+| конкретный `Action` | текущая фаза, принятый Commitment, bodily claims, interruption, Effect occurrence, Recovery и release points | правила исполнения принадлежат [[05_Combat_Survival/Combat_Three_Debts\|Action contract]]; смена предмета или Q/E не переписывает принятый долг |
+| конкретный `ItemID` под правилами устройства | текущий Heat, cooling, mechanism recovery и technical readiness | технический цикл вещи не владеет телесным Recovery Пешки |
 | `BatteryID` | `charge_count`, стабильность пакета, доступный режим импульса и собственный Pulse | батарея не владеет попаданием, точностью или реакцией цели |
 | `BodyID` | конкретная capability/vulnerability, текущая травма и возможность исполнить названный хват или стойку | тело не даёт общий множитель урона, точности или защиты |
 | `PawnID.PersonalTagID` | один `mastery_step` названного Frame и одна видимая mastery-expression | не обходит несовместимость тела, не влияет на другие Frame и не создаёт `prof 4` |
