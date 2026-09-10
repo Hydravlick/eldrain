@@ -43,3 +43,13 @@ related_files:
     7.  **Known POI Types:** открытые игроком типы POI; сохраняются между циклами независимо от нового расположения.
 
 `Civic Legacy Manifest` не хранит частный неэвакуированный инвентарь. Массовая Стабилизация переводит связные структуры в состояние города, а личный груз сохраняется только через успешный манифест экстракции: [[06_Economy_Loot/Extraction_Stabilization_Loop|Extraction_Stabilization_Loop]]. Игрок не загружается в Stable-сектор: [[08_World_Generation/Hub/Hub_Map_Table|Живая Миниатюра]] строит его мирную проекцию по `Generation Snapshot`. Новый цикл заменяет снимок геометрии, но не стирает `Known POI Types`.
+
+## 3. Battery transaction и runtime оружия
+
+[[05_Combat_Survival/Magic_Batteries#2. Source reservation и атомарность|Battery commit]] сохраняется как одно durable решение: TransactionID/ActionID, source Battery ItemID и ожидаемая revision, recipient, результат и post-states. Full → Drained и magazine → Capacity либо обеспеченная Q/E activation записываются атомарно; частичное восстановление одной стороны недопустимо.
+
+Replay возвращает уже принятое решение. Он не разряжает источник второй раз, не повторяет refill после последующих выстрелов и не повторяет activation. Перед повторной попыткой непринятой транзакции заново проверяются reservation, Full-state, revisions и исходный recipient. Reload и Q/E не могут committed-consume один Full source дважды. Новое Full-состояние того же ItemID после отдельного сервиса не легализует старую команду.
+
+До commit восстановление оставляет источник Full и ресурс получателя неизменным; достигнутые физические перемещения сохраняются отдельно. После commit сохраняются тот же Drained ItemID, результат и последующий Action debt без refund. Журнал не создаёт батарею в другом контейнере и не меняет экономический исход смерти/экстракции.
+
+Magazine и device states восстанавливаются по конкретному Weapon ItemID, независимо от текущей Set. Committed shot сохраняет локальное списание и факт выпуска без повторного исполнения; переключение Set не пересоздаёт magazine и не сбрасывает Heat. Persistence хранит решения владельцев, но не изобретает source policy, capacity или сроки Recovery.

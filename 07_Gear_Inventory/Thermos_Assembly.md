@@ -59,7 +59,7 @@ InstalledModule:
 2. FitQuote: compatible | refit_required | incompatible
 3. Prepare unique ItemID reservations against expected custody/condition revisions
 4. Mount patterns: existing nodes, accepted classes, claims and spatial conflicts
-5. Read authored BaseServiceCapacity
+5. Read authored BaseServiceCapacity from [[04_Player_Entities/Skill_Build_Philosophy#BaseServiceCapacity|Field Profile]] / Registry_Combos; never from Proficiency
 6. Aggregate SupportLoad <= Base for six families
 7. Compute FinalServiceCapacity; validate UsedServiceCapacity for all modules
 8. Validate EffectContract binding -> existing ParameterContract, stack group and protected-debt declaration
@@ -110,3 +110,7 @@ Assembly validation records the assembly revision, domain revisions, and mismatc
 
 OR placement uses separate pattern IDs; AND uses one pattern with all required claims. `service_families` derives from nonzero service load; effect axes are search only. `coverage_contract_ids` are bound to individual patterns, never to the module globally. A nonzero `service_support_delta` makes the module a support-source; aggregate SupportLoad всех таких sources проверяется против BaseServiceCapacity до применения любого delta. Dissonance contributor records and `concept_effects` are nonauthoritative discovery fields; declared ParameterContracts and domain owners resolve any runtime effect. Atomicity requires one mechanism, trigger, failure state and vulnerability; otherwise split.
 
+
+## Profile budget boundary
+
+Field Profile публикует authored BaseServiceCapacity; Assembly Resolver единолично вычисляет support eligibility, FinalServiceCapacity, UsedServiceCapacity и итоговую законность. Proficiency relation не является входом этого расчёта. Мастер в Хабе подтверждает всю сборку атомарно либо показывает причины отказа: fit, nodes, service family, effect/debt и недоступные ItemID. `stitched_locked` принадлежит сборке; в Аномалии найденные модули остаются Cargo, без полевой перестановки.

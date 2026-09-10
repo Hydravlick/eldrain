@@ -1,5 +1,7 @@
 ---
-status: active
+status: deprecated
+publication_state: legacy_weapon_scaffolding
+canonical_content: false
 system: combat_survival
 frame_id: breach_impact_2h
 display_name: Проломный ударник, две руки
@@ -45,6 +47,9 @@ type: entity
 entity_kind: weapon_frame
 ---
 # Проломный ударник, две руки
+
+> [!warning] Legacy weapon scaffolding
+> Весь материал ниже — исторический placeholder, не active canon и не diagnostic fixture. Его ID, movesets, поля Mastery и назначения prof не обязательны для будущего арсенала. Старый `instance_id` обозначал повторяемую конструкцию, а не физический ItemID; записи не перенесены в active Patterns. Publication contract: [[05_Combat_Survival/Registries/Registry_Weapons|Registry Weapons]].
 
 Пролом существует для задач, которые не должен закрывать нож: вскрыть закрепление, разрушить хрупкое укрытие, заставить противника сменить угол. Это громкая и медленная ставка.
 

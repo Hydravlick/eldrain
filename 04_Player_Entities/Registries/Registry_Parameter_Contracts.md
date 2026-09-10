@@ -45,11 +45,13 @@ read_when: Когда нужен контракт «Реестр парамет�
 ## Активные домены
 
 ### `frame_native_action`
+Стабильный ключ сохранён для совместимости ссылок. После weapon identity cutover он обозначает параметр операции Pattern; он не возвращает `Frame.NativeAction` как владельца moveset или текущего Recovery.
+
 [parameter_contract_id:: frame_native_action]
-[parameter_domain:: один конечный параметр NativeAction конкретного Frame]
-[domain_owner:: [[05_Combat_Survival/Weapon_Ranged|Weapon Ranged]]]
-[base_source:: frame_action]
-[authorized_requesters:: battery_packet; installed_module; personal_tag; declared_state]
+[parameter_domain:: один конечный параметр операции конкретного оружейного Pattern]
+[domain_owner:: [[05_Combat_Survival/Weapon_Core|Weapon Core]]]
+[base_source:: pattern_operation_definition]
+[authorized_requesters:: installed_module; personal_tag; declared_state]
 [resolution_order:: identity_base -> gear -> state -> authorized_modifier_contracts]
 [allowed_operations:: add | replace_by_declared_rule | clamp_by_domain_policy]
 [intrinsic_debt_required:: yes]
@@ -61,11 +63,11 @@ read_when: Когда нужен контракт «Реестр парамет�
 [parameter_domain:: один конечный параметр конкретного P/Q/E действия]
 [domain_owner:: [[04_Player_Entities/Skill_Build_Philosophy|Философия навыков и билдостроения]]]
 [base_source:: hero_kit_action]
-[authorized_requesters:: battery_packet; installed_module; personal_tag; declared_state]
+[authorized_requesters:: installed_module; personal_tag; declared_state]
 [resolution_order:: identity_base -> gear -> state -> authorized_modifier_contracts]
 [allowed_operations:: add | replace_by_declared_rule | clamp_by_domain_policy]
 [intrinsic_debt_required:: yes]
-[does_not_own:: Frame NativeAction | status policy | generic substat]
+[does_not_own:: weapon Pattern operations | status policy | generic substat]
 [status:: active]
 
 ### `dissonance_occurrence`
@@ -119,17 +121,11 @@ read_when: Когда нужен контракт «Реестр парамет�
 [does_not_own:: Item mass | Ready Access slots | Back Slot | assembly legality]
 [status:: active]
 
-### `prepared_battery_queue_capacity`
-[parameter_contract_id:: prepared_battery_queue_capacity]
-[parameter_domain:: число целых батарей в заранее назначенной очереди одного контура]
-[domain_owner:: [[05_Combat_Survival/Magic_Batteries|Magic Batteries]]]
-[base_source:: circuit]
-[authorized_requesters:: installed_battery_rack]
-[resolution_order:: circuit base -> committed installed rack requests -> domain cap]
-[allowed_operations:: add | clamp_by_domain_policy]
-[intrinsic_debt_required:: yes]
-[does_not_own:: Ready Access | battery output | packet quality | Thermos service capacity]
-[status:: active]
+### Resource state boundary
+
+`battery_state` принадлежит [[05_Combat_Survival/Magic_Batteries|Magic Batteries]], `magazine_current` — [[05_Combat_Survival/Weapon_Ranged|Weapon Ranged]] конкретного ItemID. Capacity и consumption определяет Pattern. Это ресурсные состояния/definition fields, а не новые разрешения произвольных modifiers. Battery transaction не является requester параметров каждого выстрела.
+
+Superseded `prepared_battery_queue_capacity` снят с активной публикации без замещающего бонуса. Ни модуль, ни аффикс не получают право вернуть очередь или внутренний счётчик батареи.
 
 ## Thermos-домены без владельца
 
@@ -149,4 +145,3 @@ Thermos Assembly не создаёт временный локальный resol
 ## Инварианты
 
 См. [[04_Player_Entities/Combat_Profile_Pipeline#Инварианты]].
-

@@ -116,13 +116,13 @@ for (const [key, path] of Object.entries(registryFiles)) {
     }
 }
 
-// Weapon variants are authored on entity pages, not copied into the family registry.
-for (const frame of dv.pages().where(p => p.type === "entity" && p.entity_kind === "weapon_frame" && p.status === "active")) {
-    const content = await dv.io.load(frame.file.path);
-    if (frame.frame_id) itemMap[String(frame.frame_id)] = String(frame.file.link);
-    for (const block of content.split(/^### /m).slice(1)) {
-        const id = parseTagId(block, "instance_id");
-        if (id) itemMap[id] = `[[${frame.file.path}#${block.split("\n")[0].trim()}]]`;
+// Loot definitions are repeatable Patterns, never Frame IDs or physical ItemIDs.
+const publishedPatterns = new Set();
+for (const pattern of dv.pages().where(p => p.type === "entity" && p.entity_kind === "weapon_pattern" && p.status === "active" && p.publication_state === "canonical" && p.canonical_content === true)) {
+    if (pattern.pattern_id) {
+        const id = String(pattern.pattern_id).toLowerCase();
+        publishedPatterns.add(id);
+        itemMap[id] = String(pattern.file.link);
     }
 }
 // 2. Загрузка мобов и их лута
@@ -140,7 +140,10 @@ mobBlocks.forEach(block => {
     
     const lootIds = [];
     const itemMatches = [...block.matchAll(lootRegex)];
-    itemMatches.forEach(m => lootIds.push(m[2].toLowerCase())); // m[2] это ID
+    itemMatches.forEach(m => {
+        const lootId = m[2].toLowerCase();
+        if (m[1].toLowerCase() !== "weapon" || publishedPatterns.has(lootId)) lootIds.push(lootId);
+    });
 
     if (id) {
         mobMap[id] = {

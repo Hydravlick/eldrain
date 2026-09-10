@@ -19,7 +19,7 @@ tags:
   - bindings
   - intent
 binding_schema: inline_action_records
-consumer_migration: pending
+consumer_migration: weapon_set_aim_and_reload_integrated
 related_files:
   - "[[07_Gear_Inventory/Equipment_PaperDoll]]"
   - "[[05_Combat_Survival/Weapon_Core]]"
@@ -58,7 +58,7 @@ Input Contract не выбирает reload recipient, не исполняет S
 - `hold` — намерение поддерживается удержанием; отпускание завершает именно это намерение, не создавая выстрел.
 - `operation_edges` — нажатие, удержание и отпускание передаются как события одного намерения. Определение операции задаёт, какие из них используются. Этот режим сам не вводит charge, release-fire, autorepeat, tap/hold threshold или дополнительное действие.
 
-В этой версии фиксируются шесть принятых semantic actions и их default bindings. Потребители ещё не мигрированы: разделение channels по конфигурации Weapon Set, конкретные Aim/service operations и старые локальные bindings будут интегрированы отдельным batch. Ссылка на существующий owner не означает, что его прежняя schema уже заменена. Клавиши Switch Set и cantrip здесь не назначаются.
+Weapon Set теперь потребляет channels, Weapon Core — Aim intent; Skill Execution принимает намерения profile actions. Reload/service остаётся отдельным unmigrated consumer: эта страница не меняет его алгоритм или транзакцию. Switch Set и cantrip source modifier имеют semantic IDs, но их default bindings остаются `TBD`. Это неназначенные bindings, а не два назначения одной физической кнопки.
 
 ### Weapon channel 1
 
@@ -98,7 +98,7 @@ Input Contract не выбирает reload recipient, не исполняет S
 [gameplay_owner:: [[05_Combat_Survival/Magic_Batteries]]]
 [consumer_role:: reload_service_intent]
 
-Запись передаёт reload/service intent. Выбор получателя и транзакция принадлежат gameplay-процедуре; Input Contract их не рассчитывает.
+Запись передаёт reload/service intent. [[05_Combat_Survival/Magic_Batteries#3. Reload и получатель энергии|Magic Batteries]] выбирает одного eligible recipient активной Set и создаёт service Action request; Input Contract не рассчитывает comparator и не расходует источник. Повтор после завершения является новым намерением с новым выбором получателя. Depletion не создаёт reload вместо weapon channel.
 
 ### Profile Q
 
@@ -118,13 +118,36 @@ Input Contract не выбирает reload recipient, не исполняет S
 [gameplay_owner:: [[04_Player_Entities/Skill_Execution]]]
 [consumer_role:: profile_e_operation]
 
+### Switch Weapon Set
+
+[action_id:: switch_weapon_set]
+[default_binding:: TBD]
+[input_mode:: press]
+[context:: gameplay]
+[gameplay_owner:: [[07_Gear_Inventory/Equipment_PaperDoll]]]
+[consumer_role:: whole_set_transition_request]
+
+Запрос относится ко всей destination Set. Клавиша не выбрана; потребитель не трактует его как внутренний selector оружия.
+
+### Cantrip source modifier
+
+[action_id:: cantrip_modifier]
+[default_binding:: TBD]
+[input_mode:: hold]
+[context:: gameplay]
+[gameplay_owner:: [[04_Player_Entities/Skill_Execution]]]
+[consumer_role:: explicit_cantrip_source_intent]
+[binding_status:: migration_required]
+
+Это сохранённое явное намерение выбрать телесную версию подходящей profile operation. Оно не активирует способность само и не заимствует Aim binding. Поддержка cantrip и цена тела принадлежат gameplay contract. Новый PC/gamepad binding здесь не назначается.
+
 ## Контексты, reservation и rebinding
 
 `gameplay` означает управление Пешкой при отсутствии перехватывающего UI/text-input контекста. Ввод, принятый сфокусированным интерфейсом или текстовым полем, не должен одновременно уходить в gameplay. Закрытие интерфейса не превращает уже удерживаемую кнопку в новое игровое намерение.
 
 В пересекающихся контекстах одна физическая комбинация не назначается двум независимым semantic actions со скрытым приоритетом. Настройка должна показать конфликт и потребовать его разрешить до принятия mapping. Повторное использование комбинации допустимо в явно взаимоисключающих контекстах; во время события должен быть понятен единственный получатель.
 
-Default `LeftAlt` зарезервирован для `aim` в gameplay. Старое назначение Alt как ability/cantrip modifier требует отдельной миграции потребителя; оно не получает приоритет над этой записью и не должно исполняться вместе с Aim. Новый cantrip binding остаётся открытым. Inventory `Alt+Click` проверяется в своём UI-контексте, а не становится второй combat operation.
+Default `LeftAlt` зарезервирован для `aim` в gameplay. Прежнее назначение Alt как ability/cantrip modifier — superseded и больше не исполняется в gameplay. Сохраняется `cantrip_modifier` с `default_binding: TBD`; он не получает приоритет над Aim и не запускается вместе с ним. Inventory `Alt+Click` проверяется в своём UI-контексте, а не становится второй combat operation.
 
 Rebinding меняет только физическое назначение и отображаемые подсказки. `action_id`, режим событий и gameplay meaning сохраняются. Замена binding во время удержания не создаёт новое нажатие и не меняет получателя уже начатого намерения.
 
@@ -141,3 +164,13 @@ press/hold LMB on Set A
 ```
 
 Отмена намерения не очищает долг уже начатого Action. Его остаток и release принадлежат Action contract. Точные buffering windows, политика повторных запросов и choreography контекстных переходов остаются prototype-bound.
+
+## Semantic consumption
+
+```text
+binding → semantic intent → operation request → ACTION_EXECUTION eligibility
+```
+
+PaperDoll выбирает operation channel по подтверждённой Set и Pattern reference. Weapon Core разрешает Aim recipient по опубликованной поддержке Pattern. Ни один из этих шагов не гарантирует исполнение; Input Contract не проверяет руки, не выбирает moveset и не освобождает claims.
+
+Получатель буферизованного weapon intent включает исходные ItemID, operation и Set/revision. При смене контекста новое нажатие разрешается заново; старое удержание не переносится. Один semantic event в одном контексте имеет одного consumer owner. В inventory UI локальный Alt+Click потребляется сфокусированным экраном и не порождает gameplay Aim.

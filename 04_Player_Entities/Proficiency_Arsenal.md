@@ -5,185 +5,114 @@ tags:
   - weapons
   - proficiency
   - arsenal
-  - modules
-  - hero_kit
 related_files:
   - "[[05_Combat_Survival/Registries/Registry_Weapons|Registry Weapons]]"
   - "[[04_Player_Entities/Registries/Registry_Combos|Registry Combos]]"
   - "[[04_Player_Entities/MVP_3x3_Design_Contract|Контракт MVP-матрицы 3×3]]"
   - "[[07_Gear_Inventory/Thermos_System|Thermos System]]"
-  - "[[07_Gear_Inventory/Registries/Registry_Thermos_Modules|Registry Thermos Modules]]"
+  - "[[04_Player_Entities/Skill_Build_Philosophy|Field Profile]]"
+  - "[[05_Combat_Survival/Combat_Three_Debts|Action contract]]"
+canonical_id: PROFICIENCY_RELATION
+owns:
+  - proficiency.pawn_frame_relation
+  - proficiency.admission_and_handling
 type: system
 index_route: owner
 index_group: player_entities
 index_order: 90
-index_summary: "Определяет состояния, разрешение и связи: Адаптивный арсенал и профильные ёмкости."
-read_when: Когда нужен контракт «Адаптивный арсенал и профильные ёмкости» и его границы с соседними владельцами.
+index_summary: "Определяет состояния, разрешение и связи: Proficiency: владение языком Frame."
+read_when: "Когда нужен контракт владения Frame, допуска и границ человеческого исполнения."
 ---
-# Адаптивный арсенал и профильные ёмкости
+# Proficiency: владение языком Frame
 
-> Полевой профиль задаёт исходный арсенал и базовое отношение к каждому Frame. Личный `mastery`-тег может сдвинуть владение одним названным Frame на один шаг и тем самым открыть его в ограниченной форме, но не меняет базовые урон, автоматический RPM, полёт импульса, точность или ёмкость модулей.
+Один человек может уверенно исполнять знакомую оружейную grammar и ограниченно владеть другой. Игрок учитывает это при выборе позиции и действия, но подходящая пространственная работа оружия остаётся причиной взять его даже при меньшем prof.
 
-## 1. Именованный арсенал полевого профиля
+## 1. Отношение Pawn ↔ Frame
 
-Каждое пересечение `Race × Spec` хранит законченный перечень Frame и роль каждого в сигнатуре решений:
+Proficiency — качество практического владения конкретной Пешкой языком конкретного Frame. Identity отношения — `PawnID + FrameID`; runtime state принадлежит этой Пешке под правилами данного owner. Frame, Pattern, ItemID и Weapon Set не хранят собственного уровня владения.
 
-```markdown
-[weapon_frame:: short_cut_1h] | [prof:: 2] | [combat_role:: route_finish]
-[weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: emergency_stop]
+[[04_Player_Entities/Skill_Build_Philosophy#Field Profile: исходные отношения и service budget|Field Profile]] может author исходные отношения, а [[04_Player_Entities/Registries/Registry_Combos|Registry Combos]] публикует их definitions. Это источник инициализации, не вечный runtime writer. Смена ItemID, Pattern или Set не создаёт новое отношение и не возвращает профильную базу поверх сохранённого состояния человека.
+
+```yaml
+proficiency_contract:
+  identity: [pawn_id, frame_id]
+  runtime_owner: Pawn
+  baseline_source: FieldProfile
+  relation_field: frame_proficiencies
+  record_fields: [frame_id, proficiency]
+  levels: [0, 1, 2, 3]
+  admission_level: 1
+  admitted_moveset: full_pattern
+  exceptional_technique_required: false
+  handling_axis: return_to_controlled_readiness_after_commitment
+  natural_debt_preserved: true
+  spatial_job_may_outweigh_level: true
+  universal_modifiers: []
+  mastery_dependency: false
+  action_owner: ACTION_EXECUTION
+  device_state_owner: ItemID
+  changes_input_mapping: false
+  owns_service_capacity: false
 ```
 
-Раса и практика объясняют решение, но их списки не объединяются формулой. Отсутствующий Frame не появляется автоматически из родителя, Origin, редкости или общего параметра Пешки. Единственное личное расширение — `tag_kind:: mastery`, который прямо называет один `mastery_frame` и занимает обычное место Personal Tag.
+Схема runtime snapshot, не запись нового человека:
 
-Есть две отдельные проверки:
-
-1. **Физическая совместимость:** тело может удерживать, носить и обслуживать конкретную конструкцию. Настоящая анатомическая невозможность является бинарным запретом владельца `Body`.
-2. **Базовое authored-владение:** запись полевого профиля определяет исходный `BaseFrameProf` и какие техники Frame доступны без личных тегов.
-
-Прошлое человека, Origin без `tag_kind:: mastery` и случайная травма не обходят физический запрет. Mastery-тег также не преодолевает настоящую анатомическую несовместимость: новый хват, протез или носимый станок является отдельным видимым объектом с собственной ценой и уязвимостью.
-
-## 2. Proficiency без разного gunfeel
-
-`prof` — локальное отношение **конкретной Пешки к конкретному Frame**, а не общий параметр человека. Его authored-база принадлежит полевому профилю, а устойчивый личный сдвиг — только mastery-тегам этого Frame.
-
-```text
-BaseFrameProf(PawnID, FrameID) =
-  Registry_Combos[HeroKitID, FrameID].prof
-  or 0 if Frame is absent but physically compatible
-
-MasteryContribution(PawnID, FrameID) =
-  count(revealed active Personal Tags where
-        tag_kind = mastery
-        and mastery_frame = FrameID
-        and mastery_step = 1)
-
-EffectiveFrameProf =
-  min(3, BaseFrameProf + MasteryContribution)
+```yaml
+PawnFrameSnapshot:
+  pawn_id: PawnID
+  frame_proficiencies: []
 ```
 
-Все три значения показываются в карточке: `база + личное освоение = итог`. Теги не образуют скрытый средний рейтинг и не влияют на другие Frame.
+Каждый элемент списка содержит ровно `frame_id` и целый `proficiency` от 0 до 3. FrameID уникален в пределах Pawn; активные назначения ссылаются только на canonical active Frame. PatternID, ItemID, SetID, bonus и Mastery не являются альтернативными ключами. Пустой список valid; отсутствующая запись не доказывает admission и не заполняется legacy-значением. При нулевом active Frame corpus назначения также могут отсутствовать. Конкретные записи здесь не создаются.
 
-| `prof` | Смысл | Что меняется |
-|---:|---|---|
-| `0` | нет практики | Frame недоступен в Ready-loadout; физическая совместимость ещё не является владением |
-| `1` | полевое владение | Frame разрешён с ограниченным moveset и явной ценой освоившего тега |
-| `2` | нормальное владение | доступен полный общий moveset Frame без скрытого штрафа к gunfeel |
-| `3` | мастерство | открыта требовательная Frame-техника или трансформация с собственной подготовкой, телеграфом, Recovery и Exposure |
+## 2. Уровни и смысл переходов
 
-Высший уровень не является универсальным множителем урона, точности или скорости. Он открывает **другое решение**, которое можно увидеть и контрить. BaseFrameProf фиксирован в Registry_Combos; изменяется только личный вклад от устойчивых mastery-тегов.
-
-## 3. Личное mastery как гибкий сдвиг
-
-Mastery не является XP-шкалой и не открывает дерево перков. Каждый шаг существует как отдельный факт тела или практики, полученный через конкретное событие, реликтовую процедуру либо освоение в игровом цикле.
-
-Поле `mastery_unlock` Frame публикует **кандидаты** на личный `tag_kind:: mastery`. Такой тег возникает только после конкретной практики, реликтовой процедуры или события и занимает одно из трёх мест Personal Tags Пешки.
-
-Mastery-tag:
-
-- называет ровно один `mastery_frame`;
-- при создании lifetime slot выбирает **XOR**: либо `mastery_step:: 1`, либо одну named `mastery_expression`; один тег никогда не даёт оба;
-- только step-вариант при `BaseFrameProf = 0` открывает полевое владение `1`, если тело физически совместимо;
-- считается combat-facing: два step-тега того же Frame могут довести чужое владение `0` до нормального `2`, а исходное владение `1` — до мастерства `3`;
-- не меняет базовые урон, автоматический RPM, полёт импульса или точность;
-- не добавляет P/Q/E или отдельную персонажную кнопку; новые оружейные действия появляются только как опубликованный moveset уровня `prof` самого Frame;
-- не может вместе с другим тегом переписывать ту же короткую фазу; вклад в уровень суммируется, но владельцы выражений не пересекаются.
-
-Если итог уже равен `3`, новый mastery lifetime slot не создаёт `prof 4`: допустима только named expression, если она не пересекает уже занятую фазу. Для `BaseFrameProf = 3` `mastery_step` — dead step и не является допустимой наградой.
-
-Пример гибкого сдвига:
-
-```text
-полевой профиль без Knife: 0 + 1 tag = 1 полевое
-тот же полевой профиль:    0 + 2 tags = 2 нормальное
-периферийное владение:    1 + 1 tag = 2 нормальное
-то же владение:           1 + 2 tags = 3 мастерство
-основное владение:        2 + 1 tag = 3 мастерство
-готовое мастерство:       3 + 1 tag = 3 + expression тега
-```
-
-Frame-mastery всегда входит в лимит `CombatFacingTags <= 2`. Поэтому комбинация с базой `0` намеренно может купить нормальное владение за два из трёх личных мест, но не достичь `3` третьим оружейным тегом. Её полный mastery требует хотя бы исходного `BaseFrameProf 1`.
-
-Таким образом, две одинаково экипированные Пешки одного полевого профиля сохраняют одинаковую базовую оружейную физику, но личная история может изменить доступный уровень обращения. Владелец видит расчёт proficiency и sidegrade каждого тега, а противник получает отличимую стойку, хват, звук или ритм, если изменилось его окно ответа.
-
-## 4. Frame Commitment
-
-Оружие влияет на текущую сцену только когда извлечено и выполняет действие:
-
-```text
-Current Frame Commitment =
-  equipped Frame
-  + active phase
-  + occupied hands / line / stance
-  + Heat, noise and Recovery
-  + named exposure channels
-```
-
-Frame публикует локальные поля `activates_on`, `exposure_channels`, `commitment`, `recovery` и `mastery_unlock`. Он не добавляет архетипный вектор и не пересчитывает слабость персонажа. Оружие в рюкзаке не создаёт Exposure; второй quick-slot остаётся альтернативой до извлечения.
-
-Примеры локального чтения:
-
-| Семейство | Возможность | Цена, видимая сейчас |
+| Уровень | Практический смысл | Доступ к Pattern |
 |---|---|---|
-| `blade` | короткий вход и добор мягкой зоны | необходимость войти, занятые руки, слабый фронтальный обмен |
-| `blunt` | stagger и пролом | длинный замах, шум, тяжёлый Recovery |
-| `polearm` | удержание дистанции и входа | мёртвая зона, фланг, вес |
-| `arcanegun` | дальняя линия давления | open line, Heat, заряд/перезарядка, interrupt |
+| `prof 0` | вне практического боевого repertoire | нет нормального combat admission; физическое удержание проверяется отдельно |
+| `prof 1` | ограниченное, но реальное владение | полный authored moveset |
+| `prof 2` | уверенное authored baseline-выполнение | тот же полный moveset |
+| `prof 3` | исключительное человеческое исполнение | тот же moveset, без обязательной специальной техники |
 
-Это свойства действий Frame, а не универсальные статы Пешки.
+`0 → 1` означает practical admission; `1 → 2` — улучшение исполнения доступной grammar; `2 → 3` — исключительное refinement. Это не одинаковые прибавки одного multiplier. Аварийного prof0 moveset, XP, обучения, respec или способа приобретения уровней данный контракт не вводит.
 
-## 5. Базовая способность обслуживать Термос
+## 3. Handling и навык игрока
 
-Полевой профиль единолично публикует authored `BaseServiceCapacity` по шести семействам. Эта страница не рассчитывает итоговую законность сборки: topology, support eligibility, `FinalServiceCapacity`, `UsedServiceCapacity` и все причины отказа принадлежат [[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly Resolver]].
+Общий ориентир — **качество возвращения к контролируемой готовности после принятого Commitment**. Подходящее выражение зависит от Frame: возвращение рабочей кисти, двухручной линии или контролируемой стойки. Локальный authored handling contract уточняет последствия в операциях Pattern, сохраняя общий смысл и Natural Debt; числовые deltas и timings остаются prototype-bound.
 
-| Семейство | Что обслуживает |
-|---|---|
-| `plate` | жёсткие пластины и распределение удара |
-| `optic` | сенсоры, прицелы и информационные выводы |
-| `seal` | герметизацию, фильтрацию и защиту среды |
-| `conduit` | энергетические ветви, Heat и Backlash |
-| `rig` | обвязку, инструменты и физическую работу с грузом; Ready Access остаётся отдельным доменом инвентаря |
-| `weave` | мягкие слои мобильности, скрытности и кантрипа |
+Это не умножение всех Recovery durations. Prof не выдаёт universal damage, attack/animation speed, Aim speed, reload speed, cooling, Heat/magazine efficiency, movement speed или ускорение всех восстановлений. Локальная связь с параметром требует причинности в grammar и Action/service contract; само число prof не разрешает такую связь.
 
-```markdown
-[base_service_capacity:: plate 2, optic 1, rig 1]
-```
+Player skill выбирает линию, timing, цель, продолжение и риск. Pawn Proficiency определяет качество исполнения выбранного действия. Высокий prof не выбирает правильный ответ за игрока; ограниченное владение не должно превращать причинный ввод в случайную рулетку.
 
-- Personal Tags не меняют `BaseServiceCapacity`.
-- Временный эффект рейда не позволяет установить модуль.
-- Модуль публикует `service_load`; гибрид платит каждое реально работающее семейство отдельно.
-- Ёмкость не создаёт физический слот, не отменяет вес, Диссонанс или Gate Check.
-- `ServiceSupportDelta` допустим только у модели Термоса либо физически установленного support-модуля. Совокупный `SupportLoad` всех support-модулей обязан поместиться в authored-базу до применения любого delta.
+## 4. Definition, Action и устройство
 
-## 6. Монтаж и смена доктрины
+При `prof >= 1` сохраняется полный moveset данного Pattern, включая Primary, optional Alt и authored Aim support. Set mapping по-прежнему определяет, какие операции доступны через текущие channels; полный moveset не создаёт дополнительные кнопки для dual Alt.
 
-Мастер в Хабе либо атомарно подтверждает всю сборку, либо одним проходом показывает дефицит service family, конфликт узлов/pattern, посадку, effect/debt-конфликт и недоступный ItemID. После монтажа состояние `stitched_locked` принадлежит экземпляру сборки; в Аномалии модули не переставляются, а найденные экземпляры остаются Cargo.
+Pattern описывает операции и допустимые handling consequences. [[05_Combat_Survival/Combat_Three_Debts|Action]] проверяет eligibility и владеет конкретным Commitment, claims, interruption, Recovery и release points. Proficiency — вход в объявленное исполнение, не команда очистить текущий долг. Уже принятые claims не исчезают от чтения prof или изменения личного состояния.
 
-Так смена модуля остаётся осмысленным выбором loadout, а не способом перекрутить личность Пешки. Полный физический контракт принадлежит [[07_Gear_Inventory/Thermos_System|Термосу]].
+Heat, cooling, magazine, condition, battery и mechanism state остаются у ItemID/профильных owners. Другой способ обслуживания возможен только через отдельную operation/service grammar. В dual каждый request читает отношение к Frame своего ItemID; больший prof не выбирает оружие, не меняет channel mapping и не создаёт proficiency пары.
 
-## 7. Проверка целостности
+## 5. Acceptance boundaries
 
-Арсенал или модульная схема не проходит контракт, если:
+- Frame с prof1 может быть рационально выбран вместо другого с prof2, когда его spatial job лучше соответствует задаче. Автоматическое превосходство большего числа независимо от задачи означает equipment rating.
+- Prof3 сохраняет Natural Debt, контригру и своевременно читаемый остаток принятого обязательства. Он не превращает Frame в безопасную версию самого себя.
+- Смена Pattern внутри Frame использует то же отношение; две физические копии Pattern не получают отдельных уровней.
+- Practical admission не отменяет физические требования: actual occupancy, повреждение тела, device state и Action claims проверяются отдельно.
+- BaseServiceCapacity не принадлежит Proficiency. Authored budget находится у Field Profile, окончательная assembly legality — у Thermos Assembly.
 
-- Frame появляется без authored-базы либо mastery-тега, mastery обходит анатомический запрет или один тег влияет сразу на несколько Frame;
-- mastery-expression меняет баллистику, базовый урон, автоматический RPM или точность скрытым постоянным коэффициентом;
-- `prof` повышает общий DPS вместо открытия названной техники;
-- родительская раса/практика автоматически создаёт готовый список оружия;
-- одна ёмкость обслуживает несколько семейств без отдельной цены;
-- модуль чинит слабость полевого профиля без собственного веса, Exposure или потери другой доктрины;
-- два экземпляра одного полевого профиля получают разные скрытые базовые параметры; допустимо только локальное явное изменение одной фазы или ситуационный rewrite по общему контракту тегов.
+Эти условия проверяются позднее поведением representative fixtures; структурные проверки не доказывают баланс или читаемость. Fixtures, реальные назначения и content в этом cutover не создаются.
+
+## 6. Superseded и будущие изменения
+
+Universal Mastery, MasteryContribution, additive EffectiveProf, XOR step/expression, урезанный prof1 moveset и обязательная prof3 technique — superseded. Их нельзя сохранить переименованием в Expertise или Personal Proficiency Bonus. Deprecated research не является источником активного admission.
+
+Будущее причинное изменение отношения конкретного человека должно объявлять смысл перехода у соответствующего owner. Training, Traits, scars, inheritance и acquisition здесь не проектируются. P и Personal Trait используют общую rule grammar с разным происхождением; ни один из них не получает автоматическую роль replacement Mastery.
 
 ## Контракт доступа
 
 ```text
-BaseAllowedFrames(hero_kit_id) = Registry_Combos[hero_kit_id].weapon_frame
-BaseFrameProf(hero_kit_id, frame_id) = Registry_Combos[hero_kit_id].prof or 0
-MasteryContribution(pawn_id, frame_id) = count(active frame-mastery tags for frame_id where mastery_step = 1)
-EffectiveFrameProf = min(3, BaseFrameProf + MasteryContribution)
-AllowedFrames(pawn_id) = physically compatible frames where EffectiveFrameProf >= 1
-EligibleInstance = registered Frame + matching grip + load tier + rarity band + spawn profile
+ItemID → PatternID → FrameID
+PawnID ↔ FrameID → proficiency
+prof >= 1 → полный moveset выбранного Pattern
+operation request + requirements + текущее состояние → Action eligibility
 ```
-
-- `Registry_Combos` хранит законченный authored-перечень `[weapon_frame:: ...] | [prof:: ...] | [combat_role:: ...]` каждого полевого профиля `Race × Spec`; списки родителей не складываются формулой.
-- Биография, Origin без Frame-mastery, редкость Пешки и простая история использования не добавляют и не блокируют Frame. Frame-mastery tag даёт одному физически совместимому Frame строго один результат: либо `mastery_step:: 1`, либо собственную named sidegrade-expression одной фазы. Expression не увеличивает `MasteryContribution`. Ни один Personal Tag не меняет баллистику, базовый урон, автоматический RPM или точность скрытым постоянным коэффициентом.
-- Экземпляр не может менять `grip`, `activates_on`, `commitment`, `exposure_channels`, `implicit_keyword` или основную функцию окна своего Frame.
-- `load_tier` говорит о допустимой энергетической нагрузке; `rarity_band` говорит, в каких цветах может существовать Pattern. Это разные оси.

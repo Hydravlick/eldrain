@@ -45,7 +45,7 @@ ActiveProfile =
 
 - владелец выбирает один положительный путь: предел **или** рассеивание **или** безопасность отказа;
 - модуль, меняющий Vent, наследует тот же цикл и его долг;
-- P, модуль и Frame не отменяют `impulse_cost`, число зарядов, цену батареи, обязательный Vent, hard Recovery, Bloom или Dissonance;
+- P, модуль и Frame не отменяют authored magazine consumption, цену одной Full Battery, обязательный Vent, hard Recovery, Bloom или Dissonance;
 - другой термин для соседней стадии не создаёт второй thermal loop.
 
 ## 4. `manual_operation`

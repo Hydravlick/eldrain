@@ -43,8 +43,7 @@
 [battery_version:: none]
 [cantrip_version:: none]
 [overcharge_version:: none]
-[impulse_cost:: 0]
-[casting_reserve_required:: false]
+[battery_source_required:: false]
 
 ### Q — Перехват
 [skill_slot:: Q]
@@ -86,8 +85,7 @@
 [battery_version:: none]
 [cantrip_version:: none]
 [overcharge_version:: none]
-[impulse_cost:: 0]
-[casting_reserve_required:: false]
+[battery_source_required:: false]
 
 ### E — Сброс нагрузки
 [skill_slot:: E]
@@ -129,5 +127,4 @@
 [battery_version:: none]
 [cantrip_version:: none]
 [overcharge_version:: none]
-[impulse_cost:: 0]
-[casting_reserve_required:: false]
+[battery_source_required:: false]

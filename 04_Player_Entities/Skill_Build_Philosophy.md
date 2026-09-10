@@ -28,73 +28,36 @@ read_when: Когда нужен контракт «Философия навы�
 
 > Пешка приносит полный способ действия. Сборка меняет постановку и цену. Игрок должен видеть, что доступно сейчас, чем оплачено и почему сорвалось — без общей шкалы силы и без рецепта обязательной ротации.
 
-## 1. Один контракт для P, Q и E
+## 1. Field Profile: P и активные Q/E
 
-P/Q/E принадлежат конкретному полевому профилю `Race × Spec`. Каждая запись использует только нужные ей поля:
+Field Profile — authored framework пересечения Race × Spec. Он задаёт deterministic P, отдельные Q/E, исходные отношения Pawn ↔ Frame, BaseServiceCapacity и другие действительно профильные факты. Concrete ItemID, текущая экипировка и готовый Build ему не принадлежат.
 
-```markdown
-[skill_slot:: P | Q | E]
-[kernel:: strike | deploy | alter | guard | traverse | treat | perceive | operate]
-[window_function:: create | exploit | mitigate]
-[effect_domain:: harm | displacement | state | restore | protection | information | interaction]
-[delivery_form:: self | contact | projectile | thrown | placed | tether | field | channel | procedure]
-[carrier_contract:: body | device | environment_node]
-[supply_contract:: stamina | biological_reserve | battery_impulse | device_charge | local_material]
-[effect_persistence:: instant | maintained | attached | anchored]
-[target_scope:: self | single | line | cone | area | surface | device | environment_node]
-[owned_parameters:: owner.parameter = value; ...]
-[fixed_terms:: target_rule, geometry, loss_rule]
-[fixed_debt:: telegraph, commitment, recovery]
-[interrupt_rule:: none | interruptible | rule_id]
-[counterplay_now:: response_id; ...]
+`P` — deterministic Chassis / Profile Trait. `Personal Trait` — не гарантированное профилем свойство конкретной Пешки. Обе записи используют [[04_Player_Entities/Tags_System#Общая semantic grammar P и Personal Trait|одну semantic rule grammar]] при разном provenance и детерминизме; P автоматически не занимает personal acquisition slot. У P нет отдельного PassiveEffectSystem или обязательных полей активной операции.
+
+Q/E остаются authored active Profile Actions. Их definition публикует kernel, доставку, цель, требования, параметры, ожидаемый долг и контригру по [[04_Player_Entities/Registries/Registry_Skill_Types|единому шаблону активных операций]]. Конкретное исполнение, claims и Recovery принадлежат Action по [[04_Player_Entities/Skill_Execution|Skill Execution]]. P не является третьей активной кнопкой, Q/E не превращаются в Trait rules.
+
+```yaml
+field_profile_contract:
+  p_provenance: deterministic_field_profile
+  p_rule_grammar: shared_trait_rule
+  p_uses_personal_acquisition_slot: false
+  active_operation_slots: [Q, E]
+  concrete_itemids: false
+  finished_build: false
 ```
 
-Дополнительные поля появляются только у соответствующего типа:
-
-```markdown
-P: [passive_form:: innate | conditional | reactive]
-   [causal_basis:: player_visible_body_reason]
-   [passive_scope:: self_body | named_procedure | named_terminal]
-   [activation_condition:: always | condition_id]
-   [passive_state:: state_or_right_id | none]
-   [passive_properties:: property_id; ...]
-   [passive_boundary:: condition | target | exclusion]
-   [passive_loss_rule:: none | rule_id]
-   [does_not_affect:: parameter; ...]
-
-terminal: [carrier_fate:: retained | deployed]
-   [carrier_ref:: registry_id]
-   [required_interface:: interface_id]
-   [placement_limit:: integer]
-   [uptime_contract:: battery | battery_and_terminal_health | channel_commitment]
-
-support: [support_family:: seal | signal | access | maintenance | expose]
-   [benefit_axis:: ingress | information | permission | sustain]
-   [baseline_path:: named_non_support_option]
-   [stack_group:: family_id]
-
-downstream: [downstream_edges:: property -> owner.parameter; ...]
-
-energy variant: [energy_contract:: body | hybrid | device]
-   [battery_version:: effect_id]
-   [cantrip_version:: effect_id | none]
-   [overcharge_version:: effect_id | none]
-   [impulse_cost:: amount]
-```
-
-`owned_parameters` публикует конечные величины самого действия: длительность удержания, ширину сектора, число импульсов, время процедуры, дальность tether. Эти значения не выводятся из универсальных характеристик Пешки.
-
-`owned_parameters` не разрешает любому соседнему источнику записывать эти величины. Источник публикует узкий `modifier_request` и свой `intrinsic_debt`; его принимает или отклоняет владелец домена из [[04_Player_Entities/Registries/Registry_Parameter_Contracts|реестра параметрических контрактов]]. Локальная способность не задаёт priority, floor или cap общего домена.
+`owned_parameters` Q/E публикует конечные величины определения операции: удержание, сектор, число импульсов, процедуру, дальность tether. Источник изменения отправляет узкий `modifier_request` и собственный `intrinsic_debt`; его принимает владелец домена по [[04_Player_Entities/Registries/Registry_Parameter_Contracts|параметрическому контракту]]. Проекция Combat Profile читает уже разрешённые факты.
 
 ## 2. Два независимых контура
 
-`P/Q/E` — терминалы действий полевого профиля: чтение, проход, защита, восстановление, перенос или ограниченный боевой результат. Каждый владеет своей доставкой, целью, батарейной ценой, телеграфом, Recovery и контригрой.
+`Q/E` — активные терминалы полевого профиля: чтение, проход, защита, восстановление, перенос или ограниченный боевой результат. Каждый владеет своей доставкой, целью, батарейной ценой, телеграфом, Recovery и контригрой.
 
-Frame — отдельный оружейный контур. Он владеет обычной атакой, хватом, Heat/Bloom, Native Frame Window, физическим попаданием и собственной техникой mastery.
+Frame задаёт переносимую weapon grammar. Pattern определяет конкретные атаки и технический цикл; ItemID хранит состояние устройства; Action исполняется по общему контракту. Universal Mastery не является оружейной зависимостью.
 
 ```text
-field profile P/Q/E -> body | device | environment node
-Frame          -> native attack | Frame Window | mastery
+field profile Q/E -> operation definition -> Action -> body | device | environment node
+profile P / personal Trait -> shared rule grammar -> named domain owners
+Frame → grammar envelope; Pattern → operation definition; Action → execution
 module         -> один named local exchange
 personal tag   -> один явный local modifier либо один automatic situational rewrite
 named consequence -> lifecycle / Quest / Trace / custody evidence, not a mechanic engine
@@ -108,10 +71,12 @@ named consequence -> lifecycle / Quest / Trace / custody evidence, not a mechani
 
 ```text
 одна причина
-  -> один наблюдаемый результат
-  -> один доменный владелец
-  -> собственный intrinsic debt источника в той же сцене
+  -> зарегистрированный факт или узкий запрос
+  -> единственный владелец каждого результата
+  -> последующие решения через общие факты и требования
 ```
+
+Один факт может причинно менять несколько решений через общие системы, без bespoke callback graph. Локальный modifier не получает права на чужие параметры; его цену проверяет доменный контракт. Цена возможности может проявиться в подготовке или работе, а не обязательно в той же боевой сцене.
 
 Пассивка, модуль, батарея и Frame могут касаться соседних стадий одного цикла, но не превращают их в независимые бонусы. Нельзя повторно оплатить:
 
@@ -134,26 +99,11 @@ named consequence -> lifecycle / Quest / Trace / custody evidence, not a mechani
 
 Числа доказываются в прототипе через TTK, вероятность валидного контакта, число целей, Exposure и ценность для экстракции, а не общей формулой роста.
 
-## 4. Пассивка: одно правило, не второй kit
+## 4. P в общей grammar
 
-Пассивка может быть врождённой, условной или реактивной:
+Профиль гарантирует происхождение P, но не даёт ей дополнительных прав над соседними owners. Условие, изменение состояния или локальный запрос описываются той же semantic grammar, что у Personal Trait. Прежние обязательные P-only `passive_state / passive_properties / passive_loss_rule` и отдельная форма «1–3 свойства» больше не являются контрактом P.
 
-```text
-одна наблюдаемая причина
-  -> одно состояние или право
-  -> 1–3 свойства этого состояния
-  -> одна граница применения или утраты
-```
-
-Свойства не имеют независимых скрытых таймеров, стаков и ресурсов. `innate` может быть постоянно доступной, но обязана назвать `passive_scope`, `passive_boundary` и `does_not_affect`.
-
-Пассивка не должна одновременно:
-
-- усиливать оружие и обе активные способности;
-- производить ресурс и повышать силу его расходования;
-- возвращать собственную цену;
-- сокращать downstream-телеграф или Recovery;
-- превращать P → Q → E в правильную последовательность независимо от сцены.
+Состояние тела или capability может изменить доступный метод работы, цену подготовки и решение в рейде через существующие требования. Оно не создаёт личный список возможностей, не исполняет Q/E автоматически и не возвращает себе ресурс без материального основания. P, Q и E не образуют обязательную ротацию.
 
 ## 5. Закон материальности
 
@@ -201,7 +151,7 @@ named consequence -> lifecycle / Quest / Trace / custody evidence, not a mechani
 - какой предмет, укрытие или действие можно применить немедленно;
 - что станет хуже, если остаться в уже читаемой зоне.
 
-`counterplay_now` обязан назвать хотя бы один ответ, реально доступный в момент чтения: выйти из границы, сломать видимый источник, разорвать линию, укрыться, прервать занятые руки, бросить груз, переждать объявленную фазу.
+Для эффекта, меняющего непосредственный ответ противника, `counterplay_now` обязан назвать хотя бы один ответ, реально доступный в момент чтения: выйти из границы, сломать видимый источник, разорвать линию, укрыться, прервать занятые руки, бросить груз, переждать объявленную фазу.
 
 Запись считается ложной, если ответ:
 
@@ -224,6 +174,10 @@ named consequence -> lifecycle / Quest / Trace / custody evidence, not a mechani
 
 Модули и арсенал продолжают decision signature полевого профиля. Они не являются общим меню, которое сглаживает слабое пересечение. Personal Tags могут создавать сильные, неудобные или метовые личные отклонения, но используют только локальные сигналы тела, действия, craft или конкретной среды. Причина и последствия остаются у своих lifecycle-, Quest-, Trace-, custody- или CityState-владельцев, не выдавая отдельную механику за биографический абзац.
 
+Полнота профиля проверяется отдельно от его проекции: законченная P/Q/E-тройка, обоснованные исходные Frame relationships, связанная модульная доктрина, повторяемая сигнатура решений, характерная цена и рейдовая польза вне прямого DPS. Рекомендованные предметы не становятся собственностью профиля. Пока оружейный corpus пуст, арсенал остаётся pending; отсутствующий контент не заполняется legacy placeholders.
+
+Если убрать название расы и практики, решения должны сохранять узнаваемость. Если убрать authored-пересечение, аналитическая координата родителей не заменит готовый набор. Ни личный скрытый roll, ни общий parent-stat не исправляет слабый профиль автоматически. Подробные content acceptance checks остаются в [[04_Player_Entities/MVP_3x3_Design_Contract]].
+
 ## 9. Игроковое чтение
 
 Карточка действия показывает:
@@ -235,7 +189,7 @@ named consequence -> lifecycle / Quest / Trace / custody evidence, not a mechani
 5. доступную противнику реакцию;
 6. ближайшую причину последнего провала.
 
-В подробностях показывается итоговый расчёт владельца без промежуточной универсальной валюты. Ситуационный tag дополнительно показывает trigger, внешний tell и counter/debt. Основной UI не оценивает человека одним числом.
+В подробностях показывается итоговый расчёт владельца без промежуточной универсальной валюты. Ситуационный tag дополнительно показывает условие и цену; внешний tell требуется по [[04_Player_Entities/Tags_System#Информационная граница|информационной границе]], если меняется непосредственный ответ наблюдателя. Основной UI не оценивает человека одним числом.
 
 ## 10. Предохранители прототипа
 
@@ -243,7 +197,7 @@ named consequence -> lifecycle / Quest / Trace / custody evidence, not a mechani
 
 - две ячейки различаются коэффициентами, но предлагают ту же последовательность решений;
 - пассивка содержит несколько независимых двигателей;
-- P/Q/E используется по готовности только для поддержания нормального состояния;
+- Q/E используется по готовности только для поддержания нормального состояния;
 - один объект улучшает несколько независимых циклов;
 - навык создаёт извлекаемый payload без материального расхода;
 - support является обязательным билетом в сцену;
@@ -260,3 +214,33 @@ named consequence -> lifecycle / Quest / Trace / custody evidence, not a mechani
 
 Каждый source публикует `modifier_request` и свой `intrinsic_debt`. Запрос становится результатом только после разрешения доменным владельцем. Нельзя одним запросом одновременно повысить величину, частоту и безопасность, а затем назвать один долг оплатой всех трёх.
 
+
+## Field Profile: исходные отношения и service budget
+
+Полный authored профиль Race × Spec задаёт исходные `frame_proficiencies`; записи публикует [[04_Player_Entities/Registries/Registry_Combos|Registry Combos]]. Это не сумма списков расы и практики. При создании конкретной Пешки исходные отношения инициализируют её Pawn ↔ Frame state по [[04_Player_Entities/Proficiency_Arsenal|Proficiency]]. Последующий loadout или чтение профиля не пересоздаёт отношение человека. Acquisition и progression здесь не определяются.
+
+### BaseServiceCapacity
+
+Field Profile является единственным authored source `BaseServiceCapacity` по шести семействам. Значения хранятся в `base_service_capacity` конкретной записи Registry Combos; существующие значения и отсутствие назначений не меняются этим переносом. Это бюджет профиля, не человеческая Service Aptitude и не технический Proficiency.
+
+| Семейство | Что обслуживает |
+|---|---|
+| `plate` | жёсткие пластины и распределение удара |
+| `optic` | сенсоры, прицелы и информационные выводы |
+| `seal` | герметизацию, фильтрацию и защиту среды |
+| `conduit` | энергетические ветви, Heat и Backlash |
+| `rig` | обвязку, инструменты и физическую работу с грузом; Ready Access остаётся отдельным доменом инвентаря |
+| `weave` | мягкие слои мобильности, скрытности и кантрипа |
+
+```yaml
+profile_service_contract:
+  authored_source: FieldProfile
+  definition_registry: Registry_Combos
+  field: base_service_capacity
+  legality_owner: Thermos_Assembly
+  proficiency_contributes: false
+```
+
+Personal Tags и временные эффекты не повышают BaseServiceCapacity. База не создаёт физический slot, не отменяет массу, Диссонанс или Gate Check. Необъявленное семейство не получает скрытое разрешение. [[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly]] проверяет topology, fit, load и support eligibility, затем вычисляет FinalServiceCapacity/UsedServiceCapacity и итоговую законность. ServiceSupportDelta модели либо установленного support-модуля не финансирует собственный монтаж: суммарный SupportLoad сначала должен поместиться в authored-базу.
+
+P и Personal Trait используют одну rule grammar при различном происхождении и детерминизме; Q/E остаются active Profile Actions. Этот boundary не мигрирует Trait Grammar и не возвращает Mastery под другим названием.

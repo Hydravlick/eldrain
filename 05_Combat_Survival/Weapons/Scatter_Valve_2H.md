@@ -1,5 +1,7 @@
 ---
-status: active
+status: deprecated
+publication_state: legacy_weapon_scaffolding
+canonical_content: false
 system: combat_survival
 frame_id: scatter_valve_2h
 display_name: Веерный клапан, две руки
@@ -46,6 +48,9 @@ type: entity
 entity_kind: weapon_frame
 ---
 # Веерный клапан, две руки
+
+> [!warning] Legacy weapon scaffolding
+> Весь материал ниже — исторический placeholder, не active canon и не diagnostic fixture. Его ID, movesets, поля Mastery и назначения prof не обязательны для будущего арсенала. Старый `instance_id` обозначал повторяемую конструкцию, а не физический ItemID; записи не перенесены в active Patterns. Publication contract: [[05_Combat_Survival/Registries/Registry_Weapons|Registry Weapons]].
 
 Фрейм получает терпимость к ошибке прицеливания не через магазин, а через одну связанную очередь. Игрок выбирает конус до первого импульса и выплачивает Heat после последнего.
 

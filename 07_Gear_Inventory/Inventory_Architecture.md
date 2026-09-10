@@ -39,7 +39,7 @@ read_when: "Когда нужен контракт «Механика: Архи�
 
 * **Принцип:** игрок заранее выбирает батареи, расходники и инструменты, которые можно применить без копания в грузе.
 * **Источник:** самостоятельная зона управления, а не число карманов на броне.
-* **Броня:** не добавляет ячейки быстрого доступа. Ось `cargo` модуля описывает собственную физическую работу с грузом и Back Slot, но не меняет телесный `CarryLoad` и не превращается в скрытый объём инвентаря. Модуль `battery_rack` — отдельный энергетический контракт: он увеличивает лишь заранее подготовленную очередь батарей назначенного контура, не список предметов.
+* **Броня:** не добавляет ячейки быстрого доступа. Ось `cargo` модуля описывает собственную физическую работу с грузом и Back Slot, но не меняет телесный `CarryLoad` и не превращается в скрытый объём инвентаря. Прежний queue-effect `battery_rack` deprecated; он не расширяет Ready Access и не публикует действующий энергетический эффект.
 * **Неопределено:** точное число позиций, общий вес и правила смены раскладки проверяются прототипом.
 
 ### Б. Рюкзак (Cargo Backpack)
@@ -102,9 +102,26 @@ Preset хранит DefinitionID, желаемые patterns и предпочт�
 - не обходит новый fit/topology/service resolver;
 - не превращает одну редкую вещь в несколько подготовленных комплектов.
 
+## Weapon Set и physical custody
+
+[[07_Gear_Inventory/Equipment_PaperDoll|Weapon Set]] хранит prepared references конкретных ItemID. Inventory подтверждает существование, физическое размещение, Ready Access и reservations; запись ссылки в Set не перемещает предмет из Cargo и не создаёт ещё одну копию. Подготовка использует актуальные custody revisions и не обходит существующий запрет двух reservations одного ItemID.
+
+Set layout, actual hand occupancy и Action claims не являются контейнерами. PaperDoll фиксирует достигнутое удержание и контекст перехода; реальные stow/retrieve/drop movements подтверждаются Inventory. Потеря доступа к предмету делает его ссылку недоступной для операции, но не подменяет recipient и не выбирает другой предмет автоматически.
+
+Существующие запреты двойной custody и превращения одной вещи в несколько подготовленных комплектов сохраняются. Возможность **shared ItemID reference между A и B одной Пешки** отдельно не определена: форма Set schema сама её не подтверждает. До явного physical preparation contract такая раскладка остаётся unresolved, а не разрешением клонирования или телепортации.
+
+## Battery source reservation
+
+Full Battery и Drained Cell — состояния одной физической вещи по [[05_Combat_Survival/Magic_Batteries|Magic Batteries]]. Inventory сохраняет ItemID, custody, placement и provenance при разрядке. Он не хранит числовой энергетический wallet; состояние батареи не является magazine оружия.
+
+Существующая исключительная `ItemReservation` применяется и к service Action: `PREPARED(ReservationID)` связывает source ItemID, ActionID и проверенные revisions. Это не `COMMITTED(AssemblyID)` и не установка батареи в сборку. Повторная reservation того же предмета другой операцией отклоняется.
+
+Battery owner проверяет Full eligibility и принимает атомарный commit вместе с результатом consumer; Inventory подтверждает reservation/custody и сохраняет физическую вещь. После исхода reservation завершается по service release contract. Поздняя команда с прежней revision не может использовать новое Full-состояние или другую Battery вместо исходной. Перемещение во время обслуживания явно проходит custody; одно энергетическое изменение не создаёт drop, teleport или clone.
+
 ## 4. Граница полномочий
 
 - Inventory владеет `ItemID`, custody, condition revision, Ready Access и Back Slot.
+- Weapon Set / PaperDoll владеет prepared layouts, active Set и фактическим wield transition state; Action сохраняет собственные claims.
 - Thermos Assembly владеет fit/topology/service-legality и атомарным составом сборки.
 - [[07_Gear_Inventory/Physical_Weight|Physical Weight]] владеет итоговой массой и load stages.
 - [[07_Gear_Inventory/Containers_Slots|Containers and Slots]] владеет поведением физического контейнера как предмета: содержимым, выпадением, сбросом и потерей доступа.

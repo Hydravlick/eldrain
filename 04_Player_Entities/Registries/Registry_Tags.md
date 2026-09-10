@@ -5,7 +5,6 @@ registry_type: personal_tags
 tags:
   - database
   - personal_tags
-  - mastery
   - mutations
   - relics
 related_files:
@@ -27,9 +26,9 @@ read_when: Когда нужен контракт «Реестр личных т
 
 ## Правила реестра
 
-Пожизненные места, формы, сигналы и ограничения действия определяет [[04_Player_Entities/Tags_System]]; допуск Frame-mastery рассчитывает [[04_Player_Entities/Proficiency_Arsenal]].
+Пожизненные места, формы, сигналы и ограничения действия определяет [[04_Player_Entities/Tags_System]]; отношение Pawn ↔ Frame определяется [[04_Player_Entities/Proficiency_Arsenal]].
 
-Запись публикует `tag_form:: light | situational`, точные поля выбранной формы и ссылку на зарегистрированный сигнал. Frame-mastery называет один `mastery_frame` и ровно одно из полей: `mastery_step:: 1` либо `mastery_expression`. `design_status:: concept` и `prototype` не означают финальную калибровку.
+Запись публикует `tag_form:: light | situational`, точные поля выбранной формы и ссылку на зарегистрированный сигнал. `design_status:: concept` и `prototype` не означают финальную калибровку.
 
 Поле `source_kind` не разрешает выдачу свойства; ограничения, включая `breakline`, задаёт [[04_Player_Entities/Tags_System#3. Не дерево и не валюта|Tags System]].
 
@@ -39,7 +38,7 @@ read_when: Когда нужен контракт «Реестр личных т
 [id:: template_light_tag]
 [tag:: template_light_tag]
 [tag_form:: light]
-[tag_kind:: first_return|origin|mastery|mutation|scar|relic_imprint]
+[tag_kind:: first_return|origin|mutation|scar|relic_imprint]
 [source_kind:: first_return|origin|practice|anomaly|relic|breakline]
 [source_event:: event_or_item_id]
 [rarity:: common]
@@ -60,16 +59,7 @@ read_when: Когда нужен контракт «Реестр личных т
 [design_status:: prototype]
 ```
 
-Для Frame-варианта `tag_kind:: mastery` обязательны `mastery_frame` и один XOR-вариант:
-
-```markdown
-[mastery_frame:: frame_id]
-[mastery_step:: 1 | none]
-[mastery_expression:: named_sidegrade_of_one_frame_phase | none]
-[mastery_expression_phase:: draw|windup|contact|recovery|guard|manual_cycle|none]
-```
-
-Ровно один из `mastery_step` и `mastery_expression` существует. Step собирается открытой формулой proficiency; expression остаётся единственным собственным механическим правилом и допустима при потолке `prof 3`.
+Прежний обязательный XOR `mastery_step / mastery_expression` — superseded weapon schema. Он не требуется ни тегу, ни Frame/Pattern. Прототипы, использовавшие mastery как происхождение или acquisition-модель, остаются только deprecated history. Переименования в Traits и нового acquisition здесь нет.
 
 ## Шаблон ситуационного тега
 
@@ -77,7 +67,7 @@ read_when: Когда нужен контракт «Реестр личных т
 [id:: template_situational_tag]
 [tag:: template_situational_tag]
 [tag_form:: situational]
-[tag_kind:: first_return|origin|mastery|mutation|scar|relic_imprint]
+[tag_kind:: first_return|origin|mutation|scar|relic_imprint]
 [source_kind:: first_return|origin|practice|anomaly|relic|breakline]
 [source_event:: event_or_item_id]
 [rarity:: uncommon]
@@ -98,7 +88,10 @@ read_when: Когда нужен контракт «Реестр личных т
 [design_status:: prototype]
 ```
 
-## Prototype: Frame-mastery
+## Legacy: Frame-mastery
+
+> [!warning] Deprecated weapon research
+> Следующий блок не является действующим тегом или fixture. Его поля сохранены как история старой Mastery-модели; автоматической конвертации в Personal Trait нет.
 
 ### Обратная ножевая хватка
 
@@ -129,7 +122,9 @@ read_when: Когда нужен контракт «Реестр личных т
 [counterplay:: force_or_feint_the_committed_first_contact_then_punish_recovery]
 [stack_group:: short_cut_1h_draw_expression]
 [exclusive_with:: other_short_cut_1h_draw_rewrites]
-[design_status:: prototype]
+[design_status:: deprecated]
+[canonical_content:: false]
+[publication_state:: legacy_weapon_scaffolding]
 
 * **Как работает накопление:** это expression-вариант и он не меняет proficiency. Отдельный step-вариант может открыть поле владения или повысить prof, но никогда не несёт эту обратную хватку. При базовом `3` обратная хватка остаётся допустимой, если её фаза свободна.
 * **Почему это не скрытый бонус:** карточка показывает `база + mastery = итог`, стойка видна в руках, а цена существует в том же коротком обмене.
@@ -165,7 +160,9 @@ read_when: Когда нужен контракт «Реестр личных т
 * **Почему это не бесплатный навык:** владелец действительно ранен и сохраняет обычную цену Bleed. Противник может не входить в контакт, использовать герметичный слой либо прекратить давление после первого tell.
 * **Что не утверждено:** радиус контакта, buildup, длительность poison и допустимые материалы защиты.
 
-## Prototype: лёгкое освоенное свойство
+## Legacy: неоружейный mastery prototype
+
+Следующий concept не публикуется как действующая Trait/acquisition grammar и не преобразуется в replacement Mastery.
 
 ### Выученный перевязочный ритм
 
@@ -190,7 +187,8 @@ read_when: Когда нужен контракт «Реестр личных т
 [counterplay:: punish_the_visible_treatment_commitment]
 [stack_group:: personal_treatment_time]
 [exclusive_with:: none]
-[design_status:: prototype]
+[design_status:: deprecated]
+[canonical_content:: false]
 
 * **Граница:** это один явный параметр одного действия, а не Dexterity, которая ускоряет лечение, двери, reload и revive одновременно.
 * **Что не утверждено:** величина изменения и правило получения mastery.

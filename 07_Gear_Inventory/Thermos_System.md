@@ -51,7 +51,7 @@ Definition описывает тип вещи; instance — реальную в�
 
 ## 3. Шесть service families
 
-`plate`, `optic`, `seal`, `conduit`, `rig`, `weave` называют обслуживание, а не эффект. `BaseServiceCapacity(HeroKitID, family)` — authored поле полного полевого профиля; оно не выводится из Race/Spec и не является XP.
+`plate`, `optic`, `seal`, `conduit`, `rig`, `weave` называют обслуживание, а не эффект. `BaseServiceCapacity(HeroKitID, family)` — authored поле полного [[04_Player_Entities/Skill_Build_Philosophy#BaseServiceCapacity|Field Profile]], записанное в Registry Combos. Оно не вычисляется суммой Race/Spec, не является XP и не зависит от Pawn ↔ Frame Proficiency. Итоговый расчёт и assembly legality принадлежат [[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly]]; формулы ниже показывают его контракт.
 
 ```text
 Base(family) = BaseServiceCapacity(HeroKitID, family)

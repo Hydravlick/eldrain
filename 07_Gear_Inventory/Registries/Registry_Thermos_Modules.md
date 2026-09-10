@@ -24,7 +24,7 @@ read_when: Когда нужен контракт «Реестр модулей 
 # Реестр модулей Термоса
 
 > [!important] Definition, не assembly
-> Definition хранит только модель модуля. Selected pattern, occupied nodes, damage, active body interface и stitched state принадлежат assembly instance. Все записи ниже `blocked_calibration`: нет законченных patterns, ParameterContracts и pattern-bound plate coverage.
+> Definition хранит только модель модуля. Selected pattern, occupied nodes, damage, active body interface и stitched state принадлежат assembly instance. Обычные candidate records ниже `blocked_calibration`: нет законченных patterns, ParameterContracts и pattern-bound plate coverage.
 
 ## Контракт
 
@@ -43,14 +43,17 @@ read_when: Когда нужен контракт «Реестр модулей 
 [selectable_interface_effect_id:: none | MISSING_PARAMETER_CONTRACT | EffectID]
 [ui_search_aliases:: aliases]
 [module_type:: functional | battery_rack | template]
-[active_cell_capacity_delta:: none | value]
 [install_policy:: hub_stitch_only]
 [atomicity_status:: atomicity_review_required | split_required | proven_atomic]
-[publication_status:: blocked_calibration | approved]
+[publication_status:: blocked_calibration | approved | deprecated]
 [balance_state:: concept | prototype | unknown]
 ```
 
 Размещение, service legality и atomicity определяет [[07_Gear_Inventory/Thermos_Assembly#Правила definition binding]].
+
+## Publication boundary
+
+Только `publication_status: approved` допускает публикацию действующего эффекта, при выполненных definition contracts. `blocked_calibration` и `deprecated` не входят в active effect views, selection или installable сборку. Deprecated concept сохраняет ID для истории, но не наследует прежнее действие при чтении по ID.
 
 ## Candidate records
 
@@ -69,7 +72,6 @@ read_when: Когда нужен контракт «Реестр модулей 
 [selectable_interface_effect_id:: none]
 [ui_search_aliases:: basalt, shell, armor]
 [module_type:: functional]
-[active_cell_capacity_delta:: none]
 [install_policy:: hub_stitch_only]
 [atomicity_status:: atomicity_review_required]
 [publication_status:: blocked_calibration]
@@ -91,7 +93,6 @@ read_when: Когда нужен контракт «Реестр модулей 
 [selectable_interface_effect_id:: none]
 [ui_search_aliases:: hearth, keeper, protection]
 [module_type:: functional]
-[active_cell_capacity_delta:: none]
 [install_policy:: hub_stitch_only]
 [atomicity_status:: split_required]
 [publication_status:: blocked_calibration]
@@ -113,7 +114,6 @@ read_when: Когда нужен контракт «Реестр модулей 
 [selectable_interface_effect_id:: none]
 [ui_search_aliases:: mercenary, rig]
 [module_type:: functional]
-[active_cell_capacity_delta:: none]
 [install_policy:: hub_stitch_only]
 [atomicity_status:: atomicity_review_required]
 [publication_status:: blocked_calibration]
@@ -135,34 +135,20 @@ read_when: Когда нужен контракт «Реестр модулей 
 [selectable_interface_effect_id:: none]
 [ui_search_aliases:: scavenger, wrap, cargo]
 [module_type:: functional]
-[active_cell_capacity_delta:: none]
 [install_policy:: hub_stitch_only]
 [atomicity_status:: atomicity_review_required]
 [publication_status:: blocked_calibration]
 [balance_state:: unknown]
 Обвязка добытчика.
 
-### Кассета активных ячеек «Долгая нить»
+### Кассета «Долгая нить» — deprecated concept
 [module_def_id:: long_thread_battery_rack]
-[allowed_mount_patterns:: UNKNOWN]
-[service_load:: UNKNOWN]
-[service_support_delta:: none]
-[effect_contract_ids:: MISSING_PARAMETER_CONTRACT]
-[coverage_contract_ids:: none]
-[concept_effects:: prepared battery queue capacity +1 for one assigned circuit; no damage/range/Heat/Recovery/Bloom bonus]
-[physical_mass:: UNKNOWN]
-[persistent_dissonance_signature:: UNKNOWN]
-[dissonance_contributor_rules:: battery queue concept]
-[body_interface_kind:: none]
-[selectable_interface_effect_id:: none]
-[ui_search_aliases:: long thread, battery rack, cells]
 [module_type:: battery_rack]
-[active_cell_capacity_delta:: +1]
-[install_policy:: hub_stitch_only]
-[atomicity_status:: atomicity_review_required]
-[publication_status:: blocked_calibration]
-[balance_state:: prototype]
-Увеличивает только подготовленную очередь батарей назначенного контура.
+[publication_status:: deprecated]
+[effect_contract_ids:: none]
+[concept_effects:: superseded; no active effect]
+
+Сохранён только физический concept кассеты. Прежнее расширение подготовленной очереди снято; модуль не является installable, не публикует effect и не получает replacement bonus. Возврат к концепту возможен только в отдельном service design.
 
 ### Эфирная ветвь «Проводник»
 [module_def_id:: conduit_robe]
@@ -179,7 +165,6 @@ read_when: Когда нужен контракт «Реестр модулей 
 [selectable_interface_effect_id:: none]
 [ui_search_aliases:: conduit, robe]
 [module_type:: functional]
-[active_cell_capacity_delta:: none]
 [install_policy:: hub_stitch_only]
 [atomicity_status:: atomicity_review_required]
 [publication_status:: blocked_calibration]
@@ -201,7 +186,6 @@ read_when: Когда нужен контракт «Реестр модулей 
 [selectable_interface_effect_id:: none]
 [ui_search_aliases:: wraith, veils, stealth]
 [module_type:: functional]
-[active_cell_capacity_delta:: none]
 [install_policy:: hub_stitch_only]
 [atomicity_status:: atomicity_review_required]
 [publication_status:: blocked_calibration]
@@ -223,7 +207,6 @@ read_when: Когда нужен контракт «Реестр модулей 
 [selectable_interface_effect_id:: MISSING_PARAMETER_CONTRACT]
 [ui_search_aliases:: counterweight, yoke, carry]
 [module_type:: functional]
-[active_cell_capacity_delta:: none]
 [install_policy:: hub_stitch_only]
 [atomicity_status:: atomicity_review_required]
 [publication_status:: blocked_calibration]
@@ -245,7 +228,6 @@ read_when: Когда нужен контракт «Реестр модулей 
 [selectable_interface_effect_id:: none]
 [ui_search_aliases:: pneumatic, brace]
 [module_type:: functional]
-[active_cell_capacity_delta:: none]
 [install_policy:: hub_stitch_only]
 [atomicity_status:: atomicity_review_required]
 [publication_status:: blocked_calibration]
@@ -267,7 +249,6 @@ read_when: Когда нужен контракт «Реестр модулей 
 [selectable_interface_effect_id:: MISSING_PARAMETER_CONTRACT]
 [ui_search_aliases:: fine motor, harness]
 [module_type:: functional]
-[active_cell_capacity_delta:: none]
 [install_policy:: hub_stitch_only]
 [atomicity_status:: atomicity_review_required]
 [publication_status:: blocked_calibration]
@@ -289,7 +270,6 @@ read_when: Когда нужен контракт «Реестр модулей 
 [selectable_interface_effect_id:: none]
 [ui_search_aliases:: servo, tendon]
 [module_type:: functional]
-[active_cell_capacity_delta:: none]
 [install_policy:: hub_stitch_only]
 [atomicity_status:: atomicity_review_required]
 [publication_status:: blocked_calibration]
@@ -311,7 +291,6 @@ read_when: Когда нужен контракт «Реестр модулей 
 [selectable_interface_effect_id:: MISSING_PARAMETER_CONTRACT]
 [ui_search_aliases:: compression, weave]
 [module_type:: functional]
-[active_cell_capacity_delta:: none]
 [install_policy:: hub_stitch_only]
 [atomicity_status:: atomicity_review_required]
 [publication_status:: blocked_calibration]
@@ -333,7 +312,6 @@ read_when: Когда нужен контракт «Реестр модулей 
 [selectable_interface_effect_id:: MISSING_PARAMETER_CONTRACT]
 [ui_search_aliases:: scar, plate, lattice]
 [module_type:: functional]
-[active_cell_capacity_delta:: none]
 [install_policy:: hub_stitch_only]
 [atomicity_status:: atomicity_review_required]
 [publication_status:: blocked_calibration]
@@ -355,7 +333,6 @@ Coverage contract ids are UNKNOWN.
 [selectable_interface_effect_id:: MISSING_PARAMETER_CONTRACT]
 [ui_search_aliases:: conductor, braid, thermal]
 [module_type:: functional]
-[active_cell_capacity_delta:: none]
 [install_policy:: hub_stitch_only]
 [atomicity_status:: atomicity_review_required]
 [publication_status:: blocked_calibration]
@@ -377,7 +354,6 @@ Coverage contract ids are UNKNOWN.
 [selectable_interface_effect_id:: none]
 [ui_search_aliases:: overheat, shunt]
 [module_type:: functional]
-[active_cell_capacity_delta:: none]
 [install_policy:: hub_stitch_only]
 [atomicity_status:: atomicity_review_required]
 [publication_status:: blocked_calibration]
@@ -399,7 +375,6 @@ Coverage contract ids are UNKNOWN.
 [selectable_interface_effect_id:: MISSING_PARAMETER_CONTRACT]
 [ui_search_aliases:: whisker, antenna, sensory]
 [module_type:: functional]
-[active_cell_capacity_delta:: none]
 [install_policy:: hub_stitch_only]
 [atomicity_status:: atomicity_review_required]
 [publication_status:: blocked_calibration]
@@ -421,7 +396,6 @@ Coverage contract ids are UNKNOWN.
 [selectable_interface_effect_id:: none]
 [ui_search_aliases:: echo, lens, detection]
 [module_type:: functional]
-[active_cell_capacity_delta:: none]
 [install_policy:: hub_stitch_only]
 [atomicity_status:: atomicity_review_required]
 [publication_status:: blocked_calibration]
@@ -443,15 +417,21 @@ Coverage contract ids are UNKNOWN.
 [selectable_interface_effect_id:: none]
 [ui_search_aliases:: template]
 [module_type:: template]
-[active_cell_capacity_delta:: none]
 [install_policy:: hub_stitch_only]
 [atomicity_status:: atomicity_review_required]
 [publication_status:: blocked_calibration]
 [balance_state:: unknown]
 Форматная запись, не игровой предмет.
 
-```dataview
-TABLE module_def_id, physical_mass, body_interface_kind, publication_status, balance_state
-FROM "07_Gear_Inventory/Registries/Registry_Thermos_Modules"
-WHERE module_def_id
+## Опубликованные эффекты
+
+```dataviewjs
+const source = await dv.io.load(dv.current().file.path);
+const records = source.split(/^### /m).slice(1).map(block => {
+    const field = key => block.match(new RegExp("^\\[" + key + "::\\s*([^\\]\\n]+)\\]", "m"))?.[1]?.trim();
+    return {id: field("module_def_id"), status: field("publication_status"), effects: field("effect_contract_ids")};
+}).filter(record => record.id && record.status === "approved"
+    && record.effects && !["none", "MISSING_PARAMETER_CONTRACT"].includes(record.effects));
+if (records.length) dv.table(["Module", "Effect contracts"], records.map(record => [record.id, record.effects]));
+else dv.paragraph("Нет опубликованных эффектов. Candidate и deprecated records не входят в эту проекцию.");
 ```

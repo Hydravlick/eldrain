@@ -99,7 +99,7 @@ Foreign-предметы создают полный фон. Native-лут си�
 
 Committed [[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly]] передаёт только список установленных persistent-signature sources и contributor rules конкретных ItemID. `DISSONANCE_SYSTEM` единолично разрешает их итоговый постоянный вклад и occurrence events. Ни Module Definition, ни Assembly не складывают локальный `dissonance_load/pulse`, а итог Диссонанса не возвращается в монтажный resolver как право разрешить или запретить сам модуль.
 
-Оружие хранит профиль occurrence, а не независимый второй долг: `[dissonance_pulse:: N]` описывает вклад его NativeAction после разрешения.
+Оружейный Pattern определяет профиль occurrence: `[dissonance_pulse:: N]` описывает вклад операции после разрешения. Конкретный Action исполняет её; Frame и ItemID не создают второй Dissonance occurrence.
 
 ```text
 RecentDissonancePulse =

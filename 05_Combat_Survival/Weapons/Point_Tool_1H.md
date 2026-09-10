@@ -1,5 +1,7 @@
 ---
-status: active
+status: deprecated
+publication_state: legacy_weapon_scaffolding
+canonical_content: false
 system: combat_survival
 frame_id: point_tool_1h
 display_name: Линейный пробойник, одна рука
@@ -44,6 +46,9 @@ type: entity
 entity_kind: weapon_frame
 ---
 # Линейный пробойник, одна рука
+
+> [!warning] Legacy weapon scaffolding
+> Весь материал ниже — исторический placeholder, не active canon и не diagnostic fixture. Его ID, movesets, поля Mastery и назначения prof не обязательны для будущего арсенала. Старый `instance_id` обозначал повторяемую конструкцию, а не физический ItemID; записи не перенесены в active Patterns. Publication contract: [[05_Combat_Survival/Registries/Registry_Weapons|Registry Weapons]].
 
 Фрейм проверяет точность линии, а не «фехтовальный класс». Его точка полезна там, где игрок уже прочитал стык защиты или узкий проход между телом и укрытием.
 

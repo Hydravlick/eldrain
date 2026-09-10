@@ -1,81 +1,106 @@
 ---
 status: active
 system: combat_survival_registry
-registry_type: weapon_frames
-tags:
-  - weapons
-  - frames
-  - instances
-  - arsenal
-related_files:
-  - "[[05_Combat_Survival/Weapon_Manifesto|Weapon_Manifesto]]"
-  - "[[04_Player_Entities/Combat_Profile_Pipeline|Combat_Profile_Pipeline]]"
-  - "[[04_Player_Entities/Proficiency_Arsenal|Proficiency_Arsenal]]"
-  - "[[04_Player_Entities/Registries/Registry_Combos|Registry_Combos]]"
-  - "[[06_Economy_Loot/Loot_Distribution|Loot_Distribution]]"
+registry_type: weapon_definitions
 type: registry
 index_route: owner
 index_group: combat_survival
 index_order: 20
-index_summary: "Хранит схему и записи: Реестр оружейных фреймов."
-read_when: Когда нужен контракт «Реестр оружейных фреймов» и его границы с соседними владельцами.
+index_summary: "Хранит схемы и публикацию оружейных Frame и Pattern."
+read_when: "Когда нужны поля Frame/Pattern и проверка допуска оружейного контента к публикации."
 ---
-# Реестр оружейных фреймов
+# Реестр оружейных определений
 
-> Frame задаёт хват, локальные фазы действия, `commitment`, `exposure_channels`, постоянное поведение (`implicit`) и неснимаемый долг. Экземпляр задаёт moveset или поведение выпуска, происхождение, диапазон редкости и контекст появления. Полный authored полевой профиль владеет допуском к Frame и `prof`, а не именами предметов.
+Реестр задаёт схему двух уровней определений и показывает опубликованные записи. Данные каждого Frame и Pattern принадлежат его странице `type: entity`; реестр не хранит вторую копию. Ответственности уровней описаны в [[05_Combat_Survival/Weapon_Core|Weapon Core]], исполнение — в [[05_Combat_Survival/Combat_Three_Debts|Action contract]]. Физические ItemID здесь не регистрируются.
+
+## Публикация
+
+`status` использует общий lifecycle документов vault. Отдельное поле `publication_state` отличает назначение оружейного контента; `canonical_content` — явный boolean, а не вывод из наличия ID.
+
+| Назначение | `status` | `publication_state` | `canonical_content` |
+|---|---|---|---|
+| Действующее каноническое определение | `active` | `canonical` | `true` |
+| Диагностический fixture | `draft` | `diagnostic_fixture` | `false` |
+| Старый исследовательский placeholder | `deprecated` | `legacy_weapon_scaffolding` | `false` |
+| Неопубликованный проект | `draft` | `unpublished` | `false` |
+
+Активный арсенал включает только записи, удовлетворяющие **всем трём** условиям первой строки. Fixtures выбираются отдельно по второй строке и никогда не попадают в канонический счётчик. Отсутствующее поле не означает разрешение публикации.
+
+После Weapon Identity Cutover отсутствие активных Frames и Patterns — допустимое временное состояние Overhaul. Старый корпус сохранён для истории, его ID и taxonomy не обязательны для будущего контента. Он не служит набором fixtures по умолчанию.
+
+Следующий контентный шаг — diagnostic fixtures после schema gate. Служебные ID имеют префикс `fixture_` (например, `fixture_close_1h`); эта договорённость не создаёт записей. Реальные taxonomy, названия, starting arsenal и Patterns определяются позднее, после проверки fixtures, без предпочтения legacy-конструкций.
+
+## Frame record
+
+Поля находятся во frontmatter страницы с `entity_kind: weapon_frame`.
+
+| Поле | Требование |
+|---|---|
+| `frame_id` | Уникальный стабильный ID определения |
+| `status`, `publication_state`, `canonical_content` | Согласованная строка publication contract |
+| `spatial_job` | Какую пространственную задачу покупает язык оружия |
+| `positioning_contract` | Характерная дистанция и позиция |
+| `bodily_organization` | Переносимая организация тела |
+| `operation_classes` | Непустой список допустимых классов операций |
+| `commitment_character` | Характер принятого обязательства |
+| `natural_debt` | Характерная цена, сохраняемая вариациями |
+| `counterplay_contract` | Разумный тип ответа противника |
+| `variation_limits` | Допустимое пространство Pattern variation |
+| `learnability_prior` | Что игрок заранее знает о незнакомой конструкции |
+| `boundary_notes` | Обоснование границы Frame по тесту Weapon Core |
+
+Точное расписание атак, runtime Recovery, Heat и magazine не являются полями Frame record.
+
+## Pattern record
+
+Поля находятся во frontmatter страницы с `entity_kind: weapon_pattern`.
+
+| Поле | Требование |
+|---|---|
+| `pattern_id` | Уникальный стабильный ID повторяемой конструкции |
+| `frame_id` | Ссылка по ID на единственный Frame |
+| `status`, `publication_state`, `canonical_content` | Согласованная строка publication contract |
+| `hand_requirement` | Объявленное требование конструкции к рукам; не текущая занятость |
+| `primary_operation` | Локальный ID основной operation definition |
+| `alt_operation` | Необязательный локальный ID Alt operation |
+| `supports_aim` | Явный boolean; наличие Aim не подразумевается |
+| `aim_operation` | Обязателен при `supports_aim: true`, отсутствует иначе |
+| `service_contract_ref` | Необязательная ссылка на определение операции обслуживания |
+| `magazine_capacity` | Необязательная положительная целая ёмкость, только для magazine model |
+| `shot_consumption` | Вместе с capacity: authored стоимость/правило выпуска, обычно 1 |
+| `reload_service_ref` | Вместе с capacity: ссылка на reload definition/контракт; может совпадать с `service_contract_ref` |
+| `operation_ids` | Непустой список определённых на этой странице операций |
+
+Operation definitions в теле Pattern описывают moveset, траектории, подготовку, порядок действий, видимые состояния конструкции и поведение выпуска. Каждое определение имеет inline-поле `operation_id`; список `operation_ids` перечисляет эти ID. Primary/Alt/Aim ссылаются на них. Сервисное требование может ссылаться на отдельного владельца; оно не записывает текущий расход ресурса или Action debt. Magazine-тройка объявляется целиком либо отсутствует целиком. Числовая стоимость положительна и не превышает capacity; именованное правило требует definition. `magazine_current` не является полем Pattern. Runtime и списание принадлежат [[05_Combat_Survival/Weapon_Ranged|Weapon Ranged]], полная Battery transaction — [[05_Combat_Survival/Magic_Batteries|Magic Batteries]]. Ни одной реальной magazine-конфигурации эта схема не публикует.
+
+Канонический Pattern ссылается только на канонический Frame. Fixture может ссылаться на канонический либо diagnostic Frame. Draft может ссылаться на draft, fixture или canonical Frame; deprecated-материал не становится его действующей зависимостью. Незаполненный draft можно хранить, но нельзя публиковать или выдавать за готовый fixture.
 
 ## Контракт доступа
 
-См. [[04_Player_Entities/Proficiency_Arsenal#Контракт доступа]].
+[[04_Player_Entities/Proficiency_Arsenal#Контракт доступа|Proficiency]] хранится как `Pawn ↔ Frame`. При `prof >= 1` все Patterns этого Frame предоставляют полный собственный moveset. Ни Pattern, ни ItemID не получают своего уровня prof. Mastery, его unlocks/steps/expressions и prof-specific branches не являются требованиями валидности оружейного определения.
 
-## Контракт экземпляра
+## Legacy construction IDs
 
-Каждый блок `###` на странице фрейма содержит:
+Старое inline-поле `instance_id` в placeholder-страницах называло повторяемую authored-конструкцию. Его семантический преемник — `pattern_id`, а не runtime ItemID. Старые записи не преобразуются автоматически в Patterns: они остаются только в `legacy_weapon_scaffolding`, вместе с их movesets, Mastery-полями и material/origin идеями. Эти поля не проверяются как target definition schema.
 
-```markdown
-[instance_id:: stable_id]
-[load_tier:: 1]
-[rarity_band:: rusty..rare]
-[origin_kind:: local_sector | city_frontier | foreign_snapshot]
-[origin_function:: зачем предмет существовал]
-[spawn_profile:: где генератор имеет право его положить]
-[moveset_profile:: телесная последовательность или выпуск]
-[commitment_cost:: какой долг остаётся]
-[handedness:: one_hand | two_hand]
-```
-
-Дальний экземпляр дополнительно хранит `[energy_mode]`, `[emission_profile]`, `[cadence_gate]` и цену импульса, если пользуется батарейным резервом. Аксессуар хранит `[guard_input]` и `[guard_mechanic]`.
-
-## Фреймы
+## Активные Frames
 
 ```dataview
-TABLE WITHOUT ID
-  file.link AS "Фрейм",
-  grip AS "Хват",
-  weapon_family AS "Семейство",
-  implicit_keyword AS "Поведение",
-  primary_window_function AS "Работа",
-  join(activates_on, ", ") AS "Фазы действия",
-  commitment AS "Обязательство",
-  join(creates_window, ", ") AS "Создаёт",
-  join(exploits_window, ", ") AS "Использует",
-  join(exposure_channels, ", ") AS "Цена"
-WHERE entity_kind = "weapon_frame"
-SORT sort_order ASC
+TABLE frame_id AS "Frame", spatial_job AS "Пространственная работа", natural_debt AS "Цена"
+WHERE type = "entity" AND entity_kind = "weapon_frame" AND status = "active" AND publication_state = "canonical" AND canonical_content = true
+SORT frame_id ASC
 ```
 
-## Краткая роль фреймов
+## Активные Patterns
 
-| Канал | Фреймы | Зачем существует |
-|:---|:---|:---|
-| Ближний | `short_cut_1h`, `point_tool_1h`, `compact_impact_1h` | использовать мягкую зону, линию стыка или создать короткий срыв в тесноте |
-| Ближний | `breach_impact_2h`, `reach_line_2h`, `hook_reach_2h` | изменить путь, удержать внешний радиус или сместить край защиты |
-| Дальний | `pulse_tool_1h`, `condenser_rig_2h`, `scatter_valve_2h`, `needle_thrower_2h` | по-разному доставить поражение на линии, в конусе или в открытую мягкую зону |
+```dataview
+TABLE pattern_id AS "Pattern", frame_id AS "Frame", hand_requirement AS "Руки", supports_aim AS "Aim"
+WHERE type = "entity" AND entity_kind = "weapon_pattern" AND status = "active" AND publication_state = "canonical" AND canonical_content = true
+SORT pattern_id ASC
+```
 
-## Лут и Tier Аномалии
-
-См. [[06_Economy_Loot/Loot_Distribution#Лут и Tier Аномалии]].
+Обе пустые таблицы означают отсутствие опубликованного контента, а не ошибку схемы. Лут-проекции читают только опубликованные Patterns; правила распределения остаются у [[06_Economy_Loot/Loot_Distribution|Loot Distribution]].
 
 ## Проверка
 
-Проверка контракта реестра должна сверять активные ID Frame, хват, локальные фазы действия, `commitment`, `exposure_channels`, данные экземпляров, authored BaseFrameProf и личный MasteryContribution. Отдельная проверка подтверждает, что биография не меняет механику, каждый Frame-mastery tag касается одного Frame и имеет строгий XOR между `mastery_step:: 1` и named sidegrade-expression, итог не превышает `3`, expression не даёт скрытого шага, а физический запрет не обходится. Числа урона, Heat, точные задержки и веса остаются предметом прототипа, а не скрытого Power Score. Трос, заслон и аномальная процедура являются устройствами навыков и не входят в активный список Frame.
+`tools/check_overhaul_contracts.py` проверяет publication tuple, уникальность ID, Frame references, ссылки на локальные операции, отсутствие legacy `instance_id` и Mastery/prof-полей в публикуемых определениях. При нулевом контенте проверка проходит. Переносимость Frame и learnability Pattern требуют проверки поведения; структурный тест не доказывает их качество.

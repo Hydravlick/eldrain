@@ -1,5 +1,7 @@
 ---
-status: active
+status: deprecated
+publication_state: legacy_weapon_scaffolding
+canonical_content: false
 system: combat_survival
 frame_id: condenser_rig_2h
 display_name: Конденсаторная рама, две руки
@@ -47,6 +49,9 @@ type: entity
 entity_kind: weapon_frame
 ---
 # Конденсаторная рама, две руки
+
+> [!warning] Legacy weapon scaffolding
+> Весь материал ниже — исторический placeholder, не active canon и не diagnostic fixture. Его ID, movesets, поля Mastery и назначения prof не обязательны для будущего арсенала. Старый `instance_id` обозначал повторяемую конструкцию, а не физический ItemID; записи не перенесены в active Patterns. Publication contract: [[05_Combat_Survival/Registries/Registry_Weapons|Registry Weapons]].
 
 Рама превращает занятое положение в сильный один импульс. Она не получает право стать лучшей винтовкой: телеграф, линия, Heat и потеря рук остаются видимыми.
 

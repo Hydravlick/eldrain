@@ -140,8 +140,7 @@ authored Race × Practice field profile
 Каждая завершённая ячейка должна иметь:
 
 - именованную `decision_signature`, которая остаётся узнаваемой в разных сценах;
-- 2–3 оружейных экземпляра с `prof:: 2`;
-- 1–2 оружейных экземпляра с `prof:: 1`;
+- оружейные отношения Pawn ↔ Frame, связанные с пространственными задачами; старые количества placeholder-экземпляров не являются target content requirement;
 - отсутствующие владения не записываются; `prof:: 0` не является строкой данных;
 - authored `BaseServiceCapacity` по шести семействам, именованные подходящие модули и минимум две жизнеспособные модульные доктрины;
 - 2–4 доктрины снаряжения.
@@ -155,16 +154,15 @@ authored Race × Practice field profile
 
 Ни одно оружие не должно идеально обслуживать все `P/Q/E`. Способность, усиливающая оружие, переводит эффект через свойства текущего Frame, а не выдаёт одинаковый универсальный бонус.
 
-Оружейный фрейм публикует локальный Commitment: активные фазы вроде `aim_hold`, `charge`, `swing`, `block` или `recovery`, занятые части тела, шум, Heat и `exposure_channels`. Эти поля показывают, чем действие наказуемо сейчас, и не создают постоянную классификацию персонажа.
+Frame публикует grammar envelope и Natural Debt; Pattern определяет операции, а Action хранит их текущее исполнение, claims и Recovery. Этот контракт не требует Mastery-полей или prof-specific movesets.
 
 Завершённая доктрина должна описывать:
 
 ```text
 Core Fit
-Frame Power
-Frame Exposure
-exposure_channels
-mastery_unlock
+Frame spatial job / Natural Debt
+Pattern operations
+Action exposure / accepted debt
 ```
 
 Эти поля помогают сравнивать магострел, нож, шест, щит или катализатор внутри одного полевого профиля без превращения матрицы в общий боевой рейтинг.
@@ -178,6 +176,8 @@ mastery_unlock
 `plate`, `optic`, `seal`, `conduit`, `rig`, `weave`.
 
 `BaseServiceCapacity` не является ещё одним набором способностей. Это authored-база обслуживания полного полевого профиля; итоговую законность конкретной сборки определяет Thermos Assembly Resolver вместе с topology, support-pass, effect contracts и реальными ItemID.
+
+До нового content pass активный арсенал может отсутствовать. Legacy назначения не являются действующим оружием, fixture или доказательством полноты ячейки.
 
 ## 6. Общий язык синергии
 
@@ -318,8 +318,7 @@ route_affinity
 [bad_matchups:: detection, open_sightline, swarm]
 [route_affinity:: confined_space, alternate_route]
 [solo_gaps:: armor, sustained_pressure]
-[weapon_frame:: short_cut_1h] | [prof:: 2] | [combat_role:: route_finish]
-[weapon_frame:: pulse_tool_1h] | [prof:: 1] | [combat_role:: panic_stop]
+[arsenal_status:: pending_content]
 [base_service_capacity:: plate 1, optic 1, seal 1, conduit 1, rig 2, weave 2]
 ```
 
@@ -337,7 +336,7 @@ route_affinity
 ### Проход A: дизайн
 
 - все `P/Q/E` являются смешением расы и практики;
-- `Q/E` независимы и ситуативны, а не автоматическая cooldown-ротация; кастерская доктрина может сделать их основным циклом через подготовку, Casting Reserve и долг напряжения;
+- `Q/E` независимы и ситуативны, а не автоматическая cooldown-ротация; кастерская доктрина может сделать их основным циклом через подготовку Full Battery ItemIDs и долг напряжения;
 - действие имеет подготовку, телеграф и Recovery;
 - оружие остаётся главным участником боя;
 - есть несколько доктрин;
@@ -374,7 +373,7 @@ route_affinity
 - лечебный Q/E возвращает только `CurrentHP`, а аура/АоЕ делят общий бюджет и не обходят `restore_saturation`;
 - длительный статус имеет обычный не-скилловый ответ и не делает одну практику обязательной;
 - контригра читается из позиции, видимого источника, доступного маршрута или предмета до того, как эффект решил сцену;
-- случайный Personal Tag не меняет базовые урон, автоматический RPM, полёт импульса, точность, P/Q/E или `BaseServiceCapacity`; локальный handling modifier либо ситуационный rewrite обязан быть явным и ограниченным одним сигналом. Frame-mastery является единственным расширением арсенала: один тег даёт один шаг только одному физически совместимому Frame.
+- случайный Personal Tag не меняет базовые урон, автоматический RPM, полёт импульса, точность, P/Q/E или `BaseServiceCapacity`; локальный handling modifier либо ситуационный rewrite обязан быть явным и ограниченным одним сигналом. Weapon identity и допуск следуют [[04_Player_Entities/Proficiency_Arsenal|Pawn ↔ Frame contract]]; прежнее универсальное Mastery-расширение больше не применяется.
 
 Ячейка получает `design_status:: approved` только после всех трёх проходов.
 

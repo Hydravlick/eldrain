@@ -30,6 +30,10 @@ read_when: "Когда нужен контракт «Реестр: Предме�
 
 Реликвия получает отдельный carrier role, одну подтверждённую процедуру или материальное исключение, источник, отказ и контригру. Статус Реликвии не выводится из rarity.
 
+## Battery state identity
+
+[[05_Combat_Survival/Magic_Batteries|Battery lifecycle]] использует один физический ItemID с `battery_state: Full | Drained`. Full Battery и Drained Cell — имена состояний, а не две одновременно существующие копии. Переход сохраняет definition reference, custody и provenance; этот registry не создаёт новые battery variants или числовой кошелёк энергии. Weapon magazine хранится отдельно в Weapon ItemID.
+
 ## Confirmed records
 
 Подтверждённых общих записей для этого реестра пока нет. Активные расходники, чертежи и экипировка ведутся в профильных реестрах; Рез — в [[06_Economy_Loot/Currency_Rez|системе валюты]].

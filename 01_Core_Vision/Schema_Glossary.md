@@ -41,8 +41,22 @@ tags: [glossary, definitions]
 - **Breakline** — внутреннее имя аварийного выхода до окончательной KIA с необратимым Forfeit и отдельными последствиями для тела и груза. World/UI label остаётся AUTHOR_DECISION. [[06_Economy_Loot/Extraction_Stabilization_Loop|Breakline]].
 - **Spec / полевой профиль Race × Spec** — слой методологии / отдельная authored-реализация пересечения тела и практики: P/Q/E, decision signature, именованный арсенал, модули, долги и Exposure. Не вычисляется сложением родителей и не получает автоматическую постоянную слабость. [[04_Player_Entities/Skill_Build_Philosophy|Профили]].
 - **Schema-only ID** — стабильный ключ реестра. `assault`, `support`, `scout` соответствуют Застрельщику, Ладчику, Страннику в данных, а не именам партийных ролей. [[04_Player_Entities/Skill_Build_Philosophy|Специализации]].
-- **BaseFrameProf / EffectiveFrameProf / load_tier** — базовое владение профиля / открытый итог владения 0–3 с личными Frame-mastery-тегами / техническая нагрузочная категория. Последняя не является игроковой шкалой. [[04_Player_Entities/Proficiency_Arsenal|Владение]], [[05_Combat_Survival/Weapon_Core|Frame]].
-- **Cadence Gate** — ограничитель следующего сильного действия: взвод, охлаждение, сброс или иной телесно читаемый цикл. **Emission Profile** — способ доставки воздействия: импульс, линия, веер или механическая игла. **Frame Commitment** — локальные фазы действия, занятость тела, шум, Heat, Recovery и exposure_channels, пока Frame реально используется. [[05_Combat_Survival/Weapon_Core|Weapon Core]].
+- **Frame / Pattern / ItemID / Action** — переносимый оружейный язык / повторяемая конструкция с moveset / физическая копия со ссылкой на Pattern / конкретное исполнение и принятый долг. Старый weapon `instance_id` обозначал конструкцию и остался только в legacy; target definition ID — `pattern_id`. [[05_Combat_Survival/Weapon_Core|Weapon Core]].
+- **Proficiency** — личное отношение `(PawnID, FrameID)`, список `frame_proficiencies` с уровнями 0–3. Профиль задаёт исходные отношения; runtime принадлежит Пешке. При prof >= 1 полный moveset Pattern. Прежняя MasteryContribution-формула superseded. `load_tier` остаётся отдельной нагрузочной осью старой progression-модели. [[04_Player_Entities/Proficiency_Arsenal|Владение]].
+- **Cadence Gate** — ограничитель следующего сильного действия: взвод, охлаждение, сброс или иной телесно читаемый цикл. **Emission Profile** — способ доставки воздействия: импульс, линия, веер или механическая игла. **Action debt** — принятый Commitment, телесные claims и Recovery конкретного исполнения; Heat и техническая готовность остаются у ItemID. [[05_Combat_Survival/Weapon_Core|Weapon Core]].
+
+- **Prepared Set layout / actual occupancy / Action claims / custody** — ссылки на подготовленную конфигурацию / фактическое удержание / принятые ограничения конкретного Action / физическое существование, размещение и reservation ItemID. Первые два состояния принадлежат [[07_Gear_Inventory/Equipment_PaperDoll|PaperDoll]], claims — [[05_Combat_Survival/Combat_Three_Debts|Action]], custody — [[07_Gear_Inventory/Inventory_Architecture|Inventory]].
+- **weapon_channel_1/2 / aim / switch_weapon_set** — semantic intent IDs [[01_Core_Vision/Input_Contract|Input Contract]]. Set channels адресуют операции Pattern без внутреннего selected-weapon слоя; Aim recipient не переназначает channels. Switch Set меняет всю конфигурацию. Default bindings Switch Set и cantrip остаются TBD.
+
+## Profile service budget
+
+**BaseServiceCapacity** — authored поле полного Field Profile; values хранятся в Registry Combos по [[04_Player_Entities/Skill_Build_Philosophy#BaseServiceCapacity|profile owner]]. Proficiency его не вычисляет. FinalServiceCapacity/UsedServiceCapacity и legality разрешает [[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly]].
+
+## Battery и magazine
+
+- **battery_state** — `Full | Drained` одного физического Battery ItemID; ровно одна атомарная транзакция из Full. [[05_Combat_Survival/Magic_Batteries|Magic Batteries]].
+- **magazine_current / magazine_capacity** — текущий ресурс Weapon ItemID / authored ёмкость его Pattern; не общий запас Set и не состояние Battery. [[05_Combat_Survival/Weapon_Ranged|Weapon Ranged]].
+- **reload** — отдельное сервисное намерение для одного concrete recipient, с физической source reservation и commit; не автоматическое действие пустого оружия. [[05_Combat_Survival/Magic_Batteries#3. Reload и получатель энергии|Reload contract]].
 
 ## Сохранённые старые имена
 

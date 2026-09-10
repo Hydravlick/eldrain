@@ -28,15 +28,17 @@ read_when: "Когда нужен контракт «Реестр: грамма�
 
 ## 1. Общий контракт и условные продолжения
 
+Этот шаблон описывает только active Profile Actions Q/E. P использует [[04_Player_Entities/Tags_System#Общая semantic grammar P и Personal Trait|общую Trait rule grammar]] с deterministic Field Profile provenance; поля Action definition для неё не обязательны.
+
 ```markdown
-## Общая часть каждой P/Q/E
-[skill_slot:: P | Q | E]
+## Общая часть активной Q/E
+[skill_slot:: Q | E]
 [kernel:: strike | deploy | alter | guard | traverse | treat | perceive | operate]
 [window_function:: create | exploit | mitigate]
 [effect_domain:: harm | displacement | state | restore | protection | information | interaction]
 [delivery_form:: self | contact | projectile | thrown | placed | tether | field | channel | procedure]
 [carrier_contract:: body | device | environment_node]
-[supply_contract:: stamina | biological_reserve | battery_impulse | device_charge | local_material]
+[supply_contract:: stamina | biological_reserve | full_battery | device_charge | local_material]
 [effect_persistence:: instant | maintained | attached | anchored]
 [target_scope:: self | single | line | cone | area | surface | device | environment_node]
 [owned_parameters:: owner.parameter = value; ...]
@@ -46,8 +48,6 @@ read_when: "Когда нужен контракт «Реестр: грамма�
 [counterplay_now:: response_id; ...]
 
 ## Только если это нужно типу
-P: [passive_trigger:: event_id] [passive_state:: state_or_right_id]
-   [passive_properties:: property_id; ...] [passive_loss_rule:: rule_id]
 state/restore: [status_effect:: effect_id]
 terminal/anchor/node: [carrier_fate:: retained | deployed] [carrier_ref:: registry_id]
    [required_interface:: interface_id] [placement_limit:: integer]
@@ -61,8 +61,10 @@ support: [support_family:: seal | signal | access | maintenance | expose]
 downstream: [downstream_edges:: property -> consumer.parameter; ...]
 energy variant: [energy_contract:: body | hybrid | device] [battery_version:: effect_id]
    [cantrip_version:: effect_id | none] [overcharge_version:: effect_id | none]
-   [impulse_cost:: 0] [casting_reserve_required:: false]
+   [battery_source_required:: false | true] [battery_service_ref:: service_contract_id when true]
 ```
+
+`full_battery` требует `battery_source_required: true` и ссылку на физическую процедуру. `reserve_*` описывают только явно объявленный телесный/терминальный ресурс, не Casting Reserve, не Battery и не общий weapon ammo. Полная battery-powered активация разряжает ровно один physical ItemID по [[05_Combat_Survival/Magic_Batteries|battery transaction]].
 
 `direct_damage`, `area_damage`, `crowd_control`, `buff_debuff`, `healing`, `mobility`, `defense` и `anomaly_procedure` больше не являются достаточными типами способности. При необходимости они выводятся как отчётные ярлыки из полного контракта.
 
@@ -97,7 +99,7 @@ kernel: alter
 effect_domain: state
 delivery_form: tether
 carrier_contract: device
-supply_contract: battery_impulse
+supply_contract: full_battery
 carrier_fate: retained
 effect_persistence: attached
 target_scope: single
@@ -117,7 +119,7 @@ kernel: deploy
 effect_domain: state
 delivery_form: thrown
 carrier_contract: device
-supply_contract: battery_impulse
+supply_contract: full_battery
 carrier_fate: deployed
 effect_persistence: anchored
 target_scope: area
@@ -152,15 +154,15 @@ kernel: operate
 effect_domain: interaction
 delivery_form: procedure
 carrier_contract: device
-supply_contract: battery_impulse
+supply_contract: full_battery
 carrier_fate: retained
 effect_persistence: maintained
 target_scope: environment_node
 required_interface: anomaly_rule_id
 carrier_ref: example_anomaly_procedure_device
 energy_contract: device
-impulse_cost: 1
-casting_reserve_required: true
+battery_source_required: true
+battery_service_ref: declared_service_contract
 ```
 
 Универсального «редактирования реальности» нет. Каждая процедура публикует конкретное правило узла. ID с префиксом `example_` показывает форму, но не проходит в `approved`: реальная запись обязана ссылаться на зарегистрированное устройство.
