@@ -34,7 +34,7 @@ Pattern задаёт технический цикл конструкции и �
 
 ## Semantic inputs
 
-Primary request приходит из соответствующего [[07_Gear_Inventory/Equipment_PaperDoll|Set channel]]. Aim запрашивается отдельным intent по [[05_Combat_Survival/Weapon_Core#Aim intent и организация тела|Weapon Core]] и только при объявленной поддержке Pattern. Ни RMB, ни положение предмета во второй руке не определяют Aim capability.
+Primary request приходит из соответствующего [[07_Gear_Inventory/Equipment_PaperDoll|Set channel]]. Weapon Focus запрашивается отдельным intent по [[05_Combat_Survival/Weapon_Core#Weapon Focus|Weapon Core]] только в single-owner Set и при поддержке Pattern. Dual теряет dedicated Focus; его Primary operations могут иметь собственную точную preparation. RMB остаётся своим weapon channel, не Aim/zoom.
 
 Недоступный ranged ItemID сохраняет свой channel: он не передаёт ввод другому устройству, Alt или reload. Сервисное намерение отдельно адресуется по [[05_Combat_Survival/Magic_Batteries|battery/reload contract]].
 
@@ -72,7 +72,7 @@ Pattern описывает reload requirements и ожидаемую проце�
 
 ## Конструкция и публикация
 
-Pattern определяет конкретное поведение выпуска, подготовку, optional Alt/Aim и сервисные требования внутри переносимого языка Frame. Две физические копии используют этот же moveset, сохраняя независимые device states. Ordinary ItemID не создаёт новый цикл атак. Владение определяется отношением Pawn ↔ Frame, без отдельного prof для моделей.
+Pattern определяет конкретное поведение выпуска, подготовку, optional Alt/Focus и сервисные требования внутри переносимого языка Frame. Две физические копии используют этот же moveset, сохраняя независимые device states. Ordinary ItemID не создаёт новый цикл атак. Владение определяется отношением Pawn ↔ Frame, без отдельного prof для моделей.
 
 Публикация определяется [[05_Combat_Survival/Registries/Registry_Weapons|Registry Weapons]]. Временное отсутствие активных ranged definitions допустимо.
 

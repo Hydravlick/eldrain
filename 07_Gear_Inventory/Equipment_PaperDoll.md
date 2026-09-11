@@ -106,13 +106,13 @@ PaperDoll хранит фактическое удержание по рукам
 
 [[01_Core_Vision/Input_Contract|Input Contract]] передаёт `weapon_channel_1/2`. Таблица `channel_mapping` выбирает placement и поле operation definition у его Pattern. Потребитель фиксирует исходные Set/revision, ItemID и operation; копия moveset в Set не хранится. Получается **request**, который ещё должен пройти Action eligibility: bodily availability, outstanding claims, требования Pattern, состояние устройства и релевантную среду.
 
-Если `alt_operation` отсутствует, результат — `no authored operation`. Нет fallback ability, выстрела или смены адресата. В dual отсутствует обязательный selector предмета: первый channel остаётся связан с Primary slot 1, второй — с Primary slot 2. Aim recipient не меняет эту таблицу.
+Если `alt_operation` отсутствует, результат — `no authored operation`. Нет fallback ability, выстрела или смены адресата. В dual отсутствует обязательный selector предмета: первый channel остаётся связан с Primary slot 1, второй — с Primary slot 2. Weapon Focus не меняет эту таблицу.
 
 Depletion, поломка, потеря custody или временная недоступность ItemID не меняют раскладку. В частности, dual с потерянным B не превращается автоматически в single A с Alt на channel 2. Сохраняется недоступный исходный recipient; новая конфигурация требует явной подготовки. Magazine/reload rules здесь не реализуются.
 
 ### Switch Set и фактическое удержание
 
-`switch_weapon_set` запрашивает переход всей конфигурации A → B либо B → A. Default binding остаётся `TBD` у Input Contract. Это не выбор одного предмета внутри dual и не перестановка одной руки.
+`switch_weapon_set` запрашивает переход всей конфигурации A → B либо B → A. Default Mouse Wheel scroll назначен в Input Contract. Это не выбор одного предмета внутри dual и не перестановка одной руки.
 
 Контекст перехода хранит source/destination Set, ожидаемые revisions и ссылку на transition Action. Action хранит свою фазу, claims, Commitment и release points; PaperDoll не дублирует их счётчиком Recovery. Последовательность физического перехода:
 
@@ -145,9 +145,9 @@ buffer channel_2 для B → B недоступен
 
 Отпускание завершает исходное намерение и не назначает его новому адресату. Точные buffer windows остаются prototype-bound.
 
-### Aim и другие операции
+### Focus и другие операции
 
-`aim` передаётся потребителю [[05_Combat_Survival/Weapon_Core#Aim intent и организация тела|Weapon Core]]. Pattern объявляет поддержку и физический смысл Aim. PaperDoll предоставляет актуальные ItemID/occupancy и показывает достигнутую организацию из исполняемого Action, не хранит две независимые Aim-машины на руках.
+`weapon_focus` передаётся [[05_Combat_Survival/Weapon_Core#Weapon Focus|Weapon Core]]: ровно один независимый weapon owner и поддержка его Pattern. 2H — один owner; dual 1H — два, Focus недоступен при любом порядке предметов. PaperDoll предоставляет Set и actual occupancy, не выбирает Focus recipient между двумя оружиями. LMB/RMB сохраняют исходные operation mappings.
 
 Q/E, расходник или взаимодействие со средой используют требования собственной operation. Наличие двух предметов не создаёт третью руку, но и не запрещает все способности целиком. Если нужна свободная рука, необходимая перестройка должна реально произойти и пройти тот же Action/custody contract.
 
@@ -168,3 +168,17 @@ Inventory подтверждает доступность реальных ItemI
 ## Сервис и runtime ItemID
 
 Switch Set сохраняет magazine, Heat, condition и device state каждого ItemID. Во время [[05_Combat_Survival/Magic_Batteries#3. Reload и получатель энергии|reload]] PaperDoll показывает фактическую временную занятость рук; подготовленный layout не превращается в источник энергии. Принятый reload остаётся связан с исходным получателем, а source custody/reservation подтверждает Inventory. Переход не переносит refill на destination Set и не сбрасывает Action debt.
+
+### Switch как control barrier
+
+Default Mouse Wheel scroll создаёт один `switch_weapon_set` request по [[01_Core_Vision/Input_Contract|Input Contract]]. Запрос отменяет текущую uncommitted Preparation, затем выполняет переход к другой Set на ближайшей legal Action boundary. Pending switch не разрешает старым weapon intents заново выбрать operation из новой конфигурации. Уже удерживаемые LMB/RMB/Focus остаются связаны с исходным context generation; после смены новое действие требует нового намерения. Outstanding committed debt остаётся у его Action.
+
+```yaml
+set_switch_input_contract:
+  intent: switch_weapon_set
+  cancels_uncommitted_preparation: true
+  execution_boundary: earliest_legal_action_boundary
+  bound_context: [operation, recipient, context_generation]
+  old_held_intent_reinterpreted: false
+  preserves_committed_debt: true
+```

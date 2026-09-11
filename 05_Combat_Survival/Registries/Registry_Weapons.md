@@ -62,15 +62,15 @@ read_when: "Когда нужны поля Frame/Pattern и проверка д�
 | `hand_requirement` | Объявленное требование конструкции к рукам; не текущая занятость |
 | `primary_operation` | Локальный ID основной operation definition |
 | `alt_operation` | Необязательный локальный ID Alt operation |
-| `supports_aim` | Явный boolean; наличие Aim не подразумевается |
-| `aim_operation` | Обязателен при `supports_aim: true`, отсутствует иначе |
+| `supports_focus` | Явный boolean; наличие Focus не подразумевается |
+| `focus_operation` | Обязателен при `supports_focus: true`, отсутствует иначе |
 | `service_contract_ref` | Необязательная ссылка на определение операции обслуживания |
 | `magazine_capacity` | Необязательная положительная целая ёмкость, только для magazine model |
 | `shot_consumption` | Вместе с capacity: authored стоимость/правило выпуска, обычно 1 |
 | `reload_service_ref` | Вместе с capacity: ссылка на reload definition/контракт; может совпадать с `service_contract_ref` |
 | `operation_ids` | Непустой список определённых на этой странице операций |
 
-Operation definitions в теле Pattern описывают moveset, траектории, подготовку, порядок действий, видимые состояния конструкции и поведение выпуска. Каждое определение имеет inline-поле `operation_id`; список `operation_ids` перечисляет эти ID. Primary/Alt/Aim ссылаются на них. Сервисное требование может ссылаться на отдельного владельца; оно не записывает текущий расход ресурса или Action debt. Magazine-тройка объявляется целиком либо отсутствует целиком. Числовая стоимость положительна и не превышает capacity; именованное правило требует definition. `magazine_current` не является полем Pattern. Runtime и списание принадлежат [[05_Combat_Survival/Weapon_Ranged|Weapon Ranged]], полная Battery transaction — [[05_Combat_Survival/Magic_Batteries|Magic Batteries]]. Ни одной реальной magazine-конфигурации эта схема не публикует.
+Operation definitions в теле Pattern описывают moveset, траектории, подготовку, порядок действий, видимые состояния конструкции и поведение выпуска. Каждое определение имеет inline-поле `operation_id`; список `operation_ids` перечисляет эти ID. Primary/Alt/Focus ссылаются на них. Сервисное требование может ссылаться на отдельного владельца; оно не записывает текущий расход ресурса или Action debt. Magazine-тройка объявляется целиком либо отсутствует целиком. Числовая стоимость положительна и не превышает capacity; именованное правило требует definition. `magazine_current` не является полем Pattern. Runtime и списание принадлежат [[05_Combat_Survival/Weapon_Ranged|Weapon Ranged]], полная Battery transaction — [[05_Combat_Survival/Magic_Batteries|Magic Batteries]]. Ни одной реальной magazine-конфигурации эта схема не публикует.
 
 Канонический Pattern ссылается только на канонический Frame. Fixture может ссылаться на канонический либо diagnostic Frame. Draft может ссылаться на draft, fixture или canonical Frame; deprecated-материал не становится его действующей зависимостью. Незаполненный draft можно хранить, но нельзя публиковать или выдавать за готовый fixture.
 
@@ -95,7 +95,7 @@ SORT frame_id ASC
 ## Активные Patterns
 
 ```dataview
-TABLE pattern_id AS "Pattern", frame_id AS "Frame", hand_requirement AS "Руки", supports_aim AS "Aim"
+TABLE pattern_id AS "Pattern", frame_id AS "Frame", hand_requirement AS "Руки", supports_focus AS "Focus"
 WHERE type = "entity" AND entity_kind = "weapon_pattern" AND status = "active" AND publication_state = "canonical" AND canonical_content = true
 SORT pattern_id ASC
 ```
@@ -105,3 +105,5 @@ SORT pattern_id ASC
 ## Проверка
 
 `tools/check_overhaul_contracts.py` проверяет publication tuple, уникальность ID, Frame references, ссылки на локальные операции, отсутствие legacy `instance_id` и Mastery/prof-полей в публикуемых определениях. При нулевом контенте проверка проходит. Переносимость Frame и learnability Pattern требуют проверки поведения; структурный тест не доказывает их качество.
+
+Focus definition использует общую [[05_Combat_Survival/Combat_Three_Debts#Targeting и одна Preparation|Targeting / Preparation grammar]]. Наличие `supports_focus` у Pattern не отменяет single-owner Set restriction из [[05_Combat_Survival/Weapon_Core#Weapon Focus|Weapon Core]]. Ни runtime Preparation, ни target selection не хранятся в Pattern.

@@ -108,3 +108,11 @@ Assembly validation закрепляет одного domain owner для каж
 2. Failed input returns readable blocked/reason, never guessed fallback.
 3. Assembly revision is the sole cross-consumer projection; consumers never rebuild legality.
 4. Economy can deny acquisition without rewriting a legally owned assembly; disabled effect never frees nodes or refunds service.
+
+## Battery access interface
+
+Специализированный pouch/interface предоставляет одну или две dedicated физические Battery positions сверх baseline Generic Ready Access. Это declaration конструкции, не усиление энергии. Module definition может объявить `battery_access_positions: 1 | 2`; отсутствие поля означает отсутствие interface. Количество относится к небольшому совокупному расширению Battery access от установленной обвязки, поэтому несколько interfaces не складываются в +10/+20: такую конфигурацию нельзя публиковать как допустимое расширение.
+
+[[07_Gear_Inventory/Thermos_Assembly|Assembly]] проверяет topology, service budget и совместимость установленного interface обычным способом. Interface не финансирует свою legality и не создаёт BaseServiceCapacity. [[07_Gear_Inventory/Inventory_Architecture#Dedicated Battery access|Inventory]] получает physical position declarations установленной законной сборки, владеет occupancy/доступом и физическими Battery ItemIDs. Thermos не хранит батарейный reserve, magazine или energy wallet.
+
+Разрядка не убирает вещь из крепления: тот же Drained ItemID занимает позицию до физического извлечения. Cargo → access refill принадлежит Action и Inventory, не является переустановкой модуля и не происходит автоматически. Потеря/поломка interface меняет доступ по его физическому состоянию, не уничтожая содержимое одной пересборкой projection. Конкретные модели, mounts, стоимость service и timings здесь не создаются.

@@ -55,4 +55,32 @@ Common/серый предмет может быть критичным для �
 
 Быстрый перенос применяется в сфокусированном UI-контексте управления переносом, по [[01_Core_Vision/Input_Contract|input collision policy]]. Он создаёт запрос Inventory preparation с её физической ценой, а не мгновенный Weapon Set switch. Перенос или Auto-Sort не переставляют Set channels и не подтверждают actual hand availability.
 
-В экране управления Схроном Alt+Click может выполнять его локальную операцию Lock. Экран явно выбирает один контекст; одна комбинация не запускает Lock, Quick Transfer и gameplay Aim одновременно. Закрытие UI не превращает удерживаемый Alt или кнопку мыши в новое боевое намерение.
+В экране управления Схроном Alt+Click может выполнять его локальную операцию Lock. Экран явно выбирает один контекст; одна комбинация не запускает Lock, Quick Transfer и gameplay Weapon Focus одновременно. Закрытие UI не превращает удерживаемый Alt или кнопку мыши в новое боевое намерение.
+
+## Player Menu / Inventory
+
+UI владеет persistent-open и temporary-open состояниями одного Player Menu / Inventory. [[01_Core_Vision/Input_Contract|Input Contract]] владеет binding и различением tap/hold. Tab down сначала создаёт pending intent, не открывает постоянное меню. Поэтому короткое нажатие не вызывает вспышку temporary view, а удержание не создаёт лишний persistent toggle.
+
+| Исходное состояние | Событие | Результат |
+|---|---|---|
+| closed | tap: release до threshold | persistently open |
+| persistent | tap | closed |
+| closed | hold threshold crossed | temporarily open |
+| temporary | release после hold | closed |
+| persistent | hold threshold crossed, затем release | persistent сохраняется |
+
+```yaml
+player_menu_contract:
+  intent: player_menu
+  key_down: pending_only
+  closed_tap: persistent
+  persistent_tap: closed
+  closed_hold_threshold: temporary
+  temporary_release: closed
+  persistent_hold_release: persistent
+  threshold: prototype_bound_accessibility
+```
+
+При удержании, начатом поверх уже persistent-open меню, release ничего не закрывает. Явное закрытие меню отдельным UI action аннулирует pending/temporary intent; его поздний release не открывает меню заново. Сфокусированное text input имеет однозначный routing и не отправляет Tab в gameplay.
+
+Этот контракт задаёт только invocation. Он не устанавливает pause, time dilation, cursor policy, multiplayer time, доступность манипуляций при опасности или состав панелей. Quick Transfer по-прежнему создаёт запрос физической операции, а не отменяет её цену.

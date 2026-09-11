@@ -86,7 +86,7 @@ Player skill выбирает линию, timing, цель, продолжени
 
 ## 4. Definition, Action и устройство
 
-При `prof >= 1` сохраняется полный moveset данного Pattern, включая Primary, optional Alt и authored Aim support. Set mapping по-прежнему определяет, какие операции доступны через текущие channels; полный moveset не создаёт дополнительные кнопки для dual Alt.
+При `prof >= 1` сохраняется полный moveset данного Pattern, включая Primary, optional Alt и authored Focus support. Set mapping по-прежнему определяет, какие операции доступны через текущие channels; полный moveset не создаёт дополнительные кнопки для dual Alt и не снимает single-owner restriction dedicated Weapon Focus.
 
 Pattern описывает операции и допустимые handling consequences. [[05_Combat_Survival/Combat_Three_Debts|Action]] проверяет eligibility и владеет конкретным Commitment, claims, interruption, Recovery и release points. Proficiency — вход в объявленное исполнение, не команда очистить текущий долг. Уже принятые claims не исчезают от чтения prof или изменения личного состояния.
 

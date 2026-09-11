@@ -58,7 +58,7 @@ UI не показывает общий Power Score. Для оружия выв�
 
 Подсказки берут binding из [[01_Core_Vision/Input_Contract|Input Contract]], а доступные операции — из Pattern через [[07_Gear_Inventory/Equipment_PaperDoll|Set mapping]]. Single/2H показывают Primary и optional Alt; dual — две Primaries без ранга предметов. Отсутствующее Alt помечается как отсутствие операции, недоступный ItemID — как причина отказа, без изменения назначения channel.
 
-Aim support и текущая aiming organization показываются отдельно от Alt и технической готовности устройства. В mixed pair capability сохраняется при перестановке; если возможных Aim recipients несколько, прототип должен явно показать выбранного получателя. Switch Set и cantrip пока не имеют default binding; UI не подставляет выдуманную клавишу. Точный способ подсветки, анимация и buffering windows остаются prototype-bound.
+Weapon Focus показывается отдельно от Alt и технической готовности: single-owner Set может подготовиться при поддержке Pattern; dual сообщает недоступность dedicated Focus, без выбора recipient. UI показывает binding из Input Contract: Mouse Wheel для Switch Set, Tab для Player Menu; Focus использует рабочий prototype binding, Cantrip пока TBD. Preparation/Commit и смена Set читаются по действию и состоянию, а не требуют знания скрытых claims.
 
 #### Экран Термоса у мастера
 
@@ -149,3 +149,5 @@ Aim support и текущая aiming organization показываются от�
 Карточка разделяет Frame identity, Pattern identity, runtime ItemID и `proficiency(PawnID, FrameID)` выбранного человека. Число 0–3 подписывается как владение этим языком, а не уровень оружия. Prof0 сообщает отсутствие practical combat admission, не физическую невозможность держать вещь. Prof1/2/3 не создают разные списки атак; prof3 не показывает скрытую технику или Mastery bonus.
 
 Текущая операция может быть недоступна из-за Set mapping, рук, device state или Action claims даже при полном moveset по admission. UI сообщает соответствующую причину. Пока отношения не опубликованы, интерфейс не подставляет legacy prof и не обещает допуск по пустому списку. Player skill не превращается в характеристику карточки.
+
+Dedicated Battery access показывает каждую занятую физическую позицию и Full/Drained её ItemID отдельно от magazine оружия. Разрядка оставляет позицию занятой; Cargo refill показывает manipulation, отказ и фактически достигнутое размещение. После успешного возврата обычная Drained Battery бесплатно восстанавливается в Хабе без таймера по [[05_Combat_Survival/Magic_Batteries#4. Зарядка после экстракции|battery lifecycle]].

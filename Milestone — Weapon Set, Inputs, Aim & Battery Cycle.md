@@ -3,7 +3,7 @@
 **Дата:** 2026-09-08  
 **Роль:** design rationale / research synthesis после canon cutover.
 
-**Gameplay authority:** [[07_Gear_Inventory/Equipment_PaperDoll|Weapon Set]], [[01_Core_Vision/Input_Contract|Input]], [[05_Combat_Survival/Weapon_Core|Aim consumer]], [[05_Combat_Survival/Weapon_Ranged|magazine/reload]], [[05_Combat_Survival/Magic_Batteries|Battery transaction]].
+**Gameplay authority:** [[07_Gear_Inventory/Equipment_PaperDoll|Weapon Set]], [[01_Core_Vision/Input_Contract|Input]], [[05_Combat_Survival/Weapon_Core|Weapon Focus owner]], [[05_Combat_Survival/Weapon_Ranged|magazine/reload]], [[05_Combat_Survival/Magic_Batteries|Battery transaction]].
 
 Этот документ сохраняет основания решений, failure modes, отвергнутые collapse-модели и acceptance/falsification criteria. Нормативные правила и schema читаются у linked active owners; формулировки исследования не являются второй gameplay authority. Исторические альтернативы ниже объясняют выбор, но не публикуют старую реализацию.
 
@@ -45,20 +45,20 @@ WEAPON SET B
 
 ```
 SET A
-[ sword ] [ pistol ]
+[ 1H Item A ] [ 1H Item B ]
 
 SET B
-[──── condenser_2h ────]
+[──── 2H Item C ────]
 ```
 
 или:
 
 ```
 SET A
-[ pistol ] [ pistol ]
+[ 1H Item A ] [ Hollow ]
 
 SET B
-[──── reach_line_2h ────]
+[──── 2H Item C ────]
 ```
 
 ## Why Set is the player-facing unit
@@ -225,6 +225,8 @@ RMB → Alt, если Pattern его имеет
 То есть 2H использует ту же Set-модель, а не отдельную UX-парадигму.
 
 ---
+
+> **Rationale прежней control-гипотезы (superseded в части dual Aim):** разделы 7–16 ниже объясняют отделение Aim от Alt и Fire. Их примеры Aim в dual Set, утверждение окончательного Left Alt и неназначенного Switch больше не задают controls. Актуальный [[05_Combat_Survival/Weapon_Core#Weapon Focus|Weapon Focus]] доступен только одному weapon owner; dual покупает две Primary и теряет dedicated Focus. Q/E имеет собственную Preparation; одновременно допускается одна uncommitted Preparation. [[01_Core_Vision/Input_Contract|Input Contract]] фиксирует Mouse Wheel Switch и Tab tap/hold; Focus binding остаётся prototype-bound. Примеры сохраняются только как объяснение проверенной и затем отвергнутой dual-Aim альтернативы.
 
 # 7. Aim
 
@@ -1067,7 +1069,7 @@ dual 1H
 → immediate Primary A + Primary B
 ```
 
-Aim существует независимо и только у Pattern, которые его поддерживают.
+Текущий [[05_Combat_Survival/Weapon_Core#Weapon Focus|Weapon Focus]] требует единственного weapon owner и поддержки Pattern. Dual не получает dedicated Focus; точная Primary остаётся допустимой authored operation.
 
 Это даёт dual-wield содержательную цену без:
 
@@ -1077,9 +1079,13 @@ Aim существует независимо и только у Pattern, кот
     
 - pair catalogue;
     
-- removal of Aim.
+- универсального offhand штрафа.
 
-## Representative UX acceptance cases
+Потеря dedicated Focus в dual теперь является принятой качественной ценой; прежние примеры ниже показывают superseded альтернативу.
+
+## Representative UX acceptance cases — superseded dual-Aim experiment
+
+Тесты ниже сохраняют rationale прежней гипотезы. Текущие gates single-owner Focus, одной Preparation и latched Cantrip находятся в canonical owners; эти dual-Aim cases больше не являются acceptance targets.
 
 Перед массовой миграцией проверить минимум:
 
@@ -1158,6 +1164,8 @@ Milestone требует пересмотра, если implementation выну�
 
 ---
 
-# Milestone principle
+# Milestone principle — исходная формулировка
+
+Упоминания Aim ниже читаются с уточнением single-owner Weapon Focus выше; прежняя dual-Aim availability не входит в действующий contract.
 
 > **Weapon Set — это целая подготовленная конфигурация двух рук. LMB/RMB являются двумя action channels этой конфигурации: один Pattern может использовать их как Primary/Alt, а два 1H Pattern — как Primary/Primary. Left Alt является отдельным Aim intent и не смешивается с Alt. Одна Full Battery ItemID полностью разряжается в Drained Cell и пополняет magazine одного ranged ItemID до Capacity; dual reload последовательно обслуживает конкретные истощённые recipients, не меняя weapon channels и не обходя физическую процедуру.**

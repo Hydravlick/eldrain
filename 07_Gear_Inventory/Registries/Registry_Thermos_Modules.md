@@ -42,7 +42,7 @@ read_when: Когда нужен контракт «Реестр модулей 
 [body_interface_kind:: none | InterfaceKind]
 [selectable_interface_effect_id:: none | MISSING_PARAMETER_CONTRACT | EffectID]
 [ui_search_aliases:: aliases]
-[module_type:: functional | battery_rack | template]
+[module_type:: functional | template]
 [install_policy:: hub_stitch_only]
 [atomicity_status:: atomicity_review_required | split_required | proven_atomic]
 [publication_status:: blocked_calibration | approved | deprecated]
@@ -53,7 +53,7 @@ read_when: Когда нужен контракт «Реестр модулей 
 
 ## Publication boundary
 
-Только `publication_status: approved` допускает публикацию действующего эффекта, при выполненных definition contracts. `blocked_calibration` и `deprecated` не входят в active effect views, selection или installable сборку. Deprecated concept сохраняет ID для истории, но не наследует прежнее действие при чтении по ID.
+Только `publication_status: approved` допускает публикацию действующего эффекта, при выполненных definition contracts. `blocked_calibration` и `deprecated` не входят в active effect views, selection или installable сборку. Историю удалённых records хранит Git; текущая схема не восстанавливает прежний эффект по старому ID.
 
 ## Candidate records
 
@@ -140,15 +140,6 @@ read_when: Когда нужен контракт «Реестр модулей 
 [publication_status:: blocked_calibration]
 [balance_state:: unknown]
 Обвязка добытчика.
-
-### Кассета «Долгая нить» — deprecated concept
-[module_def_id:: long_thread_battery_rack]
-[module_type:: battery_rack]
-[publication_status:: deprecated]
-[effect_contract_ids:: none]
-[concept_effects:: superseded; no active effect]
-
-Сохранён только физический concept кассеты. Прежнее расширение подготовленной очереди снято; модуль не является installable, не публикует effect и не получает replacement bonus. Возврат к концепту возможен только в отдельном service design.
 
 ### Эфирная ветвь «Проводник»
 [module_def_id:: conduit_robe]
@@ -435,3 +426,7 @@ const records = source.split(/^### /m).slice(1).map(block => {
 if (records.length) dv.table(["Module", "Effect contracts"], records.map(record => [record.id, record.effects]));
 else dv.paragraph("Нет опубликованных эффектов. Candidate и deprecated records не входят в эту проекцию.");
 ```
+
+## Dedicated Battery interface declaration
+
+Опциональное поле ModuleDefinition `battery_access_positions` принимает 1 или 2 и описывает physical Battery access interface по [[07_Gear_Inventory/Thermos_System#Battery access interface|Thermos System]]. При отсутствии interface поле отсутствует. Это не EffectContract на queue capacity; Assembly проверяет небольшой совокупный предел, Inventory — размещение реальных ItemIDs. Поле не заменяет mount/service/failure declarations. Новая module record этим расширением схемы не публикуется.

@@ -28,7 +28,7 @@ def pattern(identifier="construction", frame_id="language", **changes):
     data = dict(type="entity", entity_kind="weapon_pattern", pattern_id=identifier,
                 frame_id=frame_id, status="active", publication_state="canonical",
                 canonical_content=True, hand_requirement="one_hand", primary_operation="contact",
-                supports_aim=False, operation_ids=["contact"])
+                supports_focus=False, operation_ids=["contact"])
     data.update(changes)
     return Record(Path(identifier + ".md"), data, "[operation_id:: contact]\nConcrete operation.")
 
@@ -78,16 +78,16 @@ class WeaponIdentityTests(unittest.TestCase):
 
     def test_required_envelope_and_operation_fields(self):
         for record, key in ((frame(), "natural_debt"), (frame(), "operation_classes"),
-                            (pattern(), "primary_operation"), (pattern(), "supports_aim")):
+                            (pattern(), "primary_operation"), (pattern(), "supports_focus")):
             record.data.pop(key)
             with self.subTest(key=key):
                 self.assertTrue(validate_records([record]))
 
     def test_aim_and_alt_reference_real_operation_definitions(self):
-        self.assertTrue(validate_records([frame(), pattern(supports_aim=True)]))
+        self.assertTrue(validate_records([frame(), pattern(supports_focus=True)]))
         self.assertTrue(validate_records([frame(), pattern(alt_operation="missing")]))
-        self.assertTrue(validate_records([frame(), pattern(aim_operation="contact")]))
-        p = pattern(supports_aim=True, aim_operation="aim", alt_operation="alt",
+        self.assertTrue(validate_records([frame(), pattern(focus_operation="contact")]))
+        p = pattern(supports_focus=True, focus_operation="aim", alt_operation="alt",
                     operation_ids=["contact", "aim", "alt"])
         p.body += "\n[operation_id:: aim]\n[operation_id:: alt]"
         self.assertEqual(validate_records([frame(), p]), [])
@@ -193,9 +193,29 @@ class SetInputContractTests(unittest.TestCase):
                          '[gameplay_owner:: [[07_Gear_Inventory/Inventory_QoL]]]\n[consumer_role:: ui_request]\n')
         self.assertEqual(check_set_input_contracts(self.root), [])
 
-    def test_aim_is_not_alt_and_switch_cantrip_are_unassigned(self):
+    def test_tab_binding_covers_closed_and_open_menu_contexts(self):
+        original = self.input.read_text(encoding='utf-8')
+        for context in ('gameplay', 'player_menu'):
+            with self.subTest(context=context):
+                self.input.write_text(original + '\n### Collision\n[action_id:: ui_test]\n'
+                                      '[default_binding:: Tab]\n[input_mode:: press]\n'
+                                      f'[context:: {context}]\n'
+                                      '[gameplay_owner:: [[07_Gear_Inventory/Inventory_QoL]]]\n'
+                                      '[consumer_role:: ui_request]\n', encoding='utf-8')
+                self.assertTrue(check_set_input_contracts(self.root))
+
+    def test_wheel_switch_and_provisional_focus_binding(self):
+        original = self.input.read_text(encoding='utf-8')
+        for before, after in (('[default_binding:: MouseWheelScroll]', '[default_binding:: TBD]'),
+                              ('[binding_status:: prototype_bound]', '[binding_status:: final]')):
+            with self.subTest(before=before):
+                self.assertIn(before, original)
+                self.input.write_text(original.replace(before, after), encoding='utf-8')
+                self.assertTrue(check_set_input_contracts(self.root))
+
+    def test_focus_is_not_alt_and_cantrip_binding_is_unassigned(self):
         original = self.input.read_text(encoding='utf-8-sig')
-        for old, new in (('[action_id:: aim]', '[action_id:: alt]'),
+        for old, new in (('[action_id:: weapon_focus]', '[action_id:: alt]'),
                          ('[default_binding:: LeftAlt]', '[default_binding:: RMB]'),
                          ('[default_binding:: TBD]', '[default_binding:: X]')):
             with self.subTest(new=new):
@@ -364,7 +384,9 @@ class BatteryCutoverTests(unittest.TestCase):
         self.assertTrue(self.check())
 
     def test_deprecated_rack_cannot_publish_old_effect(self):
-        self.mutate(4, "[publication_status:: deprecated]", "[publication_status:: approved]")
+        with (self.root / self.paths[4]).open('a', encoding='utf-8') as stream:
+            stream.write('\n### Forbidden returned record\n[module_def_id:: long_thread_battery_rack]\n'
+                         '[publication_status:: approved]\n')
         self.assertTrue(self.check())
 
     def test_pattern_magazine_is_optional_and_runtime_is_forbidden(self):

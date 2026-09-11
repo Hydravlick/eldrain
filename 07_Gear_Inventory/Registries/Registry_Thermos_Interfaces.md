@@ -35,6 +35,8 @@ read_when: "Когда нужен контракт «Реестр интерфе
 | `THR-IF-013-DISSONANCE` | source signature/contributor rule | PROVIDER | Dissonance resolver | [[05_Combat_Survival/Dissonance_System|Dissonance System]] | declared `none` is valid; undeclared required source blocks; one event per occurrence | second Pulse/Gate override |
 | `THR-IF-014-ECONOMY-QUOTE` | model/module/refit request | PROVIDER | Economy quote | [[06_Economy_Loot/Economy_Core|Economy]] | acquisition/refit/replacement quote; unavailable blocks purchase | fit/topology/service |
 
+| `THR-IF-015-BATTERY-ACCESS` | законный installed Battery interface / Assembly snapshot | PROVIDER | Inventory | [[07_Gear_Inventory/Inventory_Architecture#Dedicated Battery access|Inventory]] | одна или две dedicated physical positions; недоступный mount не даёт immediate access | energy wallet, Battery lifecycle, custody в Assembly |
+
 ## Invariants
 
 См. [[07_Gear_Inventory/Thermos_System#Invariants]].

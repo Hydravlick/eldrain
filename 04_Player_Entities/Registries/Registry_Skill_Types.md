@@ -59,10 +59,12 @@ support: [support_family:: seal | signal | access | maintenance | expose]
    [status_interaction:: named_effect_or_ingress_path] [stack_group:: family_id]
    [baseline_path:: named_non_support_option] [attribute_mutation:: forbidden]
 downstream: [downstream_edges:: property -> consumer.parameter; ...]
-energy variant: [energy_contract:: body | hybrid | device] [battery_version:: effect_id]
-   [cantrip_version:: effect_id | none] [overcharge_version:: effect_id | none]
+operation variant: [energy_contract:: body | hybrid | device] [battery_version:: operation_id]
+   [cantrip_version:: operation_id | none] [overcharge_version:: effect_id | none]
    [battery_source_required:: false | true] [battery_service_ref:: service_contract_id when true]
 ```
+
+Targeted operation variant может объявлять `preparation` с общими полями [[05_Combat_Survival/Combat_Three_Debts#Targeting и одна Preparation|Targeting / Preparation grammar]] и своими invocation edges. Weapon Focus не является requirement Q/E. `battery_version` / `cantrip_version` адресуют explicit operation variants одной Ability identity; выбор фиксируется при активации по [[04_Player_Entities/Skill_Execution#Targeting и варианты операции|Skill Execution]].
 
 `full_battery` требует `battery_source_required: true` и ссылку на физическую процедуру. `reserve_*` описывают только явно объявленный телесный/терминальный ресурс, не Casting Reserve, не Battery и не общий weapon ammo. Полная battery-powered активация разряжает ровно один physical ItemID по [[05_Combat_Survival/Magic_Batteries|battery transaction]].
 

@@ -46,7 +46,7 @@ tags: [glossary, definitions]
 - **Cadence Gate** — ограничитель следующего сильного действия: взвод, охлаждение, сброс или иной телесно читаемый цикл. **Emission Profile** — способ доставки воздействия: импульс, линия, веер или механическая игла. **Action debt** — принятый Commitment, телесные claims и Recovery конкретного исполнения; Heat и техническая готовность остаются у ItemID. [[05_Combat_Survival/Weapon_Core|Weapon Core]].
 
 - **Prepared Set layout / actual occupancy / Action claims / custody** — ссылки на подготовленную конфигурацию / фактическое удержание / принятые ограничения конкретного Action / физическое существование, размещение и reservation ItemID. Первые два состояния принадлежат [[07_Gear_Inventory/Equipment_PaperDoll|PaperDoll]], claims — [[05_Combat_Survival/Combat_Three_Debts|Action]], custody — [[07_Gear_Inventory/Inventory_Architecture|Inventory]].
-- **weapon_channel_1/2 / aim / switch_weapon_set** — semantic intent IDs [[01_Core_Vision/Input_Contract|Input Contract]]. Set channels адресуют операции Pattern без внутреннего selected-weapon слоя; Aim recipient не переназначает channels. Switch Set меняет всю конфигурацию. Default bindings Switch Set и cantrip остаются TBD.
+- **weapon_channel_1/2 / weapon_focus / switch_weapon_set / player_menu / cantrip_variant** — semantic IDs [[01_Core_Vision/Input_Contract|Input Contract]]. Channels сохраняют операции; Focus доступен только одному weapon owner. Switch меняет всю Set с input barrier. `player_menu` различает persistent toggle и temporary peek; Cantrip variant фиксируется при Q/E activation.
 
 ## Profile service budget
 

@@ -114,3 +114,7 @@ OR placement uses separate pattern IDs; AND uses one pattern with all required c
 ## Profile budget boundary
 
 Field Profile публикует authored BaseServiceCapacity; Assembly Resolver единолично вычисляет support eligibility, FinalServiceCapacity, UsedServiceCapacity и итоговую законность. Proficiency relation не является входом этого расчёта. Мастер в Хабе подтверждает всю сборку атомарно либо показывает причины отказа: fit, nodes, service family, effect/debt и недоступные ItemID. `stitched_locked` принадлежит сборке; в Аномалии найденные модули остаются Cargo, без полевой перестановки.
+
+## Dedicated physical access declaration
+
+Для [[07_Gear_Inventory/Thermos_System#Battery access interface|Battery interface]] Assembly проверяет явное `battery_access_positions` и обычную topology/service legality. Совокупная dedicated contribution установленной сборки — не более двух позиций; ноль допустим без interface. Это проверка размера физического interface, не лимит общего carried Battery count. Декларации позиций передаются Inventory с installed ItemID/revision; текущие Battery occupants, custody и Full/Drained не участвуют в финансировании Assembly. EffectContract не увеличивает эти positions произвольным generic modifier и не превращает их в энергию.

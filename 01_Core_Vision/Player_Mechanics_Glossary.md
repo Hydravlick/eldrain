@@ -52,7 +52,7 @@ tags: [glossary, definitions]
 
 
 - **Weapon Set** — подготовленная конфигурация двух рук: один 1H, два 1H либо один 2H. Смена Set перестраивает всю конфигурацию физически, сохраняя долг предыдущего действия. Пустая позиция подготовки не означает свободную сейчас руку. [[07_Gear_Inventory/Equipment_PaperDoll|Weapon Set]].
-- **Aim / Alt** — отдельное намерение прицелиться или подготовить линию / необязательное альтернативное применение конструкции. Aim не стреляет сам и не принадлежит «второй руке»; доступность задаёт Pattern. [[05_Combat_Survival/Weapon_Core#Aim intent и организация тела|Aim]], [[01_Core_Vision/Input_Contract|Управление]].
+- **Weapon Focus / Alt** — dedicated precision preparation единственного weapon owner / optional альтернативная operation Pattern. Dual не имеет Focus; Q/E готовят собственную цель. [[05_Combat_Survival/Weapon_Core#Weapon Focus|Focus]], [[01_Core_Vision/Input_Contract|Управление]].
 
 ## Личное свойство и выполненная работа
 

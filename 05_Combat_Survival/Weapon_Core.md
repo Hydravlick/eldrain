@@ -131,19 +131,36 @@ Pattern задаёт ожидаемые требования и цены опе�
 
 `hand_requirement` Pattern описывает требуемую организацию. `free_hand` как требование операции означает фактически доступную руку, а не `empty` в prepared layout. Рука, занятая временным объектом или Action claim, не становится свободной от пустого Set slot.
 
-### Aim intent и организация тела
+### Weapon Focus
 
-Aim — отдельный semantic intent, не Alt, Primary или Fire. Binding принадлежит Input Contract; Pattern объявляет `supports_aim`, `aim_operation` и физический смысл подготовки. Поддержка не выводится из melee/ranged категории и не добавляется Weapon Set автоматически.
+Weapon Focus — precision stance одного weapon owner. Игрок получает выделенную точную подготовку, когда активная Set содержит ровно один независимый weapon ItemID и его Pattern поддерживает Focus. Один 2H ItemID, занимающий обе позиции, считается одним owner. У двух независимых оружий dedicated Focus недоступен, даже если только одно из них умеет Focus. Перестановка ItemIDs между hand slots ничего не меняет.
 
-Weapon Core — потребитель `aim`. Он читает ItemID активной Set, их Patterns и фактическое wield state. Если подходящий Aim-capable recipient один, намерение адресуется ему независимо от hand slot. Поэтому перестановка `[melee][aimed ranged]` в `[aimed ranged][melee]` не отнимает Aim. Это абстрактные конфигурации, не weapon definitions.
+Это сознательный обмен: single-owner Set покупает precision preparation, dual — две немедленно выбираемые независимые Primary operations. Ни selected weapon, ни last-fired recipient, ни hidden scoring здесь нет. Неоружейный предмет сам по себе не становится weapon owner; физические требования Focus всё равно проверяются Action. Combat accessory со своей независимой weapon operation считается вторым owner.
 
-Если поддержки нет, результат — `Aim unsupported`, без fallback к Alt или другой способности. Если Aim поддерживают оба предмета, policy выбора одного recipient и presentation остаётся prototype-bound. Policy должна быть опубликованной, детерминированной для игрока и видимой до принятия операции; она не может молча выбирать получателя по скрытому рейтингу. Конкретный default tie-break остаётся prototype-bound.
+Pattern объявляет `supports_focus` и локальную `focus_operation`. Поддержка не выводится из ranged/melee категории. Weapon Core потребляет `weapon_focus` из [[01_Core_Vision/Input_Contract|Input Contract]], проверяет единственного owner и разрешает его operation request. Actual occupancy и подготовленная Set приходят из [[07_Gear_Inventory/Equipment_PaperDoll|PaperDoll]], исполнение — из [[05_Combat_Survival/Combat_Three_Debts#Targeting и одна Preparation|Action contract]]. Неподдерживаемый Focus даёт понятную недоступность без fallback.
 
-Одна Пешка поддерживает одну текущую bodily aiming organization. Её фаза, требования и claims принадлежат исполняемому Action; PaperDoll показывает достигнутую позу и удержание. Два устройства не создают две независимые телесные Aim-state machines. Наличие Aim request не обходит eligibility или чужой Recovery. Операция может занять руки либо coordinated bodily execution только по своей физической причине.
+```yaml
+weapon_focus_contract:
+  intent: weapon_focus
+  owner_count: distinct_weapon_itemids
+  required_owner_count: 1
+  support_field: supports_focus
+  operation_field: focus_operation
+  dual_available: false
+  slot_order_independent: true
+  changes_channels: false
+  runtime_owner: ACTION_EXECUTION
+  release_fires: false
+  resume: same_intent_same_context_after_legal_recovery
+```
 
-Recipient фиксируется для начатого Aim intent. Его недоступность даёт предусмотренный cancel/failure outcome, а не скрытый переход к другому предмету. Возможность явной смены aiming recipient и её переход проверяются прототипом; никакой Aim selector не переназначает weapon channels.
+LMB/RMB сохраняют Primary/optional Alt в single/2H и Primary A/Primary B в dual. Focus не превращает RMB в zoom, Aim или специальный выстрел. Если Alt использует подготовленное target solution, это объявляет сама Alt definition. Runtime claims определяют возможность исполнения уже выбранной операции, а не смысл кнопки. Primary/Alt может принять подготовленное решение того же weapon owner по своей definition; это переход единственной Preparation к выбранному Commit, не запуск второй параллельной подготовки и не новый moveset.
 
-Для обычного aimed ranged Pattern игрок может подготовить линию, наблюдать и отпустить Aim без будущего выстрела. Решение о выпуске приходит отдельным Primary request соответствующего предмета. Сам Aim может иметь собственные физические требования и долг, но не обещает Fire Commitment. Hold/release выпуск допустим только по физически обоснованной operation grammar; Input не навязывает его для экономии кнопки.
+Focus позволяет наблюдать и готовить линию без принятия будущего выстрела. Primary или Alt принимает собственный Commit. Пока Focus удерживается в том же контексте, после законного Recovery возможна повторная Preparation. Отпускание Focus завершает active/pending uncommitted Preparation и не стреляет. Q/E, Reload и Switch Set прекращают это намерение Focus: для возврата требуется новое намерение, а не сохранённый raw hold. Уже committed Action продолжает отвечать за свой долг.
+
+Focus обязан покупать другой control envelope за authored settle/acquisition, ограничение движения или facing, читаемый tell, exposure либо cancellation cost. Unprepared execution сохраняет причину применения. Длительности, камера, ограничения и tell задаются Pattern и проверяются прототипом; один бесплатный бонус точности не является достаточной grammar.
+
+Dual может иметь точный thrust, braced discharge, narrow line или charged strike как собственную Primary operation. Запрет dedicated Focus не запрещает точные операции. Hold/release также допустим только по физике конкретной операции, не как универсальная экономия кнопки.
 
 ## 7. Стихии и импульсы
 

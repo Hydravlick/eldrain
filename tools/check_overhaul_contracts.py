@@ -29,7 +29,7 @@ RUNTIME_FIELDS = {
     "magazine_current", "device_state", "provenance", "custody", "current_recovery", "current_action_debt",
 }
 FRAME_FORBIDDEN = {
-    "moveset", "moveset_profile", "primary_operation", "alt_operation", "aim_operation",
+    "moveset", "moveset_profile", "primary_operation", "alt_operation", "focus_operation",
     "magazine_capacity", "shot_consumption", "reload_service_ref", "operation_ids", "nativeaction", "native_action", "combo_chain", "pattern_id",
 }
 
@@ -134,13 +134,13 @@ def validate_records(records: list[Record]) -> list[str]:
             if (set(operations) != set(definitions) or len(operations) != len(set(operations))
                     or len(definitions) != len(set(definitions))):
                 fail("operation_ids must match unique local operation definitions")
-            if type(d.get("supports_aim")) is not bool:
-                fail("supports_aim must be boolean")
-            if d.get("supports_aim") is True and not present(d.get("aim_operation")):
-                fail("Aim support needs aim_operation")
-            if d.get("supports_aim") is False and "aim_operation" in d:
-                fail("aim_operation requires Aim support")
-            for key in ("primary_operation", "alt_operation", "aim_operation"):
+            if type(d.get("supports_focus")) is not bool:
+                fail("supports_focus must be boolean")
+            if d.get("supports_focus") is True and not present(d.get("focus_operation")):
+                fail("Focus support needs focus_operation")
+            if d.get("supports_focus") is False and "focus_operation" in d:
+                fail("focus_operation requires Focus support")
+            for key in ("primary_operation", "alt_operation", "focus_operation"):
                 if key in d and d[key] not in operations:
                     fail(f"{key} does not name a local operation")
     for record in records:
@@ -214,12 +214,13 @@ SET_KEYS = {
 INPUT_TARGETS = {
     "weapon_channel_1": ("LMB", "operation_edges", "07_Gear_Inventory/Equipment_PaperDoll"),
     "weapon_channel_2": ("RMB", "operation_edges", "07_Gear_Inventory/Equipment_PaperDoll"),
-    "aim": ("LeftAlt", "hold", "05_Combat_Survival/Weapon_Core"),
+    "weapon_focus": ("LeftAlt", "hold", "05_Combat_Survival/Weapon_Core"),
     "reload": ("R", "press", "05_Combat_Survival/Magic_Batteries"),
     "profile_q": ("Q", "operation_edges", "04_Player_Entities/Skill_Execution"),
     "profile_e": ("E", "operation_edges", "04_Player_Entities/Skill_Execution"),
-    "switch_weapon_set": ("TBD", "press", "07_Gear_Inventory/Equipment_PaperDoll"),
-    "cantrip_modifier": ("TBD", "hold", "04_Player_Entities/Skill_Execution"),
+    "switch_weapon_set": ("MouseWheelScroll", "press", "07_Gear_Inventory/Equipment_PaperDoll"),
+    "cantrip_variant": ("TBD", "hold", "04_Player_Entities/Skill_Execution"),
+    "player_menu": ("Tab", "tap_hold", "07_Gear_Inventory/Inventory_QoL"),
 }
 
 
@@ -321,19 +322,29 @@ def check_set_input_contracts(root: Path) -> list[str]:
             if not required <= record.keys() or not all(present(record.get(k)) for k in required):
                 errors.append(f"{path.relative_to(root)}: incomplete input record {action}")
                 continue
-            if record["input_mode"] not in {"press", "hold", "operation_edges"}:
+            if record["input_mode"] not in {"press", "hold", "operation_edges", "tap_hold"}:
                 errors.append(f"{path.relative_to(root)}: invalid input mode for {action}")
             if record["default_binding"] != "TBD":
-                key = (record["context"], normalize_binding(record["default_binding"]))
-                if key in bindings:
-                    errors.append(f"{path.relative_to(root)}: binding collision {bindings[key]} / {action} in {key[0]}")
-                bindings[key] = action
+                contexts = ({"gameplay", "player_menu"} if record["context"] == "gameplay_or_player_menu"
+                            else {record["context"]})
+                for context in contexts:
+                    key = (context, normalize_binding(record["default_binding"]))
+                    if key in bindings:
+                        errors.append(f"{path.relative_to(root)}: binding collision {bindings[key]} / {action} in {key[0]}")
+                    bindings[key] = action
         for action, (binding, mode, consumer) in INPUT_TARGETS.items():
             record = records.get(action, {})
             if (normalize_binding(record.get("default_binding", "")) != normalize_binding(binding)
-                    or record.get("input_mode") != mode or record.get("context") != "gameplay"
+                    or record.get("input_mode") != mode
+                    or record.get("context") != ("gameplay_or_player_menu" if action == "player_menu" else "gameplay")
                     or record.get("gameplay_owner") != f"[[{consumer}]]"):
                 errors.append(f"{path.relative_to(root)}: missing or incompatible semantic contract {action}")
+        unexpected = {key for key, record in records.items() if key not in INPUT_TARGETS
+                      and record.get('context') in {'gameplay', 'gameplay_or_player_menu'}}
+        if unexpected or not set(INPUT_TARGETS) <= set(records):
+            errors.append(f"{path.relative_to(root)}: competing or missing semantic input IDs")
+        if records.get("weapon_focus", {}).get("binding_status") != "prototype_bound":
+            errors.append(f"{path.relative_to(root)}: Focus binding must remain prototype-bound")
     return errors
 
 
@@ -699,10 +710,113 @@ def check_semantic_cleanliness(root: Path) -> list[str]:
     return errors
 
 
+PREPARATION_ACCESS_CONTRACTS = {
+    "weapon_focus_contract": ("05_Combat_Survival/Weapon_Core.md", {
+        "intent": "weapon_focus", "owner_count": "distinct_weapon_itemids",
+        "required_owner_count": 1, "support_field": "supports_focus",
+        "operation_field": "focus_operation", "dual_available": False,
+        "slot_order_independent": True, "changes_channels": False,
+        "runtime_owner": "ACTION_EXECUTION", "release_fires": False,
+        "resume": "same_intent_same_context_after_legal_recovery",
+    }),
+    "preparation_contract": ("05_Combat_Survival/Combat_Three_Debts.md", {
+        "definition_owners": ["Pattern", "SkillVariant"], "runtime_owner": "ACTION_EXECUTION",
+        "max_uncommitted": 1, "replacement": "cancel_previous_before_new",
+        "selection_before_claims": True, "commit_boundary": "gameplay_irreversible",
+        "replaces_committed_concurrency": False, "weapon_focus_consumers": ["weapon_operation"],
+        "focus_break_intents": ["profile_q", "profile_e", "reload", "switch_weapon_set"],
+    }),
+    "profile_preparation_contract": ("04_Player_Entities/Skill_Execution.md", {
+        "definition_owner": "SkillVariant", "targeting_requires_weapon_focus": False,
+        "invocation": "authored_operation_edges", "cantrip_selection": "modifier_at_activation",
+        "variant_binding": "latched", "modifier_must_remain_held": False,
+        "missing_battery_selects_cantrip": False, "unsupported_cantrip_selects_full": False,
+    }),
+    "battery_access_contract": ("07_Gear_Inventory/Inventory_Architecture.md", {
+        "owner": "Inventory", "baseline": "generic_ready_access",
+        "dedicated_provider": "installed_thermos_interface", "accepted_item_class": "Battery",
+        "expansion_positions": [1, 2], "occupied_by": "ItemID", "cargo_immediate": False,
+        "generic_ready_eligible": True, "dedicated_ready_eligible": True,
+        "discharge_placement": "unchanged", "drained_occupies_position": True,
+        "refill_owner": "ACTION_EXECUTION",
+        "refill_sequence": ["remove_stow_or_drop_drained", "retrieve_full_from_cargo", "place_full"],
+        "energy_wallet": False,
+    }),
+    "battery_return_contract": ("05_Combat_Survival/Magic_Batteries.md", {
+        "trigger": "successful_extraction", "source_state": "Drained", "destination": "Hub",
+        "result_state": "Full", "same_item_id": True, "ordinary_recharge_cost": "free",
+        "waiting_timer": False, "permanent_sink": "physical_item_loss",
+    }),
+    "player_menu_contract": ("07_Gear_Inventory/Inventory_QoL.md", {
+        "intent": "player_menu", "key_down": "pending_only", "closed_tap": "persistent",
+        "persistent_tap": "closed", "closed_hold_threshold": "temporary",
+        "temporary_release": "closed", "persistent_hold_release": "persistent",
+        "threshold": "prototype_bound_accessibility",
+    }),
+    "set_switch_input_contract": ("07_Gear_Inventory/Equipment_PaperDoll.md", {
+        "intent": "switch_weapon_set", "cancels_uncommitted_preparation": True,
+        "execution_boundary": "earliest_legal_action_boundary",
+        "bound_context": ["operation", "recipient", "context_generation"],
+        "old_held_intent_reinterpreted": False, "preserves_committed_debt": True,
+    }),
+}
+
+
+def read_named_contract(path: Path, name: str) -> dict:
+    found = []
+    for block in re.findall(r"```yaml\s*\n(.*?)```", path.read_text(encoding="utf-8-sig"), re.S):
+        if re.search(rf"^{re.escape(name)}:", block, re.M):
+            found.append(load_yaml(block).get(name))
+    if len(found) != 1 or not isinstance(found[0], dict):
+        raise ValueError(f"expected exactly one {name} mapping")
+    return found[0]
+
+
+def validate_preparation_access_contract(name: str, actual: dict) -> list[str]:
+    """Check accepted declarations; never resolve input, targets or resource transactions."""
+    expected = PREPARATION_ACCESS_CONTRACTS[name][1]
+    errors = []
+    if set(actual) != set(expected):
+        errors.append(f"{name}: missing/extra responsibility fields")
+    for key, value in expected.items():
+        if actual.get(key) != value or type(actual.get(key)) is not type(value):
+            errors.append(f"{name}: incompatible {key}")
+    return errors
+
+
+def check_preparation_access_contracts(root: Path) -> list[str]:
+    errors = []
+    for name, (relative, _) in PREPARATION_ACCESS_CONTRACTS.items():
+        try:
+            errors.extend(f"{relative}: {e}" for e in validate_preparation_access_contract(
+                name, read_named_contract(root / relative, name)))
+        except (OSError, ValueError, MetadataError) as exc:
+            errors.append(f"{relative}: {exc}")
+    # Declarations in active owners, not rejected alternatives in rationale/history.
+    for domain in sorted(GAMEPLAY_ROOTS):
+        for path in (root / domain).rglob('*.md'):
+            if parse_frontmatter(path).get('status') != 'active':
+                continue
+            body = path.read_text(encoding='utf-8-sig')
+            fields = re.findall(r'(?m)^\s*([\w]+):\s|^\[([\w]+)::', body)
+            keys = {a or b for a, b in fields}
+            forbidden = {'supports_aim', 'aim_operation', 'isAiming', 'GlobalAimState',
+                         'GlobalTargetingRecovery', 'selected_focus_recipient'}
+            if keys & forbidden:
+                errors.append(f'{path.relative_to(root)}: competing Focus/Targeting state')
+            if '[module_def_id:: long_thread_battery_rack]' in body:
+                errors.append(f'{path.relative_to(root)}: obsolete battery rack record')
+            for match in re.finditer(r'^\[battery_access_positions::\s*(.*?)\]$', body, re.M):
+                if match[1] not in {'1', '2'}:
+                    errors.append(f'{path.relative_to(root)}: Battery access must be small physical positions')
+    return errors
+
+
 def run(root: Path) -> list[str]:
     return (run_identity_checks(root) + check_set_input_contracts(root)
             + check_energy_contracts(root) + check_proficiency_contracts(root)
-            + check_pawn_ecology_contracts(root) + check_semantic_cleanliness(root))
+            + check_pawn_ecology_contracts(root) + check_semantic_cleanliness(root)
+            + check_preparation_access_contracts(root))
 
 
 def main() -> int:

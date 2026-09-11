@@ -39,7 +39,7 @@ read_when: "Когда нужен контракт «Механика: Архи�
 
 * **Принцип:** игрок заранее выбирает батареи, расходники и инструменты, которые можно применить без копания в грузе.
 * **Источник:** самостоятельная зона управления, а не число карманов на броне.
-* **Броня:** не добавляет ячейки быстрого доступа. Ось `cargo` модуля описывает собственную физическую работу с грузом и Back Slot, но не меняет телесный `CarryLoad` и не превращается в скрытый объём инвентаря. Прежний queue-effect `battery_rack` deprecated; он не расширяет Ready Access и не публикует действующий энергетический эффект.
+* **Equipment:** не создаёт hidden generic inventory volume или virtual resource queue. Специализированный физический interface может объявить dedicated access positions для конкретного ItemID class; размещение и доступность разрешает Inventory. Это не произвольное расширение Generic Ready Access каждым модулем.
 * **Неопределено:** точное число позиций, общий вес и правила смены раскладки проверяются прототипом.
 
 ### Б. Рюкзак (Cargo Backpack)
@@ -127,3 +127,33 @@ Battery owner проверяет Full eligibility и принимает атом
 - [[07_Gear_Inventory/Containers_Slots|Containers and Slots]] владеет поведением физического контейнера как предмета: содержимым, выпадением, сбросом и потерей доступа.
 - Экономика владеет получением, ценой и заменой, но не монтажной законностью.
 - Повреждённый support-модуль не запускает полевой демонтаж или каскадный пересчёт legality. Его runtime-эффект может отключиться; повторная полная валидация выполняется только у мастера.
+
+## Dedicated Battery access
+
+Generic Ready Access остаётся небольшим baseline набором подготовленных предметов, включая Full Batteries. [[07_Gear_Inventory/Thermos_System#Battery access interface|Специализированный Battery interface]] даёт небольшое расширение: одну или две dedicated физические позиции, принимающие только Battery ItemIDs. Это дополнительные места существующего Ready Access, не новая система доступа и не energy wallet.
+
+Inventory связывает позицию с конкретным installed interface и реальным ItemID, проверяет custody, placement, исправность/доступность крепления и reservation. Одна вещь не занимает одновременно Cargo и access position. Full в Generic или dedicated Ready Access может стать источником после обычной eligibility/reservation проверки; Cargo не становится immediate source.
+
+При atomic discharge тот же Drained ItemID остаётся на месте, с прежними custody и occupied position. Для пополнения игрок убирает, роняет или перекладывает Drained, достаёт Full из Cargo и размещает его в доступной позиции. Эти движения исполняются физическим Action с временем, руками, interruption и release points. До подтверждённого размещения новая Battery недоступна; прерывание сохраняет достигнутое размещение.
+
+Потеря или недоступность крепления убирает быстрый доступ, но не удаляет его содержимое. Перемещение/потеря вещей следует физическому placement и custody; расчёт Assembly не освобождает positions виртуально. Извлечение батарей не является remount самого модуля.
+
+```yaml
+battery_access_contract:
+  owner: Inventory
+  baseline: generic_ready_access
+  dedicated_provider: installed_thermos_interface
+  accepted_item_class: Battery
+  expansion_positions: [1, 2]
+  occupied_by: ItemID
+  cargo_immediate: false
+  generic_ready_eligible: true
+  dedicated_ready_eligible: true
+  discharge_placement: unchanged
+  drained_occupies_position: true
+  refill_owner: ACTION_EXECUTION
+  refill_sequence: [remove_stow_or_drop_drained, retrieve_full_from_cargo, place_full]
+  energy_wallet: false
+```
+
+Много батарей в Backpack разрешено: их число ограничивают масса, cargo/bulk burden, капитал под риском потери, меньшая свобода для лута и цена refill/маршрута. Dedicated access ограничивает немедленную доступность, не общий carry. Двадцать переносимых батарей не означают двадцать подготовленных источников. Точные timings манипуляций остаются prototype-bound.

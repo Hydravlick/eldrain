@@ -57,7 +57,7 @@ read_when: "Читайте при изменении поведения рюкз
 
 ## Ready Access не является контейнером брони
 
-`Ready Access` — зона подготовленных предметов Inventory Architecture. Визуальные карманы, пластины и декоративные элементы Термоса не создают её вместимость. Специализированный модуль может предоставить только явно названный интерфейс по собственному контракту; прежняя батарейная очередь superseded и не предоставляет доступ к дополнительным предметам. Full Battery и Drained Cell занимают реальное физическое размещение по Inventory contract.
+`Ready Access` — зона подготовленных предметов Inventory Architecture. Визуальные карманы, пластины и декоративные элементы Термоса не создают её вместимость. Специализированный физический Battery interface может предоставить одну или две dedicated access positions по [[07_Gear_Inventory/Inventory_Architecture#Dedicated Battery access|Inventory contract]]. Это позиции реальных Battery ItemIDs, не generic volume или виртуальная очередь. Разрядка оставляет Drained в занятой позиции; refill требует физического Action. Full Battery и Drained Cell занимают реальное физическое размещение по Inventory contract.
 
 ## Secure Container — отложено
 

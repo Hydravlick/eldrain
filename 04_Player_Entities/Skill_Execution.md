@@ -19,6 +19,28 @@ read_when: "Когда нужен контракт «Исполнение нав
 
 Q/E — отдельные authored active операции Field Profile. P — deterministic Trait и не проходит эту страницу как третья активная способность; общие правила P/Personal Trait разрешают свои доменные owners.
 
+## Targeting и варианты операции
+
+Q/E управляют собственной Preparation и не читают Weapon Focus, тип оружия или наличие ranged в Set. Targeted вариант получает press/hold Q → Prepare(Q), release Q → Commit(Q); instant вариант принимает Commit на press. Эти edges объявлены определением, а не автоматически навязаны всем навыкам. E устроена так же.
+
+Ability identity может иметь Full Operation Variant и Cantrip Operation Variant. Это разные явные definitions одной способности, не одна операция с аварийно заменённым fuel. `battery_version` и `cantrip_version` ссылаются на варианты; отсутствие батареи не меняет выбранный вариант.
+
+Cantrip modifier + press Q/E фиксирует Cantrip variant, если он authored. Модификатор можно отпустить; удержание самой Q/E продолжает Preparation выбранного варианта и release принимает его Commit. Повторное нажатие модификатора внутри старого intent не заменяет variant. Unsupported вариант даёт отказ без автоматической Full activation.
+
+Общие поля targeting, preview, camera, acquisition, facing, locomotion, hands, stabilization, tell и cancel берутся из [[05_Combat_Survival/Combat_Three_Debts#Targeting и одна Preparation|общей authored Preparation grammar]]. Конкретный Skill variant задаёт их смысл; Action исполняет и хранит runtime. Q/E начинает свою подготовку после отмены предыдущей uncommitted Preparation. Сохранившийся committed долг не исчезает. Поздний release отменённого Q/E остаётся событием отменённого intent: он не принимает Commit и не применяется к новой Preparation.
+
+```yaml
+profile_preparation_contract:
+  definition_owner: SkillVariant
+  targeting_requires_weapon_focus: false
+  invocation: authored_operation_edges
+  cantrip_selection: modifier_at_activation
+  variant_binding: latched
+  modifier_must_remain_held: false
+  missing_battery_selects_cantrip: false
+  unsupported_cantrip_selects_full: false
+```
+
 ## 2. Владение
 
 | Слой | Владеет | Не владеет |
@@ -34,7 +56,7 @@ Q/E — отдельные authored active операции Field Profile. P —
 
 ## Semantic intents и занятость рук
 
-[[01_Core_Vision/Input_Contract|Input Contract]] передаёт `profile_q / profile_e` и явный `cantrip_modifier` с пока неназначенным binding. Skill Execution выбирает опубликованную operation definition и фиксирует вариант/получателя для данного намерения; последующее отпускание модификатора не превращает buffered cantrip в другую полную операцию. Поддержку и цену телесной версии по-прежнему задаёт [[05_Combat_Survival/Magic_Batteries#6. Выбор Источника и Управление|cantrip contract]]. Battery-powered версия использует физическую транзакцию из энергетического контракта ниже.
+[[01_Core_Vision/Input_Contract|Input Contract]] передаёт `profile_q / profile_e` и явный `cantrip_variant` с пока неназначенным binding. Skill Execution выбирает опубликованную operation definition и фиксирует вариант/получателя для данного намерения; последующее отпускание модификатора не превращает buffered cantrip в другую полную операцию. Поддержку и цену телесной версии по-прежнему задаёт [[05_Combat_Survival/Magic_Batteries#6. Выбор Источника и Управление|cantrip contract]]. Battery-powered версия использует физическую транзакцию из энергетического контракта ниже.
 
 Q/E request проходит общий Action eligibility. Prepared `empty` не доказывает `free_hand`: проверяются actual occupancy у [[07_Gear_Inventory/Equipment_PaperDoll|PaperDoll]], temporary operation objects и outstanding claims. Если операция требует освобождения руки, перестройка должна реально произойти; она не исполняется невидимой третьей рукой. Body-executed операция без такого требования не получает искусственный запрет из-за dual configuration. Универсального требования свободной руки для всех Q/E нет.
 

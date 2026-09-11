@@ -82,6 +82,40 @@ release points reached
 
 Action фиксирует наступление Effect; результат попадания, состояние цели и расход ресурса разрешаются их доменными владельцами. Это не даёт Action права заново определять баллистику, статус или энергетическую транзакцию.
 
+### Targeting и одна Preparation
+
+Сначала control grammar выбирает конкретную operation и variant. Только затем Action проверяет её физическое исполнение. Совместимость скрытых claims никогда не определяет, что означала кнопка.
+
+Одновременно у Пешки существует максимум одна **uncommitted Preparation**. Новая Preparation заменяет старую через её cancellation path. Q/E прекращает Weapon Focus до начала своей операции; Reload и Switch Set также прекращают Focus, даже если следующий запрос пока ждёт legal Action boundary. Старое удержание не возобновляет отменённую Preparation. Освобождение физических claims отменённой подготовки следует release path; ожидание этого пути не создаёт вторую Preparation.
+
+Preparation — фаза до gameplay-irreversible boundary основного эффекта. Она может показывать цель, траекторию и камеру, ограничивать facing/движение, стабилизироваться, приобретать цель и давать tell. Commit начинается при выпуске, принятии hit-window/необратимого attack timing, atomic resource expenditure или иной фактической необратимой цене. Название анимации не откладывает уже принятый Commit. Отмена подготовки не возвращает понесённые отдельные физические последствия.
+
+Общая authored grammar используется **локально определением операции** Pattern или Skill variant:
+
+| Часть definition | Vocabulary / содержание |
+|---|---|
+| `target_solution` | point, line, entity, trajectory, cone, surface |
+| `presentation` | preview, camera behavior, readable feedback |
+| `physical_requirements` | facing, locomotion, hands/body |
+| `pre_commit` | acquisition, stabilization, telegraph, cancel, commit/release edge |
+
+Поля нужны только использующей их операции. Target solution остаётся связанным с исходной operation/recipient; новое Q не наследует weapon stabilization. Runtime Preparation, её отмена и связь с committed исполнением принадлежат Action. Отдельных Character.isAiming, GlobalAimState, GlobalTargetingRecovery или второго Targeting resolver нет.
+
+```yaml
+preparation_contract:
+  definition_owners: [Pattern, SkillVariant]
+  runtime_owner: ACTION_EXECUTION
+  max_uncommitted: 1
+  replacement: cancel_previous_before_new
+  selection_before_claims: true
+  commit_boundary: gameplay_irreversible
+  replaces_committed_concurrency: false
+  weapon_focus_consumers: [weapon_operation]
+  focus_break_intents: [profile_q, profile_e, reload, switch_weapon_set]
+```
+
+После Commit обычные правила Action владеют claims, Effect, interruption, Recovery и release points. Одна Preparation не является глобальным post-Commit lock и не отменяет долг другого Action. Sustained Focus может снова начать подготовку только после legal Recovery, в исходном контексте и пока его намерение не было отменено.
+
 ### Допуск, claims и release
 
 Запрос следующей операции проверяется по её объявленным требованиям, текущему телесному состоянию, outstanding claims уже начатых Actions и техническому состоянию нужного устройства. Запрос сам по себе ещё не означает начало исполнения.
