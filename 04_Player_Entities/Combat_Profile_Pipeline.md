@@ -66,7 +66,7 @@ combat_projection_contract:
 
 Race объясняет физиологическую причинность, Spec — метод работы. Их пересечение вручную определяет Field Profile; оно не получается суммой RPG-атрибутов. [[04_Player_Entities/Two_Paradox_Vector_Matrix|Двойной Парадокс]] вычисляет аналитическую координату и вопросы к дизайну, но не игровые параметры.
 
-Требования к законченному профилю принадлежат [[04_Player_Entities/Skill_Build_Philosophy#8. Уникальность полевого профиля|Skill Build Philosophy]] и [[04_Player_Entities/MVP_3x3_Design_Contract|MVP contract]]. Проекция не утверждает контент. Пока `arsenal_status: pending_content`, она показывает пустой арсенал; исторические `legacy_weapon_frame` не становятся fallback. Пустота валидна для архитектуры, но не означает готовый игровой профиль.
+Требования к законченному профилю принадлежат [[04_Player_Entities/Skill_Build_Philosophy#8. Уникальность полевого профиля|Skill Build Philosophy]] и [[04_Player_Entities/MVP_3x3_Design_Contract|MVP contract]]. Проекция не утверждает контент. Пока `arsenal_status: pending_content`, она показывает пустой арсенал; неопубликованные определения не становятся fallback. Пустота валидна для архитектуры, но не означает готовый игровой профиль.
 
 При `prof >= 1` разные люди используют полный moveset того же Pattern. Две копии Pattern имеют одно определение и разные runtime states. Проекция не меняет отношение Pawn ↔ Frame при смене предмета и не выбирает «лучшее оружие» вместо игрока.
 

@@ -100,7 +100,7 @@ Heat, cooling, magazine, condition, battery и mechanism state остаются 
 - Practical admission не отменяет физические требования: actual occupancy, повреждение тела, device state и Action claims проверяются отдельно.
 - BaseServiceCapacity не принадлежит Proficiency. Authored budget находится у Field Profile, окончательная assembly legality — у Thermos Assembly.
 
-Эти условия проверяются позднее поведением representative fixtures; структурные проверки не доказывают баланс или читаемость. Fixtures, реальные назначения и content в этом cutover не создаются.
+Эти условия проверяются позднее поведением representative fixtures; структурные проверки не доказывают баланс или читаемость. Fixture validation предшествует реальным назначениям и публикации арсенала.
 
 ## 6. Superseded и будущие изменения
 

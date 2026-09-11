@@ -19,7 +19,6 @@ tags:
   - bindings
   - intent
 binding_schema: inline_action_records
-consumer_migration: weapon_set_aim_and_reload_integrated
 related_files:
   - "[[07_Gear_Inventory/Equipment_PaperDoll]]"
   - "[[05_Combat_Survival/Weapon_Core]]"
@@ -58,7 +57,7 @@ Input Contract не выбирает reload recipient, не исполняет S
 - `hold` — намерение поддерживается удержанием; отпускание завершает именно это намерение, не создавая выстрел.
 - `operation_edges` — нажатие, удержание и отпускание передаются как события одного намерения. Определение операции задаёт, какие из них используются. Этот режим сам не вводит charge, release-fire, autorepeat, tap/hold threshold или дополнительное действие.
 
-Weapon Set теперь потребляет channels, Weapon Core — Aim intent; Skill Execution принимает намерения profile actions. Reload/service остаётся отдельным unmigrated consumer: эта страница не меняет его алгоритм или транзакцию. Switch Set и cantrip source modifier имеют semantic IDs, но их default bindings остаются `TBD`. Это неназначенные bindings, а не два назначения одной физической кнопки.
+Weapon Set теперь потребляет channels, Weapon Core — Aim intent; Skill Execution принимает намерения profile actions. Reload направляется в [[05_Combat_Survival/Weapon_Ranged|Weapon Ranged]] для выбора получателя и запроса service Action; физическую энергетическую транзакцию задаёт [[05_Combat_Survival/Magic_Batteries|Magic Batteries]]. Switch Set и cantrip source modifier имеют semantic IDs, но их default bindings остаются `TBD`. Это неназначенные bindings, а не два назначения одной физической кнопки.
 
 ### Weapon channel 1
 
@@ -137,7 +136,7 @@ Weapon Set теперь потребляет channels, Weapon Core — Aim inten
 [context:: gameplay]
 [gameplay_owner:: [[04_Player_Entities/Skill_Execution]]]
 [consumer_role:: explicit_cantrip_source_intent]
-[binding_status:: migration_required]
+[binding_status:: pending_design]
 
 Это сохранённое явное намерение выбрать телесную версию подходящей profile operation. Оно не активирует способность само и не заимствует Aim binding. Поддержка cantrip и цена тела принадлежат gameplay contract. Новый PC/gamepad binding здесь не назначается.
 

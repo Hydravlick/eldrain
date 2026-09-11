@@ -1,11 +1,15 @@
 # Milestone — Pawn Causality & Build Ecology
 
 **Дата:** 2026-09-08  
-**Статус:** authoritative pre-canon milestone.
+**Роль:** design rationale / research synthesis после canon cutover.
+
+**Gameplay authority:** [[04_Player_Entities/Skill_Build_Philosophy|Field Profile]], [[04_Player_Entities/Tags_System|Trait semantic/lifecycle boundary]], [[04_Player_Entities/Shell_Construction|Pawn value]], [[04_Player_Entities/Combat_Profile_Pipeline|read-only projection]], [[03_Factions_Societies/Quest_Engine|Work]], [[04_Player_Entities/Grimoire_Truth_Triangulation|knowledge result]].
+
+Этот документ сохраняет основания решений, failure modes, отвергнутые collapse-модели и acceptance/falsification criteria. Нормативные правила и schema читаются у linked active owners; формулировки исследования не являются второй gameplay authority. Исторические альтернативы ниже объясняют выбор, но не публикуют старую реализацию.
 
 ## Boundary guardrails
 
-Target architecture не вводит `Chassis` как mega-owner, отдельную универсальную `Service Aptitude` без собственной причинной модели и обязательную Passive только ради симметрии профилей. Эти понятия допустимы лишь если позже появится самостоятельная ответственность, которую невозможно честно выразить текущими owners.
+Target architecture не вводит `Chassis` как mega-owner, отдельную универсальную `Service Aptitude` без собственной причинной модели или отдельный Passive engine ради симметрии профилей. P является гарантированным Trait Field Profile по active owner. Отдельная сущность требует самостоятельной ответственности; новое имя само по себе не создаёт owner.
 
 ---
 

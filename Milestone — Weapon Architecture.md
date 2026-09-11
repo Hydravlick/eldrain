@@ -1,7 +1,11 @@
 # Milestone — Weapon Architecture
 
 **Дата:** 2026-09-08  
-**Статус:** authoritative pre-canon milestone.
+**Роль:** design rationale / research synthesis после canon cutover.
+
+**Gameplay authority:** [[05_Combat_Survival/Weapon_Core|Weapon identity]], [[05_Combat_Survival/Registries/Registry_Weapons|publication/schema]], [[05_Combat_Survival/Combat_Three_Debts|Action]], [[04_Player_Entities/Proficiency_Arsenal|Pawn↔Frame]], [[07_Gear_Inventory/Equipment_PaperDoll|Weapon Set]].
+
+Этот документ сохраняет основания решений, failure modes, отвергнутые collapse-модели и acceptance/falsification criteria. Нормативные правила и schema читаются у linked active owners; формулировки исследования не являются второй gameplay authority. Исторические альтернативы ниже объясняют выбор, но не публикуют старую реализацию.
 
 ## Boundary guardrails
 
@@ -948,7 +952,7 @@ two complementary 1H Primaries
 
 # 25. Что prototype-bound
 
-До canon migration не нужно знать:
+Для принятых owner contracts не требуется заранее знать:
 
 - точные миллисекунды Recovery;
     

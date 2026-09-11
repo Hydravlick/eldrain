@@ -25,6 +25,8 @@ Authored closure conditions may consume their named lifecycle, Quest, body or ma
 
 The active generic path requires a living READY Pawn in the Hub, a formed life (`3` reserved lifetime manifestation slots and `3` revealed manifestations), and a resolved authored closure arc. Exact content patterns are authored elsewhere; a pattern is fixed to `PawnID` and cannot be rerolled by cancel, failure, Breakline, Recovery, disconnect, or death.
 
+The formed-life criterion reads the current lifetime reservation/reveal contract in [[04_Player_Entities/Tags_System|Tags System]], also consumed by Spawn and Foundlings. It does not depend on the provisional `light / situational` taxonomy, combat-effect composition or rarity. Not every Pawn must fill all slots; these conditions apply only to this generic closure path. The unresolved First Return condition is not chosen here.
+
 When eligibility becomes true, the system presents one irreversible decision immediately:
 
 ```text

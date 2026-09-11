@@ -1,7 +1,11 @@
 # Milestone — Weapon Set, Inputs, Aim & Battery Cycle
 
 **Дата:** 2026-09-08  
-**Статус:** authoritative pre-canon milestone.
+**Роль:** design rationale / research synthesis после canon cutover.
+
+**Gameplay authority:** [[07_Gear_Inventory/Equipment_PaperDoll|Weapon Set]], [[01_Core_Vision/Input_Contract|Input]], [[05_Combat_Survival/Weapon_Core|Aim consumer]], [[05_Combat_Survival/Weapon_Ranged|magazine/reload]], [[05_Combat_Survival/Magic_Batteries|Battery transaction]].
+
+Этот документ сохраняет основания решений, failure modes, отвергнутые collapse-модели и acceptance/falsification criteria. Нормативные правила и schema читаются у linked active owners; формулировки исследования не являются второй gameplay authority. Исторические альтернативы ниже объясняют выбор, но не публикуют старую реализацию.
 
 ## Boundary guardrails
 
@@ -598,7 +602,7 @@ Weapon magazine
 → fine-grained local combat resource
 ```
 
-Разрядка батареи переводит одну физическую единицу подготовленного энергетического ресурса в полный operational reserve конкретного recipient. После транзакции отдельные выстрелы принадлежат grammar оружия и его magazine, а не батарейной бухгалтерии.
+Разрядка батареи переводит одну физическую единицу подготовленного энергетического ресурса в полный magazine конкретного recipient. После транзакции отдельные выстрелы принадлежат grammar оружия и его magazine, а не батарейной бухгалтерии.
 
 Это намеренно исключает:
 
@@ -674,7 +678,7 @@ reload early
 
 wait
 → preserve battery efficiency
-→ accept lower current reserve
+→ accept lower current magazine
 ```
 
 Эта цена должна быть читаема без дробной энергетической арифметики. Батарея остаётся дискретным ItemID, magazine — дискретным локальным запасом оружия.
@@ -824,7 +828,7 @@ one recipient magazine = Capacity
 
 ## Why reload selects one recipient per press
 
-`R` выражает одно намерение обслуживания, а не команду «восстановить весь loadout». Поэтому dual ranged сохраняет два независимых weapon reserves и две реальные транзакции.
+`R` выражает одно намерение обслуживания, а не команду «восстановить весь loadout». Поэтому dual ranged сохраняет два независимых magazine states; каждый reload адресует один ItemID и требует отдельной транзакции.
 
 Первый `R` выбирает одного recipient по детерминированной политике. После завершения второй `R` заново оценивает состояние.
 

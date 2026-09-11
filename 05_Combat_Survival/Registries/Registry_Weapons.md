@@ -21,14 +21,13 @@ read_when: "Когда нужны поля Frame/Pattern и проверка д�
 |---|---|---|---|
 | Действующее каноническое определение | `active` | `canonical` | `true` |
 | Диагностический fixture | `draft` | `diagnostic_fixture` | `false` |
-| Старый исследовательский placeholder | `deprecated` | `legacy_weapon_scaffolding` | `false` |
 | Неопубликованный проект | `draft` | `unpublished` | `false` |
 
 Активный арсенал включает только записи, удовлетворяющие **всем трём** условиям первой строки. Fixtures выбираются отдельно по второй строке и никогда не попадают в канонический счётчик. Отсутствующее поле не означает разрешение публикации.
 
-После Weapon Identity Cutover отсутствие активных Frames и Patterns — допустимое временное состояние Overhaul. Старый корпус сохранён для истории, его ID и taxonomy не обязательны для будущего контента. Он не служит набором fixtures по умолчанию.
+Нулевой corpus активных Frames/Patterns допустим. Неопубликованные определения и fixtures не становятся fallback действующего арсенала.
 
-Следующий контентный шаг — diagnostic fixtures после schema gate. Служебные ID имеют префикс `fixture_` (например, `fixture_close_1h`); эта договорённость не создаёт записей. Реальные taxonomy, названия, starting arsenal и Patterns определяются позднее, после проверки fixtures, без предпочтения legacy-конструкций.
+Следующий контентный шаг — diagnostic fixtures после schema gate. Служебные ID имеют префикс `fixture_` (например, `fixture_close_1h`); эта договорённость не создаёт записей. Реальные taxonomy, названия, starting arsenal и Patterns определяются позднее, после проверки fixtures, без предпочтения прежней taxonomy.
 
 ## Frame record
 
@@ -79,9 +78,11 @@ Operation definitions в теле Pattern описывают moveset, траек
 
 [[04_Player_Entities/Proficiency_Arsenal#Контракт доступа|Proficiency]] хранится как `Pawn ↔ Frame`. При `prof >= 1` все Patterns этого Frame предоставляют полный собственный moveset. Ни Pattern, ни ItemID не получают своего уровня prof. Mastery, его unlocks/steps/expressions и prof-specific branches не являются требованиями валидности оружейного определения.
 
-## Legacy construction IDs
+## Definition и physical identity
 
-Старое inline-поле `instance_id` в placeholder-страницах называло повторяемую authored-конструкцию. Его семантический преемник — `pattern_id`, а не runtime ItemID. Старые записи не преобразуются автоматически в Patterns: они остаются только в `legacy_weapon_scaffolding`, вместе с их movesets, Mastery-полями и material/origin идеями. Эти поля не проверяются как target definition schema.
+Повторяемая конструкция имеет `pattern_id`; конкретная физическая вещь — ItemID со ссылкой на Pattern. Поле `instance_id` не используется в definition schema. Обычный ItemID не создаёт новый moveset.
+
+Frame Class / `load_tier` остаётся отдельным нерешённым gear-progression axis по [[05_Combat_Survival/Weapon_Core#4. Публикация и граница gear progression|границе Weapon Core]], не обязательным полем Frame/Pattern и не prerequisite Diagnostic Fixtures.
 
 ## Активные Frames
 

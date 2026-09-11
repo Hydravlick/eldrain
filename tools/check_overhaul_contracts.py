@@ -17,7 +17,6 @@ KINDS = {"weapon_frame": "frame_id", "weapon_pattern": "pattern_id"}
 PUBLICATION = {
     "canonical": ("active", True),
     "diagnostic_fixture": ("draft", False),
-    "legacy_weapon_scaffolding": ("deprecated", False),
     "unpublished": ("draft", False),
 }
 FRAME_FIELDS = (
@@ -89,8 +88,6 @@ def validate_records(records: list[Record]) -> list[str]:
                 or type(d.get("canonical_content")) is not bool
                 or d.get("canonical_content") is not expected[1]):
             fail("invalid weapon publication tuple")
-        if state == "legacy_weapon_scaffolding":
-            continue  # Historical records are not target schema or fixtures.
         if state == "diagnostic_fixture" and not str(identifier).startswith("fixture_"):
             fail("diagnostic ID must start with fixture_")
         fields = set(keys_in(d))
@@ -148,7 +145,7 @@ def validate_records(records: list[Record]) -> list[str]:
                     fail(f"{key} does not name a local operation")
     for record in records:
         d = record.data
-        if d.get("entity_kind") != "weapon_pattern" or d.get("publication_state") == "legacy_weapon_scaffolding":
+        if d.get("entity_kind") != "weapon_pattern":
             continue
         if d.get("publication_state") == "unpublished" and not d.get("frame_id"):
             continue
@@ -183,6 +180,8 @@ def run_identity_checks(root: Path) -> list[str]:
                      if r.data.get("entity_kind") == "weapon_frame" and published(r.data)}
     combos = root / "04_Player_Entities/Registries/Registry_Combos.md"
     if combos.exists():
+        if re.search(r"\[legacy_(?:weapon_frame|prof|combat_role)::", combos.read_text(encoding="utf-8-sig")):
+            errors.append("Registry_Combos: migration-only assignments are not current profile data")
         for identifier in re.findall(r"\[weapon_frame::\s*([^\]]+)\]", combos.read_text(encoding="utf-8-sig")):
             if identifier.strip() not in active_frames:
                 errors.append(f"{combos.relative_to(root)}: noncanonical weapon_frame {identifier}")
@@ -648,10 +647,62 @@ def check_pawn_ecology_contracts(root: Path) -> list[str]:
     return errors
 
 
+
+def check_semantic_cleanliness(root: Path) -> list[str]:
+    """Check semantic location, not words in rationale or reference history."""
+    errors = []
+    for relative in (
+        "04_Player_Entities/Registries/Registry_Combos.md",
+        "04_Player_Entities/Registries/Registry_Tags.md",
+        "04_Player_Entities/Registries/Registry_Parameter_Contracts.md",
+        "01_Core_Vision/Input_Contract.md",
+    ):
+        path = root/relative
+        if not path.exists():
+            continue
+        data = parse_frontmatter(path)
+        if data.get("status") != "active":
+            continue
+        text = path.read_text(encoding="utf-8")
+        fields = re.findall(r"\[([\w]+)::\s*([^\]]*)\]", text)
+        keys = set(data) | {k for k, _ in fields}
+        if path.name == "Registry_Combos.md":
+            if keys & {"legacy_weapon_frame", "legacy_prof", "legacy_combat_role"}:
+                errors.append(f"{relative}: obsolete weapon assignments")
+        elif path.name == "Registry_Tags.md":
+            if any("mastery" in k.lower() for k in keys) or any(
+                    k == "tag_kind" and v.strip() == "mastery" for k, v in fields):
+                errors.append(f"{relative}: historical Mastery record in current registry")
+        elif path.name == "Input_Contract.md" and "consumer_migration" in keys:
+            errors.append(f"{relative}: completed migration bookkeeping")
+    # Current semantic consumers may not publish renamed compatibility identifiers.
+    for domain in sorted(GAMEPLAY_ROOTS):
+        for path in sorted((root/domain).rglob("*.md")):
+            data = parse_frontmatter(path)
+            if data.get("status") != "active":
+                continue
+            text = path.read_text(encoding="utf-8")
+            fields = re.findall(r"(?m)^\[[\w]+::\s*([^\]]*)\]", text)
+            for value in fields:
+                if re.search(r"\b(?:frame_native_action|hero_kit_action|frame_action)\b", value):
+                    errors.append(f"{path.relative_to(root)}: obsolete operation vocabulary")
+                    break
+    todo = root/"09_Project_Management/TODO.md"
+    if todo.exists():
+        for line in todo.read_text(encoding="utf-8").splitlines():
+            if line.startswith("- [ ]") and re.search(
+                    r"BaseFrameProf|EffectiveFrameProf|Frame-mastery|mastery.tags", line, re.I):
+                errors.append("TODO: superseded Mastery future work")
+    for path in root.glob("Milestone*.md"):
+        if re.search(r"(?mi)^\*\*Статус:\*\*.*authoritative pre-canon", path.read_text(encoding="utf-8")):
+            errors.append(f"{path.name}: rationale still claims pre-canon authority")
+    return errors
+
+
 def run(root: Path) -> list[str]:
     return (run_identity_checks(root) + check_set_input_contracts(root)
             + check_energy_contracts(root) + check_proficiency_contracts(root)
-            + check_pawn_ecology_contracts(root))
+            + check_pawn_ecology_contracts(root) + check_semantic_cleanliness(root))
 
 
 def main() -> int:

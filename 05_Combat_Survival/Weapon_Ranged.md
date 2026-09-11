@@ -74,6 +74,6 @@ Pattern описывает reload requirements и ожидаемую проце�
 
 Pattern определяет конкретное поведение выпуска, подготовку, optional Alt/Aim и сервисные требования внутри переносимого языка Frame. Две физические копии используют этот же moveset, сохраняя независимые device states. Ordinary ItemID не создаёт новый цикл атак. Владение определяется отношением Pawn ↔ Frame, без отдельного prof для моделей.
 
-Прежние ranged Frames — legacy scaffolding, а не текущая taxonomy или будущие fixtures. Публикация определяется [[05_Combat_Survival/Registries/Registry_Weapons|Registry Weapons]]. Временное отсутствие активных ranged definitions допустимо.
+Публикация определяется [[05_Combat_Survival/Registries/Registry_Weapons|Registry Weapons]]. Временное отсутствие активных ranged definitions допустимо.
 
 Сильный дальний предмет покупает повторяемость или узкое покрытие попадания, но не получает право решать маршрут, открывать аномальную процедуру или игнорировать мили, Q/E, обход и третью сторону.

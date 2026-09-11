@@ -30,11 +30,11 @@ read_when: Когда нужен контракт «Реестр личных т
 
 Пожизненные места, формы, сигналы и ограничения действия определяет [[04_Player_Entities/Tags_System]]; отношение Pawn ↔ Frame определяется [[04_Player_Entities/Proficiency_Arsenal]].
 
-Запись публикует `tag_form:: light | situational`, точные поля выбранной формы и ссылку на зарегистрированный сигнал. `design_status:: concept` и `prototype` не означают финальную калибровку.
+Существующие concept/prototype records используют рабочие `light / situational` и поля соответствующего authoring template. Это не окончательная taxonomy или обязательный closed source catalogue для будущего Trait Grammar. Утверждённые semantic/lifecycle boundaries принадлежат Tags System. `design_status:: concept` и `prototype` не означают финальную калибровку.
 
 Поле `source_kind` не разрешает выдачу свойства; ограничения, включая `breakline`, задаёт [[04_Player_Entities/Tags_System#3. Не дерево и не валюта|Tags System]].
 
-## Шаблон лёгкого тега
+## Рабочий шаблон лёгкого тега (prototype-bound)
 
 ```markdown
 [id:: template_light_tag]
@@ -44,7 +44,7 @@ read_when: Когда нужен контракт «Реестр личных т
 [source_kind:: first_return|origin|practice|anomaly|relic|breakline]
 [source_event:: event_or_item_id]
 [rarity:: common]
-[owner_domain:: body|action|frame_action|relic_carrier]
+[owner_domain:: body|action|pattern_operation|relic_carrier]
 [setting_channel:: body|action|craft|environment]
 [signal_ref:: registered_signal_id]
 [physical_or_action_owner:: owner_id]
@@ -61,9 +61,9 @@ read_when: Когда нужен контракт «Реестр личных т
 [design_status:: prototype]
 ```
 
-Прежний обязательный XOR `mastery_step / mastery_expression` — superseded weapon schema. Он не требуется ни тегу, ни Frame/Pattern. Прототипы, использовавшие mastery как происхождение или acquisition-модель, остаются только deprecated history. Переименования в Traits и нового acquisition здесь нет.
+Universal Mastery не входит в Trait schema и не превращается автоматически в Personal Trait.
 
-## Шаблон ситуационного тега
+## Рабочий шаблон ситуационного тега (prototype-bound)
 
 ```markdown
 [id:: template_situational_tag]
@@ -73,7 +73,7 @@ read_when: Когда нужен контракт «Реестр личных т
 [source_kind:: first_return|origin|practice|anomaly|relic|breakline]
 [source_event:: event_or_item_id]
 [rarity:: uncommon]
-[owner_domain:: body|action|frame_action|relic_carrier]
+[owner_domain:: body|action|pattern_operation|relic_carrier]
 [setting_channel:: body|action|craft|environment]
 [signal_ref:: registered_signal_id]
 [physical_or_action_owner:: owner_id]
@@ -89,47 +89,6 @@ read_when: Когда нужен контракт «Реестр личных т
 [exclusive_with:: none]
 [design_status:: prototype]
 ```
-
-## Legacy: Frame-mastery
-
-> [!warning] Deprecated weapon research
-> Следующий блок не является действующим тегом или fixture. Его поля сохранены как история старой Mastery-модели; автоматической конвертации в Personal Trait нет.
-
-### Обратная ножевая хватка
-
-**Тултип:** `Короткий рез: при занятой второй руке Frame можно извлечь обратным хватом. До завершения первого Recovery нельзя поставить блок или сменить предмет.`
-
-[id:: reverse_knife_grip]
-[tag:: reverse_knife_grip]
-[tag_form:: situational]
-[tag_kind:: mastery]
-[source_kind:: practice]
-[source_event:: survived_close_contact_with_offhand_occupied]
-[rarity:: uncommon]
-[owner_domain:: frame_action]
-[setting_channel:: action]
-[signal_ref:: short_cut_1h.draw_with_offhand_occupied]
-[physical_or_action_owner:: short_cut_1h.draw]
-[mastery_frame:: short_cut_1h]
-[mastery_step:: none]
-[mastery_expression:: allow_reverse_grip_draw_while_offhand_occupied_then_lock_guard_and_item_swap_until_first_recovery]
-[mastery_expression_phase:: draw]
-[trigger:: draw_short_cut_1h_while_offhand_is_occupied]
-[affected_parameter:: none]
-[modifier:: none]
-[rule_shift:: reverse_grip_draw_is_allowed_and_guard_plus_item_swap_remain_locked_until_first_recovery_ends]
-[tell_owner:: reverse_grip_icon_and_locked_guard_swap_inputs]
-[tell_observer:: visible_reverse_grip_and_committed_first_attack_pose]
-[cost_or_debt:: lost_guard_and_item_swap_until_first_recovery]
-[counterplay:: force_or_feint_the_committed_first_contact_then_punish_recovery]
-[stack_group:: short_cut_1h_draw_expression]
-[exclusive_with:: other_short_cut_1h_draw_rewrites]
-[design_status:: deprecated]
-[canonical_content:: false]
-[publication_state:: legacy_weapon_scaffolding]
-
-* **Как работает накопление:** это expression-вариант и он не меняет proficiency. Отдельный step-вариант может открыть поле владения или повысить prof, но никогда не несёт эту обратную хватку. При базовом `3` обратная хватка остаётся допустимой, если её фаза свободна.
-* **Почему это не скрытый бонус:** карточка показывает `база + mastery = итог`, стойка видна в руках, а цена существует в том же коротком обмене.
 
 ## Prototype: ситуационная телесная мутация
 
@@ -162,38 +121,6 @@ read_when: Когда нужен контракт «Реестр личных т
 * **Почему это не бесплатный навык:** владелец действительно ранен и сохраняет обычную цену Bleed. Противник может не входить в контакт, использовать герметичный слой либо прекратить давление после первого tell.
 * **Что не утверждено:** радиус контакта, buildup, длительность poison и допустимые материалы защиты.
 
-## Legacy: неоружейный mastery prototype
-
-Следующий concept не публикуется как действующая Trait/acquisition grammar и не преобразуется в replacement Mastery.
-
-### Выученный перевязочный ритм
-
-[id:: learned_bandage_rhythm]
-[tag:: learned_bandage_rhythm]
-[tag_form:: light]
-[tag_kind:: mastery]
-[source_kind:: practice]
-[source_event:: completed_field_treatment_practice]
-[rarity:: common]
-[owner_domain:: action]
-[setting_channel:: action]
-[signal_ref:: stop_and_bandage]
-[physical_or_action_owner:: bandage_commitment]
-[trigger:: using_standard_bandage_on_self]
-[affected_parameter:: bandage_commitment_time]
-[modifier:: TEST_VALUE_seconds]
-[rule_shift:: none]
-[tell_owner:: final_treatment_time_breakdown_and_distinct_prepared_hand_pose]
-[tell_observer:: shortened_hand_sequence_must_remain_animated]
-[cost_or_debt:: none]
-[counterplay:: punish_the_visible_treatment_commitment]
-[stack_group:: personal_treatment_time]
-[exclusive_with:: none]
-[design_status:: deprecated]
-[canonical_content:: false]
-
-* **Граница:** это один явный параметр одного действия, а не Dexterity, которая ускоряет лечение, двери, reload и revive одновременно.
-* **Что не утверждено:** величина изменения и правило получения mastery.
 
 ## Зарезервированные направления
 
@@ -232,7 +159,7 @@ read_when: Когда нужен контракт «Реестр личных т
 
 - `signal_ref` не существует в активном реестре или authored action contract;
 - `light` не публикует один `affected_parameter` и точный `modifier`;
-- `situational` не публикует trigger, rule shift, внешний tell и текущую контрмеру;
+- `situational` не публикует условие, rule shift и необходимую информацию участникам; внешний tell и контрмера требуются, когда меняется непосредственный ответ противника;
 - один коэффициент влияет на несколько независимых действий;
 - механика требует знания Race, Spec, другого tag ID, rarity или скрытого будущего;
 - Origin получает дополнительное место или отдельный силовой пул;

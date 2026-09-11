@@ -31,7 +31,7 @@ read_when: Когда нужен контракт «Реестр парамет�
 [parameter_contract_id:: stable_id]
 [parameter_domain:: named_result_domain]
 [domain_owner:: canonical_resolver | MISSING_OWNER]
-[base_source:: body | frame_action | hero_kit_action | gear | state]
+[base_source:: body | pattern_operation | profile_operation | gear | state]
 [authorized_requesters:: source_family; ...]
 [resolution_order:: identity_base -> gear -> state -> authorized_modifier_contracts]
 [allowed_operations:: add | replace_by_declared_rule | clamp_by_domain_policy]
@@ -46,10 +46,10 @@ read_when: Когда нужен контракт «Реестр парамет�
 
 ## Активные домены
 
-### `frame_native_action`
-Стабильный ключ сохранён для совместимости ссылок. После weapon identity cutover он обозначает параметр операции Pattern; он не возвращает `Frame.NativeAction` как владельца moveset или текущего Recovery.
+### `pattern_operation`
+Контракт описывает параметр authored Pattern operation. Текущая фаза, claims и долг принадлежат конкретному Action.
 
-[parameter_contract_id:: frame_native_action]
+[parameter_contract_id:: pattern_operation]
 [parameter_domain:: один конечный параметр операции конкретного оружейного Pattern]
 [domain_owner:: [[05_Combat_Survival/Weapon_Core|Weapon Core]]]
 [base_source:: pattern_operation_definition]
@@ -60,11 +60,11 @@ read_when: Когда нужен контракт «Реестр парамет�
 [does_not_own:: P/Q/E result | global damage | all-frame gunfeel]
 [status:: active]
 
-### `hero_kit_action`
-[parameter_contract_id:: hero_kit_action]
+### `profile_operation`
+[parameter_contract_id:: profile_operation]
 [parameter_domain:: один конечный параметр конкретного активного Q/E действия]
 [domain_owner:: [[04_Player_Entities/Skill_Build_Philosophy|Философия навыков и билдостроения]]]
-[base_source:: hero_kit_action]
+[base_source:: profile_operation]
 [authorized_requesters:: installed_module; trait_rule; declared_state]
 [resolution_order:: identity_base -> gear -> state -> authorized_modifier_contracts]
 [allowed_operations:: add | replace_by_declared_rule | clamp_by_domain_policy]
@@ -77,7 +77,7 @@ read_when: Когда нужен контракт «Реестр парамет�
 [parameter_domain:: один physical Dissonance occurrence и его вклад в RecentDissonancePulse]
 [domain_owner:: [[05_Combat_Survival/Dissonance_System|Диссонанс]]]
 [base_source:: declared_physical_action_or_state]
-[authorized_requesters:: frame_action; hero_kit_action; device; backlash; declared_environment_or_status]
+[authorized_requesters:: pattern_operation; profile_operation; device; backlash; declared_environment_or_status]
 [resolution_order:: identity_base -> gear -> state -> authorized_modifier_contracts]
 [allowed_operations:: replace_by_declared_rule | clamp_by_domain_policy]
 [intrinsic_debt_required:: yes]

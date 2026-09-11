@@ -39,4 +39,4 @@ related_files:
 
 Pattern может менять opener, короткое альтернативное действие, геометрию продолжения и ожидаемую форму Recovery внутри Frame envelope. Новый хват не классифицируется автоматически: применяется Frame boundary test. Конкретный ItemID не переписывает moveset и не владеет текущим Action debt.
 
-Прежние шесть melee Frames и их authored-примеры сохранены как legacy scaffolding. Они не задают актуальные роли арсенала или будущие fixtures. Публикуемые определения и допустимое пустое состояние находятся в [[05_Combat_Survival/Registries/Registry_Weapons|Registry Weapons]].
+Публикуемые определения и допустимое пустое состояние находятся в [[05_Combat_Survival/Registries/Registry_Weapons|Registry Weapons]].

@@ -45,7 +45,7 @@ The proposed separation of identity, tuning and exceptional rules is healthy **i
 
 The terminology matters. [Gear_Progression](C:/Hobby/Eldrain/07_Gear_Inventory/Gear_Progression.md) and [Weapon_Core (line 64)](/C:/Hobby/Eldrain/05_Combat_Survival/Weapon_Core.md:64) explicitly reserve player-facing T1/T2/T3 for Anomaly phases. Weapon construction classes are **Scrap / Guild / Expedition**; `load_tier` is technical data. `Alter` is an authored variation, and Relic is not another construction class.
 
-The weapon records demonstrate the distinction. The quarantine marker has `load_tier: 1` and an `uncommon..rare` band; the storm-measuring rig has `load_tier: 3`, `rare..epic`, foreign origin and a `stitched_trace` source. These are separate fields with specific relationships, not one interchangeable Tier. See the [pulse-tool instances](C:/Hobby/Eldrain/05_Combat_Survival/Weapons/Pulse_Tool_1H.md) and [condenser instances](C:/Hobby/Eldrain/05_Combat_Survival/Weapons/Condenser_Rig_2H.md).
+The weapon records demonstrate the distinction. The quarantine marker has `load_tier: 1` and an `uncommon..rare` band; the storm-measuring rig has `load_tier: 3`, `rare..epic`, foreign origin and a `stitched_trace` source. These are separate fields with specific relationships, not one interchangeable Tier. See the pulse-tool instances (историческая запись; Git history) and condenser instances (историческая запись; Git history).
 
 **3. Material identity should come from layered eligibility, not four competing loot tables.**
 

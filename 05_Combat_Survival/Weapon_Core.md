@@ -17,10 +17,10 @@ type: system
 index_route: owner
 index_group: combat_survival
 index_order: 180
-index_summary: "Определяет состояния, разрешение и связи: Оружие: Магострельный Канон и Тиры."
-read_when: "Когда нужен контракт «Оружие: Магострельный Канон и Тиры» и его границы с соседними владельцами."
+index_summary: "Определяет состояния, разрешение и связи: Оружие: идентичность и исполнение."
+read_when: "Когда нужен контракт «Оружие: идентичность и исполнение» и его границы с соседними владельцами."
 ---
-# Оружие: Магострельный Канон и Тиры
+# Оружие: идентичность и исполнение
 
 ## 1. Главный принцип
 
@@ -69,7 +69,7 @@ Frame даёт игроку переносимое понимание незна
 
 Pattern — повторяемая физическая конструкция внутри Frame. Он определяет конкретный moveset: Primary, необязательный Alt, необязательную поддержку Aim, траектории, подготовку, порядок операций, сервисные требования, видимые состояния конструкции и поведение выпуска. Aim и Alt не обязательны и не являются одной операцией. Pattern не знает конкретного соседнего Pattern и не публикует pair-specific combo matrix.
 
-ItemID — эта физическая вещь, ссылающаяся на Pattern. Она хранит condition, повреждения, текущий Heat и device state, rarity/affixes, provenance, custody и экономическую судьбу. Magazine позднее также будет runtime state оружейного ItemID; его ресурсная миграция здесь не выполняется. Обычный случайный экземпляр не получает новый moveset. Две копии одного Pattern используют одни определения операций, но независимо повреждаются, нагреваются и меняют владельца.
+ItemID — эта физическая вещь, ссылающаяся на Pattern. Она хранит condition, повреждения, текущий Heat и device state, rarity/affixes, provenance, custody и экономическую судьбу. Magazine, если Pattern использует эту модель, также является runtime state конкретного Weapon ItemID по [[05_Combat_Survival/Weapon_Ranged|ranged contract]]. Обычный случайный экземпляр не получает новый moveset. Две копии одного Pattern используют одни определения операций, но независимо повреждаются, нагреваются и меняют владельца.
 
 ### Знакомство с Pattern
 
@@ -77,13 +77,11 @@ ItemID — эта физическая вещь, ссылающаяся на Pat
 
 Различие Pattern может менять продолжения после попадания, промаха, блока или изменения дистанции. Оно не должно делать длинную запомненную ротацию всегда правильным решением. Противник получает своевременный tell действия или состояния, если различие меняет его непосредственный ответ; знать каталог моделей для базовой контригры не требуется.
 
-## 4. Публикация оружейного контента
+## 4. Публикация и граница gear progression
 
-[[05_Combat_Survival/Registries/Registry_Weapons|Registry Weapons]] владеет схемой Frame/Pattern records и publication contract. Наличие файла или старого ID не означает действующее оружие. Прежние десять Frame pages — `legacy_weapon_scaffolding`, исключённый из арсенала и будущих fixtures по умолчанию. Нулевой активный арсенал допустим до diagnostic fixture validation и последующего Real Frame / Pattern Content Pass.
+[[05_Combat_Survival/Registries/Registry_Weapons|Registry Weapons]] задаёт schema и publication contract. Наличие файла не означает действующее оружие. Нулевой активный арсенал допустим; diagnostic fixtures проверяют архитектуру отдельно от последующего Real Frame / Pattern Content Pass.
 
-Старые `instance_id` называли authored-конструкции. Они не становятся runtime ItemID и не переносятся автоматически в новые Pattern records. Frame Class / `load_tier` старого корпуса — отдельная нагрузочная классификация, сохранённая в [[07_Gear_Inventory/Gear_Progression|Gear Progression]] до её собственного прохода; она не задаёт новую taxonomy Frame и не требуется identity schema.
-
-Исторические material sketches этой классификации также остаются исследовательским материалом: самодельный разрядник, игольник и кривой эмиттер для Scrap; гильдейский конденсатор и портовый веерный эмиттер для Guild; усиленная катушка и герметичный линейный эмиттер для Expedition. Это не опубликованные определения или fixtures. Их исходный замысел — покупать повторяемость и покрытие задач, сохраняя опасность базового воздействия; названия не закрепляют будущий арсенал.
+Frame Class / `load_tier` — унаследованное имя construction/load axis с действующими потребителями в [[07_Gear_Inventory/Gear_Progression|Gear Progression]], ballistics и calibration. Её окончательное владение остаётся отдельным gear-progression вопросом. Она не является обязательным полем Frame или Pattern identity, и Diagnostic Fixtures не должны от неё зависеть.
 
 ## 5. Тиры, TTK и броня
 
@@ -121,7 +119,7 @@ ItemID — эта физическая вещь, ссылающаяся на Pat
 
 Pattern задаёт ожидаемые требования и цены операции; конкретный Action принимает их по [[05_Combat_Survival/Combat_Three_Debts|общему контракту исполнения]]. Рука, занятая вещью, и claim исполняемого действия — разные факты. Технический цикл ItemID и телесное восстановление Action остаются раздельными; смена предмета или Q/E не стирает принятое обязательство.
 
-`Frame.NativeAction` как совмещённый владелец exact moveset и исполнения, а также universal Mastery в weapon identity — superseded. При `prof >= 1` доступен полный moveset Pattern. Уровни и handling semantics задаёт [[04_Player_Entities/Proficiency_Arsenal|Proficiency owner]]: prof влияет на качество возвращения контролируемой готовности через объявленное исполнение, не на identity Pattern или текущие claims. Старые Mastery-записи не конвертируются в Traits.
+`Frame.NativeAction` как совмещённый владелец exact moveset и исполнения, а также universal Mastery в weapon identity — superseded. При `prof >= 1` доступен полный moveset Pattern. Уровни и handling semantics задаёт [[04_Player_Entities/Proficiency_Arsenal|Proficiency owner]]: prof влияет на качество возвращения контролируемой готовности через объявленное исполнение, не на identity Pattern или текущие claims. Mastery не преобразуется автоматически в Trait.
 
 Связи с другими системами используют узкие содержательные interfaces. Они не передают владение исходному Trait/Q/E и не собираются в универсальный Power Score или общий weapon-tags resolver. Реализуемое действие должно сохранять встречную цену и читаемый результат. Точные параметры и исключения проверяются у владельца операции, а не создают второй engine внутри Frame.
 
@@ -139,7 +137,7 @@ Aim — отдельный semantic intent, не Alt, Primary или Fire. Bindi
 
 Weapon Core — потребитель `aim`. Он читает ItemID активной Set, их Patterns и фактическое wield state. Если подходящий Aim-capable recipient один, намерение адресуется ему независимо от hand slot. Поэтому перестановка `[melee][aimed ranged]` в `[aimed ranged][melee]` не отнимает Aim. Это абстрактные конфигурации, не weapon definitions.
 
-Если поддержки нет, результат — `Aim unsupported`, без fallback к Alt или другой способности. Если Aim поддерживают оба предмета, policy выбора одного recipient и presentation остаётся prototype-bound. Policy должна быть опубликованной, детерминированной для игрока и видимой до принятия операции; она не может молча выбирать получателя по скрытому рейтингу. Конкретный default tie-break этот batch не назначает.
+Если поддержки нет, результат — `Aim unsupported`, без fallback к Alt или другой способности. Если Aim поддерживают оба предмета, policy выбора одного recipient и presentation остаётся prototype-bound. Policy должна быть опубликованной, детерминированной для игрока и видимой до принятия операции; она не может молча выбирать получателя по скрытому рейтингу. Конкретный default tie-break остаётся prototype-bound.
 
 Одна Пешка поддерживает одну текущую bodily aiming organization. Её фаза, требования и claims принадлежат исполняемому Action; PaperDoll показывает достигнутую позу и удержание. Два устройства не создают две независимые телесные Aim-state machines. Наличие Aim request не обходит eligibility или чужой Recovery. Операция может занять руки либо coordinated bodily execution только по своей физической причине.
 

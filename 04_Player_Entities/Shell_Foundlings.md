@@ -157,7 +157,7 @@ Detach начнёт portable support, custody и provenance.
 
 OriginTagID принадлежал человеку до встречи с игроком, фиксируется до rescue input и раскрывается не от rescue result, а после roster commitment и отдельно подтверждённого eligible ordinary return condition. Это один обычный `tag_kind:: origin`:
 
-- имеет форму `light` либо `situational` и тот же контракт сигнала, владельца и читаемости, что остальные теги;
+- использует общий контракт сигнала, владельца и читаемости; рабочие `light / situational` не являются окончательной taxonomy или дополнительным условием rescue/reveal;
 - занимает одно из трёх мест общего предела Personal Tags;
 - не добавляется поверх потолка;
 - не создаёт generic stat и не меняет базовый урон, автоматический RPM, полёт импульса, арсенал полевого профиля или module capacity;

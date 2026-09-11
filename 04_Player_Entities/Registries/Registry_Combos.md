@@ -29,13 +29,13 @@ read_when: "Когда нужен контракт «Реестр: ячейки 
 
 ## Оружейная публикация после cutover
 
-`legacy_weapon_frame / legacy_prof / legacy_combat_role` ниже сохраняют прежние назначения только для migration history. Они не входят в активный арсенал и не подтверждают готовность ячейки. Новый арсенал пока `pending_content`; его будущие `frame_proficiencies[].frame_id` references должны разрешаться в canonical active Frame по publication contract [[05_Combat_Survival/Registries/Registry_Weapons|Registry Weapons]]. Нулевой список не заполняется placeholders, а реальные prof assignments ждут content pass.
+Новый арсенал пока `pending_content`. Будущие `frame_proficiencies[].frame_id` ссылаются только на canonical active Frames по [[05_Combat_Survival/Registries/Registry_Weapons|publication contract]]. Пустой список валиден и не заполняется старыми назначениями как fallback.
 
 ## Profile fields: proficiency и service budget
 
 Будущая запись может публиковать `[frame_proficiencies:: []]`: значение — JSON-список объектов ровно с `frame_id` и `proficiency` (целое 0–3), без повторного FrameID. Непустой список требует canonical active Frames; отсутствие поля пока означает отсутствие опубликованных назначений, а не наследование старых чисел. Пустой список valid. Ни одного нового назначения текущий cutover не делает.
 
-Это authored starting relationships, не текущий Pawn state. Их semantic owner — [[04_Player_Entities/Proficiency_Arsenal|Proficiency]]. `legacy_weapon_frame`, `legacy_prof` и `legacy_combat_role` остаются историческими и не преобразуются в target assignments при чтении.
+Это authored starting relationships, не текущий Pawn state. Их semantic owner — [[04_Player_Entities/Proficiency_Arsenal|Proficiency]].
 
 `base_service_capacity` — отдельное authored поле Field Profile по [[04_Player_Entities/Skill_Build_Philosophy#BaseServiceCapacity|profile budget contract]]. Registry хранит значения; [[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly]] разрешает законность монтажа. Proficiency не участвует в этом расчёте.
 
@@ -205,9 +205,6 @@ if (authoredRows.length) {
 [decision_signature:: UNKNOWN]
 [named_module:: UNKNOWN]
 [base_service_capacity:: UNKNOWN]
-[legacy_weapon_frame:: breach_impact_2h] | [legacy_prof:: 2] | [legacy_combat_role:: breach]
-[legacy_weapon_frame:: pulse_tool_1h] | [legacy_prof:: 1] | [legacy_combat_role:: stagger_opener]
-[legacy_weapon_frame:: reach_line_2h] | [legacy_prof:: 1] | [legacy_combat_role:: distance_control]
 
 Проектный слот. Не наследует автоматически старого «Джаггернаута», стационарную турель или «Сенсорную Броню».
 
@@ -222,8 +219,6 @@ if (authoredRows.length) {
 [decision_signature:: UNKNOWN]
 [named_module:: UNKNOWN]
 [base_service_capacity:: UNKNOWN]
-[legacy_weapon_frame:: compact_impact_1h] | [legacy_prof:: 1] | [legacy_combat_role:: concussion_window]
-[legacy_weapon_frame:: pulse_tool_1h] | [legacy_prof:: 1] | [legacy_combat_role:: interrupt]
 
 Проектный слот. Сила должна рождаться из смешения телесной массы и инженерной методологии, а не из универсальной роли танка.
 
@@ -238,9 +233,6 @@ if (authoredRows.length) {
 [decision_signature:: UNKNOWN]
 [named_module:: UNKNOWN]
 [base_service_capacity:: UNKNOWN]
-[legacy_weapon_frame:: reach_line_2h] | [legacy_prof:: 2] | [legacy_combat_role:: route_hold]
-[legacy_weapon_frame:: needle_thrower_2h] | [legacy_prof:: 1] | [legacy_combat_role:: quiet_pick]
-[legacy_weapon_frame:: pulse_tool_1h] | [legacy_prof:: 1] | [legacy_combat_role:: emergency_stop]
 
 Проектный слот. Мобильность Странника не обязана означать рывок; допустимы маршрутизация, контролируемый перенос массы и подготовленное изменение позиции.
 
@@ -255,8 +247,6 @@ if (authoredRows.length) {
 [decision_signature:: UNKNOWN]
 [named_module:: UNKNOWN]
 [base_service_capacity:: UNKNOWN]
-[legacy_weapon_frame:: pulse_tool_1h] | [legacy_prof:: 2] | [legacy_combat_role:: third_grip_pressure]
-[legacy_weapon_frame:: short_cut_1h] | [legacy_prof:: 2] | [legacy_combat_role:: clinch_finish]
 
 Проектный слот. Третий хват и техническая биология должны менять способ ведения оружейного давления, а не давать бесплатную скорость действий.
 
@@ -271,8 +261,6 @@ if (authoredRows.length) {
 [decision_signature:: UNKNOWN]
 [named_module:: UNKNOWN]
 [base_service_capacity:: UNKNOWN]
-[legacy_weapon_frame:: needle_thrower_2h] | [legacy_prof:: 2] | [legacy_combat_role:: quiet_tool]
-[legacy_weapon_frame:: pulse_tool_1h] | [legacy_prof:: 1] | [legacy_combat_role:: interrupt]
 
 Проектный слот. Техническая физиология Крысы и метод Технократа являются причинными входами, но не создают готовую силу, слабость или действие до отдельного authored-прохода ячейки.
 
@@ -287,10 +275,6 @@ if (authoredRows.length) {
 [decision_signature:: UNKNOWN]
 [named_module:: UNKNOWN]
 [base_service_capacity:: UNKNOWN]
-[legacy_weapon_frame:: short_cut_1h] | [legacy_prof:: 2] | [legacy_combat_role:: route_finish]
-[legacy_weapon_frame:: needle_thrower_2h] | [legacy_prof:: 2] | [legacy_combat_role:: quiet_pick]
-[legacy_weapon_frame:: pulse_tool_1h] | [legacy_prof:: 1] | [legacy_combat_role:: panic_stop]
-[legacy_weapon_frame:: hook_reach_2h] | [legacy_prof:: 1] | [legacy_combat_role:: shield_angle]
 
 Проектный слот. Должен работать через маршрут, инструмент и чтение пространства, не превращаясь в обязательный пик для закрытых локаций.
 
@@ -305,10 +289,6 @@ if (authoredRows.length) {
 [decision_signature:: UNKNOWN]
 [named_module:: UNKNOWN]
 [base_service_capacity:: UNKNOWN]
-[legacy_weapon_frame:: pulse_tool_1h] | [legacy_prof:: 2] | [legacy_combat_role:: recoil_to_motion]
-[legacy_weapon_frame:: short_cut_1h] | [legacy_prof:: 1] | [legacy_combat_role:: momentum_finish]
-[legacy_weapon_frame:: reach_line_2h] | [legacy_prof:: 1] | [legacy_combat_role:: moving_reach]
-[legacy_weapon_frame:: scatter_valve_2h] | [legacy_prof:: 1] | [legacy_combat_role:: entry_control]
 
 Старая пассивная основа «Инерционный заряд» снята: она зависела от удалённого `spark_gain` и не прошла прежнюю исследовательскую проверку пассивки; та P-only schema теперь также superseded общей Trait grammar. Телесная проводимость Белки и методология Авангарда остаются входами, но вся P/Q/E-тройка проектируется заново.
 
@@ -323,8 +303,6 @@ if (authoredRows.length) {
 [decision_signature:: UNKNOWN]
 [named_module:: UNKNOWN]
 [base_service_capacity:: UNKNOWN]
-[legacy_weapon_frame:: scatter_valve_2h] | [legacy_prof:: 2] | [legacy_combat_role:: overload_cone]
-[legacy_weapon_frame:: condenser_rig_2h] | [legacy_prof:: 1] | [legacy_combat_role:: held_line]
 
 Проектный слот. Перегрузка — сильное направление фантазии, но требует цены, телеграфа и восстановления; не должна производить бесплатные батареи или бесконечное питание устройств.
 
@@ -339,9 +317,5 @@ if (authoredRows.length) {
 [decision_signature:: UNKNOWN]
 [named_module:: UNKNOWN]
 [base_service_capacity:: UNKNOWN]
-[legacy_weapon_frame:: short_cut_1h] | [legacy_prof:: 2] | [legacy_combat_role:: vertical_ambush]
-[legacy_weapon_frame:: needle_thrower_2h] | [legacy_prof:: 2] | [legacy_combat_role:: quiet_route]
-[legacy_weapon_frame:: pulse_tool_1h] | [legacy_prof:: 1] | [legacy_combat_role:: emergency_stagger]
-[legacy_weapon_frame:: point_tool_1h] | [legacy_prof:: 1] | [legacy_combat_role:: joint_line]
 
 Проектный слот. Это наиболее мобильная методология матрицы, но мобильность должна жить в теле и маршруте; способности остаются медленными, ситуативными и уязвимыми.

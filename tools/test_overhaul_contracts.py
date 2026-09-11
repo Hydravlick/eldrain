@@ -48,11 +48,11 @@ class WeaponIdentityTests(unittest.TestCase):
                 self.assertFalse(published(frame(**changes).data))
                 self.assertTrue(validate_records([frame(**changes)]))
 
-    def test_legacy_is_excluded_and_does_not_require_new_schema(self):
+    def test_legacy_scaffolding_is_no_longer_a_valid_vault_record(self):
         legacy = Record(Path("old.md"), dict(type="entity", entity_kind="weapon_frame",
             frame_id="old", status="deprecated", publication_state="legacy_weapon_scaffolding",
             canonical_content=False, mastery_unlock=["old_technique"]), "[instance_id:: old_model]")
-        self.assertEqual(validate_records([legacy]), [])
+        self.assertTrue(validate_records([legacy]))
         self.assertFalse(published(legacy.data))
         self.assertTrue(validate_records([legacy, pattern(frame_id="old")]))
 
@@ -128,7 +128,7 @@ class WeaponIdentityTests(unittest.TestCase):
             combos = root / "04_Player_Entities/Registries/Registry_Combos.md"
             combos.parent.mkdir(parents=True)
             combos.write_text("[legacy_weapon_frame:: old]\n[weapon_frame:: language]", encoding="utf-8")
-            self.assertEqual(run(root), [])
+            self.assertTrue(run(root))
             combos.write_text("[weapon_frame:: old]", encoding="utf-8")
             self.assertTrue(run(root))
 
@@ -425,7 +425,7 @@ class ProficiencyCutoverTests(unittest.TestCase):
                 target.write_text(body, encoding="utf-8")
             return check_proficiency_contracts(root)
 
-    def test_published_contract_and_legacy_assignments_coexist(self):
+    def test_published_contract_with_empty_assignments(self):
         self.assertEqual(self.check_docs(), [])
 
     def test_prof1_full_moveset_and_no_prof3_technique(self):
@@ -448,7 +448,7 @@ class ProficiencyCutoverTests(unittest.TestCase):
             self.assertTrue(self.check_docs([(before,after)]))
 
     def test_mastery_prototype_cannot_return_as_active(self):
-        self.assertTrue(self.check_docs([("[design_status:: deprecated]","[design_status:: approved]")]))
+        self.assertTrue(self.check_docs([("[tag_kind:: mutation]","[tag_kind:: mastery]")]))
 
 
 class PawnEcologyTests(unittest.TestCase):
@@ -536,6 +536,55 @@ class PawnEcologyTests(unittest.TestCase):
         body = "---\nstatus: deprecated\ntype: registry\n---\n[skill_slot:: P]\n"
         self.assertEqual(self.check_docs(extra=("04_Player_Entities/Old.md", body)), [])
         self.assertEqual(self.check_docs(extra=("10_Reference/Old.md", body.replace("deprecated", "active"))), [])
+
+
+class SemanticAuthorityCleanupTests(unittest.TestCase):
+    def check_document(self, relative, text):
+        from tools.check_overhaul_contracts import check_semantic_cleanliness
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            p = root/relative
+            p.parent.mkdir(parents=True, exist_ok=True)
+            p.write_text(text, encoding="utf-8")
+            return check_semantic_cleanliness(root)
+
+    def test_combo_rejects_legacy_fields_instead_of_ignoring_them(self):
+        for field in ("legacy_weapon_frame", "legacy_prof", "legacy_combat_role"):
+            self.assertTrue(self.check_document("04_Player_Entities/Registries/Registry_Combos.md",
+                "---\nstatus: active\n---\n["+field+":: old]"))
+
+    def test_trait_registry_cannot_store_deprecated_mastery_records(self):
+        for field in ("mastery_frame", "mastery_step", "mastery_expression"):
+            self.assertTrue(self.check_document("04_Player_Entities/Registries/Registry_Tags.md",
+                "---\nstatus: active\n---\n## Old\n[design_status:: deprecated]\n["+field+":: old]"))
+
+    def test_parameter_registry_has_no_compatibility_ids(self):
+        for identifier in ("frame_native_action", "frame_action", "hero_kit_action"):
+            self.assertTrue(self.check_document("04_Player_Entities/Registries/Registry_Parameter_Contracts.md",
+                "---\nstatus: active\n---\n[parameter_contract_id:: "+identifier+"]"))
+        self.assertFalse(self.check_document("04_Player_Entities/Registries/Registry_Parameter_Contracts.md",
+            "---\nstatus: active\n---\n[parameter_contract_id:: pattern_operation]\n[parameter_contract_id:: profile_operation]"))
+
+    def test_todo_cannot_schedule_superseded_mastery_arithmetic(self):
+        for old in ("BaseFrameProf", "EffectiveFrameProf", "Frame-mastery"):
+            self.assertTrue(self.check_document("09_Project_Management/TODO.md", "- [ ] Implement "+old))
+
+    def test_input_has_no_completed_migration_field(self):
+        self.assertTrue(self.check_document("01_Core_Vision/Input_Contract.md",
+            "---\nstatus: active\nconsumer_migration: integrated\n---\n"))
+
+    def test_rationale_can_explain_rejected_alternatives(self):
+        self.assertFalse(self.check_document("Milestone — Weapon Architecture.md",
+            "**Роль:** rationale\nRejected: Frame.NativeAction, Mastery, Weapon Reserve, old RMB Aim."))
+        self.assertTrue(self.check_document("Milestone — Weapon Architecture.md",
+            "**Статус:** authoritative pre-canon milestone."))
+
+    def test_negative_guardrail_is_not_a_legacy_record(self):
+        self.assertFalse(self.check_document("04_Player_Entities/Registries/Registry_Tags.md",
+            "---\nstatus: active\n---\nUniversal Mastery is superseded; no mastery_step fields."))
+
+    def test_reference_terms_are_not_globally_banned(self):
+        self.assertFalse(self.check_document("10_Reference/Research.md", "[mastery_step:: old]"))
 
 
 if __name__ == "__main__":
