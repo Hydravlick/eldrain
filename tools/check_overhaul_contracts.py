@@ -1,4 +1,4 @@
-"""Structural weapon publication/identity checks, not a gameplay resolver."""
+"""Structural Overhaul ownership/publication checks, not a gameplay resolver."""
 from __future__ import annotations
 
 import argparse
@@ -558,9 +558,100 @@ def check_proficiency_contracts(root: Path) -> list[str]:
     return errors
 
 
+# Accepted semantic boundaries, not runtime implementations or a Trait catalogue.
+PAWN_ECOLOGY_CONTRACTS = {
+    "field_profile_contract": ("04_Player_Entities/Skill_Build_Philosophy.md", {
+        "p_provenance": "deterministic_field_profile", "p_rule_grammar": "shared_trait_rule",
+        "p_uses_personal_acquisition_slot": False, "active_operation_slots": ["Q", "E"],
+        "concrete_itemids": False, "finished_build": False}),
+    "trait_semantic_boundary": ("04_Player_Entities/Tags_System.md", {
+        "grammar": "shared_trait_rule", "p_provenance": "deterministic_field_profile",
+        "personal_provenance": "concrete_pawn_non_deterministic", "separate_passive_engine": False,
+        "resolution": "domain_owners", "active_operations": False, "grants_service_capacity": False}),
+    "combat_projection_contract": ("04_Player_Entities/Combat_Profile_Pipeline.md", {
+        "mode": "read_only", "applies_modifiers": False, "resolves_gameplay": False,
+        "writes_gameplay_state": False, "eligibility_owner": "Action", "source_references_required": True}),
+    "pawn_value_contract": ("04_Player_Entities/Shell_Construction.md", {
+        "embodied_on_death": "lost", "unfinished_work_on_capability_loss": "re_evaluate",
+        "completed_result_on_author_death": "not_reversed", "completed_result_owner": "result_domain",
+        "unique_capability_transferred": False, "work_result_is_retirement_reward": False,
+        "indefinite_parked_value": False, "opportunity_list_owner": False}),
+    "quest_work_boundary": ("03_Factions_Societies/Quest_Engine.md", {
+        "requirements_owner": "Quest_Engine", "capability_facts": "external_owners",
+        "unfinished_on_capability_loss": "re_evaluate", "completion_requires_evidence": True,
+        "completed_obligation_requires_author_alive": False, "result_owner": "result_domain",
+        "copies_executor_capability": False}),
+    "knowledge_result_boundary": ("04_Player_Entities/Grimoire_Truth_Triangulation.md", {
+        "owner": "Grimoire_Truth_Triangulation", "unfinished_on_executor_loss": "re_evaluate",
+        "established_fact_requires_author_alive": False, "revision_basis": "evidence_or_world_change",
+        "transfers_embodied_capability": False}),
+}
+
+
+def check_pawn_ecology_contracts(root: Path) -> list[str]:
+    errors = []
+    found = {name: [] for name in PAWN_ECOLOGY_CONTRACTS}
+    for domain in sorted(GAMEPLAY_ROOTS):
+        for path in sorted((root/domain).rglob("*.md")):
+            relative = path.relative_to(root).as_posix()
+            try:
+                data = parse_frontmatter(path)
+            except MetadataError as exc:
+                errors.append(str(exc))
+                continue
+            if data.get("status") != "active":
+                continue
+            text = path.read_text(encoding="utf-8")
+            for owned in data.get("owns", []):
+                key = str(owned).lower()
+                if key in {"passive.effect_engine", "p.effect_engine", "passive.effect_resolution"}:
+                    errors.append(f"{relative}: separate P effect engine")
+                if "service_capacity" in key and any(x in key for x in ("trait", "proficiency", "passive")):
+                    errors.append(f"{relative}: misplaced Profile service capacity")
+            for section in re.split(r"(?m)^#{2,3} ", text):
+                if re.search(r"\[(?:design_status|status)::\s*deprecated\]", section):
+                    continue
+                for slot in re.findall(r"(?m)^\[skill_slot::\s*([^\]]+)\]", section):
+                    if "P" in re.split(r"\s*[|,]\s*", slot.strip()):
+                        errors.append(f"{relative}: P conflated with active operation")
+                if re.search(r"(?m)^\[(?:passive_engine|passive_effect_engine)::", section):
+                    errors.append(f"{relative}: separate P engine publication")
+                for block in re.findall(r"```yaml\s*\n(.*?)```", section, re.S):
+                    if not any(re.search(rf"(?m)^{name}:\s*$", block) for name in PAWN_ECOLOGY_CONTRACTS):
+                        continue
+                    try:
+                        mapping = load_yaml(block)
+                    except MetadataError as exc:
+                        errors.append(f"{relative}: {exc}")
+                        continue
+                    if not isinstance(mapping, dict):
+                        continue
+                    for name in PAWN_ECOLOGY_CONTRACTS:
+                        if name in mapping:
+                            found[name].append((relative, mapping[name]))
+    for name, (owner, expected) in PAWN_ECOLOGY_CONTRACTS.items():
+        records = found[name]
+        if len(records) != 1:
+            errors.append(f"{owner}: expected exactly one active {name}")
+            continue
+        actual_owner, actual = records[0]
+        if actual_owner != owner:
+            errors.append(f"{actual_owner}: {name} belongs to {owner}")
+        if not isinstance(actual, dict):
+            errors.append(f"{owner}: invalid {name}")
+            continue
+        if set(actual) != set(expected):
+            errors.append(f"{owner}: incompatible {name} fields")
+        for key, value in expected.items():
+            if actual.get(key) != value or type(actual.get(key)) is not type(value):
+                errors.append(f"{owner}: incompatible {name}.{key}")
+    return errors
+
+
 def run(root: Path) -> list[str]:
     return (run_identity_checks(root) + check_set_input_contracts(root)
-            + check_energy_contracts(root) + check_proficiency_contracts(root))
+            + check_energy_contracts(root) + check_proficiency_contracts(root)
+            + check_pawn_ecology_contracts(root))
 
 
 def main() -> int:

@@ -40,6 +40,8 @@ read_when: Когда нужен контракт «Реестр парамет�
 [status:: active | pending]
 ```
 
+`trait_rule` обозначает одну semantic grammar P/Personal Trait; provenance указывает Field Profile или конкретную Пешку. Авторизация остаётся узкой: происхождение не расширяет разрешённые targets. Порядок разрешения в записи исполняет только названный доменный owner; Combat Profile читает результат.
+
 Общая авторизация запроса: [[04_Player_Entities/Skill_Build_Philosophy#Авторизация запроса параметра]]. Записи указывают доменного владельца и его bounded policy.
 
 ## Активные домены
@@ -51,7 +53,7 @@ read_when: Когда нужен контракт «Реестр парамет�
 [parameter_domain:: один конечный параметр операции конкретного оружейного Pattern]
 [domain_owner:: [[05_Combat_Survival/Weapon_Core|Weapon Core]]]
 [base_source:: pattern_operation_definition]
-[authorized_requesters:: installed_module; personal_tag; declared_state]
+[authorized_requesters:: installed_module; trait_rule; declared_state]
 [resolution_order:: identity_base -> gear -> state -> authorized_modifier_contracts]
 [allowed_operations:: add | replace_by_declared_rule | clamp_by_domain_policy]
 [intrinsic_debt_required:: yes]
@@ -60,10 +62,10 @@ read_when: Когда нужен контракт «Реестр парамет�
 
 ### `hero_kit_action`
 [parameter_contract_id:: hero_kit_action]
-[parameter_domain:: один конечный параметр конкретного P/Q/E действия]
+[parameter_domain:: один конечный параметр конкретного активного Q/E действия]
 [domain_owner:: [[04_Player_Entities/Skill_Build_Philosophy|Философия навыков и билдостроения]]]
 [base_source:: hero_kit_action]
-[authorized_requesters:: installed_module; personal_tag; declared_state]
+[authorized_requesters:: installed_module; trait_rule; declared_state]
 [resolution_order:: identity_base -> gear -> state -> authorized_modifier_contracts]
 [allowed_operations:: add | replace_by_declared_rule | clamp_by_domain_policy]
 [intrinsic_debt_required:: yes]
@@ -144,4 +146,4 @@ Thermos Assembly не создаёт временный локальный resol
 
 ## Инварианты
 
-См. [[04_Player_Entities/Combat_Profile_Pipeline#Инварианты]].
+Каждая policy применяется единственным доменным владельцем. [[04_Player_Entities/Combat_Profile_Pipeline|Combat Profile]] читает результат и причины отказа; он не применяет этот порядок повторно и не становится resolver сборки.

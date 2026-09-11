@@ -451,5 +451,92 @@ class ProficiencyCutoverTests(unittest.TestCase):
         self.assertTrue(self.check_docs([("[design_status:: deprecated]","[design_status:: approved]")]))
 
 
+class PawnEcologyTests(unittest.TestCase):
+    """Mutation checks on authority contracts; no content or gameplay simulation."""
+    files = (
+        "04_Player_Entities/Skill_Build_Philosophy.md",
+        "04_Player_Entities/Tags_System.md",
+        "04_Player_Entities/Combat_Profile_Pipeline.md",
+        "04_Player_Entities/Shell_Construction.md",
+        "03_Factions_Societies/Quest_Engine.md",
+        "04_Player_Entities/Grimoire_Truth_Triangulation.md",
+    )
+
+    def check_docs(self, replacements=(), extra=None):
+        from tools.check_overhaul_contracts import check_pawn_ecology_contracts
+        source = Path(__file__).resolve().parents[1]
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for name in self.files:
+                text = (source/name).read_text(encoding="utf-8")
+                for old, new in replacements:
+                    text = text.replace(old, new)
+                path = root/name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(text, encoding="utf-8")
+            if extra:
+                path = root/extra[0]
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(extra[1], encoding="utf-8")
+            return check_pawn_ecology_contracts(root)
+
+    def test_owner_contracts_accept_empty_content(self):
+        self.assertEqual(self.check_docs(), [])
+
+    def test_separate_passive_engine_rejected(self):
+        self.assertTrue(self.check_docs([("separate_passive_engine: false", "separate_passive_engine: true")]))
+
+    def test_duplicate_grammar_owner_rejected(self):
+        self.assertTrue(self.check_docs(extra=("04_Player_Entities/Other.md",
+            "---\nstatus: active\ntype: system\nowns: [passive.effect_engine]\n---\n")))
+
+    def test_profile_provenance_and_personal_slot_are_not_interchangeable(self):
+        for old, new in (("p_provenance: deterministic_field_profile", "p_provenance: random_roll"),
+                         ("p_uses_personal_acquisition_slot: false", "p_uses_personal_acquisition_slot: true")):
+            with self.subTest(old=old):
+                self.assertTrue(self.check_docs([(old, new)]))
+
+    def test_p_cannot_reenter_active_operation_slots(self):
+        self.assertTrue(self.check_docs([("active_operation_slots: [Q, E]", "active_operation_slots: [P, Q, E]")]))
+        self.assertTrue(self.check_docs(extra=("04_Player_Entities/BadSkill.md",
+            "---\nstatus: active\ntype: registry\n---\n[skill_slot:: P | Q | E]\n")))
+
+    def test_projection_cannot_apply_or_resolve_or_write(self):
+        for key in ("applies_modifiers", "resolves_gameplay", "writes_gameplay_state"):
+            with self.subTest(key=key):
+                self.assertTrue(self.check_docs([(key+": false", key+": true")]))
+
+    def test_profile_cannot_store_items_or_finished_build(self):
+        for key in ("concrete_itemids", "finished_build"):
+            self.assertTrue(self.check_docs([(key+": false", key+": true")]))
+
+    def test_trait_cannot_own_service_capacity(self):
+        self.assertTrue(self.check_docs([("grants_service_capacity: false", "grants_service_capacity: true")]))
+        self.assertTrue(self.check_docs(extra=("04_Player_Entities/BadTrait.md",
+            "---\nstatus: active\ntype: system\nowns: [trait.base_service_capacity]\n---\n")))
+
+    def test_unfinished_work_re_evaluates_in_both_work_owners(self):
+        for key in ("unfinished_work_on_capability_loss", "unfinished_on_capability_loss", "unfinished_on_executor_loss"):
+            self.assertTrue(self.check_docs([(key+": re_evaluate", key+": delete")]))
+
+    def test_completed_result_does_not_require_author_alive(self):
+        for key in ("completed_obligation_requires_author_alive", "established_fact_requires_author_alive"):
+            self.assertTrue(self.check_docs([(key+": false", key+": true")]))
+        self.assertTrue(self.check_docs([("completed_result_on_author_death: not_reversed", "completed_result_on_author_death: deleted")]))
+
+    def test_no_capability_inheritance_or_retirement_reward(self):
+        for key in ("unique_capability_transferred", "copies_executor_capability", "transfers_embodied_capability", "work_result_is_retirement_reward"):
+            self.assertTrue(self.check_docs([(key+": false", key+": true")]))
+
+    def test_no_parked_value_or_opportunity_mega_owner(self):
+        for key in ("indefinite_parked_value", "opportunity_list_owner"):
+            self.assertTrue(self.check_docs([(key+": false", key+": true")]))
+
+    def test_history_is_not_subject_to_active_semantic_checks(self):
+        body = "---\nstatus: deprecated\ntype: registry\n---\n[skill_slot:: P]\n"
+        self.assertEqual(self.check_docs(extra=("04_Player_Entities/Old.md", body)), [])
+        self.assertEqual(self.check_docs(extra=("10_Reference/Old.md", body.replace("deprecated", "active"))), [])
+
+
 if __name__ == "__main__":
     unittest.main()

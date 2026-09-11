@@ -60,7 +60,7 @@ validation:
 
 ## Кто исполняет и что видит игрок
 
-[[04_Player_Entities/Tags_System|Личные теги]] задают назначение, раскрытие и пожизненный предел. `Personal Tag` — механическая категория; `Origin Tag` — её источник у найдёныша, а не обязательные слова жителей. [[04_Player_Entities/Combat_Profile_Pipeline|Боевой профиль]] и [[04_Player_Entities/Proficiency_Arsenal|Арсенал]] разрешают локальное влияние, [[04_Player_Entities/Shell_Foundlings|Найдёныши]] — происхождение и продолжение истории, [[04_Player_Entities/Life_Closure|Завершение жизни]] — соответствующий исход.
+[[04_Player_Entities/Tags_System|Личные теги]] задают назначение, раскрытие и пожизненный предел. `Personal Tag` — механическая категория; `Origin Tag` — её источник у найдёныша, а не обязательные слова жителей. [[04_Player_Entities/Combat_Profile_Pipeline|Боевой профиль]] только показывает факты и причины доступности; [[04_Player_Entities/Proficiency_Arsenal|Proficiency]] определяет отношение человека к Frame, [[04_Player_Entities/Shell_Foundlings|Найдёныши]] — происхождение и продолжение истории, [[04_Player_Entities/Life_Closure|Завершение жизни]] — соответствующий исход.
 
 Данные и авторские экземпляры: [[04_Player_Entities/Registries/Registry_Tags]], [[04_Player_Entities/Registries/Registry_Combos]].
 

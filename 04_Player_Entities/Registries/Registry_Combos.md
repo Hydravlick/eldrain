@@ -186,7 +186,7 @@ if (authoredRows.length) {
 [base_service_capacity:: plate 1, optic 1, seal 1, conduit 1, rig 2, weave 2]
 ```
 
-После полей идут фантазия, повторяемый цикл, смешанные `P/Q/E`, 2–4 доктрины, результаты успеха/отхода/провала и заметки прототипа. `decision_signature` называет повторяемую цепь решений, а `named_module` продолжает её конкретным локальным обменом. Каждая P/Q/E в теле блока использует полный контракт из [[04_Player_Entities/Skill_Build_Philosophy|философии навыков]] и [[04_Player_Entities/Registries/Registry_Skill_Types|грамматики навыков]]; реестр не дублирует его в заголовочных полях Combo. Числа шаблона показывают формат; каждая ячейка получает собственные значения только после отдельного прохода.
+После полей идут фантазия, повторяемый цикл, смешанные `P/Q/E`, 2–4 доктрины, результаты успеха/отхода/провала и заметки прототипа. `decision_signature` называет повторяемую цепь решений, а `named_module` продолжает её конкретным локальным обменом. Q/E в теле блока используют active operation contract из [[04_Player_Entities/Skill_Build_Philosophy|философии навыков]] и [[04_Player_Entities/Registries/Registry_Skill_Types|грамматики навыков]]; реестр не дублирует его в заголовочных полях Combo. P хранится как deterministic Field Profile Trait по общей [[04_Player_Entities/Tags_System#Общая semantic grammar P и Personal Trait|semantic grammar]], без Action-полей и personal acquisition slot. Module doctrine и арсенал описывают подготовку, но не хранят concrete ItemID или готовый build. Числа шаблона показывают формат; каждая ячейка получает собственные значения только после отдельного прохода.
 
 `design_status:: pending` означает, что координата существует, но ещё не является готовым полевым профилем. До утверждения ей нужны P/Q/E, именованный арсенал, именованные модули и `decision_signature`; `UNKNOWN` не заменяется суммой свойств родителей.
 
@@ -310,7 +310,7 @@ if (authoredRows.length) {
 [legacy_weapon_frame:: reach_line_2h] | [legacy_prof:: 1] | [legacy_combat_role:: moving_reach]
 [legacy_weapon_frame:: scatter_valve_2h] | [legacy_prof:: 1] | [legacy_combat_role:: entry_control]
 
-Старая пассивная основа «Инерционный заряд» снята: она зависела от удалённого `spark_gain` и не прошла новый контракт многокомпонентной пассивки и downstream-envelope. Телесная проводимость Белки и методология Авангарда остаются входами, но вся P/Q/E-тройка проектируется заново.
+Старая пассивная основа «Инерционный заряд» снята: она зависела от удалённого `spark_gain` и не прошла прежнюю исследовательскую проверку пассивки; та P-only schema теперь также superseded общей Trait grammar. Телесная проводимость Белки и методология Авангарда остаются входами, но вся P/Q/E-тройка проектируется заново.
 
 ---
 

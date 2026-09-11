@@ -62,7 +62,7 @@ validation:
 
 ## Под капотом
 
-[[04_Player_Entities/Combat_Profile_Pipeline|Combat Profile]] собирает текущие возможности Пешки без общего power score. [[07_Gear_Inventory/Thermos_System|Термос]], [[07_Gear_Inventory/Thermos_Assembly|сборка]] и [[07_Gear_Inventory/Equipment_PaperDoll|кукла снаряжения]] связывают реальные вещи с единым предпросмотром. Один ItemID в двух черновиках может попасть только в одну подтверждённую сборку. Подтверждённая конфигурация передаётся входному контракту; сама подготовка не разрешает ingress.
+[[04_Player_Entities/Combat_Profile_Pipeline|Combat Profile]] read-only показывает текущие возможности и причины отказа из их владельцев, без повторного применения modifiers и общего power score. [[07_Gear_Inventory/Thermos_System|Термос]], [[07_Gear_Inventory/Thermos_Assembly|сборка]] и [[07_Gear_Inventory/Equipment_PaperDoll|кукла снаряжения]] связывают реальные вещи с единым предпросмотром. Один ItemID в двух черновиках может попасть только в одну подтверждённую сборку. Подтверждённая конфигурация передаётся входному контракту; сама подготовка не разрешает ingress.
 
 [[07_Gear_Inventory/Item_Attributes_UI|Карточки предметов]] показывают результат и причину отказа, [[05_Combat_Survival/Magic_Batteries|батарейный контракт]] — источник и расход, [[07_Gear_Inventory/Gear_Progression|прогрессия снаряжения]] — предметные компромиссы. Данные моделей, модулей, оружия и полевых профилей перечислены в свойствах страницы.
 

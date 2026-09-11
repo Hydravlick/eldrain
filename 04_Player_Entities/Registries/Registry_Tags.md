@@ -26,6 +26,8 @@ read_when: Когда нужен контракт «Реестр личных т
 
 ## Правила реестра
 
+Реестр хранит Personal Trait definitions и их personal provenance. Deterministic P хранится в Field Profile ([[04_Player_Entities/Registries/Registry_Combos|Registry Combos]]) и использует ту же [[04_Player_Entities/Tags_System#Общая semantic grammar P и Personal Trait|semantic rule grammar]]. Personal acquisition-поля и места не являются требованиями P; отдельного effect engine для P нет.
+
 Пожизненные места, формы, сигналы и ограничения действия определяет [[04_Player_Entities/Tags_System]]; отношение Pawn ↔ Frame определяется [[04_Player_Entities/Proficiency_Arsenal]].
 
 Запись публикует `tag_form:: light | situational`, точные поля выбранной формы и ссылку на зарегистрированный сигнал. `design_status:: concept` и `prototype` не означают финальную калибровку.
@@ -80,9 +82,9 @@ read_when: Когда нужен контракт «Реестр личных т
 [modifier:: none|explicit_value_and_unit]
 [rule_shift:: one_automatic_rule]
 [tell_owner:: exact_ui_and_sensory_cue]
-[tell_observer:: external_sensory_cue]
+[tell_observer:: external_cue_if_immediate_response_changes | not_required]
 [cost_or_debt:: time|cargo|battery|exposure|injury|route|slot|none]
-[counterplay:: named_current_response]
+[counterplay:: named_current_response | not_applicable_to_private_effect]
 [stack_group:: group_id]
 [exclusive_with:: none]
 [design_status:: prototype]

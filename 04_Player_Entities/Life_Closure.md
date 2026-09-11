@@ -44,3 +44,9 @@ Future fiction-specific closure branches require a separate lore-approved contra
 ## Handoff
 
 The only emitted fact is immutable `LifeClosureResolution`. Lifecycle Roster projects it once. `KIA` forecloses an unresolved closure arc; no consumer may transform death into Closure.
+
+## Граница работы и результата
+
+Work result != retirement reward. Уже выполненная работа получает результат у своего владельца в момент completion, а не при Life Closure. Этот документ не удерживает и не выдаёт заново ItemID, подтверждённое знание или исполненное обязательство.
+
+Закрытие собственной closure arc после KIA не удаляет остальные незавершённые работы: их владельцы переоценивают требования и доступного исполнителя. Участие закрывшего полевую жизнь человека ограничено уже установленным lifecycle outcome; отдельная рабочая или наследственная система здесь не создаётся. Сохранённый результат не переносит его Trait, Proficiency или личную способность следующей Пешке.

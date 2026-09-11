@@ -39,7 +39,7 @@ tags: [glossary, definitions]
 - **Ward** — внутренний ключ гражданского статуса Подопечного. Может сочетаться с готовностью; не является типом тела или собственностью. [[04_Player_Entities/Spawn_Logic|Spawn Logic]].
 - **Welfare** — фиксированная loadout loan с собственной eligibility; не общий гражданский минимум, не награда за смерть или допуск. [[04_Player_Entities/Spawn_Logic|Выдача снаряжения]].
 - **Breakline** — внутреннее имя аварийного выхода до окончательной KIA с необратимым Forfeit и отдельными последствиями для тела и груза. World/UI label остаётся AUTHOR_DECISION. [[06_Economy_Loot/Extraction_Stabilization_Loop|Breakline]].
-- **Spec / полевой профиль Race × Spec** — слой методологии / отдельная authored-реализация пересечения тела и практики: P/Q/E, decision signature, именованный арсенал, модули, долги и Exposure. Не вычисляется сложением родителей и не получает автоматическую постоянную слабость. [[04_Player_Entities/Skill_Build_Philosophy|Профили]].
+- **Spec / полевой профиль Race × Spec** — слой методологии / отдельная authored-реализация пересечения тела и практики: deterministic P, активные Q/E, исходные Frame relationships, BaseServiceCapacity и decision signature. Concrete ItemID и finished build сюда не входят. Не вычисляется сложением родителей и не получает автоматическую постоянную слабость. [[04_Player_Entities/Skill_Build_Philosophy|Профили]].
 - **Schema-only ID** — стабильный ключ реестра. `assault`, `support`, `scout` соответствуют Застрельщику, Ладчику, Страннику в данных, а не именам партийных ролей. [[04_Player_Entities/Skill_Build_Philosophy|Специализации]].
 - **Frame / Pattern / ItemID / Action** — переносимый оружейный язык / повторяемая конструкция с moveset / физическая копия со ссылкой на Pattern / конкретное исполнение и принятый долг. Старый weapon `instance_id` обозначал конструкцию и остался только в legacy; target definition ID — `pattern_id`. [[05_Combat_Survival/Weapon_Core|Weapon Core]].
 - **Proficiency** — личное отношение `(PawnID, FrameID)`, список `frame_proficiencies` с уровнями 0–3. Профиль задаёт исходные отношения; runtime принадлежит Пешке. При prof >= 1 полный moveset Pattern. Прежняя MasteryContribution-формула superseded. `load_tier` остаётся отдельной нагрузочной осью старой progression-модели. [[04_Player_Entities/Proficiency_Arsenal|Владение]].
@@ -68,3 +68,9 @@ tags: [glossary, definitions]
 - **Frequency Tuner** — старое имя документа о регионе, задержке и доступности сервиса. Буквальная мировая процедура deprecated; название продуктового экрана открыто. [[08_World_Generation/Anomaly/Frequency_Tuner|Регион и качество соединения]].
 
 Открытые авторские и механические решения собраны как задачи в [[09_Project_Management/TODO|TODO]]. Ни старое имя, ни краткая словарная запись не закрывают REVIEW у владельца.
+
+## Pawn Ecology boundaries
+
+- **P / Profile Trait** — deterministic Field Profile provenance, общая semantic grammar с Personal Trait; без personal acquisition slot. [[04_Player_Entities/Tags_System|Trait boundary]].
+- **Combat Profile / Build projection** — read-only отображение фактов owners, возможностей попытки и причин отказа. Не gameplay resolver. [[04_Player_Entities/Combat_Profile_Pipeline]].
+- **Pawn value layers** — embodied value, active opportunity/ongoing work, externalized achieved result. Утрата человека, переоценка работы и судьба результата разрешаются отдельно. [[04_Player_Entities/Shell_Construction#Три слоя ценности Пешки]].
