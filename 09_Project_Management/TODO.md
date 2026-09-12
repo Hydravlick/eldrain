@@ -153,7 +153,7 @@ type: "project_management"
 - [ ] **Deep-content anti-carry:** проверить, что один продвинутый Frame не позволяет бюджетной группе стабильно производить T2/T3-награду без параллельных задач, расхода и защиты носителя.
 - [ ] **Faction belonging pass:** для каждого основного Очага определить видимые права, голос, предметы Стола и последствия доверия; не добавлять обязательную униформу и не оставлять принадлежность невидимым числом.
 - [ ] **Anchor Hall:** тир, демонстрация зон брони и безопасный онбординг после доказательства базового боя.
-- [ ] **Late Keeper Recognition:** определить условия поздней метапрогрессии, при которых Хранители впервые обращаются к Осколку за текущей Пешкой.
+- [ ] **Late Keeper Recognition:** определить конкретные факты последствий нескольких жизней для первого обращения к Осколку; не считать Closure, смерти или biography score. Разделение Recognition и Pawn-specific offer закреплено в [[04_Player_Entities/Entity_Grimoire#Позднее раскрытие|Entity Grimoire]] и [[04_Player_Entities/Life_Closure#Keeper extension point|Life Closure]].
 - [ ] **AFK/disconnect policy:** прописать судьбу Пешки, лута и группы при обрыве связи без безопасного дюпа, убийства союзником ради страховки и обхода риска.
 
 ## Later: контент после устойчивого core loop
@@ -163,7 +163,7 @@ type: "project_management"
 - [ ] **Constant chronology:** отдельным лорным решением определить временную глубину, порядок признания и границы корпуса Констант. До него текущие послеколлапсные ссылки сохраняются как provisional record; ни одна миграция городских систем не выводит из них новую хронологию.
 - [ ] **Hearth quest triads:** для каждого главного Очага создать бытовой, спорный и аномальный контракт с адресом лута, методом выполнения и ценой для другого Очага.
 - [ ] **Hearth faces:** создать 1–2 узнаваемых голоса/мастера на Очаг, пригодных для событий Стола без прогулочного NPC-хаба.
-- [ ] **The Keeper's Breach:** событие после первой эвакуации персонажа высокого уровня по [[10_Reference/Reference Notes New#The Keeper's Breach|seed]].
+- [ ] **Keeper terminal branch:** до отдельной канонизации определить физическую судьбу человека, его информированное согласие, необходимость terminal исхода и receiving owner по [[04_Player_Entities/Life_Closure#Keeper extension point|Life Closure]]. Старый [[10_Reference/Reference Notes New#The Keeper's Breach|seed]] не является основанием level-based offer или reward.
 - [ ] **Stabilized living cargo:** описать клетки/товарных существ по [[10_Reference/Reference Notes New#Stabilized Living Cargo|seed]], не смешивая их с торговлей Пешками.
 - [ ] **Redemption runs:** post-MVP мета-режим по [[10_Reference/Reference Notes New#Redemption Runs|seed]].
 - [ ] **Squad identification:** руны/метки свой-чужой для тумана и плохой видимости.

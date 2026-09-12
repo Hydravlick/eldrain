@@ -13,6 +13,12 @@ related_files:
   - "[[05_Combat_Survival/Magic_Batteries|Magic_Batteries]]"
   - "[[08_World_Generation/Hub/Hub_Services_Interaction|Hub_Services_Interaction]]"
 type: system
+canonical_id: HEALTH
+owns:
+  - health.values_and_bounds
+  - health.damage_and_restoration
+  - health.permanent_capacity_resolution
+  - health.basic_hub_recovery
 index_route: owner
 index_group: combat_survival
 index_order: 60
@@ -37,32 +43,76 @@ read_when: Когда нужен контракт «Медицина, здоро
 
 ## 2. Контракт здоровья
 
-Каждая живая Пешка имеет три связанных состояния:
+Здоровье конкретной Пешки разрешает только этот owner (`HEALTH`); значения хранятся в её BodyID. Игрок видит три значения:
 
 ```text
-0 <= CurrentHP <= FieldCapacity <= BaseCapacity
+0 <= CurrentHP <= FieldCapacity <= MaxCapacity
 ```
 
 | Состояние | Игровой смысл | Кто меняет |
 |:---|:---|:---|
-| `BaseCapacity` | постоянный предел тела конкретной Пешки | только явно названный постоянный Шрам или биографическое правило |
+| `MaxCapacity` | текущий постоянный максимум тела после permanent consequences | Health пересчитывает по определению тела и действующим последствиям с конкретными источниками |
 | `FieldCapacity` | доступная в текущей вылазке телесная ёмкость | объявленная тяжёлая травма, среда, Gate Check и профильная полевая медицина |
 | `CurrentHP` | немедленная боевая жизнь | обычный урон, лечебные навыки и часть медицины |
 
 Обычный урон уменьшает `CurrentHP`. `FieldCapacity` уменьшается **только** от явно телеграфируемого источника: тяжёлой травмы, названного статусного эффекта, опасной среды, критического последствия либо [[08_World_Generation/Generation/Gate_Check|Gate Check]]. Это не процент от каждого попадания и не скрытый chip-штраф.
+
+Величины damage, capacity-loss и восстановления неотрицательны; недопустимый вход не применяется. Изменение здоровья публикует согласованную тройку атомарно, включая ограничение нижележащих значений после потери максимума.
 
 ```text
 FieldCapacity' = max(0, FieldCapacity - declared_capacity_loss)
 CurrentHP' = min(FieldCapacity', max(0, CurrentHP - hp_loss))
 ```
 
-При `CurrentHP = 0` Пешка погибает по правилам [[04_Player_Entities/Lifecycle_Roster|жизненного цикла]]. Лечебная аура, поле, кантрип или предмет не являются revive-механикой.
+При `CurrentHP = 0` Combat передаёт lethal event в [[04_Player_Entities/Lifecycle_Resolver|Lifecycle Resolver]], который определяет исход по существующему контракту; Health не объявляет самостоятельно KIA и не создаёт новый путь спасения. Лечебная аура, поле, кантрип или предмет не являются revive-механикой.
+
+### Постоянные последствия
+
+[[04_Player_Entities/Tags_System#Scar и адресное лечение|Scar owner]] хранит конкретный Scar и объявленное embodied consequence. Health читает только действующие capacity-consequences; сам факт наличия Scar не снижает HP. `MaxCapacity` уже учитывает их: отдельного `ScarredCapacity` или `ScarredHP` нет, предыдущее имя максимума не сохраняется вторым параметром.
+
+Для Scar с `permanent_capacity_loss` величина потери неотрицательна и принадлежит этому Scar. Health пересчитывает максимум из определения тела и всех ещё действующих постоянных последствий, затем сохраняет границы:
+
+```text
+MaxCapacity' = resolve(body_definition, active_permanent_consequences)
+FieldCapacity' = min(FieldCapacity, MaxCapacity')
+CurrentHP' = min(CurrentHP, FieldCapacity')
+```
+
+Resolver не выдаёт отрицательный максимум. Повтор одного source event не применяет Scar дважды. Источники и их вклад сохраняются раздельно; сумма capacity-loss не становится переносимой валютой или безличным pool. При удалении одного Scar пересчитывается его вклад, остальные Scar и постоянные последствия остаются. Повышение MaxCapacity само не заполняет FieldCapacity/CurrentHP; для этого нужна разрешённая медицина.
+
+Например, при здоровом максимуме 100 конкретный Scar с потерей 10 даёт `MaxCapacity = 90`. При прежних `FieldCapacity = 100, CurrentHP = 95` значения ограничиваются до 90/90. После обычного возвращения максимум остаётся 90. Адресное лечение этого Scar может вернуть максимум к 100, если других постоянных причин потери нет; последующая медицина Хаба заполняет два остальных значения.
+
+```yaml
+health_contract:
+  owner: HEALTH
+  runtime_record: BodyID
+  player_values: [MaxCapacity, FieldCapacity, CurrentHP]
+  invariant: "0 <= CurrentHP <= FieldCapacity <= MaxCapacity"
+  maximum_basis: body_definition_and_active_permanent_consequences
+  permanent_loss_source: concrete_scar
+  permanent_capacity_loss_target: MaxCapacity
+  resolved_scar_capacity_effect: remove_only_source_loss_then_recalculate
+  maximum_recalculation: source_scoped_idempotent
+  after_maximum_change: [clamp_field_to_maximum, clamp_current_to_field]
+  health_snapshot_update: atomic
+  maximum_increase_fills_health: false
+  ordinary_damage_target: CurrentHP
+  ordinary_heal_ceiling: FieldCapacity
+  field_medicine_ceiling: MaxCapacity
+  lethal_resolution_owner: LIFECYCLE_RESOLVER
+  hub_recovery_cost: free
+  hub_recovery_requires: living_pawn_and_confirmed_hub_recovery_context
+  hub_recovery_result: fill_field_and_current_to_current_maximum
+  hub_recovery_removes_scar: false
+  hub_recovery_restores_permanent_loss: false
+  resurrection: false
+```
 
 ## 3. Что именно восстанавливает помощь
 
 ```text
 лечебный навык:  CurrentHP' = min(FieldCapacity, CurrentHP + restore)
-полевая медицина: FieldCapacity' = min(BaseCapacity, FieldCapacity + restore_capacity)
+полевая медицина: FieldCapacity' = min(MaxCapacity, FieldCapacity + restore_capacity)
 ```
 
 Полевая медицина не заполняет `CurrentHP` автоматически. Поэтому даже удачная хирургическая процедура не стирает бой одним действием: союзнику всё ещё нужен навык, стимулятор, время или безопасный выход.
@@ -94,7 +144,8 @@ CurrentHP' = min(FieldCapacity', max(0, CurrentHP - hp_loss))
 
 | Владелец | `owned_parameters` | Не владеет |
 |:---|:---|:---|
-| `BodyID` | `BaseCapacity`, текущие `FieldCapacity / CurrentHP`, названная травма и её телесная граница | величиной чужого лечения или вместимостью инвентаря |
+| `HEALTH` / запись `BodyID` | разрешением `MaxCapacity / FieldCapacity / CurrentHP` по телесным источникам | величиной чужого лечения, Scar identity или ресурсной транзакцией Facility |
+| Scar / Body по [[04_Player_Entities/Tags_System\|Tags System]] | конкретным Scar, его состоянием и embodied consequence | вторым расчётом здоровья или списанием входов услуги |
 | `HeroKitID.ActionID` | authored-результатом `Race × Spec`: `restore_budget`, `pulse_count`, геометрия, Commitment, Pulse и Recovery | медицинским предметом, базовой стрельбой или чужой ёмкостью тела |
 | `ConsumableID.Procedure` | дозой, `restore / restore_capacity`, временем применения, consume point и остатком | батарейным импульсом Q/E или постоянным бонусом владельца |
 | `InventoryOwner` | размером стека, слотом, Ready Access и физической доступностью предмета | результатом процедуры после её начала |
@@ -105,14 +156,20 @@ CurrentHP' = min(FieldCapacity', max(0, CurrentHP - hp_loss))
 
 ## 6. Восстановление в Хабе
 
-Успешно вернувшаяся живая Пешка автоматически проходит базовую медицину и санитарную обработку:
+После успешного возвращения живой Пешки базовая медицина и санитарная обработка бесплатны и автоматичны. Health применяет их к текущему максимуму тела:
 
 ```text
-CurrentHP = BaseCapacity
-FieldCapacity = BaseCapacity
+FieldCapacity = MaxCapacity
+CurrentHP = MaxCapacity
 ```
 
-Это не воскрешение и не отмена последствий смерти. Явные постоянные Scar tags, биографические травмы и исход `Broken` остаются, если их собственное правило не говорит обратного.
+Она снимает обычный полевой damage и recoverable trauma по их владельцам. Постоянные Scar, связанные потери MaxCapacity и иные permanent consequences сохраняются. Острое cantrip-состояние снимается по [[05_Combat_Survival/Magic_Batteries#5. Кантрипы|своему контракту]]; это не удаление Scar. Исход `Broken` и смерть не отменяются базовой медициной.
+
+[[08_World_Generation/Hub/Hub_Services_Interaction#Адресное лечение Scar|Facility]] может предложить отдельное лечение подходящего Scar за объявленные реальные ресурсы. [[06_Economy_Loot/Barter_System#Адресная транзакция лечения Scar|RecipeTransaction]] подтверждает расход и результат; Scar/Body прекращает адресованное последствие, Health пересчитывает максимум. После успешной процедуры в Хабе обычный recovery может заполнить здоровье до нового MaxCapacity. Ни процедура, ни заполнение не меняют terminal outcome, Presence, readiness или Closure: их разрешают прежние lifecycle owners.
+
+### UI здоровья
+
+Карточка показывает `MaxCapacity`, `FieldCapacity`, `CurrentHP`, причины потерь и доступную контрмеру. Например: `Max Health: 90`, под ним `Burned Lung: -10 Max Health`. Это пояснение вклада конкретного Scar, не четвёртый постоянный stat. Functional Scar показывает своё функциональное последствие; UI не подставляет ему HP-loss. До платного лечения preview показывает, какой Scar и какой его вклад будут сняты; итоговые числа получает от Health.
 
 ## 7. Проверки прототипа
 
@@ -121,7 +178,7 @@ FieldCapacity = BaseCapacity
 - один лекарь спасает окно, но не удерживает фокус-цель бесконечно;
 - несколько лекарей не умножают одну батарею на весь сквад и не обходят saturation ротацией;
 - соло может стабилизировать себя предметом, но не получает бесплатный групповой цикл;
-- UI отдельно показывает `CurrentHP`, `FieldCapacity`, источник потери предела и ближайшую контрмеру.
+- UI показывает три значения здоровья и конкретную причину потери, не добавляя отдельный Scar pool.
 
 Точные объёмы восстановления, длительности, токсичность, радиусы и пороги остаются `prototype` до проверки слабого, обычного и оптимизированного сценариев.
 

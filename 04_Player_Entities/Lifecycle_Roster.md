@@ -84,6 +84,21 @@ KIA | LOST_CLOSED | CLOSED are terminal roster states
 
 `MIA` denotes an authored unresolved fate outside Last Thread and does not by itself create a Case. `CLOSED` is a living civic outcome, never a death alias. A terminal state is projected only from the owner that resolves it; UI, tags, quests and equipment cannot write it directly.
 
+An available, deferred or declined [[04_Player_Entities/Life_Closure|Closure offer]] does not itself change readiness or Presence. An accepted `CLOSED_CIVIC` resolution permanently excludes ordinary deployment, recruitment/Spawn and ordinary cargo targeting. Confirmation and deployment must respect the same authoritative Presence; repeated delivery projects the same result, never a second Pawn or a return to READY. A future fiction-specific outcome is not projected as CLOSED_CIVIC until that branch is explicitly defined.
+
+```yaml
+closure_roster_projection:
+  owner: LIFECYCLE_ROSTER
+  source: LifeClosureResolution
+  offer_alone_changes_readiness: false
+  declined_offer_changes_readiness: false
+  accepted_civic_state: CLOSED
+  accepted_civic_deployable: false
+  accepted_civic_recruitable: false
+  repeated_resolution: same_projection
+  undefined_keeper_outcome_is_civic: false
+```
+
 ## Account Last Thread slot
 
 The account owns exactly one slot, initially `EMPTY`. An eligibility check or prepared intercept does not reserve it. During final atomic Case acceptance, this owner alone performs versioned `CAS(EMPTY → CaseID)` in the same commit that removes the source Presence and creates the Case. A failed CAS aborts the whole intercept; there is no intermediate `RESERVED` state to strand.

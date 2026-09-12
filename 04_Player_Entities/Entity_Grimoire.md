@@ -84,6 +84,21 @@ Readiness, Presence, нулевой ростер и выбор доступно�
 
 Хранители не встречают нового игрока как Осколок. Прямое обращение к непрерывной воле за разными Пешками относится к поздней метапрогрессии: их интересует невозможный результат, в котором средство познания Сущности стало самостоятельной личностью благодаря смертным людям.
 
+Account-level Keeper Recognition опирается на последствия нескольких жизней и отличается от предложения закончить полевую жизнь конкретной Пешки. Оно не является счётчиком Closure, смертей, retired людей или biography score. Признание Осколка само по себе не означает передачу текущего человека Хранителям и не открывает terminal reward.
+
+Pawn-specific terminal offer требует собственной причины в истории этого человека и конкретного unresolved дела. Его разрешает [[04_Player_Entities/Life_Closure#Keeper extension point|Life Closure]] после определения самой ветки; высокий Proficiency, возраст или число Scar не заменяют основание. Конкретная Keeper-ветка и её результат пока не утверждены.
+
+```yaml
+keeper_recognition_boundary:
+  basis: consequences_across_lives
+  closure_counter: false
+  death_counter: false
+  retired_counter: false
+  biography_score: false
+  implies_pawn_terminal_offer: false
+  implies_terminal_reward: false
+```
+
 ## Отдельный Гримуар знаний
 
 Ненадёжные источники, конфликт свидетельств и проверку рабочих фактов ведёт [[04_Player_Entities/Grimoire_Truth_Triangulation|Гримуар: источники и триангуляция истины]]. Этот контур относится к знаниям об объектах мира и не владеет ростером или Personal Tags.

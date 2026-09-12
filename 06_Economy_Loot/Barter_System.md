@@ -169,6 +169,41 @@ available address
   -> provenance-preserving result
 ```
 
+## Внешнее основание сделки
+
+[[04_Player_Entities/Life_Closure|LifeClosureResolution]] может стать основанием только конкретного authored последствия с named owner и новым terminal причинным фактом. RecipeTransaction разрешает собственные входы, provenance, стоимость и результат; она не оценивает стоимость Пешки и не исполняет per-Pawn retirement payout. Уже изготовленный результат или заработанный работой recipe не ждёт Closure. Повтор урегулированной причины другим человеком не создаёт повторного институционального права, а CLOSED Pawn не служит условием производства. Эта граница не учреждает permanent recipes, новые схемы или services.
+
+## Адресная транзакция лечения Scar
+
+Лечение конкретного Scar использует существующий `RecipeTransaction` с адресованным телесным результатом. Это узкое расширение `exact_outcome`: вместо создаваемого ItemID транзакция содержит `resolve_scar(PawnID, ScarID, scar_revision)`. Pawn здесь пациент, не новый обязательный исполнитель обычной торговли. Рецепты вещей сохраняют прежнюю семантику; личная способность пациента не наследуется и не становится товаром.
+
+[[08_World_Generation/Hub/Hub_Services_Interaction#Адресное лечение Scar|Facility/service]] предоставляет доступ и preview. [[04_Player_Entities/Tags_System#Scar и адресное лечение|Scar/Body]] подтверждает eligibility и готовит адресованный результат, [[05_Combat_Survival/Combat_Consumables|Health]] — пересчёт при изменении capacity. Экономическая сторона RecipeTransaction проверяет непустые объявленные resource inputs с положительными количествами и service_cost, разрешённое provenance и фактическую custody через [[07_Gear_Inventory/Inventory_Architecture|Inventory]]. Общие декларации без заданных ресурсов не являются бесплатным treatment recipe.
+
+Порядок: доступный service + живой пациент в Хабе + eligible active Scar + реальные входы → exact preview → подтверждение игроком → повторная проверка revisions/eligibility и исключительных reservations → один атомарный commit расхода и разрешённого телесного результата. Result не может быть подтверждён без расхода, а расход — без записанного результата. Facility не присваивает MaxCapacity, FieldCapacity или CurrentHP напрямую.
+
+До commit отмена, нехватка ресурсов, изменение пациента/Scar либо потеря доступности адреса оставляет ресурсы и Scar без изменения; reservations освобождаются. Patient/Scar связан с исходной транзакцией и не подменяется другим. Конкурирующие запросы на один Scar не дают двойное лечение; повтор одного committed transaction ID возвращает прежний результат без повторного расхода/восстановления. После commit восстановление технических projections читает durable result; оно не запускает лечение заново и не вводит игрового ожидания.
+
+Нет treatment timer, real-time waiting, daily cooldown, случайного исхода, отдельной универсальной Scar currency или revive. Цены и eligibility будущих services должны быть конкретно объявлены, но этот контракт не создаёт production-каталог и не задаёт курс ресурсов. История лечения сохраняет пациента, Scar, использованные входы и адрес; обычное бесплатное Hub recovery не является этой платной транзакцией.
+
+```yaml
+scar_treatment_transaction:
+  owner: RecipeTransaction
+  target: [PawnID, ScarID, scar_revision]
+  requires: [living_patient_in_hub, eligible_active_scar, available_service, declared_nonempty_resource_inputs, confirmed_resource_custody, player_confirmation]
+  resource_reservation_owner: Inventory
+  result_owner: Tags_System_Body_and_HEALTH
+  atomic_commit: consume_inputs_and_resolve_target_scar
+  before_commit_failure: inputs_and_scar_unchanged
+  retry: same_result_no_second_charge_or_effect
+  target_rebinding: false
+  facility_writes_health: false
+  waiting_timer: false
+  daily_cooldown: false
+  random_result: false
+  universal_scar_currency: false
+  resurrection: false
+```
+
 ## 6. Исключения
 
 - обычный крафт через полевую станцию не является активной RecipeTransaction;

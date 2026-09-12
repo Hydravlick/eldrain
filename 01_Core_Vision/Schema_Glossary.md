@@ -12,6 +12,9 @@ tags: [glossary, definitions]
 
 ## Сессия, ревизии и транзакции
 
+- **MaxCapacity / FieldCapacity / CurrentHP** — единственная тройка здоровья, разрешаемая HEALTH и хранимая в BodyID. MaxCapacity — текущий постоянный максимум после embodied consequences, не исходный максимум до Scar. [[05_Combat_Survival/Combat_Consumables#2. Контракт здоровья|Health owner]].
+- **ScarID / permanent_capacity_loss** — идентичность конкретного последствия и необязательный объявленный вклад в потерю MaxCapacity. Состояние и provenance принадлежат Scar owner; адресное лечение снимает вклад одного источника через RecipeTransaction. [[04_Player_Entities/Tags_System#Scar и адресное лечение|Scar owner]], [[06_Economy_Loot/Barter_System#Адресная транзакция лечения Scar|транзакция]].
+
 - **SessionID** — идентификатор конкретной живой рейдовой сессии. Участие и повторный вход: [[08_World_Generation/Anomaly/Insertion_Logic|Insertion Logic]].
 - **SessionRuntime** — локальное состояние одного SessionID: двери, враги, предметы, следы и действия. Не переписывает общее основание локации. [[08_World_Generation/Generation/Server_Lifecycle|Server Lifecycle]].
 - **LocationRevision** — общее прегенерированное основание цикла: геометрия, маршруты, кандидаты контента. [[08_World_Generation/Generation/Location_Revision_Lifecycle|Location Revision Lifecycle]].

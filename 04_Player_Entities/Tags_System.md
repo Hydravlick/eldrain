@@ -69,13 +69,13 @@ Origin Foundling занимает одно обычное место. Назна
 
 | Решение | Текущий статус и живой consumer |
 |---|---|
-| Максимум три personal lifetime slots, reservation до reveal, inactive не освобождает место | Действующий lifecycle contract этой страницы; [[04_Player_Entities/Spawn_Logic|Spawn]] использует заранее назначенный тег, [[04_Player_Entities/Shell_Foundlings|Foundlings]] — общий предел, [[04_Player_Entities/Life_Closure|Closure]] — критерий сформированной жизни |
+| Максимум три personal lifetime slots, reservation до reveal, inactive не освобождает место | Действующий lifecycle contract этой страницы; [[04_Player_Entities/Spawn_Logic\|Spawn]] использует заранее назначенный тег, [[04_Player_Entities/Shell_Foundlings\|Foundlings]] — общий предел. Для [[04_Player_Entities/Life_Closure\|Closure]] конкретное проявление может быть authored фактом, но число слотов не измеряет полноту жизни |
 | Origin занимает обычное место | Действующий контракт Foundlings и personal acquisition, не дополнительный силовой пул |
 | First Return заранее назначен, seed и assignment не reroll от смерти/смены формы возврата | Действующий [[04_Player_Entities/Spawn_Logic|Continuity/Spawn contract]]; конкретное eligible return condition остаётся `UR-001`, а не выбирается этой страницей |
 | P не занимает personal acquisition slot | Действующий shared semantic contract |
 | `light / situational`, closed `source_kind` catalogue, точные числа одновременных combat effects | Authoring prototype-bound; не окончательная исчерпывающая Trait taxonomy и не новые lifecycle prerequisites |
 
-Предел «не более трёх» не требует, чтобы каждая Пешка получила ровно три Traits. Отдельный formed-life criterion Closure читает свой принятый контракт. Следующий Trait Grammar pass уточняет описание эффектов и их композицию; изменение уже действующей acquisition/lifecycle модели требует отдельного явного решения и миграции её потребителей.
+Предел «не более трёх» не требует, чтобы каждая Пешка получила ровно три Traits, и не является общим допуском к Closure. Конкретная authored arc может читать необходимый ей Trait или Scar по контракту [[04_Player_Entities/Life_Closure|Life Closure]]. Следующий Trait Grammar pass уточняет описание эффектов и их композицию; изменение уже действующей acquisition/lifecycle модели требует отдельного явного решения и миграции её потребителей.
 
 ## 2. Рабочие формы выражения (prototype-bound)
 
@@ -147,6 +147,36 @@ declared condition
 Если лечение, ампутация, утрата импланта или разрушение реликтового носителя прекращают правило, причинный исход остаётся у тела, лечения либо носителя, а механический тег становится `inactive`. Это физический исход, а не respec: его reserved lifetime slot остаётся занят.
 
 Когда `reserved_lifetime_slot_count = 3`, новый источник проверяет совместимость до необратимой процедуры. Он может остаться Cargo, дать острое временное состояние либо оказаться неприменимым; скрытого четвёртого тега не возникает.
+
+## Scar и адресное лечение
+
+Scar — постоянное свойство конкретной Пешки, возникшее из названного телесного события. Его запись сохраняет `PawnID`, конкретный `ScarID`, definition/source event, revision, состояние `active | resolved` и ссылку на embodied consequence. `Tags System` владеет идентичностью/состоянием Scar; Body хранит телесное последствие, а профильный domain owner применяет его. Morphology projection не становится вторым реестром Scar.
+
+Scar может объявить `permanent_capacity_loss`, функциональное последствие, конкретную уязвимость или иное embodied consequence. Это примеры полей последствия, не закрытая taxonomy. Не каждый Scar уменьшает здоровье. Вклад `permanent_capacity_loss` сохраняет связь с этим Scar и передаётся [[05_Combat_Survival/Combat_Consumables#Постоянные последствия|Health]] для пересчёта MaxCapacity; общий ScarredHP pool или Scar currency не создаётся.
+
+Permanent означает, что свойство не исчезает само и не снимается обычной бесплатной медициной после extraction. Конкретный Scar допускает адресное лечение только при совпадении его eligibility и объявленного treatment service. Один Facility не получает универсального права лечить все Scar. До подтверждения проверяются живой адресат в Хабе, его текущий Scar/revision и заявленное последствие; недоступная услуга или несовместимый Scar даёт отказ.
+
+[[06_Economy_Loot/Barter_System#Адресная транзакция лечения Scar|Подтверждённая ресурсная транзакция]] адресует конкретный Scar. Scar owner переводит его в `resolved`, прекращает именно его embodied consequence и оставляет provenance/исторический факт. Если это Personal Tag, его механическое проявление становится `inactive`, но reserved lifetime slot и факт reveal не стираются. Лечение не является новым roll; authored Closure читает нужный ему текущий или исторический факт, а не число проявлений как полноту жизни. Изменения acquisition в эту процедуру не входят.
+
+У capacity-damaging Scar снимается только его permanent_capacity_loss; итог считает Health. У functional Scar восстанавливается именно объявленная функция/снимается его уязвимость, насколько её больше не ограничивают другие действующие причины. Удаление одной причины не лечит одновременно все травмы тела. Если изменена устойчивая геометрия/интерфейс, [[04_Player_Entities/Body_Morphology_Contract|Body Morphology]] публикует соответствующую revision по своему контракту; HP-loss сам по себе не требует нового fit.
+
+```yaml
+scar_contract:
+  record_owner: Tags_System
+  identity: [PawnID, ScarID]
+  consequence_record: Body
+  health_resolver: HEALTH
+  consequence_source: concrete_scar_definition
+  states: [active, resolved]
+  universal_hp_loss: false
+  basic_hub_removal: false
+  treatment_eligibility: scar_and_service_specific
+  treatment_result: resolve_target_scar_consequence_only
+  treatment_keeps_history: true
+  treatment_frees_lifetime_slot: false
+  treatment_changes_reveal_history: false
+  automatic_expiry: false
+```
 
 ## 4. Источники
 

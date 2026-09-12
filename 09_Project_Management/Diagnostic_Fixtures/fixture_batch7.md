@@ -271,4 +271,4 @@ A/B/C: baseline, +1 и +2 positions по manifest. Прибавка лишь п�
 
 **Verdict: BATCH 7 COMPLETE** — завершён диагностический corpus и разбор условий опровержения; runtime/баланс не объявлены доказанными. Подтверждённой необходимости architecture correction нет.
 
-Следующий шаг: один серый игровой стенд с галереей и близким поворотом, теми же тремя Pattern и targeted Q; записать причины выбора, времена settle/refill/возврата и потери возможностей при +0/+1/+2. До измерений не превращать fixtures в production arsenal.
+Продолжение: [[09_Project_Management/Diagnostic_Fixtures/fixture_batch8|Batch 8 — Analytical Diagnostics]] теоретически разбирает эти fixtures без executable prototype. По решению владельца проекта следующий этап после него — **Batch 9: Life Cycle / Closure + Representative Content**. Реальные timings/feel остаются вопросами будущего прототипа; этот corpus не превращается в production arsenal.

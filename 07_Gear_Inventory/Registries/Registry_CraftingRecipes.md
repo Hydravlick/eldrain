@@ -53,6 +53,8 @@ balance_state
 - `provenance_result` сохраняет источник значимых входов, адрес и Stable-цикл;
 - `balance_state` остаётся `unknown`, пока курс не проверен в полной экономике.
 
+Для адресного лечения Scar запись дополнительно связывает объявленную service eligibility и `exact_outcome = resolve_scar(PawnID, ScarID, scar_revision)`. Результат исполняют Scar/Body и Health по [[06_Economy_Loot/Barter_System#Адресная транзакция лечения Scar|transaction owner]], а не этот реестр. Непустые реальные resource inputs и их положительные количества обязательны; конкретные рецепты лечения здесь пока не публикуются.
+
 ## Confirmed records
 
 Подтверждённых RecipeTransaction пока нет. Базовый фильтр остаётся действующей категорией центральной услуги, но его конкретные входы, стоимость и `recipe_id` не утверждены; прежний пример не является каноническим рецептом.
