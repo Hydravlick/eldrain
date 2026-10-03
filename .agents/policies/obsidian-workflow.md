@@ -18,6 +18,12 @@ Installed contract checked 2026-09-06: Obsidian 1.13.7 (installer 1.13.4). `rena
 
 Use quoted root-relative wikilinks for canonical note properties, preserve aliases and block IDs, and escape the alias pipe as `\|` in tables. Keep page properties flat: text, numbers, booleans, dates and lists of scalars/quoted links. Nested records belong in the existing registry/data format. Do not reinterpret an embed as inheritance.
 
+### Markdown tables
+
+Inside a table cell, write `[[Note#Heading\|Label]]` and `![[image.png\|300]]`. Every literal pipe inside a cell needs `\|`, including pipes in inline code; backticks do not protect table delimiters. Outside tables, retain ordinary wikilink pipes. Keep each row on one physical line with the declared number of cells; use `<br>` for an intentional line break inside a cell. A blank line ends the table: append another record directly to its body, or give a separate table its own header and delimiter row.
+
+Run `vault_guard` after table edits. It reports unescaped wikilink pipes, column-count mismatches and detached pipe rows throughout the vault. These checks verify table structure; inspect reading view when available to assess wrapping and readability, and distinguish that from a structural check.
+
 ## Native structural migration
 
 When installed help confirms rename/move support, prefer native Obsidian CLI migration for Markdown notes over filesystem renames. This vault has `alwaysUpdateLinks: true` (verified in `.obsidian/app.json`); preserve the setting and check it before migration. Automatic internal-link updates do not guarantee repair of arbitrary strings. If native operations are unavailable, a filesystem fallback requires explicit consumer repair and the same validation; report the limitation.

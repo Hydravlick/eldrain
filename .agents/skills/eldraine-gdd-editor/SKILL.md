@@ -28,6 +28,7 @@ Apply [editorial-quality](../../policies/editorial-quality.md): Meaning -> Human
 - Forced contrasts and slogan-like prose: state the design information directly; keep a contrast only when it explains a real distinction.
 - Unexplained abstract nouns: connect them to observable actions, conditions and consequences.
 - Unnecessary “player should feel” claims: explain what the player knows, risks, sees and can do before naming a useful emotional target.
+- Markdown tables: follow the table rules in [obsidian-workflow](../../policies/obsidian-workflow.md), including escaped link pipes; verify the intended columns with `vault_guard` after writing tables.
 
 Preserve intentional voice and useful material, sensory and explanatory detail supported by owners/lore. Do not invent canon to make an example vivid. Reread rules after polishing for changed negation, condition or causality. These checks require reading and judgment, not phrase matching or a uniform page template.
 

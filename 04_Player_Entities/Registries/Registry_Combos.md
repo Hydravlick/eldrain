@@ -153,9 +153,9 @@ if (authoredRows.length) {
 
 | Раса \ Практика | Застрельщик | Ладчик | Странник |
 |:---|:---|:---|:---|
-| Ёж | [[04_Player_Entities/Registries/Registry_Combos#Ёж × Застрельщик|Ёж × Застрельщик]] | [[04_Player_Entities/Registries/Registry_Combos#Ёж × Ладчик|Ёж × Ладчик]] | [[04_Player_Entities/Registries/Registry_Combos#Ёж × Странник|Ёж × Странник]] |
-| Крыса | [[04_Player_Entities/Registries/Registry_Combos#Крыса × Застрельщик|Крыса × Застрельщик]] | [[04_Player_Entities/Registries/Registry_Combos#Крыса × Ладчик|Крыса × Ладчик]] | [[04_Player_Entities/Registries/Registry_Combos#Крыса × Странник|Крыса × Странник]] |
-| Белка | [[04_Player_Entities/Registries/Registry_Combos#Белка × Застрельщик|Белка × Застрельщик]] | [[04_Player_Entities/Registries/Registry_Combos#Белка × Ладчик|Белка × Ладчик]] | [[04_Player_Entities/Registries/Registry_Combos#Белка × Странник|Белка × Странник]] |
+| Ёж | [[04_Player_Entities/Registries/Registry_Combos#Ёж × Застрельщик\|Ёж × Застрельщик]] | [[04_Player_Entities/Registries/Registry_Combos#Ёж × Ладчик\|Ёж × Ладчик]] | [[04_Player_Entities/Registries/Registry_Combos#Ёж × Странник\|Ёж × Странник]] |
+| Крыса | [[04_Player_Entities/Registries/Registry_Combos#Крыса × Застрельщик\|Крыса × Застрельщик]] | [[04_Player_Entities/Registries/Registry_Combos#Крыса × Ладчик\|Крыса × Ладчик]] | [[04_Player_Entities/Registries/Registry_Combos#Крыса × Странник\|Крыса × Странник]] |
+| Белка | [[04_Player_Entities/Registries/Registry_Combos#Белка × Застрельщик\|Белка × Застрельщик]] | [[04_Player_Entities/Registries/Registry_Combos#Белка × Ладчик\|Белка × Ладчик]] | [[04_Player_Entities/Registries/Registry_Combos#Белка × Странник\|Белка × Странник]] |
 
 ## Контракт записи
 

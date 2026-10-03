@@ -49,16 +49,16 @@ combat_projection_contract:
 
 | Источник | Что показывает проекция | Что остаётся у источника |
 |---|---|---|
-| [[04_Player_Entities/Skill_Build_Philosophy|Field Profile]] и [[04_Player_Entities/Registries/Registry_Combos|его записи]] | identity Race × Spec, deterministic P, определения Q/E, decision signature, authored BaseServiceCapacity | authored факты профиля; профиль не хранит concrete ItemID и не является готовой сборкой |
-| [[04_Player_Entities/Shell_Construction|Конкретная Пешка]] и Body | происхождение, текущее тело, доступные capabilities, раны и состояния | личные факты и последствия их изменения |
-| [[04_Player_Entities/Tags_System|Общие Trait rules]] | профильное происхождение P, личное происхождение Personal Traits, их применимость и результаты, уже принятые владельцами | единая semantic grammar и доменное разрешение; P не пересчитывается отдельным effect engine |
-| [[04_Player_Entities/Proficiency_Arsenal|Pawn ↔ Frame]] | сохранённое отношение конкретного человека | admission и authored handling; без EffectiveProf, MasteryContribution или moveset unlock |
-| [[05_Combat_Survival/Weapon_Core|Frame / Pattern / ItemID]] | язык Frame, операции Pattern и независимые состояния физических копий | определения и runtime state оружия |
-| [[07_Gear_Inventory/Equipment_PaperDoll|Weapon Set]] и [[07_Gear_Inventory/Inventory_Architecture|Inventory]] | prepared layout, действительная занятость рук, custody, Ready Access, груз | физическое размещение, подготовка и transition |
-| [[05_Combat_Survival/Combat_Three_Debts|Action]] | текущие claims, принятый долг, опубликованные причины недоступности | eligibility, исполнение, прерывание, Recovery и release points |
-| [[07_Gear_Inventory/Thermos_Assembly|Thermos Assembly]] | подтверждённый ThermosAssemblySnapshot: модель, nodes, установленные ItemID, разрешённые эффекты и legality | fit/topology/service-расчёт; проекция не чинит нелегальную сборку |
-| [[05_Combat_Survival/Magic_Batteries|Battery]] и [[05_Combat_Survival/Weapon_Ranged|ranged ItemID]] | Full/Drained конкретной батареи; отдельные magazines, Heat и техническая готовность | source reservation/transaction и локальный device state |
-| Environment, [[03_Factions_Societies/Quest_Engine|Quest]], группа и текущие обязательства | доступные методы, ограничения среды, цена груза, подтверждённые результаты | требования и состояние работы, средовые правила, completion и result handoff |
+| [[04_Player_Entities/Skill_Build_Philosophy\|Field Profile]] и [[04_Player_Entities/Registries/Registry_Combos\|его записи]] | identity Race × Spec, deterministic P, определения Q/E, decision signature, authored BaseServiceCapacity | authored факты профиля; профиль не хранит concrete ItemID и не является готовой сборкой |
+| [[04_Player_Entities/Shell_Construction\|Конкретная Пешка]] и Body | происхождение, текущее тело, доступные capabilities, раны и состояния | личные факты и последствия их изменения |
+| [[04_Player_Entities/Tags_System\|Общие Trait rules]] | профильное происхождение P, личное происхождение Personal Traits, их применимость и результаты, уже принятые владельцами | единая semantic grammar и доменное разрешение; P не пересчитывается отдельным effect engine |
+| [[04_Player_Entities/Proficiency_Arsenal\|Pawn ↔ Frame]] | сохранённое отношение конкретного человека | admission и authored handling; без EffectiveProf, MasteryContribution или moveset unlock |
+| [[05_Combat_Survival/Weapon_Core\|Frame / Pattern / ItemID]] | язык Frame, операции Pattern и независимые состояния физических копий | определения и runtime state оружия |
+| [[07_Gear_Inventory/Equipment_PaperDoll\|Weapon Set]] и [[07_Gear_Inventory/Inventory_Architecture\|Inventory]] | prepared layout, действительная занятость рук, custody, Ready Access, груз | физическое размещение, подготовка и transition |
+| [[05_Combat_Survival/Combat_Three_Debts\|Action]] | текущие claims, принятый долг, опубликованные причины недоступности | eligibility, исполнение, прерывание, Recovery и release points |
+| [[07_Gear_Inventory/Thermos_Assembly\|Thermos Assembly]] | подтверждённый ThermosAssemblySnapshot: модель, nodes, установленные ItemID, разрешённые эффекты и legality | fit/topology/service-расчёт; проекция не чинит нелегальную сборку |
+| [[05_Combat_Survival/Magic_Batteries\|Battery]] и [[05_Combat_Survival/Weapon_Ranged\|ranged ItemID]] | Full/Drained конкретной батареи; отдельные magazines, Heat и техническая готовность | source reservation/transaction и локальный device state |
+| Environment, [[03_Factions_Societies/Quest_Engine\|Quest]], группа и текущие обязательства | доступные методы, ограничения среды, цена груза, подтверждённые результаты | требования и состояние работы, средовые правила, completion и result handoff |
 
 Каждый показанный результат имеет ссылку на источник и его актуальный snapshot/revision, если владелец их публикует. Изменение тела, Set, груза или мира требует обновления представления. Устаревшая карточка не разрешает действие: новый request повторно проверяется владельцем Action и требуемыми доменными owners. Буферизованное намерение сохраняет исходную operation/recipient.
 

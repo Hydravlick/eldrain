@@ -39,13 +39,13 @@ Definition описывает тип вещи; instance — реальную в�
 
 | Вопрос | Единственный owner | Термос передаёт | Не делает |
 |---|---|---|---|
-| Fit | [[07_Gear_Inventory/Thermos_Assembly|Assembly Resolver]] | body/model/refit inputs | не меняет Body, полевой профиль или Personal Tag |
+| Fit | [[07_Gear_Inventory/Thermos_Assembly\|Assembly Resolver]] | body/model/refit inputs | не меняет Body, полевой профиль или Personal Tag |
 | Topology | Assembly Resolver | mount patterns и node claims | не выводит effect из позиции |
 | Service legality | Assembly Resolver | authored BaseServiceCapacity и service load | не создаёт capacity из tag/status/consumable |
-| Effect policy | [[04_Player_Entities/Registries/Registry_Parameter_Contracts|Parameter Contract owner]] | modifier request + intrinsic debt | не задаёт priority/floor/cap |
-| Physical mass | [[07_Gear_Inventory/Physical_Weight|Physical Weight]] | instances и base mass | не решает fit/topology/service |
-| Dissonance | [[05_Combat_Survival/Dissonance_System|Dissonance System]] | persistent signature/contributor rule | не создаёт второй Pulse |
-| Economy | [[06_Economy_Loot/Economy_Core|Economy]] | acquisition/refit/replacement request | не определяет legality |
+| Effect policy | [[04_Player_Entities/Registries/Registry_Parameter_Contracts\|Parameter Contract owner]] | modifier request + intrinsic debt | не задаёт priority/floor/cap |
+| Physical mass | [[07_Gear_Inventory/Physical_Weight\|Physical Weight]] | instances и base mass | не решает fit/topology/service |
+| Dissonance | [[05_Combat_Survival/Dissonance_System\|Dissonance System]] | persistent signature/contributor rule | не создаёт второй Pulse |
+| Economy | [[06_Economy_Loot/Economy_Core\|Economy]] | acquisition/refit/replacement request | не определяет legality |
 
 `effect_axis` — derived search/UI label и не участвует в legality.
 

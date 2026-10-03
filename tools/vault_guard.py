@@ -62,6 +62,109 @@ def iter_wikilinks(text: str) -> Iterable[str]:
         yield match.group(1)
 
 
+def unescaped_pipes(line: str) -> list[int]:
+    """Table delimiters include pipes inside inline code and link syntax."""
+    result = []
+    for index, char in enumerate(line):
+        if char != "|":
+            continue
+        start = index
+        while start > 0 and line[start - 1] == "\\":
+            start -= 1
+        if (index - start) % 2 == 0:
+            result.append(index)
+    return result
+
+
+def table_cells(line: str) -> list[str]:
+    line = line.strip()
+    positions = unescaped_pipes(line)
+    cells = []
+    start = 0
+    for index in positions:
+        cells.append(line[start:index].strip())
+        start = index + 1
+    cells.append(line[start:].strip())
+    if positions and positions[0] == 0:
+        cells.pop(0)
+    if positions and positions[-1] == len(line) - 1:
+        cells.pop()
+    return cells
+
+
+def table_document_lines(text: str) -> list[str]:
+    """Mask YAML/fenced examples, keeping line numbers and inline code pipes."""
+    lines = []
+    fence = ""
+    frontmatter = False
+    for number, raw in enumerate(text.splitlines(), 1):
+        if number == 1 and raw.lstrip("\ufeff") == "---":
+            frontmatter = True
+            lines.append("")
+            continue
+        if frontmatter:
+            if raw in {"---", "..."}:
+                frontmatter = False
+            lines.append("")
+            continue
+        line = re.sub(r"^(?: {0,3}> ?)+", "", raw)
+        match = re.match(r"^\s*(`{3,}|~{3,})", line)
+        if match:
+            marker = match.group(1)
+            if not fence:
+                fence = marker
+            elif marker[0] == fence[0] and len(marker) >= len(fence):
+                fence = ""
+            lines.append("")
+            continue
+        lines.append("" if fence else line)
+    return lines
+
+
+def iter_table_rows(text: str) -> Iterable[tuple[int, int, str]]:
+    """Recognize tables by delimiter rows, including optional edges/quotes."""
+    lines = table_document_lines(text)
+    index = 1
+    while index < len(lines):
+        cells = table_cells(lines[index])
+        if (lines[index - 1].strip() and unescaped_pipes(lines[index])
+                and cells and all(re.fullmatch(r":?-+:?", cell) for cell in cells)):
+            columns = len(cells)
+            yield index, columns, lines[index - 1]
+            index += 1
+            while index < len(lines) and lines[index].strip() and unescaped_pipes(lines[index]):
+                yield index + 1, columns, lines[index]
+                index += 1
+        else:
+            index += 1
+
+
+def check_tables(root: Path) -> list[Violation]:
+    violations = []
+    for path in markdown_files(root):
+        text = path.read_text(encoding="utf-8-sig")
+        rows = list(iter_table_rows(text))
+        rel = str(path.relative_to(root))
+        covered = {number for number, _, _ in rows}
+        for number, columns, line in rows:
+            for match in WIKILINK.finditer(line):
+                if unescaped_pipes(match.group(1)):
+                    violations.append(Violation("TABLE_UNESCAPED_WIKILINK_PIPE", rel,
+                                                f"line {number}: {match.group(0)}"))
+            actual = len(table_cells(line))
+            if actual != columns:
+                violations.append(Violation("TABLE_COLUMN_COUNT", rel,
+                                            f"line {number}: expected {columns}, found {actual}"))
+        for number, line in enumerate(table_document_lines(text), 1):
+            stripped = line.strip()
+            if (number not in covered and stripped.startswith("|") and stripped.endswith("|")
+                    and len(unescaped_pipes(stripped)) >= 2
+                    and not all(re.fullmatch(r":?-+:?", cell) for cell in table_cells(stripped))):
+                violations.append(Violation("TABLE_ORPHAN_ROW", rel,
+                                            f"line {number}: pipe row outside a table"))
+    return violations
+
+
 def link_parts(target: str) -> tuple[str, str]:
     target = target.replace("\\|", "|").split("|", 1)[0].strip()
     path, _, fragment = target.partition("#")
@@ -363,7 +466,8 @@ def check_surface(root: Path, strict: bool = False) -> list[Violation]:
 
 def run(root: Path, strict: bool = False) -> list[Violation]:
     return (check_frontmatter(root) + check_links(root, strict) + check_index(root)
-            + check_owners(root) + check_features(root) + check_views(root) + check_surface(root, strict))
+            + check_owners(root) + check_features(root) + check_views(root) + check_surface(root, strict)
+            + check_tables(root))
 
 
 def main() -> int:

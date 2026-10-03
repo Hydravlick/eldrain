@@ -6,8 +6,8 @@ from pathlib import Path
 
 from tools.document_model import MODEL, MetadataError, parse_frontmatter
 from tools.vault_guard import (check_bases, check_features, check_frontmatter, check_index,
-                               check_links, check_owners, check_surface, check_views,
-                               project_files, resolve_wikilink, run)
+                               check_links, check_owners, check_surface, check_tables, check_views,
+                               iter_table_rows, project_files, resolve_wikilink, run, table_cells)
 
 
 class VaultGuardTests(unittest.TestCase):
@@ -104,6 +104,66 @@ class VaultGuardTests(unittest.TestCase):
         self.page(body='```markdown\n[[MissingExample]]\n```\n`[[MissingInline]]`\n[[MissingReal]]')
         result = check_links(self.root)
         self.assertEqual([v.detail for v in result], ["MissingReal"])
+
+    def test_table_alias_pipe_is_reported_in_contextual_document(self):
+        self.write("09_Project_Management/Work.md",
+                   "| Stage | Owner |\n| --- | --- |\n| I | [[Note#Rule|Shown]] |\n")
+        result = check_tables(self.root)
+        self.assertEqual({v.code for v in result},
+                         {"TABLE_UNESCAPED_WIKILINK_PIPE", "TABLE_COLUMN_COUNT"})
+        self.assertTrue(all("line 3:" in v.detail for v in result))
+        self.assertTrue(all(v.path.endswith("Work.md") for v in result))
+        self.assertIn("TABLE_COLUMN_COUNT", self.codes(run))
+
+    def test_escaped_alias_heading_embed_and_inline_pipe_keep_cells(self):
+        self.write("Table.md", r"""| Stage | Owner |
+| :--- | ---: |
+| I | [[Note#Rule\|Shown]] and ![[image.png\|300]]; `a\|b` |
+""")
+        self.assertEqual(check_tables(self.root), [])
+        self.assertEqual(table_cells(r"| I | [[Note\|Shown]] |"), ["I", r"[[Note\|Shown]]"])
+
+    def test_optional_table_edges_and_blockquote_tables(self):
+        self.write("Table.md", "Stage | Owner\n--- | ---\nI | [[Note\\|Shown]]\n\n"
+                   "> | Stage | Owner |\n> | --- | --- |\n> | I | [[Note\\|Shown]] |\n")
+        self.assertEqual(check_tables(self.root), [])
+
+    def test_fenced_examples_and_frontmatter_are_not_rendered_tables(self):
+        self.write("Table.md", "---\nexample: |\n  | Stage | Owner |\n  | --- | --- |\n"
+                   "  | I | [[Note|Shown]] |\n---\n\n"
+                   "```markdown\n| Stage | Owner |\n| --- | --- |\n| I | [[Note|Shown]] |\n```\n"
+                   "> ~~~~markdown\n> | Orphan | Row |\n> ~~~~\n")
+        self.assertEqual(check_tables(self.root), [])
+
+    def test_inline_code_pipe_still_splits_table(self):
+        self.write("Table.md", "| Stage | Code |\n| --- | --- |\n| I | `a|b` |\n")
+        self.assertEqual(self.codes(check_tables), {"TABLE_COLUMN_COUNT"})
+
+    def test_literal_pipe_escape_uses_backslash_parity(self):
+        self.assertEqual(table_cells(r"| a\|b | c |"), [r"a\|b", "c"])
+        self.assertEqual(table_cells(r"| a\\|b | c |"), [r"a\\", "b", "c"])
+        self.assertEqual(table_cells(r"| a\\\|b | c |"), [r"a\\\|b", "c"])
+
+    def test_short_long_and_broken_header_rows_are_reported(self):
+        self.write("Table.md", "| A | B | Extra |\n| --- | --- |\n| only |\n| a | b | c |\n")
+        result = check_tables(self.root)
+        self.assertEqual(len(result), 3)
+        self.assertEqual({v.code for v in result}, {"TABLE_COLUMN_COUNT"})
+        self.assertEqual([n for n, _, _ in iter_table_rows(
+            "| A | B |\n| --- | --- |\n| a | b |\n")], [1, 3])
+
+    def test_blank_line_detaches_row_and_rejoining_repairs_it(self):
+        path = self.write("Table.md", "| A | B |\n| --- | --- |\n| a | b |\n\n| c | d |\n")
+        result = check_tables(self.root)
+        self.assertEqual([v.code for v in result], ["TABLE_ORPHAN_ROW"])
+        self.assertIn("line 5:", result[0].detail)
+        path.write_text(path.read_text().replace("\n\n| c", "\n| c"), encoding="utf-8")
+        self.assertEqual(check_tables(self.root), [])
+
+    def test_separate_table_with_its_own_header_is_valid(self):
+        self.write("Table.md", "| A | B |\n| --- | --- |\n| a | b |\n\n"
+                   "| C | D |\n| --- | --- |\n| c | d |\n")
+        self.assertEqual(check_tables(self.root), [])
 
     def test_root_relative_alias_heading_embed_and_self_link(self):
         source = self.page(body="# Heading\n^block\n[[#Heading]] [[#^block]]\n![[image.png|300]]\n[[01_Core_Vision/Target#Rule\\|Shown]]")

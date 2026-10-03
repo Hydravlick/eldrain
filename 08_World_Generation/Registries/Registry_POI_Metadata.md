@@ -56,6 +56,12 @@ WorldMetadata
 - доступность `stable_cycle`, без короткого таймера.
 - `stable_eligibility`: допустимость участия в `StablePOISelection`; она не выбирает слот и не зависит от локальной рейдовой сессии.
 
+### Авторские данные обитаемой встречи
+
+Когда выбран обитаемый POI, metadata связывает его с content definition: роль и цель местного, физическая зависимость от места, условия помощи/отказа, отдельное Routine/Urgent событие при наличии и заданная Stable-форма. Именованное продолжение явно указывает личный либо общий narrative scope по [[08_World_Generation/Generation/Location_Revision_Lifecycle#Общий район и личный финал|Location Revision Lifecycle]]. Metadata не создаёт личность, custody, Origin или общий NPC outcome.
+
+Общая `projection_role` может сохранить карантин или закрытое состояние опасного корпуса. Обитаемая карточка показывает продолжающуюся жизнь местных без их добавления в ростер. Потеря доступа при замещении объясняется отдельно от смерти владельца. Поля локальной сессии не определяют общую форму. Для [[08_World_Generation/Content/World_Atlas/Sectors/Port/Accreting_Tissue_Clinic_Pilot|concept лечебного пилота]] исходная авторская форма — quarantine, при отсутствии допустимого пути — closed; действующий сервис и адрес ещё не заданы.
+
 ## 3. Resolver
 
 См. [[08_World_Generation/Generation/Dual_State_POIs#4. Resolver]].

@@ -118,6 +118,21 @@ evidence_payload: extractable proof | none
 
 Сохранившийся приёмный узел Ковчега и древний причал. Дверь постоянна, не входит в процедурный пул Порта и отделена от рейдовой геометрии безопасным карманом. Канон места, его граница с генерацией и Отпечаток Перехода принадлежат [[08_World_Generation/Content/World_Atlas/Sectors/Port/Port_Manifest#Граница Двери|манифесту Порта]].
 
+## Concept: обитаемый лечебный корпус
+
+### Кандидат лечебного пилота
+
+[poi_id:: port_accreting_clinic]
+[address_id:: none]
+[address_class:: none]
+[availability:: raid_only]
+[accepted_families:: none]
+[service_roles:: none]
+[central_fallback:: none]
+[design_status:: concept]
+
+ID зарезервирован для [[08_World_Generation/Content/World_Atlas/Sectors/Port/Accreting_Tissue_Clinic_Pilot|одного лечебного пилота]]. Место, участники, воздействие и пути конфигурируются там; публикация карты подчиняется [[08_World_Generation/Registries/Registry_POI_Metadata|metadata]]. Это не Confirmed record, активный генерационный кандидат или новая медицинская служба. Предложенное городское представление — quarantine/closed без Recipe и сервисного пина. Для `address` потребуются собственные допустимые семейства, роли, маршрут и выбор StablePOISelection.
+
 ## Adding a record
 
 ```text

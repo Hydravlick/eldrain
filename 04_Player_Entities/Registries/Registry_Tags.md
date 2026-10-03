@@ -122,6 +122,38 @@ Universal Mastery не входит в Trait schema и не превращает
 * **Что не утверждено:** радиус контакта, buildup, длительность poison и допустимые материалы защиты.
 
 
+## Concept: происхождение того же телесного свойства
+
+### Origin: токсичная кровь до спасения
+
+[id:: origin_toxic_blood]
+[tag:: origin_toxic_blood]
+[tag_form:: situational]
+[tag_kind:: origin]
+[source_kind:: origin]
+[source_event:: authored_pre_rescue_toxic_blood_history]
+[assignment_moment:: pre_rescue_input]
+[manifestation_gate:: eligible_ordinary_return]
+[owner_domain:: body]
+[setting_channel:: body]
+[signal_ref:: bleed, poison]
+[physical_or_action_owner:: circulatory_system]
+[trigger:: fresh_penetrating_or_cutting_wound_at_contact_distance]
+[affected_parameter:: none]
+[modifier:: none]
+[rule_shift:: fresh_blood_physically_applies_registered_poison_exposure_to_unsealed_contact_target]
+[tell_owner:: darkened_vessels_before_raid_and_visible_toxic_spray_on_trigger]
+[tell_observer:: dark_vessels_visible_at_close_range_and_colored_spray_on_wound]
+[cost_or_debt:: active_bleed_and_normal_treatment_pressure]
+[counterplay:: maintain_distance_or_use_sealed_contact_layer_or_stop_contact_pressure]
+[stack_group:: mutation_contact_response]
+[exclusive_with:: none]
+[design_status:: concept]
+
+Кандидат [[08_World_Generation/Content/World_Atlas/Sectors/Port/Accreting_Tissue_Clinic_Pilot|лечебного пилота]] описывает предсуществующее свойство спасаемого. Его выражение совпадает с prototype токсичной крови выше, но provenance относится к прежней жизни: назначение до rescue input, обычное место и раскрытие по Foundling owner. Это отдельная content-конфигурация общей grammar, без чтения другого Trait ID и без нового effect engine. Спасение не создаёт усиление.
+
+Definition остаётся concept до проверки источника, контакта, защиты и калибровки. Он не активирован для генерации Origin и не разрешает рейдеру приобрести такую мутацию из контакта с тканью. Rarity и числовые значения не установлены. Внешний признак не превращает Bio-Scanner в средство раскрыть точный скрытый Origin.
+
 ## Зарезервированные направления
 
 ### Роговой шов
