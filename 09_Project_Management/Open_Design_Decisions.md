@@ -34,3 +34,7 @@ type: "project_management"
 `Dawn full return` уже живёт у [[04_Player_Entities/Lifecycle_Resolver|Lifecycle Resolver]] и [[06_Economy_Loot/Return_Manifest_Contract|Return Manifest Contract]]. Это не открытое расхождение и не должно добавляться в данный реестр.
 
 Принятый исход Recovery на Dawn находится у [[04_Player_Entities/Recovery_Lifecycle]]. В `UR-002` остаётся открытым только начало и течение Case clock.
+
+## Связь с лорной миграцией
+
+Непрерывность жизни, содержание T2/T3 и рынок картографических заказов выбраны автором и перенесены к действующим владельцам; это не новые unresolved-расхождения. История выбора и оставшаяся зависимая работа находятся в [[09_Project_Management/Eldrain_Lore_Migration_Plan|локальной записи миграции]], действия — в [[09_Project_Management/TODO]]. Миграция не разрешает UR-001–UR-003 и не пересматривает их lifecycle-контракты.

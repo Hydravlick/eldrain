@@ -141,6 +141,21 @@ read_when: Когда нужен контракт «Реестр игровых 
 [minimum_boundary:: branch, stock family, protected minimum, amount, reason, witnesses and review time]
 [does_not_own:: item prices, Welfare predicate, vendor stock generation, stash capacity or debt settlement]
 
+### contour_chamber.route_procurement
+
+[interface_id:: contour_chamber.route_procurement]
+[faction_id:: contour_chamber]
+[interface_status:: active]
+[role:: ISSUER]
+[input_family:: bounded field route procurement]
+[player_verb:: accept a paid mapping contract]
+[result_family:: verified contract completion and declared payment]
+[mechanic_owner_ref:: [[03_Factions_Societies/Quest_Engine#Контрактный сценарий: гонка картографов|Quest Engine]]]
+[dependency_refs:: [[03_Factions_Societies/Reputation_Rules|Reputation Rules]], [[08_World_Generation/Generation/UI_Map_Protocol|UI Map Protocol]]]
+[presentation_ref:: [[03_Factions_Societies/Lore/The_Contour_Chamber|The Contour Chamber]]]
+[minimum_boundary:: issuer, area, revision, dated route observations, cargo limits, accepting address, deadline, evidence and declared budget]
+[does_not_own:: profession-wide command, public attestation, map visibility, world publication, admission or extraction]
+
 ### contour_chamber.evidence_attestation
 
 [interface_id:: contour_chamber.evidence_attestation]

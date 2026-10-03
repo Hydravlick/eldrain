@@ -43,7 +43,7 @@ These are recommended boundaries, not new canon.
 
 The proposed separation of identity, tuning and exceptional rules is healthy **if maintained at the level of the finished configuration**—**STRONGLY INFERRED**.
 
-The terminology matters. [Gear_Progression](C:/Hobby/Eldrain/07_Gear_Inventory/Gear_Progression.md) and [Weapon_Core (line 64)](/C:/Hobby/Eldrain/05_Combat_Survival/Weapon_Core.md:64) explicitly reserve player-facing T1/T2/T3 for Anomaly phases. Weapon construction classes are **Scrap / Guild / Expedition**; `load_tier` is technical data. `Alter` is an authored variation, and Relic is not another construction class.
+The terminology matters. [Gear_Progression](C:/Hobby/Eldrain/07_Gear_Inventory/Gear_Progression.md) and [[05_Combat_Survival/Weapon_Core|Weapon_Core (line 64)]] explicitly reserve player-facing T1/T2/T3 for Anomaly phases. Weapon construction classes are **Scrap / Guild / Expedition**; `load_tier` is technical data. `Alter` is an authored variation, and Relic is not another construction class.
 
 The weapon records demonstrate the distinction. The quarantine marker has `load_tier: 1` and an `uncommon..rare` band; the storm-measuring rig has `load_tier: 3`, `rare..epic`, foreign origin and a `stitched_trace` source. These are separate fields with specific relationships, not one interchangeable Tier. See the pulse-tool instances (историческая запись; Git history) and condenser instances (историческая запись; Git history).
 
@@ -216,7 +216,7 @@ Several Eldrain facts make this particularly consequential:
 - Ordinary extracted drained batteries recharge free in the Hub; firing them is therefore not automatically a recurring material sink.
 - Pawn death does not consume the whole account stash.
 
-These are **KNOWN** from [Stash_Architecture](C:/Hobby/Eldrain/07_Gear_Inventory/Stash_Architecture.md), [Sinks_Insurance](C:/Hobby/Eldrain/06_Economy_Loot/Sinks_Insurance.md) and [Magic_Batteries (line 182)](/C:/Hobby/Eldrain/05_Combat_Survival/Magic_Batteries.md:182).
+These are **KNOWN** from [Stash_Architecture](C:/Hobby/Eldrain/07_Gear_Inventory/Stash_Architecture.md), [Sinks_Insurance](C:/Hobby/Eldrain/06_Economy_Loot/Sinks_Insurance.md) and [[05_Combat_Survival/Magic_Batteries|Magic_Batteries (line 182)]].
 
 Also, equipment taken from a dead player and extracted by another is a **transfer**, not destruction of population-wide capital.
 
@@ -268,13 +268,13 @@ The current two-to-three-purpose requirement should not become a content quota. 
     
 - **Optional cross-Anomaly preparation does not mean optional physical protection.** Gate Check can produce lethal outcomes without the required environmental preparation. The research recommendation is to avoid dependence on one imported answer, not remove environmental requirements. [Gate_Check](C:/Hobby/Eldrain/08_World_Generation/Generation/Gate_Check.md)
     
-- **Continuity is more specific than a cheap shop.** The fixed Welfare loan has an eligibility predicate, cannot be converted into saleable material, and preserves ordinary extraction capability. It is not an advanced kit entitlement. [Spawn_Logic (line 91)](/C:/Hobby/Eldrain/04_Player_Entities/Spawn_Logic.md:91)
+- **Continuity is more specific than a cheap shop.** The fixed Welfare loan has an eligibility predicate, cannot be converted into saleable material, and preserves ordinary extraction capability. It is not an advanced kit entitlement. [[04_Player_Entities/Spawn_Logic|Spawn_Logic (line 91)]]
     
 - **Local price benefits already exist in the reputation direction.** [Reputation_Rules](C:/Hobby/Eldrain/03_Factions_Societies/Reputation_Rules.md) permits cheaper or otherwise improved local services. That does not contradict the ban on a universal best trader, but price differences cannot be counted as proof of distinct transformation roles.
     
-- **`SOURCE_CONFLICT` — terminology drift:** [Gear_Progression](C:/Hobby/Eldrain/07_Gear_Inventory/Gear_Progression.md) reserves T1/T2/T3 for Anomaly phases in §3 but still uses “T1 weapon”, “T1 Specialist” and T1/T2/T3 weapon-cycle comparisons later. [Weapon_Core (line 64)](/C:/Hobby/Eldrain/05_Combat_Survival/Weapon_Core.md:64) explicitly uses construction classes. This is inconsistent terminology; it does not justify creating another player-facing gear ladder.
+- **`SOURCE_CONFLICT` — terminology drift:** [Gear_Progression](C:/Hobby/Eldrain/07_Gear_Inventory/Gear_Progression.md) reserves T1/T2/T3 for Anomaly phases in §3 but still uses “T1 weapon”, “T1 Specialist” and T1/T2/T3 weapon-cycle comparisons later. [[05_Combat_Survival/Weapon_Core|Weapon_Core (line 64)]] explicitly uses construction classes. This is inconsistent terminology; it does not justify creating another player-facing gear ladder.
     
-- **`MISSING_OWNER` — environmental module resolution:** [Calibration_Contract (line 78)](/C:/Hobby/Eldrain/07_Gear_Inventory/Calibration_Contract.md:78) explicitly reports the missing owner for `ResolvedEnvironmentProtection`. Therefore the strength of module-based preparation cannot yet be established numerically.
+- **`MISSING_OWNER` — environmental module resolution:** [[07_Gear_Inventory/Calibration_Contract|Calibration_Contract (line 78)]] explicitly reports the missing owner for `ResolvedEnvironmentProtection`. Therefore the strength of module-based preparation cannot yet be established numerically.
     
 
 There is also a major **content gap, not missing system ownership**: [Registry_Items](C:/Hobby/Eldrain/07_Gear_Inventory/Registries/Registry_Items.md), [Registry_CraftingRecipes](C:/Hobby/Eldrain/07_Gear_Inventory/Registries/Registry_CraftingRecipes.md) and [Registry_Blueprints](C:/Hobby/Eldrain/07_Gear_Inventory/Registries/Registry_Blueprints.md) contain no confirmed records. Thermos models and modules remain blocked. There is no completed material economy here to validate empirically.
