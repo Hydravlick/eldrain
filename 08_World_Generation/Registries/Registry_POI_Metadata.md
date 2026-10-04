@@ -64,6 +64,8 @@ WorldMetadata
 
 ## 3. Resolver
 
+В [[08_World_Generation/Content/World_Atlas/Sectors/Lens/Lens_Manifest#Возвращение и городское соседство|concept Линз]] белый двор имеет ограниченную `closed`-проекцию с видимой причиной закрытия печного проёма. Это authored общий вариант, не экспорт частной закупки или гибели голема из SessionRuntime. Реальных prefab/address definitions и допуска в selection пока нет; изображение места не создаёт активный сервис.
+
 См. [[08_World_Generation/Generation/Dual_State_POIs#4. Resolver]].
 
 ## 4. Проверки

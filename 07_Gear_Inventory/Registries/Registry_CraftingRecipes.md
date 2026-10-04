@@ -61,6 +61,8 @@ balance_state
 
 ## Adding a record
 
+В [[08_World_Generation/Content/World_Atlas/Sectors/Lens/Lens_Findings_and_People|карточках Линз]] разработаны желания и видимые результаты. Ремонт из пластин и «Галерея» ещё требуют реальных address/item/module definitions, количеств и комиссии. Закупка готовой серии имеет отдельную запись [[03_Factions_Societies/Quest_Engine#Контрактный сценарий: закупка глазури|Quest Engine]], если выбрана как поручение; коммерческая реплика не создаёт RecipeTransaction или вторую награду. Активные рецепты этим срезом не добавлены.
+
 ```text
 [recipe_id:: recipe_id]
 [address_id:: address_id]

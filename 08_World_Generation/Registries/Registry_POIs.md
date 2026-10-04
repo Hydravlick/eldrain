@@ -71,6 +71,8 @@ evidence_payload: extractable proof | none
 
 ## Confirmed records
 
+Для [[08_World_Generation/Content/World_Atlas/Sectors/Lens/Lens_Manifest|чернового Двора глазури]] разработаны подходы, работа и закрытая общая проекция. Он ещё не является записью ниже и не получает декоративный poi_id/address_id. Публикация требует префаба, источников, допустимых состояний и метаданных; сервис дополнительно требует реального потребителя и транзакции.
+
 ### Общие Кладовые
 
 [poi_id:: central_common_stores]

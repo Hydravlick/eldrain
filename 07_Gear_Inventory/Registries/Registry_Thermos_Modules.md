@@ -57,6 +57,8 @@ read_when: Когда нужен контракт «Реестр модулей 
 
 ## Candidate records
 
+Отдельный авторский concept — [[08_World_Generation/Content/World_Atlas/Sectors/Lens/Lens_Findings_and_People#Сборка «Галерея»|керамическая облицовка «Галерея»]]. До определения mount/coverage/parameter contracts, service load, массы и совместимости он не получает module_def_id и не участвует в active selection. Названный желанный результат не меняет publication boundary или существующие записи ниже.
+
 ### Навеска «Базальт»
 [module_def_id:: basalt_shell]
 [allowed_mount_patterns:: UNKNOWN]
